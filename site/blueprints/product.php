@@ -13,7 +13,7 @@ fields:
     type:  text
   text:
     label: Description
-    type:  markdown
+    type:  wysiwyg
   sizes:
     label: Sizes
     type: structure
