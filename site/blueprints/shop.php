@@ -11,4 +11,4 @@ fields:
     type:  text
   text:
     label: Text
-    type:  wysiwyg
+    type:  textarea

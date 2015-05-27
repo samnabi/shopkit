@@ -13,7 +13,7 @@ fields:
     type:  text
   text:
     label: Description
-    type:  wysiwyg
+    type:  textarea
   sizes:
     label: Sizes
     type: structure
