@@ -1,18 +1,17 @@
 <?php
 
-/*
+/* ---------------------------------------
+   Kirbuy Options
+--------------------------------------- */
 
----------------------------------------
-KirbyShop Options
----------------------------------------
-*/
-
-//c::set('paypal-action','https://www.sandbox.paypal.com/cgi-bin/webscr');
-c::set('paypal-action','https://www.paypal.com/cgi-bin/webscr');
+// Set PayPal variables
+c::set('paypal-action','https://www.paypal.com/cgi-bin/webscr'); // Sandbox URL: https://www.sandbox.paypal.com/cgi-bin/webscr
 c::set('paypal-email','gourmetpassions@gmail.com');
+
+// Offer the option to pay later (via cash, COD, cheque, other offline arrangement)
 c::set('pay-later',true);
 
-//===================
+/*------------------------------------- */
 
 function get_cart() {
     s::start();

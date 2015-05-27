@@ -1,0 +1,5 @@
+Title: Search
+
+----
+
+Text: Search results go here

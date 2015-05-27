@@ -1,0 +1,3 @@
+Title: Empty cart
+----
+Text: Your shopping cart is now empty.

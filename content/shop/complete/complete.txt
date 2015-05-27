@@ -1,0 +1,8 @@
+Title: Transaction complete
+
+----
+Text:
+
+Thanks for shopping! Your payment has been received. 
+
+You will receive an email receipt from PayPal shortly.
