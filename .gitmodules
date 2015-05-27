@@ -4,6 +4,3 @@
 [submodule "panel"]
 	path = panel
 	url = https://github.com/getkirby/panel.git
-[submodule "site/plugins/wysiwyg"]
-	path = site/plugins/wysiwyg
-	url = https://github.com/storypioneers/kirby-wysiwyg.git
