@@ -4,3 +4,6 @@
 [submodule "panel"]
 	path = panel
 	url = https://github.com/getkirby/panel.git
+[submodule "multiselect"]
+    path = site/fields/multiselect
+    url = https://github.com/distantnative/multiselect.git
