@@ -1,0 +1,3 @@
+title: Register
+----
+text: You don't need an account to shop online, but if you register you can keep track of your past purchases!

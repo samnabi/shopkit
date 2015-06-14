@@ -1,0 +1,5 @@
+Title: Home
+
+----
+
+Text: This is your site's home page. All the shopping cart content should be within the (link: /shop text: Shop) page, so you can add static pages to the rest of the site as you please.

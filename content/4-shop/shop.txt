@@ -1,0 +1,14 @@
+Title: Shop
+
+----
+
+Text: 
+
+----
+
+Shipping: 
+
+- 
+  country: all-countries
+  peritem: soio
+  freeshipping: ijosji

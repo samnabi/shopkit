@@ -1,3 +1,0 @@
-Title: Order Received (Pay Later)
-----
-Text: Thanks, your order has been recieved. We'll wait for your payment before sending out the shipment. Check (link: /shop/orders text: your orders) to see the status of your orders, or to print out an invoice.

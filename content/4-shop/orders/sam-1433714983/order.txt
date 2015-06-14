@@ -1,0 +1,49 @@
+Txn-id: INV-1433714983
+
+----
+
+Txn-date: 1433714983
+
+----
+
+Status: Invoice
+
+----
+
+Products: 
+
+-
+  id: shop/music/hits-of-the-90s::cd::
+  sku: 10101001
+  uri: shop/music/hits-of-the-90s
+  item_name: Pop Hits of the 90s
+  variant: cd
+  option: 
+  amount: 12.99
+  shipping: 3.00
+  tax: 1.69
+  quantity: 5
+
+----
+
+Subtotal: 64.95
+
+----
+
+Shipping: 15
+
+----
+
+Tax: 8.4435
+
+----
+
+Payer-id: sam
+
+----
+
+Payer-email: sam@samnabi.com
+
+----
+
+Payer-address: 
