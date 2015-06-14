@@ -9,6 +9,50 @@ Text:
 Shipping: 
 
 - 
-  country: all-countries
-  peritem: soio
-  freeshipping: ijosji
+  method: Ground (3-5 days)
+  countries[]:
+    - algeria
+    - argentina
+    - bahamas
+    - bermuda
+    - bhutan
+  flat: 6
+  item:
+  weight: |
+    0:12
+    7:90
+  price:
+  calculation:
+  handling:
+
+----
+
+Tax: 
+
+----
+
+Paylater: 
+
+----
+
+Currency-code: USD
+
+----
+
+Currency-symbol: $
+
+----
+
+Currency-position: after
+
+----
+
+Paypal-email: nothing@nothing.com
+
+----
+
+Paypal-action: sandbox
+
+----
+
+License-shopkit: 

@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<?php snippet('check-license') ?>
+
 <?php snippet('nav') ?>
 
 <?php snippet('breadcrumb') ?>

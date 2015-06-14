@@ -1,1 +1,5 @@
 Title: Costa Rica
+
+----
+
+Code: CR

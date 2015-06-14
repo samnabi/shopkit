@@ -139,5 +139,31 @@ function get_cart_details($site,$pages,$cart) {
 
 }
 
+function canPayLater($user) {
+  // Permitted user roles are defined in the shop content page
+  $roles = explode(',',page('shop')->paylater());
+  if (in_array($user->role(),$roles)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function payPalAction() {
+  if(page('shop')->paypal_action() === 'live') {
+    return 'https://www.paypal.com/cgi-bin/webscr';
+  } else {
+    return 'https://www.sandbox.paypal.com/cgi-bin/webscr';
+  }
+}
+
+function formatPrice($number) {
+  $symbol = page('shop')->currency_symbol();
+  if (page('shop')->currency_position() == 'before') {
+    return $symbol.$number;
+  } else {
+    return $number.' '.$symbol;
+  }
+}
 
 ?>

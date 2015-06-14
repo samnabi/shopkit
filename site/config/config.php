@@ -16,25 +16,8 @@ for more information: http://getkirby.com/license
 */
 
 c::set('license', 'put your kirby license key here');
-c::set('license.shopkit', 'put your Shopkit license key here');
-
-/* ---------------------------------------
-   Shopkit Options
---------------------------------------- */
-
-// Set PayPal variables
-c::set('paypal.action','https://www.paypal.com/cgi-bin/webscr'); // Sandbox URL: https://www.sandbox.paypal.com/cgi-bin/webscr
-c::set('paypal.email','gourmetpassions@gmail.com');
-c::set('currency','CAD');
-
-// Offer the option to pay later (via cash, COD, cheque, other offline arrangement)
-c::set('paylater',array('admin','wholesaler'));
-
-// Choose tax rate (decimal format)
-c::set('tax-rate',0.13);
 
 /*
-
 ---------------------------------------
 User roles
 --------------------------------------

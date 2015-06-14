@@ -1,1 +1,5 @@
-Title: Myanmar, {Burma}
+Title: Myanmar [Burma]
+
+----
+
+Code: MM

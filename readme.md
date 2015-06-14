@@ -10,12 +10,15 @@ Shopkit is a file-based e-commerce solution for the excellent Kirby CMS.
 - [X] Front-end user login and purchase history
 - [X] Front-end user account editing and deleting
 - [X] Search
-- []  Global shipping rules
-    - [x] Accepted countries defined as pages in shop/countries
-        - This lets Shopkit use a common country list among blueprints and templates
-    - [x] Country-specific rates
-    - [] Per-product override
-    - [x] Free shipping threshold
+- [X] Country-specific shipping rates
+    - [] Exempt specific products from shipping calculation
+    - [X] Unlimited shipping tiers
+    - [X] Four shipping calculation methods
+        - Flat rate
+        - Rate per item
+        - Rate by weight
+        - Rate by total price
+- [X] Country-specific tax rates
 - [] Wholesaler pricing
     - User-based discounts
 - [X] Mark orders as pending or shipped

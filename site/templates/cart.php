@@ -13,11 +13,11 @@
     <p>You don't have anything in your cart!</p>
 <?php } else { ?>
 
-    <form method="post" action="<?php echo c::get('paypal.action') ?>">
+    <form method="post" action="<?php echo payPalAction() ?>">
         <input type="hidden" name="cmd" value="_cart">
         <input type="hidden" name="upload" value="1">
-        <input type="hidden" name="business" value="<?php echo c::get('paypal.email') ?>">
-        <input type="hidden" name="currency_code" value="<?php echo c::get('currency') ?>">
+        <input type="hidden" name="business" value="<?php echo page('shop')->paypal_email() ?>">
+        <input type="hidden" name="currency_code" value="<?php echo page('shop')->currency_code() ?>">
         <input type="hidden" name="return" value="<?php echo url() ?>/shop/complete">
         <input type="hidden" name="rm" value="1">
 
@@ -63,7 +63,7 @@
                             <a href="<?php echo url('shop/cart') ?>?action=remove&amp;id=<?php echo $item[id] ?>">less</a>
                         </td>
                         <td>
-                            $<?php printf('%0.2f', $item[amount]*$item[quantity]) ?>
+                            <?php echo formatPrice($item[amount]*$item[quantity]) ?>
                         </td>
                         <td>
                             <a href="<?php echo url('shop/cart') ?>?action=delete&amp;id=<?php echo $item[id] ?>">delete</a>
@@ -75,27 +75,31 @@
             <tfoot>
                 <tr>
                     <td colspan="2">Subtotal</td>
-                    <td>$<?php printf('%0.2f', $cart_totals[price]) ?></td>
+                    <td><?php echo formatPrice($cart_totals[price]) ?></td>
                 </tr>
                 <tr>
                     <td colspan="2">Shipping</td>
-                    <td>$<?php printf('%0.2f', $cart_totals[shipping]) ?></td>
+                    <td><?php echo formatPrice($cart_totals[shipping]) ?></td>
                 </tr>
                 <tr>
                     <td colspan="2">Tax</td>
-                    <td>$<?php printf('%0.2f', $cart_totals[tax]) ?></td>
+                    <td><?php echo formatPrice($cart_totals[tax]) ?></td>
                 </tr>
                 <tr>
                     <td colspan="2">Total</td>
-                    <td>$<?php printf('%0.2f', $cart_totals[price]+$cart_totals[shipping]+$cart_totals[tax]) ?></td>
+                    <td><?php echo formatPrice($cart_totals[price]+$cart_totals[shipping]+$cart_totals[tax]) ?></td>
                 </tr>
             </tfoot>
         </table>
         <p><button type="submit">Pay now with PayPal</button></p>
+
+        <?php if (page('shop')->paypal_action() != 'live') { ?>
+            <p>You're running in sandbox mode. This transaction won't result in a real purchase.</p>
+        <?php } ?>
     </form>
 
     <!-- Invoicing option for permitted users -->
-    <?php if($user = $site->user() and in_array($user->role(),c::get('paylater'))) { ?>
+    <?php if(canPayLater($site->user())) { ?>
         <form action="/shop/cart/invoice" method="POST">
 
             <?php foreach($cart_items as $i => $item) { ?>

@@ -140,7 +140,7 @@
                             <button type="submit">Download Invoice (PDF)</button>
                         </form>
 
-                        <a href="<?php echo c::get('paypal.action').'?cmd=_view-a-trans&id='.$order->txn_id() ?>">View on PayPal</a>
+                        <a href="<?php echo payPalAction().'?cmd=_view-a-trans&id='.$order->txn_id() ?>">View on PayPal</a>
                     </td>
                 <?php } ?>
             </tr>
