@@ -7,5 +7,11 @@
 
   <title><?php echo $site->title()->html() ?> | <?php echo $page->title()->html() ?></title>
 
+  <?php echo css('assets/css/base.css') ?>
+
 </head>
 <body>
+
+<?php snippet('nav') ?>
+
+<?php snippet('breadcrumb') ?>

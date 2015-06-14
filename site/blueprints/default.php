@@ -2,7 +2,14 @@
 
 title: Page
 pages: true
-files: true
+  template:
+    - default
+files:
+  sortable: true
+  fields:
+    title:
+      label: Title
+      type: text
 fields:
   title:
     label: Title

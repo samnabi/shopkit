@@ -1,18 +1,5 @@
 <?php
 
-/* ---------------------------------------
-   Kirbuy Options
---------------------------------------- */
-
-// Set PayPal variables
-c::set('paypal-action','https://www.paypal.com/cgi-bin/webscr'); // Sandbox URL: https://www.sandbox.paypal.com/cgi-bin/webscr
-c::set('paypal-email','gourmetpassions@gmail.com');
-
-// Offer the option to pay later (via cash, COD, cheque, other offline arrangement)
-c::set('pay-later',true);
-
-/*------------------------------------- */
-
 function get_cart() {
     s::start();
     $cart = s::get('cart', array());
@@ -29,14 +16,16 @@ function cart_logic($cart) {
               if (isset($_REQUEST['quantity'])) {
                 $quantity = intval($_REQUEST['quantity']);
                 if (isset($cart[$id])) {
-                    $cart[$id] + intval($quantity);
+                    $cart[$id] + $quantity;
                 } else {
-                    $cart[$id] = intval($quantity);
+                    $id = implode('::',array($_REQUEST['uri'],$_REQUEST['variant'],$_REQUEST['option']));
+                    $cart[$id] = $quantity;
                 }
               } else {
                 if (isset($cart[$id])) {
                     $cart[$id]++;
                 } else {
+                    $id = implode('::',array($_REQUEST['uri'],$_REQUEST['variant'],$_REQUEST['option']));
                     $cart[$id] = 1;
                 }                
               }
@@ -67,10 +56,6 @@ function cart_logic($cart) {
       s::set('cart', $cart);
     }
 
-    if (count($cart) == 0) {
-        go(url('shop'));        
-    }
-
     return $cart;
 }
 
@@ -81,28 +66,6 @@ function cart_count($cart) {
     }
     return $count;
 }
-
-function cart_postage($total) {
-    $postage;
-    switch ($total) {
-        case ($total < 10):
-            $postage = 2.5;
-            break;
-        case ($total < 30):
-            $postage = 3.5;
-            break;
-        case ($total < 75):
-            $postage = 5.5;
-            break;
-        case ($total < 150):
-            $postage = 8;
-            break;
-        default:
-            $postage = 10;
-    }
-    return $postage;
-}
-
 
 function get_cart_details($site,$pages,$cart) {
 
@@ -121,38 +84,30 @@ function get_cart_details($site,$pages,$cart) {
         foreach ($cart as $id => $quantity) {
 
             // Check if cart item and product match
-            if(strpos($id, $product->diruri()) === 0) {
+            if(strpos($id, $product->uri()) === 0) {
 
                 // Reset variables
-                $size = $title = $price = $shipping = $tax = false;
+                $variant = $title = $price = $shipping = $tax = false;
 
-                // Set size
-                $size_id = array_pop(explode('::', $id)); // :: is used as a delimiter
-                $sizes = $product->sizes()->yaml();
-                foreach($sizes as $key => $array) {
-                    if ($array[size] === $size_id) {
-                        $size = $sizes[$key];
+                // Break cart ID into uri, variant, and option
+                $id_array = explode('::', $id); // :: is used as a delimiter
+
+                // Set variant and option
+                $variant_name = $id_array[1];
+                $variants = $product->prices()->yaml();
+                foreach($variants as $key => $array) {
+                    if (str::slug($array[name]) === $variant_name) {
+                        $variant = $variants[$key];
                     }
                 }
-                if (!is_array($size) and count($sizes) === 1) {
-                    $size = $sizes[0];
-                }
+
+                // Set option
+                $option = $id_array[2];
             
-                // Set title
-                if(!isset($size[size])) {
-                    $title = $size[plu].' - '.$product->title();
-                } else {
-                    $title = $size[plu].' - '.$product->title().' ('.$size[size].')';
-                }     
-            
-                // Set prices based on user auth
-                if($user = $site->user() and $user->hasRole('wholesaler') and $product->price_wholesaler() != '') {
-                  $price = $size[price_wholesaler];
-                } else {
-                  $price = $size[price];
-                }
-                $shipping = $size[shipping];
-                $tax = $price*0.13;                                       
+                // Set prices
+                $price = $variant[price];
+                $shipping = $variant[shipping];
+                $tax = $price*c::get('tax-rate');                           
 
                 // Advance item counter
                 $i++;
@@ -160,7 +115,11 @@ function get_cart_details($site,$pages,$cart) {
                 // Create item array
                 $cart_items[$i] = array(
                     'id' => $id,
-                    'item_name' => $title,
+                    'sku' => $variant[sku],
+                    'uri' => $product->uri(),
+                    'item_name' => $product->title()->value,
+                    'variant' => str::slug($variant[name]),
+                    'option' => $option,
                     'amount' => sprintf('%0.2f',$price),
                     'shipping' => sprintf('%0.2f',$shipping),
                     'tax' => sprintf('%0.2f',$tax),
