@@ -1,42 +1,85 @@
-# Kirbuy Starterkit
+# Shopkit for Kirby
 
-Kirbuy is a file-based shopping cart for the excellent Kirby CMS.
+Shopkit is a file-based e-commerce solution for the excellent Kirby CMS.
 
 ## Features
 
-- Paypal integration
-- 
+### 0.9
+
+- [] Paypal integration
+- [X] Front-end user login and purchase history
+- [X] Front-end user account editing and deleting
+- [X] Search
+- []  Global shipping rules
+    - [x] Accepted countries defined as pages in shop/countries
+        - This lets Shopkit use a common country list among blueprints and templates
+    - [x] Country-specific rates
+    - [] Per-product override
+    - [x] Free shipping threshold
+- [] Wholesaler pricing
+    - User-based discounts
+- [X] Mark orders as pending or shipped
+- [X] Unlimited categories and sub-categories
+    - [] Smart templates and blueprints to handle complex navigation
+- [X] Product page template and blueprint
+    - Photo gallery
+    - Related products
+    - Multiple prices per product (e.g. for product sizes)
+    - Variants within each price (e.g. for product colours)
+
+### Roadmap
+
+- More payment gateways
+- Gift certificates and discount codes
+- More complex variants and options
+- Product downloads
+- Inventory control
+- Weight-based shipping rules
+- Quantity discounts
+- Multi-language
 
 ## Pricing
 
-Kirbuy mimics the Kirby CMS pricing scheme.
+Shopkit uses the same licensing terms as Kirby.
 
-You can try Kirbuy for free on your local machine or a test server, forever. Once you're satisfied, buy a Kirbuy license for $30 to use it on a public site.
+You can try Shopkit for free on your local machine or a test server, forever. Once you're satisfied, buy a Shopkit license for $30 to use it on a public site.
 
-You'll also have to buy a Kirby CMS license from Bastian: <http://getkirby.com/license>
+You'll also have to buy a Kirby license from Bastian: <http://getkirby.com/license>
+
+### The plugin is free
+
+The shop plugin, `shop.php`, is an open source mini-library with all the helper functions that make Shopkit tick. It's free to use forever, for any purpose. You'll still need to write your own blueprints and templates if you don't buy the full Shopkit package.
 
 ## What's in the box
 
 - Kirby CMS v2.1.0
-- Kirbuy plugin for the shopping cart logic
-- Custom templates and blueprints to get your shopping cart up and running fast
+- Shop plugin
+- Bundled templates and blueprints to get your shopping cart up and running fast
 - Bundled plugins: (list)
 
 ## Installation
 
-Kirbuy, just like Kirby CMS, does not require a database, which makes it very easy to install. Just copy the files to your server and visit the URL for your website in the browser.
+Shopkit, just like Kirby CMS, does not require a database, which makes it very easy to install. Just copy the files to your server and visit the URL for your website in the browser.
 
 **Please check if the invisible .htaccess file has been copied to your server correctly**
 
 ### Download
 
-You can download the latest version of Kirbuy from: (link)
+You can download the latest version of Shopkit from: (link)
 
 ### With Git
 
-If you are familiar with Git, you can clone Kirbuy from Github.
+If you are familiar with Git, you can clone Shopkit from Github.
 
-    git clone --recursive https://github.com/getkirby/plainkit.git
+    git clone --recursive https://github.com/samnabi/shopkit.git
+
+## Configuration
+
+All of Shopkit's configuration is stored in the main shop page, within the `shop.txt` file. There's a helpful blueprint to help you easily manage your shop from the panel.
+
+### PayPal setup
+
+Be sure to set up an IPN callback with paypal: `yourdomain.com/shop/cart/success`
 
 ## Issues and feedback
 
@@ -46,6 +89,6 @@ Otherwise, send me an email: <sam@samnabi.com>
 
 ## Copyright
 
-Kirby CMS © 2009-2015 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>
+Shopkit © 2015 Sam Nabi <http://samnabi.com>
 
-Kirbuy © 2015 Sam Nabi <http://samnabi.com>
+Kirby CMS © 2009-2015 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>
