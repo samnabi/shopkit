@@ -1,0 +1,2 @@
+.gallery{text-align:center;position:relative;padding-top:305px;overflow-x:hidden}.gallery input{display:none}.gallery input:checked+img{display:block}.gallery label{display:inline-block;vertical-align:top}.gallery>img{display:none;position:absolute;top:0;left:0;right:0;margin-left:auto;margin-right:auto}
+/*# sourceMappingURL=base.css.map */

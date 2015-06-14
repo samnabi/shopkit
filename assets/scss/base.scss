@@ -1,0 +1,30 @@
+//	Image gallery
+.gallery {
+	text-align: center;
+	position: relative;
+	padding-top: 305px;
+	overflow-x: hidden;
+
+	input {
+		display: none;
+
+		&:checked + img {
+			display: block;
+		}
+	}
+
+	label {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	& > img {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
