@@ -19,8 +19,7 @@ Shopkit is a file-based e-commerce solution for the excellent Kirby CMS.
         - Rate by weight
         - Rate by total price
 - [X] Country-specific tax rates
-- [] Wholesaler pricing
-    - User-based discounts
+- [X] Pay later
 - [X] Mark orders as pending or shipped
 - [X] Unlimited categories and sub-categories
     - [] Smart templates and blueprints to handle complex navigation
@@ -34,6 +33,7 @@ Shopkit is a file-based e-commerce solution for the excellent Kirby CMS.
 
 - More payment gateways
 - Gift certificates and discount codes
+- User role discounts
 - More complex variants and options
 - Product downloads
 - Inventory control
