@@ -121,7 +121,7 @@ button, .button, input[type="submit"] {
 	border-bottom: 0.3rem solid $black;
 	padding-bottom: 0;
 	font-size: 0;
-	a {
+	a:not(.button) {
 		font-size: 1.25rem;
 		display: inline-block;
 		vertical-align: bottom;
@@ -160,7 +160,7 @@ button, .button, input[type="submit"] {
 	}
 }
 
-//	Bradcrumbs
+//	Breadcrumbs
 
 .breadcrumbs {
 	background: inherit;
@@ -183,14 +183,19 @@ aside .panel {
 }
 
 // Cart Status
-.cartStatus > svg:first-child {
-	width: 3.5rem;
-	vertical-align: middle;
-	margin-top: -0.25rem;
-	margin-right: 0.5rem;
+.button.cartStatus {
+	float: right;
+	margin-top: 0.3rem;
+	margin-bottom: 0;
+	padding: 0.5rem 0.75rem 0.1rem 0.5rem;
 }
-.cartStatus span {
-	margin-right: 1rem;
+.cartStatus > svg:first-child {
+	fill: white;
+	width: 2rem;
+	vertical-align: middle;
+	margin-top: -0.4rem;
+	margin-right: 0.25rem;
+	margin-bottom: 0;
 }
 
 // Search Form
