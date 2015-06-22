@@ -151,6 +151,12 @@ button, .button, input[type="submit"] {
 			display: inline-block;
 			color: white;
 			padding: 0.25rem 1rem;
+
+			&:hover,
+			&:focus {
+				color: white;
+				text-decoration: underline;
+			}
 		}
 	}
 	dt {
