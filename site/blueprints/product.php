@@ -38,42 +38,23 @@ fields:
         label: Price
         type:  text
         validate: num
-        width: 3/4
+        width: 1/2
         required: true
       sku:
         label: SKU
         type:  text
         width: 1/4
+      weight:
+        label: Weight
+        type: text
+        width: 1/4
       description: 
         label: Description
         type: textarea
-  shipping:
-    label: Shipping rules
-    help: Optional. These override the global shipping rules.
-    type: structure
-    entry: >
-      <strong>{{country}}:</strong> {{peritem}} per item (free shipping over {{freeshipping}})
-    fields:
-      country:
-        label: Country
-        help: Select "All countries" for a global fallback shipping rate
-        type: select
-        options: query
-        query: 
-          page: shop/countries
-          fetch: children
-      peritem:
-        label: Shipping rate per item
-        help: Default rate for each item in the shopping cart. Numbers only.
-        type: text
-        width: 1/2
-        validate: num
-      freeshipping:
-        label: Free shipping over
-        help: Threshold for free shipping to this country. Numbers only.
-        type: text
-        width: 1/2
-        validate: num
+  noShipping:
+    label: Exclude from shipping?
+    type: checkbox
+    text: Exclude this product from the total shipping calculation
   relatedproducts:
     label: Related products
     type: structure

@@ -142,7 +142,7 @@ function get_cart_details($site,$pages,$cart) {
 function canPayLater($user) {
   // Permitted user roles are defined in the shop content page
   $roles = explode(',',page('shop')->paylater());
-  if (in_array($user->role(),$roles)) {
+  if ($user and in_array($user->role(),$roles)) {
     return true;
   } else {
     return false;
@@ -160,9 +160,9 @@ function payPalAction() {
 function formatPrice($number) {
   $symbol = page('shop')->currency_symbol();
   if (page('shop')->currency_position() == 'before') {
-    return $symbol.$number;
+    return $symbol.' '.round($number,2);
   } else {
-    return $number.' '.$symbol;
+    return round($number,2).' '.$symbol;
   }
 }
 

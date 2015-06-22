@@ -5,6 +5,6 @@
         "debug":         false,  
         "line-comments": false,  
         "line-numbers":  false,  
-        "style":         "compressed"  
+        "style":         "compressed"
     }  
 }  

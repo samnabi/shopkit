@@ -26,11 +26,10 @@ Prices:
     plastic
 - 
   name: CD
+  price: 2.99
   sku: 10101001
-  price: 12.99
-  shipping: 3
+  weight:
   description:
-  options:
 - 
   name: Vinyl
   sku: 246810
@@ -42,3 +41,7 @@ Prices:
 ----
 
 Tags: compilation,pop
+
+----
+
+Noshipping: 

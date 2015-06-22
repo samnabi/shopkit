@@ -14,28 +14,28 @@ Prices:
 
 - 
   name: Small
-  sku: 0001
+  sku: 1
   price: 15
   shipping: 5
   description:
   options: black,grey,blue,brown
 - 
   name: Medium
-  sku: 0002
+  sku: 2
   price: 15
   shipping: 5
   description:
   options: black,grey,blue,brown
 - 
   name: Large
-  sku: 0003
+  sku: 3
   price: 17
   shipping: 5
   description:
   options: black,grey,blue,brown
 - 
   name: X-Large
-  sku: 0004
+  sku: 4
   price: 20
   shipping: 5
   description:
@@ -44,3 +44,10 @@ Prices:
 ----
 
 Relatedproducts: 
+
+- 
+  product: wolf-howling-at-the-moon
+
+----
+
+Noshipping: 

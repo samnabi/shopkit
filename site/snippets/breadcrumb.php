@@ -1,11 +1,7 @@
-<section>
-	<?php $first = true; ?>
+<nav class="breadcrumbs">
 	<?php foreach($site->breadcrumb() as $crumb) { ?>
-		<?php if ($first) { ?>
-			<?php $first = false; ?>
-			<a href="<?php echo $crumb->url() ?>" title="<?php echo html($crumb->title()) ?>"><?php echo html($crumb->title()) ?></a>
-   		<?php } else { ?>
-    		/ <a href="<?php echo $crumb->url() ?>" title="<?php echo html($crumb->title()) ?>"><?php echo html($crumb->title()) ?></a>
-		<?php } ?>
+		<a href="<?php echo $crumb->url() ?>" title="<?php echo html($crumb->title()) ?>" <?php if($crumb->is($page)) echo 'class="current"' ?>>
+			<?php echo html($crumb->title()) ?>
+		</a>
     <?php } ?>
-</section>
+</nav>

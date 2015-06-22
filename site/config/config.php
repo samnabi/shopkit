@@ -17,6 +17,42 @@ for more information: http://getkirby.com/license
 
 c::set('license', 'put your kirby license key here');
 
+
+/* 
+
+---------------------------------------
+Smartypants Setup 
+---------------------------------------
+
+Smartypants is a typography plugin, which
+helps to improve things like quotes and ellipsises
+and all those nifty little typography details. 
+
+You can read more about it here: 
+http://michelf.com/projects/php-smartypants/typographer/
+
+Smartypants is switched off by default. 
+As soon as it is switched on it will affect all 
+texts which are parsed by kirbytext()
+
+*/
+
+// smartypants
+c::set('smartypants', true);
+c::set('smartypants.attr', 1);
+c::set('smartypants.doublequote.open', '&#8220;');
+c::set('smartypants.doublequote.close', '&#8221;');
+c::set('smartypants.space.emdash', ' ');
+c::set('smartypants.space.endash', ' ');
+c::set('smartypants.space.colon', '&#160;');
+c::set('smartypants.space.semicolon', '&#160;');
+c::set('smartypants.space.marks', '&#160;');
+c::set('smartypants.space.frenchquote', '&#160;');
+c::set('smartypants.space.thousand', '&#160;');
+c::set('smartypants.space.unit', '&#160;');
+c::set('smartypants.skip', 'pre|code|kbd|script|math');
+
+
 /*
 ---------------------------------------
 User roles
@@ -62,7 +98,7 @@ c::set('routes', array(
     'pattern' => 'logout',
     'action'  => function() {
       if($user = site()->user()) $user->logout();
-      return go('login');
+      return go('/');
     }
   ),
   array(

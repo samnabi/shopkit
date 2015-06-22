@@ -7,3 +7,9 @@
 [submodule "site/fields/multiselect"]
 	path = site/fields/multiselect
 	url = https://github.com/distantnative/multiselect.git
+[submodule "site/fields/selector"]
+	path = site/fields/selector
+	url = https://github.com/storypioneers/kirby-selector.git
+[submodule "site/fields/place"]
+	path = site/fields/place
+	url = https://github.com/AugustMiller/kirby-place-field.git

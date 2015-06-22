@@ -1,17 +1,17 @@
 # Shopkit for Kirby
 
-Shopkit is a file-based e-commerce solution for the excellent Kirby CMS.
+Shopkit is a dead-simple shop theme for the excellent Kirby CMS.
 
 ## Features
 
 ### 0.9
 
-- [] Paypal integration
+- [X] Paypal integration
 - [X] Front-end user login and purchase history
 - [X] Front-end user account editing and deleting
 - [X] Search
 - [X] Country-specific shipping rates
-    - [] Exempt specific products from shipping calculation
+    - [X] Exempt specific products from shipping calculation
     - [X] Unlimited shipping tiers
     - [X] Four shipping calculation methods
         - Flat rate

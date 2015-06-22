@@ -1,11 +1,20 @@
 <?php if ($user = $site->user()) { ?>
-	<?php echo $user->username() ?>
-	<?php if ($user->role('Admin') or $user->role('Editor')) { ?>
-		<a href="<?php echo url('panel') ?>">Dashboard</a>
-	<?php } ?>
-	<a href="<?php echo url('shop/orders') ?>">View Orders</a>
-	<a href="<?php echo url('logout') ?>">Logout</a>
+<div class="row">
+	<dl class="sub-nav">
+		<dt><?php echo $user->firstname().' '.$user->lastname() ?></dt>
+		<?php if ($user->hasPanelAccess()) { ?>
+			<dd><a href="<?php echo url('panel') ?>">Dashboard</a></dd>
+		<?php } ?>
+		<dd><a href="<?php echo url('shop/orders') ?>">View Orders</a></dd>
+		<dd><a href="<?php echo url('account') ?>">My Account</a></dd>
+		<dd><a href="<?php echo url('logout') ?>">Logout</a></dd>
+	</dl>
+</div>
 <?php } else { ?>
-	<a href="<?php echo url('login') ?>" title="Log In">Log In</a>
-	<a href="<?php echo url('register') ?>" title="Register">Register</a>
-<? } ?>
+<div class="row show-for-small-only">
+	<dl class="sub-nav">
+		<dd><a href="#login">Login</a></dd>
+		<dd><a href="/register">Register</a></dd>
+	</dl>
+</div>
+<?php } ?>
