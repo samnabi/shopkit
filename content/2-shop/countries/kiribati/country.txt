@@ -1,0 +1,5 @@
+Title: Kiribati
+
+----
+
+countrycode: KI

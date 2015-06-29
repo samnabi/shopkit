@@ -5,9 +5,11 @@
 		<h1><?php echo $page->title()->html() ?></h1>
 
 		<div class="row">
-			<div class="small-12 medium-6 columns">
+			<div class="small-12 medium-7 columns">
 				<?php snippet('gallery') ?>
+			</div>
 
+			<div class="small-12 medium-5 columns">
 				<?php echo $page->text()->kirbytext() ?>
 
 				<?php $tags = str::split($page->tags()) ?>
@@ -20,15 +22,15 @@
 				<?php } ?>
 			</div>
 
-			<section class="small-12 medium-6 columns">
+			<section class="small-12 columns">
 				<?php $prices = $page->prices()->toStructure() ?>
 				<?php if (count($prices)) { ?>
-					<ul class="prices small-block-grid-1 large-block-grid-2">
+					<ul class="prices small-block-grid-1 medium-block-grid-3 large-block-grid-4">
 						<?php foreach ($prices as $price) { ?>
 							<li>
 								<div class="small-12 columns">
 									<strong><?php echo $price->name() ?></strong><br>
-									<?php echo formatPrice($price->price()->value) ?> <span>+ <?php echo formatPrice($price->shipping()->value) ?> shipping</span>
+									<?php echo formatPrice($price->price()->value) ?>
 									<?php echo $price->description()->kirbytext() ?>
 								</div>
 					            <form class="small-12 columns" method="post" action="<?php echo url('shop/cart') ?>">
@@ -49,7 +51,7 @@
 											<input type="number" name="quantity" value="1" />
 										</div>
 										<div class="small-6 columns">
-						                	<button class="small expand" type="submit">Add to Cart</button>
+						                	<button class="small expand" type="submit">Buy</button>
 										</div>
 									</div>
 					            </form>
@@ -62,11 +64,11 @@
 
 		<?php $related = $page->relatedproducts()->toStructure() ?>
 		<?php if (count($related)) { ?>
-			<section>
+			<section class="related">
 				<?php $first = true ?>
 				<?php foreach ($related as $slug) { ?>
 					<?php if ($first) { ?>
-						<h2>Related products</h2>
+						<h3>Related products</h3>
 						<ul class="product listing small-block-grid-1 medium-block-grid-4">
 						<?php $first = false ?>
 					<? } ?>

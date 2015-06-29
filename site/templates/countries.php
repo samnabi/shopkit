@@ -269,7 +269,7 @@ foreach ($countries as $code => $name) {
 
 	  $newPage = page('shop/countries')->children()->create(str::slug($name), 'country', array(
 	    'title' => $name,
-	    'code' => $code
+	    'countrycode' => $code
 	  ));
 
 	  echo $name.' has been created<br />';

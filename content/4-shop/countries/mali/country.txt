@@ -1,5 +1,0 @@
-Title: Mali
-
-----
-
-Code: ML

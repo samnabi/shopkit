@@ -1,0 +1,5 @@
+Title: Burkina Faso
+
+----
+
+countrycode: BF

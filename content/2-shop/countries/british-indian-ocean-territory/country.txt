@@ -1,0 +1,5 @@
+Title: British Indian Ocean Territory
+
+----
+
+countrycode: IO

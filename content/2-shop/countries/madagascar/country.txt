@@ -1,0 +1,5 @@
+Title: Madagascar
+
+----
+
+countrycode: MG

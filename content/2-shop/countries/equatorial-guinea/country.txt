@@ -1,0 +1,5 @@
+Title: Equatorial Guinea
+
+----
+
+countrycode: GQ

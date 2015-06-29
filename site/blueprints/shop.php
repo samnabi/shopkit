@@ -19,11 +19,10 @@ fields:
     entry: >
       <h3>{{method}}</h3>
       <table>
-        <tr><td>Flat rate:</td> <td>{{flat}}</td></tr>
+        <tr><td>Flat rate: </td> <td>{{flat}}</td></tr>
         <tr><td>Per item: </td> <td>{{item}}</td></tr>
-        <tr><td>By weight:</td> <td>{{weight}}</td></tr>
+        <tr><td>By weight: </td> <td>{{weight}}</td></tr>
         <tr><td>By price: </td> <td>{{price}}</td></tr>
-        <tr><td>Handling: </td> <td>{{handling}}</td></tr>
       </table>
     fields:
       method:
@@ -65,14 +64,16 @@ fields:
         options:
           low: Use lowest shipping rate
           high: Use highest shipping rate
-      handling:
-        label: Handling fee
-        help: Extra costs associated with this method of shipping
-        type: text
+        default: low
   tax:
     label: Tax rates
     type: structure
+    entry: {{rate}}
     fields:
+      rate:
+        label: Tax rate
+        help: Decimal format. e.g. <strong>0.13</strong> means 13% sales tax
+        type: text
       countries:
         label: Countries
         help: "Apply this tax rate to certain countries (<strong>All countries</strong> does not override other rules)"
@@ -81,10 +82,6 @@ fields:
         query:
           page: 'shop/countries'
           fetch: children
-      rate:
-        label: Tax rate
-        help: Decimal format. e.g. <strong>0.13</strong> means 13% sales tax
-        type: text
   paylater:
     label: Pay later
     help: User roles that can skip PayPal and submit an order without paying online

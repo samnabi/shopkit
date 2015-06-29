@@ -16,13 +16,17 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password">
               </div>
-              <div class="small-12 columns">
+              <div class="small-12 large-8 columns">
                 <input class="button small secondary expand" type="submit" name="login" value="Log in">
               </div>
-            </form>
 
-            <p class="small-text-center"><em>Don't have an account?</em></p>
-            <a href="/register" title="Register" class="button small expand">Register</a>
+              <p class="register small-12 large-4 columns small-text-center">
+                <em class="hide-for-large-up"><br>Don't have an account?</em>
+                <em class="show-for-large-up">or</em>
+                <a href="/register" title="Register">Register</a>
+              </p>
+
+            </form>
         </div>
     <?php } ?>
 
@@ -43,18 +47,18 @@
     <div class="panel">
         <!-- Global category listing -->
         <h1>Shop by category</h1>
-        <?php snippet('treemenu',array('subpages' => page('shop'), 'template' => 'category', 'class' => 'side-nav')) ?>
+        <?php snippet('treemenu',array('subpages' => page('shop')->children(), 'template' => 'category', 'class' => 'side-nav')) ?>
     </div>
 
     <div class="panel">
         <!-- Search -->
-        <form class="row collapse searchForm" action="/search" method="get">
-            <label for="q">Search shop</label>
-            <div class="small-12 medium-8 columns">
-                <input type="text" name="q" value="">
+        <h1>Search shop</h1>
+        <form class="row searchForm" action="/search" method="get">
+            <div class="small-12 large-8 columns">
+                <input type="text" name="q" value="<?php echo get('q') ?>" placeholder="">
             </div>
-            <div class="small-12 medium-4 columns">
-                <input class="button small postfix" type="submit" value="Search">
+            <div class="small-12 large-4 columns">
+                <input class="button small expand" type="submit" value="Search">
             </div>
         </form>
     </div>

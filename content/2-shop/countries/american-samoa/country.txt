@@ -1,0 +1,5 @@
+Title: American Samoa
+
+----
+
+countrycode: AS

@@ -1,0 +1,5 @@
+Title: Wallis and Futuna
+
+----
+
+countrycode: WF

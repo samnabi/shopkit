@@ -1,0 +1,5 @@
+Title: Northern Mariana Islands
+
+----
+
+countrycode: MP

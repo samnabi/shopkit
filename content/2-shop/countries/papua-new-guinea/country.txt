@@ -1,0 +1,5 @@
+Title: Papua New Guinea
+
+----
+
+countrycode: PG

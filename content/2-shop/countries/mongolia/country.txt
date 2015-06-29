@@ -1,0 +1,5 @@
+Title: Mongolia
+
+----
+
+countrycode: MN

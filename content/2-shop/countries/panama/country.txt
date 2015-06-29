@@ -1,0 +1,5 @@
+Title: Panama
+
+----
+
+countrycode: PA

@@ -1,4 +1,5 @@
 <?php if($categories->count()) { ?>
+	<h3>Shop by category</h3>
 	<ul class="category listing small-block-grid-1 medium-block-grid-4">
 	  <?php foreach($categories as $category): ?>
 		  <li>

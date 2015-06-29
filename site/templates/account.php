@@ -89,20 +89,15 @@
         </select>
         <p class="help" id="countryHelp">To calculate shipping costs</p>
       </div>
-      <div class="small-12 columns">
+      <div class="small-12 large-8 large-pull-2 columns">
         <input class="button expand" type="submit" name="update" value="Update">
       </div>
     </form>
 
-    <h2>Delete account</h2>
-    <p>If you click this button, there's no going back. Your account is gone forever.</p>
-    <button href="#" data-dropdown="deleteAccount" aria-controls="deleteAccount" aria-expanded="false" class="button secondary">Delete my account forever</button><br>
-    <ul id="deleteAccount" data-dropdown-content class="f-dropdown" aria-hidden="true">
-      <li>
-        <form method="post">
-            <input class="button secondary expand" type="submit" name="delete" value="Yes, I'm sure">
-        </form>
-      </li>
-    </ul>
+    <h3>Delete account</h3>
+    <p>If you click this button, there's no going back. Your account will be gone forever.</p>
+    <form method="post">
+        <button class="small secondary alert" type="submit" name="delete">Delete my account. Yes, I'm sure.</button>
+    </form>
 
 <?php snippet('footer') ?>

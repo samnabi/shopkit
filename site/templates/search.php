@@ -7,16 +7,20 @@
 
 		<?php $results = $site->search(get('q'))->visible() ?>
 
-		<ul class="no-bullet">
-			<?php foreach ($results as $result) { ?>
-				<li class="row result">
-					<a class="small-12 columns" href="<?= $result->url() ?>">
-						<strong><?= $result->title() ?></strong><br>
-						<?= $result->text()->excerpt(80) ?>
-					</a>
-				</li>
-			<?php } ?>
-		</ul>
+		<?php if($results->count()) { ?>
+			<ul class="no-bullet">
+				<?php foreach ($results as $result) { ?>
+					<li class="row result">
+						<a class="small-12 columns" href="<?= $result->url() ?>">
+							<strong><?= $result->title() ?></strong><br>
+							<?= $result->text()->excerpt(80) ?>
+						</a>
+					</li>
+				<?php } ?>
+			</ul>
+		<?php } else { ?>
+			<p>Sorry, there are no search results for your query.</p>
+		<?php } ?>
 	</div>
 
 <?php snippet('footer') ?>

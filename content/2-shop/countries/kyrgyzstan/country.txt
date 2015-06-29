@@ -1,0 +1,5 @@
+Title: Kyrgyzstan
+
+----
+
+countrycode: KG

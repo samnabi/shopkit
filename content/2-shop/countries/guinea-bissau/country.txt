@@ -1,0 +1,5 @@
+Title: Guinea-Bissau
+
+----
+
+countrycode: GW

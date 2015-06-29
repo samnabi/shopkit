@@ -1,0 +1,5 @@
+Title: U.S. Minor Outlying Islands
+
+----
+
+countrycode: UM

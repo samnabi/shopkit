@@ -1,0 +1,5 @@
+Title: Cook Islands
+
+----
+
+countrycode: CK

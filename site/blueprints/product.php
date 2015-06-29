@@ -27,7 +27,7 @@ fields:
     entry: >
       <p style="border-bottom: 1px solid #DDD; margin-bottom: 0.2rem; padding-bottom: 0.2rem">{{name}} <span style="float: right;"><strong>SKU</strong> {{sku}}</span></p>
       <div style="display: inline-block; vertical-align: top; width: 25%"><h3>Price</h3> $ {{price}}</div>
-      <div style="display: inline-block; vertical-align: top; width: 25%"><h3>Shipping</h3> $ {{shipping}}</div>
+      <div style="display: inline-block; vertical-align: top; width: 25%"><h3>Weight</h3> {{weight}}</div>
       <div style="display: inline-block; vertical-align: top; width: 49%"><h3>Options</h3> {{options}}</div>
     fields:
       name:
@@ -51,10 +51,16 @@ fields:
       description: 
         label: Description
         type: textarea
-  noShipping:
-    label: Exclude from shipping?
+  noshipping:
+    label: Free shipping
     type: checkbox
-    text: Exclude this product from the total shipping calculation
+    text: Don't charge shipping on this product
+    width: 1/2
+  notax:
+    label: No tax
+    type: checkbox
+    text: Don't charge tax on this product
+    width: 1/2
   relatedproducts:
     label: Related products
     type: structure

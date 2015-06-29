@@ -67,6 +67,11 @@
                     <tr>
                         <td>
                             <?= date('F j, Y H:i',$order->txn_date()->value) ?>
+                            
+                            <form action="/shop/orders/pdf" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $order->uri() ?>">
+                                <button class="small expand" type="submit">Download<br>Invoice (PDF)</button>
+                            </form>
                         </td>
                         <td>
                             <?
@@ -129,10 +134,6 @@
                                 <?= kirbytext('<'.$order->payer_email().'>') ?>
                             </td>
                             <td>
-                                <form action="/shop/orders/pdf" method="POST">
-                                    <input type="hidden" name="id" value="<?php echo $order->uri() ?>">
-                                    <button class="small expand" type="submit">Download<br>Invoice (PDF)</button>
-                                </form>
                                 <a class="small button expand" href="<?php echo payPalAction().'?cmd=_view-a-trans&id='.$order->txn_id() ?>">View on PayPal</a>
                             </td>
                         <?php } ?>

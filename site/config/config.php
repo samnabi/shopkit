@@ -97,7 +97,11 @@ c::set('routes', array(
   array(
     'pattern' => 'logout',
     'action'  => function() {
-      if($user = site()->user()) $user->logout();
+      if($user = site()->user()) {
+        s::start();
+        s::set('cart', array()); // Empty the cart
+        $user->logout();
+      }
       return go('/');
     }
   ),

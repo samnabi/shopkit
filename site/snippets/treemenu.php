@@ -7,9 +7,9 @@
 		}
 	} else {
 		if (isset($template)) {
-			$subpages = $subpages->children()->filterBy('template',$template);
+			$subpages = $subpages->filterBy('template',$template);
 		} else {
-			$subpages = $subpages->children();
+			$subpages = $subpages;
 		}
 	}
 ?>
@@ -20,7 +20,7 @@
   <li class="depth-<?php echo $p->depth() ?>">
     <a<?php echo ($p->isActive()) ? ' class="active"' : '' ?> href="<?php echo $p->url() ?>"><?php echo $p->title() ?></a>
     <?php if($p->hasChildren()): ?>
-    <?php snippet('treemenu', array('subpages' => $p->children())) ?>
+        <?php snippet('treemenu',array('subpages' => $p->children(), 'template' => 'category', 'class' => 'no-bullet')) ?>
     <?php endif ?>
   </li>
   <?php endforeach ?>

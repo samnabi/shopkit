@@ -1,0 +1,5 @@
+Title: Nicaragua
+
+----
+
+countrycode: NI
