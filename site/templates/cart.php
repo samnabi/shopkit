@@ -140,7 +140,7 @@
                 <!-- Paypal setup fields -->
                 <input type="hidden" name="cmd" value="_cart"> <!-- Identifies a shopping cart purchase -->
                 <input type="hidden" name="upload" value="1">  <!-- Identifies a third-party cart -->
-                <input type="hidden" name="return" value="<?php echo url() ?>/shop/success">
+                <input type="hidden" name="return" value="<?php echo url() ?>/shop/cart/success">
                 <input type="hidden" name="rm" value="1"> <!-- Return method: redirect via GET, do not include payment variables -->
                 <input type="hidden" name="business" value="<?php echo page('shop')->paypal_email() ?>">
                 <input type="hidden" name="currency_code" value="<?php echo page('shop')->currency_code() ?>">
