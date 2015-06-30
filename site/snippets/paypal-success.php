@@ -5,7 +5,7 @@ s::set('cart', array()); // Empty the cart
 
 // This code responds to the PayPal IPN callback
 snippet('paypal-ipn');
-if($_POST[txn_id] != '') {
+if($_POST['txn_id'] != '') {
   $titles = array();
   foreach ($_POST as $key => $value) {
       if (substr($key, 0, 9) == "item_name") {
@@ -13,18 +13,18 @@ if($_POST[txn_id] != '') {
       }
   }
   // Create transaction record
-  page('shop/orders')->children()->create(str::slug($_POST[payer_id].'-'.strtotime(date())), 'order', array(
-    'txn-id' => $_POST[txn_id],
-    'txn-date'  => strtotime((string)$_POST[payment_date]),
-    'status'  => $_POST[payment_status],
+  page('shop/orders')->children()->create(str::slug($_POST['payer_id'].'-'.strtotime(date())), 'order', array(
+    'txn-id' => $_POST['txn_id'],
+    'txn-date'  => strtotime((string)$_POST['payment_date']),
+    'status'  => $_POST['payment_status'],
     'products' => implode($titles,"\n"),
-    'subtotal' => $_POST[mc_gross],
-    'shipping' => $_POST[mc_shipping],
-    'tax' => $_POST[tax],
-    'payer-id' => $_POST[payer_id],
-    'payer-name' => $_POST[first_name]." ".$_POST[last_name],
-    'payer-email' => $_POST[payer_email],
-    'payer-address' => $_POST[address_street]."\n".$_POST[address_city].", ".$_POST[address_state]." ".$_POST[address_zip]."\n".$_POST[address_country]
+    'subtotal' => $_POST['mc_gross'],
+    'shipping' => $_POST['mc_shipping'],
+    'tax' => $_POST['tax'],
+    'payer-id' => $_POST['payer_id'],
+    'payer-name' => $_POST['first_name']." ".$_POST['last_name'],
+    'payer-email' => $_POST['payer_email'],
+    'payer-address' => $_POST['address_street']."\n".$_POST['address_city'].", ".$_POST['address_state']." ".$_POST['address_zip']."\n".$_POST['address_country']
   ));
 }
 

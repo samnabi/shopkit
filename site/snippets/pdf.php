@@ -23,7 +23,7 @@ $pdf->Ln(0.3); // Line break
 // List products
 if (substr($p->txn_id(),0,3) === 'INV') {
     foreach ($p->products()->yaml() as $product) {
-        $pdf->Cell(0,0.3,$product[item_name].' / Qty: '.$product[quantity],0,2);
+        $pdf->Cell(0,0.3,$product['item_name'].' / Qty: '.$product['quantity'],0,2);
     }
 } else {
 	$products = explode('<br />', $p->products()->kirbytext());
