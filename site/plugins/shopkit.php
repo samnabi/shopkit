@@ -164,9 +164,9 @@ function payPalAction() {
 function formatPrice($number) {
   $symbol = page('shop')->currency_symbol();
   if (page('shop')->currency_position() == 'before') {
-    return $symbol.' '.number_format($number,2);
+    return $symbol.'&nbsp;'.number_format($number,2);
   } else {
-    return number_format($number,2).' '.$symbol;
+    return number_format($number,2).'&nbsp;'.$symbol;
   }
 }
 
