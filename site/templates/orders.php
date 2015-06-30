@@ -3,9 +3,9 @@
     $user = $site->user();
 
     // Mark order as shipped
-    if($_POST[action] === 'mark_shipped') {
+    if(isset($_POST['action']) and $_POST['action'] === 'mark_shipped') {
         try {
-          page('shop/orders/'.$_POST[update_id])->update(array(
+          page('shop/orders/'.$_POST['update_id'])->update(array(
             'status' => 'Shipped'
           ));
         } catch(Exception $e) {
@@ -13,9 +13,9 @@
         }
     }
     // Mark order as pending
-    if($_POST[action] === 'mark_pending') {
+    if(isset($_POST['action']) and $_POST['action'] === 'mark_pending') {
         try {
-          page('shop/orders/'.$_POST[update_id])->update(array(
+          page('shop/orders/'.$_POST['update_id'])->update(array(
             'status' => 'Pending'
           ));
         } catch(Exception $e) {
@@ -77,11 +77,11 @@
                             <?
                                 if (substr($order->txn_id(),0,3) === 'INV') {
                                     foreach ($order->products()->yaml() as $product) { ?>
-                                        <strong><?php echo $product[item_name] ?></strong><br>
-                                        <?php ecco($product[sku],$product[sku].' / ') ?>
-                                        <?php ecco($product[variant],$product[variant].' / ') ?>
-                                        <?php ecco($product[option],$product[option]) ?><br>
-                                        <strong>Quantity:</strong> <?php echo $product[quantity] ?>
+                                        <strong><?php echo $product['item_name'] ?></strong><br>
+                                        <?php ecco($product['sku'],$product['sku'].' / ') ?>
+                                        <?php ecco($product['variant'],$product['variant'].' / ') ?>
+                                        <?php ecco($product['option'],$product['option']) ?><br>
+                                        <strong>Quantity:</strong> <?php echo $product['quantity'] ?>
                                     <?php }
                                 } else {
                                     $order->products()->kirbytext();
