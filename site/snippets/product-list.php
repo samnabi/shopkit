@@ -14,7 +14,7 @@
 
 		    		<?php
 		    			$prices = $product->prices()->yaml();
-		    			foreach ($prices as $key => $price) $pricelist[] = $price[price];
+		    			foreach ($prices as $key => $price) $pricelist[] = $price['price'];
 		    			$price = min($pricelist);
 					?>
 		    		<span class="button small secondary expand">From <?php echo formatPrice($price) ?></span>
