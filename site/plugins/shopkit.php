@@ -10,7 +10,7 @@ function cart_logic($cart) {
 
     if (isset($_REQUEST['action'])) {
       $action = $_REQUEST['action'];
-      $id = $_REQUEST['id'];
+      $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : false;
       switch ($action) {
           case 'add':
               if (isset($_REQUEST['quantity'])) {
@@ -92,13 +92,13 @@ function get_cart_details($site,$pages,$cart) {
                 $variant_name = $id_array[1];
                 $variants = $product->prices()->yaml();
                 foreach($variants as $key => $array) {
-                    if (str::slug($array[name]) === $variant_name) {
+                    if (str::slug($array['name']) === $variant_name) {
                         $variant = $variants[$key];
                     }
                 }
 
                 $option = $id_array[2];
-                $price = $variant[price];                
+                $price = $variant['price'];
 
                 // Advance item counter
                 $i++;
@@ -106,10 +106,10 @@ function get_cart_details($site,$pages,$cart) {
                 // Create item array
                 $cart_items[$i] = array(
                     'id' => $id,
-                    'sku' => $variant[sku],
+                    'sku' => $variant['sku'],
                     'uri' => $product->uri(),
                     'item_name' => $product->title()->value,
-                    'variant' => str::slug($variant[name]),
+                    'variant' => str::slug($variant['name']),
                     'option' => $option,
                     'amount' => sprintf('%0.2f',$price),
                     'weight' => sprintf('%0.2f',$weight),

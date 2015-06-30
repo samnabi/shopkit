@@ -53,36 +53,36 @@
                                     <?php
                                         // Build the item title for PayPal
                                         $item_title = '';
-                                        if ($item[sku]) $item_title .= $item[sku].' - ';
-                                        $item_title .= $item[item_name];
-                                        if ($item[variant]) $item_title .= ' - '.$item[variant];
-                                        if ($item[option]) $item_title .= ' - '.$item[option];
+                                        if ($item['sku']) $item_title .= $item['sku'].' - ';
+                                        $item_title .= $item['item_name'];
+                                        if ($item['variant']) $item_title .= ' - '.$item['variant'];
+                                        if ($item['option']) $item_title .= ' - '.$item['option'];
                                     ?>
-                                    <a href="/<?php echo $item[uri] ?>" title="<?php echo $item_title ?>">
-                                        <strong><?php echo $item[item_name] ?></strong>
+                                    <a href="/<?php echo $item['uri'] ?>" title="<?php echo $item_title ?>">
+                                        <strong><?php echo $item['item_name'] ?></strong>
                                     </a><br>
-                                    <?php ecco($item[sku],'<strong>SKU</strong> '.$item[sku]) ?>
-                                    <?php ecco($item[variant],' / '.$item[variant]) ?>
-                                    <?php ecco($item[option],' / '.$item[option]) ?>
+                                    <?php ecco($item['sku'],'<strong>SKU</strong> '.$item['sku']) ?>
+                                    <?php ecco($item['variant'],' / '.$item['variant']) ?>
+                                    <?php ecco($item['option'],' / '.$item['option']) ?>
                                 </td>
                                 <td class="small-text-center">
-                                    <?php echo $item[quantity] ?><br>
-                                    <a href="<?php echo url('shop/cart') ?>?action=add&amp;id=<?php echo $item[id] ?>">Add</a> /
-                                    <a href="<?php echo url('shop/cart') ?>?action=remove&amp;id=<?php echo $item[id] ?>">Remove</a>
+                                    <?php echo $item['quantity'] ?><br>
+                                    <a href="<?php echo url('shop/cart') ?>?action=add&amp;id=<?php echo $item['id'] ?>">Add</a> /
+                                    <a href="<?php echo url('shop/cart') ?>?action=remove&amp;id=<?php echo $item['id'] ?>">Remove</a>
                                 </td>
                                 <td class="small-text-right">
-                                    <?php echo formatPrice($item[amount]*$item[quantity]) ?>
+                                    <?php echo formatPrice($item['amount']*$item['quantity']) ?>
                                 </td>
                                 <td>
-                                    <a href="<?php echo url('shop/cart') ?>?action=delete&amp;id=<?php echo $item[id] ?>">Delete</a>
+                                    <a href="<?php echo url('shop/cart') ?>?action=delete&amp;id=<?php echo $item['id'] ?>">Delete</a>
                                 </td>
                             </tr>
                             <?php
                                 // Add item to input array so we can generate all the field codes at the end of the form
                                 $paypal_items[] = array(
                                     'item_name' => $item_title,
-                                    'amount' => sprintf('%0.2f',$item[amount]),
-                                    'quantity' => $item[quantity],
+                                    'amount' => sprintf('%0.2f',$item['amount']),
+                                    'quantity' => $item['quantity'],
                                 );
                             ?>
                         <?php } ?>
