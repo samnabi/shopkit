@@ -5,3 +5,9 @@
 !/assets/avatars/.gitkeep
 /thumbs/*
 !/thumbs/.gitkeep
+/content/3-shop/*
+!/content/3-shop/cart
+!/content/3-shop/countries
+!/content/3-shop/orders
+!/content/3-shop/shop.txt
+/content/4-docs
