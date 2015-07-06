@@ -73,11 +73,6 @@ c::set('roles', array(
     'panel'   => true
   ),
   array(
-    'id'      => 'editor',
-    'name'    => 'Editor',
-    'panel'   => true
-  ),
-  array(
     'id'      => 'wholesaler',
     'name'    => 'Wholesaler',
     'panel'   => false
