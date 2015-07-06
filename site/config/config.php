@@ -127,12 +127,18 @@ c::set('routes', array(
     }
   ),
   array(
-    'pattern' => 'shop/cart/success',
+    'pattern' => 'shop/cart/notify',
     'method' => 'POST',
     'action' => function() {
       snippet('paypal-success');
-      // Send along a success message
+    }
+  ),
+  array(
+    'pattern' => 'shop/cart/return',
+    'action' => function() {
+      s::start();
+      s::set('cart', array()); // Empty the cart
       return go('shop/orders');
     }
-  )
+  ),
 ));
