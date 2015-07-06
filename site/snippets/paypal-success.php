@@ -4,8 +4,10 @@ s::start();
 s::set('cart', array()); // Empty the cart
 
 // This code responds to the PayPal IPN callback
-snippet('paypal-ipn');
 if($_POST['txn_id'] != '') {
+  
+  snippet('paypal-ipn');
+
   $titles = array();
   foreach ($_POST as $key => $value) {
       if (substr($key, 0, 9) == "item_name") {
