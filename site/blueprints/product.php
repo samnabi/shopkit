@@ -26,9 +26,8 @@ fields:
     type: structure
     entry: >
       <p style="border-bottom: 1px solid #DDD; margin-bottom: 0.2rem; padding-bottom: 0.2rem">{{name}} <span style="float: right;"><strong>SKU</strong> {{sku}}</span></p>
-      <div style="display: inline-block; vertical-align: top; width: 25%"><h3>Price</h3> $ {{price}}</div>
-      <div style="display: inline-block; vertical-align: top; width: 25%"><h3>Weight</h3> {{weight}}</div>
-      <div style="display: inline-block; vertical-align: top; width: 49%"><h3>Options</h3> {{options}}</div>
+      <div style="display: inline-block; vertical-align: top; width: 49%"><strong>Price </strong> {{price}}</div>
+      <div style="display: inline-block; vertical-align: top; width: 49%"><strong>Weight </strong> {{weight}}</div>
     fields:
       name:
         label: Variant name
