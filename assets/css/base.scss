@@ -342,7 +342,18 @@ table.orders {
 	}	
 }
 
-.cartItems {
+.cart td > form {
+	text-align: center;
+	display: inline-block;
+	vertical-align: middle;
+
+	.button.tiny {
+		padding: 0.2rem 0.6rem 0.3rem;
+		margin-bottom: 0;
+	}
+}
+
+.cartForm {
 	select {
 		margin-bottom: 0;
 	}

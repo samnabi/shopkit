@@ -35,6 +35,9 @@ function cart_logic($cart) {
           case 'remove':
               if (isset($cart[$id])) {
                   $cart[$id]--;
+                  if ($cart[$id] < 0) {
+                    $cart[$id] = 0;
+                  }
               } else {
                   $cart[$id] = 1;
               }
