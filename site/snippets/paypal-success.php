@@ -12,13 +12,14 @@ if($_POST['txn_id'] != '') {
         $titles[] = $value;
       }
   }
+
   // Create transaction record
-  page('shop/orders')->children()->create(str::slug($_POST['payer_id'].'-'.strtotime(date())), 'order', array(
+  page('shop/orders')->children()->create(str::slug($_POST['payer_id'].'-'.strtotime((string)$_POST['payment_date'])), 'order', array(
     'txn-id' => $_POST['txn_id'],
     'txn-date'  => strtotime((string)$_POST['payment_date']),
     'status'  => $_POST['payment_status'],
     'products' => implode($titles,"\n"),
-    'subtotal' => $_POST['mc_gross'],
+    'subtotal' => $_POST['mc_gross']-$_POST['mc_shipping']-$_POST['tax'],
     'shipping' => $_POST['mc_shipping'],
     'tax' => $_POST['tax'],
     'payer-id' => $_POST['payer_id'],

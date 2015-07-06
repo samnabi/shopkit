@@ -11,6 +11,8 @@ function cart_logic($cart) {
     if (isset($_REQUEST['action'])) {
       $action = $_REQUEST['action'];
       $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : false;
+      $_REQUEST['variant'] = isset($_REQUEST['variant']) ? $_REQUEST['variant'] : '';
+      $_REQUEST['option'] = isset($_REQUEST['option']) ? $_REQUEST['option'] : '';
       switch ($action) {
           case 'add':
               if (isset($_REQUEST['quantity'])) {
@@ -33,6 +35,9 @@ function cart_logic($cart) {
           case 'remove':
               if (isset($cart[$id])) {
                   $cart[$id]--;
+                  if ($cart[$id] < 0) {
+                    $cart[$id] = 0;
+                  }
               } else {
                   $cart[$id] = 1;
               }
@@ -162,9 +167,9 @@ function payPalAction() {
 function formatPrice($number) {
   $symbol = page('shop')->currency_symbol();
   if (page('shop')->currency_position() == 'before') {
-    return $symbol.' '.number_format($number,2);
+    return $symbol.'&nbsp;'.number_format($number,2);
   } else {
-    return number_format($number,2).' '.$symbol;
+    return number_format($number,2).'&nbsp;'.$symbol;
   }
 }
 
@@ -205,7 +210,7 @@ function calculateShipping($country,$cart_items) {
 
     if (appliesToCountry($country,$method)) {
       // Combine amount, quantity, and weight of all cart items. Skip items that are marked as "no shipping"
-      $cart_amount = $cart_qty = $cartweight = 0;
+      $cart_amount = $cart_qty = $cart_weight = 0;
       foreach ($cart_items as $item) {
         $cart_amount += $item['noshipping'] === 1 ? 0 : $item['amount']*$item['quantity'];
         $cart_qty    += $item['noshipping'] === 1 ? 0 : $item['quantity'];

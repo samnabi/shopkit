@@ -17,7 +17,7 @@ $user = site()->user();
 
 try {
   // Create transaction record
-  $neworder = page('shop/orders')->children()->create(str::slug($user->username.'-'.date('U')), 'order', array(
+  $neworder = page('shop/orders')->children()->create(str::slug($user->username.'-paylater-'.date('U')), 'order', array(
                 'txn-id' => 'INV-'.date('U'),
                 'txn-date'  => date('U'),
                 'status'  => 'Invoice',

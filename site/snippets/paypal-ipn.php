@@ -6,7 +6,8 @@
 define("DEBUG", 1);
 
 // Set to 0 once you're ready to go live
-define("USE_SANDBOX", 0);
+$use_sandbox = page('shop')->paypal_action() === 'live' ? 0 : 1;
+define("USE_SANDBOX", $use_sandbox);
 
 define("LOG_FILE", "ipn.log");
 

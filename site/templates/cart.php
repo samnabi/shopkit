@@ -34,8 +34,6 @@
             </form>
 
             <!-- Cart items -->
-            <form class="row cartItems" method="post" action="<?php echo payPalAction() ?>">
-
                 <table class="small-12 columns cart">
                     <thead>
                         <tr>
@@ -67,14 +65,26 @@
                                 </td>
                                 <td class="small-text-center">
                                     <?php echo $item['quantity'] ?><br>
-                                    <a href="<?php echo url('shop/cart') ?>?action=add&amp;id=<?php echo $item['id'] ?>">Add</a> /
-                                    <a href="<?php echo url('shop/cart') ?>?action=remove&amp;id=<?php echo $item['id'] ?>">Remove</a>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="action" value="add">
+                                        <input type="hidden" name="id" value="<?php echo $item['id'] ?>">
+                                        <input class="tiny button info" type="submit" value="Add">
+                                    </form>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="action" value="remove">
+                                        <input type="hidden" name="id" value="<?php echo $item['id'] ?>">
+                                        <input class="tiny button info" type="submit" value="Remove">
+                                    </form>
                                 </td>
                                 <td class="small-text-right">
                                     <?php echo formatPrice($item['amount']*$item['quantity']) ?>
                                 </td>
                                 <td>
-                                    <a href="<?php echo url('shop/cart') ?>?action=delete&amp;id=<?php echo $item['id'] ?>">Delete</a>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="id" value="<?php echo $item['id'] ?>">
+                                        <input class="tiny button info" type="submit" value="Delete">
+                                    </form>
                                 </td>
                             </tr>
                             <?php
@@ -87,7 +97,7 @@
                             ?>
                         <?php } ?>
                     </tbody>
-
+            <form class="row cartForm" method="post" action="<?php echo payPalAction() ?>">
                     <tfoot>
                         <tr>
                             <td colspan="2" class="small-text-right">Subtotal</td>
@@ -140,8 +150,9 @@
                 <!-- Paypal setup fields -->
                 <input type="hidden" name="cmd" value="_cart"> <!-- Identifies a shopping cart purchase -->
                 <input type="hidden" name="upload" value="1">  <!-- Identifies a third-party cart -->
-                <input type="hidden" name="return" value="<?php echo url() ?>/shop/complete">
-                <input type="hidden" name="rm" value="1"> <!-- Return method: redirect via GET, do not include payment variables -->
+                <input type="hidden" name="return" value="<?php echo url() ?>/shop/cart/success">
+                <input type="hidden" name="notify_url" value="<?php echo url() ?>/shop/cart/success">
+                <input type="hidden" name="rm" value="2"> <!-- Return method: redirect via POST -->
                 <input type="hidden" name="business" value="<?php echo page('shop')->paypal_email() ?>">
                 <input type="hidden" name="currency_code" value="<?php echo page('shop')->currency_code() ?>">
 
@@ -155,6 +166,9 @@
 
                 <!-- Total tax -->
                 <input type="hidden" name="tax_cart" value="<?php echo $tax ?>">
+
+                <!-- Total shipping -->
+                <!-- Set in the select box above -->
 
                 <!-- Submit -->
                 <div class="row">
