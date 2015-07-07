@@ -21,15 +21,9 @@ $pdf->Cell(0,0.3,'Bill to: '.$p->payer_id()->value.'   '.$p->payer_email()->valu
 $pdf->Ln(0.3); // Line break
 
 // List products
-if (substr($p->txn_id(),0,3) === 'INV') {
-    foreach ($p->products()->yaml() as $product) {
-        $pdf->Cell(0,0.3,$product['item_name'].' / Qty: '.$product['quantity'],0,2);
-    }
-} else {
-	$products = explode('<br />', $p->products()->kirbytext());
-	foreach ($products as $product) {
-		$pdf->Cell(0,0.3,trim(trim($product,'<p>'),'</p>'),0,2);
-	}
+$products = explode('<br />', $p->products()->kirbytext());
+foreach ($products as $product) {
+	$pdf->Cell(0,0.3,trim(trim($product,'<p>'),'</p>'),0,2);
 }
 
 $pdf->Ln(0.3); // Line break

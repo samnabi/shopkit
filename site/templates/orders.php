@@ -73,21 +73,7 @@
                                 <button class="small expand" type="submit">Download<br>Invoice (PDF)</button>
                             </form>
                         </td>
-                        <td>
-                            <?
-                                if (substr($order->txn_id(),0,3) === 'INV') {
-                                    foreach ($order->products()->yaml() as $product) { ?>
-                                        <strong><?php echo $product['item_name'] ?></strong><br>
-                                        <?php ecco($product['sku'],$product['sku'].' / ') ?>
-                                        <?php ecco($product['variant'],$product['variant'].' / ') ?>
-                                        <?php ecco($product['option'],$product['option']) ?><br>
-                                        <strong>Quantity:</strong> <?php echo $product['quantity'] ?>
-                                    <?php }
-                                } else {
-                                    $order->products()->kirbytext();
-                                }
-                            ?>
-                        </td>
+                        <td><? echo $order->products()->kirbytext() ?></td>
                         <td>
                             <table>
                                 <tr>

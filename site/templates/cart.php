@@ -34,6 +34,7 @@
             </form>
 
             <!-- Cart items -->
+            <div class="row">
                 <table class="small-12 columns cart">
                     <thead>
                         <tr>
@@ -97,7 +98,7 @@
                             ?>
                         <?php } ?>
                     </tbody>
-            <form class="row cartForm" method="post" action="<?php echo payPalAction() ?>">
+
                     <tfoot>
                         <tr>
                             <td colspan="2" class="small-text-right">Subtotal</td>
@@ -109,9 +110,11 @@
                             <td colspan="2">
                                 <?php $shipping_rates = calculateShipping($country,$cart_items) ?>
                                 <!-- The field name is `shipping_1` because for some reason just `shipping` doesn't work. The total cart shipping is technically tied to the first item in the list -->
-                                <select name="shipping_1" id="shipping" onChange="updateCartTotal();">
+                                <select name="shipping" id="shipping" onChange="updateCartTotal(); copyShippingValue();">
                                     <?php foreach ($shipping_rates as $rate) { ?>
-                                        <option value="<?php echo sprintf('%0.2f',$rate['rate']) ?>"><?php echo $rate['title'] ?> - <?php echo formatPrice($rate['rate']) ?></option>
+                                        <option value="<?php echo sprintf('%0.2f',$rate['rate']) ?>">
+                                            <?php echo $rate['title'] ?> (<?php echo formatPrice($rate['rate']) ?>)
+                                        </option>
                                     <?php } ?>
                                 </select>
                             </td>
@@ -128,23 +131,22 @@
                             <td colspan="2" class="small-text-right">Total</td>
                             <td class="small-text-right">
                                 <?php echo page('shop')->currency_symbol() ?>
-                                <span id="cartTotal"></span>
-                                <script type="text/javascript">
-                                    function updateCartTotal() {
-                                        var e = document.getElementById("shipping");
-                                        var shipping = e.options[e.selectedIndex].value;
-                                        document.getElementById("cartTotal").innerHTML = <?php echo round($cart_amount+$tax,2) ?>+(Math.round(shipping*100)/100);
-                                    }
-                                    updateCartTotal();
-                                </script>
+                                <span id="cartTotal">
+                                    <?php echo sprintf('%0.2f',$cart_amount+$tax) ?><br />
+                                    + shipping
+                                </span>
                             </td>
                             <td></td>
                         </tr>
                     </tfoot>
                 </table>
+            </div>
+
+            <!-- Paypal form -->
+            <form class="row" method="post" action="<?php echo payPalAction() ?>">
 
                 <?php if (page('shop')->paypal_action() != 'live') { ?>
-                    <p class="small-text-center">You're running in sandbox mode. This transaction won't result in a real purchase.</p>
+                    <p class="small-text-center"><em>You're running in sandbox mode. This transaction won't result in a real purchase.</em></p>
                 <?php } ?>
                 
                 <!-- Paypal setup fields -->
@@ -167,8 +169,14 @@
                 <!-- Total tax -->
                 <input type="hidden" name="tax_cart" value="<?php echo $tax ?>">
 
-                <!-- Total shipping -->
-                <!-- Set in the select box above -->
+                <!-- Shipping. This select box is a fallback for non-JS users. -->
+                <select name="shipping_1" id="payPalShipping">
+                    <?php foreach ($shipping_rates as $rate) { ?>
+                        <option value="<?php echo sprintf('%0.2f',$rate['rate']) ?>">
+                            <?php echo $rate['title'] ?> (<?php echo formatPrice($rate['rate']) ?>)
+                        </option>
+                    <?php } ?>
+                </select>
 
                 <!-- Submit -->
                 <div class="row">
@@ -176,17 +184,37 @@
                 </div>
             </form>
 
-            <!-- Invoicing option for permitted users -->
+            <!-- Pay later form -->
             <?php if(canPayLater($site->user())) { ?>
-                <form action="/shop/cart/invoice" method="POST">
+                <form class="row" action="/shop/cart/invoice" method="POST">
 
-                    <?php foreach($cart_items as $i => $item) { ?>
-                        <input type="hidden" name="<?php echo $i ?>" value="<?php echo http_build_query($item) ?>" />
-                    <?php } ?>
+                    <!-- Product titles and quantities -->
+                    <?php
+                        $products = "\n";
+                        foreach($paypal_items as $i => $item) {
+                            $products .= $item['item_name']."\n"; 
+                        }
+                    ?>
+                    <input type="hidden" name="products" value="<?php echo urlencode($products) ?>">
+                    
+                    <!-- Subtotal -->
+                    <input type="hidden" name="subtotal" value="<?php echo $cart_amount ?>">
 
-                    <input type="hidden" name="cart_totals" value="<?php echo http_build_query($cart_totals) ?>" />
+                    <!-- Total tax -->
+                    <input type="hidden" name="tax" value="<?php echo $tax ?>">
+                    
+                    <!-- Shipping. This select box is a fallback for non-JS users. -->
+                    <select name="shipping" id="payLaterShipping">
+                        <?php foreach ($shipping_rates as $rate) { ?>
+                            <option value="<?php echo sprintf('%0.2f',$rate['rate']) ?>">
+                                <?php echo $rate['title'] ?> (<?php echo formatPrice($rate['rate']) ?>)
+                            </option>
+                        <?php } ?>
+                    </select>
 
-                    <button class="secondary small-12 large-8 large-pull-2 columns" type="submit">Pay later (save an invoice)</button>
+                    <div class="row">
+                        <button class="secondary small-12 large-8 large-push-2 columns" type="submit">Pay later</button>
+                    </div>
                 </form>
             <?php } ?>
 
@@ -196,5 +224,23 @@
         <?php if (count($cart)) { ?>
             <p class="row small-text-center"><a href="/shop/cart/empty">Empty cart</a></p>
         <?php } ?>
+
+        <!-- Dat Fancy Jarverscrupt -->
+        <script type="text/javascript">
+            function updateCartTotal() {
+                var e = document.getElementById("shipping");
+                var shipping = e.options[e.selectedIndex].value;
+                document.getElementById("cartTotal").innerHTML = <?php echo round($cart_amount+$tax,2) ?>+(Math.round(shipping*100)/100);
+            }
+            function copyShippingValue() {
+                var e = document.getElementById("shipping");
+                var shipping = e.options[e.selectedIndex].value;
+                document.getElementById("payPalShipping").value = shipping;
+                document.getElementById("payLaterShipping").value = shipping;
+            }
+            updateCartTotal(); // Update cart total on page load
+            document.getElementById("payPalShipping").style.display = 'none';
+            document.getElementById("payLaterShipping").style.display = 'none';
+        </script>
 
 <?php snippet('footer') ?>
