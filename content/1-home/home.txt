@@ -2,7 +2,7 @@ Title: Home
 
 ----
 
-Text: Please refer to the `readme.md` file to get started! Proper docs and a product tour are coming soon.
+Text: Welcome to your new Shopkit installation! To get started, [create an admin account](/panel).
 
 ----
 
