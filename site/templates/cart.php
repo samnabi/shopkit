@@ -164,7 +164,7 @@
                     <input type="hidden" name="item_name_<?php echo $i ?>" value="<?php echo $item['item_name'] ?>">
                     <input type="hidden" name="amount_<?php echo $i ?>" value="<?php echo $item['amount'] ?>">
                     <input type="hidden" name="quantity_<?php echo $i ?>" value="<?php echo $item['quantity'] ?>">
-                <? } ?>
+                <?php } ?>
 
                 <!-- Total tax -->
                 <input type="hidden" name="tax_cart" value="<?php echo $tax ?>">

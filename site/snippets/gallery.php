@@ -19,6 +19,6 @@
 				<label for="<?php echo $photo->hash() ?>"><img src="<?php echo thumb($photo,array('width'=>100,'height'=>100, 'quality'=>90, 'crop'=>true))->dataUri() ?>" title="<?php echo $photo->title() ?>"/></label><!-- Clickable thumbnail -->
 			<?php } ?>
 			
-		<? } ?>
+		<?php } ?>
 	</section>
 <?php } ?>

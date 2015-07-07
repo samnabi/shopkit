@@ -39,7 +39,7 @@
                     <li>
                         <a href="<?php echo $subpage->url() ?>"><?php echo $subpage->title()->html() ?></a>
                     </li>
-                <? } ?>
+                <?php } ?>
             </ul>
         </div>
     <?php } ?>

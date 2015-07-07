@@ -44,7 +44,7 @@
 												<option value="<?php echo str::slug($option) ?>"><?php echo str::ucfirst($option) ?></option>
 											<?php } ?>
 										</select>
-									<? } ?>
+									<?php } ?>
 									<div class="row">
 										<div class="small-6 columns">
 											<label for="quantity">Quantity</label>
@@ -71,7 +71,7 @@
 						<h3>Related products</h3>
 						<ul class="product listing small-block-grid-1 medium-block-grid-4">
 						<?php $first = false ?>
-					<? } ?>
+					<?php } ?>
 					<?php $product = $pages->index()->findByURI($slug->product()) ?>
 					<?php if ($product->isVisible()) { ?>
 						  <li>
@@ -97,6 +97,6 @@
 				<?php } ?>
 				</ul>
 			</section>
-		<? } ?>
+		<?php } ?>
 
 <?php snippet('footer') ?>

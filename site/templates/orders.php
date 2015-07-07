@@ -73,24 +73,24 @@
                                 <button class="small expand" type="submit">Download<br>Invoice (PDF)</button>
                             </form>
                         </td>
-                        <td><? echo $order->products()->kirbytext() ?></td>
+                        <td><?php echo $order->products()->kirbytext() ?></td>
                         <td>
                             <table>
                                 <tr>
                                     <td>Subtotal</td>
-                                    <td><? echo formatPrice($order->subtotal()->value) ?></td>
+                                    <td><?php echo formatPrice($order->subtotal()->value) ?></td>
                                 </tr>
                                 <tr>
                                     <td>Shipping</td>
-                                    <td><? echo formatPrice($order->shipping()->value) ?></td>
+                                    <td><?php echo formatPrice($order->shipping()->value) ?></td>
                                 </tr>
                                 <tr>
                                     <td>Tax</td>
-                                    <td><? echo formatPrice($order->tax()->value) ?></td>
+                                    <td><?php echo formatPrice($order->tax()->value) ?></td>
                                 </tr>
                                 <tr>
                                     <td>Total</td>
-                                    <td><? echo formatPrice($order->subtotal()->value+$order->shipping()->value+$order->tax()->value) ?></td>
+                                    <td><?php echo formatPrice($order->subtotal()->value+$order->shipping()->value+$order->tax()->value) ?></td>
                                 </tr>
                             </table>
                         </td>
