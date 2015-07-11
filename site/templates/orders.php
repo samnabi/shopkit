@@ -1,4 +1,7 @@
 <?php
+    // Start session
+    s::start();
+
     // Only logged-in users can see this page
     $user = $site->user();
 
