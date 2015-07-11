@@ -1,7 +1,4 @@
 <?php
-    // Start session
-    s::start();
-
     // Only logged-in users can see this page
     $user = $site->user();
 
@@ -40,9 +37,9 @@
             } else if ($user) {
                 // If logged in, show this user's orders
                 $orders = $page->children()->sortBy('txn_date','desc')->filterBy('payer_email',$user->email());
-            } else if (s::get('txn_id')) {
+            } else if (get('txn_id') != '') {
                 // If transaction ID passed from PayPal, show just that one order
-                $orders = $page->children()->sortBy('txn_date','desc')->filterBy('txn_id',s::get('txn_id'));
+                $orders = $page->children()->sortBy('txn_date','desc')->filterBy('txn_id',get('txn_id'));
             } else {
                 // If not logged in, don't show orders
                 $orders = false;

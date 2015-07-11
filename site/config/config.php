@@ -131,15 +131,16 @@ c::set('routes', array(
     'method' => 'POST',
     'action' => function() {
       snippet('paypal-success');
+      return true;
     }
   ),
   array(
     'pattern' => 'shop/cart/return',
+    'method' => 'POST',
     'action' => function() {
       s::start();
       s::set('cart', array()); // Empty the cart
-      s::set('txn_id', $_GET['txn_id']); // Store a session variable so the user can see an order confirmation even if they're not logged in
-      return go('shop/orders');
+      return go('shop/orders?txn_id='.get('txn_id'));
     }
   ),
 ));
