@@ -135,10 +135,10 @@ c::set('routes', array(
   ),
   array(
     'pattern' => 'shop/cart/return',
-    'action' => function($txn_id = $_POST['txn_id']) {
+    'action' => function() {
       s::start();
       s::set('cart', array()); // Empty the cart
-      s::set('txn_id', $txn_id); // Store a session variable so the user can see an order confirmation even if they're not logged in
+      s::set('txn_id', $_POST['txn_id']); // Store a session variable so the user can see an order confirmation even if they're not logged in
       return go('shop/orders');
     }
   ),
