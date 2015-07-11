@@ -37,13 +37,16 @@
             } else if ($user) {
                 // If logged in, show this user's orders
                 $orders = $page->children()->sortBy('txn_date','desc')->filterBy('payer_email',$user->email());
+            } else if (s::get('txn_id')) {
+                // If transaction ID passed from PayPal, show just that one order
+                $orders = $page->children()->sortBy('txn_date','desc')->filterBy('txn_id',s::get('txn_id'));
             } else {
                 // If not logged in, don't show orders
-                $orders = array();
+                $orders = false;
             }
 
             // If no orders, show error message
-            if($orders->count() === 0){
+            if($orders and $orders->count() === 0){
                 ?>
                 <p>You haven't made any orders yet. Why not <a href="/shop" title="Go to the Shop page">go shopping?</a></p>
                 <?php
