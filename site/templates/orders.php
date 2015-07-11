@@ -53,14 +53,14 @@
             }
         ?>
 
-        <?php if ($user and $orders->count()) { ?>
+        <?php if ($orders->count()) { ?>
             <table class="orders small-12 columns">
                 <tr>
                     <th>Date</th>
                     <th>Products</th>
                     <th>Price</th>
                     <th>Status</th>
-                    <?php if($user->hasPanelAccess()) { ?>
+                    <?php if($user and $user->hasPanelAccess()) { ?>
                         <th>Buyer</th>
                         <th>Details</th>
                     <?php } ?>
@@ -103,7 +103,7 @@
                         <td>
                             <p><?= $order->status() ?></p>
 
-                            <?php if($user->hasPanelAccess()) { ?>
+                            <?php if($user and $user->hasPanelAccess()) { ?>
                                 <?php if($order->status() == 'Pending' or $order->status() == 'Invoice'){ ?>
                                     <form action="" method="POST">
                                         <input type="hidden" name="update_id" value="<?php echo $order->uid() ?>">
@@ -120,7 +120,7 @@
                                 <?php } ?>
                             <?php } ?>
                         </td>
-                        <?php if($user->hasPanelAccess()) { ?>
+                        <?php if($user and $user->hasPanelAccess()) { ?>
                             <td>
                                 <?= $order->payer_name() ?><br />
                                 <?= kirbytext('<'.$order->payer_email().'>') ?>
