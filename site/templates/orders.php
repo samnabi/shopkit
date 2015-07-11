@@ -31,15 +31,18 @@
         <?php echo $page->text()->kirbytext() ?>
 
         <?php
-            if($user->hasPanelAccess()) {
-                // Show all orders
+            if($user and $user->hasPanelAccess()) {
+                // If admin, show all orders
                 $orders = $page->children()->sortBy('txn_date','desc');
-            } else {
-                // Show this user's orders
+            } else if ($user) {
+                // If logged in, show this user's orders
                 $orders = $page->children()->sortBy('txn_date','desc')->filterBy('payer_email',$user->email());
+            } else {
+                // If not logged in, don't show orders
+                $orders = array();
             }
 
-            // If empty, display a sad message
+            // If no orders, show error message
             if($orders->count() === 0){
                 ?>
                 <p>You haven't made any orders yet. Why not <a href="/shop" title="Go to the Shop page">go shopping?</a></p>
@@ -47,7 +50,7 @@
             }
         ?>
 
-        <?php if ($user) { ?>
+        <?php if ($user and $orders->count()) { ?>
             <table class="orders small-12 columns">
                 <tr>
                     <th>Date</th>
