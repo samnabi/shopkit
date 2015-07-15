@@ -111,10 +111,15 @@
                                 <?php $shipping_rates = calculateShipping($country,$cart_items) ?>
                                 <!-- The field name is `shipping_1` because for some reason just `shipping` doesn't work. The total cart shipping is technically tied to the first item in the list -->
                                 <select name="shipping" id="shipping" onChange="updateCartTotal(); copyShippingValue();">
-                                    <?php foreach ($shipping_rates as $rate) { ?>
-                                        <option value="<?php echo sprintf('%0.2f',$rate['rate']) ?>">
-                                            <?php echo $rate['title'] ?> (<?php echo formatPrice($rate['rate']) ?>)
-                                        </option>
+                                    <?php if (count($shipping_rates)) { ?>
+                                        <?php foreach ($shipping_rates as $rate) { ?>
+                                            <option value="<?php echo sprintf('%0.2f',$rate['rate']) ?>">
+                                                <?php echo $rate['title'] ?> (<?php echo formatPrice($rate['rate']) ?>)
+                                            </option>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                        <!-- If no shipping rates are set, show free shipping -->
+                                        <option value="0.00">Free Shipping</option>
                                     <?php } ?>
                                 </select>
                             </td>
@@ -231,7 +236,8 @@
             function updateCartTotal() {
                 var e = document.getElementById("shipping");
                 var shipping = e.options[e.selectedIndex].value;
-                document.getElementById("cartTotal").innerHTML = <?php echo round($cart_amount+$tax,2) ?>+(Math.round(shipping*100)/100);
+                var total = <?php echo round($cart_amount+$tax,2) ?>+(Math.round(shipping*100)/100);
+                document.getElementById("cartTotal").innerHTML = total.toFixed(2); // Always show total with two decimals
             }
             function copyShippingValue() {
                 var e = document.getElementById("shipping");
