@@ -65,16 +65,16 @@
                                     <?php ecco($item['option'],' / '.$item['option']) ?>
                                 </td>
                                 <td class="small-text-center">
-                                    <?php echo $item['quantity'] ?><br>
-                                    <form action="" method="post">
-                                        <input type="hidden" name="action" value="add">
-                                        <input type="hidden" name="id" value="<?php echo $item['id'] ?>">
-                                        <input class="tiny button info" type="submit" value="Add">
-                                    </form>
                                     <form action="" method="post">
                                         <input type="hidden" name="action" value="remove">
                                         <input type="hidden" name="id" value="<?php echo $item['id'] ?>">
-                                        <input class="tiny button info" type="submit" value="Remove">
+                                        <input class="tiny button info" type="submit" value="&#10134;">
+                                    </form>
+                                    <span class="qty"><?php echo $item['quantity'] ?></span>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="action" value="add">
+                                        <input type="hidden" name="id" value="<?php echo $item['id'] ?>">
+                                        <input class="tiny button info" type="submit" value="&#10133;">
                                     </form>
                                 </td>
                                 <td class="small-text-right">
