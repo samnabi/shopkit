@@ -17,7 +17,7 @@
 		
 		<?php if ($email = page('contact')->email() and $email != '') { ?>
 			<dt>Email</dt>
-			<dd><?php echo kirbytext('<'.$email.'>') ?></dd>
+			<dd><a href="mailto:<?php echo $email ?>"><?php echo $email ?></a></dd>
 		<?php } ?>
 		
 		<?php if ($address = page('contact')->location()->json('address') and $address != '') { ?>
