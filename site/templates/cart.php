@@ -140,7 +140,6 @@
                                     <?php echo sprintf('%0.2f',$cart_amount+$tax) ?><br />
                                     + shipping
                                 </span>
-                                &nbsp;
                             </td>
                             <td></td>
                         </tr>
