@@ -68,13 +68,13 @@
                                     <form action="" method="post">
                                         <input type="hidden" name="action" value="remove">
                                         <input type="hidden" name="id" value="<?php echo $item['id'] ?>">
-                                        <input class="tiny button info" type="submit" value="&#10134;">
+                                        <input class="tiny button info" type="submit" value="&#9660;">
                                     </form>
                                     <span class="qty"><?php echo $item['quantity'] ?></span>
                                     <form action="" method="post">
                                         <input type="hidden" name="action" value="add">
                                         <input type="hidden" name="id" value="<?php echo $item['id'] ?>">
-                                        <input class="tiny button info" type="submit" value="&#10133;">
+                                        <input class="tiny button info" type="submit" value="&#9650;">
                                     </form>
                                 </td>
                                 <td class="small-text-right">
