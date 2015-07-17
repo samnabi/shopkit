@@ -11,9 +11,9 @@
 			<ul class="no-bullet">
 				<?php foreach ($results as $result) { ?>
 					<li class="row result">
-						<a class="small-12 columns" href="<?= $result->url() ?>">
-							<strong><?= $result->title() ?></strong><br>
-							<?= $result->text()->excerpt(80) ?>
+						<a class="small-12 columns" href="<?php echo $result->url() ?>">
+							<strong><?php echo $result->title() ?></strong><br>
+							<?php echo $result->text()->excerpt(80) ?>
 						</a>
 					</li>
 				<?php } ?>
