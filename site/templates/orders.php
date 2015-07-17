@@ -60,10 +60,6 @@
                     <th>Products</th>
                     <th>Price</th>
                     <th>Status</th>
-                    <?php if($user and $user->hasPanelAccess()) { ?>
-                        <th>Buyer</th>
-                        <th>Details</th>
-                    <?php } ?>
                 </tr>
             <?php
 
@@ -72,11 +68,19 @@
                     ?>
                     <tr>
                         <td>
-                            <?= date('F j, Y H:i',$order->txn_date()->value) ?>
+                            <?php echo $order->payer_name() ?><br>
                             
+                            <a href="mailto:<?php echo $order->payer_email() ?>"><?php echo $order->payer_email() ?></a><br>
+                            
+                            <?php echo date('M j, Y H:i e',$order->txn_date()->value) ?><br>
+
+                            <?php if($user and $user->hasPanelAccess()) { ?>
+                                <a href="<?php echo payPalAction().'?cmd=_view-a-trans&id='.$order->txn_id() ?>">View on PayPal</a>
+                            <?php } ?>
+
                             <form action="/shop/orders/pdf" method="POST">
                                 <input type="hidden" name="id" value="<?php echo $order->uri() ?>">
-                                <button class="small expand" type="submit">Download<br>Invoice (PDF)</button>
+                                <button class="tiny expand" type="submit">Download<br>Invoice (PDF)</button>
                             </form>
                         </td>
                         <td><?php echo $order->products()->kirbytext() ?></td>
@@ -101,7 +105,7 @@
                             </table>
                         </td>
                         <td>
-                            <p><?= $order->status() ?></p>
+                            <p><?php echo $order->status() ?></p>
 
                             <?php if($user and $user->hasPanelAccess()) { ?>
                                 <?php if($order->status() == 'Pending' or $order->status() == 'Invoice'){ ?>
@@ -120,15 +124,6 @@
                                 <?php } ?>
                             <?php } ?>
                         </td>
-                        <?php if($user and $user->hasPanelAccess()) { ?>
-                            <td>
-                                <?= $order->payer_name() ?><br />
-                                <?= kirbytext('<'.$order->payer_email().'>') ?>
-                            </td>
-                            <td>
-                                <a class="small button expand" href="<?php echo payPalAction().'?cmd=_view-a-trans&id='.$order->txn_id() ?>">View on PayPal</a>
-                            </td>
-                        <?php } ?>
                     </tr>
                     <?php
                 }
