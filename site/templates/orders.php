@@ -78,7 +78,7 @@
                             </form>
 
                             <?php if($user and $user->hasPanelAccess()) { ?>
-                                <br><a href="<?php echo payPalAction().'?cmd=_view-a-trans&id='.$order->txn_id() ?>">View on PayPal</a>
+                                <a href="<?php echo payPalAction().'?cmd=_view-a-trans&id='.$order->txn_id() ?>">View on PayPal</a>
                             <?php } ?>
                         </td>
                         <td>
