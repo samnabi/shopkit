@@ -56,7 +56,7 @@
         <?php if ($orders->count()) { ?>
             <table class="orders small-12 columns">
                 <tr>
-                    <th>Date</th>
+                    <th></th>
                     <th>Products</th>
                     <th>Price</th>
                     <th>Status</th>
@@ -68,22 +68,22 @@
                     ?>
                     <tr>
                         <td>
-                            <?php echo $order->payer_name() ?><br>
-                            
-                            <a href="mailto:<?php echo $order->payer_email() ?>"><?php echo $order->payer_email() ?></a><br>
-                            
+                            <?php echo $order->payer_name() ?><br>                            
+                            <a href="mailto:<?php echo $order->payer_email() ?>"><?php echo $order->payer_email() ?></a><br>                            
                             <?php echo date('M j, Y H:i e',$order->txn_date()->value) ?><br>
-
                             <?php if($user and $user->hasPanelAccess()) { ?>
-                                <a href="<?php echo payPalAction().'?cmd=_view-a-trans&id='.$order->txn_id() ?>">View on PayPal</a>
+                                <br><a href="<?php echo payPalAction().'?cmd=_view-a-trans&id='.$order->txn_id() ?>">View on PayPal</a>
                             <?php } ?>
+                            <br>
 
                             <form action="/shop/orders/pdf" method="POST">
                                 <input type="hidden" name="id" value="<?php echo $order->uri() ?>">
-                                <button class="tiny expand" type="submit">Download<br>Invoice (PDF)</button>
+                                <button class="tiny secondary" type="submit">Download Invoice (PDF)</button>
                             </form>
                         </td>
-                        <td><?php echo $order->products()->kirbytext() ?></td>
+                        <td>
+                            <?php echo $order->products()->kirbytext() ?>
+                        </td>
                         <td>
                             <table>
                                 <tr>
@@ -105,21 +105,21 @@
                             </table>
                         </td>
                         <td>
-                            <p><?php echo $order->status() ?></p>
+                            <?php echo $order->status() ?><br>
 
                             <?php if($user and $user->hasPanelAccess()) { ?>
                                 <?php if($order->status() == 'Pending' or $order->status() == 'Invoice'){ ?>
                                     <form action="" method="POST">
                                         <input type="hidden" name="update_id" value="<?php echo $order->uid() ?>">
                                         <input type="hidden" name="action" value="mark_shipped">
-                                        <input class="small button expand" type="submit" value="Mark as shipped">
+                                        <input class="tiny button" type="submit" value="Mark as shipped">
                                     </form>
                                 <?php } ?>
                                 <?php if($order->status() == 'Shipped'){ ?>
                                     <form action="" method="POST">
                                         <input type="hidden" name="update_id" value="<?php echo $order->uid() ?>">
                                         <input type="hidden" name="action" value="mark_pending">
-                                        <input class="small button expand" type="submit" value="Mark as pending">
+                                        <input class="tiny button" type="submit" value="Mark as pending">
                                     </form>
                                 <?php } ?>
                             <?php } ?>
