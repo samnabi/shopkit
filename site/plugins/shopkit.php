@@ -6,62 +6,44 @@ function get_cart() {
     return $cart;
 }
 
-function cart_logic($cart) {
+function cart_add($id, $quantity) {
+    $cart = get_cart();
+    $add = $quantity ? $quantity : 1;
+    $cart[$id] = array_key_exists($id, $cart) ? $cart[$id] + $add : $add;
+    s::set('cart', $cart);
+}
 
-    if (isset($_REQUEST['action'])) {
-      $action = $_REQUEST['action'];
-      $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : false;
-      $_REQUEST['variant'] = isset($_REQUEST['variant']) ? $_REQUEST['variant'] : '';
-      $_REQUEST['option'] = isset($_REQUEST['option']) ? $_REQUEST['option'] : '';
-      switch ($action) {
-          case 'add':
-              if (isset($_REQUEST['quantity'])) {
-                $quantity = intval($_REQUEST['quantity']);
-                if (isset($cart[$id])) {
-                    $cart[$id] + $quantity;
-                } else {
-                    $id = implode('::',array($_REQUEST['uri'],$_REQUEST['variant'],$_REQUEST['option']));
-                    $cart[$id] = $quantity;
-                }
-              } else {
-                if (isset($cart[$id])) {
-                    $cart[$id]++;
-                } else {
-                    $id = implode('::',array($_REQUEST['uri'],$_REQUEST['variant'],$_REQUEST['option']));
-                    $cart[$id] = 1;
-                }                
-              }
-              break;
-          case 'remove':
-              if (isset($cart[$id])) {
-                  $cart[$id]--;
-                  if ($cart[$id] < 0) {
-                    $cart[$id] = 0;
-                  }
-              } else {
-                  $cart[$id] = 1;
-              }
-              break;
-          case 'update':
-              if (isset($_REQUEST['quantity'])) {
-                  $quantity = intval($_REQUEST['quantity']);
-                  if ($quantity < 1) {
-                      unset($cart[$id]);
-                  } else {
-                      $cart[$id] = $quantity;                
-                  }
-              }
-              break;
-          case 'delete':
-              if (isset($cart[$id])) {
-                  unset($cart[$id]);
-              }
-              break;
-      }
-      s::set('cart', $cart);
+function cart_remove($id) {
+    $cart = get_cart();
+    if (!array_key_exists($id, $cart)) {
+        return;
     }
+    $cart[$id]--;
+    if ($cart[$id] < 1) {
+        cart_delete($id);
+        return;
+    }
+    s::set('cart', $cart);
+}
 
-    return $cart;
+function cart_update($id, $quantity) {
+    $cart = get_cart();
+    if ($quantity < 1) {
+        unset($cart[$id]);
+        s::set('cart', $cart);
+        return;
+    }
+    $cart[$id] = $quantity;
+    s::set('cart', $cart);
+}
+
+function cart_delete($id) {
+    $cart = get_cart();
+    if (!array_key_exists($id, $cart)) {
+        return;
+    }
+    unset($cart[$id]);
+    s::set('cart', $cart);
 }
 
 function cart_count($cart) {
@@ -136,7 +118,7 @@ function get_cart_details($site,$pages,$cart) {
     } else if ($user = $site->user()) {
       // Second option: see if the user has set a country in their profile
       $country = $user->country();
-    } else { 
+    } else {
       // Last resort: assume everybody is American. Lol.
       $country = 'united-states';
     }
