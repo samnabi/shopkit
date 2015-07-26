@@ -347,24 +347,38 @@ table.orders {
 	}	
 }
 
-.cart td {
-	& > form {
-		text-align: center;
-		display: inline-block;
-		vertical-align: middle;
+.cart {
+	td {
+		.qty-up,
+		.qty-down {
+			text-align: center;
+			display: inline-block;
+			vertical-align: middle;
+		}
 
-		.button.tiny {
+		.qty {
+			vertical-align: middle;
+			padding: 0 0.5rem;
+		}
+		
+		button.tiny {
 			padding: 0.2rem 0.6rem 0.3rem;
 			margin-bottom: 0;
 		}
 	}
 
-	.qty {
-		vertical-align: middle;
-		padding: 0 0.5rem;
+	tfoot form,
+	tfoot select {
+		max-width: 10rem;
+		margin: 0;
 	}
+}
 
-	select {
-		margin-bottom: 0;
+.payPalSubmit {
+	& > * {
+		vertical-align: middle;
+	}
+	img {
+		margin-left: 0.5rem;
 	}
 }

@@ -16,23 +16,6 @@
             <p>You don't have anything in your cart!</p>
         <?php } else { ?>
 
-            <!-- Set country -->
-            <form class="row setCountry" action="" method="POST">
-                <div class="small-12 medium-5 medium-push-3 large-4 large-push-5 columns">
-                    <label for="country">Ship to</label>
-                    <select name="country">
-                        <?php foreach (page('/shop/countries')->children()->invisible() as $c) { ?>
-                            <option <?php if($country == $c->slug() or $country == $c->countrycode()) echo 'selected' ?> value="<?php echo $c->countrycode() ?>">
-                                <?php echo $c->title() ?>
-                            </option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="small-12 medium-4 large-3 columns">
-                    <button type="submit" class="small secondary expand">Update shipping</button>
-                </div>
-            </form>
-
             <!-- Cart items -->
             <div class="row">
                 <table class="small-12 columns cart">
@@ -65,16 +48,16 @@
                                     <?php ecco($item['option'],' / '.$item['option']) ?>
                                 </td>
                                 <td class="small-text-center">
-                                    <form action="" method="post">
+                                    <form class="qty-down" action="" method="post">
                                         <input type="hidden" name="action" value="remove">
                                         <input type="hidden" name="id" value="<?php echo $item['id'] ?>">
-                                        <input class="tiny button info" type="submit" value="&#9660;">
+                                        <button class="tiny info" type="submit">&#9660;</button>
                                     </form>
                                     <span class="qty"><?php echo $item['quantity'] ?></span>
-                                    <form action="" method="post">
+                                    <form class="qty-up" action="" method="post">
                                         <input type="hidden" name="action" value="add">
                                         <input type="hidden" name="id" value="<?php echo $item['id'] ?>">
-                                        <input class="tiny button info" type="submit" value="&#9650;">
+                                        <button class="tiny info" type="submit">&#9650;</button>
                                     </form>
                                 </td>
                                 <td class="small-text-right">
@@ -84,7 +67,7 @@
                                     <form action="" method="post">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $item['id'] ?>">
-                                        <input class="tiny button info" type="submit" value="Delete">
+                                        <button class="tiny info" type="submit">Delete</button>
                                     </form>
                                 </td>
                             </tr>
@@ -107,7 +90,20 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="small-text-right">Shipping</td>
-                            <td colspan="2">
+                            <td colspan="2" class="small-text-left">
+
+                                <!-- Set country -->
+                                <form id="setCountry" class="setCountry" action="" method="POST">
+                                    <select name="country" onChange="document.forms['setCountry'].submit();">
+                                        <?php foreach (page('/shop/countries')->children()->invisible() as $c) { ?>
+                                            <option <?php if($country == $c->slug() or $country == $c->countrycode()) echo 'selected' ?> value="<?php echo $c->countrycode() ?>">
+                                                <?php echo $c->title() ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
+                                    <button id="setCountryButton" type="submit" class="tiny info">Update country</button>
+                                </form>
+
                                 <?php $shipping_rates = calculateShipping($country,$cart_items) ?>
                                 <!-- The field name is `shipping_1` because for some reason just `shipping` doesn't work. The total cart shipping is technically tied to the first item in the list -->
                                 <select name="shipping" id="shipping" onChange="updateCartTotal(); copyShippingValue();">
@@ -186,7 +182,10 @@
 
                 <!-- Submit -->
                 <div class="row">
-                    <button class="small-12 large-8 large-push-2 columns" type="submit">Pay now with PayPal</button>
+                    <button class="payPalSubmit small-12 large-8 large-push-2 columns" type="submit">
+                        <span>Pay now with</span>
+                        <img src="<?php echo thumb($page->image('paypal.png'),array('width'=>100))->dataUri() ?>" alt="PayPal">
+                    </button>
                 </div>
             </form>
 
@@ -239,15 +238,25 @@
                 var total = <?php echo round($cart_amount+$tax,2) ?>+(Math.round(shipping*100)/100);
                 document.getElementById("cartTotal").innerHTML = total.toFixed(2); // Always show total with two decimals
             }
+
             function copyShippingValue() {
                 var e = document.getElementById("shipping");
                 var shipping = e.options[e.selectedIndex].value;
                 document.getElementById("payPalShipping").value = shipping;
                 document.getElementById("payLaterShipping").value = shipping;
             }
-            updateCartTotal(); // Update cart total on page load
+
+            // Update cart total on page load
+            updateCartTotal();
+
+            // Remove duplicate shipping selects
             document.getElementById("payPalShipping").style.display = 'none';
-            document.getElementById("payLaterShipping").style.display = 'none';
+            <?php if(canPayLater($site->user())) { ?>
+                document.getElementById("payLaterShipping").style.display = 'none';
+            <?php } ?>
+
+            // Remove setCountry submit button
+            document.getElementById("setCountryButton").style.display = 'none';   
         </script>
 
 <?php snippet('footer') ?>
