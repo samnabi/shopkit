@@ -16,15 +16,15 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password">
               </div>
-              <div class="small-12 large-8 columns">
-                <input class="button small secondary expand" type="submit" name="login" value="Log in">
-              </div>
 
-              <p class="register small-12 large-4 columns small-text-center">
-                <em class="hide-for-large-up"><br>Don't have an account?</em>
-                <em class="show-for-large-up">or</em>
+              <p class="register small-7 columns">
+                <em>New customer?</em>
                 <a href="/register" title="Register">Register</a>
               </p>
+
+              <div class="small-5 columns">
+                <input class="button tiny secondary expand" type="submit" name="login" value="Log in">
+              </div>
 
             </form>
         </div>
