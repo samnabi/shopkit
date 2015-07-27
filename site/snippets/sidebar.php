@@ -20,7 +20,7 @@
               <div class="small-5 columns">
                 <input class="button tiny secondary expand" type="submit" name="login" value="Log in">
               </div>
-              <p class="register small-7 columns small-text-right">
+              <p class="register small-7 columns">
                 <em>New customer?</em>
                 <a href="/register" title="Register">Register</a>
               </p>

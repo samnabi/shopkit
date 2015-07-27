@@ -22,8 +22,8 @@
                     <thead>
                         <tr>
                             <th>Product</th>
-                            <th class="small-text-center">Quantity</th>
-                            <th class="small-text-right">Price</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -47,7 +47,7 @@
                                     <?php ecco($item['variant'],' / '.$item['variant']) ?>
                                     <?php ecco($item['option'],' / '.$item['option']) ?>
                                 </td>
-                                <td class="small-text-center">
+                                <td>
                                     <form class="qty-down" action="" method="post">
                                         <input type="hidden" name="action" value="remove">
                                         <input type="hidden" name="id" value="<?php echo $item['id'] ?>">
@@ -60,7 +60,7 @@
                                         <button class="tiny info" type="submit">&#9650;</button>
                                     </form>
                                 </td>
-                                <td class="small-text-right">
+                                <td>
                                     <?php echo formatPrice($item['amount']*$item['quantity']) ?>
                                 </td>
                                 <td>
@@ -84,12 +84,12 @@
 
                     <tfoot>
                         <tr>
-                            <td colspan="2" class="small-text-right">Subtotal</td>
-                            <td class="small-text-right"><?php echo formatPrice($cart_amount) ?></td>
+                            <td colspan="2">Subtotal</td>
+                            <td><?php echo formatPrice($cart_amount) ?></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td colspan="2" class="small-text-right">Shipping</td>
+                            <td colspan="2">Shipping</td>
                             <td colspan="2" class="small-text-left">
 
                                 <!-- Set country -->
@@ -121,16 +121,16 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2" class="small-text-right">Tax</td>
-                            <td class="small-text-right">
+                            <td colspan="2">Tax</td>
+                            <td>
                                 <?php $tax = sprintf('%0.2f',calculateTax($country,$cart_items)) ?>
                                 <?php echo formatPrice($tax) ?>
                             </td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td colspan="2" class="small-text-right">Total</td>
-                            <td class="small-text-right">
+                            <td colspan="2">Total</td>
+                            <td>
                                 <?php echo page('shop')->currency_symbol() ?>
                                 <span id="cartTotal">
                                     <?php echo sprintf('%0.2f',$cart_amount+$tax) ?><br />

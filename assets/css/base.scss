@@ -49,6 +49,7 @@ main {
 
 //	Footer
 footer {
+	text-align: center;
 	padding-top: 1.25rem;
 
 	h3 {
@@ -105,6 +106,7 @@ form .help {
 }
 
 #login .register {
+	text-align: right;
 	color: $slate;
 	font-size: 0.875rem;
 	line-height: 2.25;
@@ -346,6 +348,13 @@ table.orders {
 			margin-bottom: 0;
 		}
 	}
+	
+	// Cell text alignment
+	thead th:nth-child(2) { text-align: center; }
+	thead th:nth-child(3) { text-align: right; }
+	tbody td:nth-child(2) { text-align: center; }
+	tbody td:nth-child(3) { text-align: right; }
+	tfoot td:nth-child(1), tfoot td:nth-child(2) { text-align: right; }
 
 	tfoot form,
 	tfoot select {

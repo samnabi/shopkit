@@ -6,7 +6,7 @@
 </div>
 </div>
 
-<footer class="row small-text-center">
+<footer class="row">
 	<h3><?php echo $site->title() ?></h3>
 	<dl class="contact">
 
