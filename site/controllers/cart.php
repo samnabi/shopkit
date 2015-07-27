@@ -21,13 +21,17 @@ return function($site, $pages, $page) {
                 break;
         }
     }
-    $cart = get_cart();
-    $cartDetails = get_cart_details($site, $pages, $cart);
-    return [
-        'cart'         => $cart,
-        'cart_details' => $cartDetails,
-        'cart_items'   => $cartDetails[0],
-        'cart_amount'  => $cartDetails[1],
-        'country'      => $cartDetails[2],
-    ];
+    $user = $site->user();
+    if (get('country')) {
+        // First: See if country was sent through a form submission
+        $countryCode = get('country');
+    } elseif ($user && $user->country()) {
+        // Second option: see if the user has set a country in their profile
+        $countryCode = $user->country();
+    } else {
+        // Last resort: assume everybody is American. Lol.
+        $countryCode = 'united-states';
+    }
+    $cart = Cart::getCart($pages, $pages->find('shop/countries/' . $countryCode));
+    return ['cart' => $cart];
 };
