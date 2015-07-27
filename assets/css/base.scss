@@ -40,16 +40,16 @@ main {
 
 //	Logo
 .logo {
-	margin-bottom: 1rem;
+	margin-bottom: 1.25rem;
 
 	main & {
-		margin-top: 1rem;
+		margin-top: 1.25rem;
 	}
 }
 
 //	Footer
 footer {
-	padding-top: 2rem;
+	padding-top: 1.25rem;
 
 	h3 {
 		font-size: 1.25rem;
@@ -100,11 +100,8 @@ footer {
 form .help {
 	margin-top: -1em;
 	font-size: 0.8em;
-	color: rgba($black,0.6);
-}
-
-.f-dropdown .button {
-	margin-bottom: 0;
+	color: $slate;
+	font-style: italic;
 }
 
 #login .register {
@@ -115,7 +112,9 @@ form .help {
 }
 
 //	Buttons
-button, .button, input[type="submit"] {
+button,
+.button,
+input[type="submit"] {
 	border-radius: 3px;
 	box-shadow: inset 0 -2rem 2rem -1rem rgba($black,0.2);
 
@@ -218,19 +217,10 @@ aside .panel {
 }
 .cartStatus > svg:first-child {
 	fill: white;
-	width: 2rem;
+	height: 2rem;
 	vertical-align: middle;
 	margin-top: -0.4rem;
-	margin-right: 0.25rem;
 	margin-bottom: 0;
-}
-
-// Search Form
-.searchForm {
-	.button.small {
-		padding-top: 0.5rem;
-		padding-bottom: 0.7rem;
-	}
 }
 
 //	Image gallery
@@ -337,17 +327,6 @@ table.orders {
 }
 
 // Cart page
-@media only screen and (min-width: 40em) {
-	.setCountry {
-		button.small {
-			margin-top: 1.25rem;
-			padding-top: 0.6rem;
-			padding-bottom: 0.7rem;
-			margin-bottom: 0;
-		}
-	}	
-}
-
 .cart {
 	td {
 		.qty-up,
@@ -362,7 +341,7 @@ table.orders {
 			padding: 0 0.5rem;
 		}
 		
-		button.tiny {
+		button {
 			padding: 0.2rem 0.6rem 0.3rem;
 			margin-bottom: 0;
 		}

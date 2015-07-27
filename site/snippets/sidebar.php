@@ -57,7 +57,7 @@
                 <input type="text" name="q" value="<?php echo get('q') ?>" placeholder="">
             </div>
             <div class="small-12 large-4 columns">
-                <input class="button small expand" type="submit" value="Search">
+                <input class="button tiny expand" type="submit" value="Search">
             </div>
         </form>
     </div>
