@@ -1,4 +1,4 @@
-<?php if($products->count()) { ?>
+<?php if(count($products) or $products->count()) { ?>
 	<ul class="product listing small-block-grid-1 medium-block-grid-4">
 	  <?php foreach($products as $product): ?>
 		  <li>
@@ -14,9 +14,10 @@
 		    		<?php
 		    			$prices = $product->prices()->yaml();
 		    			foreach ($prices as $key => $price) $pricelist[] = $price['price'];
-		    			$price = min($pricelist);
+		    			$priceFormatted = formatPrice(min($pricelist));
+		    			if (count($prices) > 1) $priceFormatted = 'From '.$priceFormatted;
 					?>
-		    		<span class="button small secondary expand">From <?php echo formatPrice($price) ?></span>
+		    		<span class="button tiny secondary expand"><?php echo $priceFormatted ?></span>
 			    </a>
 			</div>
 		  </li>

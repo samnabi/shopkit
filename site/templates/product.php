@@ -53,40 +53,22 @@
 			</section>
 		</div>
 
-		<?php $related = $page->relatedproducts()->toStructure() ?>
-		<?php if (count($related)) { ?>
-			<section class="related">
-				<?php $first = true ?>
-				<?php foreach ($related as $slug) { ?>
-					<?php if ($first) { ?>
-						<h3>Related products</h3>
-						<ul class="product listing small-block-grid-1 medium-block-grid-4">
-						<?php $first = false ?>
-					<?php } ?>
-					<?php $product = $pages->index()->findByURI($slug->product()) ?>
-					<?php if ($product->isVisible()) { ?>
-						  <li>
-						  	<div class="row">
-							  	<a class="small-12 columns" href="<?php echo $product->url() ?>">
-							    	<?php if($image = $product->images()->sortBy('sort', 'asc')->first()){ ?>
-							    		<img src="<?php echo thumb($image,array('width'=>400, 'height'=>400, 'crop'=>true))->dataUri() ?>" title="<?php echo $image->title() ?>"/>
-							    	<?php } ?>
-							    	<strong><?php echo $product->title()->html() ?></strong><br>
-							    	<em><?php echo $product->brand()->html() ?></em>
-							    	<p><?php echo $product->text()->excerpt(80) ?></p>
+		<?php
+			$related = $page->relatedproducts()->toStructure();
 
-						    		<?php
-						    			$prices = $product->prices()->yaml();
-						    			foreach ($prices as $key => $price) $pricelist[] = $price['price'];
-						    			$price = min($pricelist);
-									?>
-						    		<span class="button small secondary expand">From <?php echo formatPrice($price) ?></span>
-							    </a>
-							</div>
-						  </li>
-					<?php } ?>
-				<?php } ?>
-				</ul>
+			$products = array();
+			foreach ($related as $slug) {
+				if($pages->index()->findByURI($slug->product())->isVisible()) {
+					$products[] = $pages->index()->findByURI($slug->product());
+				}
+			}
+		?>
+
+		<!-- Related products -->
+		<?php if (count($products)) { ?>
+			<section class="related">
+				<h3>Related products</h3>
+				<?php snippet('product-list',array('products' => $products)) ?>
 			</section>
 		<?php } ?>
 
