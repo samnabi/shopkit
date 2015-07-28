@@ -1,4 +1,3 @@
-<?php $products = $page->children()->visible()->filterBy('template','product') ?>
 <?php if($products->count()) { ?>
 	<ul class="product listing small-block-grid-1 medium-block-grid-4">
 	  <?php foreach($products as $product): ?>
