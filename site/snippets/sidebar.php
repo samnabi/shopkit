@@ -1,12 +1,13 @@
 <aside class="small-12 medium-4 columns medium-pull-8">
 
+    <!-- Logo -->
     <div class="show-for-medium-up medium-text-center">
         <?php snippet('logo') ?>
     </div>
 
+    <!-- Login form -->
     <?php if (!$user = $site->user()) { ?>
         <div class="panel">
-            <!-- Login form -->
             <form method="POST" class="row" id="login">
               <div class="small-12 large-6 columns">
                 <label for="username">Username</label>
@@ -42,22 +43,22 @@
             </ul>
         </div>
     <?php } ?>
-
+    
+    <!-- Global category listing -->
     <div class="panel">
-        <!-- Global category listing -->
         <h1>Shop by category</h1>
         <?php snippet('treemenu',array('subpages' => page('shop')->children(), 'template' => 'category', 'class' => 'side-nav')) ?>
     </div>
 
+    <!-- Search -->
     <div class="panel">
-        <!-- Search -->
         <h1>Search shop</h1>
         <form class="row searchForm" action="/search" method="get">
             <div class="small-12 large-8 columns">
                 <input type="text" name="q" value="<?php echo get('q') ?>" placeholder="">
             </div>
             <div class="small-12 large-4 columns">
-                <input class="button tiny expand" type="submit" value="Search">
+                <button class="tiny info expand" type="submit">Search</button>
             </div>
         </form>
     </div>
