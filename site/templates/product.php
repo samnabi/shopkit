@@ -29,9 +29,8 @@
 						<?php foreach ($prices as $price) { ?>
 							<li>
 								<div class="small-12 columns">
-									<strong><?php echo $price->name() ?></strong><br>
-									<?php echo formatPrice($price->price()->value) ?>
-									<?php echo $price->description()->kirbytext() ?>
+									<strong><?php echo $price->name() ?></strong>
+									<?php ecco(trim($price->description()) != '',$price->description()->kirbytext()) ?>
 								</div>
 					            <form class="small-12 columns" method="post" action="<?php echo url('shop/cart') ?>">
 					                <input type="hidden" name="action" value="add">
@@ -45,15 +44,7 @@
 											<?php } ?>
 										</select>
 									<?php } ?>
-									<div class="row">
-										<div class="small-6 columns">
-											<label for="quantity">Quantity</label>
-											<input type="number" name="quantity" value="1" />
-										</div>
-										<div class="small-6 columns">
-						                	<button class="small expand" type="submit">Buy</button>
-										</div>
-									</div>
+						            <button class="tiny expand" type="submit">Buy <?php echo formatPrice($price->price()->value) ?></button>
 					            </form>
 					        </li>
 						<?php } ?>

@@ -299,15 +299,12 @@ table.orders {
 }
 .prices {
 	margin-top: 1rem;
-
-	form {
-		margin-top: 0.5rem;
-
-		button {
-			margin-top: 1rem;
-		}
-	}
 	
+	li {
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+	}
+
 	span {
 		color: $slate;
 	}
@@ -316,6 +313,10 @@ table.orders {
 		font-size: 0.875rem;
 		margin: 0.25rem 0 0;
 		font-style: italic;
+	}
+
+	button {
+		margin-bottom: 0;
 	}
 }
 
