@@ -16,7 +16,7 @@
 				<?php if (count($tags)) { ?>
 					<div class="panel tags">
 						<?php foreach ($tags as $tag) { ?>
-							<a href="<?php echo $site->url().'/shop/search/tag:'.$tag ?>"><?php echo $tag ?></a>
+							<a href="<?php echo $site->url().'/shop/search/?q='.urlencode($tag) ?>"><?php echo $tag ?></a>
 						<?php } ?>
 					</div>
 				<?php } ?>
