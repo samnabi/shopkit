@@ -47,6 +47,9 @@ fields:
         label: Weight
         type: text
         width: 1/4
+      options:
+        label: Options
+        type: tags
       description: 
         label: Description
         type: textarea
