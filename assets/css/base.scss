@@ -341,6 +341,9 @@ table.orders {
 }
 
 // Product page
+.description {
+	margin-top: 1rem;
+}
 .tags {
 	padding: 0;
 	text-align: center;
@@ -350,7 +353,6 @@ table.orders {
 	}
 }
 .prices {
-	margin-top: 1rem;
 	
 	li {
 		padding-top: 0.5rem;

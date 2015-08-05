@@ -5,27 +5,14 @@
 		<h1><?php echo $page->title()->html() ?></h1>
 
 		<div class="row">
-			<div class="small-12 medium-7 columns">
+			<div class="small-12 medium-6 large-7 columns">
 				<?php snippet('gallery') ?>
 			</div>
-
-			<div class="small-12 medium-5 columns">
-				<?php echo $page->text()->kirbytext() ?>
-
-				<?php $tags = str::split($page->tags()) ?>
-				<?php if (count($tags)) { ?>
-					<div class="panel tags">
-						<?php foreach ($tags as $tag) { ?>
-							<a href="<?php echo $site->url().'/shop/search/?q='.urlencode($tag) ?>"><?php echo $tag ?></a>
-						<?php } ?>
-					</div>
-				<?php } ?>
-			</div>
-
-			<section class="small-12 columns">
+			
+			<section class="small-12 medium-6 large-5 columns">
 				<?php $prices = $page->prices()->toStructure() ?>
 				<?php if (count($prices)) { ?>
-					<ul class="prices small-block-grid-1 medium-block-grid-3 large-block-grid-4">
+					<ul class="prices small-block-grid-1 medium-block-grid-2">
 						<?php foreach ($prices as $price) { ?>
 							<li>
 								<div class="small-12 columns">
@@ -51,6 +38,19 @@
 					</ul>
 				<?php } ?>
 			</section>
+
+			<div class="description small-12 columns">
+				<?php echo $page->text()->kirbytext() ?>
+
+				<?php $tags = str::split($page->tags()) ?>
+				<?php if (count($tags)) { ?>
+					<div class="panel tags">
+						<?php foreach ($tags as $tag) { ?>
+							<a href="<?php echo $site->url().'/shop/search/?q='.urlencode($tag) ?>"><?php echo $tag ?></a>
+						<?php } ?>
+					</div>
+				<?php } ?>
+			</div>
 		</div>
 
 		<?php
