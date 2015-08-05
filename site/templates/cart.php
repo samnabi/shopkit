@@ -41,11 +41,12 @@
                                         if ($item['option']) $item_title .= ' - '.$item['option'];
                                     ?>
                                     <a href="/<?php echo $item['uri'] ?>" title="<?php echo $item_title ?>">
-                                        <strong><?php echo $item['item_name'] ?></strong>
-                                    </a><br>
-                                    <?php ecco($item['sku'],'<strong>SKU</strong> '.$item['sku'].' / ') ?>
-                                    <?php ecco($item['variant'],$item['variant']) ?>
-                                    <?php ecco($item['option'],' / '.$item['option']) ?>
+                                        <img src="<?php echo thumb($pages->findByUri($item['uri'])->images()->first(),array('width'=>60, 'height'=>60, 'crop'=>true))->dataUri() ?>" title="<?php echo $item_title ?>">
+                                        <strong><?php echo $item['item_name'] ?></strong><br />
+                                        <?php ecco($item['sku'],'<abbr>SKU</abbr> '.$item['sku'].' / ') ?>
+                                        <?php ecco($item['variant'],$item['variant']) ?>
+                                        <?php ecco($item['option'],' / '.$item['option']) ?>
+                                    </a>
                                 </td>
                                 <td>
                                     <form class="qty-down" action="" method="post">

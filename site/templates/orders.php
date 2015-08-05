@@ -74,7 +74,7 @@
 
                             <form action="/shop/orders/pdf" method="POST">
                                 <input type="hidden" name="id" value="<?php echo $order->uri() ?>">
-                                <button class="tiny secondary" type="submit">Download Invoice (PDF)</button>
+                                <button class="tiny info" type="submit">Download Invoice (PDF)</button>
                             </form>
 
                             <?php if($user and $user->hasPanelAccess()) { ?>
@@ -93,7 +93,7 @@
                                 <tr>
                                     <td>Shipping</td>
                                     <td><?php echo formatPrice((float)$order->shipping()->value) ?></td>
-                                    <!-- Need to cast as (float) to handle null shipping -->
+                                    <!-- Need to cast as (float) to handle null or nonexistent shipping value -->
                                 </tr>
                                 <tr>
                                     <td>Tax</td>
@@ -120,7 +120,7 @@
                                     <form action="" method="POST">
                                         <input type="hidden" name="update_id" value="<?php echo $order->uid() ?>">
                                         <input type="hidden" name="action" value="mark_pending">
-                                        <input class="tiny button" type="submit" value="Mark as pending">
+                                        <input class="tiny button info" type="submit" value="Mark as pending">
                                     </form>
                                 <?php } ?>
                             <?php } ?>

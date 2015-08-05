@@ -20,6 +20,39 @@ h1, h2 {
 }
 
 // Base elements
+table {
+	border: none;
+	
+	thead {
+		background: inherit;
+		border-bottom: 1px solid $slate;
+	}
+
+	tr.even, tr.alt, tr:nth-of-type(2n) {
+		background: inherit;
+	}
+	tr:not(:first-child) > td {
+		border-top: 1px solid $slate;
+	}
+
+	tfoot {
+		background: inherit;
+		border-top: 1px solid $slate;
+
+		tr:not(:first-child) > td {
+			border-top: 1px solid darken($cloud,10);
+		}
+	}
+
+	table {
+		background: $cloud;
+
+		tr:not(:first-child) > td {
+			border-top: 1px solid darken($cloud,10);
+		}
+	}
+}
+
 figure {
 	margin: 1rem 0;
 }
@@ -263,6 +296,11 @@ table.orders {
 	.button {
 		margin-bottom: 0;
 	}
+
+	p {
+		margin: 0;
+		font-size: 0.875rem;
+	}
 }
 
 // Listing
@@ -346,6 +384,16 @@ table.orders {
 // Cart page
 .cart {
 	td {
+
+		img {
+			float: left;
+			margin-right: 0.5rem;
+		}
+
+		a {
+			color: $black;
+		}
+
 		.qty-up,
 		.qty-down {
 			text-align: center;
