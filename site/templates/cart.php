@@ -43,8 +43,8 @@
                                     <a href="/<?php echo $item['uri'] ?>" title="<?php echo $item_title ?>">
                                         <strong><?php echo $item['item_name'] ?></strong>
                                     </a><br>
-                                    <?php ecco($item['sku'],'<strong>SKU</strong> '.$item['sku']) ?>
-                                    <?php ecco($item['variant'],' / '.$item['variant']) ?>
+                                    <?php ecco($item['sku'],'<strong>SKU</strong> '.$item['sku'].' / ') ?>
+                                    <?php ecco($item['variant'],$item['variant']) ?>
                                     <?php ecco($item['option'],' / '.$item['option']) ?>
                                 </td>
                                 <td>

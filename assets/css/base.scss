@@ -288,6 +288,20 @@ table.orders {
 	}
 }
 
+.featured.listing {
+	text-align: center;
+
+	h5 {
+		color: $black;
+		margin: 0.2rem 0;
+	}
+
+	.variant {
+		margin: 0 0 0.2rem;
+		font-size: 0.875rem;
+	}
+}
+
 // Product page
 .tags {
 	padding: 0;

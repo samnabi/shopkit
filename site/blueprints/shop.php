@@ -12,6 +12,29 @@ fields:
   text:
     label: Text
     type:  textarea
+  featured:
+    label: Featured products
+    help:  Featured products show up in the sidebar with a one-click "buy now" button
+    type: structure
+    entry: >
+      {{product}} <em style="font-size: 0.8rem; margin-left: 1rem;">show {{calculation}}est price</em>
+    fields:
+      product:
+        label: Featured product
+        type: select
+        options: query
+        query: 
+          page: shop
+          fetch: pages
+          template: product
+      calculation:
+        label: Default price variant
+        help: When a product has more than one price variant, choose which one is used for the "buy now" button
+        type: select
+        options:
+          low: Show lowest price
+          high: Show highest price
+        default: low          
   shipping:
     label: Shipping methods
     help: 
@@ -84,7 +107,7 @@ fields:
           fetch: children
   paylater:
     label: Pay later
-    help: User roles that can skip PayPal and submit an order without paying online
+    help: List of user roles that can submit an order without paying online (e.g. admin)
     type: tags
     default: admin
   currency-code:
@@ -120,6 +143,7 @@ fields:
     options:
       sandbox: Sandbox (for testing purposes)
       live: Live (for real purchases)
+    default: sandbox
     width: 1/2
     required: true
   license-shopkit:
