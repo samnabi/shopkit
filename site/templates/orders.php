@@ -92,7 +92,8 @@
                                 </tr>
                                 <tr>
                                     <td>Shipping</td>
-                                    <td><?php echo formatPrice($order->shipping()->value) ?></td>
+                                    <td><?php echo formatPrice((float)$order->shipping()->value) ?></td>
+                                    <!-- Need to cast as (float) to handle null shipping -->
                                 </tr>
                                 <tr>
                                     <td>Tax</td>
