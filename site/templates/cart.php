@@ -1,11 +1,3 @@
-<?php
-    $cart = cart_logic(get_cart());
-    $cart_details = get_cart_details($site,$pages,$cart);
-    $cart_items = $cart_details[0];
-    $cart_amount = $cart_details[1];
-    $country = $cart_details[2];
-?>
-
 <?php snippet('header') ?>
 
         <?php snippet('breadcrumb') ?>
@@ -45,7 +37,7 @@
                         </tr>
                     </thead>
 
-                    <tbody>           
+                    <tbody>
                         <?php foreach($cart_items as $i => $item) { ?>
                             <tr>
                                 <td>
@@ -153,7 +145,7 @@
                 <?php if (page('shop')->paypal_action() != 'live') { ?>
                     <p class="small-text-center"><em>You're running in sandbox mode. This transaction won't result in a real purchase.</em></p>
                 <?php } ?>
-                
+
                 <!-- Paypal setup fields -->
                 <input type="hidden" name="cmd" value="_cart"> <!-- Identifies a shopping cart purchase -->
                 <input type="hidden" name="upload" value="1">  <!-- Identifies a third-party cart -->
@@ -198,17 +190,17 @@
                     <?php
                         $products = "\n";
                         foreach($paypal_items as $i => $item) {
-                            $products .= $item['item_name']."\n"; 
+                            $products .= $item['item_name']."\n";
                         }
                     ?>
                     <input type="hidden" name="products" value="<?php echo urlencode($products) ?>">
-                    
+
                     <!-- Subtotal -->
                     <input type="hidden" name="subtotal" value="<?php echo $cart_amount ?>">
 
                     <!-- Total tax -->
                     <input type="hidden" name="tax" value="<?php echo $tax ?>">
-                    
+
                     <!-- Shipping. This select box is a fallback for non-JS users. -->
                     <select name="shipping" id="payLaterShipping">
                         <?php foreach ($shipping_rates as $rate) { ?>
