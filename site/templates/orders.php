@@ -88,20 +88,32 @@
                             <table>
                                 <tr>
                                     <td>Subtotal</td>
-                                    <td><?php echo formatPrice($order->subtotal()->value) ?></td>
+                                    <td>
+                                        <?php echo number_format($order->subtotal()->value,2) ?>
+                                        <?php echo $order->txn_currency() ?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Shipping</td>
-                                    <td><?php echo formatPrice((float)$order->shipping()->value) ?></td>
-                                    <!-- Need to cast as (float) to handle null or nonexistent shipping value -->
+                                    <td>
+                                        <?php echo number_format((float)$order->shipping()->value,2) ?>
+                                        <!-- Need to cast as (float) to handle null or nonexistent shipping value -->
+                                        <?php echo $order->txn_currency() ?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Tax</td>
-                                    <td><?php echo formatPrice($order->tax()->value) ?></td>
+                                    <td>
+                                        <?php echo number_format($order->tax()->value,2) ?>
+                                        <?php echo $order->txn_currency() ?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Total</td>
-                                    <td><?php echo formatPrice($order->subtotal()->value+$order->shipping()->value+$order->tax()->value) ?></td>
+                                    <td>
+                                        <?php echo number_format($order->subtotal()->value+$order->shipping()->value+$order->tax()->value,2) ?>
+                                        <?php echo $order->txn_currency() ?>
+                                    </td>
                                 </tr>
                             </table>
                         </td>

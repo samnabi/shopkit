@@ -8,6 +8,7 @@ try {
   $neworder = page('shop/orders')->children()->create(str::slug($user->username.'-paylater-'.date('U')), 'order', array(
                 'txn-id' => 'paylater-'.date('U'),
                 'txn-date'  => date('U'),
+                'txn-currency' => page('shop')->currency_code()->value,
                 'status'  => 'Invoice',
                 'products' => urldecode($_POST['products']),
                 'subtotal' => $_POST['subtotal'],

@@ -19,6 +19,7 @@ if($_POST['txn_id'] != '') {
   page('shop/orders')->children()->create(str::slug($_POST['payer_id'].'-'.strtotime((string)$_POST['payment_date'])), 'order', array(
     'txn-id' => $_POST['txn_id'],
     'txn-date'  => strtotime((string)$_POST['payment_date']),
+    'txn-currency' => $_POST['mc_currency'],
     'status'  => $_POST['payment_status'],
     'products' => implode($titles,"\n"),
     'subtotal' => $_POST['mc_gross']-$_POST['mc_shipping']-$_POST['tax'],
