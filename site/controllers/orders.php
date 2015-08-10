@@ -41,9 +41,13 @@ return function($site, $pages, $page) {
         $orders = false;
     }
 
+<<<<<<< HEAD
     return [
         'user' => $site->user(),
         'cart' => Cart::getCart(),
         'orders' => $orders
     ];
+=======
+    return ['orders' => $orders];
+>>>>>>> b0f4e76db9be7d91388bb224ff5e33af303e179f
 };
