@@ -8,7 +8,6 @@
 			    		<img src="<?php echo thumb($image,array('width'=>400, 'height'=>400, 'crop'=>true))->dataUri() ?>" title="<?php echo $image->title() ?>"/>
 			    	<?php } ?>
 			    	<strong><?php echo $product->title()->html() ?></strong><br>
-			    	<em><?php echo $product->brand()->html() ?></em>
 			    	<p><?php echo $product->text()->excerpt(80) ?></p>
 
 		    		<?php
