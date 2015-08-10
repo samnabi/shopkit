@@ -134,7 +134,9 @@
     <form class="row" method="post" action="<?php echo $cart->getPayPalAction() ?>">
 
         <?php if (page('shop')->paypal_action() != 'live') { ?>
-            <p class="small-text-center"><em>You're running in sandbox mode. This transaction won't result in a real purchase.</em></p>
+            <div data-alert class="alert-box info" tabindex="0" aria-live="assertive" role="dialogalert">
+                <p>You're running in sandbox mode. This transaction won't result in a real purchase.</p>
+            </div>
         <?php } ?>
 
         <!-- Paypal setup fields -->
