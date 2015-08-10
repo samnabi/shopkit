@@ -25,19 +25,19 @@ table {
 	
 	thead {
 		background: inherit;
-		border-bottom: 1px solid $slate;
+		border-bottom: 1px solid $black;
 	}
 
 	tr.even, tr.alt, tr:nth-of-type(2n) {
 		background: inherit;
 	}
 	tr:not(:first-child) > td {
-		border-top: 1px solid $slate;
+		border-top: 1px solid darken($cloud,10);
 	}
 
 	tfoot {
 		background: inherit;
-		border-top: 1px solid $slate;
+		border-top: 1px solid $black;
 
 		tr:not(:first-child) > td {
 			border-top: 1px solid darken($cloud,10);
@@ -423,12 +423,13 @@ table.orders {
 
 	tfoot form,
 	tfoot select {
-		max-width: 10rem;
+		max-width: 15rem;
 		margin: 0;
 	}
 
 	#shipping {
 		margin-top: 0.25rem;
+		float: left;
 	}
 }
 
