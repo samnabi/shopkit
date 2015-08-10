@@ -45,23 +45,21 @@
     <?php } ?>
     
     <!-- Featured products -->
-    <div class="panel">
-        <?php
-            $featured = page('shop')->featured()->toStructure();
-
-            $products = array();
-            $calculations = array();
-            foreach ($featured as $f) {
-                if($pages->index()->findByURI($f->product())->isVisible()) {
-                    $products[] = $pages->index()->findByURI($f->product());
-                    $calculations[] = $f->calculation()->value;
-                }
+    <?php
+        $products = [];
+        $calculations = [];
+        foreach (page('shop')->featured()->toStructure() as $f) {
+            if($pages->index()->findByURI($f->product())->isVisible()) {
+                $products[] = $pages->index()->findByURI($f->product());
+                $calculations[] = $f->calculation()->value;
             }
-        ?>
-
-        <!-- Related products -->
-        <?php snippet('featured-list',array('products' => $products, 'calculations' => $calculations)) ?>
-    </div>
+        }
+    ?>
+    <?php if(count($products)){ ?>
+        <div class="panel">
+            <?php snippet('featured-list',array('products' => $products, 'calculations' => $calculations)) ?>
+        </div>
+    <?php } ?>
 
     <!-- Global category listing -->
     <div class="panel">

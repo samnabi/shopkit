@@ -1,4 +1,4 @@
-<?php if(count($products) or $products->count()) { ?>
+<?php if(count($products)) { ?>
 	<ul class="product featured listing small-block-grid-1 large-block-grid-2">
 	  <?php foreach($products as $key => $product) { ?>
 		  <li>
