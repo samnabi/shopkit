@@ -25,7 +25,9 @@
                     <tr>
                         <td>
                             <a href="/<?php echo $item->uri ?>" title="<?php echo $item->fullTitle() ?>">
-                                <img src="<?php echo thumb($pages->findByUri($item->uri)->images()->first(),array('width'=>60, 'height'=>60, 'crop'=>true))->dataUri() ?>" title="<?php echo $item->name ?>">
+                                <?php if ($img = $pages->findByUri($item->uri)->images()->first()) { ?>
+                                    <img src="<?php echo thumb($img,array('width'=>60, 'height'=>60, 'crop'=>true))->dataUri() ?>" title="<?php echo $item->name ?>">
+                                <?php } ?>
                                 <strong><?php echo $item->name ?></strong><br>
                                 <?php ecco($item->sku,'<strong>SKU</strong> '.$item->sku.' / ') ?>
                                 <?php ecco($item->variant,$item->variant) ?>
