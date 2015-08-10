@@ -102,26 +102,26 @@ class Cart
 	{
 		if ($this->itemsLoaded) return $this->items;
 
-	    // Find all products
-	    // TODO : performance are you sure you want to load all products ?
-	    $products = page('shop')->index()->filterBy('template', 'product')->data;
 
-	    foreach ($products as $product) {
-	        foreach ($this->data as $id => $quantity) {
+        foreach ($this->data as $id => $quantity) {
 
-	            // Check if cart item and product match
-	            if(strpos($id, $product->uri()) === 0) {
-	            	$item = new CartItem($id, $product, $quantity);
-	                $this->items[] = $item;
-	                $this->amount += floatval($item->amount) * $quantity;
+        	// Extract URI from item ID
+        	$uri = substr($id, 0,strpos($id, '::'));
 
-	               	if ($item->noshipping == '') {
-	               		$this->shippingAmount += floatval($item->amount) * $quantity;
-	               		$this->shippingWeight += floatval($item->weight) * $quantity;
-	               	}
-	            }
-	        }
-	    }
+        	// Check if product exists
+            if($product = page($uri)) {
+            	$item = new CartItem($id, $product, $quantity);
+                $this->items[] = $item;
+                $this->amount += floatval($item->amount) * $quantity;
+
+                // If shipping applies, add this item to the calculation for applicable amount and weight 
+               	if ($item->noshipping == '') {
+               		$this->shippingAmount += floatval($item->amount) * $quantity;
+               		$this->shippingWeight += floatval($item->weight) * $quantity;
+               	}
+            }
+        }
+
 	    $this->itemsLoaded = true;
 	    return $this->items;
 	}
