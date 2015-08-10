@@ -222,7 +222,7 @@
     function updateCartTotal() {
         var e = document.getElementById("shipping");
         var shipping = e.options[e.selectedIndex].value;
-        var total = <?php echo round($cart_amount+$tax,2) ?>+(Math.round(shipping*100)/100);
+        var total = <?php echo number_format($cart->getAmount()+$tax,2) ?>+(Math.round(shipping*100)/100);
         document.getElementById("cartTotal").innerHTML = total.toFixed(2); // Always show total with two decimals
     }
 
