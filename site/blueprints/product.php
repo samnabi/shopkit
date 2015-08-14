@@ -21,8 +21,8 @@ fields:
     help: Comma-separated list of tags
     type: tags
   prices:
-    label: Prices
-    help: Each price can have its own SKU, description, and options
+    label: Price variants
+    help: A product can have unlimited price variants, each with its own SKU and other options.
     type: structure
     entry: >
       <p style="border-bottom: 1px solid #DDD; margin-bottom: 0.2rem; padding-bottom: 0.2rem">{{name}} <span style="float: right;"><strong>SKU</strong> {{sku}}</span></p>
@@ -32,24 +32,35 @@ fields:
       name:
         label: Variant name
         type:  text
+        width: 3/4
+        help: Usually describes a product's physical qualities (e.g. 16oz bottle, 12x16" canvas)
         required: true
       price:
         label: Price
         type:  text
         validate: num
-        width: 1/2
+        width: 1/4
+        help: Numbers only
         required: true
       sku:
         label: SKU
         type:  text
-        width: 1/4
+        help: ID to help you 
+        width: 1/2
       weight:
         label: Weight
         type: text
         width: 1/4
+        help: Numbers only
+      inventory:
+        label: Inventory
+        type: text
+        width: 1/4
+        help: Leave blank for unlimited inventory
       options:
         label: Options
         type: tags
+        help: Options don't affect the price. They will be displayed as a drop-down list.
       description: 
         label: Description
         type: textarea
