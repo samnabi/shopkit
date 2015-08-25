@@ -18,4 +18,4 @@ fields:
     type:  text
   text:
     label: Description
-    type:  textarea
+    type:  markdown

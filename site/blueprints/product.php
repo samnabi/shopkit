@@ -15,7 +15,7 @@ fields:
     type:  text
   text:
     label: Description
-    type:  textarea
+    type:  markdown
   prices:
     label: Price variants
     help: A product can have unlimited price variants, each with its own SKU and other options.

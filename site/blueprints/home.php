@@ -22,4 +22,4 @@ fields:
       - image
   text:
     label: Text
-    type:  textarea
+    type:  markdown
