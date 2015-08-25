@@ -91,7 +91,7 @@ fields:
   tax:
     label: Tax rates
     type: structure
-    entry: {{rate}}
+    entry: {{rate}}: {{countries[]}}
     fields:
       rate:
         label: Tax rate
