@@ -20,8 +20,10 @@ try {
                 'payer-address' => ''
               ));
 
-  // Empty the cart
-  s::set('cart', array());
+  // Update product stock and empty the cart
+  $cart = Cart::getCart();
+  $cart->updateStock();
+  $cart->emptyItems();
 
 } catch(Exception $e) {
   // Failure message to be passed through

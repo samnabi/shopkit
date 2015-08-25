@@ -186,7 +186,7 @@
             <?php
                 $products = "\n";
                 foreach($paypal_items as $i => $item) {
-                    $products .= $item['item_name']."\n";
+                    $products .= $item['item_name'].' (Qty: '.$item['quantity'].')'."\n";
                 }
             ?>
             <input type="hidden" name="products" value="<?php echo urlencode($products) ?>">

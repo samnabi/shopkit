@@ -31,3 +31,23 @@ function formatPrice($number)
     	return number_format($number, 2) . '&nbsp;' . $symbol;
   	}
 }
+
+/**
+ * Helper function to check inventory / stock
+ * Returns the number of items in stock, or TRUE if there's no stock limit.
+ */
+function inStock($price)
+{
+
+    // It it's a blank string, item has unlimited stock
+    if (!is_numeric($price->stock()->value) and $price->stock()->value === '') return true;
+
+    // If it's zero then the item is out of stock
+    if (is_numeric($price->stock()->value) and $price->stock()->value === 0) return false;
+
+    // If it's greater than zero, return the number of items
+    if (is_numeric($price->stock()->value) and $price->stock()->value > 0) return $price->stock()->value;
+
+    // Otherwise, assume unlimited stock and return true
+    return true;
+}

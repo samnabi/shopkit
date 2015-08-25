@@ -31,7 +31,12 @@
 											<?php } ?>
 										</select>
 									<?php } ?>
-						            <button class="tiny expand" type="submit">Buy <?php echo formatPrice($price->price()->value) ?></button>
+
+									<?php if (inStock($price)) { ?>
+										<button class="tiny expand" type="submit">Buy <?php echo formatPrice($price->price()->value) ?></button>
+									<?php } else { ?>
+										<button class="tiny expand" disabled>Out of stock <?php echo formatPrice($price->price()->value) ?></button>
+									<?php } ?>
 					            </form>
 					        </li>
 						<?php } ?>
@@ -53,18 +58,17 @@
 			</div>
 		</div>
 
+		<!-- Related products -->
 		<?php
-			$related = $page->relatedproducts()->toStructure();
-
-			$products = array();
-			foreach ($related as $slug) {
-				if($pages->index()->findByURI($slug->product())->isVisible()) {
-					$products[] = $pages->index()->findByURI($slug->product());
+			$index = $pages->index();
+			$products = [];
+			foreach ($page->relatedproducts()->toStructure() as $slug) {
+				$product = $index->findByURI($slug->product());
+				if($product->isVisible()) {
+					$products[] = $product;
 				}
 			}
 		?>
-
-		<!-- Related products -->
 		<?php if (count($products)) { ?>
 			<section class="related">
 				<h3>Related products</h3>

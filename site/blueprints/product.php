@@ -16,10 +16,6 @@ fields:
   text:
     label: Description
     type:  textarea
-  tags:
-    label: Tags
-    help: Comma-separated list of tags
-    type: tags
   prices:
     label: Price variants
     help: A product can have unlimited price variants, each with its own SKU and other options.
@@ -32,7 +28,7 @@ fields:
       name:
         label: Variant name
         type:  text
-        width: 3/4
+        width: 1/2
         help: Usually describes a product's physical qualities (e.g. 16oz bottle, 12x16" canvas)
         required: true
       price:
@@ -45,18 +41,18 @@ fields:
       sku:
         label: SKU
         type:  text
-        help: ID to help you 
-        width: 1/2
+        help: Unique product identifier
+        width: 1/4
       weight:
         label: Weight
         type: text
-        width: 1/4
+        width: 1/2
         help: Numbers only
-      inventory:
-        label: Inventory
+      stock:
+        label: Quantity in stock
         type: text
-        width: 1/4
-        help: Leave blank for unlimited inventory
+        width: 1/2
+        help: Leave blank for unlimited stock
       options:
         label: Options
         type: tags
@@ -74,6 +70,9 @@ fields:
     type: checkbox
     text: Don't charge tax on this product
     width: 1/2
+  tags:
+    label: Tags
+    type: tags
   relatedproducts:
     label: Related products
     type: structure
