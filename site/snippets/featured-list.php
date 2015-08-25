@@ -27,7 +27,7 @@
 
 		  	<a href="<?php echo $product->url() ?>" title="<?php echo $product->title()->html() ?>">
 				<?php if($image = $product->images()->sortBy('sort', 'asc')->first()){ ?>
-					<img src="<?php echo thumb($image,array('width'=>400, 'height'=>400, 'crop'=>true))->dataUri() ?>" title="<?php echo $image->title() ?>"/>
+					<img src="<?php echo thumb($image,array('height'=>400))->dataUri() ?>" title="<?php echo $image->title() ?>"/>
 				<?php } ?>
 				<h5><?php echo $product->title()->html() ?></h5>
 				<p class="variant"><?php echo $price->name() ?></p>
