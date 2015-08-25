@@ -3,6 +3,7 @@
 	<dl class="sub-nav">
 		<dt><?php echo $user->firstname().' '.$user->lastname() ?></dt>
 		<?php if ($user->hasPanelAccess()) { ?>
+			<dd><a href="<?php echo $site->url() ?>/panel/#/pages/show/<?php echo $page->uri() ?>">&#9998; Edit Page</a></dd>
 			<dd><a href="<?php echo url('panel') ?>">Dashboard</a></dd>
 		<?php } ?>
 		<dd><a href="<?php echo url('shop/orders') ?>">View Orders</a></dd>
