@@ -58,7 +58,7 @@
             }
         }
     ?>
-    <?php if(count($products)){ ?>
+    <?php if(isset($products) and count($products)){ ?>
         <div class="panel">
             <?php snippet('featured-list',array('products' => $products)) ?>
         </div>
