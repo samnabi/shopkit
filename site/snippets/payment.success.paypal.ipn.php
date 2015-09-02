@@ -3,7 +3,7 @@
 // CONFIG: Enable debug mode. This means we'll log requests into 'ipn.log' in the same directory.
 // Especially useful if you encounter network errors or other intermittent problems with IPN (validation).
 // Set this to 0 once you go live or don't require logging.
-define("DEBUG", 1);
+define("DEBUG", 0);
 
 // Set to 0 once you're ready to go live
 $use_sandbox = page('shop')->paypal_action() === 'live' ? 0 : 1;

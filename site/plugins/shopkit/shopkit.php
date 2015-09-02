@@ -51,3 +51,26 @@ function inStock($price)
     // Otherwise, assume unlimited stock and return true
     return true;
 }
+
+/**
+ * After a successful transaction, update product stock
+ * Expects an array
+ * $items = [
+ *   [uri, variant, quantity]
+ * ]
+ */
+function updateStock($items)
+{
+    foreach($items as $i => $item){
+      $product = page($item['uri']);
+      $variants = $product->prices()->yaml();
+      foreach ($variants as $key => $variant) {
+        if (str::slug($variant['name']) === $item['variant']) {
+          // Edit stock in the original $variants array
+          $variants[$key]['stock'] = $variant['stock'] - $item['quantity'];
+          // Update the entire prices field (only one variant has changed)
+          $product->update(array('prices' => yaml::encode($variants)));
+        }
+      }
+    }
+}

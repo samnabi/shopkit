@@ -110,27 +110,17 @@ c::set('routes', array(
     }
   ),
   array(
-    'pattern' => 'shop/cart/invoice',
-    'method' => 'POST',
+    'pattern' => 'shop/cart/process',
+    'method' => 'GET|POST',
     'action' => function() {
-      snippet('process-invoice');
-      // Send along a success message
-      return go('shop/orders');
-    }
-  ),
-  array(
-    'pattern' => 'shop/orders/pdf',
-    'method' => 'POST',
-    'action' => function() {
-      snippet('pdf');
-      return true;
+      snippet('cart.process');
     }
   ),
   array(
     'pattern' => 'shop/cart/notify',
     'method' => 'POST',
     'action' => function() {
-      snippet('paypal-success');
+      snippet('payment.success.paypal');
       return true;
     }
   ),
@@ -141,6 +131,14 @@ c::set('routes', array(
       s::start();
       s::set('cart', array()); // Empty the cart
       return go('shop/orders?txn_id='.get('txn_id'));
+    }
+  ),
+  array(
+    'pattern' => 'shop/orders/pdf',
+    'method' => 'POST',
+    'action' => function() {
+      snippet('pdf');
+      return true;
     }
   ),
 ));

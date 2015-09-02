@@ -60,7 +60,7 @@
     ?>
     <?php if(isset($products) and count($products)){ ?>
         <div class="panel">
-            <?php snippet('featured-list',array('products' => $products)) ?>
+            <?php snippet('list.featured', ['products' => $products]) ?>
         </div>
     <?php } ?>
 

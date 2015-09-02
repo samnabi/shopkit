@@ -72,7 +72,7 @@
 		<?php if (count($products)) { ?>
 			<section class="related">
 				<h3>Related products</h3>
-				<?php snippet('product-list',array('products' => $products)) ?>
+				<?php snippet('list.product',['products' => $products]) ?>
 			</section>
 		<?php } ?>
 

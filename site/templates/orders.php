@@ -31,7 +31,7 @@
                         <button class="tiny info" type="submit">Download Invoice (PDF)</button>
                     </form>
                     
-                    <?php if($user->hasPanelAccess() and strpos($order->txn_id(),'paylater') === false) { ?>
+                    <?php if($user and $user->hasPanelAccess() and strpos($order->txn_id(),'paylater') === false) { ?>
                         <a href="<?php echo $cart->getPayPalAction().'?cmd=_view-a-trans&id='.$order->txn_id() ?>">View on PayPal</a>
                     <?php } ?>
                 </td>

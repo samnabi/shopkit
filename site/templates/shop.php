@@ -13,8 +13,8 @@
 
 		<?php echo $page->text()->kirbytext() ?>
 
-		<?php snippet('product-list', array('products' => $products)) ?>
+		<?php snippet('list.product', ['products' => $products]) ?>
 
-		<?php snippet('category-list', array('categories' => $categories)) ?>
+		<?php snippet('list.category', ['categories' => $categories]) ?>
 
 <?php snippet('footer') ?>
