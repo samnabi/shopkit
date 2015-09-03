@@ -1,13 +1,17 @@
 <?php
 
-// This code responds to the PayPal IPN callback
+// This page is the endpoint of PayPal's IPN callback.
+// Only the PayPal server accesses this page, so no need to include redirects
 if($_POST['txn_id'] != '') {
   
   snippet('payment.success.paypal.ipn');
 
   // Validate the PayPal transaction against the pending order
   $txn = page('shop/orders/'.$_POST['custom']);
-  if ($txn->subtotal() == $_POST['mc_gross']-$_POST['mc_shipping']-$_POST['tax'] and $txn->shipping() == $_POST['mc_shipping'] and $txn->tax() == $_POST['tax']) {
+  if (
+    $txn->subtotal()->value == $_POST['mc_gross']-$_POST['mc_shipping']-$_POST['tax'] and
+    $txn->shipping()->value == $_POST['mc_shipping'] and
+    $txn->tax()->value == $_POST['tax']) {
 
     try {
       // Update transaction record
@@ -25,9 +29,13 @@ if($_POST['txn_id'] != '') {
 
     } catch(Exception $e) {
       // Failure message to be passed through
+      return false;
     }
 
   }
+} else {
+  // Data didn't come back properly from PayPal
+  return false;
 }
 
 ?>

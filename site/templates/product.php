@@ -6,7 +6,7 @@
 
 		<div class="row">
 			<div class="small-12 medium-6 large-7 columns">
-				<?php snippet('gallery') ?>
+				<?php snippet('product.gallery') ?>
 			</div>
 			
 			<section class="small-12 medium-6 large-5 columns">

@@ -14,7 +14,7 @@
 
 <div class="wrapper row">
 
-<?php snippet('check-license') ?>
+<?php snippet('header.license') ?>
 
 <div class="buffer small-12 columns">
 
@@ -24,8 +24,8 @@
 			<?php snippet('logo') ?>
 		</div>
 		<div class="row">
-			<?php snippet('nav') ?>
+			<?php snippet('header.nav') ?>
 		</div>
-		<?php snippet('user') ?>	
+		<?php snippet('header.user') ?>	
 		
 		<main class="row">

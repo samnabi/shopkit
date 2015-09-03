@@ -128,16 +128,16 @@ c::set('routes', array(
     'pattern' => 'shop/cart/return',
     'method' => 'POST',
     'action' => function() {
-      s::start();
-      s::set('cart', array()); // Empty the cart
-      return go('shop/orders?txn_id='.get('txn_id'));
+      $cart = Cart::getCart();
+      $cart->emptyItems();
+      return go('shop/orders?txn_id='.get('custom'));
     }
   ),
   array(
     'pattern' => 'shop/orders/pdf',
     'method' => 'POST',
     'action' => function() {
-      snippet('pdf');
+      snippet('orders.pdf');
       return true;
     }
   ),
