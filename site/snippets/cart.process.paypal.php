@@ -1,15 +1,34 @@
+<?php
+	// Check if user is coming from the cart page or from PayPal
+	s::start();
+	if (s::get('sendBack')) {
+		// If coming from PayPal, kick them back to the cart
+		s::remove('sendBack');
+		go('shop/cart');
+	} else {
+		s::set('sendBack',true);
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<title><?php echo site()->title()->html() ?> | <?php echo page('shop/cart')->title() ?></title>
+	<style>
+		p { font-family: sans-serif; font-size: 2rem; text-align: center; }
+		button { font-size: 1rem; padding: 1rem; }
+	</style>
 </head>
 <body>
-	<form class="row" method="post" action="<?php echo $cart->getPayPalAction() ?>">
+	<p>Redirecting...</p>
+
+	<form class="row" method="post" action="<?php echo $cart->getPayPalAction() ?>" name="paypal">
 		<!-- Setup fields -->
 		<input type="hidden" name="cmd" value="_cart"> <!-- Identifies a shopping cart purchase -->
 		<input type="hidden" name="upload" value="1">  <!-- Identifies a third-party cart -->
-		<input type="hidden" name="return" value="<?php echo url() ?>/shop/cart/return">
+		<input type="hidden" name="return" value="<?php echo url() ?>/shop/cart/notify">
+		<!-- <input type="hidden" name="return" value="<?php echo url() ?>/shop/cart/return"> -->
 		<input type="hidden" name="rm" value="2"> <!-- Return method: POST, all variables passed -->
 		<input type="hidden" name="cancel_return" value="<?php echo url() ?>/shop/cart">
 		<input type="hidden" name="notify_url" value="<?php echo url() ?>/shop/cart/notify">
@@ -45,5 +64,10 @@
 
 		<button type="submit">Continue to PayPal</button>
 	</form>
+
+	<script>
+		// Automatically submit the form
+		document.paypal.submit();
+	</script>
 </body>
 </html>
