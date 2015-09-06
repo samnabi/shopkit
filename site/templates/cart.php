@@ -166,8 +166,8 @@
 
         <div class="row">
             <button class="payPalSubmit small-12 large-8 large-push-2 columns" type="submit">
-                <span>Pay now with</span>
-                <img src="<?php echo thumb($page->image('paypal.png'),array('width'=>100))->dataUri() ?>" alt="PayPal">
+                <span>Pay now</span>
+                <img src="<?php echo thumb($page->image('paypal-cards.png'),array('height'=>50))->dataUri() ?>" alt="PayPal">
             </button>
         </div>
     </form>
@@ -178,7 +178,7 @@
             <input type="hidden" name="gateway" value="paylater">
             <input type="hidden" name="tax" value="<?php echo $tax ?>">
 
-            <select name="shipping" id="payPalShipping">
+            <select name="shipping" id="payLaterShipping">
                 <?php if (count($shipping_rates) > 0) { ?>
                     <?php foreach ($shipping_rates as $rate) : ?>
                         <!-- Value needs both rate and title so we can pass the shipping method name through to the order log -->
@@ -215,7 +215,6 @@
             var shipping = shippingParts[1];
             var total = <?php echo number_format($cart->getAmount()+$tax,2) ?>+(Math.round(shipping*100)/100);
             document.getElementById("cartTotal").innerHTML = total.toFixed(2); // Always show total with two decimals
-            console.log(total);
         }
 
         function copyShippingValue() {
