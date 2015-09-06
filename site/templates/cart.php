@@ -38,13 +38,29 @@
                             <form class="qty-down" action="" method="post">
                                 <input type="hidden" name="action" value="remove">
                                 <input type="hidden" name="id" value="<?php echo $item->id ?>">
-                                <button class="tiny info" type="submit">&#9660;</button>
+                                <button class="tiny info" type="submit">
+                                    <?php 
+                                        if ($item->quantity === 1) {
+                                            echo '&#10005;'; // x (delete)
+                                        } else {
+                                            echo '&#9660;'; // Down arrow
+                                        }
+                                    ?>
+                                </button>
                             </form>
                             <span class="qty"><?php echo $item->quantity ?></span>
                             <form class="qty-up" action="" method="post">
                                 <input type="hidden" name="action" value="add">
                                 <input type="hidden" name="id" value="<?php echo $item->id ?>">
-                                <button class="tiny info" type="submit">&#9650;</button>
+                                <?php
+                                    // Determine if we are at the maximum quantity
+                                    foreach (page($item->uri)->prices()->toStructure() as $variant) {
+                                        if (str::slug($variant->name()) === $item->variant) {
+                                            $maxQty = inStock($variant) === $item->quantity ? true : false;
+                                        }
+                                    }
+                                ?>
+                                <button <?php ecco($maxQty,'disabled') ?> class="tiny info" type="submit">&#9650;</button>
                             </form>
                         </td>
                         <td>
@@ -190,32 +206,37 @@
 <?php endif; ?>
 
 <!-- Dat Fancy Jarverscrupt -->
-<script type="text/javascript">
-    function updateCartTotal() {
-        var e = document.getElementById("shipping");
-        var shipping = e.options[e.selectedIndex].value;
-        var total = <?php echo number_format($cart->getAmount()+$tax,2) ?>+(Math.round(shipping*100)/100);
-        document.getElementById("cartTotal").innerHTML = total.toFixed(2); // Always show total with two decimals
-    }
+<?php if (isset($tax)) { ?>
+    <script type="text/javascript">
+        function updateCartTotal() {
+            var e = document.getElementById("shipping");
+            var shippingEncoded = e.options[e.selectedIndex].value;
+            var shippingParts = shippingEncoded.split('::');
+            var shipping = shippingParts[1];
+            var total = <?php echo number_format($cart->getAmount()+$tax,2) ?>+(Math.round(shipping*100)/100);
+            document.getElementById("cartTotal").innerHTML = total.toFixed(2); // Always show total with two decimals
+            console.log(total);
+        }
 
-    function copyShippingValue() {
-        var e = document.getElementById("shipping");
-        var shipping = e.options[e.selectedIndex].value;
-        document.getElementById("payPalShipping").value = shipping;
-        document.getElementById("payLaterShipping").value = shipping;
-    }
+        function copyShippingValue() {
+            var e = document.getElementById("shipping");
+            var shipping = e.options[e.selectedIndex].value;
+            document.getElementById("payPalShipping").value = shipping;
+            document.getElementById("payLaterShipping").value = shipping;
+        }
 
-    // Update cart total on page load
-    updateCartTotal();
+        // Update cart total on page load
+        updateCartTotal();
 
-    // Remove duplicate shipping selects
-    document.getElementById("payPalShipping").style.display = 'none';
-    <?php if ($site->user() and $cart->canPayLater($site->user())) { ?>
-        document.getElementById("payLaterShipping").style.display = 'none';
-    <?php } ?>
+        // Remove duplicate shipping selects
+        document.getElementById("payPalShipping").style.display = 'none';
+        <?php if ($site->user() and $cart->canPayLater($site->user())) { ?>
+            document.getElementById("payLaterShipping").style.display = 'none';
+        <?php } ?>
 
-    // Remove setCountry submit button
-    document.getElementById("setCountryButton").style.display = 'none';   
-</script>
+        // Remove setCountry submit button
+        document.getElementById("setCountryButton").style.display = 'none';   
+    </script>
+<?php } ?>
 
 <?php snippet('footer') ?>
