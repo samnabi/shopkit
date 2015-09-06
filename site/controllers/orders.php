@@ -6,22 +6,26 @@ return function($site, $pages, $page) {
 
     $action = get('action');
 
+    // Mark order as pending
+    if ($action === 'mark_pending') {
+        try {
+            page('shop/orders/'.get('update_id'))->update(['status' => 'pending']);
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
+    }
     // Mark order as shipped
     if ($action === 'mark_shipped') {
         try {
-            page('shop/orders/' . get('update_id'))->update(array(
-                'status' => 'Shipped'
-            ));
+            page('shop/orders/'.get('update_id'))->update(['status' => 'shipped']);
         } catch(Exception $e) {
             echo $e->getMessage();
         }
     }
     // Mark order as pending
-    if ($action === 'mark_pending') {
+    if ($action === 'mark_paid') {
         try {
-            page('shop/orders/' . get('update_id'))->update(array(
-                'status' => 'Pending'
-            ));
+            page('shop/orders/'.get('update_id'))->update(['status' => 'paid']);
         } catch(Exception $e) {
             echo $e->getMessage();
         }
