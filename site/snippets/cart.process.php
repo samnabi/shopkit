@@ -49,6 +49,7 @@ if (kirby()->request()->method() === 'POST') {
 		}
 	} catch(Exception $e) {
 		// Order creation failed
+		echo $e->getMessage();
 	}
 
 	// Redirect to self with GET, passing along the order ID

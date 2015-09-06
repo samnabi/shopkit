@@ -28,7 +28,6 @@ if($_POST['txn_id'] != '') {
       updateStock(unserialize(urldecode($txn->encoded_items())));
 
     } catch(Exception $e) {
-      // Failure message to be passed through
       return false;
     }
 
