@@ -11,7 +11,7 @@ fields:
     type:  text
   text:
     label: Text
-    type:  textarea
+    type:  markdown
   featured:
     label: Featured products
     help:  Featured products show up in the sidebar with a one-click "buy now" button
@@ -91,7 +91,7 @@ fields:
   tax:
     label: Tax rates
     type: structure
-    entry: {{rate}}
+    entry: {{rate}}: {{countries[]}}
     fields:
       rate:
         label: Tax rate

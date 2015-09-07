@@ -49,7 +49,6 @@
             $user->logout();
             $site->user($user->username())->delete();
             go('/register');
-            // echo 'Your account has been deleted.';
           } catch(Exception $e) {
             echo 'Sorry, your account couldn\'t be deleted.';
           }

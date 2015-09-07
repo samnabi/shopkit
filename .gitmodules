@@ -13,3 +13,6 @@
 [submodule "site/fields/place"]
 	path = site/fields/place
 	url = https://github.com/AugustMiller/kirby-place-field.git
+[submodule "site/fields/markdown"]
+	path = site/fields/markdown
+	url = https://github.com/JonasDoebertin/kirby-visual-markdown.git

@@ -14,7 +14,7 @@ fields:
     type:  text
   text:
     label: Text
-    type:  textarea
+    type:  markdown
   phone:
     label: Phone number
     type: text

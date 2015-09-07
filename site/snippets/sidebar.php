@@ -46,18 +46,21 @@
     
     <!-- Featured products -->
     <?php
-        $products = [];
-        $calculations = [];
+        // Rebuild the featured products list with actual page objects instead of URIs
+        $index = $pages->index();
         foreach (page('shop')->featured()->toStructure() as $f) {
-            if($pages->index()->findByURI($f->product())->isVisible()) {
-                $products[] = $pages->index()->findByURI($f->product());
-                $calculations[] = $f->calculation()->value;
+            $featuredProduct = $index->findByURI($f->product());
+            if ($featuredProduct->isVisible()) {
+                $products[] = [
+                    'product' => $featuredProduct,
+                    'calculation' => $f->calculation()->value
+                ];
             }
         }
     ?>
-    <?php if(count($products)){ ?>
+    <?php if(isset($products) and count($products)){ ?>
         <div class="panel">
-            <?php snippet('featured-list',array('products' => $products, 'calculations' => $calculations)) ?>
+            <?php snippet('list.featured', ['products' => $products]) ?>
         </div>
     <?php } ?>
 

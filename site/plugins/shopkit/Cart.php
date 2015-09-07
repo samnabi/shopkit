@@ -43,6 +43,11 @@ class Cart
 	    return new self($data);
 	}
 
+	public function emptyItems()
+	{
+		s::set('cart',[]);
+	}
+
 	private function __construct(array $data)
 	{
 		$this->data = $data;
@@ -51,10 +56,33 @@ class Cart
 	public function add($id, $quantity)
 	{
 	    $quantityToAdd = $quantity ? $quantity : 1;
-	    $this->data[$id] = array_key_exists($id, $this->data) ?
-	    	$this->data[$id] + $quantityToAdd :
-	    	$quantityToAdd;
+	    $newQuantity = array_key_exists($id, $this->data) ? $this->data[$id] + $quantityToAdd : $quantityToAdd;
+	    $this->data[$id] = $this->updateQty($id,$newQuantity);
 	    s::set('cart', $this->data);
+	}
+
+	private function updateQty($id, $newQuantity) {
+		// $id is formatted like this
+		// uri::variantslug::optionslug
+		$idParts = explode('::',$id);
+		$uri = $idParts[0];
+		$variantSlug = $idParts[1];
+
+		foreach (page($uri)->prices()->toStructure() as $variant) {
+			if (str::slug($variant->name()) === $variantSlug) {
+				// If there is enough stock
+				if (inStock($variant) === true or inStock($variant) >= $newQuantity){
+					return $newQuantity; }
+				// If there is no stock
+				else if (inStock($variant) === false) {
+					return 0; }
+				// If there is insufficient stock
+				else {
+					return $variant->stock()->value; }
+			}
+		}
+		// The script should never get to this point
+		return 0;
 	}
 
 	public function remove($id)

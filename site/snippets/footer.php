@@ -1,6 +1,3 @@
-			<?php if ($user = $site->user() and $user->hasPanelAccess()) { ?>
-				<a href="<?php echo $site->url() ?>/panel/#/pages/show/<?php echo $page->uri() ?>" class="right button tiny info">Edit this page</a>
-			<?php } ?>
 		</main>
 	</div>
 

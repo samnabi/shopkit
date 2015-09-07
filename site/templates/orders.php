@@ -31,7 +31,7 @@
                         <button class="tiny info" type="submit">Download Invoice (PDF)</button>
                     </form>
                     
-                    <?php if($user->hasPanelAccess() and strpos($order->txn_id(),'paylater') === false) { ?>
+                    <?php if($user and $user->hasPanelAccess() and strpos($order->txn_id(),'paylater') === false) { ?>
                         <a href="<?php echo $cart->getPayPalAction().'?cmd=_view-a-trans&id='.$order->txn_id() ?>">View on PayPal</a>
                     <?php } ?>
                 </td>
@@ -72,23 +72,26 @@
                     </table>
                 </td>
                 <td>
-                    <?php echo $order->status() ?><br><br>
-
                     <?php if($user and $user->hasPanelAccess()) { ?>
-                        <?php if($order->status() == 'Pending' or $order->status() == 'Invoice'){ ?>
-                            <form action="" method="POST">
-                                <input type="hidden" name="update_id" value="<?php echo $order->uid() ?>">
-                                <input type="hidden" name="action" value="mark_shipped">
-                                <input class="tiny button" type="submit" value="Mark as shipped">
-                            </form>
-                        <?php } ?>
-                        <?php if($order->status() == 'Shipped'){ ?>
-                            <form action="" method="POST">
+                        <div class="row collapse">
+                            <form class="small-12 large-4 columns" action="" method="POST">
                                 <input type="hidden" name="update_id" value="<?php echo $order->uid() ?>">
                                 <input type="hidden" name="action" value="mark_pending">
-                                <input class="tiny button info" type="submit" value="Mark as pending">
+                                <input class="expand tiny button <?php ecco($order->status()->value === 'pending','','info') ?>" type="submit" value="Pending">
                             </form>
-                        <?php } ?>
+                            <form class="small-12 large-4 columns" action="" method="POST">
+                                <input type="hidden" name="update_id" value="<?php echo $order->uid() ?>">
+                                <input type="hidden" name="action" value="mark_paid">
+                                <input class="expand tiny button <?php ecco($order->status()->value === 'paid','','info') ?>" type="submit" value="Paid">
+                            </form>
+                            <form class="small-12 large-4 columns" action="" method="POST">
+                                <input type="hidden" name="update_id" value="<?php echo $order->uid() ?>">
+                                <input type="hidden" name="action" value="mark_shipped">
+                                <input class="expand tiny button <?php ecco($order->status()->value === 'shipped','','info') ?>" type="submit" value="Shipped">
+                            </form>
+                        </div>
+                    <?php } else { ?>
+                        <?php echo ucfirst($order->status()) ?><br><br>
                     <?php } ?>
                 </td>
             </tr>
