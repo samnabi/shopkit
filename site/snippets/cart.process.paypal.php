@@ -27,8 +27,7 @@
 		<!-- Setup fields -->
 		<input type="hidden" name="cmd" value="_cart"> <!-- Identifies a shopping cart purchase -->
 		<input type="hidden" name="upload" value="1">  <!-- Identifies a third-party cart -->
-		<input type="hidden" name="return" value="<?php echo url() ?>/shop/cart/notify">
-		<!-- <input type="hidden" name="return" value="<?php echo url() ?>/shop/cart/return"> -->
+		<input type="hidden" name="return" value="<?php echo url() ?>/shop/cart/return">
 		<input type="hidden" name="rm" value="2"> <!-- Return method: POST, all variables passed -->
 		<input type="hidden" name="cancel_return" value="<?php echo url() ?>/shop/cart">
 		<input type="hidden" name="notify_url" value="<?php echo url() ?>/shop/cart/notify">
