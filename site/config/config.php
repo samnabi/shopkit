@@ -55,6 +55,31 @@ c::set('smartypants.skip', 'pre|code|kbd|script|math');
 
 /*
 ---------------------------------------
+Languages
+--------------------------------------
+
+*/
+
+c::set('language.detect', true);
+c::set('languages', array(
+  array(
+    'code'    => 'en',
+    'name'    => 'English',
+    'default' => true,
+    'locale'  => 'en_US',
+    'url'     => '/',
+  ),
+  array(
+    'code'    => 'fr',
+    'name'    => 'Français',
+    'locale'  => 'fr_FR',
+    'url'     => '/fr',
+  ),
+));
+
+
+/*
+---------------------------------------
 User roles
 --------------------------------------
 
