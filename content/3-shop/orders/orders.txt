@@ -1,3 +1,0 @@
-title: Orders
-----
-text: All the transactions are listed here.
