@@ -16,7 +16,7 @@ $pdf->Cell(0,0.3,date('F j, Y H:i',$p->txn_date()->value),0,2); // Date of order
 
 $pdf->Ln(0.3); // Line break
 
-$pdf->Cell(0,0.3,'Bill to: '.$p->payer_id()->value.'   '.$p->payer_email()->value,0,2); // Payer id and email
+$pdf->Cell(0,0.3,l::get('bill-to').$p->payer_id()->value.'   '.$p->payer_email()->value,0,2); // Payer id and email
 
 $pdf->Ln(0.3); // Line break
 
