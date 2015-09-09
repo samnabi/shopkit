@@ -1,7 +1,9 @@
 <?php
+// Hack. Multilang setup throws weird notices on page(...);
+error_reporting(E_ALL & ~E_NOTICE);
 
 // Page URI sent via POST
-$p = page(get('id'));
+$p = page(get('uri'));
 
 // Initialize the PDF
 $pdf = new FPDF('P','in','Letter');
@@ -16,7 +18,7 @@ $pdf->Cell(0,0.3,date('F j, Y H:i',$p->txn_date()->value),0,2); // Date of order
 
 $pdf->Ln(0.3); // Line break
 
-$pdf->Cell(0,0.3,'Bill to: '.$p->payer_id()->value.'   '.$p->payer_email()->value,0,2); // Payer id and email
+$pdf->Cell(0,0.3,l::get('bill-to').': '.$p->payer_id()->value.'   '.$p->payer_email()->value,0,2); // Payer id and email
 
 $pdf->Ln(0.3); // Line break
 
@@ -28,8 +30,9 @@ foreach ($products as $product) {
 
 $pdf->Ln(0.3); // Line break
 
-$pdf->Cell(0,0.5,'Subtotal: $'.sprintf('%0.2f', $p->subtotal()->value).'     Shipping: $'.sprintf('%0.2f', $p->shipping()->value).'     Tax: $'.sprintf('%0.2f', $p->tax()->value),0,2);
-$pdf->Cell(0,0.5,'Total due: $'.sprintf('%0.2f', $p->subtotal()->value+$p->shipping()->value+$p->tax()->value),0,2);
+// Order price summary
+$pdf->Cell(0,0.5,l::get('subtotal').': '.formatPrice($p->subtotal()->value).'     '.l::get('shipping').': '.formatPrice($p->shipping()->value).'     '.l::get('tax').': '.formatPrice($p->tax()->value),0,2);
+$pdf->Cell(0,0.5,l::get('tax').': '.formatPrice($p->subtotal()->value+$p->shipping()->value+$p->tax()->value),0,2);
 
 // Write the PDF
 $pdf->Output($p->txn_id()->value.'.pdf','D');

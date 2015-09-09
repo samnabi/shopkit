@@ -24,7 +24,7 @@
                     <?php echo date('M j, Y H:i e',$order->txn_date()->value) ?><br><br>
 
                     <form action="/shop/orders/pdf" method="POST">
-                        <input type="hidden" name="id" value="<?php echo $order->uri() ?>">
+                        <input type="hidden" name="uri" value="<?php echo $order->uri() ?>">
                         <button class="tiny info" type="submit"><?php echo l::get('download-invoice') ?></button>
                     </form>
                     

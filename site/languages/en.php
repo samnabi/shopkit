@@ -63,6 +63,11 @@ l::set('my-account', 'My Account');
 l::set('logout', 'Logout');
 
 
+// snippets/orders.pdf.php
+
+l::set('bill-to','Bill to');
+
+
 // snippets/sidebar.php
 
 l::set('new-customer', 'New customer?');
