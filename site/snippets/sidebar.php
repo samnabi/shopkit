@@ -20,7 +20,7 @@
 
               <div class="small-5 columns">
                 <button class="button tiny secondary expand" type="submit" name="login">
-                    <?php echo l::get('log-in') ?>
+                    <?php echo l::get('login') ?>
                 </button>
               </div>
               <p class="register small-7 columns">

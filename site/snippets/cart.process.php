@@ -16,7 +16,7 @@ if (kirby()->request()->method() === 'POST') {
 
 	// Get a text list of products and their quantities
 	$products_string = '';
-	foreach ($cart->getItems() as $i => $item) $products_string .= $item->fullTitle().' (Qty: '.$item->quantity.')'."\n";
+	foreach ($cart->getItems() as $i => $item) $products_string .= $item->fullTitle().' ('.l::get('qty').$item->quantity.')'."\n";
 
 	// Set the timestamp so txn-id and txn-date use the same value
 	$timestamp = date('U');

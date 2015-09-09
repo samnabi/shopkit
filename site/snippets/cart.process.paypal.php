@@ -16,12 +16,12 @@
 	<meta charset="utf-8" />
 	<title><?php echo site()->title()->html() ?> | <?php echo page('shop/cart')->title() ?></title>
 	<style>
-		p { font-family: sans-serif; font-size: 2rem; text-align: center; }
+		body { font-family: sans-serif; font-size: 2rem; text-align: center; }
 		button { font-size: 1rem; padding: 1rem; }
 	</style>
 </head>
 <body>
-	<p>Redirecting...</p>
+	<p><?php echo l::get('redirecting') ?></p>
 
 	<form class="row" method="post" action="<?php echo $cart->getPayPalAction() ?>" name="paypal">
 		<!-- Setup fields -->
@@ -61,7 +61,7 @@
 			$txn->update(['encoded-items' => urlencode(serialize($items))]);
 		?>
 
-		<button type="submit">Continue to PayPal</button>
+		<button type="submit"><?php echo l::get('continue-to-paypal') ?></button>
 	</form>
 
 	<script>

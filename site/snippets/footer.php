@@ -11,17 +11,17 @@
 	<dl class="contact">
 
 		<?php if ($phone = page('contact')->phone() and $phone != '') { ?>
-			<dt>Phone</dt>
+			<dt><?php echo l::get('phone') ?></dt>
 			<dd><?php echo $phone ?></dd>
 		<?php } ?>
 		
 		<?php if ($email = page('contact')->email() and $email != '') { ?>
-			<dt>Email</dt>
+			<dt><?php echo l::get('email') ?></dt>
 			<dd><a href="mailto:<?php echo $email ?>"><?php echo $email ?></a></dd>
 		<?php } ?>
 		
 		<?php if ($address = page('contact')->location()->json('address') and $address != '') { ?>
-			<dt>Address</dt>
+			<dt><?php echo l::get('address') ?></dt>
 			<dd><?php echo $address; ?></dd>
 		<?php } ?>
 	</dl>

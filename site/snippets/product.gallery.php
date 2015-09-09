@@ -1,4 +1,4 @@
-s<?php if ($page->hasImages()) { ?>
+<?php if ($page->hasImages()) { ?>
 	<section class="gallery">
 		<?php $first = true ?>
 		<?php foreach ($page->images() as $photo) { ?>	

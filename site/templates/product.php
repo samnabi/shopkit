@@ -33,9 +33,9 @@
 									<?php } ?>
 
 									<?php if (inStock($price)) { ?>
-										<button class="tiny expand" type="submit">Buy <?php echo formatPrice($price->price()->value) ?></button>
+										<button class="tiny expand" type="submit"><?php echo l::get('buy') ?> <?php echo formatPrice($price->price()->value) ?></button>
 									<?php } else { ?>
-										<button class="tiny expand" disabled>Out of stock <?php echo formatPrice($price->price()->value) ?></button>
+										<button class="tiny expand" disabled><?php echo l::get('out-of-stock') ?> <?php echo formatPrice($price->price()->value) ?></button>
 									<?php } ?>
 					            </form>
 					        </li>
@@ -71,7 +71,7 @@
 		?>
 		<?php if (count($products)) { ?>
 			<section class="related">
-				<h3>Related products</h3>
+				<h3><?php echo l::get('related-products') ?></h3>
 				<?php snippet('list.product',['products' => $products]) ?>
 			</section>
 		<?php } ?>

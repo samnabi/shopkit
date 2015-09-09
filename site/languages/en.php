@@ -1,24 +1,141 @@
 <?php
 
-l::set('', '');
-
-// snippets/sidebar.php
+// multiple pages 
 
 l::set('username', 'Username');
 l::set('password', 'Password');
-l::set('log-in', 'Log in');
-l::set('new-customer', 'New customer?');
+l::set('login', 'Log in');
 l::set('register', 'Register');
 
-l::set('subpages', 'Pages');
+l::set('email-address','Email address');
+l::set('first-name','First name');
+l::set('last-name','Last name');
+l::set('country','Country');
+l::set('country-help','To calculate shipping costs');
 
 l::set('shop-by-category', 'Shop by category');
+
+l::set('buy','Buy');
+l::set('out-of-stock','Out of stock');
+
+l::set('price','Price');
+
+l::set('subtotal','Subtotal');
+l::set('shipping','Shipping');
+l::set('tax','Tax');
+l::set('total','Total');
+
+
+// snippets/cart.process.php
+
+l::set('qty','Qty: ');
+
+
+// snippets/cart.process.paypal.php
+
+l::set('redirecting', 'Redirecting...');
+l::set('continue-to-paypal','Continue to PayPal');
+
+
+// snippets/footer.php
+
+l::set('phone','Phone');
+l::set('email','Email');
+l::set('address','Address');
+
+
+// snippets/header.license.php
+
+l::set('license-warning','This site doesn\'t have a Shopkit license key. Be sure to add one in the <a href="/panel/#/pages/show/shop">Shop options</a> before the site goes live.');
+
+
+// snippets/header.nav.php
+
+l::set('view-cart','View cart');
+
+
+// snippets/header.user.php
+
+l::set('edit-page', 'Edit Page');
+l::set('dashboard', 'Dashboard');
+l::set('view-orders', 'View Orders');
+l::set('my-account', 'My Account');
+l::set('logout', 'Logout');
+
+
+// snippets/sidebar.php
+
+l::set('new-customer', 'New customer?');
+
+l::set('subpages', 'Pages');
 
 l::set('search-shop', 'Search shop');
 l::set('search', 'Search');
 
-// snippets/orders.pdf.php
 
-l::set('bill-to', 'Bill to: ');
+// templates/account.php
+
+l::set('account-success','Your information has been updated.');
+l::set('account-failure','Sorry, something went wrong. Please make sure all information is entered correctly, including your email address.');
+l::set('account-delete-error','Sorry, your account couldn\'t be deleted.');
+
+l::set('password-help','Leave blank to keep it the same');
+
+l::set('update','Update');
+
+l::set('delete-account','Delete account');
+l::set('delete-account-text','If you click this button, there\'s no going back. Your account will be gone forever.');
+l::set('delete-account-verify','Delete my account. Yes, I\'m sure.');
+
+
+// templates/cart.php
+
+l::set('no-cart-items','You don\'t have anything in your cart!');
+
+l::set('product','Product');
+l::set('quantity','Quantity');
+
+l::set('delete','Delete');
+
+l::set('update-country','Update country');
+l::set('free-shipping','Free Shipping');
+
+l::set('sandbox-message','You\'re running in sandbox mode. This transaction won\'t result in a real purchase.');
+
+l::set('pay-now','Pay now');
+l::set('pay-later','Pay later');
+l::set('empty-cart','Empty cart');
+
+
+// templates/orders.php
+
+l::set('no-orders','You haven\'t made any orders yet.');
+l::set('no-auth-orders','To see the orders associated with your email address, please <a href="#user">register or log in</a>.');
+
+l::set('products','Products');
+l::set('status','Status');
+
+l::set('download-invoice','Download Invoice (PDF)');
+l::set('view-on-paypal','View on PayPal');
+
+l::set('pending','Pending');
+l::set('paid','Paid');
+l::set('shipped','Shipped');
+
+
+// templates/product.php
+
+l::set('related-products','Related products');
+
+
+// templates/register.php
+
+l::set('register-success','Thanks, your account has been registered! You can now <a href="/login">log in</a>.');
+l::set('register-failure','Sorry, something went wrong. Please make sure all information is entered correctly, including your email address.');
+
+
+// templates/search.php
+
+l::set('no-search-results','Sorry, there are no search results for your query.');
 
 ?>

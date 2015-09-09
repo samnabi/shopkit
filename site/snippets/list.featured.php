@@ -46,9 +46,9 @@
 				<?php } ?>
 
 				<?php if (inStock($price)) { ?>
-					<button class="small expand" type="submit">Buy <?php echo formatPrice($priceValue) ?></button>
+					<button class="small expand" type="submit"><?php echo l::get('buy') ?> <?php echo formatPrice($priceValue) ?></button>
 				<?php } else { ?>
-					<button class="small expand" disabled>Out of stock <?php echo formatPrice($priceValue) ?></button>
+					<button class="small expand" disabled><?php echo l::get('out-of-stock') ?> <?php echo formatPrice($priceValue) ?></button>
 				<?php } ?>
             </form>
 		  </li>

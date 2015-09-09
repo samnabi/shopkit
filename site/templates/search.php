@@ -19,7 +19,7 @@
 				<?php } ?>
 			</ul>
 		<?php } else { ?>
-			<p>Sorry, there are no search results for your query.</p>
+			<p><?php echo l::get('no-search-results') ?></p>
 		<?php } ?>
 	</div>
 

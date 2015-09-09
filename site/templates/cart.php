@@ -2,10 +2,10 @@
 
 <?php snippet('breadcrumb') ?>
 
-<h1>Your Cart</h1>
+<h1><?php echo $page->title()->html() ?></h1>
 
 <?php if ($cart->count() === 0) : ?>
-    <p>You don't have anything in your cart!</p>
+    <p><?php echo l::get('no-cart-items') ?></p>
 <?php else : ?>
 
     <!-- Cart items -->
@@ -13,9 +13,9 @@
         <table class="small-12 columns cart">
             <thead>
                 <tr>
-                    <th>Product</th>
-                    <th class="small-text-center">Quantity</th>
-                    <th class="small-text-right">Price</th>
+                    <th><?php echo l::get('product') ?></th>
+                    <th class="small-text-center"><?php echo l::get('quantity') ?></th>
+                    <th class="small-text-right"><?php echo l::get('price') ?></th>
                     <th></th>
                 </tr>
             </thead>
@@ -70,7 +70,7 @@
                             <form action="" method="post">
                                 <input type="hidden" name="action" value="delete">
                                 <input type="hidden" name="id" value="<?php echo $item->id ?>">
-                                <button class="tiny info" type="submit">Delete</button>    
+                                <button class="tiny info" type="submit"><?php echo l::get('delete') ?></button>    
                             </form>
                         </td>
                     </tr>
@@ -79,12 +79,12 @@
 
             <tfoot>
                 <tr>
-                    <td colspan="2">Subtotal</td>
+                    <td colspan="2"><?php echo l::get('subtotal') ?></td>
                     <td><?php echo formatPrice($cart->getAmount()) ?></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td colspan="2">Shipping</td>
+                    <td colspan="2"><?php echo l::get('shipping') ?></td>
                     <td colspan="2">
 
                         <!-- Set country -->
@@ -96,7 +96,7 @@
                                     </option>
                                 <?php } ?>
                             </select>
-                            <button id="setCountryButton" type="submit" class="tiny info">Update country</button>
+                            <button id="setCountryButton" type="submit" class="tiny info"><?php echo l::get('update-country') ?></button>
                         </form>
 
                         <?php $shipping_rates = $cart->getShippingRates() ?>
@@ -110,13 +110,13 @@
                                 <?php endforeach; ?>
                             <?php else : ?>
                                 <!-- If no shipping rates are set, show free shipping -->
-                                <option value="Free Shipping::0.00">Free Shipping</option>
+                                <option value="<?php echo l::get('free-shipping') ?>::0.00"><?php echo l::get('free-shipping') ?></option>
                             <?php endif; ?>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">Tax</td>
+                    <td colspan="2"><?php echo l::get('tax') ?></td>
                     <td>
                         <?php $tax = sprintf('%0.2f', $cart->getTax()) ?>
                         <?php echo formatPrice($tax) ?>
@@ -124,12 +124,12 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td colspan="2">Total</td>
+                    <td colspan="2"><?php echo l::get('total') ?></td>
                     <td>
                         <?php echo page('shop')->currency_symbol() ?>
                         <span id="cartTotal">
                             <?php echo sprintf('%0.2f', $cart->getAmount() + $tax) ?><br />
-                            + shipping
+                            + <?php echo l::get('shipping') ?>
                         </span>
                     </td>
                     <td></td>
@@ -143,7 +143,7 @@
 
         <?php if (page('shop')->paypal_action() != 'live') { ?>
             <div data-alert class="alert-box info" tabindex="0" aria-live="assertive" role="dialogalert">
-                <p>You're running in sandbox mode. This transaction won't result in a real purchase.</p>
+                <p><?php echo l::get('sandbox-message') ?></p>
             </div>
         <?php } ?>
 
@@ -160,13 +160,13 @@
                 <?php endforeach; ?>
             <?php } else { ?>
                 <!-- If no shipping rates are set, show free shipping -->
-                <option value="Free Shipping::0.00">Free Shipping</option>
+                <option value="<?php echo l::get('free-shipping') ?>::0.00"><?php echo l::get('free-shipping') ?></option>
             <?php } ?>
         </select>
 
         <div class="row">
             <button class="payPalSubmit small-12 large-8 large-push-2 columns" type="submit">
-                <span>Pay now</span>
+                <span><?php echo l::get('pay-now') ?></span>
                 <img src="<?php echo thumb($page->image('paypal-cards.png'),array('height'=>50))->dataUri() ?>" alt="PayPal">
             </button>
         </div>
@@ -188,12 +188,12 @@
                     <?php endforeach; ?>
                 <?php } else { ?>
                     <!-- If no shipping rates are set, show free shipping -->
-                    <option value="Free Shipping::0.00">Free Shipping</option>
+                    <option value="<?php echo l::get('free-shipping') ?>::0.00"><?php echo l::get('free-shipping') ?></option>
                 <?php } ?>
             </select>
 
             <div class="row">
-                <button class="secondary small-12 large-8 large-push-2 columns" type="submit">Pay later</button>
+                <button class="secondary small-12 large-8 large-push-2 columns" type="submit"><?php echo l::get('pay-later') ?></button>
             </div>
         </form>
     <?php } ?>
@@ -202,7 +202,7 @@
 
 <!-- Empty the cart -->
 <?php if ($cart->count() > 0) : ?>
-    <p class="row small-text-center"><a href="/shop/cart/empty">Empty cart</a></p>
+    <p class="row small-text-center"><a href="/shop/cart/empty"><?php echo l::get('empty-cart') ?></a></p>
 <?php endif; ?>
 
 <!-- Dat Fancy Jarverscrupt -->
