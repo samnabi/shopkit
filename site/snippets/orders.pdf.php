@@ -1,6 +1,8 @@
 <?php
-// Hack. Multilang setup throws weird notices on page(...);
-error_reporting(E_ALL & ~E_NOTICE);
+
+// Set detected language
+site()->visit('home', $lang);
+site()->kirby->localize();
 
 // Page URI sent via POST
 $p = page(get('uri'));

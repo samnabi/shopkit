@@ -159,10 +159,10 @@ c::set('routes', array(
     }
   ),
   array(
-    'pattern' => 'shop/orders/pdf',
+    'pattern' => '(:all)/shop/orders/pdf',
     'method' => 'POST',
-    'action' => function() {
-      snippet('orders.pdf');
+    'action' => function($lang) {
+      snippet('orders.pdf', ['lang' => $lang]);
       return true;
     }
   ),
