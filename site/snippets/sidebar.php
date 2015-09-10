@@ -8,7 +8,7 @@
     <!-- Login form -->
     <?php if (!$user = $site->user()) { ?>
         <div class="panel">
-            <form method="POST" class="row" id="login">
+            <form action="/login" method="POST" class="row" id="login">
               <div class="small-12 large-6 columns">
                 <label for="username"><?php echo l::get('username') ?></label>
                 <input type="text" id="username" name="username">

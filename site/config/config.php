@@ -115,6 +115,17 @@ Routes
 
 c::set('routes', array(
   array(
+    'pattern' => 'login',
+    'method' => 'POST',
+    'action'  => function() {
+      if($user = site()->user(get('username')) and $user->login(get('password'))) {
+        return go('/');
+      } else {
+        return go('/?login=failed');
+      }
+    }
+  ),
+  array(
     'pattern' => 'logout',
     'action'  => function() {
       if($user = site()->user()) {
