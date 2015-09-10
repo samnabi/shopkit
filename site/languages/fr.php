@@ -21,7 +21,7 @@ l::set('out-of-stock','Épuisé');
 l::set('price','Prix');
 
 l::set('subtotal','Sous-total');
-l::set('shipping','Frais de trasnport');
+l::set('shipping','Frais de transport');
 l::set('tax','Taxes');
 l::set('total','Total');
 
@@ -46,7 +46,7 @@ l::set('address','Addresse');
 
 // snippets/header.license.php
 
-l::set('license-warning','Vous n\'avez pas enregistré votre code de license. SVP entrez-le dans les <a href="/panel/#/pages/show/shop">options de magasin</a>.');
+l::set('license-warning','Vous n\'avez pas enregistré votre code de license. SVP entrez-le au <a href="/panel/#/pages/show/shop">configuration</a>.');
 
 
 // snippets/header.nav.php
@@ -81,8 +81,8 @@ l::set('search', 'Recherchez');
 // templates/account.php
 
 l::set('account-success','Votre information est mise à jour.');
-l::set('account-failure','Désolé, votre information ne pouvait pas être mise à jour. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.');
-l::set('account-delete-error','Désolé, votre compte ne pouvait pas être supprimé.');
+l::set('account-failure','Désolé, votre information ne pouvait être mise à jour. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.');
+l::set('account-delete-error','Désolé, votre compte ne pouvait être supprimé.');
 
 l::set('password-help','Laissez vide pour garder votre mot de passe actuel');
 
@@ -136,7 +136,7 @@ l::set('related-products','Produits reliés');
 // templates/register.php
 
 l::set('register-success','Merci, votre compte est inscrit! Vous pouvez maintenant <a href="/login">vous connecter</a>.');
-l::set('register-failure','Désolé, votre compte ne pouvait pas être inscrit. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.');
+l::set('register-failure','Désolé, votre compte ne pouvait être inscrit. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.');
 
 
 // templates/search.php
