@@ -6,4 +6,4 @@ Text: Welcome to your new Shopkit installation! To get started, [create an admin
 
 ----
 
-Logo: shopkit-200.png
+Logo: shopkit-800-buffer.png

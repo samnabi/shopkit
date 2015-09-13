@@ -262,11 +262,12 @@ aside .panel {
 
 //	Image gallery
 .gallery {
-	text-align: center;
-	position: relative;
-	padding-top: 305px;
-	overflow-x: hidden;
-	background: $black;
+
+
+	& > img {
+		display: none;
+		margin: 0 auto 1.25rem;
+	}
 
 	input {
 		display: none;
@@ -277,18 +278,12 @@ aside .panel {
 	}
 
 	label {
-		display: inline-block;
-		vertical-align: top;
-	}
-
-	& > img {
-		display: none;
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		margin-left: auto;
-		margin-right: auto;
+		img {
+			width: 100%;
+			max-width: 100px;
+			display: block;
+			margin: 0 auto;
+		}
 	}
 }
 
