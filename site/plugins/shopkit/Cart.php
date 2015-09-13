@@ -58,15 +58,27 @@ class Cart
 	    $quantityToAdd = $quantity ? $quantity : 1;
 	    $newQuantity = array_key_exists($id, $this->data) ? $this->data[$id] + $quantityToAdd : $quantityToAdd;
 	    $this->data[$id] = $this->updateQty($id,$newQuantity);
+
+	    dump($this->data); // debug
+
 	    s::set('cart', $this->data);
 	}
 
 	private function updateQty($id, $newQuantity) {
-		// $id is formatted like this
-		// uri::variantslug::optionslug
+		// $id is formatted uri::variantslug::optionslug
 		$idParts = explode('::',$id);
 		$uri = $idParts[0];
 		$variantSlug = $idParts[1];
+		$optionSlug = $idParts[2];
+
+		// Handle multiple options of the same variant
+		foreach ($this->data as $key => $qty) {
+			// If a cart item has the same variant with a different option...
+			if (strpos($key, $uri.'::'.$variantSlug) === 0 and $key != $id) {
+				// Subtract that item's quantity from the $newQuantity
+				$newQuantity = $newQuantity - $qty;
+			}
+		}
 
 		foreach (page($uri)->prices()->toStructure() as $variant) {
 			if (str::slug($variant->name()) === $variantSlug) {
@@ -79,7 +91,7 @@ class Cart
 				// If there is insufficient stock
 				else {
 					return $variant->stock()->value; }
-			}
+			} 
 		}
 		// The script should never get to this point
 		return 0;
