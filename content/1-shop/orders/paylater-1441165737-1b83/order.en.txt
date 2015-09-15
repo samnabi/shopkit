@@ -1,0 +1,33 @@
+Txn-id: paylater-1441165737-1b83
+
+----
+
+Txn-date: 1441165737
+
+----
+
+Txn-currency: USD
+
+----
+
+Status: pending
+
+----
+
+Products: prod2 - small - blue (Qty: 2)
+
+----
+
+Subtotal: 11.10
+
+----
+
+Shipping: 0.00
+
+----
+
+Shipping-method: Free Shipping
+
+----
+
+Tax: 0.00

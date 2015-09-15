@@ -1,0 +1,45 @@
+Title: prod2
+
+----
+
+Text: The best eva
+
+----
+
+Tags: best
+
+----
+
+Prices: 
+
+- 
+  name: Small
+  price: 5.55
+  sku:
+  weight:
+  stock: 3
+  options: blue,green,black,purple
+  description:
+- 
+  name: Large
+  price: 7.67
+  sku:
+  weight:
+  stock:
+  options:
+  description:
+
+----
+
+Noshipping: 
+
+----
+
+Notax: 
+
+----
+
+Relatedproducts: 
+
+- 
+  product: prod

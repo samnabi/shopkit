@@ -1,0 +1,37 @@
+Txn-id: paypal-1441298369-4d04
+
+----
+
+Txn-date: 1441298369
+
+----
+
+Txn-currency: USD
+
+----
+
+Status: pending
+
+----
+
+Products: 8 - prod - yup (Qty: 1)
+
+----
+
+Subtotal: 7.00
+
+----
+
+Shipping: 0.00
+
+----
+
+Shipping-method: Free Shipping
+
+----
+
+Tax: 0.00
+
+----
+
+Encoded-items: a%3A1%3A%7Bi%3A0%3Ba%3A3%3A%7Bs%3A3%3A%22uri%22%3Bs%3A16%3A%22shop%2Fsample%2Fprod%22%3Bs%3A7%3A%22variant%22%3Bs%3A3%3A%22yup%22%3Bs%3A8%3A%22quantity%22%3Bi%3A1%3B%7D%7D

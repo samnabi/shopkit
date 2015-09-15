@@ -1,0 +1,34 @@
+Title: prod
+
+----
+
+Text: 
+
+----
+
+Tags: stuff
+
+----
+
+Prices: 
+
+- 
+  name: Yup
+  price: 7
+  sku: 8
+  weight: 7
+  stock: -9
+  options:
+  description:
+
+----
+
+Noshipping: 
+
+----
+
+Notax: 
+
+----
+
+Relatedproducts: 

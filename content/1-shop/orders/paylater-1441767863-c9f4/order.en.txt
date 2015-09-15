@@ -1,0 +1,35 @@
+Txn-id: paylater-1441767863-c9f4
+
+----
+
+Txn-date: 1441767863
+
+----
+
+Txn-currency: 
+
+----
+
+Status: pending
+
+----
+
+Products: 
+
+8 - prod - yup (4)
+
+----
+
+Subtotal: 28.00
+
+----
+
+Shipping: 0.00
+
+----
+
+Shipping-method: Free Shipping
+
+----
+
+Tax: 0.00

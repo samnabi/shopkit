@@ -18,6 +18,17 @@ for more information: http://getkirby.com/license
 c::set('license', 'put your kirby license key here');
 
 
+/*
+
+---------------------------------------
+Homepage Setup
+---------------------------------------
+
+*/
+
+c::set('home', 'shop');
+
+
 /* 
 
 ---------------------------------------
