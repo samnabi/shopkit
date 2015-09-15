@@ -7,7 +7,7 @@ class Cart
 	 * Serialized data : array with id and quantity
 	 * @var array
 	 */
-	protected $data = [];
+	public $data = [];
 
 	/**
 	 * @var CartItem[]

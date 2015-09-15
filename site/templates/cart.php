@@ -53,10 +53,21 @@
                                 <input type="hidden" name="action" value="add">
                                 <input type="hidden" name="id" value="<?php echo $item->id ?>">
                                 <?php
-                                    // Determine if we are at the maximum quantity
                                     foreach (page($item->uri)->prices()->toStructure() as $variant) {
                                         if (str::slug($variant->name()) === $item->variant) {
-                                            $maxQty = inStock($variant) === $item->quantity ? true : false;
+
+                                            // Get combined quantity of this option's siblings
+                                            $siblingsQty = 0;
+                                            foreach ($cart->data as $key => $qty) {
+                                                if (strpos($key, $item->uri.'::'.$item->variant) === 0 and $key != $item->id) $siblingsQty += $qty;
+                                            }
+
+                                            // Determine if we are at the maximum quantity
+                                            if (inStock($variant) !== true and inStock($variant) <= ($item->quantity + $siblingsQty)) {
+                                                $maxQty = true;
+                                            } else {
+                                                $maxQty = false;
+                                            }
                                         }
                                     }
                                 ?>
