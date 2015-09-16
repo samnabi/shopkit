@@ -10,7 +10,7 @@ Tags: best
 
 ----
 
-Prices: 
+Variants: 
 
 - 
   name: Small

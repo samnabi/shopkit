@@ -10,7 +10,7 @@ Tags: stuff
 
 ----
 
-Prices: 
+Variants: 
 
 - 
   name: Yup

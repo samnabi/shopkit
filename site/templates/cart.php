@@ -53,7 +53,7 @@
                                 <input type="hidden" name="action" value="add">
                                 <input type="hidden" name="id" value="<?php echo $item->id ?>">
                                 <?php
-                                    foreach (page($item->uri)->prices()->toStructure() as $variant) {
+                                    foreach (page($item->uri)->variants()->toStructure() as $variant) {
                                         if (str::slug($variant->name()) === $item->variant) {
 
                                             // Get combined quantity of this option's siblings

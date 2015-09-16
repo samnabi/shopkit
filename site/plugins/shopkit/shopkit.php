@@ -36,17 +36,17 @@ function formatPrice($number)
  * Helper function to check inventory / stock
  * Returns the number of items in stock, or TRUE if there's no stock limit.
  */
-function inStock($price)
+function inStock($variant)
 {
 
     // It it's a blank string, item has unlimited stock
-    if (!is_numeric($price->stock()->value) and $price->stock()->value === '') return true;
+    if (!is_numeric($variant->stock()->value) and $variant->stock()->value === '') return true;
 
     // If it's zero then the item is out of stock
-    if (is_numeric($price->stock()->value) and $price->stock()->value === 0) return false;
+    if (is_numeric($variant->stock()->value) and $variant->stock()->value === 0) return false;
 
     // If it's greater than zero, return the number of items
-    if (is_numeric($price->stock()->value) and $price->stock()->value > 0) return $price->stock()->value;
+    if (is_numeric($variant->stock()->value) and $variant->stock()->value > 0) return $variant->stock()->value;
 
     // Otherwise, assume unlimited stock and return true
     return true;
@@ -63,13 +63,13 @@ function updateStock($items)
 {
     foreach($items as $i => $item){
       $product = page($item['uri']);
-      $variants = $product->prices()->yaml();
+      $variants = $product->variants()->yaml();
       foreach ($variants as $key => $variant) {
         if (str::slug($variant['name']) === $item['variant']) {
           // Edit stock in the original $variants array
           $variants[$key]['stock'] = $variant['stock'] - $item['quantity'];
-          // Update the entire prices field (only one variant has changed)
-          $product->update(array('prices' => yaml::encode($variants)));
+          // Update the entire variants field (only one variant has changed)
+          $product->update(array('variants' => yaml::encode($variants)));
         }
       }
     }

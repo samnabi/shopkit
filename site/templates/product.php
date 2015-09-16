@@ -10,20 +10,20 @@
 			</div>
 			
 			<section class="small-12 medium-6 large-5 columns">
-				<?php $prices = $page->prices()->toStructure() ?>
-				<?php if (count($prices)) { ?>
-					<ul class="prices small-block-grid-1 medium-block-grid-2">
-						<?php foreach ($prices as $price) { ?>
+				<?php $variants = $page->variants()->toStructure() ?>
+				<?php if (count($variants)) { ?>
+					<ul class="variants small-block-grid-1 medium-block-grid-2">
+						<?php foreach ($variants as $variant) { ?>
 							<li>
 								<div class="small-12 columns">
-									<strong><?php echo $price->name() ?></strong>
-									<?php ecco(trim($price->description()) != '',$price->description()->kirbytext()) ?>
+									<strong><?php echo $variant->name() ?></strong>
+									<?php ecco(trim($variant->description()) != '',$variant->description()->kirbytext()) ?>
 								</div>
 					            <form class="small-12 columns" method="post" action="<?php echo url('shop/cart') ?>">
 					                <input type="hidden" name="action" value="add">
 					                <input type="hidden" name="uri" value="<?php echo $page->uri() ?>">
-					                <input type="hidden" name="variant" value="<?php echo str::slug($price->name()) ?>">
-									<?php $options = str::split($price->options()) ?>
+					                <input type="hidden" name="variant" value="<?php echo str::slug($variant->name()) ?>">
+									<?php $options = str::split($variant->options()) ?>
 									<?php if (count($options)) { ?>
 										<select name="option">
 											<?php foreach ($options as $option) { ?>
@@ -32,10 +32,10 @@
 										</select>
 									<?php } ?>
 
-									<?php if (inStock($price)) { ?>
-										<button class="tiny expand" type="submit"><?php echo l::get('buy') ?> <?php echo formatPrice($price->price()->value) ?></button>
+									<?php if (inStock($variant)) { ?>
+										<button class="tiny expand" type="submit"><?php echo l::get('buy') ?> <?php echo formatPrice($variant->price()->value) ?></button>
 									<?php } else { ?>
-										<button class="tiny expand" disabled><?php echo l::get('out-of-stock') ?> <?php echo formatPrice($price->price()->value) ?></button>
+										<button class="tiny expand" disabled><?php echo l::get('out-of-stock') ?> <?php echo formatPrice($variant->price()->value) ?></button>
 									<?php } ?>
 					            </form>
 					        </li>

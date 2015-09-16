@@ -74,7 +74,7 @@ class Cart
 			if (strpos($key, $uri.'::'.$variantSlug) === 0 and $key != $id) $siblingsQty += $qty;
 		}
 
-		foreach (page($uri)->prices()->toStructure() as $variant) {
+		foreach (page($uri)->variants()->toStructure() as $variant) {
 			if (str::slug($variant->name()) === $variantSlug) {
 
 				// Store the stock in a variable for quicker processing

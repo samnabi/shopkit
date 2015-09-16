@@ -65,14 +65,14 @@ class CartItem
      */
 	public function __construct($id, PageAbstract $product, $quantity)
 	{
-        $variant = $title = $price = $weight = false;
+        $variant = false;
 
         // Break cart ID into uri, variant, and option (:: is used as a delimiter)
         $id_array = explode('::', $id);
 
         // Set variant and option
         $variantName = $id_array[1];
-        $variants = $product->prices()->yaml();
+        $variants = $product->variants()->yaml();
         foreach($variants as $key => $array) {
             if (str::slug($array['name']) === $variantName) {
                 $variant = $variants[$key];

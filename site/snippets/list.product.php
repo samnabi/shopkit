@@ -10,10 +10,10 @@
 			    	<strong><?php echo $product->title()->html() ?></strong><br>
 			    	<?php if ($product->text() != '') echo $product->text()->excerpt(80).'<br>' ?>
 		    		<?php
-		    			$prices = $product->prices()->yaml();
-		    			foreach ($prices as $key => $price) $pricelist[] = $price['price'];
+		    			$variants = $product->variants()->yaml();
+		    			foreach ($variants as $key => $variant) $pricelist[] = $variant['price'];
 		    			$priceFormatted = formatPrice(min($pricelist));
-		    			if (count($prices) > 1) $priceFormatted = 'From '.$priceFormatted;
+		    			if (count($variants) > 1) $priceFormatted = 'From '.$priceFormatted;
 					?>
 					<em><?php echo $priceFormatted ?></em>
 			    </a>

@@ -16,9 +16,9 @@ fields:
   text:
     label: Description
     type:  markdown
-  prices:
-    label: Price variants
-    help: A product can have unlimited price variants, each with its own SKU and other options.
+  Variants:
+    label: Variants
+    help: Each variant defines a price point, with associated SKU and other options.
     type: structure
     entry: >
       <p style="border-bottom: 1px solid #DDD; margin-bottom: 0.2rem; padding-bottom: 0.2rem">{{name}} <span style="float: right;"><strong>SKU</strong> {{sku}}</span></p>
