@@ -38,12 +38,4 @@ Paypal-action: sandbox
 
 ----
 
-License-shopkit: 
-
-----
-
 Featured: 
-
-----
-
-Logo: shopkit-800-buffer.png

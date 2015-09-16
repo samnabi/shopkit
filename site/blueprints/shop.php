@@ -12,12 +12,6 @@ fields:
   text:
     label: Text
     type:  markdown
-  logo:
-    label: Site logo
-    type:  selector
-    mode:  single
-    types:
-      - image
   featured:
     label: Featured products
     help:  Featured products show up in the sidebar with a one-click "buy now" button
@@ -152,7 +146,4 @@ fields:
     default: sandbox
     width: 1/2
     required: true
-  license-shopkit:
-    label: Shopkit license key
-    type: text
 

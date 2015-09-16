@@ -6,16 +6,22 @@
 License Setup
 ---------------------------------------
 
-Please add your license key, which you've received
-via email after purchasing Kirby on http://getkirby.com/buy
+Please add your license keys here.
 
-It is not permitted to run a public website without a
-valid license key. Please read the End User License Agreement
+You should have received your Kirby key via email
+after purchasing Kirby on http://getkirby.com/buy
+
+It is not permitted to run a public website without
+valid license keys. Please read the End User License Agreement
 for more information: http://getkirby.com/license
+
+You can retrieve your Shopkit license key from
+http://shopkit.samnabi.com, log in and click on "View Orders"
 
 */
 
-c::set('license', 'put your kirby license key here');
+c::set('license', '');         // put your Kirby license key here
+c::set('license-shopkit', ''); // put your Shopkit license key here
 
 
 /*
