@@ -1,0 +1,173 @@
+/* ========================================================================
+   Component: Panel
+ ========================================================================== */
+/*
+ * 1. Needed for `a` elements
+ * 2. Create position context for badges
+ */
+.uk-panel {
+  /* 1 */
+  display: block;
+  /* 2 */
+  position: relative;
+}
+/*
+ * Allow panels to be anchors
+ */
+.uk-panel,
+.uk-panel:hover {
+  text-decoration: none;
+}
+/*
+ * Micro clearfix to make panels more robust
+ */
+.uk-panel:before,
+.uk-panel:after {
+  content: "";
+  display: table;
+}
+.uk-panel:after {
+  clear: both;
+}
+/*
+ * Remove margin from the last-child if not `uk-widget-title`
+ */
+.uk-panel > :not(.uk-panel-title):last-child {
+  margin-bottom: 0;
+}
+/* Sub-object: `uk-panel-title`
+ ========================================================================== */
+.uk-panel-title {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: normal;
+  text-transform: none;
+  color: #444444;
+}
+/* Sub-object: `uk-panel-badge`
+ ========================================================================== */
+.uk-panel-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+/* Sub-object: `uk-panel-teaser`
+ ========================================================================== */
+.uk-panel-teaser {
+  margin-bottom: 15px;
+}
+/* Modifier: `uk-panel-box`
+ ========================================================================== */
+.uk-panel-box {
+  padding: 15px;
+  background: #f5f5f5;
+  color: #444444;
+}
+.uk-panel-box-hover:hover {
+  color: #444444;
+}
+.uk-panel-box .uk-panel-title {
+  color: #444444;
+}
+.uk-panel-box .uk-panel-badge {
+  top: 10px;
+  right: 10px;
+}
+.uk-panel-box > .uk-panel-teaser {
+  margin-top: -15px;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+/*
+ * Nav in panel
+ */
+.uk-panel-box > .uk-nav-side {
+  margin: 0 -15px;
+}
+/*
+ * Sub-modifier: `uk-panel-box-primary`
+ */
+.uk-panel-box-primary {
+  background-color: #ebf7fd;
+  color: #2d7091;
+}
+.uk-panel-box-primary-hover:hover {
+  color: #2d7091;
+}
+.uk-panel-box-primary .uk-panel-title {
+  color: #2d7091;
+}
+/*
+ * Sub-modifier: `uk-panel-box-secondary`
+ */
+.uk-panel-box-secondary {
+  background-color: #eeeeee;
+  color: #444444;
+}
+.uk-panel-box-secondary-hover:hover {
+  color: #444444;
+}
+.uk-panel-box-secondary .uk-panel-title {
+  color: #444444;
+}
+/* Modifier: `uk-panel-hover`
+ ========================================================================== */
+.uk-panel-hover {
+  padding: 15px;
+  color: #444444;
+}
+.uk-panel-hover:hover {
+  background: #f5f5f5;
+  color: #444444;
+}
+.uk-panel-hover .uk-panel-badge {
+  top: 10px;
+  right: 10px;
+}
+.uk-panel-hover > .uk-panel-teaser {
+  margin-top: -15px;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+/* Modifier: `uk-panel-header`
+ ========================================================================== */
+.uk-panel-header .uk-panel-title {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dddddd;
+  color: #444444;
+}
+/* Modifier: `uk-panel-space`
+ ========================================================================== */
+.uk-panel-space {
+  padding: 30px;
+}
+.uk-panel-space .uk-panel-badge {
+  top: 30px;
+  right: 30px;
+}
+/* Modifier: `uk-panel-divider`
+ ========================================================================== */
+.uk-panel + .uk-panel-divider {
+  margin-top: 50px !important;
+}
+.uk-panel + .uk-panel-divider:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -25px;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #dddddd;
+}
+/* Large screen and bigger */
+@media (min-width: 1220px) {
+  .uk-panel + .uk-panel-divider {
+    margin-top: 70px !important;
+  }
+  .uk-panel + .uk-panel-divider:before {
+    top: -35px;
+  }
+}

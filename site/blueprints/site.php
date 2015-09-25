@@ -21,4 +21,10 @@ fields:
     mode:  single
     types:
       - image
+  placeholder:
+    label: Placeholder product photo
+    type:  selector
+    mode:  single
+    types:
+      - image
 

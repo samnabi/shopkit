@@ -1,0 +1,146 @@
+/* ========================================================================
+   Component: Nav
+ ========================================================================== */
+.uk-nav,
+.uk-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/*
+ * Items
+ */
+.uk-nav li > a {
+  display: block;
+  text-decoration: none;
+}
+.uk-nav > li > a {
+  padding: 5px 15px;
+}
+/*
+ * Nested items
+ */
+.uk-nav ul {
+  padding-left: 15px;
+}
+.uk-nav ul a {
+  padding: 2px 0;
+}
+/*
+ * Item subtitle
+ */
+.uk-nav li > a > div {
+  font-size: 12px;
+  line-height: 18px;
+}
+/* Sub-object: `uk-nav-header`
+ ========================================================================== */
+.uk-nav-header {
+  padding: 5px 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+}
+.uk-nav-header:not(:first-child) {
+  margin-top: 15px;
+}
+/* Sub-object: `uk-nav-divider`
+ ========================================================================== */
+.uk-nav-divider {
+  margin: 9px 15px;
+}
+/* Sub-object: `uk-nav-sub`
+ ========================================================================== */
+/*
+ * `ul` needed for higher specificity to override padding
+ */
+ul.uk-nav-sub {
+  padding: 5px 0 5px 15px;
+}
+/* Modifier `uk-nav-side`
+ ========================================================================== */
+/*
+ * Items
+ */
+.uk-nav-side > li > a {
+  color: #444444;
+}
+/*
+ * Hover
+ * 1. Apply hover style also to focus state
+ * 2. Remove default focus style
+ */
+.uk-nav-side > li > a:hover,
+.uk-nav-side > li > a:focus {
+  background: rgba(0, 0, 0, 0.05);
+  color: #444444;
+  /* 2 */
+  outline: none;
+}
+/* Active */
+.uk-nav-side > li.uk-active > a {
+  background: #00a8e6;
+  color: #ffffff;
+}
+/*
+ * Sub-object: `uk-nav-header`
+ */
+.uk-nav-side .uk-nav-header {
+  color: #444444;
+}
+/*
+ * Sub-object: `uk-nav-divider`
+ */
+.uk-nav-side .uk-nav-divider {
+  border-top: 1px solid #dddddd;
+}
+/*
+ * Nested items
+ */
+.uk-nav-side ul a {
+  color: #0077dd;
+}
+.uk-nav-side ul a:hover {
+  color: #005599;
+}
+/* Modifier `uk-nav-navbar`
+ ========================================================================== */
+/*
+ * Items
+ */
+.uk-nav-navbar > li > a {
+  color: #444444;
+}
+/*
+ * Hover
+ * 1. Apply hover style also to focus state
+ * 2. Remove default focus style
+ */
+.uk-nav-navbar > li > a:hover,
+.uk-nav-navbar > li > a:focus {
+  background: #00a8e6;
+  color: #ffffff;
+  /* 2 */
+  outline: none;
+}
+/*
+ * Sub-object: `uk-nav-header`
+ */
+.uk-nav-navbar .uk-nav-header {
+  color: #999999;
+}
+/*
+ * Sub-object: `uk-nav-divider`
+ */
+.uk-nav-navbar .uk-nav-divider {
+  border-top: 1px solid #dddddd;
+}
+/*
+ * Nested items
+ */
+.uk-nav-navbar ul a {
+  color: #0077dd;
+}
+.uk-nav-navbar ul a:hover {
+  color: #005599;
+}

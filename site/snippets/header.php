@@ -7,25 +7,29 @@
 
 	<title><?php echo $site->title()->html() ?> | <?php echo $page->title()->html() ?></title>
 
-	<?php echo css('assets/css/base.css') ?>
+	<?php echo css('assets/css/shopkit.css') ?>
+	<?php echo css('assets/css/font.asap.css') ?>
 
 </head>
 <body>
 
-<div class="wrapper row">
+<div class="uk-container uk-container-center">
 
-<?php snippet('header.license') ?>
+<div class="uk-grid data-uk-grid-margin">
 
-<div class="buffer small-12 columns">
-
-	<div class="small-12 medium-8 columns medium-push-4">
+	<div class="uk-width-small-1-1 uk-width-medium-2-3 uk-push-1-3">
 		
-		<div class="row show-for-small-only small-text-center">
+		<!-- Logo -->
+		<div class="uk-visible-small uk-text-center uk-margin">
 			<?php snippet('logo') ?>
 		</div>
-		<div class="row">
+		
+		<div class="uk-container uk-padding-remove uk-margin-top">
 			<?php snippet('header.nav') ?>
 		</div>
+
 		<?php snippet('header.user') ?>	
 		
-		<main class="row">
+		<?php snippet('header.license') ?>
+
+		<main class="uk-container uk-padding-remove">

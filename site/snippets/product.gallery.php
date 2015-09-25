@@ -13,7 +13,7 @@
 
 		<!-- Show thumbnails if there are multiple photos -->
 		<?php if ($page->images()->count() > 1) { ?>
-			<ul class="small-block-grid-3 large-block-grid-4">
+			<ul class="uk-grid uk-grid-width-1-4">
 				<?php foreach ($page->images() as $photo) { ?>	
 					<li>
 						<label for="<?php echo $photo->hash() ?>">
