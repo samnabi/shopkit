@@ -31,20 +31,6 @@
             </form>
         </div>
     <?php } ?>
-
-    <!-- Subpages for non-shop pages -->
-    <?php if($page->hasVisibleChildren() and !in_array($page->template(),array('shop','category','product'))) { ?>
-        <div class="uk-panel uk-panel-divider">
-            <ul class="uk-nav">
-                <li class="uk-nav-header"><?php echo l::get('subpages') ?></li>
-                <?php foreach($page->children()->visible() as $subpage) { ?>
-                    <li>
-                        <a href="<?php echo $subpage->url() ?>"><?php echo $subpage->title()->html() ?></a>
-                    </li>
-                <?php } ?>
-            </ul>
-        </div>
-    <?php } ?>
     
     <!-- Featured products -->
     <?php

@@ -23,7 +23,7 @@
 <body>
 	<p><?php echo l::get('redirecting') ?></p>
 
-	<form class="row" method="post" action="<?php echo $cart->getPayPalAction() ?>" name="paypal">
+	<form method="post" action="<?php echo $cart->getPayPalAction() ?>" name="paypal">
 		<!-- Setup fields -->
 		<input type="hidden" name="cmd" value="_cart"> <!-- Identifies a shopping cart purchase -->
 		<input type="hidden" name="upload" value="1">  <!-- Identifies a third-party cart -->

@@ -46,7 +46,7 @@ l::set('address','Addresse');
 
 // snippets/header.license.php
 
-l::set('license-warning','Vous n\'avez pas enregistré votre code de license. SVP entrez-le au <a href="/panel/#/pages/show/shop">configuration</a>.');
+l::set('license-warning','Vous n\'avez pas enregistré votre code de license. SVP mettez-le dans le fichier <strong>config.php</strong> avant de donner accès au public.');
 
 
 // snippets/header.nav.php

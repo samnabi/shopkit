@@ -46,7 +46,7 @@ l::set('address','Address');
 
 // snippets/header.license.php
 
-l::set('license-warning','This site doesn\'t have a Shopkit license key. Be sure to add one in the <a href="/panel/#/pages/show/shop">Shop options</a> before the site goes live.');
+l::set('license-warning','This shop doesn\'t have a Shopkit license key. Be sure to add one in the <strong>config.php</strong> file before the website goes live.');
 
 
 // snippets/header.nav.php
