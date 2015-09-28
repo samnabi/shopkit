@@ -49,29 +49,37 @@ ul.uk-nav-sub {
 	display: block;
 }
 
-.uk-navbar-nav > .uk-contrast {
+.uk-navbar-nav {
 	svg {
 		width: 2rem;
+		height: 2rem;
 		vertical-align: middle;
 		margin-left: -0.2rem;
 		margin-top: -0.4rem;
-		fill: rgba(255,255,255,0.7);
+		fill: black;
 	}
 
-	a,
-	a:hover,
-	a:active,
-	a:focus {
-		background: black;
-		text-decoration: none;
-		color: rgba(255,255,255,0.7);
-	}
-
-	a:active {
-		color: white;
+	& > .uk-contrast {
 
 		svg {
-			fill: white;
+			fill: rgba(255,255,255,0.7);
+		}
+
+		a,
+		a:hover,
+		a:active,
+		a:focus {
+			background: black;
+			text-decoration: none;
+			color: rgba(255,255,255,0.7);
+		}
+
+		a:active {
+			color: white;
+
+			svg {
+				fill: white;
+			}
 		}
 	}
 }
@@ -164,11 +172,35 @@ ul.uk-nav-sub {
 	border-bottom: 1px solid;
 }
 
-.cart tfoot {
-	font-style: normal;
-	font-size: inherit;
+.cart {
 
-	.total {
-		font-weight: bold;
+	a:hover,
+	a:focus,
+	a:active {
+		text-decoration: none;
+	}
+	a:active {
+		opacity: 0.8;
+	}
+
+	.uk-button {
+		vertical-align: top;
+		min-width: 32px;
+		margin-top: -2px;
+	}
+	
+	tfoot {
+		font-style: normal;
+		font-size: inherit;
+
+		.total {
+			font-weight: bold;
+		}
+	}
+}
+
+.sidebar {
+	h3 {
+		margin-top: 0;
 	}
 }
