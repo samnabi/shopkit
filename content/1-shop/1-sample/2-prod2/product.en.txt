@@ -27,6 +27,14 @@ Variants:
   weight:
   stock:
   options:
+  description: Well here we have it.
+- 
+  name: Twoooo
+  price: 6.33
+  sku:
+  weight:
+  stock:
+  options:
   description:
 
 ----

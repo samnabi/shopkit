@@ -12,7 +12,7 @@
 
     <!-- Cart items -->
     <div class="uk-overflow-container">
-        <table class="uk-table">
+        <table class="cart uk-table uk-table-striped">
             <thead>
                 <tr>
                     <th><?php echo l::get('product') ?></th>
@@ -138,7 +138,7 @@
                     </td>
                     <td></td>
                 </tr>
-                <tr>
+                <tr class="total">
                     <td colspan="2"><?php echo l::get('total') ?></td>
                     <td>
                         <?php echo page('shop')->currency_symbol() ?>
@@ -223,7 +223,7 @@
             var shippingEncoded = e.options[e.selectedIndex].value;
             var shippingParts = shippingEncoded.split('::');
             var shipping = shippingParts[1];
-            var total = <?php echo number_format($cart->getAmount()+$tax,2) ?>+(Math.round(shipping*100)/100);
+            var total = <?php echo number_format($cart->getAmount()+$tax,2,'.','') ?>+(Math.round(shipping*100)/100);
             document.getElementById("cartTotal").innerHTML = total.toFixed(2); // Always show total with two decimals
         }
 

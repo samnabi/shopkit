@@ -26,7 +26,6 @@
 @import 'uikit.print';
 
 
-// uikit.base modifications
 
 h1,
 .uk-h1 {
@@ -42,14 +41,9 @@ h1,
 	box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4), 0 0 0 1px white;
 }
 
-// uikit.nav modifications
-
 ul.uk-nav-sub {
   padding-left: 30px;
 }
-
-
-// Custom styles
 
 .logo a {
 	display: block;
@@ -168,4 +162,13 @@ ul.uk-nav-sub {
 	margin: 0;
 	border-top: 1px solid;
 	border-bottom: 1px solid;
+}
+
+.cart tfoot {
+	font-style: normal;
+	font-size: inherit;
+
+	.total {
+		font-weight: bold;
+	}
 }

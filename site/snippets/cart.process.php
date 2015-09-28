@@ -32,7 +32,7 @@ if (kirby()->request()->method() === 'POST') {
 			'txn-currency' => page('shop')->currency_code(),
 			'status'  => 'pending',
 			'products' => $products_string,
-			'subtotal' => number_format($cart->getAmount(),2),
+			'subtotal' => number_format($cart->getAmount(),2,'.',''),
 			'shipping' => $shipping_rate,
 			'shipping-method' => $shipping_method,
 			'tax' => $_POST['tax']

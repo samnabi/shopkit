@@ -1,5 +1,5 @@
 <?php if($categories->count()) { ?>
-	<h3><?php echo l::get('shop-by-category') ?></h3>
+	<h2><?php echo l::get('shop-by-category') ?></h2>
 	<ul class="listing uk-container uk-padding-remove">
 	  <?php foreach($categories as $category): ?>
 	  	<li class="uk-margin-right uk-margin-bottom">

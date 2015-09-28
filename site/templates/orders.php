@@ -10,7 +10,7 @@
 
 <?php if ($orders->count()) : ?>
     <div class="uk-overflow-container">
-        <table class="uk-table">
+        <table class="uk-table uk-table-striped">
             <thead>
                 <tr>
                     <th></th>
@@ -23,8 +23,9 @@
             <?php foreach ($orders as $order) : ?>
                 <tr>
                     <td>
-                        <?php echo $order->payer_name() ?><br>
-                        <a href="mailto:<?php echo $order->payer_email() ?>"><?php echo $order->payer_email() ?></a><br>
+                        <strong class="uk-text-small"><?php echo $order->txn_id() ?></strong><br>
+                        <?php ecco($order->payer_name() != '',$order->payer_name().'<br>') ?>
+                        <?php ecco($order->payer_email() != '','<a href="mailto:'.$order->payer_email().'">'.$order->payer_email().'</a><br>') ?>
                         <?php echo date('M j, Y H:i e',$order->txn_date()->value) ?><br>
 
                         <form action="/<?php echo $site->language() ?>/shop/orders/pdf" method="POST">
@@ -40,18 +41,18 @@
                         <?php echo $order->products()->kirbytext() ?>
                     </td>
                     <td>
-                        <table class="uk-table uk-table-condensed uk-text-right uk-text-small">
+                        <table class="uk-table uk-table-condensed uk-text-right">
                             <tr>
                                 <td><?php echo l::get('subtotal') ?></td>
                                 <td>
-                                    <?php echo number_format($order->subtotal()->value,2) ?>
+                                    <?php echo number_format($order->subtotal()->value,2,'.','') ?>
                                     <?php echo $order->txn_currency() ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td><?php echo l::get('shipping') ?></td>
                                 <td>
-                                    <?php echo number_format((float)$order->shipping()->value,2) ?>
+                                    <?php echo number_format((float)$order->shipping()->value,2,'.','') ?>
                                     <!-- Need to cast as (float) to handle null or nonexistent shipping value -->
                                     <?php echo $order->txn_currency() ?>
                                 </td>
@@ -59,15 +60,17 @@
                             <tr>
                                 <td><?php echo l::get('tax') ?></td>
                                 <td>
-                                    <?php echo number_format($order->tax()->value,2) ?>
+                                    <?php echo number_format($order->tax()->value,2,'.','') ?>
                                     <?php echo $order->txn_currency() ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td><?php echo l::get('total') ?></td>
+                                <td><strong><?php echo l::get('total') ?></strong></td>
                                 <td>
-                                    <?php echo number_format($order->subtotal()->value+$order->shipping()->value+$order->tax()->value,2) ?>
-                                    <?php echo $order->txn_currency() ?>
+                                    <strong>
+                                        <?php echo number_format($order->subtotal()->value+$order->shipping()->value+$order->tax()->value,2,'.','') ?>
+                                        <?php echo $order->txn_currency() ?>
+                                    </strong>
                                 </td>
                             </tr>
                         </table>

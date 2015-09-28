@@ -17,7 +17,15 @@ Variants:
   price: 7
   sku: 8
   weight: 7
-  stock: -9
+  stock: -8
+  options:
+  description:
+- 
+  name: 'dsafknjnnj '
+  price: 676
+  sku:
+  weight:
+  stock: -7
   options:
   description:
 

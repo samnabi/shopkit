@@ -3,3 +3,7 @@ Title: My Shop
 ----
 
 Logo: shopkit-800-buffer.png
+
+----
+
+Placeholder: placeholder.png

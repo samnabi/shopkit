@@ -8,6 +8,17 @@ Text:
 
 Shipping: 
 
+- 
+  method: Ground (3-5 days)
+  countries[]:
+    - afghanistan
+    - albania
+  flat: 5.47
+  item: 4.65
+  weight:
+  price:
+  calculation: high
+
 ----
 
 Tax: 
@@ -18,11 +29,11 @@ Paylater: admin
 
 ----
 
-Currency-code: 
+Currency-code: USD
 
 ----
 
-Currency-symbol: 
+Currency-symbol: $
 
 ----
 
