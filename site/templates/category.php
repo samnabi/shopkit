@@ -11,17 +11,23 @@
 <?php snippet('header') ?>
 
 		<?php snippet('breadcrumb') ?>
-		
-		<h1><?php echo $page->title()->html() ?></h1>
-		
-		<?php echo $page->text()->kirbytext() ?>
 
-		<?php if($photo = $page->images()->sortBy('sort', 'asc')->first()) { ?>
-			<img src="<?php echo thumb($photo,array('height'=>300, 'quality'=>90))->dataUri() ?>" title="<?php echo $photo->title() ?>"/>
+		<?php if (isset($slidePath)) { ?>
+			<?php snippet('slideshow.product', ['products' => $products]) ?>
+			<?php //snippet('slideshow.category', ['categories' => $categories]); ?>
+		<?php } else { ?>
+			
+			<h1><?php echo $page->title()->html() ?></h1>
+			
+			<?php echo $page->text()->kirbytext() ?>
+
+			<?php if($photo = $page->images()->sortBy('sort', 'asc')->first()) { ?>
+				<img src="<?php echo thumb($photo,array('height'=>300, 'quality'=>90))->dataUri() ?>" title="<?php echo $photo->title() ?>"/>
+			<?php } ?>
+
+			<?php snippet('list.product', ['products' => $products]) ?>
+
+			<?php snippet('list.category', ['categories' => $categories]) ?>
 		<?php } ?>
-
-		<?php snippet('list.product', ['products' => $products]) ?>
-
-		<?php snippet('list.category', ['categories' => $categories]) ?>
 
 <?php snippet('footer') ?>

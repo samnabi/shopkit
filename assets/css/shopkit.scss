@@ -97,6 +97,7 @@ ul.uk-nav-sub {
 	list-style: none;
 
 	li {
+		position: relative;
 		vertical-align: top;
 		display: inline-block;
 		max-width: 100%;
@@ -120,6 +121,27 @@ ul.uk-nav-sub {
 
 		p {
 			margin: 5px 0 0;
+		}
+
+		.fullscreen {
+			display: none;
+			position: absolute;
+			top: 0.5rem;
+			right: 0.5rem;
+			background: black;
+
+			svg {
+				width: 1.5rem;
+				height: 1.5rem;
+				margin: 0.7rem 0.7rem 0;
+				margin-bottom: 0;
+				fill: white;
+			}
+		}
+
+		&:hover .fullscreen,
+		&:focus .fullscreen {
+			display: block;
 		}
 	}
 }
@@ -202,5 +224,30 @@ ul.uk-nav-sub {
 .sidebar {
 	h3 {
 		margin-top: 0;
+	}
+}
+
+.slideshow-nav {
+	svg {
+		width: 2rem;
+		height: 2rem;
+		margin-top: 0.7rem;
+	}
+}
+
+.slideshow .description a {
+	display: block;
+	color: black;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	padding: 1rem 0;
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+	}
+
+	&:active {
+		opacity: 0.8;
 	}
 }

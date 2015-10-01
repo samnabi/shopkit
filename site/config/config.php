@@ -194,4 +194,11 @@ c::set('routes', array(
       return true;
     }
   ),
+  array(
+    'pattern' => '(:all)/(:any)/slide',
+    'action' => function($category,$slug) {
+      site()->visit($category, 'en');
+      return array($category, array('slidePath' => $category.'/'.$slug));
+    }
+  ),
 ));
