@@ -83,7 +83,10 @@ ul.uk-nav-sub {
 		}
 	}
 }
-
+.uk-navbar-nav .uk-active a {
+		border-bottom: 2px solid #444;
+	}
+}
 
 .featured .uk-overlay a {
 	text-decoration: none;
