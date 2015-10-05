@@ -164,9 +164,16 @@ c::set('routes', array(
   ),
   array(
     'pattern' => 'shop/cart/process',
-    'method' => 'GET|POST',
+    'method' => 'POST',
     'action' => function() {
-      snippet('cart.process');
+      snippet('cart.process.post');
+    }
+  ),
+  array(
+    'pattern' => 'shop/cart/process',
+    'method' => 'GET',
+    'action' => function() {
+      snippet('cart.process.get');
     }
   ),
   array(

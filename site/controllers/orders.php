@@ -43,7 +43,7 @@ return function($site, $pages, $page) {
         // If not logged in, don't show orders
         $orders = false;
     }
-    
+
     return [
         'user' => $site->user(),
         'cart' => Cart::getCart(),
