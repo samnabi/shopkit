@@ -78,6 +78,13 @@ l::set('search-shop', 'Search shop');
 l::set('search', 'Search');
 
 
+// snippets/slideshow.product.php
+
+l::set('prev', 'Prev');
+l::set('next', 'Next');
+l::set('view-grid', 'View grid');
+
+
 // templates/account.php
 
 l::set('account-success','Your information has been updated.');

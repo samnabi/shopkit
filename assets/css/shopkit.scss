@@ -84,8 +84,7 @@ ul.uk-nav-sub {
 	}
 }
 .uk-navbar-nav .uk-active a {
-		border-bottom: 2px solid #444;
-	}
+	border-bottom: 2px solid #444;
 }
 
 .featured .uk-overlay a {
@@ -231,10 +230,19 @@ ul.uk-nav-sub {
 }
 
 .slideshow-nav {
+
+	a, span {
+		line-height: 1;
+		padding: 0.5rem 0.5rem 0.3rem;
+	}
+
 	svg {
 		width: 2rem;
 		height: 2rem;
-		margin-top: 0.7rem;
+	}
+
+	.uk-button > span {
+		display: block;
 	}
 }
 
