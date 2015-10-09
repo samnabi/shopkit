@@ -5,7 +5,7 @@
 <?php echo $page->text()->kirbytext() ?>
 
 <?php if ($orders and $orders->count() === 0) : ?>
-    <p><?php echo l::get('') ?></p>
+    <p><?php echo l::get('no-orders') ?></p>
 <?php endif; ?>
 
 <?php if ($orders->count()) : ?>
