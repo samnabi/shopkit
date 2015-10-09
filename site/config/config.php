@@ -202,10 +202,19 @@ c::set('routes', array(
     }
   ),
   array(
-    'pattern' => '(:all)/(:any)/slide',
+    // Multilang slideshow
+    'pattern' => '(:any)/shop/(:all)/(:any)/slide',
+    'action' => function($lang,$category,$slug) {
+      site()->visit($category, $lang);
+      return array('shop/'.$category, array('slidePath' => 'shop/'.$category.'/'.$slug));
+    }
+  ),
+  array(
+    // Default lang slideshow
+    'pattern' => 'shop/(:all)/(:any)/slide',
     'action' => function($category,$slug) {
       site()->visit($category, 'en');
-      return array($category, array('slidePath' => $category.'/'.$slug));
+      return array('shop/'.$category, array('slidePath' => 'shop/'.$category.'/'.$slug));
     }
   ),
 ));
