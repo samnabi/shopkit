@@ -234,6 +234,15 @@ ul.uk-nav-sub {
 	a, span {
 		line-height: 1;
 		padding: 0.5rem 0.5rem 0.3rem;
+
+		&:hover,
+		&:focus {
+			text-decoration: none;
+		}
+
+		&[disabled] {
+			opacity: 0.2;
+		}
 	}
 
 	svg {
