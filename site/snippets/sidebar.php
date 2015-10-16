@@ -11,8 +11,8 @@
             <form action="/login" method="POST" id="login" class="uk-form">
                 <div class="uk-grid uk-grid-width-1-2">
                     <div>
-                      <label for="username"><?php echo l::get('username') ?></label>
-                      <input type="text" id="username" name="username">
+                      <label for="email"><?php echo l::get('email-address') ?></label>
+                      <input type="text" id="email" name="email">
                     </div>
                     <div>
                       <label for="password"><?php echo l::get('password') ?></label>
