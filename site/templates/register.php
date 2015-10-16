@@ -4,27 +4,37 @@
 
     <?php echo $page->text()->kirbytext() ?>
 
-    <?php if(r::is('post') and get('register')) { ?>
+    <?php if(r::is('post') and get('register') !== null) { ?>
       <div class="uk-alert uk-alert-warning">
         <p>
           <?php
-            try {
 
-              $user = $site->users()->create(array(
-                'username'  => get('username'),
-                'email'     => get('email'),
-                'password'  => get('password'),
-                'firstName' => get('firstname'),
-                'lastName'  => get('lastname'),
-                'language'  => 'en',
-                'country'   => get('country')
-              ));
+            // Check for duplicate email addresses
+            $duplicate = $site->users()->findBy('email',trim(get('email')));
 
-              echo l::get('register-success');
+            if (count($duplicate) === 0) {
+              try {
 
-            } catch(Exception $e) {
+                $user = $site->users()->create(array(
+                  'username'  => trim(get('username')),
+                  'email'     => trim(get('email')),
+                  'password'  => get('password'),
+                  'firstName' => trim(get('firstname')),
+                  'lastName'  => trim(get('lastname')),
+                  'language'  => 'en',
+                  'country'   => get('country')
+                ));
 
-              echo l::get('register-failure');
+                echo l::get('register-success');
+
+              } catch(Exception $e) {
+
+                echo l::get('register-failure');
+
+              }
+            } else {
+
+                echo l::get('register-failure');
 
             }
           ?>
