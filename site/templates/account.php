@@ -18,7 +18,6 @@
           <?php
             try {
               $user = $site->user()->update(array(
-                'username'  => get('username'),
                 'email'     => get('email'),
                 'firstname' => get('firstname'),
                 'lastname'  => get('lastname'),
@@ -62,8 +61,9 @@
     <form class="uk-form uk-form-stacked" method="post">
       <div class="uk-form-row uk-grid">
         <div>
-          <label for="username"><?php echo l::get('username') ?></label>
-          <input class="uk-form-width-medium" type="text" id="username" name="username" value="<?php echo $user->username() ?>">
+          <label><?php echo l::get('username') ?></label>
+          <input disabled class="uk-form-width-medium" type="text" value="<?php echo $user->username() ?>">
+          <p class="uk-form-help-block uk-text-muted uk-margin-remove"><?php echo l::get('username-no-change') ?></p>
         </div>
         <div>
           <label for="email"><?php echo l::get('email-address') ?></label>

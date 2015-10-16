@@ -99,6 +99,7 @@ l::set('delete-account','Supprimer mon compte');
 l::set('delete-account-text','Si vous cliquez ce bouton, c\'est le point de non-retour. Votre compte sera supprimé à jamais.');
 l::set('delete-account-verify','Supprimer mon compte. Oui, je suis certain.');
 
+l::set('username-no-account','Le nom d\'utilisateur ne peut être changé.');
 
 // templates/cart.php
 

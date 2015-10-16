@@ -99,6 +99,8 @@ l::set('delete-account','Delete account');
 l::set('delete-account-text','If you click this button, there\'s no going back. Your account will be gone forever.');
 l::set('delete-account-verify','Delete my account. Yes, I\'m sure.');
 
+l::set('username-no-account','The username can\'t be changed.');
+
 
 // templates/cart.php
 
