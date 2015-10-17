@@ -2,16 +2,16 @@ Title: Contact
 
 ----
 
-Text: We are here to help
+Text: 
 
 ----
 
-Phone: 519 805 4222
+Phone: 
 
 ----
 
-Email: sam@samnabi.com
+Email: 
 
 ----
 
-Location: null
+Location: 
