@@ -27,7 +27,8 @@
 		<?php } ?>
 
 		<?php snippet('list.product', ['products' => $products]) ?>
-
+		
+		<h2><?php echo l::get('shop-by-category') ?></h2>
 		<?php snippet('list.category', ['categories' => $categories]) ?>
 	<?php } ?>
 
