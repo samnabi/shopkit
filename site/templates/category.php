@@ -28,7 +28,7 @@
 
 		<?php snippet('list.product', ['products' => $products]) ?>
 		
-		<h2><?php echo l::get('shop-by-category') ?></h2>
+		<?php e($categories->count() > 0,'<h2>'.l::get('shop-by-category').'</h2>') ?>
 		<?php snippet('list.category', ['categories' => $categories]) ?>
 	<?php } ?>
 
