@@ -30,6 +30,6 @@
 
 		<?php snippet('header.user') ?>	
 		
-		<?php snippet('header.license') ?>
+		<?php snippet('header.notifications') ?>
 
 		<main class="uk-container uk-padding-remove">

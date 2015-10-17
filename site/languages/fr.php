@@ -44,9 +44,13 @@ l::set('email','Courriel');
 l::set('address','Addresse');
 
 
-// snippets/header.license.php
+// snippets/header.notifications.php
 
-l::set('license-warning','Vous n\'avez pas enregistré votre code de license. SVP mettez-le dans le fichier <strong>config.php</strong> avant de donner accès au public.');
+l::set('notification-account','Vous n\'avez aucun compte. <a href="/panel/install" title="Page d\'installation du panneau">Créez-en un maintenant</a>.');
+l::set('notification-options','Vous n\'avez pas entré les options de votre magasin. <a href="/panel/#/pages/show/shop" title="Options de magasin">Entrez-les ici</a>.');
+l::set('notification-category','Vous n\'avez aucune catégorie pour vos produits. <a href="/panel/#/pages/add/shop" title="Créez une nouvelle catégorie">Créez votre première catégorie ici</a>.');
+l::set('notification-product','Vous n\'avez aucun produit. <a href="/panel/#/pages/show/shop" title="Créez un nouveau produit">Créez votre premier produit avec le tableau de bord</a>.');
+l::set('notification-license','Vous n\'avez pas enregistré votre code de license. SVP mettez-le dans le fichier <strong>config.php</strong> avant de donner accès au public.');
 
 
 // snippets/header.nav.php
@@ -57,7 +61,7 @@ l::set('view-cart','Mon panier');
 // snippets/header.user.php
 
 l::set('edit-page', 'Éditer la page');
-l::set('dashboard', 'Configuration');
+l::set('dashboard', 'Tableau de bord');
 l::set('view-orders', 'Commandes');
 l::set('my-account', 'Mon compte');
 l::set('logout', 'Déconnexion');

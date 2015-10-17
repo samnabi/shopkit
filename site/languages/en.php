@@ -44,9 +44,13 @@ l::set('email','Email');
 l::set('address','Address');
 
 
-// snippets/header.license.php
+// snippets/header.notifications.php
 
-l::set('license-warning','This shop doesn\'t have a Shopkit license key. Be sure to add one in the <strong>config.php</strong> file before the website goes live.');
+l::set('notification-account','You haven\'t set up any users. <a href="/panel/install" title="Panel installation page">Create an account now</a>.');
+l::set('notification-options','You haven\'t set up your shop options. <a href="/panel/#/pages/show/shop" title="Shop options">Define currency, shipping, and tax settings here</a>.');
+l::set('notification-category','You don\'t have any product categories. <a href="/panel/#/pages/add/shop" title="Create a new category">Create your first category here</a>.');
+l::set('notification-product','You don\'t have any products. <a href="/panel/#/pages/show/shop" title="Create a new product">Create your first product with the Dashboard</a>.');
+l::set('notification-license','This shop doesn\'t have a Shopkit license key. Be sure to add one in the <strong>config.php</strong> file before the website goes live.');
 
 
 // snippets/header.nav.php
