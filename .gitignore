@@ -3,6 +3,7 @@
 !/site/accounts/.gitkeep
 /assets/avatars/*
 !/assets/avatars/.gitkeep
+/assets/psd/*
 /thumbs/*
 !/thumbs/.gitkeep
 /content/1-shop/*
