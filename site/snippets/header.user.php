@@ -1,7 +1,7 @@
 <?php if ($user = $site->user()) { ?>
 	<div class="uk-navbar uk-margin-small-top">
 		<div class="uk-navbar-flip">
-			<ul class="uk-navbar-nav">
+			<ul class="uk-navbar-nav user">
 				<li <?php e(page('shop/orders')->isOpen(), 'class="uk-active"') ?>>
 					<a href="<?php echo url('shop/orders') ?>">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path id="shipping-box-3-icon" d="M330.916,335.512l5.75-3.348v29.426l-5.75,3.348V335.512z M321.13,370.637l5.75-3.35v-29.426 l-5.85,3.406L321.13,370.637z M363.993,345.682l5.851-3.406V312.85l-5.851,3.406V345.682z M440.387,169.299v197.225L276.97,461.666 L71.613,342.082V144.856l163.715-94.522L440.387,169.299z M204.801,102.601l159.833,94.352l32.557-18.031L235.292,84.996 L204.801,102.601z M261,271.447L101.257,178.98V324.84L261,417.686V271.447z M308.24,228.184l-157.789-94.204l-33.425,19.298 l159.478,92.482L308.24,228.184z M410.459,205.867l-28.766,15.931v53.452l-0.193,0.107v0.227l-56.306,31.083v-0.189L325,306.584 v-53.389l-34,18.83v146.799l119.459-69.549V205.867z M344.682,356.924l5.756-3.352v-29.426l-5.756,3.352V356.924z M378.25,337.381 l4.84-2.818l0.91-0.535v-29.42l-5.75,3.348V337.381z M354.307,351.32l5.75-3.348v-29.426l-5.75,3.348V351.32z"/></svg>

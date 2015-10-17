@@ -92,6 +92,25 @@ h1,
 			}
 		}
 	}
+
+	&.user {
+
+		li {
+			text-align: center;
+		}
+
+		a {
+			height: auto;
+			padding: 0.2rem 1rem 0.5rem;
+			line-height: 1;
+			font-size: 0.875rem;
+		}
+
+		svg {
+			display: block;
+			margin: 0 auto 0.1rem;
+		}
+	}
 }
 
 .uk-navbar-nav .uk-active a {
