@@ -1,5 +1,5 @@
 <?php if ($user = $site->user()) { ?>
-	<div class="uk-navbar uk-margin-small-top">
+	<div class="uk-navbar uk-margin-top uk-margin-bottom">
 		<div class="uk-navbar-flip">
 			<ul class="uk-navbar-nav user">
 				<li <?php e(page('shop/orders')->isOpen(), 'class="uk-active"') ?>>

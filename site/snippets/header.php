@@ -24,7 +24,7 @@
 			<?php snippet('logo') ?>
 		</div>
 		
-		<div class="uk-container uk-padding-remove uk-margin-top">
+		<div class="uk-container uk-padding-remove uk-margin-top uk-margin-bottom">
 			<?php snippet('header.nav') ?>
 		</div>
 
