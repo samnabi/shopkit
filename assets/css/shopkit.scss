@@ -47,7 +47,7 @@ video {
 }
 
 
-// Button styles
+// Buttons
 
 .uk-button {
 	box-shadow: inset 0 0 0 1px rgba(0,0,0,0.2);
@@ -59,7 +59,7 @@ video {
 }
 
 
-// Form styles
+// Forms
 
 .uk-form-stacked label {
 	display: block;
@@ -150,6 +150,13 @@ ul.uk-nav-sub {
 	h3 {
 		margin-top: 0;
 	}
+}
+
+
+// Main content area
+
+main {
+	border-bottom: 1px solid;
 }
 
 
