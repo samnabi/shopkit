@@ -35,10 +35,10 @@ if ($site->users()->count() === 0) {
 
 ?>
 
-<?php if (count($notifications) > 0) { ?>
+<?php if(count($notifications) > 0) { ?>
 	<div class="uk-alert uk-alert-warning">
-		<?php foreach ($notifications as $notification) { ?>
+		<?php foreach($notifications as $notification) { ?>
 			<p><?php echo $notification ?></p>
-		<? } ?>
+		<?php } ?>
 	</div>
 <?php } ?>
