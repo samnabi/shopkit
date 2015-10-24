@@ -38,6 +38,28 @@ c::set('home', 'shop');
 /* 
 
 ---------------------------------------
+URL Setup
+---------------------------------------
+
+By default kirby tries to detect the correct url
+for your site if this is set to false, but if this should fail 
+or you need to set it on your own, do it like this:
+
+c::set('url', 'http://yourdomain.com');
+
+Make sure to write the url without a trailing slash.
+
+To work with relative URLs, you can set the URL like this:
+
+c::set('url', '/');
+ 
+*/
+
+c::set('url', 'http://'.$_SERVER['HTTP_HOST']);
+
+/* 
+
+---------------------------------------
 Smartypants Setup 
 ---------------------------------------
 
