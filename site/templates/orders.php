@@ -45,31 +45,27 @@
                             <tr>
                                 <td><?php echo l::get('subtotal') ?></td>
                                 <td>
-                                    <?php echo number_format($order->subtotal()->value,2,'.','') ?>
-                                    <?php echo $order->txn_currency() ?>
+                                    <?php echo number_format($order->subtotal()->value,2,'.','') ?>&nbsp;<?php echo $order->txn_currency() ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td><?php echo l::get('shipping') ?></td>
                                 <td>
-                                    <?php echo number_format((float)$order->shipping()->value,2,'.','') ?>
                                     <!-- Need to cast as (float) to handle null or nonexistent shipping value -->
-                                    <?php echo $order->txn_currency() ?>
+                                    <?php echo number_format((float)$order->shipping()->value,2,'.','') ?>&nbsp;<?php echo $order->txn_currency() ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td><?php echo l::get('tax') ?></td>
                                 <td>
-                                    <?php echo number_format($order->tax()->value,2,'.','') ?>
-                                    <?php echo $order->txn_currency() ?>
+                                    <?php echo number_format($order->tax()->value,2,'.','') ?>&nbsp;<?php echo $order->txn_currency() ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td><strong><?php echo l::get('total') ?></strong></td>
                                 <td>
                                     <strong>
-                                        <?php echo number_format($order->subtotal()->value+$order->shipping()->value+$order->tax()->value,2,'.','') ?>
-                                        <?php echo $order->txn_currency() ?>
+                                        <?php echo number_format($order->subtotal()->value+$order->shipping()->value+$order->tax()->value,2,'.','') ?>&nbsp;<?php echo $order->txn_currency() ?>
                                     </strong>
                                 </td>
                             </tr>
