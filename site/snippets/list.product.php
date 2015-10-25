@@ -14,22 +14,19 @@
 				<img src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
 
 				<div style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top uk-grid uk-grid-collapse uk-grid-width-1-2">
-					<div>
-						<h3 class="uk-margin-remove"><?php echo $product->title()->html() ?></h3>
-						<?php if ($product->text() != '') { ?>
-							<p class="uk-margin-remove"><?php echo $product->text()->excerpt(80) ?></p>
-						<?php } ?>
-					</div>
+					<h3 class="uk-margin-remove"><?php echo $product->title()->html() ?></h3>
 
-					<div class="uk-text-right">
-			    		<?php
-			    			$variants = $product->variants()->yaml();
-			    			foreach ($variants as $key => $variant) $pricelist[] = $variant['price'];
-			    			$priceFormatted = formatPrice(min($pricelist));
-			    			if (count($variants) > 1) $priceFormatted = 'From '.$priceFormatted;
-						?>
-						<span class="uk-button uk-button-primary uk-margin-left"><?php echo $priceFormatted ?></span>
-					</div>
+		    		<?php
+		    			$variants = $product->variants()->yaml();
+		    			foreach ($variants as $key => $variant) $pricelist[] = $variant['price'];
+		    			$priceFormatted = formatPrice(min($pricelist));
+		    			if (count($variants) > 1) $priceFormatted = 'From '.$priceFormatted;
+					?>
+					<p><span class="uk-button uk-button-primary"><?php echo $priceFormatted ?></span></p>
+
+					<?php if ($product->text() != '') { ?>
+						<p class="uk-margin-remove"><?php echo $product->text()->excerpt(80) ?></p>
+					<?php } ?>
 				</div>
 			</a>
 			<a class="fullscreen uk-button uk-padding-remove" href="<?php echo $product->url() ?>/slide">
