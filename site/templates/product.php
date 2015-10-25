@@ -28,9 +28,9 @@
 			
 			<?php $variants = $page->variants()->toStructure() ?>
 			<?php if (count($variants)) { ?>
-				<section class="variants uk-grid uk-grid-width-1-2 uk-grid-collapse">
+				<section class="variants">
 					<?php foreach ($variants as $variant) { ?>
-						<div>
+						<div class="uk-width-1-2">
 				            <form class="uk-form uk-panel uk-panel-box" method="post" action="<?php echo url('shop/cart') ?>">
 
 								<h3 class="uk-margin-small-bottom"><?php echo $variant->name() ?></h3>
