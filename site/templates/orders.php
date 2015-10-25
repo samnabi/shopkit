@@ -34,7 +34,7 @@
                         </form>
                         
                         <?php if($user and $user->hasPanelAccess() and strpos($order->txn_id(),'paylater') === false) { ?>
-                            <a href="<?php echo $cart->getPayPalAction().'?cmd=_view-a-trans&id='.$order->txn_id() ?>"><?php echo l::get('view-on-paypal') ?></a>
+                            <a href="<?php echo $cart->getPayPalAction().'?cmd=_view-a-trans&id='.$order->paypal_txn_id() ?>"><?php echo l::get('view-on-paypal') ?></a>
                         <?php } ?>
                     </td>
                     <td>
