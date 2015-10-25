@@ -57,7 +57,7 @@
 						<?php } ?>
 
 						<?php if (inStock($featuredVariant)) { ?>
-							<button class="uk-margin-small-top uk-button uk-width-1-1" type="submit"><?php echo l::get('buy') ?> <?php echo formatPrice($featuredPrice) ?></button>
+							<button class="uk-margin-small-top uk-button uk-width-1-1 uk-button-primary" type="submit"><?php echo l::get('buy') ?> <?php echo formatPrice($featuredPrice) ?></button>
 						<?php } else { ?>
 							<button class="uk-margin-small-top uk-button uk-width-1-1" disabled><?php echo l::get('out-of-stock') ?> <?php echo formatPrice($featuredPrice) ?></button>
 						<?php } ?>
