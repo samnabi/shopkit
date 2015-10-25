@@ -15,7 +15,7 @@
 
 <div class="uk-container uk-container-center">
 
-<div class="uk-grid data-uk-grid-margin">
+<div class="uk-grid uk-margin-large-bottom">
 
 	<div class="uk-width-small-1-1 uk-width-medium-2-3 uk-push-1-3">
 		
