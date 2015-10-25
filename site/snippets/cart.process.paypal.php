@@ -46,7 +46,7 @@
 		<input type="hidden" name="shipping_1" value="<?php echo $txn->shipping() ?>">
 	
 		<!-- Tax -->
-		<input type="hidden" name="tax" value="<?php echo $txn->tax() ?>">
+		<input type="hidden" name="tax_cart" value="<?php echo $txn->tax() ?>">
 
 		<!-- Transaction ID (Callback for the success page to grab the right transaction page) -->
 		<input type="hidden" name="custom" value="<?php echo $txn->slug() ?>">
