@@ -231,7 +231,11 @@ main {
 // Product page variants
 
 .variants {
+
+	font-size: 0;
+
 	& > div {
+		font-size: 14px;
 		padding: 5px;
 		display: inline-block;
 	}
