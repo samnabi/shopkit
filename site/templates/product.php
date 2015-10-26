@@ -28,7 +28,7 @@
 			
 			<?php $variants = $page->variants()->toStructure() ?>
 			<?php if (count($variants)) { ?>
-				<section class="variants uk-text-center">
+				<section class="variants">
 					<?php foreach ($variants as $variant) { ?>
 						<div class="uk-width-1-2 uk-text-left">
 				            <form class="uk-form uk-panel uk-panel-box" method="post" action="<?php echo url('shop/cart') ?>">
