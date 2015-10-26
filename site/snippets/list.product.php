@@ -25,7 +25,7 @@
 					<p><span class="uk-button uk-button-primary"><?php echo $priceFormatted ?></span></p>
 
 					<?php if ($product->text() != '') { ?>
-						<p class="uk-margin-remove"><?php echo $product->text()->excerpt(80) ?></p>
+						<p><?php echo $product->text()->excerpt(50) ?></p>
 					<?php } ?>
 				</div>
 			</a>
