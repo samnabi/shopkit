@@ -13,7 +13,7 @@
 				?>
 				<img src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
 
-				<div style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top uk-grid uk-grid-collapse uk-grid-width-1-2">
+				<div style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top">
 					<h3 class="uk-margin-remove"><?php echo $product->title()->html() ?></h3>
 
 		    		<?php
