@@ -89,23 +89,6 @@ l::set('next', 'Next');
 l::set('view-grid', 'View grid');
 
 
-// templates/account.php
-
-l::set('account-success','Your information has been updated.');
-l::set('account-failure','Sorry, something went wrong. Please make sure all information is entered correctly, including your email address.');
-l::set('account-delete-error','Sorry, your account couldn\'t be deleted.');
-
-l::set('password-help','Leave blank to keep it the same');
-
-l::set('update','Update');
-
-l::set('delete-account','Delete account');
-l::set('delete-account-text','If you click this button, there\'s no going back. Your account will be gone forever.');
-l::set('delete-account-verify','Delete my account. Yes, I\'m sure.');
-
-l::set('username-no-account','The username can\'t be changed.');
-
-
 // templates/cart.php
 
 l::set('no-cart-items','You don\'t have anything in your cart!');

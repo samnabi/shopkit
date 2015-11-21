@@ -23,15 +23,9 @@
 					</li>
 				<?php } ?>
 				<li <?php e(page('account')->isOpen(), 'class="uk-active"') ?>>
-					<a href="<?php echo url('account') ?>">
+					<a href="/panel/users/<?php echo $user->username() ?>/edit">
 						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path id="smiley-2-icon" d="M256,90c91.741,0,166,74.243,166,166c0,91.742-74.243,166-166,166c-91.74,0-166-74.243-166-166 C90,164.259,164.244,90,256,90 M256,50C142.229,50,50,142.229,50,256c0,113.771,92.229,206,206,206c113.771,0,206-92.229,206-206 C462,142.229,369.771,50,256,50z M199.666,181.5c-17.12,0-31,13.879-31,31s13.88,31,31,31c17.121,0,31-13.879,31-31 S216.787,181.5,199.666,181.5z M316.333,181.5c-17.121,0-31,13.879-31,31s13.879,31,31,31s31-13.879,31-31 S333.454,181.5,316.333,181.5z M356.334,284.334c-27.001,21.333-56.667,34.471-98.334,34.471s-71.333-13.138-98.334-34.471 l-8.791,8.791C171,323.834,208,356.805,258,356.805s87-32.971,107.125-63.68L356.334,284.334z"/></svg>
-						<?php
-							if ($user->firstname() != '' and $user->lastname() != '') {
-								echo $user->firstname().' '.$user->lastname();
-							} else {
-								echo $user->username();
-							}
-						?>
+						<?php echo l::get('my-account') ?> 
 					</a>
 				</li>
 				<li>

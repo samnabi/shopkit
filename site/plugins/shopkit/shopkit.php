@@ -66,8 +66,9 @@ function updateStock($items)
       $variants = $product->variants()->yaml();
       foreach ($variants as $key => $variant) {
         if (str::slug($variant['name']) === $item['variant']) {
-          // Edit stock in the original $variants array
-          $variants[$key]['stock'] = $variant['stock'] - $item['quantity'];
+          // Edit stock in the original $variants array. If $newStock is false/blank, that means it's unlimited. 
+          $newStock = $variant['stock'] - $item['quantity'];
+          $variants[$key]['stock'] = $newStock ? $newStock : '';
           // Update the entire variants field (only one variant has changed)
           $product->update(array('variants' => yaml::encode($variants)));
         }
