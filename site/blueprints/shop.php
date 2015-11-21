@@ -16,8 +16,7 @@ fields:
     label: Featured products
     help:  Featured products show up in the sidebar with a one-click "buy now" button
     type: structure
-    entry: >
-      {{product}} <em style="font-size: 0.8rem; margin-left: 1rem;">show {{calculation}}est price</em>
+    style: table
     fields:
       product:
         label: Featured product
@@ -39,14 +38,7 @@ fields:
     label: Shipping methods
     help: 
     type: structure
-    entry: >
-      <h3>{{method}}</h3>
-      <table>
-        <tr><td>Flat rate: </td> <td>{{flat}}</td></tr>
-        <tr><td>Per item: </td> <td>{{item}}</td></tr>
-        <tr><td>By weight: </td> <td>{{weight}}</td></tr>
-        <tr><td>By price: </td> <td>{{price}}</td></tr>
-      </table>
+    style: table
     fields:
       method:
         label: Method
@@ -91,8 +83,7 @@ fields:
   tax:
     label: Tax rates
     type: structure
-    entry: >
-      {{rate}}<br />{{countries}}
+    style: table
     fields:
       rate:
         label: Tax rate
