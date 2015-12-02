@@ -61,6 +61,7 @@ l::set('view-cart','Mon panier');
 // snippets/header.user.php
 
 l::set('edit-page', 'Éditer la page');
+l::set('edit-shop', 'Paramètres');
 l::set('dashboard', 'Tableau de bord');
 l::set('view-orders', 'Commandes');
 l::set('my-account', 'Mon compte');
