@@ -26,7 +26,7 @@
                 <?php foreach($cart->getItems() as $i => $item) : ?>
                     <tr>
                         <td>
-                            <a href="/<?php echo $item->uri ?>" title="<?php echo $item->fullTitle() ?>">
+                            <a href="<?php echo url($item->uri) ?>" title="<?php echo $item->fullTitle() ?>">
                                 <?php if ($img = $pages->findByUri($item->uri)->images()->first()) { ?>
                                     <img class="uk-float-left uk-margin-small-right" src="<?php echo thumb($img,array('width'=>60, 'height'=>60, 'crop'=>true))->dataUri() ?>" title="<?php echo $item->name ?>">
                                 <?php } ?>
