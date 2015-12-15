@@ -6,8 +6,8 @@ fields:
     help: Used to determine Shipping rates
     type: select
     options: query
-      query:
-        page: /shop/countries
-        fetch: children
+    query:
+      page: /shop/countries
+      fetch: children
 
 
