@@ -55,7 +55,7 @@ c::set('url', '/');
  
 */
 
-c::set('url', 'http://'.$_SERVER['HTTP_HOST']);
+// c::set('url', 'http://'.$_SERVER['HTTP_HOST']);
 
 /* 
 
