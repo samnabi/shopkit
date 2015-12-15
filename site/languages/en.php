@@ -46,10 +46,10 @@ l::set('address','Address');
 
 // snippets/header.notifications.php
 
-l::set('notification-account','You haven\'t set up any users. <a href="/panel/install" title="Panel installation page">Create an account now</a>.');
-l::set('notification-options','You haven\'t set up your shop options. <a href="/panel/#/pages/show/shop" title="Shop options">Define currency, shipping, and tax settings here</a>.');
-l::set('notification-category','You don\'t have any product categories. <a href="/panel/#/pages/add/shop" title="Create a new category">Create your first category here</a>.');
-l::set('notification-product','You don\'t have any products. <a href="/panel/#/pages/show/shop" title="Create a new product">Create your first product with the Dashboard</a>.');
+l::set('notification-account','You haven\'t set up any users. <a href="'.url('panel').'/install" title="Panel installation page">Create an account now</a>.');
+l::set('notification-options','You haven\'t set up your shop options. <a href="'.url('panel').'/#/pages/show/shop" title="Shop options">Define currency, shipping, and tax settings here</a>.');
+l::set('notification-category','You don\'t have any product categories. <a href="'.url('panel').'/#/pages/add/shop" title="Create a new category">Create your first category here</a>.');
+l::set('notification-product','You don\'t have any products. <a href="'.url('panel').'/#/pages/show/shop" title="Create a new product">Create your first product with the Dashboard</a>.');
 l::set('notification-license','This shop doesn\'t have a Shopkit license key. Be sure to add one in the <strong>config.php</strong> file before the website goes live.');
 
 
@@ -132,7 +132,7 @@ l::set('related-products','Related products');
 
 // templates/register.php
 
-l::set('register-success','Thanks, your account has been registered! You can now <a href="/login">log in</a>.');
+l::set('register-success','Thanks, your account has been registered! You can now <a href="'.url('login').'">log in</a>.');
 l::set('register-failure','Sorry, something went wrong. Please make sure all information is entered correctly, including your email address.');
 
 

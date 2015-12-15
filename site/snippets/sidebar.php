@@ -26,7 +26,7 @@
                 </div>
                 <div class="uk-text-small uk-text-center">
                     <?php echo l::get('new-customer') ?>
-                    <a href="/register" title="Register"><?php echo l::get('register') ?></a>
+                    <a href="<?php echo url('register') ?>" title="Register"><?php echo l::get('register') ?></a>
                 </div>
             </form>
         </div>

@@ -46,10 +46,10 @@ l::set('address','Addresse');
 
 // snippets/header.notifications.php
 
-l::set('notification-account','Vous n\'avez aucun compte. <a href="/panel/install" title="Page d\'installation du panneau">Créez-en un maintenant</a>.');
-l::set('notification-options','Vous n\'avez pas entré les options de votre magasin. <a href="/panel/#/pages/show/shop" title="Options de magasin">Entrez-les ici</a>.');
-l::set('notification-category','Vous n\'avez aucune catégorie pour vos produits. <a href="/panel/#/pages/add/shop" title="Créez une nouvelle catégorie">Créez votre première catégorie ici</a>.');
-l::set('notification-product','Vous n\'avez aucun produit. <a href="/panel/#/pages/show/shop" title="Créez un nouveau produit">Créez votre premier produit avec le tableau de bord</a>.');
+l::set('notification-account','Vous n\'avez aucun compte. <a href="'.url('panel').'/install" title="Page d\'installation du panneau">Créez-en un maintenant</a>.');
+l::set('notification-options','Vous n\'avez pas entré les options de votre magasin. <a href="'.url('panel').'/#/pages/show/shop" title="Options de magasin">Entrez-les ici</a>.');
+l::set('notification-category','Vous n\'avez aucune catégorie pour vos produits. <a href="'.url('panel').'/#/pages/add/shop" title="Créez une nouvelle catégorie">Créez votre première catégorie ici</a>.');
+l::set('notification-product','Vous n\'avez aucun produit. <a href="'.url('panel').'/#/pages/show/shop" title="Créez un nouveau produit">Créez votre premier produit avec le tableau de bord</a>.');
 l::set('notification-license','Vous n\'avez pas enregistré votre code de license. SVP mettez-le dans le fichier <strong>config.php</strong> avant de donner accès au public.');
 
 
@@ -132,7 +132,7 @@ l::set('related-products','Produits reliés');
 
 // templates/register.php
 
-l::set('register-success','Merci, votre compte est inscrit! Vous pouvez maintenant <a href="/login">vous connecter</a>.');
+l::set('register-success','Merci, votre compte est inscrit! Vous pouvez maintenant <a href="'.url('login').'">vous connecter</a>.');
 l::set('register-failure','Désolé, votre compte ne pouvait être inscrit. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.');
 
 
