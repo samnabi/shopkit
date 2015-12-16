@@ -9,7 +9,7 @@
 		<div class="uk-grid uk-grid-width-medium-1-2">
 			
 			<div>
-				<section>
+				<section property="description">
 					<?php echo $page->text()->kirbytext() ?>
 
 					<?php $tags = str::split($page->tags()) ?>
@@ -30,10 +30,10 @@
 			<?php if (count($variants)) { ?>
 				<section class="variants">
 					<?php foreach ($variants as $variant) { ?>
-						<div class="uk-width-1-2 uk-text-left">
+						<div class="uk-width-1-2 uk-text-left" vocab="http://schema.org/" typeof="Product">
 				            <form class="uk-form uk-panel uk-panel-box" method="post" action="<?php echo url('shop/cart') ?>">
 
-								<h3 class="uk-margin-small-bottom"><?php echo $variant->name() ?></h3>
+								<h3 class="uk-margin-small-bottom" property="name"><?php echo $variant->name() ?></h3>
 
 								<?php ecco(trim($variant->description()) != '',$variant->description()->kirbytext()) ?>
 
@@ -51,9 +51,11 @@
 								<?php } ?>
 
 								<?php if (inStock($variant)) { ?>
-									<button class="uk-button uk-button-primary uk-width-1-1" type="submit"><?php echo l::get('buy') ?> <?php echo formatPrice($variant->price()->value) ?></button>
+									<button class="uk-button uk-button-primary uk-width-1-1" type="submit" property="offers" typeof="Offer"><?php echo l::get('buy') ?> <?php echo formatPrice($variant->price()->value) ?></button>
+									<link property="availability" href="http://schema.org/InStock" />
 								<?php } else { ?>
-									<button class="uk-button uk-button-primary uk-width-1-1" disabled><?php echo l::get('out-of-stock') ?> <?php echo formatPrice($variant->price()->value) ?></button>
+									<button class="uk-button uk-button-primary uk-width-1-1" disabled property="offers" typeof="Offer"><?php echo l::get('out-of-stock') ?> <?php echo formatPrice($variant->price()->value) ?></button>
+									<link property="availability" href="http://schema.org/OutOfStock" />
 								<?php } ?>
 				            </form>
 						</div>

@@ -5,10 +5,11 @@
 		<?php foreach ($page->images() as $photo) { ?>	
 			<!-- Radio button (hidden with CSS) -->
 			<input <?php ecco($first,'checked') ?> type="radio" name="thumbnail" id="<?php echo $photo->hash() ?>">
-			<?php $first = false ?>
 			
 			<!-- Large photo -->
-			<img src="<?php echo thumb($photo,array('height'=>300))->dataUri() ?>" title="<?php echo $photo->title() ?>"/>
+			<img <?php e($first,'property="image"') ?> src="<?php echo thumb($photo,array('height'=>300))->dataUri() ?>" title="<?php echo $photo->title() ?>"/>
+
+			<?php $first = false ?>
 		<?php } ?>
 
 		<!-- Show thumbnails if there are multiple photos -->

@@ -1,7 +1,7 @@
 <?php if(count($products) or $products->count()) { ?>
 	<ul class="listing uk-container uk-padding-remove">
 	  <?php foreach($products as $product): ?>
-		<li class="uk-margin-right uk-margin-bottom">
+		<li class="uk-margin-right uk-margin-bottom" vocab="http://schema.org" typeof="Product">
 			<a href="<?php echo $product->url() ?>">
 				<?php 
 					if ($product->hasImages()) {
@@ -11,10 +11,10 @@
 					}
 					$thumb = thumb($image,array('height'=>150));
 				?>
-				<img src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
+				<img property="image" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
 
 				<div style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top">
-					<h3 class="uk-margin-remove"><?php echo $product->title()->html() ?></h3>
+					<h3 class="uk-margin-remove" property="name"><?php echo $product->title()->html() ?></h3>
 
 		    		<?php
 		    			$variants = $product->variants()->yaml();
@@ -22,10 +22,12 @@
 		    			$priceFormatted = formatPrice(min($pricelist));
 		    			if (count($variants) > 1) $priceFormatted = 'From '.$priceFormatted;
 					?>
-					<p><span class="uk-button uk-button-primary"><?php echo $priceFormatted ?></span></p>
+					<p property="offers" typeof="Offer">
+						<span class="uk-button uk-button-primary"><?php echo $priceFormatted ?></span>
+					</p>
 
 					<?php if ($product->text() != '') { ?>
-						<p><?php echo $product->text()->excerpt(50) ?></p>
+						<p property="description"><?php echo $product->text()->excerpt(50) ?></p>
 					<?php } ?>
 				</div>
 			</a>
