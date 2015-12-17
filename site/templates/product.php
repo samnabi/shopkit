@@ -51,11 +51,15 @@
 								<?php } ?>
 
 								<?php if (inStock($variant)) { ?>
-									<button class="uk-button uk-button-primary uk-width-1-1" type="submit" property="offers" typeof="Offer"><?php echo l::get('buy') ?> <?php echo formatPrice($variant->price()->value) ?></button>
-									<link property="availability" href="http://schema.org/InStock" />
+									<button class="uk-button uk-button-primary uk-width-1-1" type="submit" property="offers" typeof="Offer">
+										<?php echo l::get('buy') ?> <?php echo formatPrice($variant->price()->value) ?>
+										<link property="availability" href="http://schema.org/InStock" />
+									</button>
 								<?php } else { ?>
-									<button class="uk-button uk-button-primary uk-width-1-1" disabled property="offers" typeof="Offer"><?php echo l::get('out-of-stock') ?> <?php echo formatPrice($variant->price()->value) ?></button>
-									<link property="availability" href="http://schema.org/OutOfStock" />
+									<button class="uk-button uk-button-primary uk-width-1-1" disabled property="offers" typeof="Offer">
+										<?php echo l::get('out-of-stock') ?> <?php echo formatPrice($variant->price()->value) ?>
+										<link property="availability" href="http://schema.org/OutOfStock" />
+									</button>
 								<?php } ?>
 				            </form>
 						</div>
