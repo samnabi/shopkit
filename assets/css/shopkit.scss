@@ -302,12 +302,10 @@ main {
 	}
 }
 
-.slideshow .description a {
+a.slideshow {
 	display: block;
 	color: black;
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
-	padding: 1rem 0;
+	padding-bottom: 1rem;
 
 	&:hover,
 	&:focus {
@@ -317,6 +315,15 @@ main {
 	&:active {
 		opacity: 0.8;
 	}
+}
+
+.slideshow .description > h3 {
+	border-top: 1px solid black;
+	padding-top: 1rem;
+}
+.slideshow .description > div:last-child {
+	border-bottom: 1px solid black;
+	padding-bottom: 1rem;
 }
 
 

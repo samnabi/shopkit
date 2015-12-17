@@ -20,7 +20,7 @@
 	</a>
 </nav>
 
-<div class="slideshow uk-grid uk-grid-small" vocab="http://schema.org" typeof="Product">
+<a class="slideshow uk-grid uk-grid-small" href="<?php echo $product->url() ?>" vocab="http://schema.org" typeof="Product">
 	<div class="image uk-width-1-1 uk-width-medium-3-4">
 		<?php 
 			if ($product->hasImages()) {
@@ -30,32 +30,28 @@
 			}
 			$thumb = thumb($image,array('width'=>600));
 		?>
-		<a href="<?php echo $product->url() ?>">
-			<img property="image" content="<?php echo $thumb->url() ?>" class="uk-width-1-1" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
-		</a>
+		<img property="image" content="<?php echo $thumb->url() ?>" class="uk-width-1-1" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
 	</div>
 
 	<div class="description uk-width-1-1 uk-width-medium-1-4">
-		<a href="<?php echo $product->url() ?>">
-			<h3 property="name"><?php echo $product->title()->html() ?></h3>
-			
-			<?php if ($product->text() != '') { ?>
-				<p property="description"><?php echo $product->text()->excerpt(80) ?></p>
-			<?php } ?>
-			
-			<div>
-	    		<?php
-	    			$variants = $product->variants()->yaml();
-	    			foreach ($variants as $key => $variant) $pricelist[] = $variant['price'];
-	    			$priceFormatted = is_array($pricelist) ? formatPrice(min($pricelist)) : 0;
-	    			if (count($variants) > 1) $priceFormatted = 'From '.$priceFormatted;
-				?>
-				<span class="uk-button uk-button-primary" property="offers" typeof="Offer"><?php echo $priceFormatted ?></span>
-			</div>
-		</a>
+		<h3 property="name"><?php echo $product->title()->html() ?></h3>
+		
+		<?php if ($product->text() != '') { ?>
+			<p property="description"><?php echo $product->text()->excerpt(80) ?></p>
+		<?php } ?>
+		
+		<div>
+    		<?php
+    			$variants = $product->variants()->yaml();
+    			foreach ($variants as $key => $variant) $pricelist[] = $variant['price'];
+    			$priceFormatted = is_array($pricelist) ? formatPrice(min($pricelist)) : 0;
+    			if (count($variants) > 1) $priceFormatted = 'From '.$priceFormatted;
+			?>
+			<span class="uk-button uk-button-primary" property="offers" typeof="Offer"><?php echo $priceFormatted ?></span>
+		</div>
 	</div>
 
-</div>
+</a>
 
 <script>
 // Keybindings for left, right, escape

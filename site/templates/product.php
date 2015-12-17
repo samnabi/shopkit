@@ -35,7 +35,9 @@
 
 								<h3 class="uk-margin-small-bottom" property="name" content="<?php echo $page->title().' &ndash; '.$variant->name() ?>"><?php echo $variant->name() ?></h3>
 
-								<link property="image" content="<?php $page->images()->first()->url() ?>" />
+								<?php if($page->hasImages()) { ?>
+									<link property="image" content="<?php $page->images()->first()->url() ?>" />
+								<?php } ?>
 
 								<div property="description">
 									<?php ecco(trim($variant->description()) != '',$variant->description()->kirbytext()) ?>

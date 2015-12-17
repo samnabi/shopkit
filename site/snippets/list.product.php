@@ -1,8 +1,8 @@
 <?php if(count($products) or $products->count()) { ?>
 	<ul class="listing uk-container uk-padding-remove">
 	  <?php foreach($products as $product): ?>
-		<li class="uk-margin-right uk-margin-bottom" vocab="http://schema.org" typeof="Product">
-			<a href="<?php echo $product->url() ?>">
+		<li class="uk-margin-right uk-margin-bottom">
+			<a href="<?php echo $product->url() ?>" vocab="http://schema.org" typeof="Product">
 				<?php 
 					if ($product->hasImages()) {
 						$image = $product->images()->sortBy('sort', 'asc')->first();
@@ -18,9 +18,10 @@
 
 		    		<?php
 		    			$variants = $product->variants()->yaml();
-		    			foreach ($variants as $key => $variant) $pricelist[] = $variant['price'];
-		    			$priceFormatted = formatPrice(min($pricelist));
-		    			if (count($variants) > 1) $priceFormatted = 'From '.$priceFormatted;
+		    			foreach ($variants as $key => $variant) $pricelist[] = $variant['price']; // Add all prices to the pricelist
+		    			$priceFormatted = formatPrice(min($pricelist)); // Find the lowest price and format it
+		    			if (count($variants) > 1) $priceFormatted = 'From '.$priceFormatted; // If there are multiple prices, add "From" to the label"
+		    			$pricelist = []; // Clear the pricelist
 					?>
 					<p property="offers" typeof="Offer">
 						<span class="uk-button uk-button-primary"><?php echo $priceFormatted ?></span>
