@@ -7,7 +7,7 @@
 			<input <?php ecco($first,'checked') ?> type="radio" name="thumbnail" id="<?php echo $photo->hash() ?>">
 			
 			<!-- Large photo -->
-			<img <?php e($first,'property="image"') ?> src="<?php echo thumb($photo,array('height'=>300))->dataUri() ?>" title="<?php echo $photo->title() ?>"/>
+			<img src="<?php echo thumb($photo,array('height'=>300))->dataUri() ?>" title="<?php echo $photo->title() ?>"/>
 
 			<?php $first = false ?>
 		<?php } ?>

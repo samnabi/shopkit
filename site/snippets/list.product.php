@@ -11,7 +11,7 @@
 					}
 					$thumb = thumb($image,array('height'=>150));
 				?>
-				<img property="image" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
+				<img property="image" content="<?php echo $thumb->url() ?>" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
 
 				<div style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top">
 					<h3 class="uk-margin-remove" property="name"><?php echo $product->title()->html() ?></h3>

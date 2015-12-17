@@ -31,7 +31,7 @@
 			$thumb = thumb($image,array('width'=>600));
 		?>
 		<a href="<?php echo $product->url() ?>">
-			<img property="image" class="uk-width-1-1" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
+			<img property="image" content="<?php echo $thumb->url() ?>" class="uk-width-1-1" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
 		</a>
 	</div>
 

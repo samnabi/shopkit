@@ -9,7 +9,7 @@
 		<div class="uk-grid uk-grid-width-medium-1-2">
 			
 			<div>
-				<section property="description">
+				<section>
 					<?php echo $page->text()->kirbytext() ?>
 
 					<?php $tags = str::split($page->tags()) ?>
@@ -33,9 +33,13 @@
 						<div class="uk-width-1-2 uk-text-left" vocab="http://schema.org/" typeof="Product">
 				            <form class="uk-form uk-panel uk-panel-box" method="post" action="<?php echo url('shop/cart') ?>">
 
-								<h3 class="uk-margin-small-bottom" property="name"><?php echo $variant->name() ?></h3>
+								<h3 class="uk-margin-small-bottom" property="name" content="<?php echo $page->title().' &ndash; '.$variant->name() ?>"><?php echo $variant->name() ?></h3>
 
-								<?php ecco(trim($variant->description()) != '',$variant->description()->kirbytext()) ?>
+								<link property="image" content="<?php $page->images()->first()->url() ?>" />
+
+								<div property="description">
+									<?php ecco(trim($variant->description()) != '',$variant->description()->kirbytext()) ?>
+								</div>
 
 				                <input type="hidden" name="action" value="add">
 				                <input type="hidden" name="uri" value="<?php echo $page->uri() ?>">
