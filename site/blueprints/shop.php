@@ -5,6 +5,7 @@ pages: true
   template:
     - category
 files: false
+deletable: false
 fields:
   title:
     label: Title

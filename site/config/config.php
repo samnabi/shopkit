@@ -240,3 +240,22 @@ c::set('routes', array(
     }
   ),
 ));
+
+
+/*
+
+---------------------------------------
+Hooks
+--------------------------------------
+
+*/
+
+// All new pages visible by default
+kirby()->hook('panel.page.create', 'makeVisible');
+function makeVisible($page) {
+  try {
+    $page->toggle('last');
+  } catch(Exception $e) {
+    return response::error($e->getMessage());
+  }
+}
