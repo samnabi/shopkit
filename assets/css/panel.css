@@ -1,0 +1,7 @@
+.sidebar-list .invisible {
+	opacity: 0.3;
+}
+.sidebar-list .invisible:hover,
+.sidebar-list .invisible:active {
+	opacity: 1;
+}

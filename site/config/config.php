@@ -57,6 +57,17 @@ c::set('url', '/');
 
 // c::set('url', 'http://'.$_SERVER['HTTP_HOST']);
 
+
+/* 
+
+---------------------------------------
+Custom Panel stylesheet
+---------------------------------------
+
+*/
+
+c::set('panel.stylesheet', site()->url().'/assets/css/panel.css');
+
 /* 
 
 ---------------------------------------
