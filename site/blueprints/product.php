@@ -1,6 +1,7 @@
 <?php if(!defined('KIRBY')) exit ?>
 
 title: Product
+icon: shopping-bag
 pages: false
 files:
   sortable: true

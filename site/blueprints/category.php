@@ -1,6 +1,7 @@
 <?php if(!defined('KIRBY')) exit ?>
 
 title: Category
+icon: sitemap
 pages: true
   template:
     - category

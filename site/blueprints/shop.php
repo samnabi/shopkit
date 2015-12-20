@@ -1,6 +1,7 @@
 <?php if(!defined('KIRBY')) exit ?>
 
 title: Shop
+icon: cog
 pages: true
   template:
     - category
