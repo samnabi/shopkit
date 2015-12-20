@@ -66,7 +66,7 @@ Custom Panel stylesheet
 
 */
 
-c::set('panel.stylesheet', site()->url().'/assets/css/panel.css');
+c::set('panel.stylesheet', '/assets/css/panel.css');
 
 /* 
 
