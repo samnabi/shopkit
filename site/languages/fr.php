@@ -132,7 +132,7 @@ l::set('related-products','Produits reliés');
 
 // templates/register.php
 
-l::set('register-success','Merci, votre compte est inscrit! Vous pouvez maintenant <a href="'.url('login').'">vous connecter</a>.');
+l::set('register-success','Merci, votre compte est inscrit! Vous pouvez maintenant <a href="#user">vous connecter</a>.');
 l::set('register-failure','Désolé, votre compte ne pouvait être inscrit. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.');
 
 
