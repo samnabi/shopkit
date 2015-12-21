@@ -90,6 +90,19 @@ l::set('next', 'Prochain');
 l::set('view-grid', 'Vue grille');
 
 
+// templates/account.php
+
+l::set('account-success','Votre information est mise à jour.');
+l::set('account-failure','Désolé, votre information ne pouvait être mise à jour. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.');
+l::set('account-delete-error','Désolé, votre compte ne pouvait être supprimé.');
+l::set('password-help','Laissez vide pour garder votre mot de passe actuel');
+l::set('update','Mettre à jour');
+l::set('delete-account','Supprimer mon compte');
+l::set('delete-account-text','Si vous cliquez ce bouton, c\'est le point de non-retour. Votre compte sera supprimé à jamais.');
+l::set('delete-account-verify','Supprimer mon compte. Oui, je suis certain.');
+l::set('username-no-account','Le nom d\'utilisateur ne peut être changé.');
+
+
 // templates/cart.php
 
 l::set('no-cart-items','Vous n\'avez rien dans votre panier!');
