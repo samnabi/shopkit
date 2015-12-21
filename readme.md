@@ -83,6 +83,19 @@ If you're upgrading from Shopkit 0.9.2 or earlier, you'll have to change some th
 
 ## Changelog
 
+### v1.0.1
+
+- Upgrade Kirby core & panel to 2.2.3
+- Panel improvements
+    - Template-specific icons in the sidebar
+    - Protect core pages from deletion
+    - Autopublish for all templates
+    - Some structure fields display in table format
+- Add Schema.org RDFa data to product templates so rich snippets show up in Google & Bing
+- Support for installing Shopkit in a subdirectory
+- Add Shop settings button in the admin bar
+- Bugfixes & layout tweaks
+
 ### v1.0
 
 - Inventory control
