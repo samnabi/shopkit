@@ -12,7 +12,7 @@
 
     <?php echo $page->text()->kirbytext() ?>
 
-    <?php if(r::is('post') and get('update')) { ?>
+    <?php if(isset($_POST['update'])) { ?>
       <div class="uk-alert uk-alert-warning">
         <p>
           <?php
@@ -41,7 +41,7 @@
       </div>
     <?php } ?>
 
-    <?php if(r::is('post') and get('delete')) { ?>
+    <?php if(isset($_POST['delete'])) { ?>
       <div class="uk-alert uk-alert-danger">
         <p>
           <?php
