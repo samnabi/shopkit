@@ -158,6 +158,10 @@ ul.uk-nav-sub {
 main {
 	padding-bottom: 2rem;
 	border-bottom: 1px solid #DDD;
+
+	&.uk-padding-remove {
+		padding-bottom: 1rem !important;
+	}
 }
 
 

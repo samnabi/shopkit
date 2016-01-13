@@ -1,7 +1,23 @@
+/* List of Subpages */
 .sidebar-list .invisible {
 	opacity: 0.3;
 }
 .sidebar-list .invisible:hover,
 .sidebar-list .invisible:active {
 	opacity: 1;
+}
+
+/* Login form */
+body.login form.form::after {
+	color: #999;
+	content: 'Please log in with your username, not your email address. You may log in with your email address from the home page.';
+}
+
+body.login form.form .btn-submit {
+	margin: 0 0 45px 0;
+}
+
+body.login form.form fieldset.buttons-centered {
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 10px;
 }
