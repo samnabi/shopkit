@@ -213,14 +213,15 @@ class Cart
 	 */
 	protected function appliesToCountry(array $data)
 	{
-	  	// Check if country is in data
-	  	if(is_array($data['countries[]']) and (in_array(s::get('country'), $data['countries[]']) or in_array('all-countries', $data['countries[]']))) {
+		// Get array from countries string
+		$countries = explode(', ',$data['countries']);
+
+	  	// Check if country is in the array
+	  	if(in_array(s::get('country'), $countries) or in_array('all-countries', $countries)) {
       		return true;
-    	}
-	  	if (s::get('country') === $data['countries[]'] or 'all-countries' === $data['countries[]']) {
-      		return true;
-    	}
-	  	return false;
+    	} else {
+	  		return false;
+	  	}
 	}
 
 	/**
