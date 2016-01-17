@@ -72,7 +72,7 @@ Your shop logo is defined in the global site options.
 
 You'll also need to enter your license keys in the `/site/config/config.php` file.
 
-## Upgrading to Shopkit 1.0
+## Upgrading to Shopkit v1.x
 
 If you're upgrading from Shopkit 0.9.2 or earlier, you'll have to change some things manually:
 
@@ -82,6 +82,14 @@ If you're upgrading from Shopkit 0.9.2 or earlier, you'll have to change some th
 - In every order's text file, change the order status values to reflect the new values: `pending`, `paid`, or `shipped`.
 
 ## Changelog
+
+### v1.0.2
+
+- Improved reliability for PayPal transaction confirmation
+- User registration has one name field instead of separate first/last name fields
+- Fixed shipping bug related to updated multiselect syntax
+- Clearer instructions when logging in from /panel
+- Add some padding to the bottom of <main>
 
 ### v1.0.1
 
