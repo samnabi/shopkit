@@ -3,10 +3,10 @@
 // CONFIG: Enable debug mode. This means we'll log requests into 'ipn.log' in the same directory.
 // Especially useful if you encounter network errors or other intermittent problems with IPN (validation).
 // Set this to 0 once you go live or don't require logging.
-define("DEBUG", 0);
+define("DEBUG", 1);
 
 // Set to 0 once you're ready to go live
-$use_sandbox = page('shop')->paypal_action() === 'live' ? 0 : 1;
+$use_sandbox = page('shop')->paypal_action() == 'live' ? 0 : 1;
 define("USE_SANDBOX", $use_sandbox);
 
 define("LOG_FILE", "ipn.log");
@@ -50,11 +50,17 @@ if ($ch == FALSE) {
 	return FALSE;
 }
 
+// Check if we're on a secure connection, and disable SSL_VERIFYPEER if there is no HTTPS
+function isSecure() {
+  return (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+}
+$VerifyPeer = isSecure() ? 1 : 0;
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $VerifyPeer);
+
 curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
 

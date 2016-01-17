@@ -13,16 +13,19 @@ if($_POST['txn_id'] != '' ) {
       $txn->tax()->value == $_POST['tax'] and
       $txn->txn_currency() == $_POST['mc_currency']) {
 
+    // Normalize payment status to paid/pending
+    $payment_status = in_array($_POST['payment_status'], ['Completed','Processed']) ? 'paid' : 'pending';
+
     try {
       // Update transaction record
       $txn->update([
         'paypal-txn-id' => $_POST['txn_id'],
-        'status'  => strtolower($_POST['payment_status']),
+        'status'  => $payment_status,
         'payer-id' => $_POST['payer_id'],
         'payer-name' => $_POST['first_name']." ".$_POST['last_name'],
         'payer-email' => $_POST['payer_email'],
         'payer-address' => $_POST['address_street']."\n".$_POST['address_city'].", ".$_POST['address_state']." ".$_POST['address_zip']."\n".$_POST['address_country']
-      ]);
+      ], 'en');
       
       // Update product stock
       updateStock(unserialize(urldecode($txn->encoded_items())));
