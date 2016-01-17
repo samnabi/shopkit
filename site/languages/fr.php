@@ -10,6 +10,7 @@ l::set('register', 'Inscription');
 l::set('email-address','Courriel');
 l::set('first-name','Prénom');
 l::set('last-name','Surnom');
+l::set('full-name','Nom');
 l::set('country','Pays');
 l::set('country-help','Afin de calculer les frais de transport');
 
@@ -147,6 +148,7 @@ l::set('related-products','Produits reliés');
 
 l::set('register-success','Merci, votre compte est inscrit! Vous pouvez maintenant <a href="#user">vous connecter</a>.');
 l::set('register-failure','Désolé, votre compte ne pouvait être inscrit. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.');
+l::set('register-duplicate','Désolé, vore compte ne pouvait être inscrit. Il y a déja un compte avec ce nom d\'utilisateur ou courriel.');
 
 
 // templates/search.php

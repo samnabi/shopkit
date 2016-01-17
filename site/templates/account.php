@@ -19,8 +19,7 @@
             try {
               $user = $site->user()->update(array(
                 'email'     => get('email'),
-                'firstname' => get('firstname'),
-                'lastname'  => get('lastname'),
+                'firstname' => get('fullname'),
                 'language'  => 'en',
                 'country'   => get('country')
               ));
@@ -75,14 +74,10 @@
         <input class="uk-form-width-medium" type="password" id="password" name="password" value="" aria-describedby="passwordHelp">
         <p class="uk-form-help-block uk-text-muted uk-margin-remove" id="passwordHelp"><?php echo l::get('password-help') ?></p>
       </div>
-      <div class="uk-form-row uk-grid">
+      <div class="uk-form-row">
         <div>
-          <label for="firstname"><?php echo l::get('first-name') ?></label>
-          <input class="uk-form-width-medium" type="text" id="firstname" name="firstname" value="<?php echo $user->firstname() ?>">
-        </div>
-        <div>
-          <label for="lastname"><?php echo l::get('last-name') ?></label>
-          <input class="uk-form-width-medium" type="text" id="lastname" name="lastname" value="<?php echo $user->lastname() ?>">
+          <label for="fullname"><?php echo l::get('full-name') ?></label>
+          <input class="uk-form-width-large" type="text" id="fullname" name="fullname" value="<?php echo $user->firstName() ?>">
         </div>
       </div>
       <div class="uk-form-row">

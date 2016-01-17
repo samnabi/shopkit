@@ -9,18 +9,19 @@
         <p>
           <?php
 
-            // Check for duplicate email addresses
-            $duplicate = $site->users()->findBy('email',trim(get('email')));
+            // Check for duplicate accounts
+            $duplicateEmail = $site->users()->findBy('email',trim(get('email')));
+            $duplicateUsername = $site->users()->findBy('username',trim(get('username')));
 
-            if (count($duplicate) === 0) {
+            if (count($duplicateEmail) === 0 and count($duplicateUsername) === 0) {
               try {
 
+                // Create account
                 $user = $site->users()->create(array(
                   'username'  => trim(get('username')),
                   'email'     => trim(get('email')),
                   'password'  => get('password'),
-                  'firstName' => trim(get('firstname')),
-                  'lastName'  => trim(get('lastname')),
+                  'firstName' => trim(get('fullname')),
                   'language'  => 'en',
                   'country'   => get('country')
                 ));
@@ -28,14 +29,10 @@
                 echo l::get('register-success');
 
               } catch(Exception $e) {
-
                 echo l::get('register-failure');
-
               }
             } else {
-
-                echo l::get('register-failure');
-
+                echo l::get('register-duplicate');
             }
           ?>
         </p>
@@ -46,31 +43,27 @@
       <div class="uk-form-row uk-grid">
         <div>
           <label for="username"><?php echo l::get('username') ?></label>
-          <input class="uk-form-width-medium" type="text" id="username" name="username">
+          <input class="uk-form-width-large" type="text" id="username" name="username">
         </div>
         <div>
           <label for="email"><?php echo l::get('email-address') ?></label>
-          <input class="uk-form-width-medium" type="text" id="email" name="email">
+          <input class="uk-form-width-large" type="text" id="email" name="email">
         </div>
       </div>
       <div class="uk-form-row">
         <label for="password"><?php echo l::get('password') ?></label>
-        <input class="uk-form-width-medium" type="password" id="password" name="password" value="" aria-describedby="passwordHelp">
+        <input class="uk-form-width-large" type="password" id="password" name="password" value="" aria-describedby="passwordHelp">
         <p class="uk-form-help-block uk-text-muted uk-margin-remove" id="passwordHelp"><?php echo l::get('password-help') ?></p>
       </div>
-      <div class="uk-form-row uk-grid">
+      <div class="uk-form-row">
         <div>
-          <label for="firstname"><?php echo l::get('first-name') ?></label>
-          <input class="uk-form-width-medium" type="text" id="firstname" name="firstname">
-        </div>
-        <div>
-          <label for="lastname"><?php echo l::get('last-name') ?></label>
-          <input class="uk-form-width-medium" type="text" id="lastname" name="lastname">
+          <label for="fullname"><?php echo l::get('full-name') ?></label>
+          <input class="uk-form-width-large" type="text" id="fullname" name="fullname" value="<?php echo get('fullname') ?>">
         </div>
       </div>
       <div class="uk-form-row">
         <label for="country"><?php echo l::get('country') ?></label>
-        <select class="uk-form-width-medium" name="country" id="country">
+        <select class="uk-form-width-large" name="country" id="country">
           <?php foreach (page('/shop/countries')->children()->invisible() as $c) { ?>
             <option value="<?php echo $c->slug() ?>"><?php echo $c->title() ?></option>
           <?php } ?>
@@ -78,7 +71,7 @@
         <p class="uk-form-help-block uk-text-muted uk-margin-remove"><?php echo l::get('country-help') ?></p>
       </div>
       <div class="uk-form-row">
-        <button class="uk-button uk-button-primary uk-button-large uk-form-width-medium" type="submit" name="register">
+        <button class="uk-button uk-button-primary uk-button-large uk-form-width-large" type="submit" name="register">
           <?php echo l::get('register') ?>
         </button>
       </div>

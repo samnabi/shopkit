@@ -10,6 +10,7 @@ l::set('register', 'Register');
 l::set('email-address','Email address');
 l::set('first-name','First name');
 l::set('last-name','Last name');
+l::set('full-name','Full name');
 l::set('country','Country');
 l::set('country-help','To calculate shipping costs');
 
@@ -147,6 +148,7 @@ l::set('related-products','Related products');
 
 l::set('register-success','Thanks, your account has been registered! You can now <a href="#user">log in</a>.');
 l::set('register-failure','Sorry, something went wrong. Please make sure all information is entered correctly, including your email address.');
+l::set('register-duplicate','Sorry, there\'s already an account with that username or email address.');
 
 
 // templates/search.php
