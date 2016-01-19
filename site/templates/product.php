@@ -4,8 +4,6 @@
 		
 		<h1><?php echo $page->title()->html() ?></h1>
 
-
-
 		<div class="uk-grid uk-grid-width-medium-1-2">
 			
 			<div>
@@ -22,7 +20,7 @@
 					<?php } ?>
 				</section>
 
-				<?php snippet('product.gallery') ?>
+				<?php if ($page->hasImages()) snippet('slider',['photos'=>$page->images()]) ?>
 			</div>
 			
 			

@@ -18,3 +18,12 @@ fields:
   text:
     label: Text
     type:  markdown
+  slider:
+    label: Photo slider
+    help: Choose photos to show at the top of the page.
+    type: checkboxes
+    options: query
+    query:
+      fetch: images
+      value: '{{filename}}'
+      text: '<img class="slider-preview" src="{{url}}"/>'

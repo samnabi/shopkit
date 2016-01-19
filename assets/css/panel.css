@@ -21,3 +21,9 @@ body.login form.form fieldset.buttons-centered {
 	border-bottom: 1px solid #ccc;
 	margin-bottom: 10px;
 }
+
+/* Checkboxes for sliders */
+.slider-preview {
+	max-width: 100px;
+	max-height: 100px;
+}

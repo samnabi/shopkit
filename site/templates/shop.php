@@ -9,11 +9,13 @@
 ?>
 
 <?php snippet('header') ?>
-		
-		<?php echo $page->text()->kirbytext() ?>
 
-		<?php snippet('list.product', ['products' => $products]) ?>
+	<?php if ($page->slider() != '') snippet('slider',['photos'=>$page->slider()]) ?>
+	
+	<?php echo $page->text()->kirbytext() ?>
 
-		<?php snippet('list.category', ['categories' => $categories]) ?>
+	<?php snippet('list.product', ['products' => $products]) ?>
+
+	<?php snippet('list.category', ['categories' => $categories]) ?>
 
 <?php snippet('footer') ?>

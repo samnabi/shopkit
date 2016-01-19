@@ -16,15 +16,13 @@
 		
 	<?php } else { ?>
 
+		<?php if ($page->slider() != '') snippet('slider',['photos'=>$page->slider()]) ?>
+
 		<?php snippet('breadcrumb') ?>
 		
 		<h1><?php echo $page->title()->html() ?></h1>
 		
 		<?php echo $page->text()->kirbytext() ?>
-
-		<?php if($photo = $page->images()->sortBy('sort', 'asc')->first()) { ?>
-			<img src="<?php echo thumb($photo,array('height'=>300, 'quality'=>90))->dataUri() ?>" title="<?php echo $photo->title() ?>"/>
-		<?php } ?>
 
 		<?php snippet('list.product', ['products' => $products]) ?>
 		

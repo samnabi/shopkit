@@ -251,29 +251,59 @@ main {
 }
 
 
-// Product page image gallery
+// Image slider
 
-.gallery {
+.slider {
+	position: relative;
 
-	& > img {
-		display: none;
-		margin: 0 auto 1.25rem;
+	.slide {
+		background-size: 100%;
+		background-position: center;
+		opacity: 0;
+		height: 0;
+		overflow: hidden;
+		transition: opacity 0.2s ease-in-out;
+
+		img {
+			display: block;
+			margin: 0 auto;
+		}
 	}
 
 	input {
 		display: none;
 
-		&:checked + img {
-			display: block;
+		&:checked + .slide {
+			height: auto;
+			opacity: 1;
 		}
 	}
 
-	label {
+	.thumbnails {
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		list-style: none;
+		font-size: 0;
+		
+		li {
+			font-size: 1rem;
+			display: inline-block;
+			margin: 0.5rem 0.5rem 0;
+			width: 10%;
+			max-width: 50px;
+
+			&:first-child {
+				margin-left: 1rem;
+			}
+		}
+
 		img {
 			width: 100%;
-			max-width: 100px;
+			border-radius: 100%;
 			display: block;
-			margin: 0 auto 1.25rem;
+			border: 2px solid white;
+			cursor: pointer;
 		}
 	}
 }

@@ -39,3 +39,7 @@ Paypal-action: sandbox
 ----
 
 Featured: 
+
+----
+
+Slider: 
