@@ -15,15 +15,9 @@ fields:
   text:
     label: Text
     type:  markdown
-  slider:
-    label: Photo slider
-    help: Choose photos to show at the top of the page.
-    type: checkboxes
-    options: query
-    query:
-      fetch: images
-      value: '{{filename}}'
-      text: '<img class="slider-preview" src="{{url}}"/>'
+  hours:
+    label: Hours of operation
+    type:  markdown
   phone:
     label: Phone number
     type: text
@@ -39,3 +33,12 @@ fields:
       lng: -122.67648159999999
       zoom: 19
     help: "Move the pin wherever you'd like, or search for a location!"
+  slider:
+    label: Photo slider
+    help: Choose photos to show at the top of the page.
+    type: checkboxes
+    options: query
+    query:
+      fetch: images
+      value: '{{filename}}'
+      text: '<img class="slider-preview" src="{{url}}"/>'

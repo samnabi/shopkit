@@ -74,6 +74,12 @@
     <!-- Contact details -->
     <footer class="uk-panel uk-panel-divider uk-margin-large-bottom">
         <h3><?php echo page('contact')->title()->html() ?></h3>
+
+        <?php if($hours = page('contact')->hours() and $hours != '') { ?>
+            <h4>Hours of operation</h4>
+            <?php echo $hours->kirbytext() ?>
+        <?php } ?>
+
         <dl>
             <?php if ($phone = page('contact')->phone() and $phone != '') { ?>
                 <dt><?php echo l::get('phone') ?></dt>

@@ -8,6 +8,8 @@
 
 	<?php echo $page->text()->kirbytext() ?>
 
+	<?php echo $page->hours()->kirbytext() ?>
+
 	<dl>
 	    <?php if ($phone = page('contact')->phone() and $phone != '') { ?>
 	        <dt><?php echo l::get('phone') ?></dt>

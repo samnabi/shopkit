@@ -14,4 +14,12 @@ Email:
 
 ----
 
-Location: 
+Location: {"address":"","lat":"","lng":""}
+
+----
+
+Hours: 
+
+----
+
+Slider: 
