@@ -8,4 +8,6 @@
 
 	<?php echo $page->text()->kirbytext() ?>
 
+	<?php snippet('list.related') ?>
+
 <?php snippet('footer') ?>

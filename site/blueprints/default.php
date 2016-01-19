@@ -26,3 +26,17 @@ fields:
       fetch: images
       value: '{{filename}}'
       text: '<img class="slider-preview" src="{{url}}"/>'
+  relatedproducts:
+    label: Related products
+    type: structure
+    entry: >
+      {{product}}
+    fields:
+      product:
+        label: Related product
+        type: select
+        options: query
+        query: 
+          page: shop
+          fetch: pages
+          template: product
