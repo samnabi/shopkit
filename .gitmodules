@@ -16,3 +16,6 @@
 [submodule "kirby"]
 	path = kirby
 	url = https://github.com/getkirby/kirby.git
+[submodule "site/fields/color"]
+	path = site/fields/color
+	url = https://github.com/ian-cox/Kirby-Color-Picker.git

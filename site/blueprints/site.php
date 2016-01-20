@@ -27,4 +27,24 @@ fields:
     mode:  single
     types:
       - image
-
+  backgroundImage:
+    label: Background image
+    type:  selector
+    mode:  single
+    types:
+      - image
+  colorTheme:
+    label: Theme colour
+    type: color
+    default: EEEEEE
+    width: 1/3
+  colorLink:
+    label: Link colour
+    type: color
+    default: 0077dd
+    width: 1/3
+  colorAccent:
+    label: Accent colour
+    type: color
+    default: 00a8e6
+    width: 1/3
