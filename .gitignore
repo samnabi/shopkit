@@ -14,3 +14,5 @@
 !/content/1-shop/orders/orders.en.txt
 !/content/1-shop/shop.en.txt
 /content/4-docs
+/site/cache/*
+!/site/cache/.gitkeep
