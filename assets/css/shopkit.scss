@@ -37,6 +37,12 @@ h1,
 :not(pre) > kbd,
 :not(pre) > samp {
   font-size: 14px;
+  color: inherit;
+  font-weight: bold;
+}
+
+em {
+  color: inherit;
 }
 
 
