@@ -38,7 +38,8 @@ h1,
 :not(pre) > samp {
   font-size: 14px;
   color: inherit;
-  font-weight: bold;
+  padding: 0.2rem 0.4rem 0.1rem;
+  background: #ffffaa;
 }
 
 em {
