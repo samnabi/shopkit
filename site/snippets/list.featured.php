@@ -40,6 +40,7 @@
 			  	<div class="uk-grid uk-grid-width-1-2 uk-overlay-panel uk-overlay-background uk-overlay-bottom">
 
 			  		<a href="<?php echo $product->url() ?>" title="<?php echo $product->title() ?>">
+						<small class="brand" property="brand"><?php echo $product->brand() ?></small>
 						<h3 class="uk-margin-small-bottom"><?php echo $product->title()->html() ?></h3>
 						<span><?php echo $featuredVariant->name() ?></span>
 					</a>

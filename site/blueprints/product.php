@@ -14,6 +14,11 @@ fields:
   title:
     label: Product title
     type:  text
+    width: 3/4
+  brand:
+    label: Brand
+    type: text
+    width: 1/4
   text:
     label: Description
     type:  markdown

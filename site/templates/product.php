@@ -4,6 +4,8 @@
 		
 		<h1><?php echo $page->title()->html() ?></h1>
 
+		<small class="brand" property="brand"><?php echo $product->brand() ?></small>
+
 		<div class="uk-grid uk-grid-width-medium-1-2">
 			
 			<div>
@@ -31,10 +33,12 @@
 						<div class="uk-width-1-2 uk-text-left" vocab="http://schema.org/" typeof="Product">
 				            <form class="uk-form uk-panel uk-panel-box" method="post" action="<?php echo url('shop/cart') ?>">
 
+				            	<link property="brand" content="<?php echo $page->brand() ?>" />
+
 								<h3 class="uk-margin-small-bottom" property="name" content="<?php echo $page->title().' &ndash; '.$variant->name() ?>"><?php echo $variant->name() ?></h3>
 
 								<?php if($page->hasImages()) { ?>
-									<link property="image" content="<?php $page->images()->first()->url() ?>" />
+									<link property="image" content="<?php echo $page->images()->first()->url() ?>" />
 								<?php } ?>
 
 								<div property="description">
