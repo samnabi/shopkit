@@ -85,8 +85,13 @@ video {
 
 body {
 	background-position: center top;
-	background-size: 100% auto;
+	background-size: 100% auto; /* Fallback */
 	background-repeat: repeat-y;
+	background-attachment: fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 
 	& > .uk-container {
 		background: white;
