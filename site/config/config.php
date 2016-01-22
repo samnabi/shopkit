@@ -181,9 +181,9 @@ c::set('routes', array(
     'method' => 'POST',
     'action'  => function() {
       if($user = site()->users()->findBy('email',get('email')) and $user->login(get('password'))) {
-        return go('/');
+        return go(site()->url());
       } else {
-        return go('/?login=failed');
+        return go(site()->url().'?login=failed');
       }
     }
   ),
