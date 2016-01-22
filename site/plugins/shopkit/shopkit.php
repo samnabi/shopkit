@@ -76,3 +76,147 @@ function updateStock($items)
       }
     }
 }
+
+/**
+ * Tweak CSS colours based on site options
+ */
+include_once('colorconvert.php');
+
+function getStylesheet($base = 'eeeeee', $accent = '00a836', $link = '0077dd') {
+  $base = validate_hex($base);
+  $accent = validate_hex($accent);
+  $link = validate_hex($link);
+
+  // If it's already there, return the filepath
+  if (stylesheetIsValid($base,$accent,$link)) {
+    return 'assets/css/shopkit.'.$base.'.'.$accent.'.'.$link.'.css';
+  }
+
+  $defaultPath = kirby()->roots()->index().'/assets/css/shopkit.css';
+  $newPath = kirby()->roots()->index().'/assets/css/shopkit.'.$base.'.'.$accent.'.'.$link.'.css';
+
+  // Copy the default CSS file to the new path
+  copy($defaultPath, $newPath);
+
+  // Find and replace hex codes
+  $colours = customColours($base,$accent,$link);
+  $file_contents = file_get_contents($newPath);
+  $file_contents = str_replace(array_keys($colours),array_values($colours),$file_contents);
+  file_put_contents($newPath,$file_contents);
+
+  // Spit out the filepath
+  return 'assets/css/shopkit.'.$base.'.'.$accent.'.'.$link.'.css';
+}
+
+function stylesheetIsValid($base = 'eeeeee', $accent = '00a836', $link = '0077dd') {
+  // Get paths
+  $defaultPath = kirby()->roots()->index().'/assets/css/shopkit.css';
+  $requestedPath = kirby()->roots()->index().'/assets/css/shopkit.'.$base.'.'.$accent.'.'.$link.'.css';
+  
+  // Check if requested stylesheet exists and timestamps make sense
+  if (file_exists($requestedPath) and (filemtime($defaultPath) < filemtime($requestedPath))) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function customColours($base = 'eeeeee', $accent = '00a836', $link = '0077dd') {
+
+  // Define colour arrays
+
+  $baseColours = [
+    'eeeeee' => null, //   0   0  93
+    'f9f9f9' => null, //   0   0  98
+    'f5f5f5' => null, //   0   0  96
+    'dddddd' => null  //   0   0  87
+  ];
+
+  $accentColours = [
+    '00a8e6' => null, // 196 100  45
+    '2d7091' => null, // 200  53  37
+    '0091ca' => null, // 197 100  40
+    '35b3ee' => null, // 199  84  57
+    '99baca' => null, // 200  32  70
+    'f5fbfe' => null, // 200  82  98
+    'ebf7fd' => null  // 200  82  96
+  ];
+
+  $linkColours = [
+    '0077dd' => null, // 208 100  43
+    '005599' => null  // 207 100  30
+  ];
+
+
+  // Assign base colours
+  $newBaseHSL = hex2hsl($base);
+  $keys = array_keys($baseColours);
+
+  $newBaseHSL[2] = 0.93;
+  $baseColours[$keys[0]] = hsl2hex($newBaseHSL);
+
+  $newBaseHSL[2] = 0.98;
+  $baseColours[$keys[1]] = hsl2hex($newBaseHSL);
+
+  $newBaseHSL[2] = 0.96;
+  $baseColours[$keys[2]] = hsl2hex($newBaseHSL);
+
+  $newBaseHSL[2] = 0.87;
+  $baseColours[$keys[3]] = hsl2hex($newBaseHSL);
+
+
+  // Assign accent colours
+  $newAccentHSL = hex2hsl($accent);
+  $keys = array_keys($accentColours);
+  
+  // Store reference saturation for calculations below
+  $referenceSaturation = $newAccentHSL[1];
+
+  // Force maximum lightness so white text is readable
+  $referenceLightness = $newAccentHSL[2] > 0.45 ? 0.45 : $newAccentHSL[2];
+
+  $newAccentHSL[2] = $referenceLightness;
+  $accentColours[$keys[0]] = hsl2hex($newAccentHSL);
+
+  $newAccentHSL[1] = $referenceSaturation < 0.47 ? 0 : $referenceSaturation - 0.47;
+  $newAccentHSL[2] = $referenceLightness < 0.08 ? 0 : $referenceLightness - 0.08;
+  $accentColours[$keys[1]] = hsl2hex($newAccentHSL);
+
+  $newAccentHSL[1] = $referenceSaturation;
+  $newAccentHSL[2] = $referenceLightness < 0.05 ? 0 : $referenceLightness - 0.05;
+  $accentColours[$keys[2]] = hsl2hex($newAccentHSL);
+
+  $newAccentHSL[1] = $referenceSaturation < 0.16 ? 0 : $referenceSaturation - 0.16;
+  $newAccentHSL[2] = $referenceLightness + 0.12;
+  $accentColours[$keys[3]] = hsl2hex($newAccentHSL);
+
+  $newAccentHSL[1] = $referenceSaturation < 0.68 ? 0 : $referenceSaturation - 0.68;
+  $newAccentHSL[2] = $referenceLightness + 0.25;
+  $accentColours[$keys[4]] = hsl2hex($newAccentHSL);
+
+  $newAccentHSL[1] = $referenceSaturation < 0.18 ? 0 : $referenceSaturation - 0.18;
+  $newAccentHSL[2] = 0.98;
+  $accentColours[$keys[5]] = hsl2hex($newAccentHSL);
+
+  $newAccentHSL[1] = $referenceSaturation < 0.18 ? 0 : $referenceSaturation - 0.18;
+  $newAccentHSL[2] = 0.96;
+  $accentColours[$keys[6]] = hsl2hex($newAccentHSL);
+
+
+  // Assign link colours
+  $newLinkHSL = hex2hsl($link);
+  $keys = array_keys($linkColours);
+
+  // Force minimum lightness so link can darken on hover
+  $referenceLightness = $newLinkHSL[2] < 0.13 ? 0.13 : $newLinkHSL[2];
+
+  $newLinkHSL[2] = $referenceLightness;
+  $linkColours[$keys[0]] = hsl2hex($newLinkHSL);
+
+  $newLinkHSL[2] = $referenceLightness - 0.13;
+  $linkColours[$keys[1]] = hsl2hex($newLinkHSL);
+
+
+  // Return combined array
+  return array_merge($baseColours,$accentColours,$linkColours);
+}

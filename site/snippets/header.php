@@ -7,7 +7,7 @@
 
 	<title><?php echo $site->title()->html() ?> | <?php echo $page->title()->html() ?></title>
 
-	<?php echo css('assets/css/shopkit.css') ?>
+	<?php echo css(getStylesheet($site->colorbase(),$site->coloraccent(),$site->colorlink())) ?>
 	<?php echo css('assets/css/font.asap.css') ?>
 
 </head>

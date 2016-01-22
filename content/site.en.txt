@@ -7,3 +7,19 @@ Logo: shopkit-800-buffer.png
 ----
 
 Placeholder: placeholder.png
+
+----
+
+Backgroundimage: 
+
+----
+
+Colorbase: #eeeeee
+
+----
+
+Coloraccent: #00a8e6
+
+----
+
+Colorlink: #0077dd
