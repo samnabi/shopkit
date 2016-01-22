@@ -54,8 +54,7 @@
     </div>
     <div class="uk-form-row">
       <label for="password"><?php echo l::get('password') ?></label>
-      <input class="uk-form-width-large" type="password" id="password" name="password" value="" aria-describedby="passwordHelp">
-      <p class="uk-form-help-block uk-text-muted uk-margin-remove" id="passwordHelp"><?php echo l::get('password-help') ?></p>
+      <input class="uk-form-width-large" type="password" id="password" name="password" value="">
     </div>
     <div class="uk-form-row">
       <div>
