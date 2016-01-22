@@ -23,3 +23,11 @@ Coloraccent: #00a8e6
 ----
 
 Colorlink: #0077dd
+
+----
+
+Backgroundcolor: #ffffff
+
+----
+
+Backgroundblur: 0

@@ -33,6 +33,16 @@ fields:
     mode:  single
     types:
       - image
+  backgroundColor:
+    label: Background colour
+    type:  color
+    default: FFFFFF
+    width: 1/2
+  backgroundBlur:
+    label: Background blur
+    type:  checkbox
+    text: Blur the background image
+    width: 1/2
   colorBase:
     label: Base colour
     type: color

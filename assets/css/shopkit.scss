@@ -25,6 +25,10 @@
 @import 'uikit.contrast';
 @import 'uikit.print';
 
+// Height
+html { height: 100%; }
+body { min-height: 100%; }
+
 
 // Typography
 
@@ -74,6 +78,20 @@ video {
 
 .logo a {
 	display: block;
+}
+
+
+// Background
+
+body {
+	background-position: center top;
+	background-size: 100% auto;
+	background-repeat: repeat-y;
+
+	& > .uk-container {
+		background: white;
+		background: rgba(255,255,255,0.8);
+	}
 }
 
 
