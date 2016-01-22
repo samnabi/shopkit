@@ -70,11 +70,13 @@ fields:
         label: Flat rate
         help: Same rate, no matter how many items
         type: text
+        validate: num
         width: 1/2
       item:
         label: Per item rate
         help: Rate based on number of items in the cart
         type: text
+        validate: num
         width: 1/2
       weight:
         label: Rate by total weight

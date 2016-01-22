@@ -57,12 +57,13 @@ fields:
       stock:
         label: Quantity in stock
         type: text
+        validate: num
         width: 1/2
         help: Leave blank for unlimited stock
       options:
         label: Options
         type: tags
-        help: Options don't affect the price. They will be displayed as a drop-down list.
+        help: Displayed as a drop-down list on the product page.
       description: 
         label: Description
         type: textarea
