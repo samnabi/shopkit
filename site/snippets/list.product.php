@@ -13,8 +13,10 @@
 				?>
 				<img property="image" content="<?php echo $thumb->url() ?>" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
 
-				<div style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top">
-					<small class="brand" property="brand"><?php echo $product->brand() ?></small>
+				<div style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top">					
+					<?php if ($product->brand() != '') { ?>
+						<small class="brand" property="brand"><?php echo $product->brand() ?></small>
+					<?php } ?>
 					<h3 class="uk-margin-remove" property="name"><?php echo $product->title()->html() ?></h3>
 
 		    		<?php

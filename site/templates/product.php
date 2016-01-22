@@ -2,9 +2,11 @@
 
 		<?php snippet('breadcrumb') ?>
 		
-		<h1><?php echo $page->title()->html() ?></h1>
+		<?php if ($page->brand() != '') { ?>
+			<small class="brand" property="brand"><?php echo $page->brand() ?></small>
+		<?php } ?>
 
-		<small class="brand" property="brand"><?php echo $product->brand() ?></small>
+		<h1><?php echo $page->title()->html() ?></h1>
 
 		<div class="uk-grid uk-grid-width-medium-1-2">
 			
