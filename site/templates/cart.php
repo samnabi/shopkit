@@ -95,7 +95,7 @@
             <tfoot class="uk-text-right">
                 <tr>
                     <td colspan="2"><?php echo l::get('subtotal') ?></td>
-                    <td><?php echo formatPrice($cart->getAmount()) ?></td>
+                    <td><?php echo formatPrice($cart->getAmount()) ?> <?php echo page('shop')->currency_code() ?></td>
                     <td></td>
                 </tr>
                 <tr>
