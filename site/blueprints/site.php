@@ -12,6 +12,9 @@ files:
       label: Title
       type: text
 fields:
+  tab1:
+    label: General
+    type: tabs
   title:
     label: Site title
     type:  text
@@ -27,6 +30,9 @@ fields:
     mode:  single
     types:
       - image
+  tab2:
+    label: Theme
+    type: tabs
   backgroundImage:
     label: Background image
     type:  selector

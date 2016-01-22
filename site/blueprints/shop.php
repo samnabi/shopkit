@@ -7,6 +7,9 @@ pages: true
     - category
 deletable: false
 fields:
+  tab1:
+    label: General
+    type: tabs
   title:
     label: Title
     type:  text
@@ -41,7 +44,10 @@ fields:
         options:
           low: Show lowest price
           high: Show highest price
-        default: low          
+        default: low
+  tab2:
+    label: Shipping & tax
+    type: tabs
   shipping:
     label: Shipping methods
     help: 
@@ -105,11 +111,18 @@ fields:
         query:
           page: 'shop/countries'
           fetch: children
+  tab3:
+    label: Payment
+    type: tabs
   paylater:
     label: Pay later
-    help: List of user roles that can submit an order without paying online (e.g. admin)
-    type: tags
+    help: User roles that can submit an order without paying online
+    type: multiselect
     default: admin
+    options:
+      admin: Admin
+      wholesaler: Wholesaler
+      customer: Customer
   currency-code:
     label: Currency code
     help: e.g. USD, EUR

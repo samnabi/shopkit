@@ -19,3 +19,6 @@
 [submodule "site/fields/color"]
 	path = site/fields/color
 	url = https://github.com/ian-cox/Kirby-Color-Picker.git
+[submodule "site/fields/tabs"]
+	path = site/fields/tabs
+	url = https://github.com/afbora/Kirby-Tabs-Field.git
