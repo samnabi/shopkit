@@ -18,11 +18,11 @@ Paylater: admin
 
 ----
 
-Currency-code: 
+Currency-code: USD
 
 ----
 
-Currency-symbol: 
+Currency-symbol: $
 
 ----
 
