@@ -61,18 +61,6 @@ c::set('url', '/');
 /* 
 
 ---------------------------------------
-Cache Settings (https://getkirby.com/docs/advanced/caching)
----------------------------------------
-
-*/
-
-c::set('cache', true);
-c::set('cache.driver', 'file');
-
-
-/* 
-
----------------------------------------
 Custom Panel stylesheet
 ---------------------------------------
 
