@@ -63,6 +63,7 @@ l::set('view-cart','View cart');
 
 l::set('edit-page', 'Edit Page');
 l::set('edit-shop', 'Shop Settings');
+l::set('edit-design', 'Design');
 l::set('dashboard', 'Dashboard');
 l::set('view-orders', 'View Orders');
 l::set('my-account', 'My Account');
