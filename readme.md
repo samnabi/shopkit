@@ -1,10 +1,12 @@
+<style>table { table-layout: fixed; width: 100% } </style>
+
 # Shopkit for Kirby
 
 Shopkit is a comprehensive commerce solution for the excellent [Kirby CMS](http://getkirby.com).
 
 A single-site license is $19 USD. Bulk discounts available. Full details: <http://shopkit.samnabi.com>
 
-Check out the [full docs here](http://shopkit.samnabi.com/docs).
+Full [docs here](http://shopkit.samnabi.com/docs).
 
 ## Features
 
@@ -135,6 +137,7 @@ If you're upgrading from Shopkit 0.9.2 or earlier, you'll have to change some th
 - Added currency code (e.g. USD) to `Cart` page for clarity
 - Set currency to $USD by default
 - Friendlier error page text
+- Sidebar sections are hidden if content is not populated (i.e. categories, contact info)
 
 ### v1.0.2
 
