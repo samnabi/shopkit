@@ -53,10 +53,12 @@
     <?php } ?>
 
     <!-- Global category listing -->
-    <div class="uk-panel uk-panel-divider">
-        <h3><?php echo l::get('shop-by-category') ?></h3>
-        <?php snippet('treemenu',array('subpages' => page('shop')->children(), 'template' => 'category', 'class' => 'uk-nav')) ?>
-    </div>
+    <?php if (page('shop')->children()->filterBy('template','category')->count() > 0) { ?>
+        <div class="uk-panel uk-panel-divider">
+            <h3><?php echo l::get('shop-by-category') ?></h3>
+            <?php snippet('treemenu',array('subpages' => page('shop')->children(), 'template' => 'category', 'class' => 'uk-nav')) ?>
+        </div>
+    <?php } ?>
 
     <!-- Search -->
     <div class="uk-panel uk-panel-divider">
@@ -72,30 +74,33 @@
     </div>
 
     <!-- Contact details -->
-    <footer class="uk-panel uk-panel-divider uk-margin-large-bottom">
-        <h3><?php echo page('contact')->title()->html() ?></h3>
+    <?php $contact = page('contact') ?>
+    <?php if (trim($contact->hours().$contact->phone().$contact->email().$contact->location()->json('address')) != '') { ?>
+        <footer class="uk-panel uk-panel-divider uk-margin-large-bottom">
+            <h3><?php echo page('contact')->title()->html() ?></h3>
 
-        <?php if($hours = page('contact')->hours() and $hours != '') { ?>
-            <h4>Hours of operation</h4>
-            <?php echo $hours->kirbytext() ?>
-        <?php } ?>
+            <?php if($hours = page('contact')->hours() and $hours != '') { ?>
+                <h4>Hours of operation</h4>
+                <?php echo $hours->kirbytext() ?>
+            <?php } ?>
 
-        <dl>
-            <?php if ($phone = page('contact')->phone() and $phone != '') { ?>
-                <dt><?php echo l::get('phone') ?></dt>
-                <dd class="uk-margin-bottom"><?php echo $phone ?></dd>
-            <?php } ?>
-            
-            <?php if ($email = page('contact')->email() and $email != '') { ?>
-                <dt><?php echo l::get('email') ?></dt>
-                <dd class="uk-margin-bottom"><a href="mailto:<?php echo $email ?>"><?php echo $email ?></a></dd>
-            <?php } ?>
-            
-            <?php if ($address = page('contact')->location()->json('address') and $address != '') { ?>
-                <dt><?php echo l::get('address') ?></dt>
-                <dd class="uk-margin-bottom"><?php echo $address; ?></dd>
-            <?php } ?>
-        </dl>
-    </footer>
+            <dl>
+                <?php if ($phone = page('contact')->phone() and $phone != '') { ?>
+                    <dt><?php echo l::get('phone') ?></dt>
+                    <dd class="uk-margin-bottom"><?php echo $phone ?></dd>
+                <?php } ?>
+                
+                <?php if ($email = page('contact')->email() and $email != '') { ?>
+                    <dt><?php echo l::get('email') ?></dt>
+                    <dd class="uk-margin-bottom"><a href="mailto:<?php echo $email ?>"><?php echo $email ?></a></dd>
+                <?php } ?>
+                
+                <?php if ($address = page('contact')->location()->json('address') and $address != '') { ?>
+                    <dt><?php echo l::get('address') ?></dt>
+                    <dd class="uk-margin-bottom"><?php echo $address; ?></dd>
+                <?php } ?>
+            </dl>
+        </footer>
+    <?php } ?>
 
 </aside>

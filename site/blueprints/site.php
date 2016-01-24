@@ -24,6 +24,7 @@ fields:
     mode:  single
     types:
       - image
+    filter: /^((?!placeholder\.png).)*$/
   placeholder:
     label: Placeholder product photo
     type:  selector

@@ -8,45 +8,62 @@ Check out the [full docs here](http://shopkit.samnabi.com/docs).
 
 ## Features
 
-### Products and shop settings
+### Products & shop settings
 
-- Easy product variants and options (e.g. sizes and colours)
-- Related products
-- Inventory control
-- Smart shipping rates (flat rate, per item, by weight, or by total price)
-- Free shipping for specific products
-- Country-specific tax and shipping rates
+<table>
+	<tr>
+		<td>Easy product <strong>variants and options</strong><br><small>(e.g. sizes and colours)</small></td>
+		<td>Easy <strong>flexible shipping rates</strong><br><small>(Flat rate, per item, by weight, or by total price)</small></td>
+	</tr>
+	<tr>
+		<td><strong>Related products</strong></td>
+		<td><strong>Inventory control</strong></td>
+	</tr>
+	<tr>
+		<td><strong>Product-specific</strong> shipping & tax exemptions</td>
+		<td>Shipping & tax <strong>rates by country</strong></td>
+	</tr>
+	<tr>
+		<td><strong>Built-in SEO</strong> for rich snippets using <a href="https://schema.org/Product">RDFa</a> structured data</td>
+		<td>Customize <strong>theme colours</strong> & background</td>
+	</tr>
+</table>
 
-### Payments and orders
+### Payments & orders
 
-- Process payments with PayPal (it's easy to add another payment gateway)
-- Let certain users pay later
-- Manage pending, paid, and shipped orders
-- PDF invoices
+<table>
+	<tr>
+		<td>Process payments with <strong>PayPal</strong><br><small>(it's easy to add other payment gateways)</small></td>
+		<td>Let certain users <strong>pay later</strong><br><small>(i.e. wholesalers)</small></td>
+	</tr>
+	<tr>
+		<td>Manage <strong>pending, paid, and shipped</strong> orders</td>
+		<td>Automatic <strong>PDF invoices</strong></td>
+	</tr>
+</table>
 
 ### User experience
 
-- Multiple languages supported
-- No sign-up required (orders are tied to an email address)
-- Browse products in a grid or slideshow
-- Beautiful search
+<table>
+	<tr>
+		<td><strong>Multi-language</strong> setup<br><small>(English and French included by default)</small></td>
+		<td><strong>No sign-up</strong> required<br><small>(Orders are tied to PayPal email address)</small></td>
+	</tr>
+	<tr>
+		<td>Browse products in a <strong>grid</strong> or <strong>slideshow</strong></td>
+		<td>Beautiful <strong>search</strong> layout</td>
+	</tr>
+</table>
 
 ## Roadmap
 
-These features are expected for a future release. If you have any other suggestions, post them on the [issues page](https://github.com/samnabi/shopkit/issues).
-
-- Gift certificates
-- Discount codes
-- Quantity discounts
-- User role discounts
-- More complex variants and product options
-- Product downloads
+Keep tabs on the [issues page](https://github.com/samnabi/shopkit/issues) to see what's planned for the future. Please add a new issue to report any bugs or request new features.
 
 ## Pricing
 
-Shopkit uses the same licensing terms as Kirby. You can try it for free on your local machine or a test server, forever. Once you're satisfied, [buy a Shopkit license for $19 USD](http://shopkit.samnabi.com) to use it on a public site.
+You can try Shopkit for free on your local machine or a test server, forever. Once you're satisfied, [buy a Shopkit license for $19 USD](http://shopkit.samnabi.com) to use it on a public site.
 
-You'll also have to buy a [Kirby license](http://getkirby.com/license) from Bastian.
+Since Shopkit runs on the Kirby CMS, you'll also have to buy a [Kirby license](http://getkirby.com/license) from Bastian.
 
 ## Installation
 
@@ -56,21 +73,36 @@ Shopkit, just like Kirby, does not require a database, which makes it very easy 
 
 ### Download ZIP
 
-You can download the latest version of Shopkit from the [releases page](https://github.com/samnabi/shopkit/releases).
+Download the latest version of Shopkit from the [releases page](https://github.com/samnabi/shopkit/releases).
 
 ### Clone with Git
 
-If you are familiar with Git, you can clone Shopkit from GitHub.
+If you are familiar with the terminal, you can clone Shopkit from GitHub.
 
     git clone --recursive https://github.com/samnabi/shopkit.git
+    
+### Update
+
+Use these terminal commands to update Shopkit and all its dependencies to the latest commit int he `master` branch.
+
+    # Update dependencies
+    git submodule foreach --recursive git checkout master
+    git submodule foreach --recursive git pull
+    
+    # Update Shopkit
+    git checkout master
+    git pull
+
 
 ## Configuration
 
-Most of Shopkit's configuration happens in the shop page, located at `/content/1-shop/shop.en.txt`. This includes defining your shipping methods, tax rates, user permissions, currency information, paypal details. There's a helpful blueprint to help you easily manage this from the panel.
+Most of Shopkit's configuration happens in the shop page, located at `/content/1-shop/shop.en.txt`. This includes defining your shipping methods, tax rates, user permissions, and payment details.
 
-Your shop logo is defined in the global site options.
+Your shop logo and theme options are defined in the site options, located at `/content/site.en.txt`.
 
-You'll also need to enter your license keys in the `/site/config/config.php` file.
+Of course, there are helpful blueprints so you can easily manage everything from the panel.
+
+Once your site goes public, you'll need to enter your license keys in the `/site/config/config.php` file.
 
 ## Upgrading to Shopkit v1.x
 
@@ -82,6 +114,27 @@ If you're upgrading from Shopkit 0.9.2 or earlier, you'll have to change some th
 - In every order's text file, change the order status values to reflect the new values: `pending`, `paid`, or `shipped`.
 
 ## Changelog
+
+### v1.0.3
+
+- Bug fixes
+    - Fixed login redirect on subfolder installs
+    - Removed incorrect help text from `Register` page
+- Theme options
+    - Choose custom colours (Shopkit adjusts brightness to ensure readability)
+    - Background colour & image options, including blurred background
+- Panel improvements
+    - Improved UI for selecting images
+    - Numeric field validation within structure fields
+    - Tabbed layout to organize site options and shop settings
+- Added `Brand` as a default product field (helps with Google rich data snippets)
+- Added hours of operation to the `Contact` page as a separate field
+- Added `Related products` to the `Default` template
+- Stylish photo slider for most templates
+- Updated admin navbar with new icons and `Design` button for theme options
+- Added currency code (e.g. USD) to `Cart` page for clarity
+- Set currency to $USD by default
+- Friendlier error page text
 
 ### v1.0.2
 
