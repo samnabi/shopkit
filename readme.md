@@ -1,5 +1,3 @@
-<style>table { table-layout: fixed; width: 100% } </style>
-
 # Shopkit for Kirby
 
 Shopkit is a comprehensive commerce solution for the excellent [Kirby CMS](http://getkirby.com).
@@ -12,7 +10,7 @@ Full [docs here](http://shopkit.samnabi.com/docs).
 
 ### Products & shop settings
 
-<table>
+<table style="table-layout: fixed; width: 100%">
 	<tr>
 		<td>Easy product <strong>variants and options</strong><br><small>(e.g. sizes and colours)</small></td>
 		<td>Easy <strong>flexible shipping rates</strong><br><small>(Flat rate, per item, by weight, or by total price)</small></td>
@@ -33,7 +31,7 @@ Full [docs here](http://shopkit.samnabi.com/docs).
 
 ### Payments & orders
 
-<table>
+<table style="table-layout: fixed; width: 100%">
 	<tr>
 		<td>Process payments with <strong>PayPal</strong><br><small>(it's easy to add other payment gateways)</small></td>
 		<td>Let certain users <strong>pay later</strong><br><small>(i.e. wholesalers)</small></td>
@@ -46,7 +44,7 @@ Full [docs here](http://shopkit.samnabi.com/docs).
 
 ### User experience
 
-<table>
+<table style="table-layout: fixed; width: 100%">
 	<tr>
 		<td><strong>Multi-language</strong> setup<br><small>(English and French included by default)</small></td>
 		<td><strong>No sign-up</strong> required<br><small>(Orders are tied to PayPal email address)</small></td>
@@ -88,6 +86,7 @@ If you are familiar with the terminal, you can clone Shopkit from GitHub.
 Use these terminal commands to update Shopkit and all its dependencies to the latest commit int he `master` branch.
 
     # Update dependencies
+    git submodule update --init --recursive
     git submodule foreach --recursive git checkout master
     git submodule foreach --recursive git pull
     
