@@ -95,7 +95,7 @@
             <tfoot class="uk-text-right">
                 <tr>
                     <td colspan="2"><?php echo l::get('subtotal') ?></td>
-                    <td><?php echo formatPrice($cart->getAmount()) ?> <?php echo page('shop')->currency_code() ?></td>
+                    <td><?php echo formatPrice($cart->getAmount()) ?></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -145,7 +145,7 @@
                     <td>
                         <?php echo page('shop')->currency_symbol() ?>
                         <span id="cartTotal">
-                            <?php echo sprintf('%0.2f', $cart->getAmount() + $tax) ?><br />
+                            <?php echo sprintf('%0.2f', $cart->getAmount() + $tax) ?> <?php echo page('shop')->currency_code() ?><br />
                             + <?php echo l::get('shipping') ?>
                         </span>
                     </td>
@@ -226,7 +226,7 @@
             var shippingParts = shippingEncoded.split('::');
             var shipping = shippingParts[1];
             var total = <?php echo number_format($cart->getAmount()+$tax,2,'.','') ?>+(Math.round(shipping*100)/100);
-            document.getElementById("cartTotal").innerHTML = total.toFixed(2); // Always show total with two decimals
+            document.getElementById("cartTotal").innerHTML = total.toFixed(2) + <?php echo "' ".page('shop')->currency_code()."'" ?>; // Always show total with two decimals and currency code
         }
 
         function copyShippingValue() {
