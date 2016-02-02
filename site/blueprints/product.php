@@ -31,6 +31,9 @@ fields:
       <div style="display: inline-block; vertical-align: top; width: 49%"><strong>Price </strong> {{price}}</div>
       <div style="display: inline-block; vertical-align: top; width: 49%"><strong>Weight </strong> {{weight}}</div>
     fields:
+      tab1:
+        type: tabs
+        label: General
       name:
         label: Variant name
         type:  text
@@ -67,6 +70,25 @@ fields:
       description: 
         label: Description
         type: textarea
+      tab2:
+        type: tabs
+        label: Discounts
+      sale-price:
+        label: Sale price
+        type: text
+        validate: num
+      sale-start:
+        label: Sale start
+        type: date
+        width: 1/2
+      sale-end:
+        label: Sale end
+        type: date
+        width: 1/2
+      sale-codes:
+        label: Discount codes
+        help: Require a discount code to unlock the sale price. You can enter multiple codes.
+        type: tags
   noshipping:
     label: Free shipping
     type: checkbox

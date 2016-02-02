@@ -164,56 +164,18 @@ fields:
   tab4:
     label: Discounts
     type: tabs
-  discounts-role:
-    label: Customer discounts
-    help: Set automatic discounts for logged-in customers and wholesalers. These apply to the entire order.
-    type: structure
-    style: table
-    fields:
-      role:
-        label: User role
-        type: select
-        options:
-          customer: Logged-in customer
-          wholesaler: Wholesaler
-          admin: Admin
-        default: wholesaler
-        required: true
-      kind:
-        label: Discount type
-        type: select
-        options:
-          percentage: Percentage
-          flat: Flat amount
-        default: percentage
-        width: 1/2
-        required: true
-      amount:
-        label: Value
-        help: For percentage discounts, use whole numbers.
-        type: text
-        validate:
-          min: 0
-          - num
-        width: 1/2
-        required: true
-      minorder:
-        label: Minimum order
-        help: Only apply the discount if the customer spends at least this much.
-        type: text
-        validate:
-          min: 0
-          - num
-  discounts-code:
+  discount-codes:
     label: Discount codes
-    help: Anyone can use these to get a discount on their entire order.
+    help: These codes are applied at checkout.
     type: structure
     style: table
     fields:
       code:
         label: Discount code
+        help: Letters and numbers only. Not case-sensitive. <strong>DISCOUNT</strong> and <strong>diScoUNT</strong> are treated the same.
         type: text
         required: true
+        validate: alphanum
       kind:
         label: Discount type
         type: select

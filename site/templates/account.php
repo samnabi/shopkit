@@ -23,7 +23,8 @@
               'email'     => get('email'),
               'firstname' => get('fullname'),
               'language'  => 'en',
-              'country'   => get('country')
+              'country'   => get('country'),
+              'discountcode'   => get('discountcode')
             ));
             if (get('password') === '') {
               // No password change
@@ -90,6 +91,13 @@
         <?php } ?>
       </select>
       <p class="uk-form-help-block uk-text-muted uk-margin-remove" id="countryHelp"><?php echo l::get('country-help') ?></p>
+    </div>
+    <div class="uk-form-row">
+      <div>
+        <label for="discountcode"><?php echo l::get('discount-code') ?></label>
+        <input class="uk-form-width-large" type="text" id="discountcode" name="discountcode" value="<?php echo $user->discountcode() ?>" aria-describedby="discountCodeHelp">
+      <p class="uk-form-help-block uk-text-muted uk-margin-remove" id="discountCodeHelp"><?php echo l::get('discount-code-help') ?></p>
+      </div>
     </div>
     <div class="uk-form-row">
       <button class="uk-button uk-button-primary uk-button-large uk-form-width-medium" type="submit" name="update">

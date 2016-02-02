@@ -48,11 +48,14 @@ l::set('address','Address');
 // snippets/header.notifications.php
 
 l::set('notification-account','You haven\'t set up any users. <a href="'.url('panel').'/install" title="Panel installation page">Create an account now</a>.');
+l::set('notification-login','Let\'s finish setting up your shop! <a href="/#user">Log in</a> to continue.');
 l::set('notification-options','You haven\'t set up your shop options. <a href="'.url('panel').'/pages/shop/edit" title="Shop options">Define currency, shipping, and tax settings here</a>.');
-l::set('notification-category','You don\'t have any product categories. <a href="'.url('panel').'/pages/shop/edit" title="Create a new category">Create your first category here</a>.');
-l::set('notification-product','You don\'t have any products. <a href="'.url('panel').'/pages/shop/edit" title="Create a new product">Create your first product with the Dashboard</a>.');
+l::set('notification-category','You don\'t have any product categories. <a href="'.url('panel').'/pages/shop/add" title="Create a new category">Create your first category here</a>.');
+l::set('notification-product-first','You don\'t have any products. <a href="'.url('panel').'/pages/');
+l::set('notification-product-last','/add" title="Create a new product">Create your first product with the Dashboard</a>.');
 l::set('notification-license','This shop doesn\'t have a Shopkit license key. Be sure to add one in the <strong>config.php</strong> file before the website goes live.');
-
+l::set('notification-code','Your discount code <strong><code>'.s::get('discountCode').'</code></strong> will be applied at checkout.');
+l::set('discount-code-help','Use this discount code every time you log in.');
 
 // snippets/header.nav.php
 
@@ -103,6 +106,7 @@ l::set('delete-account','Delete account');
 l::set('delete-account-text','If you click this button, there\'s no going back. Your account will be gone forever.');
 l::set('delete-account-verify','Delete my account. Yes, I\'m sure.');
 l::set('username-no-account','The username can\'t be changed.');
+l::set('discount-code','Discount code');
 
 
 // templates/cart.php

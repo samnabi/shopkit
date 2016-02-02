@@ -9,5 +9,8 @@ fields:
     query:
       page: /shop/countries
       fetch: children
-
-
+  discountcode:
+    label: Discount code
+    help: Use this discount code every time you log in
+    type: text
+    validate: alphanum

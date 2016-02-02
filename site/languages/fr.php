@@ -48,10 +48,13 @@ l::set('address','Addresse');
 // snippets/header.notifications.php
 
 l::set('notification-account','Vous n\'avez aucun compte. <a href="'.url('panel').'/install" title="Page d\'installation du panneau">Créez-en un maintenant</a>.');
+l::set('notification-login','Finissons l\'installation de votre magasin! <a href="/#user">Connectez-vous</a> afin de continuer.');
 l::set('notification-options','Vous n\'avez pas entré les options de votre magasin. <a href="'.url('panel').'/pages/shop/edit" title="Options de magasin">Entrez-les ici</a>.');
-l::set('notification-category','Vous n\'avez aucune catégorie pour vos produits. <a href="'.url('panel').'/pages/shop/edit" title="Créez une nouvelle catégorie">Créez votre première catégorie ici</a>.');
-l::set('notification-product','Vous n\'avez aucun produit. <a href="'.url('panel').'/pages/shop/edit" title="Créez un nouveau produit">Créez votre premier produit avec le tableau de bord</a>.');
+l::set('notification-category','Vous n\'avez aucune catégorie pour vos produits. <a href="'.url('panel').'/pages/shop/add" title="Créez une nouvelle catégorie">Créez votre première catégorie ici</a>.');
+l::set('notification-product-first','Vous n\'avez aucun produit. <a href="'.url('panel').'/pages/');
+l::set('notification-product-last','/add" title="Créez un nouveau produit">Créez votre premier produit avec le tableau de bord</a>.');
 l::set('notification-license','Vous n\'avez pas enregistré votre code de license. SVP mettez-le dans le fichier <strong>config.php</strong> avant de donner accès au public.');
+l::set('notification-code','Votre code de rabais <strong><code>'.s::get('discountCode').'</code></strong> sera appliqué à la caisse.');
 
 
 // snippets/header.nav.php
@@ -103,6 +106,8 @@ l::set('delete-account','Supprimer mon compte');
 l::set('delete-account-text','Si vous cliquez ce bouton, c\'est le point de non-retour. Votre compte sera supprimé à jamais.');
 l::set('delete-account-verify','Supprimer mon compte. Oui, je suis certain.');
 l::set('username-no-account','Le nom d\'utilisateur ne peut être changé.');
+l::set('discount-code','Code de rabais');
+l::set('discount-code-help','Appliquez ce code chaque fois que vous vous connectez.');
 
 
 // templates/cart.php

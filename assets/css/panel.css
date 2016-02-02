@@ -7,6 +7,14 @@
 	opacity: 1;
 }
 
+/* Page save button */
+.ltr .mainbar .form .buttons {
+	border-top: 2px solid #ddd;
+	background: #efefef;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
 /* Login form */
 body.login form.form::after {
 	color: #999;
@@ -24,7 +32,7 @@ body.login form.form fieldset.buttons-centered {
 
 /* Selector */
 
-.input-with-items .item {
+.selector .input-with-items .item {
 	display: inline-block;
 	border-bottom: 0;
 	margin: 0.4rem 0 0 0.4rem;
@@ -36,9 +44,9 @@ body.login form.form fieldset.buttons-centered {
 	height: 5rem;
 	margin: 0 auto;
 }
-.item-options,
-.item-options .nav li,
-.item-options .nav li .btn {
+.selector .item-options,
+.selector .item-options .nav li,
+.selector .item-options .nav li .btn {
 	background: transparent;
 	position: absolute;
 	top: 0;
@@ -47,17 +55,17 @@ body.login form.form fieldset.buttons-centered {
 	right: 0;
 	padding: 0;
 }
-.item-options ul,
-.item-options li {
+.selector .item-options ul,
+.selector .item-options li {
 	border-left: none;
 }
-.item-options li:first-child {
+.selector .item-options li:first-child {
 	display: none;
 }
-.item-options .btn span {
+.selector .item-options .btn span {
 	display: none;
 }
-.item-options .btn i {
+.selector .item-options .btn i {
 	left: 50%;
 	margin-left: -2.3rem;
 	top: 0.7rem;
@@ -65,14 +73,14 @@ body.login form.form fieldset.buttons-centered {
 	background: white;
 	border-radius: 1rem;
 }
-.item-options .btn i.fa-check-circle {
+.selector .item-options .btn i.fa-check-circle {
 	color: #97A830;
 }
-body.ltr .item-options,
-body.ltr .item-options li {
+body.ltr .selector .item-options,
+body.ltr .selector .item-options li {
 	border-left: 0;
 }
-body.ltr .item-with-image .item-info {
+body.ltr .selector .item-with-image .item-info {
 	margin-left: 0;
 }
 .selector .item-info {
@@ -84,10 +92,10 @@ body.ltr .item-with-image .item-info {
 	display: inline;
 	position: relative;
 }
-.item-title {
+.selector .item-title {
 	font-weight: normal;
 	font-size: 0.8rem;
 }
-.item-info .marginalia {
+.selector .item-info .marginalia {
 	display: none;
 }
