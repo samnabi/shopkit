@@ -43,3 +43,11 @@ Featured:
 ----
 
 Slider: 
+
+----
+
+Discounts-role: 
+
+----
+
+Discounts-code: 
