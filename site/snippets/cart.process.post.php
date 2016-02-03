@@ -8,6 +8,9 @@
  * discountAmount number or false
  */
 
+// Honeypot trap for robots
+if(r::is('post') and get('subject') != '') go(url('error'));
+
 $cart = Cart::getCart();
 
 // The shipping data is encoded as rate::method, since both parts need to come from the same <select> field.

@@ -92,7 +92,7 @@
                             <form action="" method="post">
                                 <input type="hidden" name="action" value="delete">
                                 <input type="hidden" name="id" value="<?php echo $item->id ?>">
-                                <button class="uk-button uk-button-small" type="submit"><?php echo l::get('delete') ?></button>    
+                                <button class="uk-button uk-button-small" type="submit"><?php echo l::get('delete') ?></button> 
                             </form>
                         </td>
                     </tr>
@@ -113,7 +113,7 @@
                             <td></td>
                         <?php } else { ?>
                             <td colspan="2" class="uk-text-left">
-                                <form method="POST" class="uk-form discount">
+                                <form method="post" class="uk-form discount">
                                     <input type="text" name="dc" class="uk-form-width-small" />
                                     <button class="uk-button" type="submit">
                                         <?php echo l::get('discount-apply') ?>
@@ -207,6 +207,11 @@
             <?php } ?>
         </select>
 
+        <div class="forRobots">
+          <label for="subject"><?php echo l::get('honeypot-label') ?></label>
+          <input type="text" name="subject">
+        </div>
+
         <div class="uk-container uk-padding-remove">
             <button class="uk-button uk-button-primary uk-width-small-1-1 uk-width-medium-2-3 uk-align-medium-right" type="submit">
                 <div class="uk-margin-small-top"><?php echo l::get('pay-now') ?></div>
@@ -234,6 +239,11 @@
                     <option value="<?php echo l::get('free-shipping') ?>::0.00"><?php echo l::get('free-shipping') ?></option>
                 <?php } ?>
             </select>
+
+            <div class="forRobots">
+              <label for="subject"><?php echo l::get('honeypot-label') ?></label>
+              <input type="text" name="subject">
+            </div>
 
             <div class="uk-container uk-padding-remove">
                 <button class="uk-button uk-width-small-1-1 uk-width-medium-2-3 uk-align-medium-right" type="submit"><?php echo l::get('pay-later') ?></button>

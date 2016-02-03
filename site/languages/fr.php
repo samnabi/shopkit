@@ -7,6 +7,8 @@
 'login' => 'Connexion',
 'register' => 'Inscription',
 
+'honeypot-label' => 'SVP ne pas remplir ce champ. (Contrôle de spam)',
+
 'email-address' => 'Courriel',
 'first-name' => 'Prénom',
 'last-name' => 'Surnom',

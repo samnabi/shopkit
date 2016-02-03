@@ -7,6 +7,8 @@
 'login' => 'Log in',
 'register' => 'Register',
 
+'honeypot-label' => 'Don\'t fill out this field. (Spam protection)',
+
 'email-address' => 'Email address',
 'first-name' => 'First name',
 'last-name' => 'Last name',

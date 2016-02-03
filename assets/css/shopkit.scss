@@ -88,6 +88,13 @@ video {
 	display: block;
 }
 
+// Honeypot form field
+.forRobots {
+	visibility: hidden;
+	z-index: -1;
+	position: absolute;
+}
+
 
 // Background
 
