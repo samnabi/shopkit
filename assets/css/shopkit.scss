@@ -69,6 +69,14 @@ video {
 	box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4), 0 0 0 1px white;
 }
 
+.uk-button del {
+	display: block;
+	font-size: 0.8rem;
+	opacity: 0.8;
+	line-height: 1;
+	margin-bottom: 0.6rem;
+}
+
 
 // Forms
 
@@ -420,6 +428,14 @@ a.slideshow {
 		vertical-align: top;
 		min-width: 32px;
 		margin-top: -2px;
+	}
+
+	del {
+		display: block;
+		font-size: 0.8rem;
+		opacity: 0.8;
+		line-height: 1;
+		margin-bottom: 0.6rem;
 	}
 	
 	tfoot {

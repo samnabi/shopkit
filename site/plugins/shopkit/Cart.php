@@ -167,11 +167,16 @@ class Cart
             if($product = page($uri)) {
             	$item = new CartItem($id, $product, $quantity);
                 $this->items[] = $item;
-                $this->amount += floatval($item->amount) * $quantity;
+
+                // Check if the item's on sale
+                $itemAmount = $item->sale_amount ? $item->sale_amount : $item->amount;
+                
+                // Add to cart amount
+                $this->amount += floatval($itemAmount) * $quantity;
 
                 // If shipping applies, add this item to the calculation for applicable amount and weight 
                	if ($item->noshipping == '') {
-               		$this->shippingAmount += floatval($item->amount) * $quantity;
+               		$this->shippingAmount += floatval($itemAmount) * $quantity;
                		$this->shippingWeight += floatval($item->weight) * $quantity;
                	}
             }

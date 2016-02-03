@@ -24,7 +24,7 @@
               'firstname' => get('fullname'),
               'language'  => 'en',
               'country'   => get('country'),
-              'discountcode'   => get('discountcode')
+              'discountcode'   => strtoupper(preg_replace("/[^[:alnum:]]/u",'',get('discountcode')))
             ));
             if (get('password') === '') {
               // No password change

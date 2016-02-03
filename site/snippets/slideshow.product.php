@@ -43,11 +43,27 @@
 		<div>
     		<?php
     			$variants = $product->variants()->yaml();
-    			foreach ($variants as $key => $variant) $pricelist[] = $variant['price'];
+
+    			foreach ($variants as $variant) {
+    				$pricelist[] = $variant['price'];
+    				$salepricelist[] = salePrice($variant);
+    			}
+
     			$priceFormatted = is_array($pricelist) ? formatPrice(min($pricelist)) : 0;
     			if (count($variants) > 1) $priceFormatted = 'From '.$priceFormatted;
+
+    			$saleprice = $salepricelist[min(array_keys($pricelist, min($pricelist)))];
 			?>
-			<span class="uk-button uk-button-primary" property="offers" typeof="Offer"><?php echo $priceFormatted ?></span>
+			<span class="uk-button uk-button-primary" property="offers" typeof="Offer">
+				<?php
+					if ($saleprice) {
+						echo formatPrice($saleprice);
+						echo '<del>'.$priceFormatted.'</del>';
+					} else {
+						echo $priceFormatted;
+					}
+				?>
+			</span>
 		</div>
 	</div>
 

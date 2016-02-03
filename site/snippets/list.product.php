@@ -20,14 +20,34 @@
 					<h3 class="uk-margin-remove" property="name"><?php echo $product->title()->html() ?></h3>
 
 		    		<?php
-		    			$variants = $product->variants()->yaml();
-		    			foreach ($variants as $key => $variant) $pricelist[] = $variant['price']; // Add all prices to the pricelist
-		    			$priceFormatted = formatPrice(min($pricelist)); // Find the lowest price and format it
-		    			if (count($variants) > 1) $priceFormatted = 'From '.$priceFormatted; // If there are multiple prices, add "From" to the label"
-		    			$pricelist = []; // Clear the pricelist
+		    			$count = 0;
+		    			foreach ($product->variants()->toStructure() as $variant) {
+		    				// Assign the first price
+		    				if (!$count) {
+		    					$minVariant = $variant;
+		    					$minPrice = $variant->price()->value;
+		    					$minSalePrice = salePrice($variant);
+		    				} else if ($variant->price()->value < $minPrice){
+		    					$minVariant = $variant;
+		    					$minPrice = $variant->price()->value;
+		    					$minSalePrice = salePrice($variant);
+		    				}
+		    				$count++;
+		    			}
 					?>
 					<p property="offers" typeof="Offer">
-						<span class="uk-button uk-button-primary"><?php echo $priceFormatted ?></span>
+						<span class="uk-button uk-button-primary">
+							<?php
+								if ($minSalePrice) {
+									$priceFormatted = formatPrice($minSalePrice);
+									$priceFormatted .= '<del>'.formatPrice($minPrice).'</del>';
+								} else {
+									$priceFormatted = formatPrice($minPrice);
+								}
+								if ($count) $priceFormatted = "From ".$priceFormatted;
+								echo $priceFormatted;
+							?>
+						</span>
 					</p>
 
 					<?php if ($product->text() != '') { ?>

@@ -79,7 +79,14 @@
                             </form>
                         </td>
                         <td class="uk-text-right">
-                            <?php echo formatPrice($item->amount * $item->quantity) ?>
+                            <?php
+                                if ($item->sale_amount) {
+                                    echo formatPrice($item->sale_amount * $item->quantity);
+                                    echo '<del>'.formatPrice($item->amount * $item->quantity).'</del>';
+                                } else {
+                                    echo formatPrice($item->amount * $item->quantity);
+                                }
+                            ?>
                         </td>
                         <td>
                             <form action="" method="post">

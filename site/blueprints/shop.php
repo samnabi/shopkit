@@ -118,13 +118,12 @@ fields:
     type: tabs
   paylater:
     label: Pay later
-    help: User roles that can submit an order without paying online
+    help: Let customers submit an order without paying online
     type: multiselect
     default: admin
     options:
       admin: Admin
-      wholesaler: Wholesaler
-      customer: Customer
+      customer: Logged-in customer
   currency-code:
     label: Currency code
     help: e.g. USD, EUR

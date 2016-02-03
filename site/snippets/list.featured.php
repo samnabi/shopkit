@@ -11,16 +11,19 @@
 			  			if (!$featuredVariant) {
 			  				$featuredVariant = $variant;
 			  				$featuredPrice = $variant->price()->value;
+			  				$featuredSalePrice = salePrice($variant);
 			  				continue;
 			  			}
 
 			  			// For each variant, override the price as necessary 
 			  			if ($featuredProduct['calculation'] === 'low' and $variant->price()->value < $featuredPrice){
 			  				$featuredVariant = $variant;
-			  				$featuredPrice = $variant->price()->value;		  				
+			  				$featuredPrice = $variant->price()->value;
+			  				$featuredSalePrice = salePrice($variant);
 			  			} else if ($featuredProduct['calculation'] === 'high' and $variant->price()->value > $featuredPrice) {
 			  				$featuredVariant = $variant;
-			  				$featuredPrice = $variant->price()->value;		  				
+			  				$featuredPrice = $variant->price()->value;
+			  				$featuredSalePrice = salePrice($variant);
 			  			}
 			  		}
 			  	?>
@@ -60,9 +63,29 @@
 						<?php } ?>
 
 						<?php if (inStock($featuredVariant)) { ?>
-							<button class="uk-margin-small-top uk-button uk-width-1-1 uk-button-primary" type="submit"><?php echo l::get('buy') ?> <?php echo formatPrice($featuredPrice) ?></button>
+							<button class="uk-margin-small-top uk-button uk-width-1-1 uk-button-primary" type="submit">
+								<?php echo l::get('buy') ?>
+								<?php
+									if ($featuredSalePrice) {
+										echo formatPrice($featuredSalePrice);
+										echo '<del>'.formatPrice($featuredPrice).'</del>';
+									} else {
+										echo formatPrice($featuredPrice);
+									}
+								?>
+							</button>
 						<?php } else { ?>
-							<button class="uk-margin-small-top uk-button uk-width-1-1" disabled><?php echo l::get('out-of-stock') ?> <?php echo formatPrice($featuredPrice) ?></button>
+							<button class="uk-margin-small-top uk-button uk-width-1-1" disabled>
+								<?php echo l::get('out-of-stock') ?>
+								<?php
+									if ($featuredSalePrice) {
+										echo formatPrice($featuredSalePrice);
+										echo '<del>'.formatPrice($featuredPrice).'</del>';
+									} else {
+										echo formatPrice($featuredPrice);
+									}
+								?>
+							</button>
 						<?php } ?>
 		            </form>
 			  	</div>

@@ -38,7 +38,10 @@
 		<?php foreach ($cart->getItems() as $i => $item) { ?>
 		    <?php $i++ ?>
 		    <input type="hidden" name="item_name_<?php echo $i ?>" value="<?php echo $item->fullTitle() ?>">
-		    <input type="hidden" name="amount_<?php echo $i ?>" value="<?php echo sprintf('%0.2f', $item->amount) ?>">
+		    
+		    <?php $itemAmount = $item->sale_amount ? $item->sale_amount : $item->amount ?>
+		    <input type="hidden" name="amount_<?php echo $i ?>" value="<?php echo sprintf('%0.2f', $itemAmount) ?>">
+
 		    <input type="hidden" name="quantity_<?php echo $i ?>" value="<?php echo $item->quantity ?>">
 		<?php } ?>
 

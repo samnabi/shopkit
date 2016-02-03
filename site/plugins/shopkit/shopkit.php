@@ -21,7 +21,7 @@ s::set('country',$country);
 
 // Set discount code from query string or user profile
 if ($discountCode = get('dc') or ($user = site()->user() and $discountCode = $user->discountcode())) {
-  s::set('discountCode', $discountCode);
+  s::set('discountCode', strtoupper($discountCode));
 }
 
 /**
@@ -224,4 +224,50 @@ function customColours($base = 'eeeeee', $accent = '00a836', $link = '0077dd') {
 
   // Return combined array
   return array_merge($baseColours,$accentColours,$linkColours);
+}
+
+/**
+ * Check sale price conditions on individual variants
+ * Receives a $variant object
+ */
+
+function salePrice($variant) {
+
+  // Set vars from object
+  if (gettype($variant) === 'object') {
+    $salePrice = $variant->sale_price()->value;
+    $saleStart = $variant->sale_start()->value;
+    $saleEnd = $variant->sale_end()->value;
+    $saleCodes = explode(',', $variant->sale_codes()->value);
+  }
+
+  // Set vars from array
+  if (gettype($variant) === 'array') {
+    $salePrice = $variant['sale_price'];
+    $saleStart = $variant['sale_start'];
+    $saleEnd = $variant['sale_end'];
+    $saleCodes = explode(',', $variant['sale_codes']);
+  }
+
+  // Check that a sale price exists and the start and end times are valid
+  if ($salePrice == '') return false;
+  if ($saleStart != '' and strtotime($saleStart) > time()) return false;
+  if ($saleEnd != '' and strtotime($saleEnd) < time()) return false;
+
+  // Check that the discount codes are valid
+  if (count($saleCodes) and $saleCodes[0] != '') {
+    $saleCodes = array_map('strtoupper', $saleCodes);
+    if (in_array(s::get('discountCode'), $saleCodes)) {
+      // Codes match, the product is on sale
+      return $salePrice;
+    } else {
+      // Codes don't match. No sale for you!
+      return false;
+    }
+  } else {
+    return $salePrice;
+  }
+
+  // Something went wrong, return false
+  return false;
 }

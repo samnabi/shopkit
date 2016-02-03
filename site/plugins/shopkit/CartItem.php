@@ -39,6 +39,11 @@ class CartItem
 	public $amount;
 
 	/**
+	 * @var float
+	 */
+	public $sale_amount;
+
+	/**
 	 * @var int
 	 */
 	public $quantity;
@@ -86,6 +91,7 @@ class CartItem
         $this->variant = str::slug($variant['name']);
         $this->option = $id_array[2];
         $this->amount = $variant['price'];
+        $this->sale_amount = salePrice($variant);
         $this->weight = $variant['weight'];
         $this->quantity = $quantity;
         $this->noshipping = $product->noshipping();
