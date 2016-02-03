@@ -46,8 +46,4 @@ Slider:
 
 ----
 
-Discounts-role: 
-
-----
-
-Discounts-code: 
+Discount-codes: 
