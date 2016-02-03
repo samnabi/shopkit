@@ -128,6 +128,9 @@ l::set('pay-now','Achetez maintenant');
 l::set('pay-later','Achetez plus tard');
 l::set('empty-cart','Videz le panier');
 
+l::set('discount','Rabais');
+l::set('discount-apply','Appliquez code');
+
 
 // templates/orders.php
 

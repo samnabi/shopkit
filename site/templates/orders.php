@@ -48,6 +48,14 @@
                                     <?php echo number_format($order->subtotal()->value,2,'.','') ?>&nbsp;<?php echo $order->txn_currency() ?>
                                 </td>
                             </tr>
+                            <?php if ($order->discount()->value and $order->discount()->value != '0.00') { ?>
+                                <tr>
+                                    <td><?php echo l::get('discount') ?></td>
+                                    <td>
+                                        <?php echo '&ndash; '.number_format($order->discount()->value,2,'.','') ?>&nbsp;<?php echo $order->txn_currency() ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                             <tr>
                                 <td><?php echo l::get('shipping') ?></td>
                                 <td>

@@ -10,6 +10,7 @@ if($_POST['txn_id'] != '' ) {
   $txn = page('shop/orders/'.$_POST['custom']);
   if ($txn->subtotal()->value == $_POST['mc_gross']-$_POST['mc_shipping']-$_POST['tax'] and
       $txn->shipping()->value == $_POST['mc_shipping'] and
+      $txn->discount()->value == $_POST['discount_amount_cart'] and
       $txn->tax()->value == $_POST['tax'] and
       $txn->txn_currency() == $_POST['mc_currency']) {
 

@@ -45,6 +45,9 @@
 		    <input type="hidden" name="quantity_<?php echo $i ?>" value="<?php echo $item->quantity ?>">
 		<?php } ?>
 
+		<!-- Cart discount -->
+		<input type="hidden" name="discount_amount_cart" value="<?php echo $txn->discount() ?>">
+
 		<!-- Shipping -->
 		<input type="hidden" name="shipping_1" value="<?php echo $txn->shipping() ?>">
 	

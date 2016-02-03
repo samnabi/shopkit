@@ -6,11 +6,11 @@
 
 <h1><?php echo $page->title()->html() ?></h1>
 
-<?php if ($cart->count() === 0) : ?>
+<?php if ($cart->count() === 0) { ?>
     <div class="uk-alert uk-alert-warning">
         <p><?php echo l::get('no-cart-items') ?></p>
     </div>
-<?php else : ?>
+<?php } else { ?>
 
     <!-- Cart items -->
     <div class="uk-overflow-container">
@@ -105,6 +105,24 @@
                     <td><?php echo formatPrice($cart->getAmount()) ?></td>
                     <td></td>
                 </tr>
+                <?php if ($pages->find('shop')->discount_codes()->toStructure()->count() > 0) {  ?>
+                    <tr>
+                        <td colspan="2"><?php echo l::get('discount') ?></td>
+                        <?php if ($discountAmount = $cart->getDiscountAmount()) { ?>
+                            <td class="uk-text-success"><?php echo '&ndash; '.formatPrice($discountAmount) ?></td>
+                            <td></td>
+                        <?php } else { ?>
+                            <td colspan="2" class="uk-text-left">
+                                <form method="POST" class="uk-form discount">
+                                    <input type="text" name="dc" class="uk-form-width-small" />
+                                    <button class="uk-button" type="submit">
+                                        <?php echo l::get('discount-apply') ?>
+                                    </button>
+                                </form>
+                            </td>
+                        <?php } ?>
+                    </tr>
+                <?php } ?>
                 <tr>
                     <td colspan="2"><?php echo l::get('shipping') ?></td>
                     <td colspan="2" class="uk-text-left">
@@ -152,7 +170,7 @@
                     <td>
                         <?php echo page('shop')->currency_symbol() ?>
                         <span id="cartTotal">
-                            <?php echo sprintf('%0.2f', $cart->getAmount() + $tax) ?> <?php echo page('shop')->currency_code() ?><br />
+                            <?php echo sprintf('%0.2f', $cart->getAmount() + $tax - $discountAmount) ?> <?php echo page('shop')->currency_code() ?><br />
                             + <?php echo l::get('shipping') ?>
                         </span>
                     </td>
@@ -173,6 +191,7 @@
 
         <input type="hidden" name="gateway" value="paypal">
         <input type="hidden" name="tax" value="<?php echo $tax ?>">
+        <input type="hidden" name="discountAmount" value="<?php echo $discountAmount ? $discountAmount : 0 ?>">
 
         <select name="shipping" id="payPalShipping">
             <?php if (count($shipping_rates) > 0) { ?>
@@ -222,7 +241,7 @@
         </form>
     <?php } ?>
 
-<?php endif; ?>
+<?php } ?>
 
 <!-- Dat Fancy Jarverscrupt -->
 <?php if (isset($tax)) { ?>
@@ -232,7 +251,7 @@
             var shippingEncoded = e.options[e.selectedIndex].value;
             var shippingParts = shippingEncoded.split('::');
             var shipping = shippingParts[1];
-            var total = <?php echo number_format($cart->getAmount()+$tax,2,'.','') ?>+(Math.round(shipping*100)/100);
+            var total = <?php echo number_format($cart->getAmount()+$tax-$discountAmount,2,'.','') ?>+(Math.round(shipping*100)/100);
             document.getElementById("cartTotal").innerHTML = total.toFixed(2) + <?php echo "' ".page('shop')->currency_code()."'" ?>; // Always show total with two decimals and currency code
         }
 

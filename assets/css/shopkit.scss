@@ -437,10 +437,18 @@ a.slideshow {
 		line-height: 1;
 		margin-bottom: 0.6rem;
 	}
+
+	.discount > * {
+		vertical-align: bottom;
+	}
 	
 	tfoot {
 		font-style: normal;
 		font-size: inherit;
+
+		td:first-child {
+			vertical-align: middle;
+		}
 
 		.total {
 			font-weight: bold;

@@ -2,9 +2,10 @@
 /**
  * Variables passed from /shop/cart
  * ================================
- * gateway		string
- * tax 			number
- * shipping 	encoded string (title::rate)
+ * gateway		  string
+ * tax 			  number
+ * shipping 	  encoded string (title::rate)
+ * discountAmount number or false
  */
 
 $cart = Cart::getCart();
@@ -31,13 +32,14 @@ try {
 		'status'  => 'pending',
 		'products' => $products_string,
 		'subtotal' => number_format($cart->getAmount(),2,'.',''),
+		'discount' => number_format($_POST['discountAmount'],2,'.',''),
 		'shipping' => $shipping_rate,
 		'shipping-method' => $shipping_method,
 		'tax' => $_POST['tax']
 	]);
 
 	// Add payer info if it's available at this point
-	if (site()->user()) {
+	if ($user = site()->user()) {
 		page('shop/orders/'.$txn_id)->update([
 			'payer-id' => $user->username,
 			'payer-name' => $user->name,
