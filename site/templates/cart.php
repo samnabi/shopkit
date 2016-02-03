@@ -225,6 +225,7 @@
         <form method="post" action="/shop/cart/process">
             <input type="hidden" name="gateway" value="paylater">
             <input type="hidden" name="tax" value="<?php echo $tax ?>">
+            <input type="hidden" name="discountAmount" value="<?php echo $discountAmount ? $discountAmount : 0 ?>">
 
             <select name="shipping" id="payLaterShipping">
                 <?php if (count($shipping_rates) > 0) { ?>
