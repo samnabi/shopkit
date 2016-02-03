@@ -1,167 +1,167 @@
-<?php
+<?php l::set([
 
 // multiple pages 
 
-l::set('username', 'Nom d\'utilisateur');
-l::set('password', 'Mot de passe');
-l::set('login', 'Connexion');
-l::set('register', 'Inscription');
+'username' => 'Nom d\'utilisateur',
+'password' => 'Mot de passe',
+'login' => 'Connexion',
+'register' => 'Inscription',
 
-l::set('email-address','Courriel');
-l::set('first-name','Prénom');
-l::set('last-name','Surnom');
-l::set('full-name','Nom');
-l::set('country','Pays');
-l::set('country-help','Afin de calculer les frais de transport');
+'email-address' => 'Courriel',
+'first-name' => 'Prénom',
+'last-name' => 'Surnom',
+'full-name' => 'Nom',
+'country' => 'Pays',
+'country-help' => 'Afin de calculer les frais de transport',
 
-l::set('shop-by-category', 'Achetez par catégorie');
+'shop-by-category' => 'Achetez par catégorie',
 
-l::set('buy','Achetez');
-l::set('out-of-stock','Épuisé');
+'buy' => 'Achetez',
+'out-of-stock' => 'Épuisé',
 
-l::set('price','Prix');
+'price' => 'Prix',
 
-l::set('subtotal','Sous-total');
-l::set('shipping','Frais de transport');
-l::set('tax','Taxes');
-l::set('total','Total');
+'subtotal' => 'Sous-total',
+'shipping' => 'Frais de transport',
+'tax' => 'Taxes',
+'total' => 'Total',
 
 
 // snippets/cart.process.php
 
-l::set('qty','Qté: ');
+'qty' => 'Qté: ',
 
 
 // snippets/cart.process.paypal.php
 
-l::set('redirecting', 'Redirection...');
-l::set('continue-to-paypal','Continuez vers PayPal');
+'redirecting' => 'Redirection...',
+'continue-to-paypal' => 'Continuez vers PayPal',
 
 
 // snippets/footer.php
 
-l::set('phone','Téléphone');
-l::set('email','Courriel');
-l::set('address','Addresse');
+'phone' => 'Téléphone',
+'email' => 'Courriel',
+'address' => 'Addresse',
 
 
 // snippets/header.notifications.php
 
-l::set('notification-account','Vous n\'avez aucun compte. <a href="'.url('panel').'/install" title="Page d\'installation du panneau">Créez-en un maintenant</a>.');
-l::set('notification-login','Finissons l\'installation de votre magasin! <a href="/#user">Connectez-vous</a> afin de continuer.');
-l::set('notification-options','Vous n\'avez pas entré les options de votre magasin. <a href="'.url('panel').'/pages/shop/edit" title="Options de magasin">Entrez-les ici</a>.');
-l::set('notification-category','Vous n\'avez aucune catégorie pour vos produits. <a href="'.url('panel').'/pages/shop/add" title="Créez une nouvelle catégorie">Créez votre première catégorie ici</a>.');
-l::set('notification-product-first','Vous n\'avez aucun produit. <a href="'.url('panel').'/pages/');
-l::set('notification-product-last','/add" title="Créez un nouveau produit">Créez votre premier produit avec le tableau de bord</a>.');
-l::set('notification-license','Vous n\'avez pas enregistré votre code de license. SVP mettez-le dans le fichier <strong>config.php</strong> avant de donner accès au public.');
-l::set('notification-code','Votre code de rabais <strong><code>'.s::get('discountCode').'</code></strong> sera appliqué à la caisse.');
+'notification-account' => 'Vous n\'avez aucun compte. <a href="'.url('panel').'/install" title="Page d\'installation du panneau">Créez-en un maintenant</a>.',
+'notification-login' => 'Finissons l\'installation de votre magasin! <a href="/#user">Connectez-vous</a> afin de continuer.',
+'notification-options' => 'Vous n\'avez pas entré les options de votre magasin. <a href="'.url('panel').'/pages/shop/edit" title="Options de magasin">Entrez-les ici</a>.',
+'notification-category' => 'Vous n\'avez aucune catégorie pour vos produits. <a href="'.url('panel').'/pages/shop/add" title="Créez une nouvelle catégorie">Créez votre première catégorie ici</a>.',
+'notification-product-first' => 'Vous n\'avez aucun produit. <a href="'.url('panel').'/pages/',
+'notification-product-last' => '/add" title="Créez un nouveau produit">Créez votre premier produit avec le tableau de bord</a>.',
+'notification-license' => 'Vous n\'avez pas enregistré votre code de license. SVP mettez-le dans le fichier <strong>config.php</strong> avant de donner accès au public.',
+'notification-code' => 'Votre code de rabais <strong><code>'.s::get('discountCode').'</code></strong> sera appliqué à la caisse.',
 
 
 // snippets/header.nav.php
 
-l::set('view-cart','Mon panier');
+'view-cart' => 'Mon panier',
 
 
 // snippets/header.user.php
 
-l::set('edit-page', 'Éditer la page');
-l::set('edit-shop', 'Paramètres');
-l::set('edit-design', 'Design');
-l::set('dashboard', 'Tableau de bord');
-l::set('view-orders', 'Commandes');
-l::set('my-account', 'Mon compte');
-l::set('logout', 'Déconnexion');
+'edit-page' => 'Éditer la page',
+'edit-shop' => 'Paramètres',
+'edit-design' => 'Design',
+'dashboard' => 'Tableau de bord',
+'view-orders' => 'Commandes',
+'my-account' => 'Mon compte',
+'logout' => 'Déconnexion',
 
 
 // snippets/orders.pdf.php
 
-l::set('bill-to','Facturer à');
+'bill-to' => 'Facturer à',
 
 
 // snippets/sidebar.php
 
-l::set('new-customer', 'Nouveau client');
+'new-customer' => 'Nouveau client?',
 
-l::set('subpages', 'Pages');
+'subpages' => 'Pages',
 
-l::set('search-shop', 'Recherchez');
-l::set('search', 'Recherchez');
+'search-shop' => 'Recherchez',
+'search' => 'Recherchez',
 
 
 // snippets/slideshow.product.php
 
-l::set('prev', 'Précédent');
-l::set('next', 'Prochain');
-l::set('view-grid', 'Vue grille');
+'prev' => 'Précédent',
+'next' => 'Prochain',
+'view-grid' => 'Vue grille',
 
 
 // templates/account.php
 
-l::set('account-success','Votre information est mise à jour.');
-l::set('account-failure','Désolé, votre information ne pouvait être mise à jour. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.');
-l::set('account-delete-error','Désolé, votre compte ne pouvait être supprimé.');
-l::set('password-help','Laissez vide pour garder votre mot de passe actuel');
-l::set('update','Mettre à jour');
-l::set('delete-account','Supprimer mon compte');
-l::set('delete-account-text','Si vous cliquez ce bouton, c\'est le point de non-retour. Votre compte sera supprimé à jamais.');
-l::set('delete-account-verify','Supprimer mon compte. Oui, je suis certain.');
-l::set('username-no-account','Le nom d\'utilisateur ne peut être changé.');
-l::set('discount-code','Code de rabais');
-l::set('discount-code-help','Appliquez ce code chaque fois que vous vous connectez.');
+'account-success' => 'Votre information est mise à jour.',
+'account-failure' => 'Désolé, votre information ne pouvait être mise à jour. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.',
+'account-delete-error' => 'Désolé, votre compte ne pouvait être supprimé.',
+'password-help' => 'Laissez vide pour garder votre mot de passe actuel',
+'update' => 'Mettre à jour',
+'delete-account' => 'Supprimer mon compte',
+'delete-account-text' => 'Si vous cliquez ce bouton, c\'est le point de non-retour. Votre compte sera supprimé à jamais.',
+'delete-account-verify' => 'Supprimer mon compte. Oui, je suis certain.',
+'username-no-account' => 'Le nom d\'utilisateur ne peut être changé.',
+'discount-code' => 'Code de rabais',
+'discount-code-help' => 'Appliquez ce code chaque fois que vous vous connectez.',
 
 
 // templates/cart.php
 
-l::set('no-cart-items','Vous n\'avez rien dans votre panier!');
+'no-cart-items' => 'Vous n\'avez rien dans votre panier!',
 
-l::set('product','Produit');
-l::set('quantity','Quantité');
+'product' => 'Produit',
+'quantity' => 'Quantité',
 
-l::set('delete','Supprimer');
+'delete' => 'Supprimer',
 
-l::set('update-country','Mettre à jour le pays');
-l::set('free-shipping','Transport gratuit');
+'update-country' => 'Mettre à jour le pays',
+'free-shipping' => 'Transport gratuit',
 
-l::set('sandbox-message','Vous êtes dans la mode "sandbox". Cette transaction ne résultera pas en un achat réel.');
+'sandbox-message' => 'Vous êtes dans la mode "sandbox". Cette transaction ne résultera pas en un achat réel.',
 
-l::set('pay-now','Achetez maintenant');
-l::set('pay-later','Achetez plus tard');
-l::set('empty-cart','Videz le panier');
+'pay-now' => 'Achetez maintenant',
+'pay-later' => 'Achetez plus tard',
+'empty-cart' => 'Videz le panier',
 
-l::set('discount','Rabais');
-l::set('discount-apply','Appliquez code');
+'discount' => 'Rabais',
+'discount-apply' => 'Appliquez code',
 
 
 // templates/orders.php
 
-l::set('no-orders','Vous n\'avez aucun transaction.');
-l::set('no-auth-orders','Afin de voir les transactions associés à votre compte, SVP <a href="#user">vous incrire ou connectez</a>.');
+'no-orders' => 'Vous n\'avez aucun transaction.',
+'no-auth-orders' => 'Afin de voir les transactions associés à votre compte, SVP <a href="#user">vous incrire ou connectez</a>.',
 
-l::set('products','Produits');
-l::set('status','État');
+'products' => 'Produits',
+'status' => 'État',
 
-l::set('download-invoice','Téléchargez facture (PDF)');
-l::set('view-on-paypal','Accédez sur PayPal');
+'download-invoice' => 'Téléchargez facture (PDF)',
+'view-on-paypal' => 'Accédez sur PayPal',
 
-l::set('pending','En attente');
-l::set('paid','Payé');
-l::set('shipped','Envoyé');
+'pending' => 'En attente',
+'paid' => 'Payé',
+'shipped' => 'Envoyé',
 
 
 // templates/product.php
 
-l::set('related-products','Produits reliés');
+'related-products' => 'Produits reliés',
 
 
 // templates/register.php
 
-l::set('register-success','Merci, votre compte est inscrit! Vous pouvez maintenant <a href="#user">vous connecter</a>.');
-l::set('register-failure','Désolé, votre compte ne pouvait être inscrit. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.');
-l::set('register-duplicate','Désolé, vore compte ne pouvait être inscrit. Il y a déja un compte avec ce nom d\'utilisateur ou courriel.');
+'register-success' => 'Merci, votre compte est inscrit! Vous pouvez maintenant <a href="#user">vous connecter</a>.',
+'register-failure' => 'Désolé, votre compte ne pouvait être inscrit. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.',
+'register-duplicate' => 'Désolé, vore compte ne pouvait être inscrit. Il y a déja un compte avec ce nom d\'utilisateur ou courriel.',
 
 
 // templates/search.php
 
-l::set('no-search-results','Désolé, il n\'y a aucun résultat pour cette recherche.');
+'no-search-results' => 'Désolé, il n\'y a aucun résultat pour cette recherche.',
 
-?>
+]); ?>
