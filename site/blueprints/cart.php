@@ -25,3 +25,4 @@ fields:
     mode:  multiple
     types:
       - image
+    filter: /^((?!paypal-cards\.png).)*$/
