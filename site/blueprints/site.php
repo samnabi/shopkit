@@ -26,7 +26,8 @@ fields:
       - image
     filter: /^((?!placeholder\.png).)*$/
   placeholder:
-    label: Placeholder product photo
+    label: Placeholder photo
+    help: For products and pages that don't have a photo
     type:  selector
     mode:  single
     types:
