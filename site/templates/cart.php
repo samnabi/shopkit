@@ -183,7 +183,7 @@
     </div>
 
     <!-- Paypal form -->
-    <form method="post" action="/shop/cart/process">
+    <form method="post" action="<?php echo url('/shop/cart/process') ?>">
 
         <?php if (page('shop')->paypal_action() != 'live') { ?>
             <div class="uk-alert uk-alert-warning">
@@ -224,7 +224,7 @@
 
     <!-- Pay later form -->
     <?php if ($site->user() and $cart->canPayLater($site->user())) { ?>
-        <form method="post" action="/shop/cart/process">
+        <form method="post" action="<?php echo url('/shop/cart/process') ?>">
             <input type="hidden" name="gateway" value="paylater">
             <input type="hidden" name="tax" value="<?php echo $tax ?>">
             <input type="hidden" name="discountAmount" value="<?php echo $discountAmount ? $discountAmount : 0 ?>">
