@@ -210,13 +210,14 @@ main {
 }
 
 
-// Brand tag
+// Brand and date tags
 
-.brand {
+.brand, .date {
 	display: block;
 	text-transform: uppercase;
 
-	& + h1 {
+	& + h1,
+	& + h3 {
 		margin-top: 0;
 	}
 }
