@@ -3,7 +3,7 @@
 title: Site options
 pages: true
   template:
-    - category
+    - default
 files:
   sortable: true
   type: image

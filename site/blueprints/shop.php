@@ -5,7 +5,6 @@ icon: cog
 pages: true
   template:
     - category
-    - default
 deletable: false
 fields:
   tab1:
