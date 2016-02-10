@@ -235,24 +235,24 @@ function salePrice($variant) {
 
   // Set vars from object
   if (gettype($variant) === 'object') {
-    $salePrice = $variant->sale_price()->value;
-    $saleStart = $variant->sale_start()->value;
-    $saleEnd = $variant->sale_end()->value;
-    $saleCodes = explode(',', $variant->sale_codes()->value);
+    $salePrice = $variant->sale_price()->value ? $variant->sale_price()->value : false;
+    $saleStart = $variant->sale_start()->value ? $variant->sale_start()->value : false;
+    $saleEnd = $variant->sale_end()->value ? $variant->sale_end()->value : false;
+    $saleCodes = $variant->sale_codes()->value ? explode(',', $variant->sale_codes()->value) : false;
   }
 
   // Set vars from array
   if (gettype($variant) === 'array') {
-    $salePrice = $variant['sale_price'];
-    $saleStart = $variant['sale_start'];
-    $saleEnd = $variant['sale_end'];
-    $saleCodes = explode(',', $variant['sale_codes']);
+    $salePrice = $variant['sale_price'] ? $variant['sale_price'] : false;
+    $saleStart = $variant['sale_start'] ? $variant['sale_start'] : false;
+    $saleEnd = $variant['sale_end'] ? $variant['sale_end'] : false;
+    $saleCodes = $variant['sale_codes'] ? explode(',', $variant['sale_codes']) : false;
   }
 
   // Check that a sale price exists and the start and end times are valid
-  if ($salePrice == '') return false;
-  if ($saleStart != '' and strtotime($saleStart) > time()) return false;
-  if ($saleEnd != '' and strtotime($saleEnd) < time()) return false;
+  if ($salePrice === false) return false;
+  if ($saleStart != false and strtotime($saleStart) > time()) return false;
+  if ($saleEnd != false and strtotime($saleEnd) < time()) return false;
 
   // Check that the discount codes are valid
   if (count($saleCodes) and $saleCodes[0] != '') {
