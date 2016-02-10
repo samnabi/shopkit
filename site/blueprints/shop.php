@@ -6,7 +6,6 @@ pages: true
   template:
     - category
     - default
-    - contact
 deletable: false
 fields:
   tab1:

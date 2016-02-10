@@ -4,8 +4,8 @@ title: Product category
 icon: sitemap
 pages: true
   template:
-    - category
     - product
+    - category
 files:
   sortable: true
   type: image
