@@ -10,6 +10,7 @@ files:
     title:
       label: Title
       type: text
+deletable: false
 fields:
   title:
     label: Title
