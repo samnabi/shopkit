@@ -8,7 +8,7 @@
     <!-- Login form -->
     <?php if (!$user = $site->user()) { ?>
         <div class="uk-panel uk-panel-divider">
-            <form action="/login" method="POST" id="login" class="uk-form">
+            <form action="<?php echo url('/login') ?>" method="POST" id="login" class="uk-form">
                 <div class="uk-grid uk-grid-width-1-2">
                     <div>
                       <label for="email"><?php echo l::get('email-address') ?></label>
@@ -63,7 +63,7 @@
     <!-- Search -->
     <div class="uk-panel uk-panel-divider">
         <h3><?php echo l::get('search-shop') ?></h3>
-        <form class="uk-form uk-grid uk-grid-collapse" action="/search" method="get">
+        <form class="uk-form uk-grid uk-grid-collapse" action="<?php echo url('/search') ?>" method="get">
             <div class="uk-width-3-5">
                 <input class="uk-width-1-1" type="text" name="q" value="<?php echo get('q') ?>" placeholder="">
             </div>
