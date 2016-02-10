@@ -1,6 +1,6 @@
 <?php if(!defined('KIRBY')) exit ?>
 
-title: Page
+title: Cart page
 pages: true
   template:
     - default

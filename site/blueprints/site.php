@@ -1,6 +1,6 @@
 <?php if(!defined('KIRBY')) exit ?>
 
-title: Shop
+title: Site options
 pages: true
   template:
     - category

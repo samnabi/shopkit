@@ -1,6 +1,6 @@
 <?php if(!defined('KIRBY')) exit ?>
 
-title: Page
+title: Search results
 pages: true
   template:
     - default

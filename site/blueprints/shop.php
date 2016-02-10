@@ -1,6 +1,6 @@
 <?php if(!defined('KIRBY')) exit ?>
 
-title: Shop
+title: Home page
 icon: cog
 pages: true
   template:
