@@ -105,10 +105,11 @@
                     <td><?php echo formatPrice($cart->getAmount()) ?></td>
                     <td></td>
                 </tr>
+                <?php $discountAmount = $cart->getDiscountAmount() ? $cart->getDiscountAmount() : 0 ?>
                 <?php if ($pages->find('shop')->discount_codes()->toStructure()->count() > 0) {  ?>
                     <tr>
                         <td colspan="2"><?php echo l::get('discount') ?></td>
-                        <?php if ($discountAmount = $cart->getDiscountAmount()) { ?>
+                        <?php if ($discountAmount > 0) { ?>
                             <td class="uk-text-success"><?php echo '&ndash; '.formatPrice($discountAmount) ?></td>
                             <td></td>
                         <?php } else { ?>
@@ -191,7 +192,7 @@
 
         <input type="hidden" name="gateway" value="paypal">
         <input type="hidden" name="tax" value="<?php echo $tax ?>">
-        <input type="hidden" name="discountAmount" value="<?php echo $discountAmount ? $discountAmount : 0 ?>">
+        <input type="hidden" name="discountAmount" value="<?php echo $discountAmount ?>">
 
         <select name="shipping" id="payPalShipping">
             <?php if (count($shipping_rates) > 0) { ?>
@@ -225,7 +226,7 @@
         <form method="post" action="/shop/cart/process">
             <input type="hidden" name="gateway" value="paylater">
             <input type="hidden" name="tax" value="<?php echo $tax ?>">
-            <input type="hidden" name="discountAmount" value="<?php echo $discountAmount ? $discountAmount : 0 ?>">
+            <input type="hidden" name="discountAmount" value="<?php echo $discountAmount ?>">
 
             <select name="shipping" id="payLaterShipping">
                 <?php if (count($shipping_rates) > 0) { ?>
@@ -262,7 +263,7 @@
             var shippingEncoded = e.options[e.selectedIndex].value;
             var shippingParts = shippingEncoded.split('::');
             var shipping = shippingParts[1];
-            var total = <?php echo number_format($cart->getAmount()+$tax-$discountAmount,2,'.','') ?>+(Math.round(shipping*100)/100);
+            var total = <?php echo number_format($cart->getAmount() + $tax - $discountAmount,2,'.','') ?>+(Math.round(shipping*100)/100);
             document.getElementById("cartTotal").innerHTML = total.toFixed(2) + <?php echo "' ".page('shop')->currency_code()."'" ?>; // Always show total with two decimals and currency code
         }
 
