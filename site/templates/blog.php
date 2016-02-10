@@ -9,7 +9,7 @@
 	<?php echo $page->text()->kirbytext() ?>
 
 	<?php
-		$posts = $page->children()->visible()->filterBy('date', '<', time());
+		$posts = $page->children()->visible()->filterBy('date', '<', time())->sortBy('date', 'desc');
 		snippet('list.blogpost', ['posts' => $posts]);
 	?>
 

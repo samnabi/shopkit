@@ -2,7 +2,9 @@
 
 title: Blog
 icon: edit
-pages: true
+pages:
+  num: date
+  sort: flip
   template:
     - blogpost
 files:
