@@ -134,6 +134,14 @@
 'discount-apply' => 'Appliquez code',
 
 
+// templates/events.php
+
+'events-for' => 'Événements le',
+'events-start' => 'Début',
+'events-end' => 'Fin',
+'link' => 'Lien',
+
+
 // templates/orders.php
 
 'no-orders' => 'Vous n\'avez aucun transaction.',
