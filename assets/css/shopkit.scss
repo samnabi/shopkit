@@ -463,3 +463,35 @@ a.slideshow {
 		}
 	}
 }
+
+
+// Events Calendar
+
+.events thead th {
+	position: relative;
+}
+.events tbody td span {
+	display: block;
+	height: 2.2rem;
+	line-height: 2.2rem;
+	vertical-align: middle;
+}
+.prevArrow,
+.nextArrow {
+	position: absolute;
+	top: 0;
+}
+.prevArrow { left: 0; }
+.nextArrow { right: 0; }
+
+.events td a {
+	display: block;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.events .today {
+	background: #eeeeee;
+}
