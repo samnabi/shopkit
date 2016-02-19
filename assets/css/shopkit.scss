@@ -130,7 +130,7 @@ nav {
 		width: 1.6rem;
 		height: 1.6rem;
 		vertical-align: middle;
-		margin: 0.3rem auto 0;
+		margin: 0.3rem auto 0.5rem;
 		fill: black;
 	}
 
@@ -139,10 +139,15 @@ nav {
 		fill: white;
 		width: 2rem;
 		height: 2rem;
-		margin: -0.4rem -0.2rem 0 0;
+		margin: 0;
 	}
 	.cart span {
-		margin: -0.4rem -0.2rem 0 0;
+		margin: 0 -0.2rem 0 0;
+	}
+
+	.uk-button {
+		line-height: 1.25;
+		padding-bottom: 0.2rem;
 	}
 }
 

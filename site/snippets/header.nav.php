@@ -30,7 +30,7 @@
 
     <div class="uk-width-small-1-4 uk-width-medium-1-5 uk-width-large-1-6 uk-grid uk-grid-collapse">
             <!-- Cart -->
-            <a class="cart uk-button uk-button-large uk-button-primary uk-width-1-3 uk-width-small-1-1" href="<?php echo url('shop/cart') ?>" title="<?php l::get('view-cart') ?>">
+            <a class="cart uk-button uk-button-large uk-button-primary uk-width-1-3 uk-width-small-1-1 uk-flex uk-flex-middle uk-flex-center" href="<?php echo url('shop/cart') ?>" title="<?php l::get('view-cart') ?>">
                 <?php
                     $cart = Cart::getCart();
                     $count = $cart->count();
