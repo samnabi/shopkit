@@ -19,7 +19,7 @@ fields:
     type:  text
   text:
     label: Description
-    type:  markdown
+    type:  wysiwyg
   slider:
     label: Photo slider
     help: Choose photos to show at the top of the page.

@@ -15,7 +15,7 @@ fields:
     type:  text
   text:
     label: Text
-    type:  markdown
+    type:  wysiwyg
   slider:
     label: Photo slider
     help: Choose photos to show at the top of the page.

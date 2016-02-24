@@ -10,9 +10,6 @@
 [submodule "site/fields/place"]
 	path = site/fields/place
 	url = https://github.com/AugustMiller/kirby-place-field.git
-[submodule "site/fields/markdown"]
-	path = site/fields/markdown
-	url = https://github.com/JonasDoebertin/kirby-visual-markdown.git
 [submodule "kirby"]
 	path = kirby
 	url = https://github.com/getkirby/kirby.git
@@ -22,3 +19,6 @@
 [submodule "site/fields/tabs"]
 	path = site/fields/tabs
 	url = https://github.com/afbora/Kirby-Tabs-Field.git
+[submodule "site/fields/wysiwyg"]
+	path = site/fields/wysiwyg
+	url = https://github.com/storypioneers/kirby-wysiwyg.git

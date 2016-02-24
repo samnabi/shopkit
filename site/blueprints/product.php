@@ -21,7 +21,7 @@ fields:
     width: 1/4
   text:
     label: Description
-    type:  markdown
+    type:  wysiwyg
   Variants:
     label: Variants
     help: Each variant defines a price point, with associated SKU and other options.

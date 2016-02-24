@@ -17,4 +17,4 @@ fields:
     type:  text
   text:
     label: Text
-    type:  markdown
+    type:  wysiwyg
