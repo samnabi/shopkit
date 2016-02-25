@@ -15,10 +15,10 @@ fields:
     type:  text
   text:
     label: Text
-    type:  wysiwyg
+    type:  markdown
   hours:
     label: Hours of operation
-    type:  wysiwyg
+    type:  markdown
   phone:
     label: Phone number
     type: text

@@ -18,7 +18,7 @@ fields:
     required: true
   text:
     label: Text
-    type:  wysiwyg
+    type:  markdown
   tags:
     label: Tags
     type: tags

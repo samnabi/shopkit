@@ -44,7 +44,7 @@ fields:
         icon: clock-o
       description:
         label: Description
-        type: wysiwyg
+        type: markdown
       link:
         label: Event link
         type: text

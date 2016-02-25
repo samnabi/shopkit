@@ -15,7 +15,7 @@ fields:
     type:  text
   text:
     label: Text
-    type:  wysiwyg
+    type:  markdown
     help: An introduction to your blog
   slider:
     label: Photo slider

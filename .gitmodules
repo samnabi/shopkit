@@ -19,3 +19,6 @@
 [submodule "site/fields/tabs"]
 	path = site/fields/tabs
 	url = https://github.com/afbora/Kirby-Tabs-Field.git
+[submodule "site/fields/markdown"]
+	path = site/fields/markdown
+	url = https://github.com/JonasDoebertin/kirby-visual-markdown.git

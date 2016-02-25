@@ -16,7 +16,7 @@ fields:
     type:  text
   text:
     label: Text
-    type:  wysiwyg
+    type:  markdown
   calendar:
     label: Calendar
     type:  calendarboard
