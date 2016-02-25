@@ -1,7 +1,7 @@
 <?php if(!defined('KIRBY')) exit ?>
 
 title: Product
-icon: tag
+icon: cube
 pages: false
 files:
   sortable: true
