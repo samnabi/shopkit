@@ -28,8 +28,51 @@ if($_POST['txn_id'] != '' ) {
         'payer-address' => $_POST['address_street']."\n".$_POST['address_city'].", ".$_POST['address_state']." ".$_POST['address_zip']."\n".$_POST['address_country']
       ], 'en');
       
+      // Build items array
+      $items = unserialize(urldecode($txn->encoded_items()));
+
       // Update product stock
-      updateStock(unserialize(urldecode($txn->encoded_items())));
+      updateStock($items);
+
+      // Notify staff
+      $notifications = page('shop')->notifications()->toStructure();
+      if ($notifications->count()) {
+        foreach ($notifications as $n) {
+          // Reset
+          $send = false;
+
+          // Check if the products match
+          $uids = explode(',',$n->products());
+          if ($uids[0] === '') {
+            $send = true;
+          } else {
+            foreach ($uids as $uid) {
+              foreach ($items as $item) {
+                if (strpos($item['uri'], trim($uid))) $send = true;
+              }
+            }
+          }
+
+          // Send the email
+          if ($send) {
+
+            $body = 'Someone made a purchase from '.server::get('server_name')."\n\n";
+            foreach ($items as $item) {
+              $body .= page($item['uri'])->title().' / '.$item['variant'].' / Qty: '.$item['quantity']."\n";
+            }
+
+            $email = new Email(array(
+              'to'      => $n->email(),
+              'from'    => 'noreply@'.server::get('server_name'),
+              'subject' => 'Someone made a purchase',
+              'body'    => $body,
+            ));
+            $email->send();
+          }
+        }
+      }
+
+
 
     } catch(Exception $e) {
       return false;

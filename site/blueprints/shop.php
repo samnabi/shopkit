@@ -141,7 +141,7 @@ fields:
     required: true
   paypal-email:
     label: PayPal email address
-    type: text
+    type: email
     width: 1/2
   paypal-action:
     label: PayPal status
@@ -161,6 +161,25 @@ fields:
       any: Anyone
       logged-in: Logged-in customers
       admin: Admin users
+  notifications:
+    label: Order notifications
+    help: Notify specific email addresses when orders are submitted
+    type: structure
+    style: table
+    fields:
+      email:
+        label: Email address
+        type: email
+        help: Who will be notified?
+      products:
+        label: Products
+        help: Which products should trigger the notification?
+        type: multiselect
+        options: query
+        query: 
+          page: shop
+          fetch: pages
+          template: product
   tab4:
     label: Discounts
     type: tabs
