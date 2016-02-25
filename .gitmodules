@@ -19,6 +19,3 @@
 [submodule "site/fields/tabs"]
 	path = site/fields/tabs
 	url = https://github.com/afbora/Kirby-Tabs-Field.git
-[submodule "site/fields/wysiwyg"]
-	path = site/fields/wysiwyg
-	url = https://github.com/storypioneers/kirby-wysiwyg.git
