@@ -7,6 +7,33 @@
 	opacity: 1;
 }
 
+/* Dropzone for list of file */
+.marginalia[href="#upload"] {
+	padding: 1rem 1rem 1rem 4rem;
+	position: relative;
+	display: block;
+	border: 2px dashed lightgrey;
+	border-radius: 0.3em;
+}
+html[lang="en"] .marginalia[href="#upload"]:after {
+	content: '. Drag & drop here to upload.';
+}
+.marginalia[href="#upload"]:before {
+	position: absolute;
+	display: block;
+	left: 1rem;
+	top: 50%;
+	margin-top: -0.7rem;
+	font-family: 'FontAwesome';
+	font-size: 2rem;
+	content: '\f0ee';
+	color: #CCC;
+}
+.marginalia[href="#upload"]:hover:before,
+.marginalia[href="#upload"]:focus:before {
+	color: inherit;
+}
+
 /* Page save button */
 .ltr .mainbar .form .buttons {
 	border-top: 2px solid #ddd;
