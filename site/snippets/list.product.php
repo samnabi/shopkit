@@ -20,7 +20,7 @@
 					<h3 class="uk-margin-remove" property="name"><?php echo $product->title()->html() ?></h3>
 
 		    		<?php
-		    			$count = 0;
+		    			$count = $minPrice = $minSalePrice = 0;
 		    			foreach ($product->variants()->toStructure() as $variant) {
 		    				// Assign the first price
 		    				if (!$count) {
