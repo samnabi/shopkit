@@ -222,7 +222,7 @@
     </form>
 
     <!-- Pay later form -->
-    <?php if ($site->user() and $cart->canPayLater($site->user())) { ?>
+    <?php if ($cart->canPayLater()) { ?>
         <form method="post" action="/shop/cart/process">
             <input type="hidden" name="gateway" value="paylater">
             <input type="hidden" name="tax" value="<?php echo $tax ?>">
@@ -279,7 +279,7 @@
 
         // Remove duplicate shipping selects
         document.getElementById("payPalShipping").style.display = 'none';
-        <?php if ($site->user() and $cart->canPayLater($site->user())) { ?>
+        <?php if ($cart->canPayLater()) { ?>
             document.getElementById("payLaterShipping").style.display = 'none';
         <?php } ?>
 

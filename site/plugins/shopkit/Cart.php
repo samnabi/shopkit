@@ -200,7 +200,10 @@ class Cart
 		return $this->amount;
 	}
 
-	public function getDiscountAmount()
+	/**
+	 * @return object
+	 */
+	private function getDiscountCode()
 	{
 		// Check that the customer has set a discount code
 		if (s::get('discountCode') == '') return false;
@@ -211,7 +214,18 @@ class Cart
 		});
 		if ($discount == '') return false;
 
-		$discount = $discount->first();
+		// Return the structure object
+		return $discount->first();
+	}
+
+	/**
+	 * @return float
+	 */
+	public function getDiscountAmount()
+	{
+		// Get the code
+		$discount = $this->getDiscountCode();
+		if (!$discount) return false;
 
 		// Check that the minimum order threshold is met
 		if ($discount->minorder() != '' and $this->amount < $discount->minorder()->value) return false;
@@ -230,13 +244,37 @@ class Cart
 		return false;
 	}
 
-	public function canPayLater(UserAbstract $user)
+
+	/**
+	 * @return bool
+	 */
+	public function canPayLater()
 	{
-	  	// Permitted user roles are defined in the shop content page
+		// Does the current user's role let them pay later?
 	  	$roles = explode(',',page('shop')->paylater());
-	  	if ($user and in_array($user->role(),$roles)) {
-	    	return true;
+	  	if (in_array('any',$roles)) {
+	  		// Anyone can pay later
+	  		return true;
+	  	} else if ($user = site()->user()) {
+	  		if (in_array('logged-in',$roles)) {
+	  			// All logged-in users can pay later
+	  			return true;
+	  		} else if (in_array($user->role(),$roles)) {
+	  			// Admins can pay later
+	  			return true;
+	  		}
 	  	}
+
+	  	// Does the current discount code let them pay later?
+	  	$code = $this->getDiscountCode();
+	  	if ($code and $code->paylater()->bool()) {
+	  		return true;
+	  	}
+
+	  	// Does the current shipping method let them pay later?
+	  	// ... (this feature will come later)
+
+	  	// Nothing matched. Sorry, you can't pay later!
 	    return false;
 	}
 

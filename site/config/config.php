@@ -146,11 +146,6 @@ c::set('roles', array(
     'id'      => 'admin',
     'name'    => 'Admin',
     'panel'   => true
-  ),
-  array(
-    'id'      => 'wholesaler',
-    'name'    => 'Wholesaler',
-    'panel'   => false
   )
 ));
 

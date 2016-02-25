@@ -116,14 +116,6 @@ fields:
   tab3:
     label: Payment
     type: tabs
-  paylater:
-    label: Pay later
-    help: Let customers submit an order without paying online
-    type: multiselect
-    default: admin
-    options:
-      admin: Admin
-      customer: Logged-in customer
   currency-code:
     label: Currency code
     help: e.g. USD, EUR
@@ -160,6 +152,15 @@ fields:
     default: sandbox
     width: 1/2
     required: true
+  paylater:
+    label: Pay later
+    help: Who can submit an order without paying online?
+    type: checkboxes
+    default: admin
+    options:
+      any: Anyone
+      logged-in: Logged-in customers
+      admin: Admin users
   tab4:
     label: Discounts
     type: tabs
@@ -200,3 +201,7 @@ fields:
         validate:
           min: 0
           - num
+      paylater:
+        label: Pay later
+        type: checkbox
+        text: Let customers skip online payment if they use this code
