@@ -168,6 +168,7 @@ fields:
     style: table
     fields:
       email:
+        required: true
         label: Email address
         type: email
         help: Who will be notified?
