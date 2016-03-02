@@ -1,176 +1,164 @@
-<?php l::set([
+<?php
 
 // multiple pages 
 
-'username' => 'Username',
-'password' => 'Password',
-'login' => 'Log in',
-'register' => 'Register',
+l::set('username', 'Username');
+l::set('password', 'Password');
+l::set('login', 'Log in');
+l::set('register', 'Register');
 
-'honeypot-label' => 'Don\'t fill out this field. (Spam protection)',
+l::set('email-address','Email address');
+l::set('first-name','First name');
+l::set('last-name','Last name');
+l::set('full-name','Full name');
+l::set('country','Country');
+l::set('country-help','To calculate shipping costs');
 
-'email-address' => 'Email address',
-'first-name' => 'First name',
-'last-name' => 'Last name',
-'full-name' => 'Full name',
-'country' => 'Country',
-'country-help' => 'To calculate shipping costs',
+l::set('shop-by-category', 'Shop by category');
 
-'shop-by-category' => 'Shop by category',
+l::set('buy','Buy');
+l::set('out-of-stock','Out of stock');
 
-'buy' => 'Buy',
-'out-of-stock' => 'Out of stock',
+l::set('price','Price');
 
-'price' => 'Price',
-
-'subtotal' => 'Subtotal',
-'shipping' => 'Shipping',
-'tax' => 'Tax',
-'total' => 'Total',
+l::set('subtotal','Subtotal');
+l::set('shipping','Shipping');
+l::set('tax','Tax');
+l::set('total','Total');
 
 
 // snippets/cart.process.php
 
-'qty' => 'Qty: ',
+l::set('qty','Qty: ');
 
 
 // snippets/cart.process.paypal.php
 
-'redirecting' => 'Redirecting...',
-'continue-to-paypal' => 'Continue to PayPal',
+l::set('redirecting', 'Redirecting...');
+l::set('continue-to-paypal','Continue to PayPal');
 
 
 // snippets/footer.php
 
-'phone' => 'Phone',
-'email' => 'Email',
-'address' => 'Address',
+l::set('phone','Phone');
+l::set('email','Email');
+l::set('address','Address');
 
 
 // snippets/header.notifications.php
 
-'notification-account' => 'You haven\'t set up any users. <a href="'.url('panel').'/install" title="Panel installation page">Create an account now</a>.',
-'notification-login' => 'Let\'s finish setting up your shop! <a href="/#user">Log in</a> to continue.',
-'notification-options' => 'You haven\'t set up your shop options. <a href="'.url('panel').'/pages/shop/edit" title="Shop options">Define currency, shipping, and tax settings here</a>.',
-'notification-category' => 'You don\'t have any product categories. <a href="'.url('panel').'/pages/shop/add" title="Create a new category">Create your first category here</a>.',
-'notification-product-first' => 'You don\'t have any products. <a href="'.url('panel').'/pages/',
-'notification-product-last' => '/add" title="Create a new product">Create your first product with the Dashboard</a>.',
-'notification-license' => 'This shop doesn\'t have a Shopkit license key. Be sure to add one in the <strong>config.php</strong> file before the website goes live.',
-'notification-code' => 'Your discount code <strong><code>'.s::get('discountCode').'</code></strong> will be applied at checkout.',
-'discount-code-help' => 'Use this discount code every time you log in.',
+l::set('notification-account','You haven\'t set up any users. <a href="'.url('panel').'/install" title="Panel installation page">Create an account now</a>.');
+l::set('notification-options','You haven\'t set up your shop options. <a href="'.url('panel').'/pages/shop/edit" title="Shop options">Define currency, shipping, and tax settings here</a>.');
+l::set('notification-category','You don\'t have any product categories. <a href="'.url('panel').'/pages/shop/edit" title="Create a new category">Create your first category here</a>.');
+l::set('notification-product','You don\'t have any products. <a href="'.url('panel').'/pages/shop/edit" title="Create a new product">Create your first product with the Dashboard</a>.');
+l::set('notification-license','This shop doesn\'t have a Shopkit license key. Be sure to add one in the <strong>config.php</strong> file before the website goes live.');
+
 
 // snippets/header.nav.php
 
-'view-cart' => 'View cart',
+l::set('view-cart','View cart');
 
 
 // snippets/header.user.php
 
-'edit-page' => 'Edit Page',
-'edit-shop' => 'Shop Settings',
-'edit-design' => 'Design',
-'dashboard' => 'Dashboard',
-'view-orders' => 'View Orders',
-'my-account' => 'My Account',
-'logout' => 'Logout',
+l::set('edit-page', 'Edit Page');
+l::set('edit-shop', 'Shop Settings');
+l::set('edit-design', 'Design');
+l::set('dashboard', 'Dashboard');
+l::set('view-orders', 'View Orders');
+l::set('my-account', 'My Account');
+l::set('logout', 'Logout');
+
+
+// snippets/list.product.php
+
+l::set('from','From');
 
 
 // snippets/orders.pdf.php
 
-'bill-to' => 'Bill to',
+l::set('bill-to','Bill to');
 
 
 // snippets/sidebar.php
 
-'new-customer' => 'New customer?',
+l::set('new-customer', 'New customer?');
 
-'subpages' => 'Pages',
+l::set('subpages', 'Pages');
 
-'search-shop' => 'Search shop',
-'search' => 'Search',
+l::set('search-shop', 'Search shop');
+l::set('search', 'Search');
 
 
 // snippets/slideshow.product.php
 
-'prev' => 'Prev',
-'next' => 'Next',
-'view-grid' => 'View grid',
+l::set('prev', 'Prev');
+l::set('next', 'Next');
+l::set('view-grid', 'View grid');
 
 
 // templates/account.php
 
-'account-success' => 'Your information has been updated.',
-'account-failure' => 'Sorry, something went wrong. Please make sure all information is entered correctly, including your email address.',
-'account-delete-error' => 'Sorry, your account couldn\'t be deleted.',
-'password-help' => 'Leave blank to keep it the same',
-'update' => 'Update',
-'delete-account' => 'Delete account',
-'delete-account-text' => 'If you click this button, there\'s no going back. Your account will be gone forever.',
-'delete-account-verify' => 'Delete my account. Yes, I\'m sure.',
-'username-no-account' => 'The username can\'t be changed.',
-'discount-code' => 'Discount code',
+l::set('account-success','Your information has been updated.');
+l::set('account-failure','Sorry, something went wrong. Please make sure all information is entered correctly, including your email address.');
+l::set('account-delete-error','Sorry, your account couldn\'t be deleted.');
+l::set('password-help','Leave blank to keep it the same');
+l::set('update','Update');
+l::set('delete-account','Delete account');
+l::set('delete-account-text','If you click this button, there\'s no going back. Your account will be gone forever.');
+l::set('delete-account-verify','Delete my account. Yes, I\'m sure.');
+l::set('username-no-account','The username can\'t be changed.');
 
 
 // templates/cart.php
 
-'no-cart-items' => 'You don\'t have anything in your cart!',
+l::set('no-cart-items','You don\'t have anything in your cart!');
 
-'product' => 'Product',
-'quantity' => 'Quantity',
+l::set('product','Product');
+l::set('quantity','Quantity');
 
-'delete' => 'Delete',
+l::set('delete','Delete');
 
-'update-country' => 'Update country',
-'free-shipping' => 'Free Shipping',
+l::set('update-country','Update country');
+l::set('free-shipping','Free Shipping');
 
-'sandbox-message' => 'You\'re running in sandbox mode. This transaction won\'t result in a real purchase.',
+l::set('sandbox-message','You\'re running in sandbox mode. This transaction won\'t result in a real purchase.');
 
-'pay-now' => 'Pay now',
-'pay-later' => 'Pay later',
-'empty-cart' => 'Empty cart',
-
-'discount' => 'Discount',
-'discount-apply' => 'Apply code',
-
-
-// templates/events.php
-
-'events-for' => 'Events for',
-'events-start' => 'Start',
-'events-end' => 'End',
-'link' => 'Link',
+l::set('pay-now','Pay now');
+l::set('pay-later','Pay later');
+l::set('empty-cart','Empty cart');
 
 
 // templates/orders.php
 
-'no-orders' => 'You haven\'t made any orders yet.',
-'no-auth-orders' => 'To see the orders associated with your email address, please <a href="#user">register or log in</a>.',
+l::set('no-orders','You haven\'t made any orders yet.');
+l::set('no-auth-orders','To see the orders associated with your email address, please <a href="#user">register or log in</a>.');
 
-'products' => 'Products',
-'status' => 'Status',
+l::set('products','Products');
+l::set('status','Status');
 
-'download-invoice' => 'Download Invoice (PDF)',
-'view-on-paypal' => 'View on PayPal',
+l::set('download-invoice','Download Invoice (PDF)');
+l::set('view-on-paypal','View on PayPal');
 
-'pending' => 'Pending',
-'paid' => 'Paid',
-'shipped' => 'Shipped',
+l::set('pending','Pending');
+l::set('paid','Paid');
+l::set('shipped','Shipped');
 
 
 // templates/product.php
 
-'related-products' => 'Related products',
+l::set('related-products','Related products');
 
 
 // templates/register.php
 
-'register-success' => 'Thanks, your account has been registered! You can now <a href="#user">log in</a>.',
-'register-failure' => 'Sorry, something went wrong. Please make sure all information is entered correctly, including your email address.',
-'register-duplicate' => 'Sorry, there\'s already an account with that username or email address.',
+l::set('register-success','Thanks, your account has been registered! You can now <a href="#user">log in</a>.');
+l::set('register-failure','Sorry, something went wrong. Please make sure all information is entered correctly, including your email address.');
+l::set('register-duplicate','Sorry, there\'s already an account with that username or email address.');
 
 
 // templates/search.php
 
-'no-search-results' => 'Sorry, there are no search results for your query.',
+l::set('no-search-results','Sorry, there are no search results for your query.');
 
-]); ?>
+?>
