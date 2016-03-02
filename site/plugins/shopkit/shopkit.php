@@ -10,8 +10,11 @@ if ($country = get('country')) {
     // First: See if country was sent through a form submission.
     // If it's a 2-character code, turn it into a UID
     if (strlen($country) === 2) $country = page('shop/countries')->children()->filterBy('countrycode',$country)->first()->uid();
+} elseif ($country = s::get('country')) {
+    // Second option: the country has been set in the session
+  $country = s::get('country');
 } elseif ($user = site()->user()) {
-    // Second option: see if the user has set a country in their profile
+    // Third option: see if the user has set a country in their profile
     $country = $user->country();
 } else {
     // Last resort: assume everybody is American. Lol.
