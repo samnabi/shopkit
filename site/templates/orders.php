@@ -99,7 +99,17 @@
                                 </form>
                             </div>
                         <?php } else { ?>
-                            <?php echo ucfirst($order->status()) ?><br><br>
+                            <?php switch ($order->status()->value) {
+                                case 'paid':
+                                    echo l::get('paid');
+                                    break;
+                                case 'shipped':
+                                    echo l::get('shipped');
+                                    break;
+                                default:
+                                    echo l::get('pending');
+                                    break;
+                            }  ?>
                         <?php } ?>
                     </td>
                 </tr>
