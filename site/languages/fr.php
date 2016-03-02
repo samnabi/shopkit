@@ -75,6 +75,11 @@
 'logout' => 'Déconnexion',
 
 
+// snippets/list.product.php
+
+'from' => 'À partir de',
+
+
 // snippets/orders.pdf.php
 
 'bill-to' => 'Facturer à',
