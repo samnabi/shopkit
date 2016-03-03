@@ -22,3 +22,6 @@
 [submodule "site/fields/markdown"]
 	path = site/fields/markdown
 	url = https://github.com/JonasDoebertin/kirby-visual-markdown.git
+[submodule "site/plugins/field-bidi"]
+	path = site/plugins/field-bidi
+	url = https://github.com/samnabi/field-bidi.git
