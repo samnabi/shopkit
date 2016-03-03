@@ -2,15 +2,15 @@
 
 	<?php if ($page->slider() != '') snippet('slider',['photos'=>$page->slider()]) ?>
 
-	<h1><?php echo $page->title()->html() ?></h1>
+	<h1 dir="auto"><?php echo $page->title()->html() ?></h1>
 
 	<?php snippet('subpages') ?>
 
-	<?php echo $page->text()->kirbytext() ?>
+	<?php echo $page->text()->kirbytext()->bidi() ?>
 
-	<?php echo $page->hours()->kirbytext() ?>
+	<?php echo $page->hours()->kirbytext()->bidi() ?>
 
-	<dl>
+	<dl dir="auto">
 	    <?php if ($phone = page('contact')->phone() and $phone != '') { ?>
 	        <dt><?php echo l::get('phone') ?></dt>
 	        <dd class="uk-margin-bottom"><?php echo $phone ?></dd>

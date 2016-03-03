@@ -10,13 +10,13 @@
 
   <?php if ($page->slider() != '') snippet('slider',['photos'=>$page->slider()]) ?>
 
-  <h1><?php echo $page->title()->html() ?></h1>
+  <h1 dir="auto"><?php echo $page->title()->html() ?></h1>
 
-  <?php echo $page->text()->kirbytext() ?>
+  <?php echo $page->text()->kirbytext()->bidi() ?>
 
   <?php if(isset($_POST['update'])) { ?>
     <div class="uk-alert uk-alert-warning">
-      <p>
+      <p dir="auto">
         <?php
           try {
             $user = $site->user()->update(array(
@@ -45,7 +45,7 @@
 
   <?php if(isset($_POST['delete'])) { ?>
     <div class="uk-alert uk-alert-danger">
-      <p>
+      <p dir="auto">
         <?php
           try {
             $user = $site->user();
@@ -60,7 +60,7 @@
     </div>
   <?php } ?>
 
-  <form class="uk-form uk-form-stacked" method="post">
+  <form dir="auto" class="uk-form uk-form-stacked" method="post">
     <div class="uk-form-row uk-grid">
       <div>
         <label><?php echo l::get('username') ?></label>
@@ -106,9 +106,9 @@
     </div>
   </form>
 
-  <h3><?php echo l::get('delete-account') ?></h3>
-  <p><?php echo l::get('delete-account-text') ?></p>
-  <form class="uk-form" method="post">
+  <h3 dir="auto"><?php echo l::get('delete-account') ?></h3>
+  <p dir="auto"><?php echo l::get('delete-account-text') ?></p>
+  <form dir="auto" class="uk-form" method="post">
       <button class="uk-button" type="submit" name="delete"><?php echo l::get('delete-account-verify') ?></button>
   </form>
 

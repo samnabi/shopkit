@@ -1,16 +1,16 @@
 <?php snippet('header') ?>
 
-<h1><?php echo $page->title()->html() ?></h1>
+<h1 dir="auto"><?php echo $page->title()->html() ?></h1>
 
-<?php echo $page->text()->kirbytext() ?>
+<?php echo $page->text()->kirbytext()->bidi() ?>
 
 <?php if ($orders and $orders->count() === 0) : ?>
-    <p><?php echo l::get('no-orders') ?></p>
+    <p dir="auto"><?php echo l::get('no-orders') ?></p>
 <?php endif; ?>
 
 <?php if ($orders->count()) : ?>
     <div class="uk-overflow-container">
-        <table class="uk-table uk-table-striped">
+        <table dir="auto" class="uk-table uk-table-striped">
             <thead>
                 <tr>
                     <th></th>
@@ -108,7 +108,7 @@
         </table>
     </div>
 <?php else : ?>
-    <p><?php echo l::get('no-auth-orders') ?></p>
+    <p dir="auto"><?php echo l::get('no-auth-orders') ?></p>
 <?php endif; ?>
 
 <?php snippet('footer') ?>

@@ -13,7 +13,7 @@
 		  		?>
 			  	<img src="<?php echo $thumb->dataUri() ?>" title="<?php echo $post->title() ?>">
 				
-				<div style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top">
+				<div dir="auto" style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top">
 					<small class="date"><?php echo $post->date('d F Y') ?></small>
 		    		<h3 class="uk-margin-remove"><?php echo $post->title()->html() ?></h3>
 		    		<?php echo kirbytext($post->text()->excerpt(80)) ?>

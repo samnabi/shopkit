@@ -14,7 +14,7 @@
 	}
 ?>
 
-<ul class="<?php if ($class) echo $class ?>">
+<ul dir="auto" class="<?php if ($class) echo $class ?>">
   <?php $class = false; ?>
   <?php foreach($subpages->visible() AS $p): ?>
   <li>

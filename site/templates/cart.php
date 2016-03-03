@@ -4,17 +4,17 @@
 
 <?php snippet('breadcrumb') ?>
 
-<h1><?php echo $page->title()->html() ?></h1>
+<h1 dir="auto"><?php echo $page->title()->html() ?></h1>
 
 <?php if ($cart->count() === 0) { ?>
     <div class="uk-alert uk-alert-warning">
-        <p><?php echo l::get('no-cart-items') ?></p>
+        <p dir="auto"><?php echo l::get('no-cart-items') ?></p>
     </div>
 <?php } else { ?>
 
     <!-- Cart items -->
     <div class="uk-overflow-container">
-        <table class="cart uk-table uk-table-striped">
+        <table dir="auto" class="cart uk-table uk-table-striped">
             <thead>
                 <tr>
                     <th><?php echo l::get('product') ?></th>

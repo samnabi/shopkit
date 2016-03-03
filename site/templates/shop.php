@@ -12,7 +12,7 @@
 
 	<?php if ($page->slider() != '') snippet('slider',['photos'=>$page->slider()]) ?>
 	
-	<?php echo $page->text()->kirbytext() ?>
+	<?php echo $page->text()->kirbytext()->bidi() ?>
 
 	<?php snippet('list.product', ['products' => $products]) ?>
 

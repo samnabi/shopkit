@@ -2,9 +2,9 @@
 
   <?php if ($page->slider() != '') snippet('slider',['photos'=>$page->slider()]) ?>
 
-  <h1><?php echo $page->title()->html() ?></h1>
+  <h1 dir="auto"><?php echo $page->title()->html() ?></h1>
 
-  <?php echo $page->text()->kirbytext() ?>
+  <?php echo $page->text()->kirbytext()->bidi() ?>
 
   <?php 
     // Honeypot trap for robots
@@ -13,7 +13,7 @@
 
   <?php if(r::is('post') and get('register') !== null) { ?>
     <div class="uk-alert uk-alert-warning">
-      <p>
+      <p dir="auto">
         <?php
 
           // Check for duplicate accounts
@@ -46,7 +46,7 @@
     </div>
   <?php } ?>
 
-  <form class="uk-form uk-form-stacked" method="post">
+  <form dir="auto" class="uk-form uk-form-stacked" method="post">
     <div class="forRobots">
       <label for="subject"><?php echo l::get('honeypot-label') ?></label>
       <input type="text" name="subject">

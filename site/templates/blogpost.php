@@ -4,15 +4,15 @@
 
 	<?php snippet('breadcrumb') ?>
 
-	<small class="date"><?php echo $page->date('d F Y') ?></small>
+	<small class="date" dir="auto"><?php echo $page->date('d F Y') ?></small>
 
-	<h1><?php echo $page->title()->html() ?></h1>
+	<h1 dir="auto"><?php echo $page->title()->html() ?></h1>
 
-	<?php echo $page->text()->kirbytext() ?>
+	<?php echo $page->text()->kirbytext()->bidi() ?>
 
 	<?php $tags = str::split($page->tags()) ?>
 	<?php if (count($tags)) { ?>
-		<p class="uk-panel uk-panel-box">
+		<p dir="auto" class="uk-panel uk-panel-box">
 			<?php foreach ($tags as $tag) { ?>
 				<a href="<?php echo $site->url().'/search/?q='.urlencode($tag) ?>">#<?php echo $tag ?></a>
 			<?php } ?>

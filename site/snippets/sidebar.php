@@ -8,7 +8,7 @@
     <!-- Login form -->
     <?php if (!$user = $site->user()) { ?>
         <div class="uk-panel uk-panel-divider">
-            <form action="<?php echo url('/login') ?>" method="POST" id="login" class="uk-form">
+            <form dir="auto" action="<?php echo url('/login') ?>" method="POST" id="login" class="uk-form">
                 <div class="uk-grid uk-grid-width-1-2">
                     <div>
                       <label for="email"><?php echo l::get('email-address') ?></label>
@@ -55,15 +55,15 @@
     <!-- Global category listing -->
     <?php if (page('shop')->children()->filterBy('template','category')->count() > 0) { ?>
         <div class="uk-panel uk-panel-divider">
-            <h3><?php echo l::get('shop-by-category') ?></h3>
+            <h3 dir="auto"><?php echo l::get('shop-by-category') ?></h3>
             <?php snippet('treemenu',array('subpages' => page('shop')->children(), 'template' => 'category', 'class' => 'uk-nav')) ?>
         </div>
     <?php } ?>
 
     <!-- Search -->
     <div class="uk-panel uk-panel-divider">
-        <h3><?php echo l::get('search-shop') ?></h3>
-        <form class="uk-form uk-grid uk-grid-collapse" action="<?php echo url('/search') ?>" method="get">
+        <h3 dir="auto"><?php echo l::get('search-shop') ?></h3>
+        <form dir="auto" class="uk-form uk-grid uk-grid-collapse" action="<?php echo url('/search') ?>" method="get">
             <div class="uk-width-3-5">
                 <input class="uk-width-1-1" type="text" name="q" value="<?php echo get('q') ?>" placeholder="">
             </div>
@@ -77,14 +77,14 @@
     <?php $contact = page('contact') ?>
     <?php if (trim($contact->hours().$contact->phone().$contact->email().$contact->location()->json('address')) != '') { ?>
         <footer class="uk-panel uk-panel-divider uk-margin-large-bottom">
-            <h3><?php echo page('contact')->title()->html() ?></h3>
+            <h3 dir="auto"><?php echo page('contact')->title()->html() ?></h3>
 
             <?php if($hours = page('contact')->hours() and $hours != '') { ?>
-                <h4>Hours of operation</h4>
+                <h4 dir="auto">Hours of operation</h4>
                 <?php echo $hours->kirbytext() ?>
             <?php } ?>
 
-            <dl>
+            <dl dir="auto">
                 <?php if ($phone = page('contact')->phone() and $phone != '') { ?>
                     <dt><?php echo l::get('phone') ?></dt>
                     <dd class="uk-margin-bottom"><?php echo $phone ?></dd>

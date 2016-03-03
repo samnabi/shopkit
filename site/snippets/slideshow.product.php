@@ -34,13 +34,13 @@
 	</div>
 
 	<div class="description uk-width-1-1 uk-width-medium-1-4">
-		<h3 property="name"><?php echo $product->title()->html() ?></h3>
+		<h3 dir="auto" property="name"><?php echo $product->title()->html() ?></h3>
 		
 		<?php if ($product->text() != '') { ?>
-			<p property="description"><?php echo $product->text()->excerpt(80) ?></p>
+			<p dir="auto" property="description"><?php echo $product->text()->excerpt(80) ?></p>
 		<?php } ?>
 		
-		<div>
+		<div dir="auto">
     		<?php
     			$variants = $product->variants()->yaml();
 

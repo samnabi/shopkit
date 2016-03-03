@@ -42,7 +42,7 @@
 
 			  	<div class="uk-grid uk-grid-width-1-2 uk-overlay-panel uk-overlay-background uk-overlay-bottom">
 
-			  		<a href="<?php echo $product->url() ?>" title="<?php echo $product->title() ?>">
+			  		<a dir="auto" href="<?php echo $product->url() ?>" title="<?php echo $product->title() ?>">
 			  			<?php if ($product->brand() != '') { ?>
 			  				<small class="brand"><?php echo $product->brand() ?></small>
 			  			<?php } ?>

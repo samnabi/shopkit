@@ -3,17 +3,17 @@
 	<?php snippet('breadcrumb') ?>
 
 	<?php $formattedDate = date('F j, Y', strtotime($page->title())) ?>
-	<h1><?php echo l::get('events-for').' '.$formattedDate ?></h1>
+	<h1 dir="auto"><?php echo l::get('events-for').' '.$formattedDate ?></h1>
 
-	<?php echo $page->hours()->kirbytext() ?>
+	<?php echo $page->hours()->kirbytext()->bidi() ?>
 
 	<?php $events = $page->events()->toStructure() ?>
 	<?php foreach ($events as $event) { ?>
 		<section class="uk-panel uk-panel-box">
-			<h2><?php echo $event->name() ?></h2>
+			<h2 dir="auto"><?php echo $event->name() ?></h2>
 
 			<div class="uk-grid">
-				<div class="uk-width-small-1-1 uk-width-large-1-2">
+				<div dir="auto" class="uk-width-small-1-1 uk-width-large-1-2">
 					<p><?php echo $formattedDate ?></p>
 
 					<p>

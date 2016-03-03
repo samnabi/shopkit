@@ -6,17 +6,17 @@
 			<small class="brand" property="brand"><?php echo $page->brand() ?></small>
 		<?php } ?>
 
-		<h1><?php echo $page->title()->html() ?></h1>
+		<h1 dir="auto"><?php echo $page->title()->html() ?></h1>
 
 		<div class="uk-grid uk-grid-width-medium-1-2">
 			
 			<div>
 				<section>
-					<?php echo $page->text()->kirbytext() ?>
+					<?php echo $page->text()->kirbytext()->bidi() ?>
 
 					<?php $tags = str::split($page->tags()) ?>
 					<?php if (count($tags)) { ?>
-						<p>
+						<p dir="auto">
 							<?php foreach ($tags as $tag) { ?>
 								<a href="<?php echo $site->url().'/search/?q='.urlencode($tag) ?>">#<?php echo $tag ?></a>
 							<?php } ?>
@@ -37,14 +37,14 @@
 
 				            	<link property="brand" content="<?php echo $page->brand() ?>" />
 
-								<h3 class="uk-margin-small-bottom" property="name" content="<?php echo $page->title().' &ndash; '.$variant->name() ?>"><?php echo $variant->name() ?></h3>
+								<h3 dir="auto" class="uk-margin-small-bottom" property="name" content="<?php echo $page->title().' &ndash; '.$variant->name() ?>"><?php echo $variant->name() ?></h3>
 
 								<?php if($page->hasImages()) { ?>
 									<link property="image" content="<?php echo $page->images()->first()->url() ?>" />
 								<?php } ?>
 
 								<div property="description">
-									<?php ecco(trim($variant->description()) != '',$variant->description()->kirbytext()) ?>
+									<?php ecco(trim($variant->description()) != '',$variant->description()->kirbytext()->bidi()) ?>
 								</div>
 
 				                <input type="hidden" name="action" value="add">
@@ -53,7 +53,7 @@
 
 								<?php $options = str::split($variant->options()) ?>
 								<?php if (count($options)) { ?>
-									<select class="uk-width-1-1" name="option">
+									<select dir="auto" class="uk-width-1-1" name="option">
 										<?php foreach ($options as $option) { ?>
 											<option value="<?php echo str::slug($option) ?>"><?php echo str::ucfirst($option) ?></option>
 										<?php } ?>

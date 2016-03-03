@@ -2,13 +2,13 @@
 
 	<?php if ($page->slider() != '') snippet('slider',['photos'=>$page->slider()]) ?>
 
-	<h1><?php echo $page->title()->html() ?></h1>
+	<h1 dir="auto"><?php echo $page->title()->html() ?></h1>
 
 	<div class="uk-alert uk-alert-success">
 		<p>Results for <strong><?php echo urldecode(get('q')) ?></strong></p>
 	</div>
 
-	<?php echo $page->text()->kirbytext() ?>
+	<?php echo $page->text()->kirbytext()->bidi() ?>
 
 	<?php $results = $site->search(get('q'))->visible() ?>
 
@@ -29,9 +29,9 @@
 						<img class="uk-float-left uk-margin-small-right" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $result->title() ?>">
 
 						<div style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top">
-							<h3 class="uk-margin-remove"><?php echo $result->title() ?></h3>
+							<h3 dir="auto" class="uk-margin-remove"><?php echo $result->title() ?></h3>
 							
-							<?php echo $result->text()->excerpt(80) ?>
+							<span dir="auto"><?php echo $result->text()->excerpt(80) ?></span>
 
 							<?php $tags = str::split($result->tags()) ?>
 							<?php if (count($tags)) { ?>
@@ -48,7 +48,7 @@
 		</ul>
 	<?php } else { ?>
     	<div class="uk-alert uk-alert-warning">
-			<p><?php echo l::get('no-search-results') ?></p>
+			<p dir="auto"><?php echo l::get('no-search-results') ?></p>
 		</div>
 	<?php } ?>
 

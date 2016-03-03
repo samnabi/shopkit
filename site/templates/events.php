@@ -54,9 +54,9 @@
 
 <?php snippet('header') ?>
 
-	<h1><?php echo $page->title()->html() ?></h1>
+	<h1 dir="auto"><?php echo $page->title()->html() ?></h1>
 
-	<?php echo $page->text()->kirbytext() ?>
+	<?php echo $page->text()->kirbytext()->bidi() ?>
 
 	<section class="events uk-grid uk-grid-width-small-1-1 uk-grid-width-medium-1-2">
 	  
@@ -143,7 +143,7 @@
 	</section>
 
 	<?php foreach (array_merge($currentMonthEvents,$nextMonthEvents) as $event) { ?>
-		<div class="uk-panel uk-panel-box uk-margin-top">
+		<div dir="auto" class="uk-panel uk-panel-box uk-margin-top">
 			<small class="date"><?php echo date('F j, Y', strtotime($event->day)) ?> <?php echo $event->start() ?></small>
 			<h3 class="uk-margin-bottom-remove"><a href="<?php echo $event->link ?>"><?php echo $event->name() ?></a></h3>
 			<p class="uk-margin-top-remove"><?php echo $event->location()->json('address') ?></p>

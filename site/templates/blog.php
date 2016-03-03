@@ -4,9 +4,9 @@
 
 	<?php snippet('breadcrumb') ?>
 	
-	<h1><?php echo $page->title()->html() ?></h1>
+	<h1 dir="auto"><?php echo $page->title()->html() ?></h1>
 	
-	<?php echo $page->text()->kirbytext() ?>
+	<?php echo $page->text()->kirbytext()->bidi() ?>
 
 	<?php
 		$posts = $page->children()->visible()->filterBy('date', '<', time())->sortBy('date', 'desc');
