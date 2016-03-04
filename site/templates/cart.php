@@ -1,6 +1,6 @@
 <?php snippet('header') ?>
 
-<?php if ($page->slider() != '') snippet('slider',['photos'=>$page->slider()]) ?>
+<?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
 
 <?php snippet('breadcrumb') ?>
 
@@ -25,12 +25,12 @@
             </thead>
 
             <tbody>
-                <?php foreach($cart->getItems() as $i => $item) : ?>
+                <?php foreach($items as $i => $item) : ?>
                     <tr>
                         <td>
                             <a href="<?php echo url($item->uri) ?>" title="<?php echo $item->fullTitle() ?>">
-                                <?php if ($img = $pages->findByUri($item->uri)->images()->first()) { ?>
-                                    <img class="uk-float-left uk-margin-small-right" src="<?php echo thumb($img,array('width'=>60, 'height'=>60, 'crop'=>true))->dataUri() ?>" title="<?php echo $item->name ?>">
+                                <?php if ($item->imgSrc) { ?>
+                                    <img class="uk-float-left uk-margin-small-right" src="<?php echo $item->imgSrc ?>" title="<?php echo $item->name ?>">
                                 <?php } ?>
                                 <strong><?php echo $item->name ?></strong><br>
                                 <?php ecco($item->sku,'<strong>SKU</strong> '.$item->sku.' / ') ?>
@@ -56,37 +56,11 @@
                             <form class="uk-display-inline" action="" method="post">
                                 <input type="hidden" name="action" value="add">
                                 <input type="hidden" name="id" value="<?php echo $item->id ?>">
-                                <?php
-                                    foreach (page($item->uri)->variants()->toStructure() as $variant) {
-                                        if (str::slug($variant->name()) === $item->variant) {
-
-                                            // Get combined quantity of this option's siblings
-                                            $siblingsQty = 0;
-                                            foreach ($cart->data as $key => $qty) {
-                                                if (strpos($key, $item->uri.'::'.$item->variant) === 0 and $key != $item->id) $siblingsQty += $qty;
-                                            }
-
-                                            // Determine if we are at the maximum quantity
-                                            if (inStock($variant) !== true and inStock($variant) <= ($item->quantity + $siblingsQty)) {
-                                                $maxQty = true;
-                                            } else {
-                                                $maxQty = false;
-                                            }
-                                        }
-                                    }
-                                ?>
-                                <button class="uk-button uk-button-small" <?php ecco($maxQty,'disabled') ?> type="submit">&#9650;</button>
+                                <button class="uk-button uk-button-small" <?php ecco($item->maxQty,'disabled') ?> type="submit">&#9650;</button>
                             </form>
                         </td>
                         <td class="uk-text-right">
-                            <?php
-                                if ($item->sale_amount) {
-                                    echo formatPrice($item->sale_amount * $item->quantity);
-                                    echo '<del>'.formatPrice($item->amount * $item->quantity).'</del>';
-                                } else {
-                                    echo formatPrice($item->amount * $item->quantity);
-                                }
-                            ?>
+                            <?php echo $item->priceText ?>
                         </td>
                         <td>
                             <form action="" method="post">
@@ -131,7 +105,7 @@
                         <!-- Set country -->
                         <form class="uk-form" id="setCountry" action="" method="POST">
                             <select class="uk-form-width-medium" name="country" onChange="document.forms['setCountry'].submit();">
-                                <?php foreach (page('/shop/countries')->children()->invisible() as $c) { ?>
+                                <?php foreach ($countries as $c) { ?>
                                     <option <?php ecco(s::get('country') === $c->uid(), 'selected') ?> value="<?php echo $c->countrycode() ?>">
                                         <?php echo $c->title() ?>
                                     </option>
@@ -140,7 +114,6 @@
                             <button id="setCountryButton" type="submit"><?php echo l::get('update-country') ?></button>
                         </form>
 
-                        <?php $shipping_rates = $cart->getShippingRates() ?>
                         <form class="uk-form">
                             <select class="uk-form-width-medium" name="shipping" id="shipping" onChange="updateCartTotal(); copyShippingValue();">
                                 <?php if (count($shipping_rates) > 0) : ?>

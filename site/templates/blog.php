@@ -1,6 +1,6 @@
 <?php snippet('header') ?>
 
-	<?php if ($page->slider() != '') snippet('slider',['photos'=>$page->slider()]) ?>
+	<?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
 
 	<?php snippet('breadcrumb') ?>
 	
@@ -8,9 +8,6 @@
 	
 	<?php echo $page->text()->kirbytext()->bidi() ?>
 
-	<?php
-		$posts = $page->children()->visible()->filterBy('date', '<', time())->sortBy('date', 'desc');
-		snippet('list.blogpost', ['posts' => $posts]);
-	?>
+	<?php snippet('list.blogpost', ['posts' => $posts]) ?>
 
 <?php snippet('footer') ?>

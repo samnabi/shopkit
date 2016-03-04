@@ -1,62 +1,20 @@
-<?php
-  if($user = $site->user()) {
-    // Continue
-  } else {
-    go('/register');
-  }
-?>
-
 <?php snippet('header') ?>
 
-  <?php if ($page->slider() != '') snippet('slider',['photos'=>$page->slider()]) ?>
+  <?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
 
   <h1 dir="auto"><?php echo $page->title()->html() ?></h1>
 
   <?php echo $page->text()->kirbytext()->bidi() ?>
 
-  <?php if(isset($_POST['update'])) { ?>
+  <?php if ($update_message) { ?>
     <div class="uk-alert uk-alert-warning">
-      <p dir="auto">
-        <?php
-          try {
-            $user = $site->user()->update(array(
-              'email'     => get('email'),
-              'firstname' => get('fullname'),
-              'language'  => 'en',
-              'country'   => get('country'),
-              'discountcode'   => strtoupper(preg_replace("/[^[:alnum:]]/u",'',get('discountcode')))
-            ));
-            if (get('password') === '') {
-              // No password change
-            } else {
-              // Update password
-              $user = $site->user()->update(array(
-                'password'  => get('password')
-              ));
-            }
-            echo l::get('account-success');
-          } catch(Exception $e) {
-            echo l::get('account-failure');
-          }
-        ?>
-      </p>
+      <p dir="auto"><?php echo $update_message ?></p>
     </div>
   <?php } ?>
 
-  <?php if(isset($_POST['delete'])) { ?>
+  <?php if ($delete_message) { ?>
     <div class="uk-alert uk-alert-danger">
-      <p dir="auto">
-        <?php
-          try {
-            $user = $site->user();
-            $user->logout();
-            $site->user($user->username())->delete();
-            go('/register');
-          } catch(Exception $e) {
-            echo l::get('account-delete-error');
-          }
-        ?>
-      </p>
+      <p dir="auto"><?php echo $delete_message ?></p>
     </div>
   <?php } ?>
 
@@ -86,7 +44,7 @@
     <div class="uk-form-row">
       <label for="country"><?php echo l::get('country') ?></label>
       <select class="uk-form-width-medium" name="country" id="country" aria-describedby="countryHelp">
-        <?php foreach (page('/shop/countries')->children()->invisible() as $c) { ?>
+        <?php foreach ($countries as $c) { ?>
           <option <?php echo $user->country() === $c->slug() ? 'selected' : '' ?> value="<?php echo $c->slug() ?>"><?php echo $c->title() ?></option>
         <?php } ?>
       </select>

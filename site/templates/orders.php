@@ -4,11 +4,11 @@
 
 <?php echo $page->text()->kirbytext()->bidi() ?>
 
-<?php if ($orders and $orders->count() === 0) : ?>
+<?php if ($orders and $orders->count() === 0) { ?>
     <p dir="auto"><?php echo l::get('no-orders') ?></p>
-<?php endif; ?>
+<?php } ?>
 
-<?php if ($orders->count()) : ?>
+<?php if ($orders->count()) { ?>
     <div class="uk-overflow-container">
         <table dir="auto" class="uk-table uk-table-striped">
             <thead>
@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($orders as $order) : ?>
+            <?php foreach ($orders as $order) { ?>
                 <tr>
                     <td>
                         <strong class="uk-text-small"><?php echo $order->txn_id() ?></strong><br>
@@ -38,7 +38,7 @@
                         <?php } ?>
                     </td>
                     <td>
-                        <?php echo $order->products()->kirbytext() ?>
+                        <?php echo $order->products()->kirbytext()->bidi() ?>
                     </td>
                     <td>
                         <table class="uk-table uk-table-condensed uk-text-right">
@@ -103,12 +103,12 @@
                         <?php } ?>
                     </td>
                 </tr>
-            <?php endforeach; ?>
+            <?php } ?>
             </tbody>
         </table>
     </div>
-<?php else : ?>
+<?php } else { ?>
     <p dir="auto"><?php echo l::get('no-auth-orders') ?></p>
-<?php endif; ?>
+<?php } ?>
 
 <?php snippet('footer') ?>

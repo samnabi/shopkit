@@ -13,10 +13,10 @@
 		  		?>
 			  	<img src="<?php echo $thumb->dataUri() ?>" title="<?php echo $post->title() ?>">
 				
-				<div dir="auto" style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top">
-					<small class="date"><?php echo $post->date('d F Y') ?></small>
-		    		<h3 class="uk-margin-remove"><?php echo $post->title()->html() ?></h3>
-		    		<?php echo kirbytext($post->text()->excerpt(80)) ?>
+				<div style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top">
+					<small dir="auto" class="date"><?php echo $post->date('d F Y') ?></small>
+		    		<h3 dir="auto" class="uk-margin-remove"><?php echo $post->title()->html() ?></h3>
+		    		<p dir="auto"><?php echo $post->text()->excerpt(80) ?></p>
 				</div>
 			</a>
 	    </li>

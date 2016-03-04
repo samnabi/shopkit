@@ -1,48 +1,14 @@
 <?php snippet('header') ?>
 
-  <?php if ($page->slider() != '') snippet('slider',['photos'=>$page->slider()]) ?>
+  <?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
 
   <h1 dir="auto"><?php echo $page->title()->html() ?></h1>
 
   <?php echo $page->text()->kirbytext()->bidi() ?>
 
-  <?php 
-    // Honeypot trap for robots
-    if(r::is('post') and get('subject') != '') go(url('error'));
-  ?>
-
-  <?php if(r::is('post') and get('register') !== null) { ?>
+  <?php if($register_message) { ?>
     <div class="uk-alert uk-alert-warning">
-      <p dir="auto">
-        <?php
-
-          // Check for duplicate accounts
-          $duplicateEmail = $site->users()->findBy('email',trim(get('email')));
-          $duplicateUsername = $site->users()->findBy('username',trim(get('username')));
-
-          if (count($duplicateEmail) === 0 and count($duplicateUsername) === 0) {
-            try {
-
-              // Create account
-              $user = $site->users()->create(array(
-                'username'  => trim(get('username')),
-                'email'     => trim(get('email')),
-                'password'  => get('password'),
-                'firstName' => trim(get('fullname')),
-                'language'  => 'en',
-                'country'   => get('country')
-              ));
-
-              echo l::get('register-success');
-
-            } catch(Exception $e) {
-              echo l::get('register-failure');
-            }
-          } else {
-              echo l::get('register-duplicate');
-          }
-        ?>
-      </p>
+      <p dir="auto"><?php echo $register_message ?></p>
     </div>
   <?php } ?>
 
@@ -70,7 +36,7 @@
     <div class="uk-form-row">
       <label for="country"><?php echo l::get('country') ?></label>
       <select class="uk-form-width-large" name="country" id="country">
-        <?php foreach (page('/shop/countries')->children()->invisible() as $c) { ?>
+        <?php foreach ($countries as $c) { ?>
           <option value="<?php echo $c->slug() ?>"><?php echo $c->title() ?></option>
         <?php } ?>
       </select>

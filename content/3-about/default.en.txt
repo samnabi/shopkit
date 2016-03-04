@@ -3,3 +3,11 @@ Title: About
 ----
 
 Text: 
+
+----
+
+Slider: 
+
+----
+
+Relatedproducts: 

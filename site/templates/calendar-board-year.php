@@ -1,1 +1,3 @@
-<?php go($page->parent()->url().'?year='.$page->title()) ?>
+<?php
+
+// Nothing here. The controller should redirect all pages from this template to the parent page.

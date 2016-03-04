@@ -51,7 +51,7 @@
 					</p>
 
 					<?php if ($product->text() != '') { ?>
-						<p property="description"><?php echo $product->text()->excerpt(50) ?></p>
+						<p dir="auto" property="description"><?php echo $product->text()->excerpt(50) ?></p>
 					<?php } ?>
 				</div>
 			</a>

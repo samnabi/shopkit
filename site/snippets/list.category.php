@@ -13,9 +13,9 @@
 		  		?>
 			  	<img src="<?php echo $thumb->dataUri() ?>" title="<?php echo $category->title() ?>">
 				
-				<div dir="auto" style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top">
-		    		<h3 class="uk-margin-remove"><?php echo $category->title()->html() ?></h3>
-		    		<?php echo kirbytext($category->text()->excerpt(80)) ?>
+				<div style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top">
+		    		<h3 dir="auto" class="uk-margin-remove"><?php echo $category->title()->html() ?></h3>
+		    		<p dir="auto"><?php echo $category->text()->excerpt(80) ?></p>
 				</div>
 			</a>
 	    </li>

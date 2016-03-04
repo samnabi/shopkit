@@ -2,7 +2,7 @@
 
 		<?php snippet('breadcrumb') ?>
 		
-		<?php if ($page->brand() != '') { ?>
+		<?php if ($page->brand()->isNotempty()) { ?>
 			<small class="brand" property="brand"><?php echo $page->brand() ?></small>
 		<?php } ?>
 
@@ -14,7 +14,6 @@
 				<section>
 					<?php echo $page->text()->kirbytext()->bidi() ?>
 
-					<?php $tags = str::split($page->tags()) ?>
 					<?php if (count($tags)) { ?>
 						<p dir="auto">
 							<?php foreach ($tags as $tag) { ?>
@@ -27,66 +26,41 @@
 				<?php if ($page->hasImages()) snippet('slider',['photos'=>$page->images()]) ?>
 			</div>
 			
-			
-			<?php $variants = $page->variants()->toStructure() ?>
 			<?php if (count($variants)) { ?>
 				<section class="variants">
 					<?php foreach ($variants as $variant) { ?>
 						<div class="uk-width-1-2 uk-text-left" vocab="http://schema.org/" typeof="Product">
 				            <form class="uk-form uk-panel uk-panel-box" method="post" action="<?php echo url('shop/cart') ?>">
 
+								<!-- Schema.org markup -->
+				            	<?php if($page->hasImages()) { ?>
+				            		<link property="image" content="<?php echo $page->images()->first()->url() ?>" />
+				            	<?php } ?>
 				            	<link property="brand" content="<?php echo $page->brand() ?>" />
 
-								<h3 dir="auto" class="uk-margin-small-bottom" property="name" content="<?php echo $page->title().' &ndash; '.$variant->name() ?>"><?php echo $variant->name() ?></h3>
+				            	<!-- Hidden fields -->
+				            	<input type="hidden" name="action" value="add">
+				            	<input type="hidden" name="uri" value="<?php echo $page->uri() ?>">
+				            	<input type="hidden" name="variant" value="<?php echo str::slug($variant->name()) ?>">
 
-								<?php if($page->hasImages()) { ?>
-									<link property="image" content="<?php echo $page->images()->first()->url() ?>" />
-								<?php } ?>
+								<h3 dir="auto" class="uk-margin-small-bottom" property="name" content="<?php echo $page->title().' &ndash; '.$variant->name() ?>"><?php echo $variant->name() ?></h3>
 
 								<div property="description">
 									<?php ecco(trim($variant->description()) != '',$variant->description()->kirbytext()->bidi()) ?>
 								</div>
 
-				                <input type="hidden" name="action" value="add">
-				                <input type="hidden" name="uri" value="<?php echo $page->uri() ?>">
-				                <input type="hidden" name="variant" value="<?php echo str::slug($variant->name()) ?>">
-
-								<?php $options = str::split($variant->options()) ?>
-								<?php if (count($options)) { ?>
+								<?php if ($variant->hasOptions) { ?>
 									<select dir="auto" class="uk-width-1-1" name="option">
-										<?php foreach ($options as $option) { ?>
+										<?php foreach ($variant->options() as $option) { ?>
 											<option value="<?php echo str::slug($option) ?>"><?php echo str::ucfirst($option) ?></option>
 										<?php } ?>
 									</select>
 								<?php } ?>
 
-								<?php if (inStock($variant)) { ?>
-									<button class="uk-button uk-button-primary uk-width-1-1" type="submit" property="offers" typeof="Offer">
-										<?php echo l::get('buy') ?>
-										<?php
-											if ($saleprice = salePrice($variant)) {
-												echo formatPrice($saleprice);
-												echo '<del>'.formatPrice($variant->price()->value).'</del>';
-											} else {
-												echo formatPrice($variant->price()->value);
-											}
-										?>
-										<link property="availability" href="http://schema.org/InStock" />
-									</button>
-								<?php } else { ?>
-									<button class="uk-button uk-button-primary uk-width-1-1" disabled property="offers" typeof="Offer">
-										<?php echo l::get('out-of-stock') ?>
-										<?php
-											if ($saleprice = salePrice($variant)) {
-												echo formatPrice($saleprice);
-												echo '<del>'.formatPrice($variant->price()->value).'</del>';
-											} else {
-												echo formatPrice($variant->price()->value);
-											}
-										?>
-										<link property="availability" href="http://schema.org/OutOfStock" />
-									</button>
-								<?php } ?>
+								<button <?php e(inStock($variant),'','disabled') ?> class="uk-button uk-button-primary uk-width-1-1" type="submit" property="offers" typeof="Offer">
+									<?php echo $variant->priceText ?>
+									<link property="availability" href="<?php e(inStock($variant),'http://schema.org/InStock','http://schema.org/OutOfStock') ?>" />
+								</button>
 				            </form>
 						</div>
 					<?php } ?>

@@ -1,6 +1,6 @@
 <?php snippet('header') ?>
 
-	<?php if ($page->slider() != '') snippet('slider',['photos'=>$page->slider()]) ?>
+	<?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
 
 	<?php snippet('breadcrumb') ?>
 
@@ -10,7 +10,6 @@
 
 	<?php echo $page->text()->kirbytext()->bidi() ?>
 
-	<?php $tags = str::split($page->tags()) ?>
 	<?php if (count($tags)) { ?>
 		<p dir="auto" class="uk-panel uk-panel-box">
 			<?php foreach ($tags as $tag) { ?>
