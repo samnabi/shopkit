@@ -39,16 +39,16 @@
         foreach (page('shop')->featured()->toStructure() as $f) {
             $featuredProduct = $index->findByURI($f->product());
             if ($featuredProduct->isVisible()) {
-                $products[] = [
+                $featured[] = [
                     'product' => $featuredProduct,
                     'calculation' => $f->calculation()->value
                 ];
             }
         }
     ?>
-    <?php if(isset($products) and count($products)){ ?>
+    <?php if(isset($featured) and count($featured)){ ?>
         <div class="uk-panel uk-panel-divider">
-            <?php snippet('list.featured', ['products' => $products]) ?>
+            <?php snippet('list.featured', ['products' => $featured]) ?>
         </div>
     <?php } ?>
 
@@ -81,7 +81,7 @@
 
             <?php if($hours = page('contact')->hours() and $hours != '') { ?>
                 <h4 dir="auto">Hours of operation</h4>
-                <?php echo $hours->kirbytext() ?>
+                <?php echo $hours->kirbytext()->bidi() ?>
             <?php } ?>
 
             <dl dir="auto">
