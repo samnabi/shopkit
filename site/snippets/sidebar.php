@@ -62,7 +62,6 @@
 
     <!-- Search -->
     <div class="uk-panel uk-panel-divider">
-        <h3 dir="auto"><?php echo l::get('search-shop') ?></h3>
         <form dir="auto" class="uk-form uk-grid uk-grid-collapse" action="<?php echo url('/search') ?>" method="get">
             <div class="uk-width-3-5">
                 <input class="uk-width-1-1" type="text" name="q" value="<?php echo get('q') ?>" placeholder="">
