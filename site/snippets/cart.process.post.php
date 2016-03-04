@@ -43,6 +43,7 @@ try {
 
 	// Add payer info if it's available at this point
 	if ($user = site()->user()) {
+		$user = site()->user();
 		page('shop/orders/'.$txn_id)->update([
 			'payer-id' => $user->username,
 			'payer-name' => $user->name,
