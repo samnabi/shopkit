@@ -28,6 +28,8 @@
 'tax' => 'Tax',
 'total' => 'Total',
 
+'from' => 'From',
+
 
 // snippets/cart.process.php
 

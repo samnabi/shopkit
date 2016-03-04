@@ -26,7 +26,7 @@
                         <strong class="uk-text-small"><?php echo $order->txn_id() ?></strong><br>
                         <?php ecco($order->payer_name() != '',$order->payer_name().'<br>') ?>
                         <?php ecco($order->payer_email() != '','<a href="mailto:'.$order->payer_email().'">'.$order->payer_email().'</a><br>') ?>
-                        <?php echo date('M j, Y H:i e',$order->txn_date()->value) ?><br>
+                        <?php echo strftime('%e %B %Y, %H:%M',$order->txn_date()->value) ?><br>
 
                         <form action="<?php echo $site->url() ?>/<?php echo $site->language() ?>/shop/orders/pdf" method="POST">
                             <input type="hidden" name="uri" value="<?php echo $order->uri() ?>">
@@ -98,9 +98,13 @@
                                     <input class="uk-button uk-button-small <?php ecco($order->status()->value === 'shipped','uk-button-success') ?>" type="submit" value="<?php echo l::get('shipped') ?>">
                                 </form>
                             </div>
-                        <?php } else { ?>
-                            <?php echo ucfirst($order->status()) ?><br><br>
-                        <?php } ?>
+                        <?php } else {
+                            switch ($order->status()->value) {
+                                case 'paid': echo l::get('paid'); break;
+                                case 'shipped': echo l::get('shipped'); break;
+                                default: echo l::get('pending'); break;
+                            }
+                        } ?><br><br>
                     </td>
                 </tr>
             <?php } ?>

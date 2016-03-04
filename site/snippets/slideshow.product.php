@@ -50,7 +50,7 @@
     			}
 
     			$priceFormatted = is_array($pricelist) ? formatPrice(min($pricelist)) : 0;
-    			if (count($variants) > 1) $priceFormatted = 'From '.$priceFormatted;
+    			if (count($variants) > 1) $priceFormatted = l::get('from').' '.$priceFormatted;
 
     			$saleprice = $salepricelist[min(array_keys($pricelist, min($pricelist)))];
 			?>
