@@ -149,11 +149,11 @@ l::set('related-products','Ähnliche Produkte');
 
 l::set('register-success','Vielen Dank, Ihr Benutzerkonto wurde registriert! Sie können sich nun <a href="#user">einloggen</a>.');
 l::set('register-failure','Entschuldigung, das hat nicht funktioniert. Bitte stellen Sie sicher, dass alle Informationen korrekt eingegeben wurden, insbesondere die E-Mail Adresse.');
-l::set('register-duplicate','Entschuldung, es gibt bereits ein Benutzerkonto mit diesem Benutzername oder dieser E-Mail Adresse.');
+l::set('register-duplicate','Entschuldigung, es gibt bereits ein Benutzerkonto mit diesem Benutzername oder dieser E-Mail Adresse.');
 
 
 // templates/search.php
 
-l::set('no-search-results','Entschuldung, es gibt keine Suchergebnisse zu diesem Begriff.');
+l::set('no-search-results','Entschuldigung, es gibt keine Suchergebnisse zu diesem Begriff.');
 
 ?>
