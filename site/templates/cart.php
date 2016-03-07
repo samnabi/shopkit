@@ -142,7 +142,7 @@
                 <tr class="total">
                     <td colspan="2"><?php echo l::get('total') ?></td>
                     <td>
-                        <?php echo page('shop')->currency_symbol() ?>
+                        <?php e(page('shop')->currency_position() == 'before', page('shop')->currency_symbol()) ?>
                         <span id="cartTotal">
                             <?php echo sprintf('%0.2f', $cart->getAmount() + $tax - $discountAmount) ?> <?php echo page('shop')->currency_code() ?><br />
                             + <?php echo l::get('shipping') ?>
@@ -237,6 +237,7 @@
             var shippingParts = shippingEncoded.split('::');
             var shipping = shippingParts[1];
             var total = <?php echo number_format($cart->getAmount() + $tax - $discountAmount,2,'.','') ?>+(Math.round(shipping*100)/100);
+
             document.getElementById("cartTotal").innerHTML = total.toFixed(2) + <?php echo "' ".page('shop')->currency_code()."'" ?>; // Always show total with two decimals and currency code
         }
 
