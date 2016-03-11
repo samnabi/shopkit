@@ -51,7 +51,7 @@
 
 								<?php if ($variant->hasOptions) { ?>
 									<select dir="auto" class="uk-width-1-1" name="option">
-										<?php foreach ($variant->options() as $option) { ?>
+										<?php foreach (str::split($variant->options()) as $option) { ?>
 											<option value="<?php echo str::slug($option) ?>"><?php echo str::ucfirst($option) ?></option>
 										<?php } ?>
 									</select>
