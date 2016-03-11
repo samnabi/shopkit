@@ -10,10 +10,13 @@
 		  				$image = $site->images()->find($site->placeholder());
 		  			}
 		  			$thumb = thumb($image,array('height'=>150));
+					$backgroundThumb = thumb($image,array('height'=>300,'width'=>300,'crop'=>true,'blur'=>true));
 		  		?>
-			  	<img src="<?php echo $thumb->dataUri() ?>" title="<?php echo $post->title() ?>">
+				<div class="image" <?php if ($backgroundThumb) echo 'style="background-image: url('.$backgroundThumb->dataUri().');"' ?>>
+					<img property="image" content="<?php echo $thumb->url() ?>" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $post->title() ?>">
+				</div>
 				
-				<div style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top">
+				<div class="uk-margin-small-top">
 					<small dir="auto" class="date"><?php echo $post->date('d F Y') ?></small>
 		    		<h3 dir="auto" class="uk-margin-remove"><?php echo $post->title()->html() ?></h3>
 		    		<p dir="auto"><?php echo $post->text()->excerpt(80) ?></p>

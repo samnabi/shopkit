@@ -10,10 +10,13 @@
 						$image = $site->images()->find($site->placeholder());
 					}
 					$thumb = thumb($image,array('height'=>150));
+					$backgroundThumb = thumb($image,array('height'=>300,'width'=>300,'crop'=>true,'blur'=>true));
 				?>
-				<img property="image" content="<?php echo $thumb->url() ?>" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
+				<div class="image" <?php if ($backgroundThumb) echo 'style="background-image: url('.$backgroundThumb->dataUri().');"' ?>>
+					<img property="image" content="<?php echo $thumb->url() ?>" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
+				</div>
 
-				<div dir="auto" style="max-width: <?php echo $thumb->width() ?>px;" class="uk-margin-small-top">					
+				<div dir="auto" class="uk-margin-small-top">					
 					<?php if ($product->brand() != '') { ?>
 						<small class="brand" property="brand"><?php echo $product->brand() ?></small>
 					<?php } ?>
