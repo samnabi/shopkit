@@ -331,7 +331,7 @@ class Cart
       		$rate['weight'] = '';
       		$tiers = str::split($method['weight'], "\n");
       		if (count($tiers)) {
-	      		foreach (str::split($method['weight'], "\n") as $tier) {
+	      		foreach ($tiers as $tier) {
 			        $t = str::split($tier, ':');
 			        $tier_weight = $t[0];
 			        $tier_amount = $t[1];
