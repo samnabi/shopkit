@@ -119,7 +119,7 @@
                                 <?php if (count($shipping_rates) > 0) : ?>
                                     <?php foreach ($shipping_rates as $rate) : ?>
                                         <!-- Value needs both rate and title so we can pass the shipping method name through to the order log -->
-                                        <option value="<?php echo $rate['title'] ?>::<?php echo sprintf('%0.2f',$rate['rate']) ?>">
+                                        <option value="<?php echo $rate['title'] ?>::<?php echo number_format($rate['rate'],2,'.','') ?>">
                                             <?php echo $rate['title'] ?> (<?php echo formatPrice($rate['rate']) ?>)
                                         </option>
                                     <?php endforeach; ?>
