@@ -212,7 +212,6 @@ main {
 // Product and category listings
 
 .listing {
-	list-style: none;
 
 	li {
 		position: relative;
@@ -226,16 +225,16 @@ main {
 			display: block;
 			padding-bottom: 5px;
 			max-width: 300px;
-		}
 
-		&:hover a,
-		&:focus a {
-			color: inherit;
-			text-decoration: none;
-		}
+			&:hover,
+			&:focus {
+				color: inherit;
+				text-decoration: none;
+			}
 
-		&:active a {
-			opacity: 0.8;
+			&:active {
+				opacity: 0.8;
+			}
 		}
 
 		.image {
@@ -243,13 +242,8 @@ main {
 			background-position: center;
 			min-width: 150px;
 			height: 150px;
-		}
-
-		img {
-			display: block;
-			margin: 0 auto;
-
-			// Calc to ensure vertical centering
+			line-height: 130px;
+			text-align: center;
 		}
 
 		p {
