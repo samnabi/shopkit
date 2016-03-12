@@ -191,6 +191,11 @@ nav {
 	}
 }
 
+#login {
+	// Smooth opacity flash when called by Javascript (see sidebar.php)
+	transition: opacity 0.15s ease-in-out;
+}
+
 ul.uk-nav-sub {
   padding-left: 30px;
 }

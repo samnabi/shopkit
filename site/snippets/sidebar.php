@@ -5,32 +5,7 @@
         <?php snippet('logo') ?>
     </div>
 
-    <!-- Login form -->
-    <?php if (!$user = $site->user()) { ?>
-        <div class="uk-panel uk-panel-divider">
-            <form dir="auto" action="<?php echo url('/login') ?>" method="POST" id="login" class="uk-form">
-                <div class="uk-grid uk-grid-width-1-2">
-                    <div>
-                      <label for="email"><?php echo l::get('email-address') ?></label>
-                      <input type="text" id="email" name="email">
-                    </div>
-                    <div>
-                      <label for="password"><?php echo l::get('password') ?></label>
-                      <input type="password" id="password" name="password">
-                    </div>
-                </div>
-                <div class="uk-margin">
-                    <button class="uk-button uk-width-1-1" type="submit" name="login">
-                        <?php echo l::get('login') ?>
-                    </button>
-                </div>
-                <div class="uk-text-small uk-text-center">
-                    <?php echo l::get('new-customer') ?>
-                    <a href="<?php echo url('register') ?>" title="Register"><?php echo l::get('register') ?></a>
-                </div>
-            </form>
-        </div>
-    <?php } ?>
+    <?php snippet('sidebar.login') ?>
     
     <!-- Featured products -->
     <?php

@@ -52,7 +52,7 @@
 // snippets/header.notifications.php
 
 'notification-account' => 'You haven\'t set up any users. <a href="'.url('panel').'/install" title="Panel installation page">Create an account now</a>.',
-'notification-login' => 'Let\'s finish setting up your shop! <a href="/#user">Log in</a> to continue.',
+'notification-login' => 'Let\'s finish setting up your shop! <a href="#user">Log in</a> to continue.',
 'notification-options' => 'You haven\'t set up your shop options. <a href="'.url('panel').'/pages/shop/edit" title="Shop options">Define currency, shipping, and tax settings here</a>.',
 'notification-category' => 'You don\'t have any product categories. <a href="'.url('panel').'/pages/shop/add" title="Create a new category">Create your first category here</a>.',
 'notification-product-first' => 'You don\'t have any products. <a href="'.url('panel').'/pages/',
@@ -60,6 +60,8 @@
 'notification-license' => 'This shop doesn\'t have a Shopkit license key. Be sure to add one in the <strong>config.php</strong> file before the website goes live.',
 'notification-code' => 'Your discount code <strong><code>'.s::get('discountCode').'</code></strong> will be applied at checkout.',
 'discount-code-help' => 'Use this discount code every time you log in.',
+
+'notification-login-failed' => 'Sorry, we couldn\'t log you in. Either the password or email address isn\'t right.',
 
 // snippets/header.nav.php
 

@@ -35,7 +35,7 @@
 <?php } else { ?>
 	<div class="uk-container uk-padding-remove uk-margin-small-top uk-margin-small-right uk-visible-small">
 		<ul class="uk-subnav uk-subnav-pill uk-align-right">
-			<li><a href="#login"><?php echo l::get('login') ?></a></li>
+			<li><a href="#user"><?php echo l::get('login') ?></a></li>
 			<li><a href="<?php echo url('register') ?>"><?php echo l::get('register') ?></a></li>
 		</ul>
 	</div>
