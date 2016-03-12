@@ -180,7 +180,7 @@ class Cart
                 $this->amount += floatval($itemAmount) * $quantity;
 
                 // If shipping applies, add this item to the calculation for applicable amount and weight 
-               	if ($item->noshipping == '') {
+               	if ($item->noshipping) {
                		$this->shippingAmount += floatval($itemAmount) * $quantity;
                		$this->shippingWeight += floatval($item->weight) * $quantity;
                	}
@@ -329,14 +329,20 @@ class Cart
 
 	      	// Shipping cost by weight
       		$rate['weight'] = '';
-      		foreach (str::split($method['weight'], "\n") as $tier) {
-		        $t = str::split($tier, ':');
-		        $tier_weight = $t[0];
-		        $tier_amount = $t[1];
-	        	if ($this->shippingWeight >= $tier_weight) {
-	        		$rate['weight'] = $tier_amount;
-	        	}
-      		}
+      		$tiers = str::split($method['weight'], "\n");
+      		if (count($tiers)) {
+	      		foreach (str::split($method['weight'], "\n") as $tier) {
+			        $t = str::split($tier, ':');
+			        $tier_weight = $t[0];
+			        $tier_amount = $t[1];
+		        	if ($this->shippingWeight >= $tier_weight) {
+		        		$rate['weight'] = $tier_amount;
+		        	}
+	      		}
+	      		// If no tiers match the shipping weight, set the rate to 0
+	      		// (This may happen if you don't set a tier for 0 weight)
+	      		if ($rate['weight'] === '') $rate['weight'] = 0;
+	      	}
 
       		// Shipping cost by price
 	      	$rate['price'] = '';
