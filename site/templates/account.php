@@ -64,10 +64,13 @@
     </div>
   </form>
 
-  <h3 dir="auto"><?php echo l::get('delete-account') ?></h3>
-  <p dir="auto"><?php echo l::get('delete-account-text') ?></p>
-  <form dir="auto" class="uk-form" method="post">
-      <button class="uk-button" type="submit" name="delete"><?php echo l::get('delete-account-verify') ?></button>
-  </form>
+  <?php if (!$user->hasPanelAccess()) { ?>
+    <h3 dir="auto"><?php echo l::get('delete-account') ?></h3>
+    <form dir="auto" class="deleteAccount uk-form uk-panel uk-panel-box" method="post">
+        <input type="checkbox" name="deleteConfirm" required>
+        <label for="deleteConfirm"><?php echo l::get('delete-account-text') ?></label>
+        <button class="uk-button uk-margin-top" type="submit" name="delete"><?php echo l::get('delete-account-verify') ?></button>
+    </form>
+  <?php } ?>
 
 <?php snippet('footer') ?>

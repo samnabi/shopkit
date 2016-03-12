@@ -107,7 +107,7 @@
 'password-help' => 'Laissez vide pour garder votre mot de passe actuel',
 'update' => 'Mettre à jour',
 'delete-account' => 'Supprimer mon compte',
-'delete-account-text' => 'Si vous cliquez ce bouton, c\'est le point de non-retour. Votre compte sera supprimé à jamais.',
+'delete-account-text' => 'Je comprends que la suppression de mon compte est permanente. Mon compte sera supprimé à jamais. Les records de transactions, y compris mon courriel et les autres détails de commande, seront conservés.',
 'delete-account-verify' => 'Supprimer mon compte. Oui, je suis certain.',
 'username-no-account' => 'Le nom d\'utilisateur ne peut être changé.',
 'discount-code' => 'Code de rabais',

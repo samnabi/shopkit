@@ -95,6 +95,28 @@ video {
 	position: absolute;
 }
 
+// Delete account
+.deleteAccount {
+	input[type="checkbox"],
+	label {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	input[type="checkbox"] {
+		width: 10%;
+	}
+	label {
+		width: 85%;
+	}
+	input[type="checkbox"] ~ button {
+		display: none;
+	}
+	input[type="checkbox"]:checked ~ button {
+		display: block;
+		margin-left: 10%;
+	}
+}
+
 
 // Background
 

@@ -107,7 +107,7 @@
 'password-help' => 'Leave blank to keep it the same',
 'update' => 'Update',
 'delete-account' => 'Delete account',
-'delete-account-text' => 'If you click this button, there\'s no going back. Your account will be gone forever.',
+'delete-account-text' => 'I understand that deleting my account is permanent. There\'s no going back, and my account will be gone forever. Transaction records containing my email address and order details will still be kept.',
 'delete-account-verify' => 'Delete my account. Yes, I\'m sure.',
 'username-no-account' => 'The username can\'t be changed.',
 'discount-code' => 'Discount code',
