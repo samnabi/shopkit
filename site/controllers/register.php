@@ -15,15 +15,22 @@ return function ($site, $pages, $page) {
     	if (count($duplicateEmail) === 0 and count($duplicateUsername) === 0) {
     	  try {
 
-    	    // Create account
+    	    // Random password for initial setup.
+            // User will create their own password after opt-in email verification.
+            $password = bin2hex(openssl_random_pseudo_bytes(16));
+
+            // Create account
     	    $user = $site->users()->create(array(
     	      'username'  => trim(get('username')),
     	      'email'     => trim(get('email')),
-    	      'password'  => get('password'),
+    	      'password'  => $password,
     	      'firstName' => trim(get('fullname')),
     	      'language'  => 'en',
     	      'country'   => get('country')
     	    ));
+
+            // Send password reset email
+            resetPassword($user->email(),true);
 
     	    $register_message = l::get('register-success');
 

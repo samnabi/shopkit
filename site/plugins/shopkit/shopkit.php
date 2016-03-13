@@ -27,9 +27,11 @@ if ($discountCode = get('dc') or ($user = site()->user() and $discountCode = $us
   s::set('discountCode', strtoupper($discountCode));
 }
 
+
 /**
  * Helper function to format price
  */
+
 function formatPrice($number)
 {
     $symbol = page('shop')->currency_symbol();
@@ -41,10 +43,12 @@ function formatPrice($number)
   	}
 }
 
+
 /**
  * Helper function to check inventory / stock
  * Returns the number of items in stock, or TRUE if there's no stock limit.
  */
+
 function inStock($variant)
 {
 
@@ -61,6 +65,7 @@ function inStock($variant)
     return true;
 }
 
+
 /**
  * After a successful transaction, update product stock
  * Expects an array
@@ -68,6 +73,7 @@ function inStock($variant)
  *   [uri, variant, quantity]
  * ]
  */
+
 function updateStock($items)
 {
     foreach($items as $i => $item){
@@ -85,9 +91,11 @@ function updateStock($items)
     }
 }
 
+
 /**
  * Tweak CSS colours based on site options
  */
+
 include_once('colorconvert.php');
 
 function getStylesheet($base = 'eeeeee', $accent = '00a836', $link = '0077dd') {
@@ -229,6 +237,7 @@ function customColours($base = 'eeeeee', $accent = '00a836', $link = '0077dd') {
   return array_merge($baseColours,$accentColours,$linkColours);
 }
 
+
 /**
  * Check sale price conditions on individual variants
  * Receives a $variant object
@@ -274,3 +283,51 @@ function salePrice($variant) {
   // Something went wrong, return false
   return false;
 }
+
+
+/**
+ * Send an email to reset a user's password.
+ * Used for opt-in verification of new accounts, and for password resets.
+ */
+function resetPassword($email,$firstTime = false) {
+
+  // Find the user
+  $user = site()->users()->findBy('email',$email);
+
+  // Generate a random 32-character hex token
+  $token = bin2hex(openssl_random_pseudo_bytes(16));
+
+  // Add the token to the user's profile
+  $user->update([
+    'token' => $token,
+  ]);
+
+  // Set the domain and reset link
+  $domain = str_replace('www.', '', $_SERVER['HTTP_HOST']);
+  $resetLink = site()->url().'/token/'.$token;
+
+  // Build the email text
+  if ($firstTime) {
+    $subject = 'Activate your account';
+    $body = 'Your email address was used to create an account at <strong>'.$domain.'</strong>. Please follow the link below to activate your account.'."\n\n".'<a href="'.$resetLink.'" title="Activate your account">'.$resetLink.'</a>'."\n\n".'If you did not create this account, no action is required on your part. The account will remain inactive.';
+  } else {
+    $subject = 'Reset your password';
+    $body = 'Someone requested a password reset for your account at <strong>'.$domain.'</strong>. Please follow the link below to reset your password.'."\n\n".'<a href="'.$resetLink.'" title="Reset your password">'.$resetLink.'</a>'."\n\n".'If you did not request this password reset, no action is required on your part.';
+  }
+
+  // Send the confirmation email
+  $email = new Email(array(
+    'to'      => $user->email(),
+    'from'    => 'noreply@'.$domain,
+    'subject' => $subject,
+    'body'    => $body,
+  ));
+
+  if($email->send()) {
+    return true;
+  } else {
+    return false;
+  }
+
+}
+

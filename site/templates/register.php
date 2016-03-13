@@ -26,10 +26,6 @@
       <input class="uk-form-width-large" type="text" id="email" name="email">
     </div>
     <div class="uk-form-row">
-      <label for="password"><?php echo l::get('password') ?></label>
-      <input class="uk-form-width-large" type="password" id="password" name="password" value="">
-    </div>
-    <div class="uk-form-row">
       <label for="fullname"><?php echo l::get('full-name') ?></label>
       <input class="uk-form-width-large" type="text" id="fullname" name="fullname" value="<?php echo get('fullname') ?>">
     </div>

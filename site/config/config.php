@@ -256,6 +256,34 @@ c::set('routes', array(
       return array('shop/'.$category, array('slidePath' => 'shop/'.$category.'/'.$slug));
     }
   ),
+  array(
+    // Password reset and account opt-in verification
+    'pattern' => 'token/([a-f0-9]{32})',
+    'action' => function($token) {
+
+      // Log out any active users
+      if($u = site()->user()) $u->logout();
+
+      // Find user by token
+      if ($user = site()->users()->findBy('token',$token)) {
+
+        // Destroy the token and update the password temporarily
+        $user->update([
+          'token' => '',
+          'password' => $token,
+        ]);
+
+        // Log in
+        if ($user->login($token)) {
+          return go('account?reset=true');
+        } else {
+          return go('/');
+        } 
+      } else {
+        return false;
+      }
+    }
+  ),
 ));
 
 

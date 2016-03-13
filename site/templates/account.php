@@ -19,20 +19,18 @@
   <?php } ?>
 
   <form dir="auto" class="uk-form uk-form-stacked" method="post">
-    <div class="uk-form-row uk-grid">
-      <div>
-        <label><?php echo l::get('username') ?></label>
-        <input disabled class="uk-form-width-medium" type="text" value="<?php echo $user->username() ?>">
-        <p class="uk-form-help-block uk-text-muted uk-margin-remove"><?php echo l::get('username-no-change') ?></p>
-      </div>
-      <div>
-        <label for="email"><?php echo l::get('email-address') ?></label>
-        <input class="uk-form-width-medium" type="text" id="email" name="email" value="<?php echo $user->email() ?>">
-      </div>
+    <div class="uk-form-row">
+      <label><?php echo l::get('username') ?></label>
+      <input disabled class="uk-form-width-large" type="text" value="<?php echo $user->username() ?>">
+      <p class="uk-form-help-block uk-text-muted uk-margin-remove"><?php echo l::get('username-no-change') ?></p>
+    </div>
+    <div class="uk-form-row">
+      <label for="email"><?php echo l::get('email-address') ?></label>
+      <input class="uk-form-width-large" type="text" id="email" name="email" value="<?php echo $user->email() ?>">
     </div>
     <div class="uk-form-row">
       <label for="password"><?php echo l::get('password') ?></label>
-      <input class="uk-form-width-medium" type="password" id="password" name="password" value="" aria-describedby="passwordHelp">
+      <input class="uk-form-width-large" type="password" id="password" name="password" value="" aria-describedby="passwordHelp">
       <p class="uk-form-help-block uk-text-muted uk-margin-remove" id="passwordHelp"><?php echo l::get('password-help') ?></p>
     </div>
     <div class="uk-form-row">
@@ -43,7 +41,7 @@
     </div>
     <div class="uk-form-row">
       <label for="country"><?php echo l::get('country') ?></label>
-      <select class="uk-form-width-medium" name="country" id="country" aria-describedby="countryHelp">
+      <select class="uk-form-width-large" name="country" id="country" aria-describedby="countryHelp">
         <?php foreach ($countries as $c) { ?>
           <option <?php echo $user->country() === $c->slug() ? 'selected' : '' ?> value="<?php echo $c->slug() ?>"><?php echo $c->title() ?></option>
         <?php } ?>
@@ -58,7 +56,7 @@
       </div>
     </div>
     <div class="uk-form-row">
-      <button class="uk-button uk-button-primary uk-button-large uk-form-width-medium" type="submit" name="update">
+      <button class="uk-button uk-button-primary uk-button-large" type="submit" name="update">
         <?php echo l::get('update') ?>
       </button>
     </div>

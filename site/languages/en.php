@@ -106,6 +106,7 @@
 'account-success' => 'Your information has been updated.',
 'account-failure' => 'Sorry, something went wrong. Please make sure all information is entered correctly, including your email address.',
 'account-delete-error' => 'Sorry, your account couldn\'t be deleted.',
+'account-reset' => 'Please choose a new password and make sure your information is up-to-date.',
 'password-help' => 'Leave blank to keep it the same',
 'update' => 'Update',
 'delete-account' => 'Delete account',

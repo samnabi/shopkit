@@ -105,6 +105,7 @@
 
 'account-success' => 'Votre information est mise à jour.',
 'account-failure' => 'Désolé, votre information ne pouvait être mise à jour. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.',
+'account-reset' => 'SVP choisissez un nouveau mot de passe et assurez-vous que votre information est mise à jour.',
 'account-delete-error' => 'Désolé, votre compte ne pouvait être supprimé.',
 'password-help' => 'Laissez vide pour garder votre mot de passe actuel',
 'update' => 'Mettre à jour',

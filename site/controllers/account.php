@@ -46,9 +46,11 @@ return function ($site, $pages, $page) {
 		$delete_message = false;
 	}
 
+	// Reset password message
+	if (get('reset') == 'true') $update_message = l::get('account-reset');
+
 	// Get array of countries
 	$countries = page('/shop/countries')->children()->invisible();
-
 
 	// Pass variables to the template
   	return [
