@@ -309,10 +309,10 @@ function resetPassword($email,$firstTime = false) {
   // Build the email text
   if ($firstTime) {
     $subject = 'Activate your account';
-    $body = 'Your email address was used to create an account at <strong>'.$domain.'</strong>. Please follow the link below to activate your account.'."\n\n".'<a href="'.$resetLink.'" title="Activate your account">'.$resetLink.'</a>'."\n\n".'If you did not create this account, no action is required on your part. The account will remain inactive.';
+    $body = 'Your email address was used to create an account at '.$domain.'. Please follow the link below to activate your account.'."\n\n".$resetLink."\n\n".'If you did not create this account, no action is required on your part. The account will remain inactive.';
   } else {
     $subject = 'Reset your password';
-    $body = 'Someone requested a password reset for your account at <strong>'.$domain.'</strong>. Please follow the link below to reset your password.'."\n\n".'<a href="'.$resetLink.'" title="Reset your password">'.$resetLink.'</a>'."\n\n".'If you did not request this password reset, no action is required on your part.';
+    $body = 'Someone requested a password reset for your account at '.$domain.'. Please follow the link below to reset your password.'."\n\n".$resetLink."\n\n".'If you did not request this password reset, no action is required on your part.';
   }
 
   // Send the confirmation email

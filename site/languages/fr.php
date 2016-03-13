@@ -170,7 +170,7 @@
 
 // templates/register.php
 
-'register-success' => 'Merci, votre compte est inscrit! Vous pouvez maintenant <a href="#user">vous connecter</a>.',
+'register-success' => 'Merci, votre compte est inscrit! Vous recevrez un courriel afin d\'activer votre compte.',
 'register-failure' => 'Désolé, votre compte ne pouvait être inscrit. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.',
 'register-duplicate' => 'Désolé, vore compte ne pouvait être inscrit. Il y a déja un compte avec ce nom d\'utilisateur ou courriel.',
 

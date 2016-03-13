@@ -169,7 +169,7 @@
 
 // templates/register.php
 
-'register-success' => 'Thanks, your account has been registered! You can now <a href="#user">log in</a>.',
+'register-success' => 'Thanks, your account has been registered! You will receive an email with instructions for activating your account.',
 'register-failure' => 'Sorry, something went wrong. Please make sure all information is entered correctly, including your email address.',
 'register-duplicate' => 'Sorry, there\'s already an account with that username or email address.',
 
