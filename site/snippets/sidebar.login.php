@@ -23,9 +23,14 @@
                     <?php echo l::get('login') ?>
                 </button>
             </div>
-            <div class="uk-text-small uk-text-center">
-                <?php echo l::get('new-customer') ?>
-                <a href="<?php echo url('register') ?>" title="Register"><?php echo l::get('register') ?></a>
+            <div class="uk-text-small uk-grid uk-grid-width-1-2">
+                <div>
+                    <a href="<?php echo url('account/reset') ?>" title="<?php echo l::get('forgot-password') ?>"><?php echo l::get('forgot-password') ?></a>
+                </div>
+                <div class="uk-text-right">
+                    <?php echo l::get('new-customer') ?>
+                    <a href="<?php echo url('account/register') ?>" title="<?php echo l::get('register') ?>"><?php echo l::get('register') ?></a>
+                </div>
             </div>
         </form>
 

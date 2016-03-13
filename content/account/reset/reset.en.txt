@@ -1,0 +1,3 @@
+title: Reset password
+----
+text: Please enter your email address. Instructions to reset your password will be sent to you.

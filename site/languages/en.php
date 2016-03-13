@@ -87,6 +87,7 @@
 // snippets/sidebar.php
 
 'new-customer' => 'New customer?',
+'forgot-password' => 'Forgot password',
 
 'subpages' => 'Pages',
 
@@ -172,6 +173,12 @@
 'register-success' => 'Thanks, your account has been registered! You will receive an email with instructions for activating your account.',
 'register-failure' => 'Sorry, something went wrong. Please make sure all information is entered correctly, including your email address.',
 'register-duplicate' => 'Sorry, there\'s already an account with that username or email address.',
+
+
+// templates/reset.php
+'reset-submit' => 'Reset password',
+'reset-success' => 'You will receive an email with instructions to reset your password.',
+'reset-error' => 'Sorry, we couldn\'t find that account.',
 
 
 // templates/search.php

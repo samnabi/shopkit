@@ -4,7 +4,7 @@ return function ($site, $pages, $page) {
 
 	// Only logged-in users allowed!
 	$user = $site->user();
-	if(!$user) go('/register');
+	if(!$user) go('account/register');
 
 	// Update the account
 	if(isset($_POST['update'])) {
@@ -38,7 +38,7 @@ return function ($site, $pages, $page) {
 		  $user = $site->user();
 		  $user->logout();
 		  $site->user($user->username())->delete();
-		  go('/register');
+		  go('account/register');
 		} catch(Exception $e) {
 		  $delete_message = l::get('account-delete-error');
 		}

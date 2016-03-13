@@ -87,6 +87,7 @@
 // snippets/sidebar.php
 
 'new-customer' => 'Nouveau client?',
+'forgot-password' => 'Mot de passe oublié',
 
 'subpages' => 'Pages',
 
@@ -173,6 +174,12 @@
 'register-success' => 'Merci, votre compte est inscrit! Vous recevrez un courriel afin d\'activer votre compte.',
 'register-failure' => 'Désolé, votre compte ne pouvait être inscrit. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.',
 'register-duplicate' => 'Désolé, vore compte ne pouvait être inscrit. Il y a déja un compte avec ce nom d\'utilisateur ou courriel.',
+
+
+// templates/reset.php
+'reset-submit' => 'Réinistialiser le mot de passe',
+'reset-success' => 'Vous recevrez un courriel avec des instructions afin de réinitialiser le mot se passe.',
+'reset-error' => 'Désolé, on ne pouvait pas trouver ce compte.',
 
 
 // templates/search.php

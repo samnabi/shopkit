@@ -293,6 +293,7 @@ function resetPassword($email,$firstTime = false) {
 
   // Find the user
   $user = site()->users()->findBy('email',$email);
+  if (!$user) return false;
 
   // Generate a random 32-character hex token
   $token = bin2hex(openssl_random_pseudo_bytes(16));
