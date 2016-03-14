@@ -137,7 +137,7 @@
                 <tr>
                     <td colspan="2"><?php echo l::get('tax') ?></td>
                     <td>
-                        <?php $tax = sprintf('%0.2f', $cart->getTax()) ?>
+                        <?php $tax = number_format($cart->getTax(),2,'.','') ?>
                         <?php echo formatPrice($tax) ?>
                     </td>
                     <td></td>
@@ -164,8 +164,6 @@
         <?php } ?>
 
         <input type="hidden" name="gateway" value="paypal">
-        <input type="hidden" name="tax" value="<?php echo $tax ?>">
-        <input type="hidden" name="discountAmount" value="<?php echo $discountAmount ?>">
 
         <div class="forRobots">
           <label for="subject"><?php echo l::get('honeypot-label') ?></label>
@@ -184,8 +182,6 @@
     <?php if ($cart->canPayLater()) { ?>
         <form method="post" action="<?php echo url('shop/cart/process') ?>">
             <input type="hidden" name="gateway" value="paylater">
-            <input type="hidden" name="tax" value="<?php echo $tax ?>">
-            <input type="hidden" name="discountAmount" value="<?php echo $discountAmount ?>">
 
             <div class="forRobots">
               <label for="subject"><?php echo l::get('honeypot-label') ?></label>

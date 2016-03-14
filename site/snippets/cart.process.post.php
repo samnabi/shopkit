@@ -4,7 +4,6 @@
  * ================================
  * gateway		  string
  * tax 			  number
- * discountAmount number or false
  */
 
 // Honeypot trap for robots
@@ -33,10 +32,10 @@ try {
 		'status'  => 'pending',
 		'products' => $products_string,
 		'subtotal' => number_format($cart->getAmount(),2,'.',''),
-		'discount' => number_format($_POST['discountAmount'],2,'.',''),
+		'discount' => number_format($cart->getDiscountAmount(),2,'.',''),
 		'shipping' => $shipping['rate'],
 		'shipping-method' => $shipping['title'],
-		'tax' => $_POST['tax']
+		'tax' => number_format($cart->getTax(),2,'.','')
 	]);
 
 	// Add payer info if it's available at this point
