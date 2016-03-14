@@ -35,6 +35,11 @@ class Cart
 	protected $shippingWeight = 0;
 
 	/**
+	 * @var integer
+	 */
+	protected $shippingQty = 0;
+
+	/**
 	 * CartItems loaded
 	 *
 	 * @var boolean
@@ -162,7 +167,6 @@ class Cart
 	{
 		if ($this->itemsLoaded) return $this->items;
 
-
         foreach ($this->data as $id => $quantity) {
 
         	// Extract URI from item ID
@@ -180,9 +184,10 @@ class Cart
                 $this->amount += floatval($itemAmount) * $quantity;
 
                 // If shipping applies, add this item to the calculation for applicable amount and weight 
-               	if ($item->noshipping) {
+               	if ($item->noshipping != 1) {
                		$this->shippingAmount += floatval($itemAmount) * $quantity;
                		$this->shippingWeight += floatval($item->weight) * $quantity;
+               		$this->shippingQty += $quantity;
                	}
             }
         }
@@ -321,11 +326,11 @@ class Cart
 
 	    	// Flat-rate shipping cost
 	      	$rate['flat'] = '';
-	      	if ($method['flat'] != '') $rate['flat'] = (float)$method['flat'];
+	      	if ($method['flat'] != '' and $this->shippingQty > 0) $rate['flat'] = (float)$method['flat'];
 
 	      	// Per-item shipping cost
 	      	$rate['item'] = '';
-	      	if ($method['item'] != '') $rate['item'] = $method['item'] * $this->count();
+	      	if ($method['item'] != '') $rate['item'] = $method['item'] * $this->shippingQty;
 
 	      	// Shipping cost by weight
       		$rate['weight'] = '';

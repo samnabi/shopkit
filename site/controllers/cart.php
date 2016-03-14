@@ -69,13 +69,17 @@ return function($site, $pages, $page) {
     // Get countries
     $countries = page('/shop/countries')->children()->invisible();
 
-    // Get shipping rates
+    // Get shipping rate
     $shipping_rates = $cart->getShippingRates();
+
+    // Get selected shipping rate
+    $shipping = s::get('shipping');
 
     return [
         'cart' => $cart,
         'items' => $items,
         'countries' => $countries,
         'shipping_rates' => $shipping_rates,
+        'shipping' => $shipping,
     ];
 };

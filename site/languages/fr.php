@@ -128,6 +128,7 @@
 'delete' => 'Supprimer',
 
 'update-country' => 'Mettre à jour le pays',
+'update-shipping' => 'Mettre à jour le transport',
 'free-shipping' => 'Transport gratuit',
 
 'sandbox-message' => 'Vous êtes dans la mode "sandbox". Cette transaction ne résultera pas en un achat réel.',
@@ -138,6 +139,9 @@
 
 'discount' => 'Rabais',
 'discount-apply' => 'Appliquez code',
+
+'no-tax' => 'Aucun taxe',
+'no-shipping' => 'Transport gratuit',
 
 
 // templates/events.php

@@ -25,7 +25,7 @@
             </thead>
 
             <tbody>
-                <?php foreach($items as $i => $item) : ?>
+                <?php foreach($items as $i => $item) { ?>
                     <tr>
                         <td>
                             <a href="<?php echo url($item->uri) ?>" title="<?php echo $item->fullTitle() ?>">
@@ -61,6 +61,8 @@
                         </td>
                         <td class="uk-text-right">
                             <?php echo $item->priceText ?>
+                            <?php e($item->notax == 1,'<span class="uk-badge">'.l::get('no-tax').'</span>') ?>
+                            <?php e($item->noshipping == 1,'<span class="uk-badge">'.l::get('no-shipping').'</span>') ?>
                         </td>
                         <td>
                             <form action="" method="post">
@@ -70,7 +72,7 @@
                             </form>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                <?php } ?>
             </tbody>
 
             <tfoot class="uk-text-right">
@@ -111,23 +113,24 @@
                                     </option>
                                 <?php } ?>
                             </select>
-                            <button id="setCountryButton" type="submit"><?php echo l::get('update-country') ?></button>
+                            <button type="submit"><?php echo l::get('update-country') ?></button>
                         </form>
 
-                        <form class="uk-form">
-                            <select class="uk-form-width-medium" name="shipping" id="shipping" onChange="updateCartTotal(); copyShippingValue();">
-                                <?php if (count($shipping_rates) > 0) : ?>
-                                    <?php foreach ($shipping_rates as $rate) : ?>
-                                        <!-- Value needs both rate and title so we can pass the shipping method name through to the order log -->
-                                        <option value="<?php echo $rate['title'] ?>::<?php echo number_format($rate['rate'],2,'.','') ?>">
+                        <!-- Set shipping -->
+                        <form class="uk-form" id="setShipping" action="" method="POST">
+                            <select class="uk-form-width-medium" name="shipping" onChange="document.forms['setShipping'].submit();">
+                                <?php if (count($shipping_rates) > 0) { ?>
+                                    <?php foreach ($shipping_rates as $rate) { ?>
+                                        <option value="<?php echo str::slug($rate['title']) ?>" <?php e($shipping['title'] === $rate['title'],'selected') ?>>
                                             <?php echo $rate['title'] ?> (<?php echo formatPrice($rate['rate']) ?>)
                                         </option>
-                                    <?php endforeach; ?>
-                                <?php else : ?>
+                                    <?php } ?>
+                                <?php } else { ?>
                                     <!-- If no shipping rates are set, show free shipping -->
-                                    <option value="<?php echo l::get('free-shipping') ?>::0.00"><?php echo l::get('free-shipping') ?></option>
-                                <?php endif; ?>
+                                    <option value="free-shipping"><?php echo l::get('free-shipping') ?></option>
+                                <?php } ?>
                             </select>
+                            <button type="submit"><?php echo l::get('update-shipping') ?></button>
                         </form>
                     </td>
                 </tr>
@@ -142,11 +145,8 @@
                 <tr class="total">
                     <td colspan="2"><?php echo l::get('total') ?></td>
                     <td>
-                        <?php e(page('shop')->currency_position() == 'before', page('shop')->currency_symbol()) ?>
-                        <span id="cartTotal">
-                            <?php echo sprintf('%0.2f', $cart->getAmount() + $tax - $discountAmount) ?> <?php echo page('shop')->currency_code() ?><br />
-                            + <?php echo l::get('shipping') ?>
-                        </span>
+                        <?php echo formatPrice($cart->getAmount() + $tax + $shipping['rate'] - $discountAmount) ?>
+                        <?php echo page('shop')->currency_code() ?>
                     </td>
                     <td></td>
                 </tr>
@@ -166,20 +166,6 @@
         <input type="hidden" name="gateway" value="paypal">
         <input type="hidden" name="tax" value="<?php echo $tax ?>">
         <input type="hidden" name="discountAmount" value="<?php echo $discountAmount ?>">
-
-        <select name="shipping" id="payPalShipping">
-            <?php if (count($shipping_rates) > 0) { ?>
-                <?php foreach ($shipping_rates as $rate) : ?>
-                    <!-- Value needs both rate and title so we can pass the shipping method name through to the order log -->
-                    <option value="<?php echo $rate['title'] ?>::<?php echo sprintf('%0.2f',$rate['rate']) ?>">
-                        <?php echo $rate['title'] ?> (<?php echo formatPrice($rate['rate']) ?>)
-                    </option>
-                <?php endforeach; ?>
-            <?php } else { ?>
-                <!-- If no shipping rates are set, show free shipping -->
-                <option value="<?php echo l::get('free-shipping') ?>::0.00"><?php echo l::get('free-shipping') ?></option>
-            <?php } ?>
-        </select>
 
         <div class="forRobots">
           <label for="subject"><?php echo l::get('honeypot-label') ?></label>
@@ -201,20 +187,6 @@
             <input type="hidden" name="tax" value="<?php echo $tax ?>">
             <input type="hidden" name="discountAmount" value="<?php echo $discountAmount ?>">
 
-            <select name="shipping" id="payLaterShipping">
-                <?php if (count($shipping_rates) > 0) { ?>
-                    <?php foreach ($shipping_rates as $rate) : ?>
-                        <!-- Value needs both rate and title so we can pass the shipping method name through to the order log -->
-                        <option value="<?php echo $rate['title'] ?>::<?php echo sprintf('%0.2f',$rate['rate']) ?>">
-                            <?php echo $rate['title'] ?> (<?php echo formatPrice($rate['rate']) ?>)
-                        </option>
-                    <?php endforeach; ?>
-                <?php } else { ?>
-                    <!-- If no shipping rates are set, show free shipping -->
-                    <option value="<?php echo l::get('free-shipping') ?>::0.00"><?php echo l::get('free-shipping') ?></option>
-                <?php } ?>
-            </select>
-
             <div class="forRobots">
               <label for="subject"><?php echo l::get('honeypot-label') ?></label>
               <input type="text" name="subject">
@@ -226,40 +198,12 @@
         </form>
     <?php } ?>
 
-<?php } ?>
-
-<!-- Dat Fancy Jarverscrupt -->
-<?php if (isset($tax)) { ?>
     <script type="text/javascript">
-        function updateCartTotal() {
-            var e = document.getElementById("shipping");
-            var shippingEncoded = e.options[e.selectedIndex].value;
-            var shippingParts = shippingEncoded.split('::');
-            var shipping = shippingParts[1];
-            var total = <?php echo number_format($cart->getAmount() + $tax - $discountAmount,2,'.','') ?>+(Math.round(shipping*100)/100);
-
-            document.getElementById("cartTotal").innerHTML = total.toFixed(2) + <?php echo "' ".page('shop')->currency_code()."'" ?>; // Always show total with two decimals and currency code
-        }
-
-        function copyShippingValue() {
-            var e = document.getElementById("shipping");
-            var shipping = e.options[e.selectedIndex].value;
-            document.getElementById("payPalShipping").value = shipping;
-            document.getElementById("payLaterShipping").value = shipping;
-        }
-
-        // Update cart total on page load
-        updateCartTotal();
-
-        // Remove duplicate shipping selects
-        document.getElementById("payPalShipping").style.display = 'none';
-        <?php if ($cart->canPayLater()) { ?>
-            document.getElementById("payLaterShipping").style.display = 'none';
-        <?php } ?>
-
-        // Remove setCountry submit button
-        document.getElementById("setCountryButton").style.display = 'none';   
+        // Remove setCountry and setShipping submit buttons
+        document.querySelector('#setCountry button').style.display = 'none';
+        document.querySelector('#setShipping button').style.display = 'none';
     </script>
+
 <?php } ?>
 
 <?php snippet('footer') ?>

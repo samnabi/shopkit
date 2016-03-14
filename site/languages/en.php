@@ -127,6 +127,7 @@
 'delete' => 'Delete',
 
 'update-country' => 'Update country',
+'update-shipping' => 'Update shipping',
 'free-shipping' => 'Free Shipping',
 
 'sandbox-message' => 'You\'re running in sandbox mode. This transaction won\'t result in a real purchase.',
@@ -137,6 +138,9 @@
 
 'discount' => 'Discount',
 'discount-apply' => 'Apply code',
+
+'no-tax' => 'No tax',
+'no-shipping' => 'Free shipping',
 
 
 // templates/events.php

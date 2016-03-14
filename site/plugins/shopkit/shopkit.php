@@ -10,10 +10,10 @@ if ($country = get('country')) {
     // First: See if country was sent through a form submission.
     // If it's a 2-character code, turn it into a UID
     if (strlen($country) === 2) $country = page('shop/countries')->children()->filterBy('countrycode',$country)->first()->uid();
-} elseif (s::get('country')) {
+} else if (s::get('country')) {
     // Second option: the country has already been set in the session
     $country = s::get('country');
-} elseif ($user = site()->user()) {
+} else if ($user = site()->user()) {
     // Third option: see if the user has set a country in their profile
     $country = $user->country();
 } else {
@@ -21,6 +21,33 @@ if ($country = get('country')) {
     $country = 'united-states';
 }
 s::set('country',$country);
+
+
+// Set shipping method as a session variable
+// Shipping method is an array containing 'title' and 'rate'
+$shippingMethods = $cart->getShippingRates();
+if (get('shipping')) {
+  // First option: see if a shipping method was set through a form submission
+  if (get('shipping') == 'free-shipping') {
+    $shippingMethod = [
+      'title' => l::get('free-shipping'),
+      'rate' => 0
+    ];
+  }
+  foreach ($shippingMethods as $key => $method) {
+    if (get('shipping') == str::slug($method['title'])) {
+      $shippingMethod = $method;
+    }
+  }
+} else if (s::get('shipping')) {
+  // Second option: the shipping has already been set in the session
+  $shippingMethod = s::get('shipping');
+} else {
+  // Last resort: choose the first shipping method
+  $shippingMethod = array_shift($shippingMethods);
+}
+s::set('shipping',$shippingMethod);
+
 
 // Set discount code from query string or user profile
 if ($discountCode = get('dc') or ($user = site()->user() and $discountCode = $user->discountcode())) {

@@ -94,8 +94,8 @@ class CartItem
         $this->sale_amount = salePrice($variant);
         $this->weight = $variant['weight'];
         $this->quantity = $quantity;
-        $this->noshipping = $product->noshipping()->isEmpty() ? true : false;
-        $this->notax = $product->notax();
+        $this->noshipping = $product->noshipping()->value;
+        $this->notax = $product->notax()->value;
 	}
 
     /**

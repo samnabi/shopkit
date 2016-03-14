@@ -4,7 +4,6 @@
  * ================================
  * gateway		  string
  * tax 			  number
- * shipping 	  encoded string (title::rate)
  * discountAmount number or false
  */
 
@@ -13,8 +12,7 @@ if(r::is('post') and get('subject') != '') go(url('error'));
 
 $cart = Cart::getCart();
 
-// The shipping data is encoded as rate::method, since both parts need to come from the same <select> field.
-list($shipping_method,$shipping_rate) = explode('::', get('shipping'));
+$shipping = s::get('shipping');
 
 // Get a text list of products and their quantities
 $products_string = '';
@@ -36,8 +34,8 @@ try {
 		'products' => $products_string,
 		'subtotal' => number_format($cart->getAmount(),2,'.',''),
 		'discount' => number_format($_POST['discountAmount'],2,'.',''),
-		'shipping' => $shipping_rate,
-		'shipping-method' => $shipping_method,
+		'shipping' => $shipping['rate'],
+		'shipping-method' => $shipping['title'],
 		'tax' => $_POST['tax']
 	]);
 
