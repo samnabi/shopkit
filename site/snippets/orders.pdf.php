@@ -33,8 +33,8 @@ foreach ($products as $product) {
 $pdf->Ln(0.3); // Line break
 
 // Order price summary
-$pdf->Cell(0,0.5,l::get('subtotal').': '.formatPrice($p->subtotal()->value).'     '.l::get('shipping').': '.formatPrice($p->shipping()->value).'     '.l::get('tax').': '.formatPrice($p->tax()->value),0,2);
-$pdf->Cell(0,0.5,l::get('tax').': '.formatPrice($p->subtotal()->value+$p->shipping()->value+$p->tax()->value),0,2);
+$pdf->Cell(0,0.5,l::get('subtotal').': '.$p->subtotal()->value.'     '.l::get('shipping').': '.$p->shipping()->value.'     '.l::get('tax').': '.formatPrice($p->tax()->value),0,2);
+$pdf->Cell(0,0.5,l::get('total').': '.$p->subtotal()->value+$p->shipping()->value+$p->tax()->value,0,2);
 
 // Write the PDF
 $pdf->Output($p->txn_id()->value.'.pdf','D');
