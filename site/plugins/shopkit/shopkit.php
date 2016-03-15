@@ -296,8 +296,11 @@ function resetPassword($email,$firstTime = false) {
   $user = site()->users()->findBy('email',$email);
   if (!$user) return false;
 
-  // Generate a random 32-character hex token
-  $token = bin2hex(openssl_random_pseudo_bytes(16));
+  // Generate a secure random 32-character hex token
+  do {
+    $bytes = openssl_random_pseudo_bytes(16, $crypto_strong);
+    $token = bin2hex($bytes);
+  } while(!$crypto_strong);
 
   // Add the token to the user's profile
   $user->update([
