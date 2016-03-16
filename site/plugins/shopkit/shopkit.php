@@ -290,6 +290,7 @@ function salePrice($variant) {
  * Send an email to reset a user's password.
  * Used for opt-in verification of new accounts, and for password resets.
  */
+
 function resetPassword($email,$firstTime = false) {
 
   // Find the user
@@ -307,17 +308,17 @@ function resetPassword($email,$firstTime = false) {
     'token' => $token,
   ]);
 
-  // Set the domain and reset link
+  // Set the reset link
   $domain = str_replace('www.', '', $_SERVER['HTTP_HOST']);
   $resetLink = site()->url().'/token/'.$token;
 
   // Build the email text
   if ($firstTime) {
-    $subject = 'Activate your account';
-    $body = 'Your email address was used to create an account at '.$domain.'. Please follow the link below to activate your account.'."\n\n".$resetLink."\n\n".'If you did not create this account, no action is required on your part. The account will remain inactive.';
+    $subject = l::get('activate-account');
+    $body = l::get('activate-message-first')."\n\n".$resetLink."\n\n".l::get('activate-message-last');
   } else {
-    $subject = 'Reset your password';
-    $body = 'Someone requested a password reset for your account at '.$domain.'. Please follow the link below to reset your password.'."\n\n".$resetLink."\n\n".'If you did not request this password reset, no action is required on your part.';
+    $subject = l::get('reset-password');
+    $body = l::get('reset-message-first')."\n\n".$resetLink."\n\n".l::get('reset-message-last');
   }
 
   // Send the confirmation email
@@ -335,4 +336,3 @@ function resetPassword($email,$firstTime = false) {
   }
 
 }
-

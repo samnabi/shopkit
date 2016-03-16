@@ -31,6 +31,16 @@
 'from' => 'À partir de',
 
 
+// plugins/shopkit/shopkit.php
+
+'activate-account' => 'Activez votre compte',
+'activate-message-first' => 'Votre courriel est incrit chez '.str_replace('www.', '', $_SERVER['HTTP_HOST']).'. Accédez au lien ci-dessous afin d\'activer votre compte.',
+'activate-message-last' => 'Si vous n\'avez pas crée ce compte, aucun action n\'est requis. Le compte restera inactivé.',
+'reset-password' => 'Réinitialisez votre mot de passe',
+'reset-message-first' => 'Quelqu\'un a demandé un nouveau mot de passe pour votre compte chez '.str_replace('www.', '', $_SERVER['HTTP_HOST']).'. Accédez au lien ci-dessous afin de réinitialiser votre mot de passe.',
+'reset-message-last' => 'Si vous n\'avez pas demandé cet action, aucun action n\'est requis.',
+
+
 // snippets/cart.process.php
 
 'qty' => 'Qté: ',

@@ -31,6 +31,16 @@
 'from' => 'From',
 
 
+// plugins/shopkit/shopkit.php
+
+'activate-account' => 'Activate your account',
+'activate-message-first' => 'Your email address was used to create an account at '.str_replace('www.', '', $_SERVER['HTTP_HOST']).'. Please follow the link below to activate your account.',
+'activate-message-last' => 'If you did not create this account, no action is required on your part. The account will remain inactive.',
+'reset-password' => 'Reset your password',
+'reset-message-first' => 'Someone requested a password reset for your account at '.str_replace('www.', '', $_SERVER['HTTP_HOST']).'. Please follow the link below to reset your password.',
+'reset-message-last' => 'If you did not request this password reset, no action is required on your part.',
+
+
 // snippets/cart.process.php
 
 'qty' => 'Qty: ',
