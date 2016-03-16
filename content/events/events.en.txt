@@ -1,9 +1,0 @@
-Title: Events
-
-----
-
-Text: 
-
-----
-
-Slider: 
