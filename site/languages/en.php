@@ -92,6 +92,8 @@
 // snippets/orders.pdf.php
 
 'bill-to' => 'Bill to',
+'invoice' => 'Invoice',
+'transaction-id' => 'Transaction ID',
 
 
 // snippets/sidebar.php

@@ -7,36 +7,37 @@ site()->kirby->localize();
 // Page URI sent via POST
 $p = page(get('uri'));
 
-// Initialize the PDF
-$pdf = new FPDF('P','in','Letter');
-$pdf->AddPage();
-$pdf->SetFont('Arial','B',12);
+// reference the Dompdf namespace
+use Dompdf\Dompdf;
 
-// Build the content
+// instantiate the dompdf class
+$dompdf = new Dompdf();
 
-$pdf->Cell(0,0.3,site()->title(),0,2); // Site title
-$pdf->Cell(0,0.3,$p->txn_id()->value,0,2); // Invoice #
-$pdf->Cell(0,0.3,date('F j, Y H:i',$p->txn_date()->value),0,2); // Date of order
-
-$pdf->Ln(0.3); // Line break
-
-$pdf->Cell(0,0.3,l::get('bill-to').': '.$p->payer_id()->value.'   '.$p->payer_email()->value,0,2); // Payer id and email
-
-$pdf->Ln(0.3); // Line break
-
-// List products
+// Build the HTML
+$html = '<style>body{font-family: sans-serif;}</style>';
+$html .= '<h1>'.site()->title().'</h1>';
+$html .= '<p>'.l::get('invoice').' No. <strong>'.$p->txn_id()->value.'</strong> ('.l::get($p->status()->value).')</p>';
+$html .= '<p><em>'.date('F j, Y H:i',$p->txn_date()->value).'</em></p>';
+$html .= '<p>'.l::get('bill-to').': '.$p->payer_id()->value.'   '.$p->payer_email()->value.'</p>';
+$html .= '<hr>';
 $products = explode('<br />', $p->products()->kirbytext());
-foreach ($products as $product) {
-	$pdf->Cell(0,0.3,trim(trim($product,'<p>'),'</p>'),0,2);
-}
+$html .= '<ul>';
+foreach ($products as $product) $html .= '<li>'.trim(trim($product,'<p>'),'</p>').'</li>';
+$html .= '</ul>';
+$html .= '<hr>';
+$html .= '<p>'.l::get('subtotal').': '.formatPrice($p->subtotal()->value).'</p>';
+$html .= '<p>'.l::get('shipping').': '.formatPrice($p->shipping()->value).'</p>';
+$html .= '<p>'.l::get('tax').': '.formatPrice($p->tax()->value).'</p>';
+$html .= '<p><strong>'.l::get('total').': '.formatPrice($p->subtotal()->value+$p->shipping()->value+$p->tax()->value).'</strong></p>';
 
-$pdf->Ln(0.3); // Line break
+// Load the html
+$dompdf->loadHtml($html);
 
-// Order price summary
-$pdf->Cell(0,0.5,l::get('subtotal').': '.$p->subtotal()->value.'     '.l::get('shipping').': '.$p->shipping()->value.'     '.l::get('tax').': '.formatPrice($p->tax()->value),0,2);
-$pdf->Cell(0,0.5,l::get('total').': '.$p->subtotal()->value+$p->shipping()->value+$p->tax()->value,0,2);
+// (Optional) Setup the paper size and orientation
+$dompdf->setPaper('A4', 'portrait');
 
-// Write the PDF
-$pdf->Output($p->txn_id()->value.'.pdf','D');
+// Render the HTML as PDF
+$dompdf->render();
 
-?>
+// Output the generated PDF to Browser
+$dompdf->stream();

@@ -92,6 +92,8 @@
 // snippets/orders.pdf.php
 
 'bill-to' => 'Facturer à',
+'invoice' => 'Facture',
+'transaction-id' => 'Numéro d\'identification',
 
 
 // snippets/sidebar.php
