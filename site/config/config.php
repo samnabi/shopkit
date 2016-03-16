@@ -136,6 +136,12 @@ c::set('languages', array(
     'locale'  => 'fr_FR',
     'url'     => '/fr',
   ),
+  array(
+    'code'    => 'de',
+    'name'    => 'Deutsch',
+    'locale'  => 'de_DE',
+    'url'     => '/de',
+  ),
 ));
 
 
