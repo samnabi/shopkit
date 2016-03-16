@@ -85,9 +85,7 @@ Once your site goes public, you'll need to enter your license keys in the `/site
 
 ## Upgrading from v1.0.3
 
-If you're upgrading from Shopkit 1.0.3 or earlier, note that the location of the `Register` page has changed, and a new page called `Reset` has been introduced.
-
-New structure
+If you're upgrading from Shopkit 1.0.3 or earlier, note that the location of the `Register` page has changed, and a new page called `Reset` has been introduced. The new folder structure looks like this:
 
 ```
 content/
@@ -106,6 +104,10 @@ If you're upgrading from Shopkit 0.9.2 or earlier, you'll have to change some th
 - In every order's text file, change the order status values to reflect the new values: `pending`, `paid`, or `shipped`.
 
 ## Changelog
+
+### v1.0.4
+- Bug fixes
+    - 
 
 ### v1.0.3
 
