@@ -30,7 +30,6 @@
 
 'from' => 'From',
 
-
 // plugins/shopkit/shopkit.php
 
 'activate-account' => 'Activate your account',
@@ -72,6 +71,7 @@
 'discount-code-help' => 'Use this discount code every time you log in.',
 
 'notification-login-failed' => 'Sorry, we couldn\'t log you in. Either the password or email address isn\'t right.',
+
 
 // snippets/header.nav.php
 

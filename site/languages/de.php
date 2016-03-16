@@ -1,159 +1,205 @@
-<?php
+<?php l::set([
 
 // multiple pages 
 
-l::set('username', 'Benutzername');
-l::set('password', 'Passwort');
-l::set('login', 'Einloggen');
-l::set('register', 'Registrieren');
+'username' => 'Benutzername',
+'password' => 'Passwort',
+'login' => 'Einloggen',
+'register' => 'Registrieren',
 
-l::set('email-address','E-Mail Adresse');
-l::set('first-name','Vorname');
-l::set('last-name','Nachname');
-l::set('full-name','Voller Name');
-l::set('country','Land');
-l::set('country-help','Um die Versandkosten zu kalkulieren');
+'honeypot-label' => 'Sie dieses Feld nicht ausfüllen. (Spamschutz)',
 
-l::set('shop-by-category', 'Einkaufen nach Kategorie');
+'email-address' => 'E-Mail Adresse',
+'first-name' => 'Vorname',
+'last-name' => 'Nachname',
+'full-name' => 'Voller Name',
+'country' => 'Land',
+'country-help' => 'Um die Versandkosten zu kalkulieren',
 
-l::set('buy','Kaufen');
-l::set('out-of-stock','Ausverkauft');
+'shop-by-category' =>  'Einkaufen nach Kategorie',
 
-l::set('price','Preis');
+'buy' => 'Kaufen',
+'out-of-stock' => 'Ausverkauft',
 
-l::set('subtotal','Zwischensumme');
-l::set('shipping','Versand');
-l::set('tax','Umsatzsteuer');
-l::set('total','Insgesamt');
+'price' => 'Preis',
+
+'subtotal' => 'Zwischensumme',
+'shipping' => 'Versand',
+'tax' => 'Umsatzsteuer',
+'total' => 'Insgesamt',
+
+'from' => 'Von',
+
+// plugins/shopkit/shopkit.php
+
+'activate-account' => 'Activate your account',
+'activate-message-first' => 'Your email address was used to create an account at '.str_replace('www.', '', $_SERVER['HTTP_HOST']).'. Please follow the link below to activate your account.',
+'activate-message-last' => 'If you did not create this account, no action is required on your part. The account will remain inactive.',
+'reset-password' => 'Reset your password',
+'reset-message-first' => 'Someone requested a password reset for your account at '.str_replace('www.', '', $_SERVER['HTTP_HOST']).'. Please follow the link below to reset your password.',
+'reset-message-last' => 'If you did not request this password reset, no action is required on your part.',
 
 
 // snippets/cart.process.php
 
-l::set('qty','Anz.: ');
+'qty' => 'Anz.: ',
 
 
 // snippets/cart.process.paypal.php
 
-l::set('redirecting', 'Weiterleiten...');
-l::set('continue-to-paypal','Weiter zu PayPal');
+'redirecting' =>  'Weiterleiten...',
+'continue-to-paypal' => 'Weiter zu PayPal',
 
 
 // snippets/footer.php
 
-l::set('phone','Telefon');
-l::set('email','E-Mail');
-l::set('address','Adresse');
+'phone' => 'Telefon',
+'email' => 'E-Mail',
+'address' => 'Adresse',
 
 
 // snippets/header.notifications.php
 
-l::set('notification-account','Sie haben noch keine Benutzer angelegt. <a href="'.url('panel').'/install" title="Installationsseite">Benutzer anlegen</a>.');
-l::set('notification-options','Sie haben noch keine Shop-Optionen angelegt. <a href="'.url('panel').'/pages/shop/edit" title="Shop-Optionen">Währung, Versand, und Umsatzsteuer definieren</a>.');
-l::set('notification-category','Sie haben noch keine Produkt-Kategorien angelegt. <a href="'.url('panel').'/pages/shop/edit" title="Kategorie anlegen">Erste Kategorie anlegen</a>.');
-l::set('notification-product','Sie haben keine Produkte. <a href="'.url('panel').'/pages/shop/edit" title="Neues Produkt erstellen">Erstes Produkt im Dashboard anlegen</a>.');
-l::set('notification-license','Dieser Shop hat keine Shopkit-Lizenz. Geben Sie den Lizenzschlüssen in der <strong>config.php</strong> Datei ein, bevor Sie die Website live schalten.');
+'notification-account' => 'Sie haben noch keine Benutzer angelegt. <a href="'.url('panel').'/install" title="Installationsseite">Benutzer anlegen</a>.',
+'notification-login' => 'Let\'s finish setting up your shop! <a href="#user">Log in</a> to continue.',
+'notification-options' => 'Sie haben noch keine Shop-Optionen angelegt. <a href="'.url('panel').'/pages/shop/edit" title="Shop-Optionen">Währung, Versand, und Umsatzsteuer definieren</a>.',
+'notification-category' => 'Sie haben noch keine Produkt-Kategorien angelegt. <a href="'.url('panel').'/pages/shop/edit" title="Kategorie anlegen">Erste Kategorie anlegen</a>.',
+'notification-product-first' => 'You don\'t have any products. <a href="'.url('panel').'/pages/',
+'notification-product-last' => '/add" title="Create a new product">Create your first product with the Dashboard</a>.',
+'notification-product' => 'Sie haben keine Produkte. <a href="'.url('panel').'/pages/shop/edit" title="Neues Produkt erstellen">Erstes Produkt im Dashboard anlegen</a>.',
+'notification-license' => 'Dieser Shop hat keine Shopkit-Lizenz. Geben Sie den Lizenzschlüssen in der <strong>config.php</strong> Datei ein, bevor Sie die Website live schalten.',
+'notification-code' => 'Your discount code <strong><code>'.s::get('discountCode').'</code></strong> will be applied at checkout.',
+'discount-code-help' => 'Use this discount code every time you log in.',
+
+'notification-login-failed' => 'Sorry, we couldn\'t log you in. Either the password or email address isn\'t right.',
 
 
 // snippets/header.nav.php
 
-l::set('view-cart','Warenkorb anzeigen');
+'view-cart' => 'Warenkorb anzeigen',
 
 
 // snippets/header.user.php
 
-l::set('edit-page', 'Seite bearbeiten');
-l::set('edit-shop', 'Shop Einstellungen');
-l::set('edit-design', 'Design');
-l::set('dashboard', 'Dashboard');
-l::set('view-orders', 'Bestellungen anzeigen');
-l::set('my-account', 'Mein Benutzerkonto');
-l::set('logout', 'Ausloggen');
+'edit-page' =>  'Seite bearbeiten',
+'edit-shop' =>  'Shop Einstellungen',
+'edit-design' =>  'Design',
+'dashboard' =>  'Dashboard',
+'view-orders' =>  'Bestellungen anzeigen',
+'my-account' =>  'Mein Benutzerkonto',
+'logout' =>  'Ausloggen',
 
 
 // snippets/orders.pdf.php
 
-l::set('bill-to','Rechnung an');
+'bill-to' => 'Rechnung an',
+'invoice' => 'Invoice',
+'transaction-id' => 'Transaction ID',
 
 
 // snippets/sidebar.php
 
-l::set('new-customer', 'Neuer Kunde?');
+'new-customer' =>  'Neuer Kunde?',
+'forgot-password' => 'Forgot password',
 
-l::set('subpages', 'Seiten');
+'subpages' =>  'Seiten',
 
-l::set('search-shop', 'Shop durchsuchen');
-l::set('search', 'Suchen');
+'search-shop' =>  'Shop durchsuchen',
+'search' =>  'Suchen',
 
 
 // snippets/slideshow.product.php
 
-l::set('prev', 'Zurück');
-l::set('next', 'Weiter');
-l::set('view-grid', 'Gitteransicht');
+'prev' =>  'Zurück',
+'next' =>  'Weiter',
+'view-grid' =>  'Gitteransicht',
 
 
 // templates/account.php
 
-l::set('account-success','Ihre Informationen wurden aktualisiert.');
-l::set('account-failure','Entschuldigung, das hat nicht funktioniert. Bitte stellen Sie sicher, dass alle Informationen korrekt eingegeben wurden, insbesondere die E-Mail Adresse.');
-l::set('account-delete-error','Entschuldigung, das Benutzerkonto konnte nicht gelöscht werden.');
-l::set('password-help','Leerlassen um das Passwort beizubehalten');
-l::set('update','Aktualisieren');
-l::set('delete-account','Benutzerkonto löschen');
-l::set('delete-account-text','Wenn Sie auf diesen Button klicken, gibt es kein Zurück mehr. Ihr Benutzerkonto wird unumkehrbar gelöscht.');
-l::set('delete-account-verify','Benutzerkonto löschen. Ich bin mir sicher.');
-l::set('username-no-account','Der Benutzername konnte nicht geändert werden.');
+'account-success' => 'Ihre Informationen wurden aktualisiert.',
+'account-failure' => 'Entschuldigung, das hat nicht funktioniert. Bitte stellen Sie sicher, dass alle Informationen korrekt eingegeben wurden, insbesondere die E-Mail Adresse.',
+'account-delete-error' => 'Entschuldigung, das Benutzerkonto konnte nicht gelöscht werden.',
+'account-reset' => 'Please choose a new password and make sure your information is up-to-date.',
+'password-help' => 'Leerlassen um das Passwort beizubehalten',
+'update' => 'Aktualisieren',
+'delete-account' => 'Benutzerkonto löschen',
+'delete-account-text' => 'Wenn Sie auf diesen Button klicken, gibt es kein Zurück mehr. Ihr Benutzerkonto wird unumkehrbar gelöscht.',
+'delete-account-verify' => 'Benutzerkonto löschen. Ich bin mir sicher.',
+'username-no-account' => 'Der Benutzername konnte nicht geändert werden.',
+'discount-code' => 'Discount code',
 
 
 // templates/cart.php
 
-l::set('no-cart-items','Keine Artikel im Warenkorb!');
+'no-cart-items' => 'Keine Artikel im Warenkorb!',
 
-l::set('product','Produkt');
-l::set('quantity','Anzahl');
+'product' => 'Produkt',
+'quantity' => 'Anzahl',
 
-l::set('delete','Löschen');
+'delete' => 'Löschen',
 
-l::set('update-country','Land ändern');
-l::set('free-shipping','Kostenloser Versand');
+'update-country' => 'Land ändern',
+'update-shipping' => 'Update shipping',
+'free-shipping' => 'Kostenloser Versand',
 
-l::set('sandbox-message','Sie befinden sich im Sandbox-Modus. Dieser Einkauf wird nicht berechnet.');
+'sandbox-message' => 'Sie befinden sich im Sandbox-Modus. Dieser Einkauf wird nicht berechnet.',
 
-l::set('pay-now','Jetzt bezahlen');
-l::set('pay-later','Später bezahlen');
-l::set('empty-cart','Leerer Warenkorb');
+'pay-now' => 'Jetzt bezahlen',
+'pay-later' => 'Später bezahlen',
+'empty-cart' => 'Leerer Warenkorb',
+
+'discount' => 'Discount',
+'discount-apply' => 'Apply code',
+
+'no-tax' => 'No tax',
+'no-shipping' => 'Free shipping',
+
+
+// templates/events.php
+
+'events-for' => 'Events for',
+'events-start' => 'Start',
+'events-end' => 'End',
+'link' => 'Link',
 
 
 // templates/orders.php
 
-l::set('no-orders','Sie haben noch keine Einkäufe getätigt.');
-l::set('no-auth-orders','Um die Einkäufe über Ihre E-Mail Adresse einzusehen, müssen Sie sich <a href="#user">registrieren oder einloggen</a>.');
+'no-orders' => 'Sie haben noch keine Einkäufe getätigt.',
+'no-auth-orders' => 'Um die Einkäufe über Ihre E-Mail Adresse einzusehen, müssen Sie sich <a href="#user">registrieren oder einloggen</a>.',
 
-l::set('products','Produkte');
-l::set('status','Status');
+'products' => 'Produkte',
+'status' => 'Status',
 
-l::set('download-invoice','Rechnung herunterladen (PDF)');
-l::set('view-on-paypal','Auf PayPal anzeigen');
+'download-invoice' => 'Rechnung herunterladen (PDF)',
+'view-on-paypal' => 'Auf PayPal anzeigen',
 
-l::set('pending','Ausstehend');
-l::set('paid','Bezahlt');
-l::set('shipped','Verschickt');
+'pending' => 'Ausstehend',
+'paid' => 'Bezahlt',
+'shipped' => 'Verschickt',
 
 
 // templates/product.php
 
-l::set('related-products','Ähnliche Produkte');
+'related-products' => 'Ähnliche Produkte',
 
 
 // templates/register.php
 
-l::set('register-success','Vielen Dank, Ihr Benutzerkonto wurde registriert! Sie können sich nun <a href="#user">einloggen</a>.');
-l::set('register-failure','Entschuldigung, das hat nicht funktioniert. Bitte stellen Sie sicher, dass alle Informationen korrekt eingegeben wurden, insbesondere die E-Mail Adresse.');
-l::set('register-duplicate','Entschuldigung, es gibt bereits ein Benutzerkonto mit diesem Benutzername oder dieser E-Mail Adresse.');
+'register-success' => 'Vielen Dank, Ihr Benutzerkonto wurde registriert! Sie können sich nun <a href="#user">einloggen</a>.',
+'register-failure' => 'Entschuldigung, das hat nicht funktioniert. Bitte stellen Sie sicher, dass alle Informationen korrekt eingegeben wurden, insbesondere die E-Mail Adresse.',
+'register-duplicate' => 'Entschuldigung, es gibt bereits ein Benutzerkonto mit diesem Benutzername oder dieser E-Mail Adresse.',
+
+
+// templates/reset.php
+'reset-submit' => 'Reset password',
+'reset-success' => 'You will receive an email with instructions to reset your password.',
+'reset-error' => 'Sorry, we couldn\'t find that account.',
 
 
 // templates/search.php
 
-l::set('no-search-results','Entschuldigung, es gibt keine Suchergebnisse zu diesem Begriff.');
+'no-search-results' => 'Entschuldigung, es gibt keine Suchergebnisse zu diesem Begriff.',
 
-?>
+]); ?>
