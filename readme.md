@@ -10,50 +10,28 @@ Full [docs here](http://shopkit.samnabi.com/docs).
 
 ### Products & shop settings
 
-<table style="table-layout: fixed; width: 100%">
-	<tr>
-		<td>Easy product <strong>variants and options</strong><br><small>(e.g. sizes and colours)</small></td>
-		<td>Easy <strong>flexible shipping rates</strong><br><small>(Flat rate, per item, by weight, or by total price)</small></td>
-	</tr>
-	<tr>
-		<td><strong>Related products</strong></td>
-		<td><strong>Inventory control</strong></td>
-	</tr>
-	<tr>
-		<td><strong>Product-specific</strong> shipping & tax exemptions</td>
-		<td>Shipping & tax <strong>rates by country</strong></td>
-	</tr>
-	<tr>
-		<td><strong>Built-in SEO</strong> for rich snippets using <a href="https://schema.org/Product">RDFa</a> structured data</td>
-		<td>Customize <strong>theme colours</strong> & background</td>
-	</tr>
-</table>
+- Easy product <strong>variants and options</strong> <small>(e.g. sizes and colours)</small>
+- Easy <strong>flexible shipping rates</strong> <small>(Flat rate, per item, by weight, or by total price)</small>
+- <strong>Related products</strong>
+- <strong>Inventory control</strong>
+- <strong>Product-specific</strong> shipping & tax exemptions
+- Shipping & tax <strong>rates by country</strong>
+- <strong>Built-in SEO</strong> for rich snippets using <a href="https://schema.org/Product">RDFa</a> structured data
+- Customize <strong>theme colours</strong> & background
 
 ### Payments & orders
 
-<table style="table-layout: fixed; width: 100%">
-	<tr>
-		<td>Process payments with <strong>PayPal</strong><br><small>(it's easy to add other payment gateways)</small></td>
-		<td>Let certain users <strong>pay later</strong><br><small>(i.e. wholesalers)</small></td>
-	</tr>
-	<tr>
-		<td>Manage <strong>pending, paid, and shipped</strong> orders</td>
-		<td>Automatic <strong>PDF invoices</strong></td>
-	</tr>
-</table>
+- Process payments with <strong>PayPal</strong> <small>(it's easy to add other payment gateways)</small>
+- Let certain users <strong>pay later</strong> <small>(i.e. wholesalers)</small>
+- Manage <strong>pending, paid, and shipped</strong> orders
+- Automatic <strong>PDF invoices</strong>
 
 ### User experience
 
-<table style="table-layout: fixed; width: 100%">
-	<tr>
-		<td><strong>Multi-language</strong> setup<br><small>(English and French included by default)</small></td>
-		<td><strong>No sign-up</strong> required<br><small>(Orders are tied to PayPal email address)</small></td>
-	</tr>
-	<tr>
-		<td>Browse products in a <strong>grid</strong> or <strong>slideshow</strong></td>
-		<td>Beautiful <strong>search</strong> layout</td>
-	</tr>
-</table>
+- <strong>Multi-language</strong> setup <small>(English, French, and German included by default)</small>
+- <strong>No sign-up</strong> required <small>(Orders are tied to PayPal email address)</small>
+- Browse products in a <strong>grid</strong> or <strong>slideshow</strong>
+- Beautiful <strong>search</strong> layout
 
 ## Roadmap
 
@@ -83,7 +61,7 @@ If you are familiar with the terminal, you can clone Shopkit from GitHub.
     
 ### Update
 
-Use these terminal commands to update Shopkit and all its dependencies to the latest commit int he `master` branch.
+Use these terminal commands to update Shopkit and all its dependencies to the latest commit in the `master` branch.
 
     # Update dependencies
     git submodule update --init --recursive
@@ -105,7 +83,20 @@ Of course, there are helpful blueprints so you can easily manage everything from
 
 Once your site goes public, you'll need to enter your license keys in the `/site/config/config.php` file.
 
-## Upgrading to Shopkit v1.x
+## Upgrading from v1.0.3
+
+If you're upgrading from Shopkit 1.0.3 or earlier, note that the location of the `Register` page has changed, and a new page called `Reset` has been introduced.
+
+New structure
+
+```
+content/
+    account/
+        register/
+        reset/
+```
+
+## Upgrading from v0.9
 
 If you're upgrading from Shopkit 0.9.2 or earlier, you'll have to change some things manually:
 
