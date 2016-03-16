@@ -32,12 +32,12 @@
 
 // plugins/shopkit/shopkit.php
 
-'activate-account' => 'Activate your account',
-'activate-message-first' => 'Your email address was used to create an account at '.str_replace('www.', '', $_SERVER['HTTP_HOST']).'. Please follow the link below to activate your account.',
-'activate-message-last' => 'If you did not create this account, no action is required on your part. The account will remain inactive.',
-'reset-password' => 'Reset your password',
-'reset-message-first' => 'Someone requested a password reset for your account at '.str_replace('www.', '', $_SERVER['HTTP_HOST']).'. Please follow the link below to reset your password.',
-'reset-message-last' => 'If you did not request this password reset, no action is required on your part.',
+'activate-account' => 'Aktiviere deinen Konto',
+'activate-message-first' => 'Ihre E-Mail-Adresse wurde verwendet, um ein Konto bei '.str_replace('www.', '', $_SERVER['HTTP_HOST']).' zu erstellen. Folgen Sie bitte den unten stehenden Link Ihr Konto zu aktivieren.',
+'activate-message-last' => 'Wenn Sie dieses Konto nicht erstellt haben, wird keine Aktion Ihrerseits erforderlich. Das Konto wird inaktiv bleiben.',
+'reset-password' => 'Setze dein Passwort zurück',
+'reset-message-first' => 'Jemand bat um ein Zurücksetzen des Kennworts für Ihr Konto bei '.str_replace('www.', '', $_SERVER['HTTP_HOST']).'. Folgen Sie bitte den unten stehenden Link zum Zurücksetzen des Passworts.',
+'reset-message-last' => 'Wenn Sie dieses Passwort-Reset angefordert hat, wird keine Aktion Ihrerseits erforderlich.',
 
 
 // snippets/cart.process.php
@@ -61,17 +61,17 @@
 // snippets/header.notifications.php
 
 'notification-account' => 'Sie haben noch keine Benutzer angelegt. <a href="'.url('panel').'/install" title="Installationsseite">Benutzer anlegen</a>.',
-'notification-login' => 'Let\'s finish setting up your shop! <a href="#user">Log in</a> to continue.',
+'notification-login' => 'Lassen Sie uns beenden Sie Ihren Shop einrichten! <a href="#user">Melden Sie</a> sich an, um fortzufahren.',
 'notification-options' => 'Sie haben noch keine Shop-Optionen angelegt. <a href="'.url('panel').'/pages/shop/edit" title="Shop-Optionen">Währung, Versand, und Umsatzsteuer definieren</a>.',
 'notification-category' => 'Sie haben noch keine Produkt-Kategorien angelegt. <a href="'.url('panel').'/pages/shop/edit" title="Kategorie anlegen">Erste Kategorie anlegen</a>.',
-'notification-product-first' => 'You don\'t have any products. <a href="'.url('panel').'/pages/',
-'notification-product-last' => '/add" title="Create a new product">Create your first product with the Dashboard</a>.',
+'notification-product-first' => 'Sie haben noch keine Produkt angelegt. <a href="'.url('panel').'/pages/',
+'notification-product-last' => '/add" title="Produkt anlegen">Erstellen Sie Ihr erstes Produkt mit dem Armaturenbrett</a>.',
 'notification-product' => 'Sie haben keine Produkte. <a href="'.url('panel').'/pages/shop/edit" title="Neues Produkt erstellen">Erstes Produkt im Dashboard anlegen</a>.',
 'notification-license' => 'Dieser Shop hat keine Shopkit-Lizenz. Geben Sie den Lizenzschlüssen in der <strong>config.php</strong> Datei ein, bevor Sie die Website live schalten.',
-'notification-code' => 'Your discount code <strong><code>'.s::get('discountCode').'</code></strong> will be applied at checkout.',
-'discount-code-help' => 'Use this discount code every time you log in.',
+'notification-code' => 'Ihr Rabatt-Code <strong><code>'.s::get('discountCode').'</code></strong> wird an der Kasse aktiviert werden.',
+'discount-code-help' => 'Verwenden Sie diesen Rabatt Code jedes Mal, wenn Sie sich anmelden.',
 
-'notification-login-failed' => 'Sorry, we couldn\'t log you in. Either the password or email address isn\'t right.',
+'notification-login-failed' => 'Leider können wir konnte Sie nicht anmelden in. Entweder ist das Kennwort oder E-Mail-Adresse nicht richtig ist.',
 
 
 // snippets/header.nav.php
@@ -93,14 +93,14 @@
 // snippets/orders.pdf.php
 
 'bill-to' => 'Rechnung an',
-'invoice' => 'Invoice',
-'transaction-id' => 'Transaction ID',
+'invoice' => 'Rechnung',
+'transaction-id' => 'Transaktions-ID',
 
 
 // snippets/sidebar.php
 
 'new-customer' =>  'Neuer Kunde?',
-'forgot-password' => 'Forgot password',
+'forgot-password' => 'Passwort vergessen',
 
 'subpages' =>  'Seiten',
 
@@ -120,14 +120,14 @@
 'account-success' => 'Ihre Informationen wurden aktualisiert.',
 'account-failure' => 'Entschuldigung, das hat nicht funktioniert. Bitte stellen Sie sicher, dass alle Informationen korrekt eingegeben wurden, insbesondere die E-Mail Adresse.',
 'account-delete-error' => 'Entschuldigung, das Benutzerkonto konnte nicht gelöscht werden.',
-'account-reset' => 'Please choose a new password and make sure your information is up-to-date.',
+'account-reset' => 'Bitte wählen Sie ein neues Passwort und stellen Sie sicher, dass Ihre Informationen sind up-to-date.',
 'password-help' => 'Leerlassen um das Passwort beizubehalten',
 'update' => 'Aktualisieren',
 'delete-account' => 'Benutzerkonto löschen',
 'delete-account-text' => 'Wenn Sie auf diesen Button klicken, gibt es kein Zurück mehr. Ihr Benutzerkonto wird unumkehrbar gelöscht.',
 'delete-account-verify' => 'Benutzerkonto löschen. Ich bin mir sicher.',
 'username-no-account' => 'Der Benutzername konnte nicht geändert werden.',
-'discount-code' => 'Discount code',
+'discount-code' => 'Rabattcode',
 
 
 // templates/cart.php
@@ -140,7 +140,7 @@
 'delete' => 'Löschen',
 
 'update-country' => 'Land ändern',
-'update-shipping' => 'Update shipping',
+'update-shipping' => 'Aktualisierung Versand',
 'free-shipping' => 'Kostenloser Versand',
 
 'sandbox-message' => 'Sie befinden sich im Sandbox-Modus. Dieser Einkauf wird nicht berechnet.',
@@ -149,11 +149,11 @@
 'pay-later' => 'Später bezahlen',
 'empty-cart' => 'Leerer Warenkorb',
 
-'discount' => 'Discount',
-'discount-apply' => 'Apply code',
+'discount' => 'Rabatt',
+'discount-apply' => 'Bewerben Code',
 
-'no-tax' => 'No tax',
-'no-shipping' => 'Free shipping',
+'no-tax' => 'Keine Steuer',
+'no-shipping' => 'Kostenloser Versand',
 
 
 // templates/orders.php
@@ -185,9 +185,9 @@
 
 
 // templates/reset.php
-'reset-submit' => 'Reset password',
-'reset-success' => 'You will receive an email with instructions to reset your password.',
-'reset-error' => 'Sorry, we couldn\'t find that account.',
+'reset-submit' => 'Passwort zurücksetzen',
+'reset-success' => 'Sie erhalten eine E-Mail mit Anweisungen erhalten Sie Ihr Passwort zurücksetzen.',
+'reset-error' => 'Leider konnten wir nicht das Konto finden.',
 
 
 // templates/search.php
