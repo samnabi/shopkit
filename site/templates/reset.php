@@ -17,7 +17,7 @@
     </div>
     <div class="uk-form-row">
       <label for="email"><?php echo l::get('email-address') ?></label>
-      <input class="uk-form-width-large" type="text" id="email" name="email">
+      <input class="uk-width-small-1-1 uk-width-medium-1-2" type="text" id="email" name="email">
     </div>
     <div class="uk-form-row">
       <button class="uk-button uk-button-primary uk-button-large uk-width-small-1-1 uk-width-medium-1-2" type="submit" name="reset">
