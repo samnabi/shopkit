@@ -14,6 +14,7 @@ Full [docs here](http://shopkit.samnabi.com/docs).
 - Easy <strong>flexible shipping rates</strong> <small>(Flat rate, per item, by weight, or by total price)</small>
 - <strong>Related products</strong>
 - <strong>Inventory control</strong>
+- <strong>Discount codes</strong> (site-wide and product-specific)
 - <strong>Product-specific</strong> shipping & tax exemptions
 - Shipping & tax <strong>rates by country</strong>
 - <strong>Built-in SEO</strong> for rich snippets using <a href="https://schema.org/Product">RDFa</a> structured data
@@ -24,6 +25,7 @@ Full [docs here](http://shopkit.samnabi.com/docs).
 - Process payments with <strong>PayPal</strong> <small>(it's easy to add other payment gateways)</small>
 - Let certain users <strong>pay later</strong> <small>(i.e. wholesalers)</small>
 - Manage <strong>pending, paid, and shipped</strong> orders
+- Send <strong>order notifications</strong> to your shipping manager
 - Automatic <strong>PDF invoices</strong>
 
 ### User experience
@@ -106,8 +108,41 @@ If you're upgrading from Shopkit 0.9.2 or earlier, you'll have to change some th
 ## Changelog
 
 ### v1.0.4
+
 - Bug fixes
-    - 
+    - More reliable calculation of shipping rates
+    - Prevent DOM manipulation of discount and tax amounts in the cart
+    - Prevent cart localization errors (resulting in NaN for the cart total)
+    - Add multi-language support to some hard-coded strings (thanks to [concertimpromptu](https://github.com/concertimpromptu))
+    - Remember the selected country when a user navigates away from the `Cart` page (thanks to [concertimpromptu](https://github.com/concertimpromptu))
+    - Fix errors with subdirectory installs
+    - Prevent prices from carrying over to the next product where prices haven't yet been set
+- New features
+    - 💸 Discount codes (site-wide and per-product)
+    - 🔑 Password reset
+    - 👮 Opt-in email verification for new accounts
+    - 📦 Order notification emails
+    - 🤑 More robust "pay later" options
+- Design and UI
+    - Moved login form lower in the sidebar
+    - Better indication of failed login
+    - Make it harder to accidentally delete your account
+    - Better handling of thumbnails with different aspect ratios (burry background fills up the dead space, like instagram)
+    - Minimum 150px width for listing items
+    - Removed title for the search bar
+    - Better icons for `Category` and `Product` pages in the panel
+    - Better UI for drag-and-drop file uploads in the panel
+    - Smarter top menu layout (adapts to the number of menu items)
+- German language option (thanks to [medienbaecker](https://github.com/medienbaecker))
+    - Also apologies to [medienbaecker](https://github.com/medienbaecker) for my terrible google translate on the remainder of the German strings
+- Switched to [dompdf](https://dompdf.github.com/) for generating PDF Invoices (allows for easier HTML layout)
+- Moved page logic into controllers
+- RTL text support in templates
+- Explicit timezone definition in `config.php`
+- Smarter onboarding notifications
+- Hidden honeypot form fields for spam protection
+- Removed `wholesaler` user role (preferential pricing now handled with discount codes instead of roles)
+- Auto-shrink large image uploads
 
 ### v1.0.3
 
