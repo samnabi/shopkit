@@ -4,8 +4,6 @@
     <div class="uk-panel uk-panel-divider uk-margin-top uk-hidden-small uk-text-center">
         <?php snippet('logo') ?>
     </div>
-
-    <?php snippet('sidebar.login') ?>
     
     <!-- Featured products -->
     <?php
@@ -46,6 +44,8 @@
             </div>
         </form>
     </div>
+
+    <?php snippet('sidebar.login') ?>
 
     <!-- Contact details -->
     <?php $contact = page('contact') ?>

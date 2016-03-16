@@ -25,3 +25,6 @@
 [submodule "site/plugins/field-bidi"]
 	path = site/plugins/field-bidi
 	url = https://github.com/samnabi/field-bidi.git
+[submodule "site/plugins/dompdf"]
+	path = site/plugins/dompdf
+	url = https://github.com/dompdf/dompdf.git
