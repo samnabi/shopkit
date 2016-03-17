@@ -1,3 +1,15 @@
+> **SUPPORT NOTICE**
+
+> Shopkit v1.0.4 is mainly a bug-fixing and security release, with a few new features but nothing wildly different.
+
+> Part of the reason for this approach is that I will not be able to respond to support requests until **mid-June 2016**.
+
+> I know this is not an ideal situation, but it's never a convenient time to go backpacking without internet access.
+
+> Cheers,
+
+> Sam
+
 # Shopkit for Kirby
 
 Shopkit is a comprehensive commerce solution for the excellent [Kirby CMS](http://getkirby.com).
