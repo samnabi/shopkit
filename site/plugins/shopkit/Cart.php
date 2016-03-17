@@ -367,14 +367,19 @@ class Cart
 	        	}
 	      	}
 
-	      	// Finally, choose which calculation type to choose for this shipping method
-	      	if ($method['calculation'] === 'low') {
-	        	$shipping = min($rate);
+	      	if (count($rate) === 0) {
+	      		// If rate is empty, return zero
+	      		$output[] = array('title' => $method['method'],'rate' => 0);
 	      	} else {
-	        	$shipping = max($rate);
-	      	}
+		      	// Finally, choose which calculation type to choose for this shipping method
+		      	if ($method['calculation'] === 'low') {
+		        	$shipping = min($rate);
+		      	} else {
+		        	$shipping = max($rate);
+		      	}
 
-      		$output[] = array('title' => $method['method'],'rate' => $shipping);
+	      		$output[] = array('title' => $method['method'],'rate' => $shipping);	
+	      	}
 	  	}
 
 	  	return $output;

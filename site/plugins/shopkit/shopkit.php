@@ -256,10 +256,10 @@ function salePrice($variant) {
 
   // Set vars from array
   if (gettype($variant) === 'array') {
-    $salePrice = $variant['sale_price'] ? $variant['sale_price'] : false;
-    $saleStart = $variant['sale_start'] ? $variant['sale_start'] : false;
-    $saleEnd = $variant['sale_end'] ? $variant['sale_end'] : false;
-    $saleCodes = $variant['sale_codes'] ? explode(',', $variant['sale_codes']) : false;
+    $salePrice = isset($variant['sale_price']) ? $variant['sale_price'] : false;
+    $saleStart = isset($variant['sale_start']) ? $variant['sale_start'] : false;
+    $saleEnd = isset($variant['sale_end']) ? $variant['sale_end'] : false;
+    $saleCodes = isset($variant['sale_codes']) ? explode(',', $variant['sale_codes']) : false;
   }
 
   // Check that a sale price exists and the start and end times are valid
