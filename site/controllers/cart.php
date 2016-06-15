@@ -89,9 +89,14 @@ return function($site, $pages, $page) {
           $shippingMethod = $method;
         }
       }
-    } else if (s::get('shipping')) {
+    } else if (s::get('shipping') and !empty($shippingMethods)) {
       // Second option: the shipping has already been set in the session
-      $shippingMethod = s::get('shipping');
+      $currentMethod = s::get('shipping');
+      foreach ($shippingMethods as $key => $method) {
+        if ($currentMethod['title'] == $method['title']) {
+          $shippingMethod = $method;
+        }
+      }
     } else {
       // Last resort: choose the first shipping method
       $shippingMethod = array_shift($shippingMethods);      
