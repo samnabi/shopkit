@@ -8,10 +8,10 @@ if($_POST['txn_id'] != '' ) {
 
   // Validate the PayPal transaction against the pending order
   $txn = page('shop/orders/'.$_POST['custom']);
-  if ($txn->subtotal()->value == $_POST['mc_gross']-$_POST['mc_shipping']-$_POST['tax'] and
-      $txn->shipping()->value == $_POST['mc_shipping'] and
-      $txn->discount()->value == $_POST['discount_amount_cart'] and
-      $txn->tax()->value == $_POST['tax'] and
+  if (round($txn->subtotal()->value,2) != round($_POST['mc_gross']-$_POST['mc_shipping']-$_POST['tax'],2) and
+      round($txn->shipping()->value,2) == round($_POST['mc_shipping'],2) and
+      round($txn->discount()->value,2) == round($_POST['discount_amount_cart'],2) and
+      round($txn->tax()->value,2) == round($_POST['tax'],2) and
       $txn->txn_currency() == $_POST['mc_currency']) {
 
     // Normalize payment status to paid/pending
@@ -75,12 +75,30 @@ if($_POST['txn_id'] != '' ) {
 
 
     } catch(Exception $e) {
+      // Update or notification failed
+      $email = new Email(array(
+        'to'      => page('shop')->paypal_email()->value,
+        'from'    => 'noreply@'.server::get('server_name'),
+        'subject' => 'Problem with a purchase',
+        'body'    => 'The transaction update, stock update, or notification failed.',
+      ));
+      $email->send();
       return false;
     }
 
+  } else {
+    // Integrity check failed
+    $email = new Email(array(
+      'to'      => page('shop')->paypal_email()->value,
+      'from'    => 'noreply@'.server::get('server_name'),
+      'subject' => 'Problem with a purchase',
+      'body'    => 'The transaction integrity check failed.',
+    ));
+    $email->send();
+    return false;
   }
 } else {
-  // Data didn't come back properly from PayPal
+  // Data didn't come back properly from PayPal; no txn_id found
   return false;
 }
 
