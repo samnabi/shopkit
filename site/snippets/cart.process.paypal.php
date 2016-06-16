@@ -21,7 +21,7 @@
 	</style>
 </head>
 <body>
-	<p><?php echo l::get('redirecting') ?></p>
+	<p><?php echo $message_redirecting ?></p>
 
 	<form method="post" action="<?php echo $cart->getPayPalAction() ?>" name="paypal">
 		<!-- Setup fields -->
@@ -67,7 +67,7 @@
 			$txn->update(['encoded-items' => urlencode(serialize($items))]);
 		?>
 
-		<button type="submit"><?php echo l::get('continue-to-paypal') ?></button>
+		<button type="submit"><?php echo $message_continue ?></button>
 	</form>
 
 	<script>
