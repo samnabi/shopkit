@@ -16,7 +16,7 @@ $txn = page('shop/orders/'.get('txn_id'));
 if(!$txn) go('shop/cart');
 
 if (get('gateway') === 'paypal') {
-	snippet('cart.process.paypal', ['cart' => $cart, 'txn' => $txn, 'message_redirecting' => l::get('redirecting'), 'message_continue' => l::get('continue-to-paypal')]);
+	snippet('cart.process.paypal', ['cart' => $cart, 'txn' => $txn]);
 
 } else if (get('gateway') === 'paylater') {
 	snippet('cart.process.paylater', ['cart' => $cart]);

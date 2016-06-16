@@ -218,6 +218,11 @@ c::set('routes', array(
     'pattern' => 'shop/cart/process',
     'method' => 'GET',
     'action' => function() {
+
+      // Set detected language
+      site()->visit('shop', (string) site()->detectedLanguage());
+      site()->kirby->localize();
+
       snippet('cart.process.get');
     }
   ),
