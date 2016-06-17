@@ -8,7 +8,7 @@ if($_POST['txn_id'] != '' ) {
 
   // Validate the PayPal transaction against the pending order
   $txn = page('shop/orders/'.$_POST['custom']);
-  if (round($txn->subtotal()->value,2) != round($_POST['mc_gross']-$_POST['mc_shipping']-$_POST['tax'],2) and
+  if (round($txn->subtotal()->value,2) == round($_POST['mc_gross']-$_POST['mc_shipping']-$_POST['tax'],2) and
       round($txn->shipping()->value,2) == round($_POST['mc_shipping'],2) and
       round($txn->discount()->value,2) == round($_POST['discount_amount_cart'],2) and
       round($txn->tax()->value,2) == round($_POST['tax'],2) and

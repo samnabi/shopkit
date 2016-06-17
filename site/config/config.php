@@ -230,6 +230,11 @@ c::set('routes', array(
     'pattern' => 'shop/cart/notify',
     'method' => 'POST',
     'action' => function() {
+
+      // Set detected language
+      site()->visit('shop', (string) site()->detectedLanguage());
+      site()->kirby->localize();
+      
       snippet('payment.success.paypal');
       return true;
     }
