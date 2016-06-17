@@ -96,6 +96,14 @@
 'transaction-id' => 'Transaction ID',
 
 
+// snippets/payment.success.paypal.php
+'order-notification-subject' => '['.$site->title().'] New order placed',
+'order-notification-message' => 'Someone placed an order from your shop at '.server::get('server_name'),
+'order-error-subject' => '['.$site->title().'] Problem with a new order',
+'order-error-message-update' => "The payment has been received, but something went wrong with the final step of the transaction.\n\nEither the customer's details haven't been saved; the inventory wasn't updated correctly; or the staff order notification didn't get sent.\n\nGo to ".page('shop/orders')->url()." to investigate this issue.",
+'order-error-message-tamper' => "A payment was received, but it doesn't match the order that was placed.\n\nGo to ".page('shop/orders')->url()." to investigate this issue.",
+
+
 // snippets/sidebar.php
 
 'new-customer' => 'New customer?',

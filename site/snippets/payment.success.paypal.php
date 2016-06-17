@@ -56,43 +56,54 @@ if($_POST['txn_id'] != '' ) {
           // Send the email
           if ($send) {
 
-            $body = 'Someone made a purchase from '.server::get('server_name')."\n\n";
+            $body = l::get('order-notification-message')."\n\n";
             foreach ($items as $item) {
-              $body .= page($item['uri'])->title().' / '.$item['variant'].' / Qty: '.$item['quantity']."\n";
+              $body .= page($item['uri'])->title().' - '.$item['variant']."\n".'Qty: '.$item['quantity']."\n\n";
             }
 
             $email = new Email(array(
               'to'      => $n->email(),
               'from'    => 'noreply@'.server::get('server_name'),
-              'subject' => 'Someone made a purchase',
+              'subject' => l::get('order-notification-subject'),
               'body'    => $body,
             ));
             $email->send();
           }
         }
       }
-
-
-
     } catch(Exception $e) {
-      // Update or notification failed
+      // $txn->update(), updateStock(), or notification failed
+      // Notify the site's PayPal email address
+      
+      $body = l::get('transaction-id').' '.$txn->txn_id()."\n\n";
+      $body .= 'status :'.$payment_status."\n";
+      $body .= 'payer-name :'.$_POST['first_name']." ".$_POST['last_name']."\n";
+      $body .= 'payer-email :'.$_POST['payer_email']."\n";
+      $body .= 'payer-address :'.$_POST['address_street']."\n".$_POST['address_city'].", ".$_POST['address_state']." ".$_POST['address_zip']."\n".$_POST['address_country']."\n\n";
+      $body .= l::get('order-error-message-update');
+
       $email = new Email(array(
         'to'      => page('shop')->paypal_email()->value,
         'from'    => 'noreply@'.server::get('server_name'),
-        'subject' => 'Problem with a purchase',
-        'body'    => 'The transaction update, stock update, or notification failed.',
+        'subject' => l::get('order-error-subject'),
+        'body'    => $body,
       ));
       $email->send();
       return false;
     }
 
   } else {
-    // Integrity check failed
+    // Integrity check failed - possible tampering
+    // Notify the site's PayPal email address
+
+    $body = l::get('transaction-id').' '.$txn->txn_id()."\n\n";
+    $body .= l::get('order-error-message-tamper');
+
     $email = new Email(array(
       'to'      => page('shop')->paypal_email()->value,
       'from'    => 'noreply@'.server::get('server_name'),
-      'subject' => 'Problem with a purchase',
-      'body'    => 'The transaction integrity check failed.',
+      'subject' => l::get('order-error-subject'),
+      'body'    => $body,
     ));
     $email->send();
     return false;
