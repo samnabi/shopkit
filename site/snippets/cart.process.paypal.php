@@ -62,7 +62,7 @@
 			// Needs to be stored in the transaction file because PayPal's variables have a character limit
 			$items = [];
 			foreach ($cart->getItems() as $i => $item) {
-				$items[] = ['uri' => $item->uri, 'variant' => $item->variant, 'quantity' => $item->quantity];
+				$items[] = ['uri' => $item->uri, 'variant' => $item->variant, 'option' => $item->option, 'quantity' => $item->quantity];
 			}
 			$txn->update(['encoded-items' => urlencode(serialize($items))]);
 		?>

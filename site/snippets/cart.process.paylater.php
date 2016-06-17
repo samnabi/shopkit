@@ -3,7 +3,7 @@
 // Build items array
 $items = [];
 foreach ($cart->getItems() as $i => $item) {
-	$items[] = ['uri' => $item->uri, 'variant' => $item->variant, 'quantity' => $item->quantity];
+	$items[] = ['uri' => $item->uri, 'variant' => $item->variant, 'option' => $item->option, 'quantity' => $item->quantity];
 }
 
 // Update stock
@@ -28,22 +28,25 @@ if ($notifications->count()) {
 			}
 		}
 
-		// Send the email
-		if ($send) {
-			
-			$body = 'Someone made a purchase from '.server::get('server_name')."\n\n";
-			foreach ($items as $item) {
-				$body .= page($item['uri'])->title().' / '.$item['variant'].' / Qty: '.$item['quantity']."\n";
-			}
+        // Send the email
+        if ($send) {  
 
-			$email = new Email(array(
-			  'to'      => $n->email(),
-			  'from'    => 'noreply@'.server::get('server_name'),
-			  'subject' => 'Someone made a purchase',
-			  'body'    => $body,
-			));
-			$email->send();
-		}
+          $body = l::get('order-notification-message')."\n\n";
+          foreach ($items as $item) {
+              $body .= page($item['uri'])->title().' - '.$item['variant'];
+              $body .= $item['option'] == '' ? '' : ' - '.$item['option'];
+              $body .= "\n".'Qty: '.$item['quantity']."\n\n";
+          }  
+
+          $email = new Email(array(
+            'to'      => $n->email(),
+            'from'    => 'noreply@'.server::get('server_name'),
+            'subject' => l::get('order-notification-subject'),
+            'body'    => $body,
+          ));
+          $email->send();
+        }
+
 	}
 }
 

@@ -58,7 +58,9 @@ if($_POST['txn_id'] != '' ) {
 
             $body = l::get('order-notification-message')."\n\n";
             foreach ($items as $item) {
-              $body .= page($item['uri'])->title().' - '.$item['variant']."\n".'Qty: '.$item['quantity']."\n\n";
+              $body .= page($item['uri'])->title().' - '.$item['variant'];
+              $body .= $item['option'] == '' ? '' : ' - '.$item['option'];
+              $body .= "\n".'Qty: '.$item['quantity']."\n\n";
             }
 
             $email = new Email(array(
