@@ -183,7 +183,7 @@ class Cart
                 // Add to cart amount
                 $this->amount += floatval($itemAmount) * $quantity;
 
-                // If shipping applies, add this item to the calculation for applicable amount and weight 
+                // If shipping applies, factor this item into the calculation for shipping properties 
                	if ($item->noshipping != 1) {
                		$this->shippingAmount += floatval($itemAmount) * $quantity;
                		$this->shippingWeight += floatval($item->weight) * $quantity;
@@ -340,7 +340,7 @@ class Cart
 			        $t = str::split($tier, ':');
 			        $tier_weight = $t[0];
 			        $tier_amount = $t[1];
-		        	if ($this->shippingWeight >= $tier_weight) {
+		        	if ($this->shippingWeight != 0 and $this->shippingWeight >= $tier_weight) {
 		        		$rate['weight'] = $tier_amount;
 		        	}
 	      		}
@@ -395,7 +395,7 @@ class Cart
 	    // Calculate total amount of taxable items
 	    $taxableAmount = 0;
 	    foreach ($this->items as $item) {
-	        $taxableAmount += $item->notax === 1 ? 0 : $item->amount * $item->quantity;
+	        $taxableAmount += $item->notax == 1 ? 0 : $item->amount * $item->quantity;
 	    }
 
 	    foreach ($taxCategories as $taxCategory) {
