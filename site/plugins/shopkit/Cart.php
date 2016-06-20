@@ -395,7 +395,8 @@ class Cart
 	    // Calculate total amount of taxable items
 	    $taxableAmount = 0;
 	    foreach ($this->items as $item) {
-	        $taxableAmount += $item->notax == 1 ? 0 : $item->amount * $item->quantity;
+	    	$itemTaxableAmount = $item->sale_amount ? $item->sale_amount : $item->amount;
+	        $taxableAmount += $item->notax == 1 ? 0 : $itemTaxableAmount * $item->quantity;
 	    }
 
 	    foreach ($taxCategories as $taxCategory) {
