@@ -61,8 +61,8 @@
                         </td>
                         <td class="uk-text-right">
                             <?php echo $item->priceText ?>
-                            <?php e($item->notax == 1,'<span class="uk-badge">'.l::get('no-tax').'</span>') ?>
-                            <?php e($item->noshipping == 1,'<span class="uk-badge">'.l::get('no-shipping').'</span>') ?>
+                            <?php e($item->notax == 1,'<br><span class="uk-badge">'.l::get('no-tax').'</span>') ?>
+                            <?php e($item->noshipping == 1,'<br><span class="uk-badge">'.l::get('no-shipping').'</span>') ?>
                         </td>
                         <td>
                             <form action="" method="post">
