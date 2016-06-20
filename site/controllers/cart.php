@@ -59,7 +59,7 @@ return function($site, $pages, $page) {
 
         // Price text
         if ($item->sale_amount) {
-            $item->priceText = formatPrice($item->sale_amount * $item->quantity).'<del>'.formatPrice($item->amount * $item->quantity).'</del>';
+            $item->priceText = formatPrice($item->sale_amount * $item->quantity).'<br><del>'.formatPrice($item->amount * $item->quantity).'</del>';
         } else {
             $item->priceText = formatPrice($item->amount * $item->quantity);
         }

@@ -451,11 +451,9 @@ a.slideshow {
 	}
 
 	del {
-		display: block;
+		display: inline-block;
 		font-size: 0.8rem;
 		opacity: 0.8;
-		line-height: 1;
-		margin-bottom: 0.6rem;
 	}
 
 	.discount > * {
@@ -465,6 +463,7 @@ a.slideshow {
 	tfoot {
 		font-style: normal;
 		font-size: inherit;
+		border-top: 1px solid #DEDEDE;
 
 		td:first-child {
 			vertical-align: middle;
