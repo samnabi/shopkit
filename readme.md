@@ -1,15 +1,3 @@
-> **SUPPORT NOTICE**
-
-> Shopkit v1.0.4 is mainly a bug-fixing and security release, with a few new features but nothing wildly different.
-
-> Part of the reason for this approach is that I will not be able to respond to support requests until **mid-June 2016**.
-
-> I know this is not an ideal situation, but it's never a convenient time to go backpacking without internet access.
-
-> Cheers,
-
-> Sam
-
 # Shopkit for Kirby
 
 Shopkit is a comprehensive commerce solution for the excellent [Kirby CMS](http://getkirby.com).
@@ -95,7 +83,7 @@ Your shop logo and theme options are defined in the site options, located at `/c
 
 Of course, there are helpful blueprints so you can easily manage everything from the panel.
 
-Once your site goes public, you'll need to enter your license keys in the `/site/config/config.php` file.
+Before your site goes public, you'll need to enter your license keys in the `/site/config/config.php` file.
 
 ## Upgrading from v1.0.3
 
@@ -118,6 +106,16 @@ If you're upgrading from Shopkit 0.9.2 or earlier, you'll have to change some th
 - In every order's text file, change the order status values to reflect the new values: `pending`, `paid`, or `shipped`.
 
 ## Changelog
+
+### v1.0.5
+
+- Bug fixes
+    - Even more reliable calculation of shipping rates, subtotals, and applicable tax
+    - New order notifications now work with PayPal and are multilingual
+    - Fix the missing PayPal redirection message
+- Design and UI
+    - Minor tweaks to "Free Shipping" and "No Tax" badge placement in the `Cart` page
+- Replace several nested git repos with regular files for the DomPDF plugin, for easier installation
 
 ### v1.0.4
 
