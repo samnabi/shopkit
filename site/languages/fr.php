@@ -98,10 +98,10 @@
 
 // snippets/payment.success.paypal.php
 'order-notification-subject' => '['.$site->title().'] Nouvelle commande',
-'order-notification-message' => 'Quelqu\'un a passé commande sur '.server::get('server_name'),
+'order-notification-message' => 'Quelqu\'un a passé commande sur '.server::get('server_name').' Gérez les détails de la commande par ici:',
 'order-error-subject' => '['.$site->title().'] Problème avec une commande',
-'order-error-message-update' => "Le paiement est reçu, mais l'étape final de la transaction de pouvait être complété.\n\nSoit les détails personnels du client ne se sont pas enregistrés; soit l'inventaire ne pouvait être mise à jour; soit la notification ne pouvait être envoyé au membre du personnel.\n\nVisitez ".page('shop/orders')->url()." afin d'examiner la problème.",
-'order-error-message-tamper' => "Le paiement est reçu, mais il ne s'associe pas avec la commande passée.\n\nVisitez ".page('shop/orders')->url()." afin d'examiner la problème.",
+'order-error-message-update' => "Le paiement est reçu, mais l'étape final de la transaction de pouvait être complété.\n\nSoit les détails personnels du client ne se sont pas enregistrés; soit l'inventaire ne pouvait être mise à jour; soit la notification ne pouvait être envoyé au membre du personnel.\n\n Examinez la problème par ici:",
+'order-error-message-tamper' => "Le paiement est reçu, mais il ne s'associe pas avec la commande passée.\n\nExaminez la problème par ici:",
 
 
 // snippets/sidebar.php

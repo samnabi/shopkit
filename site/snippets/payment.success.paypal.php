@@ -55,8 +55,13 @@ if($_POST['txn_id'] != '' ) {
 
           // Send the email
           if ($send) {
-
-            $body = l::get('order-notification-message')."\n\n";
+            $body = l::get('order-notification-message').' ';
+            $body .= page('shop/orders')->url().'?txn_id='.$txn->txn_id()."\n\n";
+            $body .= l::get('transaction-id').' '.$txn->txn_id()."\n\n";
+            $body .= 'status :'.$payment_status."\n";
+            $body .= 'payer-name :'.$_POST['first_name']." ".$_POST['last_name']."\n";
+            $body .= 'payer-email :'.$_POST['payer_email']."\n";
+            $body .= 'payer-address :'.$_POST['address_street']."\n".$_POST['address_city'].", ".$_POST['address_state']." ".$_POST['address_zip']."\n".$_POST['address_country']."\n\n";
             foreach ($items as $item) {
               $body .= page($item['uri'])->title().' - '.$item['variant'];
               $body .= $item['option'] == '' ? '' : ' - '.$item['option'];
@@ -82,7 +87,8 @@ if($_POST['txn_id'] != '' ) {
       $body .= 'payer-name :'.$_POST['first_name']." ".$_POST['last_name']."\n";
       $body .= 'payer-email :'.$_POST['payer_email']."\n";
       $body .= 'payer-address :'.$_POST['address_street']."\n".$_POST['address_city'].", ".$_POST['address_state']." ".$_POST['address_zip']."\n".$_POST['address_country']."\n\n";
-      $body .= l::get('order-error-message-update');
+      $body .= l::get('order-error-message-update').' ';
+      $body .= page('shop/orders')->url().'?txn_id='.$txn->txn_id();
 
       $email = new Email(array(
         'to'      => page('shop')->paypal_email()->value,
@@ -99,7 +105,8 @@ if($_POST['txn_id'] != '' ) {
     // Notify the site's PayPal email address
 
     $body = l::get('transaction-id').' '.$txn->txn_id()."\n\n";
-    $body .= l::get('order-error-message-tamper');
+    $body .= l::get('order-error-message-tamper').' ';
+    $body .= page('shop/orders')->url().'?txn_id='.$txn->txn_id();
 
     $email = new Email(array(
       'to'      => page('shop')->paypal_email()->value,

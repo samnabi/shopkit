@@ -30,8 +30,9 @@ if ($notifications->count()) {
 
         // Send the email
         if ($send) {  
-
-          $body = l::get('order-notification-message')."\n\n";
+          $body = l::get('order-notification-message').' ';
+          $body .= page('shop/orders')->url().'?txn_id='.get('txn_id')."\n\n";
+          $body .= l::get('transaction-id').' '.get('txn_id')."\n\n";
           foreach ($items as $item) {
               $body .= page($item['uri'])->title().' - '.$item['variant'];
               $body .= $item['option'] == '' ? '' : ' - '.$item['option'];
