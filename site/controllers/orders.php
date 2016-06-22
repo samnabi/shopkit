@@ -30,15 +30,16 @@ return function($site, $pages, $page) {
         }
     }
 
-    if ($user and $user->hasPanelAccess()) {
+    // Show appropriate orders
+    if (get('txn_id') != '') {
+        // If single transaction ID passed, show just that one order
+        $orders = $page->children()->sortBy('txn_date','desc')->filterBy('txn_id',get('txn_id'));
+    } else if ($user and $user->hasPanelAccess()) {
         // If admin, show all orders
         $orders = $page->children()->sortBy('txn_date','desc');
     } else if ($user) {
         // If logged in, show this user's orders
         $orders = $page->children()->sortBy('txn_date','desc')->filterBy('payer_email',$user->email());
-    } else if (get('txn_id') != '') {
-        // If transaction ID passed from PayPal, show just that one order
-        $orders = $page->children()->sortBy('txn_date','desc')->filterBy('txn_id',get('txn_id'));
     } else {
         // If not logged in, don't show orders
         $orders = false;
