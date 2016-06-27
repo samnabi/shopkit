@@ -89,8 +89,8 @@ return function($site, $pages, $page) {
           $shippingMethod = $method;
         }
       }
-    } else if (s::get('shipping') and !empty($shippingMethods)) {
-      // Second option: the shipping has already been set in the session
+    } else if (s::get('shipping') and !empty($shippingMethods) and !get('country')) {
+      // Second option: the shipping has already been set in the session, and the country hasn't changed
       $currentMethod = s::get('shipping');
       foreach ($shippingMethods as $key => $method) {
         if ($currentMethod['title'] == $method['title']) {
