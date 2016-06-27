@@ -1,0 +1,5 @@
+Title: Canada - Manitoba
+
+----
+
+countrycode: CA-MB
