@@ -8,8 +8,9 @@ $cart = Cart::getCart();
 // Set country as a session variable
 if ($country = get('country')) {
     // First: See if country was sent through a form submission.
-    // If it's a 2-character code, turn it into a UID
-    if (strlen($country) === 2) $country = page('shop/countries')->children()->filterBy('countrycode',$country)->first()->uid();
+    // Translate country code to UIDs if needed
+    $c = page('shop/countries')->children()->filterBy('countrycode',$country)->first();
+    if ($c) $country = $c->uid();
 } else if (s::get('country')) {
     // Second option: the country has already been set in the session
     $country = s::get('country');
