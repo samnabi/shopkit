@@ -1,9 +1,9 @@
 [submodule "panel"]
 	path = panel
 	url = https://github.com/getkirby/panel.git
-[submodule "site/fields/multiselect"]
-	path = site/fields/multiselect
-	url = https://github.com/distantnative/multiselect.git
+[submodule "site/plugins/field-multiselect"]
+	path = site/plugins/field-multiselect
+	url = https://github.com/distantnative/field-multiselect.git
 [submodule "site/fields/selector"]
 	path = site/fields/selector
 	url = https://github.com/storypioneers/kirby-selector.git
