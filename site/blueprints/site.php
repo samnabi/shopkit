@@ -15,6 +15,7 @@ fields:
   tab1:
     label: General
     type: tabs
+    icon: cog
   title:
     label: Site title
     type:  text
@@ -35,6 +36,7 @@ fields:
   tab2:
     label: Theme
     type: tabs
+    icon: paint-brush
   backgroundImage:
     label: Background image
     type:  selector

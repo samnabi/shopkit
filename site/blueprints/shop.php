@@ -10,6 +10,7 @@ fields:
   tab1:
     label: General
     type: tabs
+    icon: cog
   title:
     label: Title
     type:  text
@@ -48,6 +49,7 @@ fields:
   tab2:
     label: Shipping & tax
     type: tabs
+    icon: calculator
   shipping:
     label: Shipping methods
     help: 
@@ -116,6 +118,7 @@ fields:
   tab3:
     label: Payment
     type: tabs
+    icon: credit-card
   currency-code:
     label: Currency code
     help: e.g. USD, EUR
@@ -188,6 +191,7 @@ fields:
   tab4:
     label: Discounts
     type: tabs
+    icon: ticket
   discount-codes:
     label: Discount codes
     help: These codes are applied at checkout.

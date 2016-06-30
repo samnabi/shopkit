@@ -34,6 +34,7 @@ fields:
       tab1:
         type: tabs
         label: General
+        icon: cog
       name:
         label: Variant name
         type:  text
@@ -73,6 +74,7 @@ fields:
       tab2:
         type: tabs
         label: Discounts
+        icon: ticket
       sale-price:
         label: Sale price
         type: text

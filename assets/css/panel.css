@@ -126,3 +126,8 @@ body.ltr .selector .item-with-image .item-info {
 .selector .item-info .marginalia {
 	display: none;
 }
+
+/* Tabs in modal boxes */
+.modal-content .tab-nav li.active {
+	background: inherit;
+}
