@@ -180,6 +180,11 @@
 'shipped' => 'Envoyé',
 
 
+// templates/paylater.php
+
+'mailing-address' => 'Addresse postale',
+
+
 // templates/product.php
 
 'related-products' => 'Produits reliés',

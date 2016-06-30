@@ -1,0 +1,5 @@
+Title: Complete your order
+
+----
+
+Text: Please enter your email and mailing address so we can get in touch with you.

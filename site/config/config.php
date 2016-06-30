@@ -240,7 +240,13 @@ c::set('routes', array(
       site()->visit('shop', (string) site()->detectedLanguage());
       site()->kirby->localize();
 
-      snippet('payment.success.paypal');
+      if (get('mc_gross')) {
+        // PayPal transaction
+        snippet('payment.success.paypal');
+      } else if (get('paylater')) {
+        // Pay Later transaction
+        snippet('payment.success.paylater');
+      }
       return true;
     }
   ),

@@ -298,7 +298,7 @@ class Cart
 	{
 		// Get array from countries string
 		$countries = explode(', ',$data['countries']);
-
+		
 	  	// Check if country is in the array
 	  	if(in_array(s::get('country'), $countries) or in_array('all-countries', $countries)) {
       		return true;

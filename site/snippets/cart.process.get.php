@@ -19,7 +19,7 @@ if (get('gateway') === 'paypal') {
 	snippet('cart.process.paypal', ['cart' => $cart, 'txn' => $txn]);
 
 } else if (get('gateway') === 'paylater') {
-	snippet('cart.process.paylater', ['cart' => $cart]);
+	go('shop/cart/paylater?txn_id='.get('txn_id'));
 
 } else {
 	// Gateway not supported, or something went wrong

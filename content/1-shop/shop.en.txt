@@ -18,6 +18,10 @@ Paylater: admin
 
 ----
 
+Paylater-address: 1
+
+----
+
 Currency-code: USD
 
 ----

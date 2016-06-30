@@ -179,6 +179,11 @@
 'shipped' => 'Shipped',
 
 
+// templates/paylater.php
+
+'mailing-address' => 'Mailing address',
+
+
 // templates/product.php
 
 'related-products' => 'Related products',

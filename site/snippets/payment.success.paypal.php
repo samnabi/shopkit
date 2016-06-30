@@ -55,66 +55,33 @@ if($_POST['txn_id'] != '' ) {
 
           // Send the email
           if ($send) {
-            $body = l::get('order-notification-message').' ';
-            $body .= page('shop/orders')->url().'?txn_id='.$txn->txn_id()."\n\n";
-            $body .= l::get('transaction-id').' '.$txn->txn_id()."\n\n";
-            $body .= 'status :'.$payment_status."\n";
-            $body .= 'payer-name :'.$_POST['first_name']." ".$_POST['last_name']."\n";
-            $body .= 'payer-email :'.$_POST['payer_email']."\n";
-            $body .= 'payer-address :'.$_POST['address_street']."\n".$_POST['address_city'].", ".$_POST['address_state']." ".$_POST['address_zip']."\n".$_POST['address_country']."\n\n";
-            foreach ($items as $item) {
-              $body .= page($item['uri'])->title().' - '.$item['variant'];
-              $body .= $item['option'] == '' ? '' : ' - '.$item['option'];
-              $body .= "\n".'Qty: '.$item['quantity']."\n\n";
-            }
-
-            $email = new Email(array(
-              'to'      => $n->email(),
-              'from'    => 'noreply@'.server::get('server_name'),
-              'subject' => l::get('order-notification-subject'),
-              'body'    => $body,
-            ));
-            $email->send();
+            snippet('mail.order.notify', [
+              'txn' => $txn,
+              'payment_status' => $payment_status,
+              'payer_name' => get('first_name')." ".get('last_name'),
+              'payer_email' => get('payer_email'),
+              'payer_address' => get('address_street')."\n".get('address_city').", ".get('address_state')." ".get('address_zip')."\n".get('address_country'),
+              'items' => $items,
+              'n' => $n,
+            ]);
           }
         }
       }
     } catch(Exception $e) {
       // $txn->update(), updateStock(), or notification failed
-      // Notify the site's PayPal email address
-      
-      $body = l::get('transaction-id').' '.$txn->txn_id()."\n\n";
-      $body .= 'status :'.$payment_status."\n";
-      $body .= 'payer-name :'.$_POST['first_name']." ".$_POST['last_name']."\n";
-      $body .= 'payer-email :'.$_POST['payer_email']."\n";
-      $body .= 'payer-address :'.$_POST['address_street']."\n".$_POST['address_city'].", ".$_POST['address_state']." ".$_POST['address_zip']."\n".$_POST['address_country']."\n\n";
-      $body .= l::get('order-error-message-update').' ';
-      $body .= page('shop/orders')->url().'?txn_id='.$txn->txn_id();
-
-      $email = new Email(array(
-        'to'      => page('shop')->paypal_email()->value,
-        'from'    => 'noreply@'.server::get('server_name'),
-        'subject' => l::get('order-error-subject'),
-        'body'    => $body,
-      ));
-      $email->send();
+      snippet('mail.order.update.error', [
+        'txn' => $txn,
+        'payment_status' => $payment_status,
+        'payer_name' => get('payer_name'),
+        'payer_email' => get('payer_email'),
+        'payer_address' => get('address_street')."\n".get('address_city').", ".get('address_state')." ".get('address_zip')."\n".get('address_country'),
+      ]);
       return false;
     }
 
   } else {
     // Integrity check failed - possible tampering
-    // Notify the site's PayPal email address
-
-    $body = l::get('transaction-id').' '.$txn->txn_id()."\n\n";
-    $body .= l::get('order-error-message-tamper').' ';
-    $body .= page('shop/orders')->url().'?txn_id='.$txn->txn_id();
-
-    $email = new Email(array(
-      'to'      => page('shop')->paypal_email()->value,
-      'from'    => 'noreply@'.server::get('server_name'),
-      'subject' => l::get('order-error-subject'),
-      'body'    => $body,
-    ));
-    $email->send();
+    snippet('mail.paypal.tamper', ['txn' => $txn]);
     return false;
   }
 } else {

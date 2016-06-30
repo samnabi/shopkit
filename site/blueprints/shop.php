@@ -161,6 +161,10 @@ fields:
       any: Anyone
       logged-in: Logged-in customers
       admin: Admin users
+  paylater-address:
+    label: 'Pay later: mailing address'
+    type: checkbox 
+    text: Require a mailing address for Pay later transactions
   notifications:
     label: Order notifications
     help: Notify specific email addresses when orders are submitted
