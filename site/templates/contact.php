@@ -11,19 +11,19 @@
 	<?php echo $page->hours()->kirbytext()->bidi() ?>
 
 	<dl dir="auto">
-	    <?php if ($phone = page('contact')->phone() and $phone->isNotEmpty()) { ?>
+	    <?php if ($phone) { ?>
 	        <dt><?php echo l::get('phone') ?></dt>
 	        <dd class="uk-margin-bottom"><?php echo $phone ?></dd>
 	    <?php } ?>
 	    
-	    <?php if ($email = page('contact')->email() and $email->isNotEmpty()) { ?>
+	    <?php if ($email) { ?>
 	        <dt><?php echo l::get('email') ?></dt>
 	        <dd class="uk-margin-bottom"><a href="mailto:<?php echo $email ?>"><?php echo $email ?></a></dd>
 	    <?php } ?>
-	    
-	    <?php if ($address = page('contact')->location()->json('address') and $address != '') { ?>
+
+	    <?php if ($address) { ?>
 	        <dt><?php echo l::get('address') ?></dt>
-	        <dd class="uk-margin-bottom"><?php echo $address; ?></dd>
+	        <dd class="uk-margin-bottom"><?php echo $address ?></dd>
 	    <?php } ?>
 	</dl>
 

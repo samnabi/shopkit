@@ -14,7 +14,7 @@ Email:
 
 ----
 
-Location: {"address":"","lat":"","lng":""}
+Location:
 
 ----
 
