@@ -19,32 +19,24 @@ fields:
     type:  text
   logo:
     label: Site logo
-    type:  selector
-    mode:  single
-    types:
-      - image
-    filter: /^((?!placeholder\.png).)*$/
+    type:  image
+    width: 1/2
   placeholder:
     label: Placeholder photo
     help: For products and pages that don't have a photo
-    type:  selector
-    mode:  single
-    types:
-      - image
+    type:  image
+    width: 1/2
   tab2:
     label: Theme
     type: tabs
     icon: paint-brush
-  backgroundImage:
-    label: Background image
-    type:  selector
-    mode:  single
-    types:
-      - image
   backgroundColor:
     label: Background colour
     type:  color
     default: FFFFFF
+  backgroundImage:
+    label: Background image
+    type:  image
     width: 1/2
   backgroundBlur:
     label: Background blur
