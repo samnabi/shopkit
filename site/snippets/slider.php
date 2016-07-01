@@ -13,7 +13,7 @@ if (is_array($filenames)) {
 }
 
 ?>
-<section class="slider">
+<section class="slider uk-margin-bottom">
 	
 	<?php $first = true ?>
 	<?php foreach ($photos as $photo) { ?>	

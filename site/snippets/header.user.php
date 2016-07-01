@@ -1,5 +1,5 @@
 <?php if ($user = $site->user()) { ?>
-	<nav class="uk-grid uk-grid-collapse uk-grid-width-1-3 uk-grid-width-small-1-5">
+	<nav class="uk-grid uk-grid-collapse uk-grid-width-1-3 uk-grid-width-small-1-5 uk-margin-bottom">
 		<?php if ($user->hasPanelAccess()) { ?>
 			<a href="<?php echo url('panel') ?>/pages/<?php echo $page->uri() ?>/edit" class="uk-width-1-2 uk-width-small-1-5 uk-button uk-button-small">
 				<!-- http://iconmonstr.com/edit-11/ -->

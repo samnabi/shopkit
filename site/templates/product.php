@@ -1,6 +1,8 @@
 <?php snippet('header') ?>
 
 		<?php snippet('breadcrumb') ?>
+
+		<?php if ($page->hasImages()) snippet('slider',['photos'=>$page->images()]) ?>
 		
 		<?php if ($page->brand()->isNotempty()) { ?>
 			<small class="brand" property="brand"><?php echo $page->brand() ?></small>
@@ -22,8 +24,6 @@
 						</p>
 					<?php } ?>
 				</section>
-
-				<?php if ($page->hasImages()) snippet('slider',['photos'=>$page->images()]) ?>
 			</div>
 			
 			<?php if (count($variants)) { ?>
