@@ -9,8 +9,8 @@
 					} else {
 						$image = $site->images()->find($site->placeholder());
 					}
-					$thumb = thumb($image,array('height'=>150));
-					$backgroundThumb = thumb($image,array('height'=>300,'width'=>300,'crop'=>true,'blur'=>true));
+					$thumb = $image->thumb(['height'=>150]);
+					$backgroundThumb = ($image->thumb(['height'=>300,'width'=>300,'crop'=>true,'blur'=>true]);
 				?>
 				<div class="image" <?php if ($backgroundThumb) echo 'style="background-image: url('.$backgroundThumb->dataUri().');"' ?>>
 					<img property="image" content="<?php echo $thumb->url() ?>" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">

@@ -37,7 +37,7 @@
 					}
 				?>
 				<a href="<?php echo $product->url() ?>" title="<?php echo $product->title() ?>">
-					<img class="uk-width-1-1" src="<?php echo thumb($image,array('height'=>300))->dataUri() ?>" title="<?php echo $product->title() ?>"/>
+					<img class="uk-width-1-1" src="<?php echo $image->thumb(['height'=>300])->dataUri() ?>" title="<?php echo $product->title() ?>"/>
 				</a>
 
 			  	<div class="uk-grid uk-grid-width-1-2 uk-overlay-panel uk-overlay-background uk-overlay-bottom">

@@ -173,7 +173,7 @@
         <div class="uk-container uk-padding-remove">
             <button class="uk-button uk-button-primary uk-width-small-1-1 uk-width-medium-2-3 uk-align-medium-right" type="submit">
                 <div class="uk-margin-small-top"><?php echo l::get('pay-now') ?></div>
-                <img class="uk-margin-bottom" src="<?php echo thumb($page->image('paypal-cards.png'),array('height'=>50))->dataUri() ?>" alt="PayPal">
+                <img class="uk-margin-bottom" src="<?php echo $page->image('paypal-cards.png')->thumb(['height'=>50])->dataUri() ?>" alt="PayPal">
             </button>
         </div>
     </form>

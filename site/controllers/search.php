@@ -13,7 +13,7 @@ return function ($site, $pages, $page) {
 			} else {
 				$image = $site->images()->find($site->placeholder());
 			}
-			$thumb = thumb($image,array('height'=>150));
+			$thumb = $image->thumb(['height'=>150]);
 
 			// Base64 src
 			$result->imgSrc = $thumb->dataUri();

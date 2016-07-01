@@ -18,8 +18,8 @@ if (is_array($filenames)) {
 	<?php $first = true ?>
 	<?php foreach ($photos as $photo) { ?>	
 		<input <?php ecco($first,'checked') ?> type="radio" name="thumbnail" id="<?php echo $photo->hash() ?>">
-		<div class="slide" style="background-image: url('<?php echo thumb($photo,array('height'=>300, 'blur'=>true))->dataUri() ?>');">
-			<img src="<?php echo thumb($photo,array('height'=>300,'upscale' => true))->dataUri() ?>" title="<?php echo $photo->title() ?>"/>
+		<div class="slide" style="background-image: url('<?php echo $photo->thumb(['height'=>300, 'blur'=>true])->dataUri() ?>');">
+			<img src="<?php echo $photo->thumb(['height'=>300,'upscale' => true])->dataUri() ?>" title="<?php echo $photo->title() ?>"/>
 		</div>
 		<?php $first = false ?>
 	<?php } ?>
@@ -30,7 +30,7 @@ if (is_array($filenames)) {
 			<?php foreach ($photos as $photo) { ?>	
 				<li>
 					<label for="<?php echo $photo->hash() ?>">
-						<img src="<?php echo thumb($photo,array('width'=>100,'height'=>100, 'quality'=>80, 'crop'=>true))->dataUri() ?>" title="<?php echo $photo->title() ?>"/>
+						<img src="<?php echo $photo->thumb(['width'=>100,'height'=>100, 'quality'=>80, 'crop'=>true])->dataUri() ?>" title="<?php echo $photo->title() ?>"/>
 					</label>
 				</li>
 			<?php } ?>

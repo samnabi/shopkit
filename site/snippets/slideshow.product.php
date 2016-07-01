@@ -28,7 +28,7 @@
 			} else {
 				$image = $site->images()->find($site->placeholder());
 			}
-			$thumb = thumb($image,array('width'=>600));
+			$thumb = $image->thumb(['width' => 600]);
 		?>
 		<img property="image" content="<?php echo $thumb->url() ?>" class="uk-width-1-1" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
 	</div>
