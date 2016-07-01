@@ -61,9 +61,15 @@ body.login form.form fieldset.buttons-centered {
 
 .selector .input-with-items .item {
 	display: inline-block;
-	border-bottom: 0;
+	border: 1px solid #E6E7E0;
 	margin: 0.4rem 0 0 0.4rem;
 	padding-top: 0.4rem;
+	color: grey;
+}
+.selector .input-with-items .item.selector-item-selected {
+	background: #E6E7E0;
+	color: black;
+	border-color: #CCC;
 }
 .selector .item-image {
 	position: relative;
