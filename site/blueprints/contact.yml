@@ -14,9 +14,13 @@ fields:
   text:
     label: Text
     type:  markdown
+    header1: h2
+    header2: h3
   hours:
     label: Hours of operation
     type:  markdown
+    header1: h2
+    header2: h3
   phone:
     label: Phone number
     type: text

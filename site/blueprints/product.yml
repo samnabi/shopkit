@@ -20,6 +20,8 @@ fields:
   text:
     label: Description
     type:  markdown
+    header1: h2
+    header2: h3
   Variants:
     label: Variants
     help: Each variant defines a price point, with associated SKU and other options.
