@@ -14,7 +14,11 @@ Email:
 
 ----
 
-Location:
+Location: 
+
+address: ""
+lat: null
+lng: null
 
 ----
 
