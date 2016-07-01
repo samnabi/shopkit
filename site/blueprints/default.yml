@@ -1,6 +1,4 @@
-<?php if(!defined('KIRBY')) exit ?>
-
-title: Register page
+title: Page
 pages: true
   template:
     - default
@@ -10,7 +8,6 @@ files:
     title:
       label: Title
       type: text
-deletable: false
 fields:
   title:
     label: Title
@@ -25,3 +22,17 @@ fields:
     mode:  multiple
     types:
       - image
+  relatedproducts:
+    label: Related products
+    type: structure
+    entry: >
+      {{product}}
+    fields:
+      product:
+        label: Related product
+        type: select
+        options: query
+        query: 
+          page: shop
+          fetch: pages
+          template: product

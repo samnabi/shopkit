@@ -1,24 +1,20 @@
-<?php if(!defined('KIRBY')) exit ?>
-
-title: Product category
-icon: folder
+title: Cart page
 pages: true
   template:
-    - product
-    - category
+    - default
 files:
   sortable: true
-  type: image
   fields:
     title:
       label: Title
       type: text
+deletable: false
 fields:
   title:
     label: Title
     type:  text
   text:
-    label: Description
+    label: Text
     type:  markdown
   slider:
     label: Photo slider
@@ -27,3 +23,4 @@ fields:
     mode:  multiple
     types:
       - image
+    filter: /^((?!paypal-cards\.png).)*$/

@@ -1,6 +1,4 @@
-<?php if(!defined('KIRBY')) exit ?>
-
-title: Cart page
+title: Search results
 pages: true
   template:
     - default
@@ -25,4 +23,3 @@ fields:
     mode:  multiple
     types:
       - image
-    filter: /^((?!paypal-cards\.png).)*$/

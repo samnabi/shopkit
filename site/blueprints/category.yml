@@ -1,22 +1,22 @@
-<?php if(!defined('KIRBY')) exit ?>
-
-title: Account settings page
+title: Product category
+icon: folder
 pages: true
   template:
-    - default
+    - product
+    - category
 files:
   sortable: true
+  type: image
   fields:
     title:
       label: Title
       type: text
-deletable: false
 fields:
   title:
     label: Title
     type:  text
   text:
-    label: Text
+    label: Description
     type:  markdown
   slider:
     label: Photo slider
