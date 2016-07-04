@@ -1,8 +1,69 @@
 <?php
+// Register controllers
+$kirby->set('controller', 'account',  __DIR__.DS.'controllers'.DS.'account.php');
+$kirby->set('controller', 'cart',     __DIR__.DS.'controllers'.DS.'cart.php');
+$kirby->set('controller', 'category', __DIR__.DS.'controllers'.DS.'category.php');
+$kirby->set('controller', 'contact',  __DIR__.DS.'controllers'.DS.'contact.php');
+$kirby->set('controller', 'orders',   __DIR__.DS.'controllers'.DS.'orders.php');
+$kirby->set('controller', 'paylater', __DIR__.DS.'controllers'.DS.'paylater.php');
+$kirby->set('controller', 'product',  __DIR__.DS.'controllers'.DS.'product.php');
+$kirby->set('controller', 'register', __DIR__.DS.'controllers'.DS.'register.php');
+$kirby->set('controller', 'reset',    __DIR__.DS.'controllers'.DS.'reset.php');
+$kirby->set('controller', 'search',   __DIR__.DS.'controllers'.DS.'search.php');
+$kirby->set('controller', 'shop',     __DIR__.DS.'controllers'.DS.'shop.php');
 
+// Register templates
+$kirby->set('template', 'account',   __DIR__.DS.'templates'.DS.'account.php');
+$kirby->set('template', 'cart',      __DIR__.DS.'templates'.DS.'cart.php');
+$kirby->set('template', 'category',  __DIR__.DS.'templates'.DS.'category.php');
+$kirby->set('template', 'contact',   __DIR__.DS.'templates'.DS.'contact.php');
+$kirby->set('template', 'countries', __DIR__.DS.'templates'.DS.'countries.php');
+$kirby->set('template', 'country',   __DIR__.DS.'templates'.DS.'country.php');
+$kirby->set('template', 'default',   __DIR__.DS.'templates'.DS.'default.php');
+$kirby->set('template', 'orders',    __DIR__.DS.'templates'.DS.'orders.php');
+$kirby->set('template', 'paylater',  __DIR__.DS.'templates'.DS.'paylater.php');
+$kirby->set('template', 'product',   __DIR__.DS.'templates'.DS.'product.php');
+$kirby->set('template', 'register',  __DIR__.DS.'templates'.DS.'register.php');
+$kirby->set('template', 'reset',     __DIR__.DS.'templates'.DS.'reset.php');
+$kirby->set('template', 'search',    __DIR__.DS.'templates'.DS.'search.php');
+$kirby->set('template', 'shop',      __DIR__.DS.'templates'.DS.'shop.php');
+
+// Register snippets
+$kirby->set('snippet', 'breadcrumb',                 __DIR__.DS.'snippets'.DS.'breadcrumb.php');
+$kirby->set('snippet', 'cart.process.get',           __DIR__.DS.'snippets'.DS.'cart.process.get.php');
+$kirby->set('snippet', 'cart.process.paypal',        __DIR__.DS.'snippets'.DS.'cart.process.paypal.php');
+$kirby->set('snippet', 'cart.process.post',          __DIR__.DS.'snippets'.DS.'cart.process.post.php');
+$kirby->set('snippet', 'footer',                     __DIR__.DS.'snippets'.DS.'footer.php');
+$kirby->set('snippet', 'header.background.style',    __DIR__.DS.'snippets'.DS.'header.background.style.php');
+$kirby->set('snippet', 'header.nav',                 __DIR__.DS.'snippets'.DS.'header.nav.php');
+$kirby->set('snippet', 'header.notifications',       __DIR__.DS.'snippets'.DS.'header.notifications.php');
+$kirby->set('snippet', 'header',                     __DIR__.DS.'snippets'.DS.'header.php');
+$kirby->set('snippet', 'header.user',                __DIR__.DS.'snippets'.DS.'header.user.php');
+$kirby->set('snippet', 'list.category',              __DIR__.DS.'snippets'.DS.'list.category.php');
+$kirby->set('snippet', 'list.featured',              __DIR__.DS.'snippets'.DS.'list.featured.php');
+$kirby->set('snippet', 'list.product',               __DIR__.DS.'snippets'.DS.'list.product.php');
+$kirby->set('snippet', 'list.related',               __DIR__.DS.'snippets'.DS.'list.related.php');
+$kirby->set('snippet', 'logo',                       __DIR__.DS.'snippets'.DS.'logo.php');
+$kirby->set('snippet', 'mail.order.notify',          __DIR__.DS.'snippets'.DS.'mail.order.notify.php');
+$kirby->set('snippet', 'mail.order.update.error',    __DIR__.DS.'snippets'.DS.'mail.order.update.error.php');
+$kirby->set('snippet', 'mail.paypal.tamper',         __DIR__.DS.'snippets'.DS.'mail.paypal.tamper.php');
+$kirby->set('snippet', 'orders.pdf',                 __DIR__.DS.'snippets'.DS.'orders.pdf.php');
+$kirby->set('snippet', 'payment.success.paylater',   __DIR__.DS.'snippets'.DS.'payment.success.paylater.php');
+$kirby->set('snippet', 'payment.success.paypal.ipn', __DIR__.DS.'snippets'.DS.'payment.success.paypal.ipn.php');
+$kirby->set('snippet', 'payment.success.paypal',     __DIR__.DS.'snippets'.DS.'payment.success.paypal.php');
+$kirby->set('snippet', 'sidebar.login',              __DIR__.DS.'snippets'.DS.'sidebar.login.php');
+$kirby->set('snippet', 'sidebar',                    __DIR__.DS.'snippets'.DS.'sidebar.php');
+$kirby->set('snippet', 'slider',                     __DIR__.DS.'snippets'.DS.'slider.php');
+$kirby->set('snippet', 'slideshow.product',          __DIR__.DS.'snippets'.DS.'slideshow.product.php');
+$kirby->set('snippet', 'subpages',                   __DIR__.DS.'snippets'.DS.'subpages.php');
+$kirby->set('snippet', 'treemenu',                   __DIR__.DS.'snippets'.DS.'treemenu.php');
+
+// Register blueprints
+// This will have to wait until Kirby 2.3.1
+
+// Include Cart and CartItem objects
 include_once('Cart.php');
 include_once('CartItem.php');
-
 $cart = Cart::getCart();
 
 // Set country as a session variable
