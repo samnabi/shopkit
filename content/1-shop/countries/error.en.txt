@@ -1,3 +1,0 @@
-title: Countries
-----
-text: Change this filename to countries.txt, then visit /shop/countries to repopulate the country pages.

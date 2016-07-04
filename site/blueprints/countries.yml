@@ -1,0 +1,11 @@
+title: Countries
+pages: true
+files: false
+options:
+  delete: false
+  status: false
+  template: false
+  url: false
+  preview: false
+fields:
+  title: title
