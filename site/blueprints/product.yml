@@ -1,30 +1,21 @@
 title: Product
 icon: cube
 pages: false
-files:
-  sortable: true
-  type: image
-  fields:
-    title:
-      label: Title
-      type: text
 fields:
   title:
-    label: Product title
-    type:  text
+    extends: title
+    label: Product name
     width: 3/4
   brand:
     label: Brand
     type: text
     width: 1/4
   text:
+    extends: markdown
     label: Description
-    type:  markdown
-    header1: h2
-    header2: h3
   Variants:
     label: Variants
-    help: Each variant defines a price point, with associated SKU and other options.
+    help: 'Each variant defines a price point, with associated SKU and other options.'
     type: structure
     entry: >
       <p style="border-bottom: 1px solid #DDD; margin-bottom: 0.2rem; padding-bottom: 0.2rem">{{name}} <span style="float: right;"><strong>SKU</strong> {{sku}}</span></p>
@@ -104,18 +95,5 @@ fields:
   tags:
     label: Tags
     type: tags
-  relatedproducts:
-    label: Related products
-    type: structure
-    entry: >
-      {{product}}
-    fields:
-      product:
-        label: Related product
-        type: select
-        options: query
-        query: 
-          page: shop
-          fetch: pages
-          template: product
+  relatedproducts: relatedproducts
           

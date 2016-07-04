@@ -1,0 +1,13 @@
+label: Related products
+type: structure
+entry: >
+  {{product}}
+fields:
+  product:
+    label: Related product
+    type: select
+    options: query
+    query: 
+      page: shop
+      fetch: pages
+      template: product

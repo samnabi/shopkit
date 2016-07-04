@@ -1,27 +1,12 @@
 title: Account settings page
-pages: true
-  template:
-    - default
-files:
-  sortable: true
-  fields:
-    title:
-      label: Title
-      type: text
-deletable: false
+pages:
+  max: 2
+options:
+  delete: false
+  status: false
+  template: false
+  url: false
 fields:
-  title:
-    label: Title
-    type:  text
-  text:
-    label: Text
-    type:  markdown
-    header1: h2
-    header2: h3
-  slider:
-    label: Photo slider
-    help: Choose photos to show at the top of the page.
-    type:  selector
-    mode:  multiple
-    types:
-      - image
+  title: title
+  text: markdown
+  slider: slider

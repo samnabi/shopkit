@@ -1,29 +1,12 @@
 title: Product category
 icon: folder
-pages: true
+pages:
   template:
     - product
     - category
-files:
-  sortable: true
-  type: image
-  fields:
-    title:
-      label: Title
-      type: text
 fields:
-  title:
-    label: Title
-    type:  text
+  title: title
   text:
+    extends: markdown
     label: Description
-    type:  markdown
-    header1: h2
-    header2: h3
-  slider:
-    label: Photo slider
-    help: Choose photos to show at the top of the page.
-    type:  selector
-    mode:  multiple
-    types:
-      - image
+  slider: slider

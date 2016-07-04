@@ -2,21 +2,14 @@ title: Site options
 pages: true
   template:
     - default
-files:
-  sortable: true
-  type: image
-  fields:
-    title:
-      label: Title
-      type: text
 fields:
   tab1:
     label: General
     type: tabs
     icon: cog
   title:
-    label: Site title
-    type:  text
+    extends: title
+    label: Site name
   logo:
     label: Site logo
     type:  image

@@ -1,4 +1,4 @@
-title: Pay later
+title: Reset password
 pages: false
 options:
   delete: false
@@ -8,3 +8,4 @@ options:
 fields:
   title: title
   text: markdown
+  slider: slider

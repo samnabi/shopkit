@@ -3,27 +3,19 @@ icon: cog
 pages: true
   template:
     - category
-deletable: false
+options:
+  delete: false
+  status: false
+  template: false
+  url: false
 fields:
   tab1:
     label: General
     type: tabs
     icon: cog
-  title:
-    label: Title
-    type:  text
-  text:
-    label: Text
-    type:  markdown
-    header1: h2
-    header2: h3
-  slider:
-    label: Photo slider
-    help: Choose photos to show at the top of the page.
-    type:  selector
-    mode:  multiple
-    types:
-      - image
+  title: title
+  text: markdown
+  slider: slider
   featured:
     label: Featured products
     help:  Featured products show up in the sidebar with a one-click "buy now" button

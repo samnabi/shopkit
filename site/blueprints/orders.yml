@@ -1,20 +1,10 @@
-title: Orders page
-pages: true
-  template:
-    - default
-files:
-  sortable: true
-  fields:
-    title:
-      label: Title
-      type: text
-deletable: false
+title: Orders
+pages: false
+options:
+  delete: false
+  status: false
+  template: false
+  url: false
 fields:
-  title:
-    label: Title
-    type:  text
-  text:
-    label: Text
-    type:  markdown
-    header1: h2
-    header2: h3
+  title: title
+  text: markdown
