@@ -16,3 +16,4 @@
 /content/4-docs
 /site/cache/*
 !/site/cache/.gitkeep
+site/plugins/dompdf/lib/fonts/log.htm
