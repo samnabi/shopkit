@@ -163,6 +163,8 @@
 'no-tax' => 'Keine Steuer',
 'no-shipping' => 'Kostenloser Versand',
 
+'terms-conditions' => 'Durch die Zusammenarbeit mit dieser Transaktion fortfahren, stimmen Sie den', // "Allgemeine Geschäftsbedingungen" wird als Link in der Vorlage angehängt.
+
 
 // templates/orders.php
 

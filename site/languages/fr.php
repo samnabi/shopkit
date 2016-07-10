@@ -163,6 +163,8 @@
 'no-tax' => 'Aucun taxe',
 'no-shipping' => 'Transport gratuit',
 
+'terms-conditions' => 'En continuant avec la transaction, vous acceptez les', // "Conditions" sera ajouté par le template
+
 
 // templates/orders.php
 

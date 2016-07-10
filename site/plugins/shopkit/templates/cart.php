@@ -154,12 +154,19 @@
         </table>
     </div>
 
+    <!-- Terms and conditions -->
+    <?php if ($tc = page('shop/terms-conditions') and $tc->text()->isNotEmpty()) { ?>
+        <div class="uk-alert">
+            <p dir="auto"><?php echo l::get('terms-conditions') ?> <a href="<?php echo $tc->url() ?>" target="_blank"><?php echo $tc->title() ?></a>.</p>
+        </div>
+    <?php } ?>
+
     <!-- Paypal form -->
     <form method="post" action="<?php echo url('shop/cart/process') ?>">
 
         <?php if (page('shop')->paypal_action() != 'live') { ?>
             <div class="uk-alert uk-alert-warning">
-                <p><?php echo l::get('sandbox-message') ?></p>
+                <p dir="auto"><?php echo l::get('sandbox-message') ?></p>
             </div>
         <?php } ?>
 

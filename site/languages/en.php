@@ -162,6 +162,8 @@
 'no-tax' => 'No tax',
 'no-shipping' => 'Free shipping',
 
+'terms-conditions' => 'By continuing with this transaction, you agree to the', // "Terms and Conditions" is appended as a link in the template.
+
 
 // templates/orders.php
 
