@@ -38,9 +38,9 @@ function formatPrice($number)
     $symbol = page('shop')->currency_symbol();
     $currencyCode = page('shop')->currency_code();
     if (page('shop')->currency_position() == 'before') {
-    	return '<span property="priceCurrency" content="'.$currencyCode.'">'.$symbol.'</span> <span property="price" content="'.number_format($number,2,'.','').'">'.number_format($number,2,'.','').'</span>';
+    	return '<span property="priceCurrency" content="'.$currencyCode.'">'.$symbol.'</span> <span property="price" content="'.number_format(floatval($number),2,'.','').'">'.number_format(floatval($number),2,'.','').'</span>';
   	} else {
-    	return number_format($number,2,'.','') . '&nbsp;' . $symbol;
+    	return number_format(floatval($number),2,'.','') . '&nbsp;' . $symbol;
   	}
 }
 
