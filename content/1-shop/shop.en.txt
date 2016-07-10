@@ -14,7 +14,7 @@ Tax:
 
 ----
 
-Paylater: any, admin
+Paylater: admin
 
 ----
 
