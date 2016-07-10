@@ -2,17 +2,17 @@
 // Validate form submission
 if (get('txn_id')) {
   if (get('payer_name') and get('payer_email')) {
-    if (!page('shop')->paylater_address()->bool()) {
+    if (!page('shop')->mailing_address()->bool()) {
       // No address required, we're good
-    } else if (page('shop')->paylater_address()->bool() and get('payer_address')) {
+    } else if (page('shop')->mailing_address()->bool() and get('payer_address')) {
       // Address recieved, we're good
     } else {
       // No address provided. Kick back to the form.
-      go('shop/cart/paylater?txn_id='.get('txn_id').'&payer_name='.get('payer_name').'&payer_email='.get('payer_email').'&payer_address='.get('payer_address'));
+      go('shop/confirm?txn_id='.get('txn_id').'&payer_name='.get('payer_name').'&payer_email='.get('payer_email').'&payer_address='.get('payer_address'));
     }
   } else {
     // No name or email provided. Kick back to the form.
-    go('shop/cart/paylater?txn_id='.get('txn_id').'&payer_name='.get('payer_name').'&payer_email='.get('payer_email').'&payer_address='.get('payer_address'));
+    go('shop/confirm?txn_id='.get('txn_id').'&payer_name='.get('payer_name').'&payer_email='.get('payer_email').'&payer_address='.get('payer_address'));
   }
 } else {
   // No txn_id, go back to the cart

@@ -8,6 +8,7 @@
 !/thumbs/.gitkeep
 /content/1-shop/*
 !/content/1-shop/cart
+!/content/1-shop/confirm
 !/content/1-shop/countries
 !/content/1-shop/terms-conditions
 /content/1-shop/orders/*

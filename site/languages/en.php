@@ -165,6 +165,14 @@
 'terms-conditions' => 'By continuing with this transaction, you agree to the', // "Terms and Conditions" is appended as a link in the template.
 
 
+// templates/confirm.php
+
+'order-details' => 'Order details',
+'personal-details' => 'Personal details',
+'confirm-order' => 'Confirm order',
+'mailing-address' => 'Mailing address',
+
+
 // templates/orders.php
 
 'no-orders' => 'You haven\'t made any orders yet.',
@@ -179,11 +187,6 @@
 'pending' => 'Pending',
 'paid' => 'Paid',
 'shipped' => 'Shipped',
-
-
-// templates/paylater.php
-
-'mailing-address' => 'Mailing address',
 
 
 // templates/product.php

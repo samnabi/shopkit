@@ -14,11 +14,11 @@ Tax:
 
 ----
 
-Paylater: admin
+Paylater: any, admin
 
 ----
 
-Paylater-address: 1
+Mailing-address: 1
 
 ----
 

@@ -41,10 +41,10 @@ try {
 	// Add payer info if it's available at this point
 	if ($user = site()->user()) {
 		page('shop/orders/'.$txn_id)->update([
-			'payer-id' => $user->username,
-			'payer-name' => $user->name,
-			'payer-email' => $user->email,
-			'payer-address' => $user->country
+			'payer-id' => $user->username(),
+			'payer-name' => $user->firstname(),
+			'payer-email' => $user->email(),
+			'payer-address' => page('shop/countries/'.$user->country())->title()
 		], site()->defaultLanguage()->code());
 	}	
 } catch(Exception $e) {

@@ -166,6 +166,14 @@
 'terms-conditions' => 'En continuant avec la transaction, vous acceptez les', // "Conditions" sera ajouté par le template
 
 
+// templates/confirm.php
+
+'order-details' => 'Détails de la commande',
+'personal-details' => 'Détails personnels',
+'confirm-order' => 'Confirmer la commande',
+'mailing-address' => 'Addresse postale',
+
+
 // templates/orders.php
 
 'no-orders' => 'Vous n\'avez aucun transaction.',
@@ -180,11 +188,6 @@
 'pending' => 'En attente',
 'paid' => 'Payé',
 'shipped' => 'Envoyé',
-
-
-// templates/paylater.php
-
-'mailing-address' => 'Addresse postale',
 
 
 // templates/product.php

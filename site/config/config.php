@@ -256,7 +256,7 @@ c::set('routes', array(
     'action' => function() {
       $cart = Cart::getCart();
       $cart->emptyItems();
-      return go('shop/orders?txn_id='.get('custom'));
+      return go('shop/confirm?txn_id='.get('custom'));
     }
   ),
   array(

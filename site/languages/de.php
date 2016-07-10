@@ -166,6 +166,14 @@
 'terms-conditions' => 'Durch die Zusammenarbeit mit dieser Transaktion fortfahren, stimmen Sie den', // "Allgemeine Geschäftsbedingungen" wird als Link in der Vorlage angehängt.
 
 
+// templates/confirm.php
+
+'order-details' => 'Bestelldetails',
+'personal-details' => 'Persönliche Details',
+'confirm-order' => 'Bestellung bestätigen',
+'mailing-address' => 'Mailing address',
+
+
 // templates/orders.php
 
 'no-orders' => 'Sie haben noch keine Einkäufe getätigt.',
@@ -180,11 +188,6 @@
 'pending' => 'Ausstehend',
 'paid' => 'Bezahlt',
 'shipped' => 'Verschickt',
-
-
-// templates/paylater.php
-
-'mailing-address' => 'Mailing address',
 
 
 // templates/product.php

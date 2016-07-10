@@ -2,11 +2,21 @@
 
 <h1 dir="auto"><?php echo $page->title() ?></h1>
 
-<?php echo $page->text()->kirbytext() ?>
+<?php echo $page->text()->kirbytext()->bidi() ?>
+
+<h2 dir="auto"><?= l::get('order-details') ?></h2>
+
+<ul dir="auto">
+    <?php foreach ($txn->products()->split("\n") as $product) { ?>
+        <li><?= markdown($product) ?></li>
+    <?php } ?>
+</ul>
+
+<h2 dir="auto"><?= l::get('personal-details') ?></h2>
 
 <form class="uk-form uk-form-stacked" action="<?php echo url('shop/cart/notify') ?>" method="post">
 	<input type="hidden" name="paylater" value="true">
-    <input type="hidden" name="txn_id" value="<?= get('txn_id') ?>">
+    <input type="hidden" name="txn_id" value="<?= $txn->txn_id() ?>">
 
     <div class="uk-form-row">
         <label for="payer_name"><?php echo l::get('full-name') ?></label>
@@ -24,7 +34,7 @@
     </div>
     
     <div class="uk-form-row">
-	   <button class="uk-button uk-button-primary uk-form-width-large" type="submit"><?php echo l::get('pay-later') ?></button>
+	   <button class="uk-button uk-button-primary uk-form-width-large" type="submit"><?php echo l::get('confirm-order') ?></button>
     </div>
 </form>
 
