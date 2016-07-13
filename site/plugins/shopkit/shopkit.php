@@ -86,6 +86,13 @@ $kirby->set('blueprint', 'shop',      __DIR__.DS.'blueprints'.DS.'shop.yml');
 $kirby->set('blueprint', 'users/admin',   __DIR__.DS.'blueprints'.DS.'users'.DS.'admin.yml');
 $kirby->set('blueprint', 'users/customer',   __DIR__.DS.'blueprints'.DS.'users'.DS.'customer.yml');
 
+// Register fields
+$kirby->set('field', 'color',      __DIR__.DS.'fields'.DS.'color');
+$kirby->set('field', 'markdown',      __DIR__.DS.'fields'.DS.'markdown');
+$kirby->set('field', 'place',      __DIR__.DS.'fields'.DS.'place');
+$kirby->set('field', 'selector',      __DIR__.DS.'fields'.DS.'selector');
+$kirby->set('field', 'tabs',      __DIR__.DS.'fields'.DS.'tabs');
+
 // Include Cart and CartItem objects
 include_once('Cart.php');
 include_once('CartItem.php');

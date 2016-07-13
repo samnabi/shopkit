@@ -1,0 +1,30 @@
+.field-place
+  .field-google-map-ui
+    height: 20em
+
+    .modal-content &
+      padding-bottom: 100%
+
+    img
+      max-width: none
+
+  .field-content
+    margin-top: 1.5em
+
+    &:first-of-type
+      margin-top: 0
+
+    &.field-lat, &.field-lng
+      float: left
+      width: 50%
+      input
+        padding-right: 0.5em
+
+    &.field-lat
+      padding-right: (1.5em / 2)
+
+    &.field-lng
+      padding-left: (1.5em / 2)
+
+  .field-serialized
+    // display: none

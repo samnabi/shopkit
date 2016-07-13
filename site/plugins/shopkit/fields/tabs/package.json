@@ -1,0 +1,12 @@
+{
+  "name": "Kirby-Tabs-Field",
+  "description": "The tab field type is designed specifically for use within the fields.",
+  "author": "Ahmet Bora <byybora@gmail.com>",
+  "version": "1.2",
+  "type": "kirby-field",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/afbora/Kirby-Tabs-Field"
+  },
+}

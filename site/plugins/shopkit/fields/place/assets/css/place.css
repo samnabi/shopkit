@@ -1,0 +1,19 @@
+.field-place .field-google-map-ui {
+  height: 20em; }
+  .modal-content .field-place .field-google-map-ui {
+    padding-bottom: 100%; }
+  .field-place .field-google-map-ui img {
+    max-width: none; }
+.field-place .field-content {
+  margin-top: 1.5em; }
+  .field-place .field-content:first-of-type {
+    margin-top: 0; }
+  .field-place .field-content.field-lat, .field-place .field-content.field-lng {
+    float: left;
+    width: 50%; }
+    .field-place .field-content.field-lat input, .field-place .field-content.field-lng input {
+      padding-right: 0.5em; }
+  .field-place .field-content.field-lat {
+    padding-right: 0.75em; }
+  .field-place .field-content.field-lng {
+    padding-left: 0.75em; }
