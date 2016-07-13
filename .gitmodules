@@ -4,24 +4,9 @@
 [submodule "site/plugins/field-multiselect"]
 	path = site/plugins/field-multiselect
 	url = https://github.com/distantnative/field-multiselect.git
-[submodule "site/plugins/shopkit/fields/selector"]
-	path = site/plugins/shopkit/fields/selector
-	url = https://github.com/storypioneers/kirby-selector.git
-[submodule "site/plugins/shopkit/fields/place"]
-	path = site/plugins/shopkit/fields/place
-	url = https://github.com/AugustMiller/kirby-place-field.git
 [submodule "kirby"]
 	path = kirby
 	url = https://github.com/getkirby/kirby.git
-[submodule "site/plugins/shopkit/fields/color"]
-	path = site/plugins/shopkit/fields/color
-	url = https://github.com/samnabi/Kirby-Color-Picker.git
-[submodule "site/plugins/shopkit/fields/tabs"]
-	path = site/plugins/shopkit/fields/tabs
-	url = https://github.com/afbora/Kirby-Tabs-Field.git
-[submodule "site/plugins/shopkit/fields/markdown"]
-	path = site/plugins/shopkit/fields/markdown
-	url = https://github.com/JonasDoebertin/kirby-visual-markdown.git
 [submodule "site/plugins/field-bidi"]
 	path = site/plugins/field-bidi
 	url = https://github.com/samnabi/field-bidi.git
