@@ -3,7 +3,7 @@
 $kirby->set('controller', 'account',  __DIR__.DS.'controllers'.DS.'account.php');
 $kirby->set('controller', 'cart',     __DIR__.DS.'controllers'.DS.'cart.php');
 $kirby->set('controller', 'category', __DIR__.DS.'controllers'.DS.'category.php');
-$kirby->set('controller', 'confirm', __DIR__.DS.'controllers'.DS.'confirm.php');
+$kirby->set('controller', 'confirm',  __DIR__.DS.'controllers'.DS.'confirm.php');
 $kirby->set('controller', 'contact',  __DIR__.DS.'controllers'.DS.'contact.php');
 $kirby->set('controller', 'orders',   __DIR__.DS.'controllers'.DS.'orders.php');
 $kirby->set('controller', 'product',  __DIR__.DS.'controllers'.DS.'product.php');
@@ -16,11 +16,12 @@ $kirby->set('controller', 'shop',     __DIR__.DS.'controllers'.DS.'shop.php');
 $kirby->set('template', 'account',   __DIR__.DS.'templates'.DS.'account.php');
 $kirby->set('template', 'cart',      __DIR__.DS.'templates'.DS.'cart.php');
 $kirby->set('template', 'category',  __DIR__.DS.'templates'.DS.'category.php');
-$kirby->set('template', 'confirm',  __DIR__.DS.'templates'.DS.'confirm.php');
+$kirby->set('template', 'confirm',   __DIR__.DS.'templates'.DS.'confirm.php');
 $kirby->set('template', 'contact',   __DIR__.DS.'templates'.DS.'contact.php');
 $kirby->set('template', 'countries', __DIR__.DS.'templates'.DS.'countries.php');
 $kirby->set('template', 'country',   __DIR__.DS.'templates'.DS.'country.php');
 $kirby->set('template', 'default',   __DIR__.DS.'templates'.DS.'default.php');
+$kirby->set('template', 'error',     __DIR__.DS.'templates'.DS.'error.php');
 $kirby->set('template', 'orders',    __DIR__.DS.'templates'.DS.'orders.php');
 $kirby->set('template', 'product',   __DIR__.DS.'templates'.DS.'product.php');
 $kirby->set('template', 'register',  __DIR__.DS.'templates'.DS.'register.php');
@@ -58,8 +59,33 @@ $kirby->set('snippet', 'slideshow.product',          __DIR__.DS.'snippets'.DS.'s
 $kirby->set('snippet', 'subpages',                   __DIR__.DS.'snippets'.DS.'subpages.php');
 $kirby->set('snippet', 'treemenu',                   __DIR__.DS.'snippets'.DS.'treemenu.php');
 
+// Register blueprint field snippets
+$kirby->set('blueprint', 'fields/markdown',        __DIR__.DS.'blueprints'.DS.'fields'.DS.'markdown.yml');
+$kirby->set('blueprint', 'fields/relatedproducts', __DIR__.DS.'blueprints'.DS.'fields'.DS.'relatedproducts.yml');
+$kirby->set('blueprint', 'fields/slider',          __DIR__.DS.'blueprints'.DS.'fields'.DS.'slider.yml');
+$kirby->set('blueprint', 'fields/title',           __DIR__.DS.'blueprints'.DS.'fields'.DS.'title.yml');
+
 // Register blueprints
-// This will have to wait until Kirby 2.3.1
+$kirby->set('blueprint', 'account',   __DIR__.DS.'blueprints'.DS.'account.yml');
+$kirby->set('blueprint', 'cart',      __DIR__.DS.'blueprints'.DS.'cart.yml');
+$kirby->set('blueprint', 'category',  __DIR__.DS.'blueprints'.DS.'category.yml');
+$kirby->set('blueprint', 'confirm',   __DIR__.DS.'blueprints'.DS.'confirm.yml');
+$kirby->set('blueprint', 'contact',   __DIR__.DS.'blueprints'.DS.'contact.yml');
+$kirby->set('blueprint', 'countries', __DIR__.DS.'blueprints'.DS.'countries.yml');
+$kirby->set('blueprint', 'country',   __DIR__.DS.'blueprints'.DS.'country.yml');
+$kirby->set('blueprint', 'default',   __DIR__.DS.'blueprints'.DS.'default.yml');
+$kirby->set('blueprint', 'error',     __DIR__.DS.'blueprints'.DS.'error.yml');
+$kirby->set('blueprint', 'orders',    __DIR__.DS.'blueprints'.DS.'orders.yml');
+$kirby->set('blueprint', 'product',   __DIR__.DS.'blueprints'.DS.'product.yml');
+$kirby->set('blueprint', 'register',  __DIR__.DS.'blueprints'.DS.'register.yml');
+$kirby->set('blueprint', 'reset',     __DIR__.DS.'blueprints'.DS.'reset.yml');
+$kirby->set('blueprint', 'search',    __DIR__.DS.'blueprints'.DS.'search.yml');
+$kirby->set('blueprint', 'shop',      __DIR__.DS.'blueprints'.DS.'shop.yml');
+$kirby->set('blueprint', 'site',      __DIR__.DS.'blueprints'.DS.'site.yml');
+
+// Register user blueprints
+$kirby->set('blueprint', 'users/admin',   __DIR__.DS.'blueprints'.DS.'users'.DS.'admin.yml');
+$kirby->set('blueprint', 'users/customer',   __DIR__.DS.'blueprints'.DS.'users'.DS.'customer.yml');
 
 // Include Cart and CartItem objects
 include_once('Cart.php');
