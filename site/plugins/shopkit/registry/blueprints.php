@@ -24,5 +24,5 @@ $kirby->set('blueprint', 'search',    __DIR__.DS.'..'.DS.'blueprints'.DS.'search
 $kirby->set('blueprint', 'shop',      __DIR__.DS.'..'.DS.'blueprints'.DS.'shop.yml');
 
 // Register user blueprints
-$kirby->set('blueprint', 'users/admin',   __DIR__.DS.'..'.DS.'blueprints'.DS.'users'.DS.'admin.yml');
-$kirby->set('blueprint', 'users/customer',   __DIR__.DS.'..'.DS.'blueprints'.DS.'users'.DS.'customer.yml');
+$kirby->set('blueprint', 'users/admin',    __DIR__.DS.'..'.DS.'blueprints'.DS.'users'.DS.'admin.yml');
+$kirby->set('blueprint', 'users/customer', __DIR__.DS.'..'.DS.'blueprints'.DS.'users'.DS.'customer.yml');
