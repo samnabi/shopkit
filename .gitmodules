@@ -12,7 +12,7 @@
 	url = https://github.com/samnabi/field-bidi.git
 [submodule "site/plugins/shopkit/fields/color"]
 	path = site/plugins/shopkit/fields/color
-	url = https://github.com/samnabi/Kirby-Color-Picker.git
+	url = https://github.com/ian-cox/Kirby-Color-Picker.git
 [submodule "site/plugins/shopkit/fields/tabs"]
 	path = site/plugins/shopkit/fields/tabs
 	url = https://github.com/afbora/Kirby-Tabs-Field.git
