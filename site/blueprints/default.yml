@@ -1,0 +1,9 @@
+title: Page
+pages: true
+  template:
+    - default
+fields:
+  title: title
+  text: markdown
+  slider: slider
+  relatedproducts: relatedproducts
