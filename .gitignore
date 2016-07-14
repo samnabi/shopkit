@@ -1,11 +1,17 @@
+# Ignore system files and log files
 .DS_Store
+site/plugins/dompdf/lib/fonts/log.htm
+
+# Ignore account files and avatars
 /site/accounts/*
 !/site/accounts/.gitkeep
 /assets/avatars/*
 !/assets/avatars/.gitkeep
+
+# Ignore Photoshop files
 /assets/psd/*
-/thumbs/*
-!/thumbs/.gitkeep
+
+# Ignore non-default content files
 /content/1-shop/*
 !/content/1-shop/cart
 !/content/1-shop/confirm
@@ -16,6 +22,3 @@
 !/content/1-shop/orders/orders.en.txt
 !/content/1-shop/shop.en.txt
 /content/4-docs
-/site/cache/*
-!/site/cache/.gitkeep
-site/plugins/dompdf/lib/fonts/log.htm
