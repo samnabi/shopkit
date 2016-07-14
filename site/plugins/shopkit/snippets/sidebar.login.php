@@ -8,6 +8,7 @@
         <?php } ?>
         
         <form dir="auto" action="<?php echo url('/login') ?>" method="POST" id="login" class="uk-form">
+            <input type="hidden" name="redirect" value="<?= $page->uri() ?>">
             <div class="uk-grid uk-grid-width-1-2">
                 <div>
                   <label class="uk-width-1-1" for="email"><?php echo l::get('email-address') ?></label>

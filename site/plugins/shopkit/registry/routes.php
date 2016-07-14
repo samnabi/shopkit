@@ -6,10 +6,14 @@ $kirby->set('route',[
   'pattern' => 'login',
   'method' => 'POST',
   'action'  => function() {
+    // Set the redirect page
+    $redirect = get('redirect') ? get('redirect') : 'shop';
+
+    // Try to log in
     if($user = site()->users()->findBy('email',get('email')) and $user->login(get('password'))) {
-      return go(site()->url());
+      return go($redirect);
     } else {
-      return go(site()->url().'?login=failed');
+      return go(site()->url().'/'.$redirect.'/?login=failed');
     }
   }
 ]);
