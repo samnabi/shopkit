@@ -387,28 +387,44 @@ class Cart
 
 	public function getTax()
 	{
-	    // Get all tax categories as an array
+	    // Reset the cart tax
+	    $cartTax = 0;
+
+	   	// Get shop-wide tax categories
 	    $taxCategories = yaml(page('shop')->tax());
 
-	    $taxes = array();
-
-	    // Calculate total amount of taxable items
-	    $taxableAmount = 0;
+	    // Calculate tax for each cart item
 	    foreach ($this->items as $item) {
-	    	$itemTaxableAmount = $item->sale_amount ? $item->sale_amount : $item->amount;
-	        $taxableAmount += $item->notax == 1 ? 0 : $itemTaxableAmount * $item->quantity;
+
+	    	// Skip if product is exempt from tax
+	    	if ($item->notax == 1) continue;
+
+	    	// Initialize applicable taxes array. Start with 0 so we can use max() later on.
+	    	$applicableTaxes = [0];
+
+	    	// Get taxable amount
+	    	$taxableAmount = $item->sale_amount ? $item->sale_amount * $item->quantity : $item->amount * $item->quantity;
+
+	    	// Check for product-specific tax rules
+	    	$productTax = page($item->uri)->tax();
+	    	if ($productTax->exists() and !$productTax->isEmpty()) {
+	    		$itemTaxCategories = yaml($productTax);
+	    	} else {
+	    		$itemTaxCategories = $taxCategories;
+	    	}
+
+	    	// Add applicable tax to the taxes array
+    	  foreach ($itemTaxCategories as $i => $taxCategory) {
+    	  	if ($this->appliesToCountry($taxCategory)) {
+    	    		$applicableTaxes[] = $taxCategory['rate'] * $taxableAmount;
+    	  	}
+    		}
+
+    		// Add highest applicable tax to the cart tax
+    		$cartTax += max($applicableTaxes);
 	    }
 
-	    foreach ($taxCategories as $taxCategory) {
-	    	if ($this->appliesToCountry($taxCategory)) {
-	      		$taxes[] = $taxCategory['rate'] * $taxableAmount;
-	    	}
-	  	}
-
-	  	if (count($taxes) > 0) {
-	    	return max($taxes);
-	  	}
-
-	    return 0;
+	  	// Return the total Cart tax
+	    return $cartTax;
 	}
 }

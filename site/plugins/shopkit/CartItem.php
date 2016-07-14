@@ -95,7 +95,7 @@ class CartItem
         $this->weight = $variant['weight'];
         $this->quantity = $quantity;
         $this->noshipping = $product->noshipping()->value;
-        $this->notax = $product->notax()->value;
+        $this->notax = $product->notax()->exists() ? $product->notax()->value : 0; // Legacy. notax() field removed in Shopkit 1.1
 	}
 
     /**
