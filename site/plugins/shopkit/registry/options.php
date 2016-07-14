@@ -2,9 +2,6 @@
 
 // Options
 
-// Set homepage
-$kirby->set('option', 'home', 'shop');
-
 // Custom panel styles
 $kirby->set('option', 'panel.stylesheet', '/assets/css/panel.css');
 

@@ -32,7 +32,6 @@ if ($country = get('country')) {
 }
 s::set('country',$country);
 
-
 // Set discount code from query string or user profile
 if ($discountCode = get('dc') or ($user = site()->user() and $discountCode = $user->discountcode())) {
   s::set('discountCode', strtoupper($discountCode));

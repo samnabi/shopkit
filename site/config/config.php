@@ -28,7 +28,19 @@ A list of supported timezones can be found at http://php.net/manual/en/timezones
 
 */
 
-c::set('timezone','UTC');
+c::set('timezone', 'UTC');
+
+
+/* 
+---------------------------------------
+Homepage
+---------------------------------------
+
+If you don't want the shop to be your homepage, you can change this.
+
+*/
+
+c::set('home', 'shop');
 
 
 /* 
