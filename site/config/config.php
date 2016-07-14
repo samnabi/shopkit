@@ -2,20 +2,16 @@
 
 /*
 ---------------------------------------
-   License Setup
+License Setup
 ---------------------------------------
 
 Please add your license keys here.
 
-You should have received your Kirby key via email
-after purchasing Kirby on http://getkirby.com/buy
+You should have received your Kirby key via email after purchasing Kirby on http://getkirby.com/buy
 
-It is not permitted to run a public website without
-valid license keys. Please read the End User License Agreement
-for more information: http://getkirby.com/license
+It is not permitted to run a public website without valid license keys. Please read the End User License Agreement for more information: http://getkirby.com/license
 
-You can retrieve your Shopkit license key from
-http://shopkit.samnabi.com. Log in or create an account with the email address you used to buy the license, then click on "View Orders"
+You can retrieve your Shopkit license key from http://shopkit.samnabi.com. Log in or create an account with the email address you used to buy the license. Then click on "View Orders"
 
 */
 
@@ -27,6 +23,8 @@ c::set('license-shopkit', ''); // put your Shopkit license key here
 ---------------------------------------
 Timezone
 ---------------------------------------
+
+A list of supported timezones can be found at http://php.net/manual/en/timezones.php.
 
 */
 
@@ -44,10 +42,6 @@ and all those nifty little typography details.
 
 You can read more about it here: 
 http://michelf.com/projects/php-smartypants/typographer/
-
-Smartypants is switched off by default. 
-As soon as it is switched on it will affect all 
-texts which are parsed by kirbytext()
 
 */
 
