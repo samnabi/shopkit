@@ -11,6 +11,10 @@ site/plugins/dompdf/lib/fonts/log.htm
 # Ignore Photoshop files
 /assets/psd/*
 
+# Ignore generated thumbnails
+/thumbs/*
+!/thumbs/.gitkeep
+
 # Ignore non-default content files
 /content/1-shop/*
 !/content/1-shop/cart
