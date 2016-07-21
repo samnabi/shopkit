@@ -49,50 +49,33 @@ $kirby->set('route',[
     site()->visit('shop', (string) site()->detectedLanguage());
     site()->kirby->localize();
     
-    snippet('cart.process.post');
+    snippet('order.create');
   }
 ]);
-$kirby->set('route',[
+$kirby->set('route', [
   // Forwards transaction data to payment gateway
-  'pattern' => 'shop/cart/process',
-  'method' => 'GET',
-  'action' => function() {
+  'pattern' => 'shop/cart/process/(:any)/(:any)',
+  'action' => function($gateway, $txn_id) {
 
     // Set detected language
     site()->visit('shop', (string) site()->detectedLanguage());
     site()->kirby->localize();
 
-    snippet('cart.process.get');
+    // Get the transaction file we just created
+    $txn = page('shop/orders/'.$txn_id);
+    if(!$txn) go('shop/cart');
+
+    // Load gateway processing snippet
+    snippet($gateway.'.process', ['cart' => Cart::getCart(), 'txn' => $txn]);
   }
 ]);
 $kirby->set('route',[
   // Payment gateway listener
-  'pattern' => 'shop/cart/notify',
+  'pattern' => 'shop/cart/callback/(:any)',
   'method' => 'POST',
-  'action' => function() {
-
-    // Set detected language
-    site()->visit('shop', (string) site()->detectedLanguage());
-    site()->kirby->localize();
-
-    if (get('mc_gross')) {
-      // PayPal transaction
-      snippet('payment.success.paypal');
-    } else if (get('paylater')) {
-      // Pay Later transaction
-      snippet('payment.success.paylater');
-    }
+  'action' => function($gateway) {
+    snippet($gateway.'.callback');
     return true;
-  }
-]);
-$kirby->set('route',[
-  // Landing page after payment
-  'pattern' => 'shop/cart/return',
-  'method' => 'POST',
-  'action' => function() {
-    $cart = Cart::getCart();
-    $cart->emptyItems();
-    return go('shop/confirm?txn_id='.get('custom'));
   }
 ]);
 $kirby->set('route',[
@@ -100,7 +83,7 @@ $kirby->set('route',[
   'pattern' => '(:all)/shop/orders/pdf',
   'method' => 'POST',
   'action' => function($lang) {
-    snippet('orders.pdf', ['lang' => $lang]);
+    snippet('order.pdf', ['lang' => $lang]);
     return true;
   }
 ]);

@@ -1,0 +1,1 @@
+<?php snippet('paylater.callback', ['txn' => $txn]) ?>

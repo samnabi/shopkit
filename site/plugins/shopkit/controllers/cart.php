@@ -5,6 +5,20 @@ return function($site, $pages, $page) {
     // Initialize cart
     $cart = Cart::getCart();
 
+    // Get gateways
+    $gateways = [];
+    foreach (new DirectoryIterator(__DIR__.DS.'../gateways') as $file) {
+      if (!$file->isDot() and $file->isDir()) {
+        // Make sure the gateways show up in the right order
+        if ($start = strpos($file->getFileName(), '-')) {
+            $gateway_slug = substr($file->getFilename(), $start+1);
+        } else {
+            $gateway_slug = $file->getFilename();
+        }
+        $gateways[] = $gateway_slug;
+      }
+    }
+
     // Handle cart updates
     if ($action = get('action')) {
         $id = get('id', implode('::', array(get('uri', ''), get('variant', ''), get('option', ''))));
@@ -112,5 +126,6 @@ return function($site, $pages, $page) {
         'countries' => $countries,
         'shipping_rates' => $shipping_rates,
         'shipping' => $shipping,
+        'gateways' => $gateways,
     ];
 };

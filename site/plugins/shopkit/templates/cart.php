@@ -7,7 +7,7 @@
 <h1 dir="auto"><?php echo $page->title()->html() ?></h1>
 
 <?php if ($cart->count() === 0) { ?>
-    <div class="uk-alert uk-alert-warning">
+    <div class="uk-alert">
         <p dir="auto"><?php echo l::get('no-cart-items') ?></p>
     </div>
 <?php } else { ?>
@@ -160,49 +160,45 @@
             <p dir="auto"><?php echo l::get('terms-conditions') ?> <a href="<?php echo $tc->url() ?>" target="_blank"><?php echo $tc->title() ?></a>.</p>
         </div>
     <?php } ?>
-
-    <!-- Paypal form -->
-    <form method="post" action="<?php echo url('shop/cart/process') ?>">
-
-        <?php if (page('shop')->paypal_action() != 'live') { ?>
-            <div class="uk-alert uk-alert-warning">
-                <p dir="auto"><?php echo l::get('sandbox-message') ?></p>
-            </div>
-        <?php } ?>
-
-        <input type="hidden" name="gateway" value="paypal">
-
-        <div class="forRobots">
-          <label for="subject"><?php echo l::get('honeypot-label') ?></label>
-          <input type="text" name="subject">
-        </div>
-
-        <div class="uk-container uk-padding-remove">
-            <button class="uk-button uk-button-primary uk-width-small-1-1 uk-width-medium-2-3 uk-align-medium-right" type="submit">
-                <div class="uk-margin-small-top"><?php echo l::get('pay-now') ?></div>
-                <img class="uk-margin-bottom" src="<?php echo $page->image('paypal-cards.png')->thumb(['height'=>50])->dataUri() ?>" alt="PayPal">
-            </button>
-        </div>
-    </form>
-
-    <!-- Pay later form -->
-    <?php if ($cart->canPayLater()) { ?>
-        <form method="post" action="<?php echo url('shop/cart/process') ?>">
-            <input type="hidden" name="gateway" value="paylater">
+    
+    <!-- Gateway payment buttons -->
+    <?php foreach($gateways as $gateway) { ?>
+        <?php if ($gateway == 'paylater' and !$cart->canPayLater()) continue ?>
+        <?php $g = $kirby->get('option', 'gateway-'.$gateway) ?>
+        <form method="post" action="<?= url('shop/cart/process') ?>">
+            
+            <input type="hidden" name="gateway" value="<?= $gateway ?>">
 
             <div class="forRobots">
-              <label for="subject"><?php echo l::get('honeypot-label') ?></label>
+              <label for="subject"><?= l::get('honeypot-label') ?></label>
               <input type="text" name="subject">
             </div>
 
             <div class="uk-container uk-padding-remove">
-                <button class="uk-button uk-width-small-1-1 uk-width-medium-2-3 uk-align-medium-right" type="submit"><?php echo l::get('pay-later') ?></button>
+                <button class="uk-button uk-button-primary uk-width-small-1-1 uk-width-medium-2-3 uk-align-medium-right" type="submit">
+                    <?php if (!$g['logo']) { ?>
+                        <?= $g['label'] ?>
+                    <?php } else { ?>
+                        <?php
+                            $logo_path = $g['logo'];
+                            $logo_data = base64_encode(file_get_contents($logo_path));
+                            $logo_src = 'data: '.mime_content_type($logo_path).';base64,'.$logo_data;
+                        ?>
+                        <img class="uk-margin uk-margin-top" src="<?= $logo_src ?>" alt="<?= $g['label'] ?>">
+                    <?php } ?>
+
+                    <?php if (isset($g['sandbox']) and $g['sandbox']) { ?>
+                        <div class="uk-alert uk-alert-warning uk-margin-top-remove">
+                            <?= l::get('sandbox-message') ?>
+                        </div>
+                    <?php } ?>
+                </button>
             </div>
         </form>
     <?php } ?>
 
     <script type="text/javascript">
-        // Remove setCountry and setShipping submit buttons
+        // Hide setCountry and setShipping submit buttons
         document.querySelector('#setCountry button').style.display = 'none';
         document.querySelector('#setShipping button').style.display = 'none';
     </script>

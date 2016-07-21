@@ -34,14 +34,6 @@ Currency-position: before
 
 ----
 
-Paypal-email: 
-
-----
-
-Paypal-action: sandbox
-
-----
-
 Featured: 
 
 ----

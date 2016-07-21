@@ -2,9 +2,6 @@
 
 // Register snippets
 $kirby->set('snippet', 'breadcrumb',                 __DIR__.DS.'..'.DS.'snippets'.DS.'breadcrumb.php');
-$kirby->set('snippet', 'cart.process.get',           __DIR__.DS.'..'.DS.'snippets'.DS.'cart.process.get.php');
-$kirby->set('snippet', 'cart.process.paypal',        __DIR__.DS.'..'.DS.'snippets'.DS.'cart.process.paypal.php');
-$kirby->set('snippet', 'cart.process.post',          __DIR__.DS.'..'.DS.'snippets'.DS.'cart.process.post.php');
 $kirby->set('snippet', 'footer',                     __DIR__.DS.'..'.DS.'snippets'.DS.'footer.php');
 $kirby->set('snippet', 'header.background.style',    __DIR__.DS.'..'.DS.'snippets'.DS.'header.background.style.php');
 $kirby->set('snippet', 'header.nav',                 __DIR__.DS.'..'.DS.'snippets'.DS.'header.nav.php');
@@ -19,10 +16,8 @@ $kirby->set('snippet', 'logo',                       __DIR__.DS.'..'.DS.'snippet
 $kirby->set('snippet', 'mail.order.notify',          __DIR__.DS.'..'.DS.'snippets'.DS.'mail.order.notify.php');
 $kirby->set('snippet', 'mail.order.update.error',    __DIR__.DS.'..'.DS.'snippets'.DS.'mail.order.update.error.php');
 $kirby->set('snippet', 'mail.paypal.tamper',         __DIR__.DS.'..'.DS.'snippets'.DS.'mail.paypal.tamper.php');
-$kirby->set('snippet', 'orders.pdf',                 __DIR__.DS.'..'.DS.'snippets'.DS.'orders.pdf.php');
-$kirby->set('snippet', 'payment.success.paylater',   __DIR__.DS.'..'.DS.'snippets'.DS.'payment.success.paylater.php');
-$kirby->set('snippet', 'payment.success.paypal.ipn', __DIR__.DS.'..'.DS.'snippets'.DS.'payment.success.paypal.ipn.php');
-$kirby->set('snippet', 'payment.success.paypal',     __DIR__.DS.'..'.DS.'snippets'.DS.'payment.success.paypal.php');
+$kirby->set('snippet', 'order.create',               __DIR__.DS.'..'.DS.'snippets'.DS.'order.create.php');
+$kirby->set('snippet', 'order.pdf',                  __DIR__.DS.'..'.DS.'snippets'.DS.'order.pdf.php');
 $kirby->set('snippet', 'sidebar.login',              __DIR__.DS.'..'.DS.'snippets'.DS.'sidebar.login.php');
 $kirby->set('snippet', 'sidebar',                    __DIR__.DS.'..'.DS.'snippets'.DS.'sidebar.php');
 $kirby->set('snippet', 'slider',                     __DIR__.DS.'..'.DS.'snippets'.DS.'slider.php');

@@ -89,7 +89,7 @@
 'logout' => 'Logout',
 
 
-// snippets/orders.pdf.php
+// snippets/order.pdf.php
 
 'bill-to' => 'Bill to',
 'invoice' => 'Invoice',

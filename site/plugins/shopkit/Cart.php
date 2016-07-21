@@ -283,14 +283,6 @@ class Cart
 	    return false;
 	}
 
-	public function getPayPalAction()
-	{
-	  	if(page('shop')->paypal_action() == 'live') {
-	    	return 'https://www.paypal.com/cgi-bin/webscr';
-	  	}
-	    return 'https://www.sandbox.paypal.com/cgi-bin/webscr';
-	}
-
 	/**
 	 * @param array $data Shipping or tax data
 	 */

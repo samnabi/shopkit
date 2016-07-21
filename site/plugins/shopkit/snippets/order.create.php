@@ -1,11 +1,4 @@
 <?php
-/**
- * Variables passed from /shop/cart
- * ================================
- * gateway		  string
- * tax 			  number
- */
-
 // Honeypot trap for robots
 if(r::is('post') and get('subject') != '') go(url('error'));
 
@@ -53,6 +46,6 @@ try {
 }
 
 // Redirect to self with GET, passing along the order ID
-go('shop/cart/process/?gateway='.get('gateway').'&txn_id='.$txn_id);
+go('shop/cart/process/'.get('gateway').'/'.$txn_id);
 
 ?>

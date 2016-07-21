@@ -89,7 +89,7 @@
 'logout' => 'Déconnexion',
 
 
-// snippets/orders.pdf.php
+// snippets/order.pdf.php
 
 'bill-to' => 'Facturer à',
 'invoice' => 'Facture',

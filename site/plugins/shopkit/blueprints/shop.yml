@@ -41,6 +41,10 @@ fields:
     label: Shipping & tax
     type: tabs
     icon: calculator
+  mailing-address:
+    label: Mailing address
+    type: checkbox 
+    text: Require a mailing address for each order
   shipping:
     label: Shipping methods
     help: 
@@ -117,19 +121,6 @@ fields:
     default: before
     width: 1/2
     required: true
-  paypal-email:
-    label: PayPal email address
-    type: email
-    width: 1/2
-  paypal-action:
-    label: PayPal status
-    type: select
-    options:
-      sandbox: Sandbox (for testing purposes)
-      live: Live (for real purchases)
-    default: sandbox
-    width: 1/2
-    required: true
   paylater:
     label: Pay later
     help: Who can submit an order without paying online?
@@ -139,10 +130,6 @@ fields:
       any: Anyone
       logged-in: Logged-in customers
       admin: Admin users
-  mailing-address:
-    label: Mailing address
-    type: checkbox 
-    text: Require a mailing address for each order
   notifications:
     label: Order notifications
     help: Notify specific email addresses when orders are submitted

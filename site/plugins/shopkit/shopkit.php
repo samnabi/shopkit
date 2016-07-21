@@ -1,5 +1,23 @@
 <?php
 
+// Include payment gateways (this needs to happen first, so they can be accessed by other routes)
+foreach (new DirectoryIterator(__DIR__.DS.'gateways') as $file) {
+  if (!$file->isDot() and $file->isDir()) {
+    
+    // Find the gateway slug
+    if ($start = strpos($file->getFileName(), '-')) {
+        $gateway_slug = substr($file->getFilename(), $start+1);
+    } else {
+        $gateway_slug = $file->getFilename();
+    }
+
+    // Load the config values and snippets
+    require('gateways/'.$file->getFilename().'/config.php');
+    $kirby->set('snippet', $gateway_slug.'.process', __DIR__.'/gateways/'.$file->getFilename().'/process.php');
+    $kirby->set('snippet', $gateway_slug.'.callback', __DIR__.'/gateways/'.$file->getFilename().'/callback.php');
+  }
+}
+
 // Extension registry
 require('registry/blueprints.php');
 require('registry/controllers.php');
@@ -17,19 +35,19 @@ $cart = Cart::getCart();
 
 // Set country as a session variable
 if ($country = get('country')) {
-    // First: See if country was sent through a form submission.
-    // Translate country code to UIDs if needed
-    $c = page('shop/countries')->children()->filterBy('countrycode',$country)->first();
-    if ($c) $country = $c->uid();
+  // First: See if country was sent through a form submission.
+  // Translate country code to UIDs if needed
+  $c = page('shop/countries')->children()->filterBy('countrycode',$country)->first();
+  if ($c) $country = $c->uid();
 } else if (s::get('country')) {
-    // Second option: the country has already been set in the session
-    $country = s::get('country');
+  // Second option: the country has already been set in the session
+  $country = s::get('country');
 } else if ($user = site()->user()) {
-    // Third option: see if the user has set a country in their profile
-    $country = $user->country();
+  // Third option: see if the user has set a country in their profile
+  $country = $user->country();
 } else {
-    // Last resort: assume everybody is American. Lol.
-    $country = 'united-states';
+  // Last resort: assume everybody is American. Lol.
+  $country = 'united-states';
 }
 s::set('country',$country);
 
@@ -43,15 +61,14 @@ if ($discountCode = get('dc') or ($user = site()->user() and $discountCode = $us
  * Helper function to format price
  */
 
-function formatPrice($number)
-{
-    $symbol = page('shop')->currency_symbol();
-    $currencyCode = page('shop')->currency_code();
-    if (page('shop')->currency_position() == 'before') {
-    	return '<span property="priceCurrency" content="'.$currencyCode.'">'.$symbol.'</span> <span property="price" content="'.number_format($number,2,'.','').'">'.number_format($number,2,'.','').'</span>';
-  	} else {
-    	return number_format($number,2,'.','') . '&nbsp;' . $symbol;
-  	}
+function formatPrice($number) {
+  $symbol = page('shop')->currency_symbol();
+  $currencyCode = page('shop')->currency_code();
+  if (page('shop')->currency_position() == 'before') {
+  	return '<span property="priceCurrency" content="'.$currencyCode.'">'.$symbol.'</span> <span property="price" content="'.number_format($number,2,'.','').'">'.number_format($number,2,'.','').'</span>';
+	} else {
+  	return number_format($number,2,'.','') . '&nbsp;' . $symbol;
+	}
 }
 
 
@@ -60,20 +77,18 @@ function formatPrice($number)
  * Returns the number of items in stock, or TRUE if there's no stock limit.
  */
 
-function inStock($variant)
-{
+function inStock($variant) {
+  // It it's a blank string, item has unlimited stock
+  if (!is_numeric($variant->stock()->value) and $variant->stock()->value === '') return true;
 
-    // It it's a blank string, item has unlimited stock
-    if (!is_numeric($variant->stock()->value) and $variant->stock()->value === '') return true;
+  // If it's zero then the item is out of stock
+  if (is_numeric($variant->stock()->value) and intval($variant->stock()->value) === 0) return false;
 
-    // If it's zero then the item is out of stock
-    if (is_numeric($variant->stock()->value) and intval($variant->stock()->value) === 0) return false;
+  // If it's greater than zero, return the number of items
+  if (is_numeric($variant->stock()->value) and intval($variant->stock()->value) > 0) return intval($variant->stock()->value);
 
-    // If it's greater than zero, return the number of items
-    if (is_numeric($variant->stock()->value) and intval($variant->stock()->value) > 0) return intval($variant->stock()->value);
-
-    // Otherwise, assume unlimited stock and return true
-    return true;
+  // Otherwise, assume unlimited stock and return true
+  return true;
 }
 
 
@@ -85,25 +100,24 @@ function inStock($variant)
  * ]
  */
 
-function updateStock($items)
-{
-    foreach($items as $i => $item){
-      $product = page($item['uri']);
-      $variants = $product->variants()->yaml();
-      foreach ($variants as $key => $variant) {
-        if (str::slug($variant['name']) === $item['variant']) {
-          if ($variant['stock'] === '') {
-            // Unlimited stock
-            $variants[$key]['stock'] = '';
-          } else {
-            // Limited stock
-            $variants[$key]['stock'] = $variant['stock'] - $item['quantity'];
-          }
-          // Update the entire variants field (only one variant has changed)
-          $product->update(array('variants' => yaml::encode($variants)));
+function updateStock($items) {
+  foreach($items as $i => $item){
+    $product = page($item['uri']);
+    $variants = $product->variants()->yaml();
+    foreach ($variants as $key => $variant) {
+      if (str::slug($variant['name']) === $item['variant']) {
+        if ($variant['stock'] === '') {
+          // Unlimited stock
+          $variants[$key]['stock'] = '';
+        } else {
+          // Limited stock
+          $variants[$key]['stock'] = $variant['stock'] - $item['quantity'];
         }
+        // Update the entire variants field (only one variant has changed)
+        $product->update(array('variants' => yaml::encode($variants)));
       }
     }
+  }
 }
 
 

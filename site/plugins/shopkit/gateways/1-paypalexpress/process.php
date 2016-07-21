@@ -1,15 +1,12 @@
 <?php
-	// Check if user is coming from the cart page or from PayPal
-	s::start();
-	if (s::get('sendBack')) {
-		// If coming from PayPal, kick them back to the cart
-		s::remove('sendBack');
-		go('shop/cart');
-	} else {
-		s::set('sendBack',true);
-	}
+	/**
+	 * Variables passed from /shop/cart/process/GATEWAY/TXN_ID
+	 *
+	 * $cart 		Cart object
+	 * $txn 		Transaction page object
+	 */
+	$paypalexpress = kirby()->get('option', 'gateway-paypalexpress');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,15 +20,15 @@
 <body>
 	<p><?php echo l::get('redirecting') ?></p>
 
-	<form method="post" action="<?php echo $cart->getPayPalAction() ?>" name="paypal">
+	<form method="post" action="<?php echo $paypalexpress['sandbox'] ? $paypalexpress['url_sandbox'] : $paypalexpress['live']  ?>" name="paypalexpress">
 		<!-- Setup fields -->
 		<input type="hidden" name="cmd" value="_cart"> <!-- Identifies a shopping cart purchase -->
 		<input type="hidden" name="upload" value="1">  <!-- Identifies a third-party cart -->
-		<input type="hidden" name="return" value="<?php echo url() ?>/shop/cart/return">
+		<input type="hidden" name="return" value="<?php echo url('shop/confirm?txn_id='.$txn->slug()) ?>">
 		<input type="hidden" name="rm" value="2"> <!-- Return method: POST, all variables passed -->
-		<input type="hidden" name="cancel_return" value="<?php echo url() ?>/shop/cart">
-		<input type="hidden" name="notify_url" value="<?php echo url() ?>/shop/cart/notify">
-		<input type="hidden" name="business" value="<?php echo page('shop')->paypal_email() ?>">
+		<input type="hidden" name="cancel_return" value="<?php echo url('/shop/cart') ?>">
+		<input type="hidden" name="notify_url" value="<?php echo url('/shop/cart/callback/paypalexpress') ?>">
+		<input type="hidden" name="business" value="<?= $paypalexpress['email'] ?>">
 		<input type="hidden" name="currency_code" value="<?php echo page('shop')->currency_code() ?>">
 
 		<!-- Cart items -->
@@ -72,7 +69,7 @@
 
 	<script>
 		// Automatically submit the form
-		document.paypal.submit();
+		document.paypalexpress.submit();
 	</script>
 </body>
 </html>

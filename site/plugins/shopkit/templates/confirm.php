@@ -14,8 +14,8 @@
 
 <h2 dir="auto"><?= l::get('personal-details') ?></h2>
 
-<form class="uk-form uk-form-stacked" action="<?php echo url('shop/cart/notify') ?>" method="post">
-	<input type="hidden" name="paylater" value="true">
+<form class="uk-form uk-form-stacked" method="post">
+
     <input type="hidden" name="txn_id" value="<?= $txn->txn_id() ?>">
 
     <div class="uk-form-row">

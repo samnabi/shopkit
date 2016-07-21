@@ -90,7 +90,7 @@
 'logout' =>  'Ausloggen',
 
 
-// snippets/orders.pdf.php
+// snippets/order.pdf.php
 
 'bill-to' => 'Rechnung an',
 'invoice' => 'Rechnung',

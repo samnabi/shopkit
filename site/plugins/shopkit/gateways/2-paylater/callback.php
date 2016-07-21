@@ -1,0 +1,1 @@
+<?php go('/shop/confirm?txn_id='.$txn->txn_id()) ?>
