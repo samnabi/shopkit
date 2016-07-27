@@ -189,6 +189,8 @@
 'paid' => 'Bezahlt',
 'shipped' => 'Verschickt',
 
+'filter' => 'Filter',
+
 
 // templates/product.php
 

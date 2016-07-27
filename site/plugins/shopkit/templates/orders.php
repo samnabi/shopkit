@@ -8,7 +8,7 @@
     <p dir="auto"><?php echo l::get('no-orders') ?></p>
 <?php } ?>
 
-<?php if ($orders->count()) { ?>
+<?php if ($orders and $orders->count()) { ?>
     <div class="uk-overflow-container">
         <table dir="auto" class="uk-table uk-table-striped">
             <thead>
@@ -16,7 +16,25 @@
                     <th></th>
                     <th><?php echo l::get('products') ?></th>
                     <th><?php echo l::get('price') ?></th>
-                    <th><?php echo l::get('status') ?></th>
+                    <th>
+                        <?php echo l::get('status') ?>
+                        <label class="toggle" for="filter">
+                            <svg role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <title><?= l::get('filter') ?></title>
+                                <path d="M19 0h-14c-2.762 0-5 2.239-5 5v14c0 2.761 2.238 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-4 4h2v3h-2v-3zm-8 0h2v8h-2v-8zm4 13h-2v3h-2v-3h-2v-3h6v3zm8-5h-2v8h-2v-8h-2v-3h6v3z"/>
+                            </svg>
+                        </label>
+                        <input type="checkbox" id="filter" <?php if(get('status')) echo 'checked' ?>>
+                        <form class="filter uk-form uk-text-small uk-text-center uk-alert uk-grid uk-grid-collapse uk-margin-remove" action="" method="post">
+                            <?php foreach (['pending','paid','shipped'] as $status) { ?>
+                                <label class="uk-width-1-3">
+                                    <input type="checkbox" name="status[]" value="<?= $status ?>" <?php if(get('status') and in_array($status, get('status'))) echo 'checked' ?>><br>
+                                    <?= l::get($status) ?>
+                                </label>
+                            <?php } ?>
+                            <button class="uk-button uk-button-primary uk-button-small uk-width-1-1 uk-margin-small-top"><?= l::get('filter') ?></button>
+                        </form>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -32,10 +50,6 @@
                             <input type="hidden" name="uri" value="<?php echo $order->uri() ?>">
                             <button class="uk-button uk-button-small" type="submit"><?php echo l::get('download-invoice') ?></button>
                         </form>
-                        
-                        <?php if($user and $user->hasPanelAccess() and strpos($order->txn_id(),'paylater') === false) { ?>
-                            <a href="<?php echo $cart->getPayPalAction().'?cmd=_view-a-trans&id='.$order->paypal_txn_id() ?>"><?php echo l::get('view-on-paypal') ?></a>
-                        <?php } ?>
                     </td>
                     <td>
                         <?php echo $order->products()->kirbytext()->bidi() ?>

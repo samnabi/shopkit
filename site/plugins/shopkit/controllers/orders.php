@@ -30,7 +30,7 @@ return function($site, $pages, $page) {
         }
     }
 
-    // Show appropriate orders
+    // Role-based filters
     if (get('txn_id') != '') {
         // If single transaction ID passed, show just that one order
         $orders = $page->children()->sortBy('txn_date','desc')->filterBy('txn_id',get('txn_id'));
@@ -43,6 +43,15 @@ return function($site, $pages, $page) {
     } else {
         // If not logged in, don't show orders
         $orders = false;
+    }
+
+    // Status filters
+    if (get('status')) {
+        // Need to wait until Kirby 2.3.2 for the 'in' operator
+        // $orders = $orders->filterBy('status', 'in', get('status'));
+        $orders = $orders->filter(function($order){
+            return in_array($order->status(), get('status'));
+        });
     }
 
     return [

@@ -475,34 +475,35 @@ a.slideshow {
 	}
 }
 
-
-// Events Calendar
-
-.events thead th {
-	position: relative;
-}
-.events tbody td span {
-	display: block;
-	height: 2.2rem;
-	line-height: 2.2rem;
+// Orders page
+.toggle svg {
 	vertical-align: middle;
-}
-.prevArrow,
-.nextArrow {
-	position: absolute;
-	top: 0;
-}
-.prevArrow { left: 0; }
-.nextArrow { right: 0; }
+	height: 1.5rem;
+	margin-top: -0.2rem;
+	fill: #3399ff;
+	cursor: pointer;
 
-.events td a {
-	display: block;
+	&:hover,
+	&:focus {
+		fill: #40B7E3;
+	}
 
-	&:hover {
-		text-decoration: none;
+	&:active {
+		fill: #0A90C2;
 	}
 }
+.toggle + input {
+	visibility: hidden;
 
-.events .today {
-	background: #eeeeee;
+	& + form {
+		display: none;
+	}
+
+	&:checked {
+		margin-bottom: 1rem;
+	}
+
+	&:checked + form {
+		display: block;
+	}
 }

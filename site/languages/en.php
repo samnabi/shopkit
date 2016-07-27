@@ -188,6 +188,8 @@
 'paid' => 'Paid',
 'shipped' => 'Shipped',
 
+'filter' => 'Filter',
+
 
 // templates/product.php
 
