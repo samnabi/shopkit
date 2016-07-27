@@ -20,8 +20,11 @@
 	path = site/plugins/shopkit/fields/markdown
 	url = https://github.com/JonasDoebertin/kirby-visual-markdown.git
 [submodule "site/plugins/shopkit/fields/selector"]
-	path = site/plugins/shopkit/fields/selector
+	path = site/plugins/field-selector/
 	url = https://github.com/storypioneers/kirby-selector.git
 [submodule "site/plugins/shopkit/fields/place"]
 	path = site/plugins/shopkit/fields/place
 	url = https://github.com/AugustMiller/kirby-place-field.git
+[submodule "site/plugins/field-selector"]
+	path = site/plugins/field-selector
+	url = https://github.com/storypioneers/kirby-selector
