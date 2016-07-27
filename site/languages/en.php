@@ -182,6 +182,8 @@
 'status' => 'Status',
 
 'download-invoice' => 'Download Invoice (PDF)',
+'download-files' => 'Download Files',
+'download-expired' => 'Download Expired',
 'view-on-paypal' => 'View on PayPal',
 
 'pending' => 'Pending',

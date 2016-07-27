@@ -86,6 +86,20 @@ fields:
         label: Discount codes
         help: Require a discount code to unlock the sale price. You can enter multiple codes.
         type: tags
+      tab3:
+        type: tabs
+        label: Downloads
+        icon: arrow-circle-down
+      download-files:
+        type: selector
+        mode: multiple
+        options: files
+        label: Downloads included in purchase
+      download-days:
+        type: number
+        min: 0
+        label: Number of days to allow downloads
+        help: Download link expires after this many days from the transaction date. Leave blank for no time limit.
   tags:
     label: Tags
     type: tags

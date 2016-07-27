@@ -183,6 +183,8 @@
 'status' => 'État',
 
 'download-invoice' => 'Téléchargez facture (PDF)',
+'download-files' => 'Téléchargez fichiers',
+'download-expired' => 'Téléchargement expiré',
 'view-on-paypal' => 'Accédez sur PayPal',
 
 'pending' => 'En attente',

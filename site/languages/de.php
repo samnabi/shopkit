@@ -183,6 +183,8 @@
 'status' => 'Status',
 
 'download-invoice' => 'Rechnung herunterladen (PDF)',
+'download-files' => 'Dateien herunterladen',
+'download-expired' => 'Download abgelaufen',
 'view-on-paypal' => 'Auf PayPal anzeigen',
 
 'pending' => 'Ausstehend',
