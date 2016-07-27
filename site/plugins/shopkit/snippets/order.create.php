@@ -6,12 +6,33 @@ $cart = Cart::getCart();
 
 $shipping = s::get('shipping');
 
-// Get a text list of products and their quantities
-$products_string = '';
-foreach ($cart->getItems() as $i => $item) $products_string .= $item->fullTitle().' ('.l::get('qty').$item->quantity.')'."\n";
-
 // Set the timestamp so txn-id and txn-date use the same value
 $timestamp = date('U');
+
+// Create a YAML-structured list of products
+$items = [];
+foreach ($cart->getItems() as $i => $item) {
+	// Look for downloads
+	foreach (page($item->uri)->variants()->toStructure() as $variant) {
+		if (str::slug($variant->name()) == $item->variant) {
+			if ($variant->download_files()->isNotEmpty()) {
+
+				// Build full URLs for downloads
+				$files = [];
+				foreach (explode(',', $variant->download_files()) as $filename) {
+					$files[] = url($item->uri).'/'.$filename;
+				}
+
+				// Add downloads properties
+				$item->downloads = [
+					'files' => $files,
+					'expires' => $variant->download_days()->isEmpty() ? NULL : $timestamp + ($variant->download_days()->value * 60 * 60 * 24)
+				];
+			}
+		}
+	} 
+	$items[] = (array)$item;
+}
 
 // Unique transaction ID
 $txn_id = get('gateway').'-'.$timestamp.'-'.bin2hex(openssl_random_pseudo_bytes(2));
@@ -23,7 +44,7 @@ try {
 		'txn-date'  => $timestamp,
 		'txn-currency' => page('shop')->currency_code(),
 		'status'  => 'pending',
-		'products' => $products_string,
+		'products' => "\n".yaml::encode($items),
 		'subtotal' => number_format($cart->getAmount(),2,'.',''),
 		'discount' => number_format($cart->getDiscountAmount(),2,'.',''),
 		'shipping' => $shipping['rate'],
