@@ -37,13 +37,13 @@
 		    <input type="hidden" name="item_name_<?php echo $i ?>" value="<?php echo $item->fullTitle() ?>">
 		    
 		    <?php $itemAmount = $item->sale_amount ? $item->sale_amount : $item->amount ?>
-		    <input type="hidden" name="amount_<?php echo $i ?>" value="<?php echo sprintf('%0.2f', $itemAmount) ?>">
+		    <input type="hidden" name="amount_<?php echo $i ?>" value="<?php echo number_format($itemAmount,2,'.','') ?>">
 
 		    <input type="hidden" name="quantity_<?php echo $i ?>" value="<?php echo $item->quantity ?>">
 		<?php } ?>
 
 		<!-- Cart discount -->
-		<input type="hidden" name="discount_amount_cart" value="<?php echo $txn->discount() ?>">
+		<input type="hidden" name="discount_amount_cart" value="<?php echo $txn->discount() + $txn->giftcertificate() ?>">
 
 		<!-- Shipping -->
 		<input type="hidden" name="shipping_1" value="<?php echo $txn->shipping() ?>">
