@@ -47,7 +47,9 @@ return function($site, $pages, $page) {
 
     // Status filters
     if (get('status')) {
-        $orders = $orders->filterBy('status', 'in', get('status'));
+        $orders = $orders->filter(function($order){
+            return in_array($order->status(), get('status'));
+        });
     }
 
     return [
