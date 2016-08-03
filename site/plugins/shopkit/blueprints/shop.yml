@@ -195,3 +195,23 @@ fields:
         label: Pay later
         type: checkbox
         text: Let customers skip online payment if they use this code
+  gift-certificates:
+    label: Gift certificates
+    help: These can be used multiple times until their balance runs out.
+    type: structure
+    style: table
+    fields:
+      code:
+        label: Certificate code
+        help: Letters and numbers only. Not case-sensitive.
+        type: text
+        required: true
+        validate: alphanum
+      amount:
+        label: Value
+        help: The certificate amount. Numbers only.
+        type: text
+        required: true
+        validate:
+          min: 0
+          - num

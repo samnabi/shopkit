@@ -6,6 +6,15 @@ $cart = Cart::getCart();
 
 $shipping = s::get('shipping');
 
+$discount = getDiscount($cart);
+
+// Set transaction status
+if (get('giftCertificatePaid') == 'true') {
+	$status = 'paid';
+} else {
+	$status = 'pending';
+}
+
 // Set the timestamp so txn-id and txn-date use the same value
 $timestamp = date('U');
 
@@ -43,13 +52,14 @@ try {
 		'txn-id' => $txn_id,
 		'txn-date'  => $timestamp,
 		'txn-currency' => page('shop')->currency_code(),
-		'status'  => 'pending',
+		'status'  => $status,
 		'products' => "\n".yaml::encode($items),
 		'subtotal' => number_format($cart->getAmount(),2,'.',''),
-		'discount' => number_format($cart->getDiscountAmount(),2,'.',''),
+		'discount' => number_format($discount['amount'],2,'.',''),
 		'shipping' => $shipping['rate'],
 		'shipping-method' => $shipping['title'],
-		'tax' => number_format($cart->getTax(),2,'.','')
+		'tax' => number_format($cart->getTax(),2,'.',''),
+		'giftcertificate' => null !== get('giftCertificateAmount') ? number_format(get('giftCertificateAmount'),2,'.','') : '0.00',
 	]);
 
 	// Add payer info if it's available at this point
@@ -61,6 +71,17 @@ try {
 			'payer-address' => page('shop/countries/'.$user->country())->title()
 		], site()->defaultLanguage()->code());
 	}	
+
+	// Update the giftcard balance
+	if ($giftCertificateRemaining = get('giftCertificateRemaining')) {
+		$certificates = page('shop')->gift_certificates()->yaml();
+		foreach ($certificates as $key => $certificate) {
+			if (strtoupper($certificate['code']) == s::get('giftCertificateCode')) {
+				$certificates[$key]['amount'] = number_format($giftCertificateRemaining,2,'.','');
+			}
+		}
+		page('shop')->update(['gift-certificates' => yaml::encode($certificates)]);
+	}
 } catch(Exception $e) {
 	// Order creation failed
 	echo $e->getMessage();

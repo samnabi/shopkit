@@ -68,8 +68,8 @@
 'notification-product-first' => 'Vous n\'avez aucun produit. <a href="'.url('panel').'/pages/',
 'notification-product-last' => '/add" title="Créez un nouveau produit">Créez votre premier produit avec le tableau de bord</a>.',
 'notification-license' => 'Vous n\'avez pas enregistré votre code de license. SVP mettez-le dans le fichier <strong>config.php</strong> avant de donner accès au public.',
-'notification-code' => 'Votre code de rabais <strong><code>'.s::get('discountCode').'</code></strong> sera appliqué à la caisse.',
-
+'notification-discount' => 'Votre code de rabais <strong><code>'.s::get('discountCode').'</code></strong> sera appliqué à la caisse.',
+'notification-giftcertificate' => 'Votre carte cadeau <strong><code>'.s::get('giftCertificateCode').'</code></strong> sera appliqué à la caisse.',
 'notification-login-failed' => 'Le connexion ne pouvait pas être complété. Soit le mot de passe soit le courriel n\'est pas bon.',
 
 
@@ -158,7 +158,10 @@
 'empty-cart' => 'Videz le panier',
 
 'discount' => 'Rabais',
-'discount-apply' => 'Appliquez code',
+'gift-certificate' => 'Carte cadeau',
+'code-apply' => 'Appliquez code',
+
+'remaining' => 'restante',
 
 'no-tax' => 'Aucun taxe',
 'no-shipping' => 'Transport gratuit',

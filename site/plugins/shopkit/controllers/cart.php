@@ -10,8 +10,8 @@ return function($site, $pages, $page) {
     foreach (new DirectoryIterator(__DIR__.DS.'../gateways') as $file) {
       if (!$file->isDot() and $file->isDir()) {
         // Make sure the gateways show up in the right order
-        if ($start = strpos($file->getFileName(), '-')) {
-            $gateway_slug = substr($file->getFilename(), $start+1);
+        if ($start = strpos($file->getFileName(), '-')+1) {
+            $gateway_slug = substr($file->getFilename(), $start);
         } else {
             $gateway_slug = $file->getFilename();
         }
@@ -120,12 +120,25 @@ return function($site, $pages, $page) {
     // Get selected shipping rate
     $shipping = s::get('shipping');
 
+    // Get discount
+    $discount = getDiscount($cart);
+
+    // Get cart total
+    $total = $cart->getAmount() + $cart->getTax() + $shipping['rate'];
+    if ($discount) $total = $total - $discount['amount'];
+
+    // Get gift certificate 
+    $giftCertificate = getGiftCertificate($total);
+
     return [
         'cart' => $cart,
         'items' => $items,
         'countries' => $countries,
         'shipping_rates' => $shipping_rates,
         'shipping' => $shipping,
+        'discount' => $discount,
+        'total' => $total,
+        'giftCertificate' => $giftCertificate,
         'gateways' => $gateways,
     ];
 };

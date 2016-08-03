@@ -52,8 +52,17 @@ if ($country = get('country')) {
 s::set('country',$country);
 
 // Set discount code from query string or user profile
-if ($discountCode = get('dc') or ($user = site()->user() and $discountCode = $user->discountcode())) {
-  s::set('discountCode', strtoupper($discountCode));
+if ($code = get('dc') or ($user = site()->user() and $code = $user->discountcode())) {
+  s::set('discountCode', strtoupper($code));
+} else if (get('dc') === '') {
+  s::remove('discountCode');
+}
+
+// Set gift certificate code from query string
+if ($code = get('gc')) {
+  s::set('giftCertificateCode', strtoupper($code));
+} else if (get('gc') === '') {
+  s::remove('giftCertificateCode');
 }
 
 
@@ -298,7 +307,7 @@ function salePrice($variant) {
   // Check that the discount codes are valid
   if (count($saleCodes) and $saleCodes[0] != '') {
     $saleCodes = array_map('strtoupper', $saleCodes);
-    if (in_array(s::get('discountCode'), $saleCodes)) {
+    if (in_array($cart->discountCode, $saleCodes)) {
       // Codes match, the product is on sale
       return $salePrice;
     } else {
@@ -363,4 +372,72 @@ function resetPassword($email,$firstTime = false) {
     return false;
   }
 
+}
+
+
+/**
+ * Set discount code
+ */
+
+function getDiscount($cart) {
+  // Make sure there's a code
+  if (null == s::get('discountCode')) return false;
+
+  // Find a matching discount code in shop settings
+  $discounts = page('shop')->discount_codes()->toStructure()->filter(function($d){
+    return strtoupper($d->code()) == s::get('discountCode');
+  });
+  if ($discounts == '') return false;
+  $discount = $discounts->first();
+
+  // Check that the minimum order threshold is met
+  if ($discount->minorder() != '' and $cart->getAmount() < $discount->minorder()->value) return false;
+
+  // Calculate discount amount and save the value
+  $value = $discount->amount()->value < 0 ? 0 : $discount->amount()->value;
+  if ($discount->kind() == 'percentage') {
+    $value = $discount->amount()->value > 100 ? 100 : $discount->amount()->value;
+    $amount = $cart->getAmount() * ($value/100);
+  } else if ($discount->kind() == 'amount') {
+    $value = $discount->amount()->value > $cart->getAmount() ? $cart->getAmount() : $discount->amount()->value;
+    $amount = $value;
+  }
+
+  // Return discount data
+  return [
+    'code' => s::get('discountCode'),
+    'amount' => $amount,
+  ];
+}
+
+
+/**
+ * Set gift certificate
+ */
+
+function getGiftCertificate($cartTotal) {
+  // Make sure there's a code
+  if (null == s::get('giftCertificateCode')) return false;
+
+  // Look for a matching certificate code in shop settings
+  $certificates = page('shop')->gift_certificates()->toStructure()->filter(function($c){
+    return strtoupper($c->code()) == s::get('giftCertificateCode');
+  });
+  if ($certificates == '') return false;
+  $certificate = $certificates->first();
+  if (!$certificate) return false;
+  if ($certificate->amount()->value <= 0) return false;
+
+  // Calculate the applicable amount
+  $amount = $certificate->amount()->value > $cartTotal ? $cartTotal : $certificate->amount()->value;
+
+  // Calculate the remaining amount
+  $remaining = ($certificate->amount()->value - $cartTotal) < 0 ? 0 : $certificate->amount()->value - $cartTotal;
+
+  // Return certificate data
+  return [
+    'code' => s::get('giftCertificateCode'),
+    'amount' => $amount,
+    'remaining' => $remaining
+  ];
 }

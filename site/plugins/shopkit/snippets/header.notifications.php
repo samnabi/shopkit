@@ -1,7 +1,6 @@
 <?php
 
 // Shopkit onboarding process
-// This snippet helps new users set up their shop by offering helpful notifications.
 
 $notifications = [];
 
@@ -43,42 +42,42 @@ if ($site->users()->count() === 0) {
 
 }
 
+// Warnings
 
 if (c::get('license-shopkit') == "") {
-
 	// Check if there is a license key
 	$notifications[] = l::get('notification-license');
-
 }
-
 
 ?>
 
 <?php if(count($notifications) > 0) { ?>
-	<div class="uk-alert uk-alert-warning">
-		<?php foreach($notifications as $notification) { ?>
-			<p dir="auto"><?php echo $notification ?></p>
-		<?php } ?>
-	</div>
+	<?php foreach($notifications as $notification) { ?>
+		<div dir="auto" class="uk-alert uk-alert-warning">
+			<?php echo $notification ?>
+		</div>
+	<?php } ?>
 <?php } ?>
 
-
-<!-- Success messages -->
-
 <?php
+// Success messages
 
 $successes = [];
 
-if (s::get('discountCode') != '') {
-	$successes[] = l::get('notification-code');
+if (null !== s::get('discountCode')) {
+	$successes[] = l::get('notification-discount');
 }
 
-if(count($successes) > 0) { ?>
-	
-	<div class="uk-alert uk-alert-success">
-		<?php foreach($successes as $success) { ?>
-			<p dir="auto"><?php echo $success ?></p>
-		<?php } ?>
-	</div>
+if (null !== s::get('giftCertificateCode')) {
+	$successes[] = l::get('notification-giftcertificate');
+}
 
+?>
+
+<?php if(count($successes) > 0) { ?>	
+	<?php foreach($successes as $success) { ?>
+		<div dir="auto" class="uk-alert uk-alert-success">
+			<?php echo $success ?>
+		</div>
+	<?php } ?>
 <?php } ?>

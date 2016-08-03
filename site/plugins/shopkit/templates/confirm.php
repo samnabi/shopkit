@@ -7,8 +7,11 @@
 <h2 dir="auto"><?= l::get('order-details') ?></h2>
 
 <ul dir="auto">
-    <?php foreach ($txn->products()->split("\n") as $product) { ?>
-        <li><?= markdown($product) ?></li>
+    <?php foreach ($txn->products()->toStructure() as $product) { ?>
+        <li>
+            <strong><?= $product->name() ?></strong> / <?= $product->variant() ?> <?= $product->option() != '' ? '/ '.$product->option() : '' ?> / <?= l('qty').' '.$product->quantity() ?><br>
+            <?= formatPrice($product->amount()->value) ?>
+        </li>
     <?php } ?>
 </ul>
 

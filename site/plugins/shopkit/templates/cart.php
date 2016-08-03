@@ -81,19 +81,25 @@
                     <td><?php echo formatPrice($cart->getAmount()) ?></td>
                     <td></td>
                 </tr>
-                <?php $discountAmount = $cart->getDiscountAmount() ? $cart->getDiscountAmount() : 0 ?>
-                <?php if ($pages->find('shop')->discount_codes()->toStructure()->count() > 0) {  ?>
+                <?php if (page('shop')->discount_codes()->toStructure()->count() > 0) {  ?>
                     <tr>
                         <td colspan="2"><?php echo l::get('discount') ?></td>
-                        <?php if ($discountAmount > 0) { ?>
-                            <td class="uk-text-success"><?php echo '&ndash; '.formatPrice($discountAmount) ?></td>
-                            <td></td>
+                        <?php if ($discount) { ?>
+                            <td class="uk-text-success"><?php echo '&ndash; '.formatPrice($discount['amount']) ?></td>
+                            <td class="uk-text-left">
+                                <form method="post" class="uk-form discount">
+                                    <input type="hidden" name="dc" value="">
+                                    <button class="uk-button uk-button-small" type="submit">
+                                        <?php echo l::get('delete') ?>
+                                    </button>
+                                </form>
+                            </td>
                         <?php } else { ?>
                             <td colspan="2" class="uk-text-left">
                                 <form method="post" class="uk-form discount">
-                                    <input type="text" name="dc" class="uk-form-width-small" />
+                                    <input type="text" name="dc" class="uk-form-width-small">
                                     <button class="uk-button" type="submit">
-                                        <?php echo l::get('discount-apply') ?>
+                                        <?php echo l::get('code-apply') ?>
                                     </button>
                                 </form>
                             </td>
@@ -137,19 +143,50 @@
                 <tr>
                     <td colspan="2"><?php echo l::get('tax') ?></td>
                     <td>
-                        <?php $tax = number_format($cart->getTax(),2,'.','') ?>
-                        <?php echo formatPrice($tax) ?>
+                        <?php echo formatPrice($cart->getTax()) ?>
                     </td>
                     <td></td>
                 </tr>
                 <tr class="total">
                     <td colspan="2"><?php echo l::get('total') ?></td>
                     <td>
-                        <?php echo formatPrice($cart->getAmount() + $tax + $shipping['rate'] - $discountAmount) ?>
+                        <?php echo formatPrice($total) ?>
                         <?php echo page('shop')->currency_code() ?>
                     </td>
                     <td></td>
                 </tr>
+                <?php if (page('shop')->gift_certificates()->toStructure()->count() > 0) { ?>
+                    <tr>
+                        <td colspan="2"><?php echo l::get('gift-certificate') ?></td>
+                        <?php if ($giftCertificate) { ?>
+                            <td class="uk-text-success">
+                                <strong>
+                                    <?php echo '&ndash; '.formatPrice($giftCertificate['amount']).' '.page('shop')->currency_code() ?>
+                                </strong><br>
+                                <small>
+                                    <?php echo formatPrice($giftCertificate['remaining']).' '.l::get('remaining') ?>
+                                </small>
+                            </td>
+                            <td class="uk-text-left">
+                                <form method="post" class="uk-form discount">
+                                    <input type="hidden" name="gc" value="">
+                                    <button class="uk-button uk-button-small" type="submit">
+                                        <?php echo l::get('delete') ?>
+                                    </button>
+                                </form>
+                            </td>
+                        <?php } else { ?>
+                            <td colspan="2" class="uk-text-left">
+                                <form method="post" class="uk-form discount">
+                                    <input type="text" name="gc" class="uk-form-width-small">
+                                    <button class="uk-button" type="submit">
+                                        <?php echo l::get('code-apply') ?>
+                                    </button>
+                                </form>
+                            </td>
+                        <?php } ?>
+                    </tr>
+                <?php } ?>
             </tfoot>
         </table>
     </div>
@@ -161,13 +198,15 @@
         </div>
     <?php } ?>
     
-    <!-- Gateway payment buttons -->
-    <?php foreach($gateways as $gateway) { ?>
-        <?php if ($gateway == 'paylater' and !$cart->canPayLater()) continue ?>
-        <?php $g = $kirby->get('option', 'gateway-'.$gateway) ?>
+    <?php if ($giftCertificate and $giftCertificate['amount'] == $total) { ?>
+        <?php $g = $kirby->get('option', 'gateway-paylater') ?>
         <form method="post" action="<?= url('shop/cart/process') ?>">
             
-            <input type="hidden" name="gateway" value="<?= $gateway ?>">
+            <input type="hidden" name="gateway" value="paylater">
+
+            <input type="hidden" name="giftCertificateAmount" value="<?= $giftCertificate['amount'] ?>">
+            <input type="hidden" name="giftCertificateRemaining" value="<?= $giftCertificate['remaining'] ?>">
+            <input type="hidden" name="giftCertificatePaid" value="true">
 
             <div class="forRobots">
               <label for="subject"><?= l::get('honeypot-label') ?></label>
@@ -176,25 +215,51 @@
 
             <div class="uk-container uk-padding-remove">
                 <button class="uk-button uk-button-primary uk-width-small-1-1 uk-width-medium-2-3 uk-align-medium-right" type="submit">
-                    <?php if (!$g['logo']) { ?>
-                        <?= $g['label'] ?>
-                    <?php } else { ?>
-                        <?php
-                            $logo_path = $g['logo'];
-                            $logo_data = base64_encode(file_get_contents($logo_path));
-                            $logo_src = 'data: '.mime_content_type($logo_path).';base64,'.$logo_data;
-                        ?>
-                        <img class="uk-margin uk-margin-top" src="<?= $logo_src ?>" alt="<?= $g['label'] ?>">
-                    <?php } ?>
-
-                    <?php if (isset($g['sandbox']) and $g['sandbox']) { ?>
-                        <div class="uk-alert uk-alert-warning uk-margin-top-remove">
-                            <?= l::get('sandbox-message') ?>
-                        </div>
-                    <?php } ?>
+                    <?= l('confirm-order') ?>
                 </button>
             </div>
         </form>
+    <?php } else { ?>
+        <!-- Gateway payment buttons -->
+        <?php foreach($gateways as $gateway) { ?>
+            <?php if ($gateway == 'paylater' and !$cart->canPayLater()) continue ?>
+            <?php $g = $kirby->get('option', 'gateway-'.$gateway) ?>
+            <form method="post" action="<?= url('shop/cart/process') ?>">
+                
+                <input type="hidden" name="gateway" value="<?= $gateway ?>">
+
+                <?php if ($giftCertificate) { ?>
+                    <input type="hidden" name="giftCertificateAmount" value="<?= $giftCertificate['amount'] ?>">
+                    <input type="hidden" name="giftCertificateRemaining" value="<?= $giftCertificate['remaining'] ?>">
+                <?php } ?>
+
+                <div class="forRobots">
+                  <label for="subject"><?= l::get('honeypot-label') ?></label>
+                  <input type="text" name="subject">
+                </div>
+
+                <div class="uk-container uk-padding-remove">
+                    <button class="uk-button uk-button-primary uk-width-small-1-1 uk-width-medium-2-3 uk-align-medium-right" type="submit">
+                        <?php if (!$g['logo']) { ?>
+                            <?= $g['label'] ?>
+                        <?php } else { ?>
+                            <?php
+                                $logo_path = $g['logo'];
+                                $logo_data = base64_encode(file_get_contents($logo_path));
+                                $logo_src = 'data: '.mime_content_type($logo_path).';base64,'.$logo_data;
+                            ?>
+                            <img class="uk-margin uk-margin-top" src="<?= $logo_src ?>" alt="<?= $g['label'] ?>">
+                        <?php } ?>
+
+                        <?php if (isset($g['sandbox']) and $g['sandbox']) { ?>
+                            <div class="uk-alert uk-alert-warning uk-margin-top-remove">
+                                <?= l::get('sandbox-message') ?>
+                            </div>
+                        <?php } ?>
+                    </button>
+                </div>
+            </form>
+        <?php } ?>
     <?php } ?>
 
     <script type="text/javascript">

@@ -22,11 +22,6 @@ class Cart
 	/**
 	 * @var float
 	 */
-	protected $discountAmount = 0;
-
-	/**
-	 * @var float
-	 */
 	protected $shippingAmount = 0;
 
 	/**
@@ -206,51 +201,6 @@ class Cart
 	}
 
 	/**
-	 * @return object
-	 */
-	private function getDiscountCode()
-	{
-		// Check that the customer has set a discount code
-		if (s::get('discountCode') == '') return false;
-
-		// Look for a matching discount code in shop settings
-		$discount = page('shop')->discount_codes()->toStructure()->filter(function($code){
-			return strtoupper($code->code()) == s::get('discountCode');
-		});
-		if ($discount == '') return false;
-
-		// Return the structure object
-		return $discount->first();
-	}
-
-	/**
-	 * @return float
-	 */
-	public function getDiscountAmount()
-	{
-		// Get the code
-		$discount = $this->getDiscountCode();
-		if (!$discount) return false;
-
-		// Check that the minimum order threshold is met
-		if ($discount->minorder() != '' and $this->amount < $discount->minorder()->value) return false;
-
-		// Calculate discount amount and return the value
-		$value = $discount->amount()->value < 0 ? 0 : $discount->amount()->value;
-		if ($discount->kind() == 'percentage') {
-			$value = $discount->amount()->value > 100 ? 100 : $discount->amount()->value;
-			return $this->amount * ($value/100);
-		} else if ($discount->kind() == 'amount') {
-			$value = $discount->amount()->value > $this->amount ? $this->amount : $discount->amount()->value;
-			return $value;
-		}
-
-		// We should never get to this point
-		return false;
-	}
-
-
-	/**
 	 * @return bool
 	 */
 	public function canPayLater()
@@ -271,8 +221,11 @@ class Cart
 	  	}
 
 	  	// Does the current discount code let them pay later?
-	  	$code = $this->getDiscountCode();
-	  	if ($code and $code->paylater()->bool()) {
+	  	$code = s::get('discountCode');
+	  	$discounts = page('shop')->discount_codes()->toStructure()->filter(function($d){
+	  	  return strtoupper($d->code()) == s::get('discountCode');
+	  	});
+	  	if ($code and $discounts->first()->paylater()->bool()) {
 	  		return true;
 	  	}
 
