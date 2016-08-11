@@ -1,6 +1,6 @@
 # Ignore system files and log files
 .DS_Store
-site/plugins/dompdf/lib/fonts/log.htm
+/site/plugins/dompdf/lib/fonts/log.htm
 
 # Ignore account files and avatars
 /site/accounts/*
