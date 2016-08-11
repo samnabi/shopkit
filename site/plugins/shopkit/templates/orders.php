@@ -115,6 +115,14 @@
                                     </strong>
                                 </td>
                             </tr>
+                            <?php if ($order->giftcertificate()->isNotEmpty() and $order->giftcertificate()->value > 0) { ?>
+                                <tr class="uk-text-success">
+                                    <td><?= str_replace(' ', '&nbsp;', l::get('gift-certificate')) ?></td>
+                                    <td>
+                                        &ndash;&nbsp;<?= number_format($order->giftcertificate()->value,2,'.','') ?>&nbsp;<?= $order->txn_currency() ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </table>
                     </td>
                     <td>
