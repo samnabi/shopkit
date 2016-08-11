@@ -46,10 +46,10 @@
     </div>
 
     <?php snippet('sidebar.login') ?>
-
+    
     <!-- Contact details -->
     <?php $contact = page('contact') ?>
-    <?php if (trim($contact->hours().$contact->phone().$contact->email().$contact->location()->json('address')) != '') { ?>
+    <?php if ($contact->hours()->isNotEmpty() or $contact->phone()->isNotEmpty() or $contact->email()->isNotEmpty() or $contact->location()->isNotEmpty()) { ?>
         <footer class="uk-panel uk-panel-divider uk-margin-large-bottom">
             <h3 dir="auto"><?php echo page('contact')->title()->html() ?></h3>
 
@@ -59,8 +59,6 @@
             <?php } ?>
 
             <dl dir="auto">
-                <?php $contact = page('contact') ?>
-
                 <?php if ($phone = $contact->phone() and $phone != '') { ?>
                     <dt><?php echo l::get('phone') ?></dt>
                     <dd class="uk-margin-bottom"><?php echo $phone ?></dd>

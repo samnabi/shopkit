@@ -16,6 +16,20 @@ $dompdf = new Dompdf();
 // Build the HTML
 $html = '<style>body{font-family: sans-serif;}</style>';
 $html .= '<h1>'.site()->title().'</h1>';
+
+$contact = page('contact');
+if ($phone = $contact->phone() and $phone != '') {
+  $html .='<p><strong>'.l::get('phone').'</strong><br>'.$phone.'</p>';
+}
+if ($email = $contact->email() and $email != '') {
+  $html .='<p><strong>'.l::get('email').'</strong><br>'.$email.'</p>';
+}
+if ($address = $contact->location()->toStructure()->address() and $address != '') {
+  $html .='<p><strong>'.l::get('address').'</strong><br>'.$address.'</p>';
+}
+
+$html .= '<hr>';
+
 $html .= '<p>'.l::get('invoice').' No. <strong>'.$p->txn_id()->value.'</strong> ('.l::get($p->status()->value).')</p>';
 $html .= '<p><em>'.date('F j, Y H:i',$p->txn_date()->value).'</em></p>';
 $html .= '<p>'.l::get('bill-to').': '.$p->payer_id()->value.'   '.$p->payer_email()->value.'</p>';

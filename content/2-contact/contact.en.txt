@@ -16,10 +16,6 @@ Email:
 
 Location: 
 
-address: ""
-lat: null
-lng: null
-
 ----
 
 Hours: 
