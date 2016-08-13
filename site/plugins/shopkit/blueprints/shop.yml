@@ -150,6 +150,10 @@ fields:
           page: shop
           fetch: pages
           template: product
+  error-email:
+    label: Error notifications
+    help: Who will be notified if an order runs into a technical error?
+    type: email
   tab4:
     label: Discounts
     type: tabs
