@@ -214,7 +214,7 @@
             </div>
 
             <div class="uk-container uk-padding-remove">
-                <button class="uk-button uk-button-primary uk-width-small-1-1 uk-width-medium-2-3 uk-align-medium-right" type="submit">
+                <button class="uk-button uk-button-primary uk-align-right" type="submit">
                     <?= l('confirm-order') ?>
                 </button>
             </div>
@@ -224,7 +224,7 @@
         <?php foreach($gateways as $gateway) { ?>
             <?php if ($gateway == 'paylater' and !$cart->canPayLater()) continue ?>
             <?php $g = $kirby->get('option', 'gateway-'.$gateway) ?>
-            <form method="post" action="<?= url('shop/cart/process') ?>">
+            <form class="gateway uk-float-right uk-width-small-1-1 uk-width-medium-1-<?= count($gateways) ?>" method="post" action="<?= url('shop/cart/process') ?>">
                 
                 <input type="hidden" name="gateway" value="<?= $gateway ?>">
 
@@ -239,7 +239,8 @@
                 </div>
 
                 <div class="uk-container uk-padding-remove">
-                    <button class="uk-button uk-button-primary uk-width-small-1-1 uk-width-medium-2-3 uk-align-medium-right" type="submit">
+                    <button class="gateway uk-button uk-button-primary uk-width-1-1" type="submit">
+                        <?= $gateway != 'paylater' ? '<span class="uk-vertical-align-middle">'.l::get('pay-now').'</span>' : '' ?>
                         <?php if (!$g['logo']) { ?>
                             <?= $g['label'] ?>
                         <?php } else { ?>
@@ -248,11 +249,11 @@
                                 $logo_data = base64_encode(file_get_contents($logo_path));
                                 $logo_src = 'data: '.mime_content_type($logo_path).';base64,'.$logo_data;
                             ?>
-                            <img class="uk-margin uk-margin-top" src="<?= $logo_src ?>" alt="<?= $g['label'] ?>">
+                            <img src="<?= $logo_src ?>" alt="<?= $g['label'] ?>">
                         <?php } ?>
 
                         <?php if (isset($g['sandbox']) and $g['sandbox']) { ?>
-                            <div class="uk-alert uk-alert-warning uk-margin-top-remove">
+                            <div class="uk-alert uk-alert-warning">
                                 <?= l::get('sandbox-message') ?>
                             </div>
                         <?php } ?>

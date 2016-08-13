@@ -475,6 +475,23 @@ a.slideshow {
 	}
 }
 
+.gateway {
+	padding: 0 0 0 1rem;
+}
+.gateway button {
+	padding: 0.5rem;
+	line-height: 1;
+}
+.gateway button img {
+	display: block;
+	max-height: 2rem;
+	margin: 0.5rem auto 0;
+}
+.gateway button .uk-alert {
+	margin: 0.5rem 0 0;
+	line-height: 1.5;
+}
+
 // Orders page
 .toggle svg {
 	vertical-align: middle;

@@ -12,7 +12,7 @@
 
 $kirby->set('option', 'gateway-paypalexpress', array(
   'label' => 'PayPal Express Checkout', // Alt text for the Checkout button
-  'logo' => __DIR__.'/paypal-cards.png', // Full PHP path to image (optional)
+  'logo' => __DIR__.'/paypal.png', // Full PHP path to image (optional)
   'sandbox' => true, // set to false when you're ready to go live
   'email' => 'sam@samnabi.com', // Email address associated with the PayPal account
   'debug' => true, // log callback requests into ipn.log
