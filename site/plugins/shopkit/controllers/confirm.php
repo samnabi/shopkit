@@ -12,7 +12,7 @@ return function($site, $pages, $page) {
   if(!$txn) go('shop/cart');
 
 	// Prepopulate form details
-  if (get('payer_name')) {
+  if (get('payer_name') or get('payer_email') or get('payer_address')) {
     // First, get the already-submitted information
     $payer_name = get('payer_name');
     $payer_email = get('payer_email');
