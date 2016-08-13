@@ -28,3 +28,6 @@
 [submodule "site/plugins/field-selector"]
 	path = site/plugins/field-selector
 	url = https://github.com/storypioneers/kirby-selector
+[submodule "site/plugins/shopkit/gateways/2-stripecheckout/stripe-php"]
+	path = site/plugins/shopkit/gateways/2-stripecheckout/stripe-php
+	url = https://github.com/stripe/stripe-php.git
