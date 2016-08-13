@@ -173,7 +173,7 @@ if($_POST['txn_id'] != '' ) {
 
   } else {
     // Integrity check failed - possible tampering
-    snippet('mail.paypal.tamper', ['txn' => $txn]);
+    snippet('mail.order.tamper', ['txn' => $txn]);
     return false;
   }
 } else {
