@@ -8,7 +8,7 @@ return function($site, $pages, $page) {
     // Get gateways
     $gateways = [];
     foreach (new DirectoryIterator(__DIR__.DS.'../gateways') as $file) {
-      if (!$file->isDot() and $file->isDir()) {
+      if (!$file->isDot() and $file->isDir() and is_numeric(substr($file->getFileName(), 0, 1))) {
         // Make sure the gateways show up in the right order
         if ($start = strpos($file->getFileName(), '-')+1) {
             $gateway_slug = substr($file->getFilename(), $start);

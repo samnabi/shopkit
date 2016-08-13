@@ -2,8 +2,8 @@
 
 // Include payment gateways (this needs to happen first, so they can be accessed by other routes)
 foreach (new DirectoryIterator(__DIR__.DS.'gateways') as $file) {
-  if (!$file->isDot() and $file->isDir()) {
-    
+  if (!$file->isDot() and $file->isDir() and is_numeric(substr($file->getFileName(), 0, 1))) {
+
     // Find the gateway slug
     if ($start = strpos($file->getFileName(), '-')) {
         $gateway_slug = substr($file->getFilename(), $start+1);
