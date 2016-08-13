@@ -224,7 +224,7 @@
         <?php foreach($gateways as $gateway) { ?>
             <?php if ($gateway == 'paylater' and !$cart->canPayLater()) continue ?>
             <?php $g = $kirby->get('option', 'gateway-'.$gateway) ?>
-            <form class="gateway uk-float-right uk-width-small-1-1 uk-width-medium-1-<?= count($gateways) ?>" method="post" action="<?= url('shop/cart/process') ?>">
+            <form class="gateway uk-float-right uk-width-small-1-1 uk-width-medium-1-3 uk-width-large-1-4" method="post" action="<?= url('shop/cart/process') ?>">
                 
                 <input type="hidden" name="gateway" value="<?= $gateway ?>">
 
