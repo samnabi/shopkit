@@ -11,4 +11,3 @@ fields:
   text: markdown
   slider:
     extends: slider
-    filter: /^((?!paypal-cards\.png).)*$/
