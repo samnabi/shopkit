@@ -72,7 +72,6 @@ $kirby->set('route', [
 $kirby->set('route',[
   // Payment gateway listener
   'pattern' => 'shop/cart/callback/(:any)',
-  'method' => 'POST',
   'action' => function($gateway) {
     snippet($gateway.'.callback');
     return true;
