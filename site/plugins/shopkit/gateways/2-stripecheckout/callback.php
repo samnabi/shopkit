@@ -53,53 +53,20 @@ if (get('stripeToken') != '') {
         'payer-email' => $customer->email,
       ], 'en');
 
-      // Update product stock
-      $cart = Cart::getCart();
-      $items = [];
-      foreach ($cart->getItems() as $i => $item) {
-        $items[] = ['uri' => $item->uri, 'variant' => $item->variant, 'option' => $item->option, 'quantity' => $item->quantity];
-      }
-      updateStock($items);
-
-      // Notify staff
-      $notifications = page('shop')->notifications()->toStructure();
-      if ($notifications->count()) {
-        foreach ($notifications as $n) {
-          // Reset
-          $send = false;
-
-          // Check if the products match
-          $uids = explode(',',$n->products());
-          if ($uids[0] === '') {
-            $send = true;
-          } else {
-            foreach ($uids as $uid) {
-              foreach ($items as $item) {
-                if (strpos($item['uri'], trim($uid))) $send = true;
-              }
-            }
-          }
-
-          // Send the email
-          if ($send) {
-            snippet('mail.order.notify', [
-              'txn' => $txn,
-              'payment_status' => $payment_status,
-              'payer_name' => '', // None available from Stripe
-              'payer_email' => $customer->email,
-              'payer_address' => '', // None available from Stripe
-              'items' => $items,
-              'n' => $n,
-            ]);
-          }
-        }
-      }
+      // Update stock and notify staff
+      snippet('order.callback', [
+        'txn' => $txn,
+        'status' => $payment_status,
+        'payer_name' => '',
+        'payer_email' => $customer->email,
+        'payer_address' => '',
+      ]);
 
       // Continue to confirmation
-      go(url('shop/confirm/?txn_id='.$txn->txn_id().'&payer_name=&payer_email='.$customer->email));
+      go(url('shop/confirm/?txn_id='.$txn->txn_id().'&payer_email='.$customer->email));
 
     } catch(Exception $e) {
-      // $txn->update(), updateStock(), or notification failed
+      // Updates or notification failed
       snippet('mail.order.update.error', [
         'txn' => $txn,
         'payment_status' => $payment_status,

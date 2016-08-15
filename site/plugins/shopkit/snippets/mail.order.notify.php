@@ -7,10 +7,10 @@ $body .= 'status :'.$payment_status."\n";
 $body .= 'payer-name :'.$payer_name."\n";
 $body .= 'payer-email :'.$payer_email."\n";
 $body .= 'payer-address :'.$payer_address."\n\n";
-foreach ($items as $item) {
-  $body .= page($item['uri'])->title().' - '.$item['variant'];
-  $body .= $item['option'] == '' ? '' : ' - '.$item['option'];
-  $body .= "\n".'Qty: '.$item['quantity']."\n\n";
+foreach ($txn->products()->toStructure() as $item) {
+  $body .= page($item->uri())->title().' - '.$item->variant();
+  $body .= $item->option() == '' ? '' : ' - '.$item->option();
+  $body .= "\n".'Qty: '.$item->quantity()."\n\n";
 }
 
 $email = new Email(array(

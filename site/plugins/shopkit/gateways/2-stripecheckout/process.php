@@ -2,7 +2,6 @@
 	/**
 	 * Variables passed from /shop/cart/process/GATEWAY/TXN_ID
 	 *
-	 * $cart 		Cart object
 	 * $txn 		Transaction page object
 	 */
 	$stripecheckout = kirby()->get('option', 'gateway-stripecheckout');

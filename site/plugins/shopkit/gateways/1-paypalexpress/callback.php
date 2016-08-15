@@ -4,7 +4,7 @@
  *
  * $_POST    All callback response values
  */
-$paypalexpress = c::get('gateway-paypalexpress');
+$paypalexpress = kirby()->get('option', 'gateway-paypalexpress');
 
 // Read POST data from input stream
 $raw_post_data = file_get_contents('php://input');
@@ -120,53 +120,25 @@ if($_POST['txn_id'] != '' ) {
         'payer-address' => $_POST['address_street']."\n".$_POST['address_city'].", ".$_POST['address_state']." ".$_POST['address_zip']."\n".$_POST['address_country']
       ], 'en');
       
-      // Build items array
-      $items = unserialize(urldecode($txn->encoded_items()));
+      // Update stock and notify staff
+      snippet('order.callback', [
+        'txn' => $txn,
+        'status' => $payment_status,
+        'payer_name' => $txn->payer_name(),
+        'payer_email' => $txn->payer_email(),
+        'payer_address' => $txn->payer_address(),
+      ]);
 
-      // Update product stock
-      updateStock($items);
+      return true;
 
-      // Notify staff
-      $notifications = page('shop')->notifications()->toStructure();
-      if ($notifications->count()) {
-        foreach ($notifications as $n) {
-          // Reset
-          $send = false;
-
-          // Check if the products match
-          $uids = explode(',',$n->products());
-          if ($uids[0] === '') {
-            $send = true;
-          } else {
-            foreach ($uids as $uid) {
-              foreach ($items as $item) {
-                if (strpos($item['uri'], trim($uid))) $send = true;
-              }
-            }
-          }
-
-          // Send the email
-          if ($send) {
-            snippet('mail.order.notify', [
-              'txn' => $txn,
-              'payment_status' => $payment_status,
-              'payer_name' => get('first_name')." ".get('last_name'),
-              'payer_email' => get('payer_email'),
-              'payer_address' => get('address_street')."\n".get('address_city').", ".get('address_state')." ".get('address_zip')."\n".get('address_country'),
-              'items' => $items,
-              'n' => $n,
-            ]);
-          }
-        }
-      }
     } catch(Exception $e) {
-      // $txn->update(), updateStock(), or notification failed
+      // Updates or notification failed
       snippet('mail.order.update.error', [
         'txn' => $txn,
         'payment_status' => $payment_status,
-        'payer_name' => get('payer_name'),
-        'payer_email' => get('payer_email'),
-        'payer_address' => get('address_street')."\n".get('address_city').", ".get('address_state')." ".get('address_zip')."\n".get('address_country'),
+        'payer_name' => $_POST['first_name']." ".$_POST['last_name'],
+        'payer_email' => $_POST['payer_email'],
+        'payer_address' => $_POST['address_street']."\n".$_POST['address_city'].", ".$_POST['address_state']." ".$_POST['address_zip']."\n".$_POST['address_country']
       ]);
       return false;
     }

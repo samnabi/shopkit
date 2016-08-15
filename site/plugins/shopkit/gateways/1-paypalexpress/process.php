@@ -2,7 +2,6 @@
 	/**
 	 * Variables passed from /shop/cart/process/GATEWAY/TXN_ID
 	 *
-	 * $cart 		Cart object
 	 * $txn 		Transaction page object
 	 */
 	$paypalexpress = kirby()->get('option', 'gateway-paypalexpress');
@@ -32,14 +31,14 @@
 		<input type="hidden" name="currency_code" value="<?php echo page('shop')->currency_code() ?>">
 
 		<!-- Cart items -->
-		<?php foreach ($cart->getItems() as $i => $item) { ?>
+		<?php foreach ($txn->products()->toStructure() as $i => $item) { ?>
 		    <?php $i++ ?>
-		    <input type="hidden" name="item_name_<?php echo $i ?>" value="<?php echo $item->fullTitle() ?>">
+		    <input type="hidden" name="item_name_<?php echo $i ?>" value="<?php echo $item->name().' - '.$item->variant().' - '.$item->option() ?>">
 		    
-		    <?php $itemAmount = $item->sale_amount ? $item->sale_amount : $item->amount ?>
+		    <?php $itemAmount = $item->sale_amount()->isEmpty() ? $item->sale_amount() : $item->amount() ?>
 		    <input type="hidden" name="amount_<?php echo $i ?>" value="<?php echo number_format($itemAmount,2,'.','') ?>">
 
-		    <input type="hidden" name="quantity_<?php echo $i ?>" value="<?php echo $item->quantity ?>">
+		    <input type="hidden" name="quantity_<?php echo $i ?>" value="<?php echo $item->quantity() ?>">
 		<?php } ?>
 
 		<!-- Cart discount -->
@@ -53,16 +52,6 @@
 
 		<!-- Transaction ID (Callback for the success page to grab the right transaction page) -->
 		<input type="hidden" name="custom" value="<?php echo $txn->slug() ?>">
-
-		<?php
-			// Cart items (To be used in updateStock() upon success).
-			// Needs to be stored in the transaction file because PayPal's variables have a character limit
-			$items = [];
-			foreach ($cart->getItems() as $i => $item) {
-				$items[] = ['uri' => $item->uri, 'variant' => $item->variant, 'option' => $item->option, 'quantity' => $item->quantity];
-			}
-			$txn->update(['encoded-items' => urlencode(serialize($items))]);
-		?>
 
 		<button type="submit"><?php echo l::get('continue-to-paypal') ?></button>
 	</form>

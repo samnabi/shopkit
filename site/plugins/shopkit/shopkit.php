@@ -103,24 +103,22 @@ function inStock($variant) {
 
 /**
  * After a successful transaction, update product stock
- * Expects an array
- * $items = [
- *   [uri, variant, quantity]
- * ]
+ *
+ * $txn page object
  */
 
-function updateStock($items) {
-  foreach($items as $i => $item){
-    $product = page($item['uri']);
+function updateStock($txn) {
+  foreach($txn->products()->toStructure() as $i => $item){
+    $product = page($item->uri());
     $variants = $product->variants()->yaml();
     foreach ($variants as $key => $variant) {
-      if (str::slug($variant['name']) === $item['variant']) {
+      if (str::slug($variant['name']) === $item->variant()) {
         if ($variant['stock'] === '') {
           // Unlimited stock
           $variants[$key]['stock'] = '';
         } else {
           // Limited stock
-          $variants[$key]['stock'] = $variant['stock'] - $item['quantity'];
+          $variants[$key]['stock'] = $variant['stock'] - $item->quantity();
         }
         // Update the entire variants field (only one variant has changed)
         $product->update(array('variants' => yaml::encode($variants)));

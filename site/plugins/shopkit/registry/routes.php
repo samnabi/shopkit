@@ -66,12 +66,13 @@ $kirby->set('route', [
     if(!$txn) go('shop/cart');
 
     // Load gateway processing snippet
-    snippet($gateway.'.process', ['cart' => Cart::getCart(), 'txn' => $txn]);
+    snippet($gateway.'.process', ['txn' => $txn]);
   }
 ]);
 $kirby->set('route',[
   // Payment gateway listener
   'pattern' => 'shop/cart/callback/(:any)',
+  'method' => 'GET|POST',
   'action' => function($gateway) {
     snippet($gateway.'.callback');
     return true;
