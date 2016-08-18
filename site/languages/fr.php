@@ -41,25 +41,18 @@
 'reset-message-last' => 'Si vous n\'avez pas demandé cet action, aucun action n\'est requis.',
 
 
-// snippets/cart.process.php
+// plugins/shopkit/snippets/cart.process.php
 
 'qty' => 'Qté: ',
 
 
-// snippets/cart.process.paypal.php
+// plugins/shopkit/gateways/1-paypalexpress/process.php
 
 'redirecting' => 'Redirection...',
 'continue-to-paypal' => 'Continuez vers PayPal',
 
 
-// snippets/footer.php
-
-'phone' => 'Téléphone',
-'email' => 'Courriel',
-'address' => 'Addresse',
-
-
-// snippets/header.notifications.php
+// site/plugins/shopkit/snippets/header.notifications.php
 
 'notification-account' => 'Vous n\'avez aucun compte. <a href="'.url('panel').'/install" title="Page d\'installation du panneau">Créez-en un maintenant</a>.',
 'notification-login' => 'Finissons l\'installation de votre magasin! <a href="#user">Connectez-vous</a> afin de continuer.',
@@ -73,12 +66,12 @@
 'notification-login-failed' => 'Le connexion ne pouvait pas être complété. Soit le mot de passe soit le courriel n\'est pas bon.',
 
 
-// snippets/header.nav.php
+// site/plugins/shopkit/snippets/header.nav.php
 
 'view-cart' => 'Mon panier',
 
 
-// snippets/header.user.php
+// site/plugins/shopkit/snippets/header.user.php
 
 'edit-page' => 'Éditer la page',
 'edit-shop' => 'Paramètres',
@@ -89,14 +82,14 @@
 'logout' => 'Déconnexion',
 
 
-// snippets/order.pdf.php
+// site/plugins/shopkit/snippets/order.pdf.php
 
 'bill-to' => 'Facturer à',
 'invoice' => 'Facture',
 'transaction-id' => 'Numéro d\'identification',
 
 
-// snippets/payment.success.paypal.php
+// site/plugins/shopkit/snippets/mail.order.notify.php
 'order-notification-subject' => '['.$site->title().'] Nouvelle commande',
 'order-notification-message' => 'Quelqu\'un a passé commande sur '.server::get('server_name').' Gérez les détails de la commande par ici:',
 'order-error-subject' => '['.$site->title().'] Problème avec une commande',
@@ -104,7 +97,7 @@
 'order-error-message-tamper' => "Le paiement est reçu, mais il ne s'associe pas avec la commande passée.\n\nExaminez la problème par ici:",
 
 
-// snippets/sidebar.php
+// site/plugins/shopkit/snippets/sidebar.php
 
 'new-customer' => 'Nouveau client?',
 'forgot-password' => 'Mot de passe oublié',
@@ -114,15 +107,19 @@
 'search-shop' => 'Recherchez',
 'search' => 'Recherchez',
 
+'phone' => 'Téléphone',
+'email' => 'Courriel',
+'address' => 'Addresse',
 
-// snippets/slideshow.product.php
+
+// site/plugins/shopkit/snippets/slideshow.product.php
 
 'prev' => 'Précédent',
 'next' => 'Prochain',
 'view-grid' => 'Vue grille',
 
 
-// templates/account.php
+// site/plugins/shopkit/templates/account.php
 
 'account-success' => 'Votre information est mise à jour.',
 'account-failure' => 'Désolé, votre information ne pouvait être mise à jour. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.',
@@ -138,7 +135,7 @@
 'discount-code-help' => 'Appliquez ce code chaque fois que vous vous connectez.',
 
 
-// templates/cart.php
+// site/plugins/shopkit/templates/cart.php
 
 'no-cart-items' => 'Vous n\'avez rien dans votre panier!',
 
@@ -169,7 +166,7 @@
 'terms-conditions' => 'En continuant avec la transaction, vous acceptez les', // "Conditions" sera ajouté par le template
 
 
-// templates/confirm.php
+// site/plugins/shopkit/templates/confirm.php
 
 'order-details' => 'Détails de la commande',
 'personal-details' => 'Détails personnels',
@@ -177,7 +174,7 @@
 'mailing-address' => 'Addresse postale',
 
 
-// templates/orders.php
+// site/plugins/shopkit/templates/orders.php
 
 'no-orders' => 'Vous n\'avez aucun transaction.',
 'no-auth-orders' => 'Afin de voir les transactions associés à votre compte, SVP <a href="#user">vous incrire ou connectez</a>.',
@@ -197,25 +194,25 @@
 'filter' => 'Filtrer',
 
 
-// templates/product.php
+// site/plugins/shopkit/templates/product.php
 
 'related-products' => 'Produits reliés',
 
 
-// templates/register.php
+// site/plugins/shopkit/templates/register.php
 
 'register-success' => 'Merci, votre compte est inscrit! Vous recevrez un courriel afin d\'activer votre compte.',
 'register-failure' => 'Désolé, votre compte ne pouvait être inscrit. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.',
 'register-duplicate' => 'Désolé, vore compte ne pouvait être inscrit. Il y a déja un compte avec ce nom d\'utilisateur ou courriel.',
 
 
-// templates/reset.php
+// site/plugins/shopkit/templates/reset.php
 'reset-submit' => 'Réinistialiser le mot de passe',
 'reset-success' => 'Vous recevrez un courriel avec des instructions afin de réinitialiser le mot se passe.',
 'reset-error' => 'Désolé, on ne pouvait pas trouver ce compte.',
 
 
-// templates/search.php
+// site/plugins/shopkit/templates/search.php
 
 'no-search-results' => 'Désolé, il n\'y a aucun résultat pour cette recherche.',
 

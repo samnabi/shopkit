@@ -40,25 +40,18 @@
 'reset-message-last' => 'If you did not request this password reset, no action is required on your part.',
 
 
-// snippets/cart.process.php
+// plugins/shopkit/snippets/cart.process.php
 
 'qty' => 'Qty: ',
 
 
-// snippets/cart.process.paypal.php
+// plugins/shopkit/gateways/1-paypalexpress/process.php
 
 'redirecting' => 'Redirecting...',
 'continue-to-paypal' => 'Continue to PayPal',
 
 
-// snippets/footer.php
-
-'phone' => 'Phone',
-'email' => 'Email',
-'address' => 'Address',
-
-
-// snippets/header.notifications.php
+// site/plugins/shopkit/snippets/header.notifications.php
 
 'notification-account' => 'You haven\'t set up any users. <a href="'.url('panel').'/install" title="Panel installation page">Create an account now</a>.',
 'notification-login' => 'Let\'s finish setting up your shop! <a href="#user">Log in</a> to continue.',
@@ -74,12 +67,12 @@
 'notification-login-failed' => 'Sorry, we couldn\'t log you in. Either the password or email address isn\'t right.',
 
 
-// snippets/header.nav.php
+// site/plugins/shopkit/snippets/header.nav.php
 
 'view-cart' => 'View cart',
 
 
-// snippets/header.user.php
+// site/plugins/shopkit/snippets/header.user.php
 
 'edit-page' => 'Edit Page',
 'edit-shop' => 'Shop Settings',
@@ -90,14 +83,14 @@
 'logout' => 'Logout',
 
 
-// snippets/order.pdf.php
+// site/plugins/shopkit/snippets/order.pdf.php
 
 'bill-to' => 'Bill to',
 'invoice' => 'Invoice',
 'transaction-id' => 'Transaction ID',
 
 
-// snippets/payment.success.paypal.php
+// site/plugins/shopkit/snippets/mail.order.notify.php
 'order-notification-subject' => '['.$site->title().'] New order placed',
 'order-notification-message' => 'Someone placed an order from your shop at '.server::get('server_name').'. Manage transaction details here:',
 'order-error-subject' => '['.$site->title().'] Problem with a new order',
@@ -105,7 +98,7 @@
 'order-error-message-tamper' => "A payment was received, but it doesn't match the order that was placed.\n\nInvestigate the transaction details here:",
 
 
-// snippets/sidebar.php
+// site/plugins/shopkit/snippets/sidebar.php
 
 'new-customer' => 'New customer?',
 'forgot-password' => 'Forgot password',
@@ -115,15 +108,19 @@
 'search-shop' => 'Search shop',
 'search' => 'Search',
 
+'phone' => 'Phone',
+'email' => 'Email',
+'address' => 'Address',
 
-// snippets/slideshow.product.php
+
+// site/plugins/shopkit/snippets/slideshow.product.php
 
 'prev' => 'Prev',
 'next' => 'Next',
 'view-grid' => 'View grid',
 
 
-// templates/account.php
+// site/plugins/shopkit/templates/account.php
 
 'account-success' => 'Your information has been updated.',
 'account-failure' => 'Sorry, something went wrong. Please make sure all information is entered correctly, including your email address.',
@@ -138,7 +135,7 @@
 'discount-code' => 'Discount code',
 
 
-// templates/cart.php
+// site/plugins/shopkit/templates/cart.php
 
 'no-cart-items' => 'You don\'t have anything in your cart!',
 
@@ -169,7 +166,7 @@
 'terms-conditions' => 'By continuing with this transaction, you agree to the', // "Terms and Conditions" is appended as a link in the template.
 
 
-// templates/confirm.php
+// site/plugins/shopkit/templates/confirm.php
 
 'order-details' => 'Order details',
 'personal-details' => 'Personal details',
@@ -177,7 +174,7 @@
 'mailing-address' => 'Mailing address',
 
 
-// templates/orders.php
+// site/plugins/shopkit/templates/orders.php
 
 'no-orders' => 'You haven\'t made any orders yet.',
 'no-auth-orders' => 'To see the orders associated with your email address, please <a href="#user">register or log in</a>.',
@@ -197,25 +194,25 @@
 'filter' => 'Filter',
 
 
-// templates/product.php
+// site/plugins/shopkit/templates/product.php
 
 'related-products' => 'Related products',
 
 
-// templates/register.php
+// site/plugins/shopkit/templates/register.php
 
 'register-success' => 'Thanks, your account has been registered! You will receive an email with instructions for activating your account.',
 'register-failure' => 'Sorry, something went wrong. Please make sure all information is entered correctly, including your email address.',
 'register-duplicate' => 'Sorry, there\'s already an account with that username or email address.',
 
 
-// templates/reset.php
+// site/plugins/shopkit/templates/reset.php
 'reset-submit' => 'Reset password',
 'reset-success' => 'You will receive an email with instructions to reset your password.',
 'reset-error' => 'Sorry, we couldn\'t find that account.',
 
 
-// templates/search.php
+// site/plugins/shopkit/templates/search.php
 
 'no-search-results' => 'Sorry, there are no search results for your query.',
 

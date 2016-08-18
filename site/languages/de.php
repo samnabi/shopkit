@@ -1,4 +1,4 @@
-<?php l::set([
+plugins/shopkit/<?php l::set([
 
 // multiple pages 
 
@@ -40,25 +40,18 @@
 'reset-message-last' => 'Wenn Sie dieses Passwort-Reset angefordert hat, wird keine Aktion Ihrerseits erforderlich.',
 
 
-// snippets/cart.process.php
+// plugins/shopkit/snippets/cart.process.php
 
 'qty' => 'Anz.: ',
 
 
-// snippets/cart.process.paypal.php
+// plugins/shopkit/gateways/1-paypalexpress/process.php
 
 'redirecting' =>  'Weiterleiten...',
 'continue-to-paypal' => 'Weiter zu PayPal',
 
 
-// snippets/footer.php
-
-'phone' => 'Telefon',
-'email' => 'E-Mail',
-'address' => 'Adresse',
-
-
-// snippets/header.notifications.php
+// site/plugins/shopkit/snippets/header.notifications.php
 
 'notification-account' => 'Sie haben noch keine Benutzer angelegt. <a href="'.url('panel').'/install" title="Installationsseite">Benutzer anlegen</a>.',
 'notification-login' => 'Lassen Sie uns beenden Sie Ihren Shop einrichten! <a href="#user">Melden Sie</a> sich an, um fortzufahren.',
@@ -75,12 +68,12 @@
 'notification-login-failed' => 'Leider können wir konnte Sie nicht anmelden in. Entweder ist das Kennwort oder E-Mail-Adresse nicht richtig ist.',
 
 
-// snippets/header.nav.php
+// site/plugins/shopkit/snippets/header.nav.php
 
 'view-cart' => 'Warenkorb anzeigen',
 
 
-// snippets/header.user.php
+// site/plugins/shopkit/snippets/header.user.php
 
 'edit-page' =>  'Seite bearbeiten',
 'edit-shop' =>  'Shop Einstellungen',
@@ -91,14 +84,14 @@
 'logout' =>  'Ausloggen',
 
 
-// snippets/order.pdf.php
+// site/plugins/shopkit/snippets/order.pdf.php
 
 'bill-to' => 'Rechnung an',
 'invoice' => 'Rechnung',
 'transaction-id' => 'Transaktions-ID',
 
 
-// snippets/payment.success.paypal.php
+// site/plugins/shopkit/snippets/mail.order.notify.php
 'order-notification-subject' => '['.$site->title().'] New order placed',
 'order-notification-message' => 'Someone placed an order from your shop at '.server::get('server_name').'. Manage transaction details here:',
 'order-error-subject' => '['.$site->title().'] Problem with a new order',
@@ -106,7 +99,7 @@
 'order-error-message-tamper' => "A payment was received, but it doesn't match the order that was placed.\n\nInvestigate the transaction details here:",
 
 
-// snippets/sidebar.php
+// site/plugins/shopkit/snippets/sidebar.php
 
 'new-customer' =>  'Neuer Kunde?',
 'forgot-password' => 'Passwort vergessen',
@@ -116,15 +109,19 @@
 'search-shop' =>  'Shop durchsuchen',
 'search' =>  'Suchen',
 
+'phone' => 'Telefon',
+'email' => 'E-Mail',
+'address' => 'Adresse',
 
-// snippets/slideshow.product.php
+
+// site/plugins/shopkit/snippets/slideshow.product.php
 
 'prev' =>  'Zurück',
 'next' =>  'Weiter',
 'view-grid' =>  'Gitteransicht',
 
 
-// templates/account.php
+// site/plugins/shopkit/templates/account.php
 
 'account-success' => 'Ihre Informationen wurden aktualisiert.',
 'account-failure' => 'Entschuldigung, das hat nicht funktioniert. Bitte stellen Sie sicher, dass alle Informationen korrekt eingegeben wurden, insbesondere die E-Mail Adresse.',
@@ -139,7 +136,7 @@
 'discount-code' => 'Rabattcode',
 
 
-// templates/cart.php
+// site/plugins/shopkit/templates/cart.php
 
 'no-cart-items' => 'Keine Artikel im Warenkorb!',
 
@@ -170,7 +167,7 @@
 'terms-conditions' => 'Durch die Zusammenarbeit mit dieser Transaktion fortfahren, stimmen Sie den', // "Allgemeine Geschäftsbedingungen" wird als Link in der Vorlage angehängt.
 
 
-// templates/confirm.php
+// site/plugins/shopkit/templates/confirm.php
 
 'order-details' => 'Bestelldetails',
 'personal-details' => 'Persönliche Details',
@@ -178,7 +175,7 @@
 'mailing-address' => 'Mailing address',
 
 
-// templates/orders.php
+// site/plugins/shopkit/templates/orders.php
 
 'no-orders' => 'Sie haben noch keine Einkäufe getätigt.',
 'no-auth-orders' => 'Um die Einkäufe über Ihre E-Mail Adresse einzusehen, müssen Sie sich <a href="#user">registrieren oder einloggen</a>.',
@@ -198,25 +195,25 @@
 'filter' => 'Filter',
 
 
-// templates/product.php
+// site/plugins/shopkit/templates/product.php
 
 'related-products' => 'Ähnliche Produkte',
 
 
-// templates/register.php
+// site/plugins/shopkit/templates/register.php
 
 'register-success' => 'Vielen Dank, Ihr Benutzerkonto wurde registriert! Sie können sich nun <a href="#user">einloggen</a>.',
 'register-failure' => 'Entschuldigung, das hat nicht funktioniert. Bitte stellen Sie sicher, dass alle Informationen korrekt eingegeben wurden, insbesondere die E-Mail Adresse.',
 'register-duplicate' => 'Entschuldigung, es gibt bereits ein Benutzerkonto mit diesem Benutzername oder dieser E-Mail Adresse.',
 
 
-// templates/reset.php
+// site/plugins/shopkit/templates/reset.php
 'reset-submit' => 'Passwort zurücksetzen',
 'reset-success' => 'Sie erhalten eine E-Mail mit Anweisungen erhalten Sie Ihr Passwort zurücksetzen.',
 'reset-error' => 'Leider konnten wir nicht das Konto finden.',
 
 
-// templates/search.php
+// site/plugins/shopkit/templates/search.php
 
 'no-search-results' => 'Entschuldigung, es gibt keine Suchergebnisse zu diesem Begriff.',
 
