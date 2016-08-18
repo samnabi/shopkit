@@ -1,0 +1,9 @@
+# Prevent search engine crawlers from indexing internal Kirby content
+
+User-agent: *
+Disallow: /assets/
+Disallow: /content/*.txt$
+Disallow: /kirby/
+Disallow: /panel/
+Disallow: /site/
+Disallow: /*.md$
