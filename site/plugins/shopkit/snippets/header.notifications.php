@@ -54,7 +54,7 @@ if (c::get('license-shopkit') == "") {
 <?php if(count($notifications) > 0) { ?>
 	<?php foreach($notifications as $notification) { ?>
 		<div dir="auto" class="uk-alert uk-alert-warning">
-			<?php echo $notification ?>
+			<?= $notification ?>
 		</div>
 	<?php } ?>
 <?php } ?>
@@ -77,7 +77,7 @@ if (null !== s::get('giftCertificateCode')) {
 <?php if(count($successes) > 0) { ?>	
 	<?php foreach($successes as $success) { ?>
 		<div dir="auto" class="uk-alert uk-alert-success">
-			<?php echo $success ?>
+			<?= $success ?>
 		</div>
 	<?php } ?>
 <?php } ?>

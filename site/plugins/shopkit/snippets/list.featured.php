@@ -36,35 +36,35 @@
 						$image = $site->images()->find($site->placeholder());
 					}
 				?>
-				<a href="<?php echo $product->url() ?>" title="<?php echo $product->title() ?>">
-					<img class="uk-width-1-1" src="<?php echo $image->thumb(['height'=>300])->dataUri() ?>" title="<?php echo $product->title() ?>"/>
+				<a href="<?= $product->url() ?>" title="<?= $product->title() ?>">
+					<img class="uk-width-1-1" src="<?= $image->thumb(['height'=>300])->dataUri() ?>" title="<?= $product->title() ?>"/>
 				</a>
 
 			  	<div class="uk-grid uk-grid-width-1-2 uk-overlay-panel uk-overlay-background uk-overlay-bottom">
 
-			  		<a dir="auto" href="<?php echo $product->url() ?>" title="<?php echo $product->title() ?>">
+			  		<a dir="auto" href="<?= $product->url() ?>" title="<?= $product->title() ?>">
 			  			<?php if ($product->brand() != '') { ?>
-			  				<small class="brand"><?php echo $product->brand() ?></small>
+			  				<small class="brand"><?= $product->brand() ?></small>
 			  			<?php } ?>
-						<h3 class="uk-margin-small-bottom"><?php echo $product->title()->html() ?></h3>
-						<span><?php echo $featuredVariant->name() ?></span>
+						<h3 class="uk-margin-small-bottom"><?= $product->title()->html() ?></h3>
+						<span><?= $featuredVariant->name() ?></span>
 					</a>
 		            
-		            <form method="post" action="<?php echo url('shop/cart') ?>">
+		            <form method="post" action="<?= url('shop/cart') ?>">
 		                <input type="hidden" name="action" value="add">
-		                <input type="hidden" name="uri" value="<?php echo $product->uri() ?>">
-		                <input type="hidden" name="variant" value="<?php echo str::slug($featuredVariant->name()) ?>">
+		                <input type="hidden" name="uri" value="<?= $product->uri() ?>">
+		                <input type="hidden" name="variant" value="<?= str::slug($featuredVariant->name()) ?>">
 						<?php if ($options = str::split($featuredVariant->options()->value)) { ?>
 							<select class="uk-width-1-1" name="option">
 								<?php foreach ($options as $option) { ?>
-									<option value="<?php echo str::slug($option) ?>"><?php echo str::ucfirst($option) ?></option>
+									<option value="<?= str::slug($option) ?>"><?= str::ucfirst($option) ?></option>
 								<?php } ?>
 							</select>
 						<?php } ?>
 
 						<?php if (inStock($featuredVariant)) { ?>
 							<button class="uk-margin-small-top uk-button uk-width-1-1 uk-button-primary" type="submit">
-								<?php echo l::get('buy') ?>
+								<?= l::get('buy') ?>
 								<?php
 									if ($featuredSalePrice) {
 										echo formatPrice($featuredSalePrice);
@@ -76,7 +76,7 @@
 							</button>
 						<?php } else { ?>
 							<button class="uk-margin-small-top uk-button uk-width-1-1" disabled>
-								<?php echo l::get('out-of-stock') ?>
+								<?= l::get('out-of-stock') ?>
 								<?php
 									if ($featuredSalePrice) {
 										echo formatPrice($featuredSalePrice);

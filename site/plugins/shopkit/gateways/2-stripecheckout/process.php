@@ -20,7 +20,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title><?php echo site()->title()->html() ?> | <?php echo page('shop/cart')->title() ?></title>
+	<title><?= site()->title()->html() ?> | <?= page('shop/cart')->title() ?></title>
 	<style>
 		html { height: 100%; }
 		body { min-height: 100%; font-family: sans-serif; text-align: center; display: flex; align-items: center; justify-content: center; }

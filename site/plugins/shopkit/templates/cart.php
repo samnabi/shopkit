@@ -4,11 +4,11 @@
 
 <?php snippet('breadcrumb') ?>
 
-<h1 dir="auto"><?php echo $page->title()->html() ?></h1>
+<h1 dir="auto"><?= $page->title()->html() ?></h1>
 
 <?php if ($cart->count() === 0) { ?>
     <div class="uk-alert">
-        <p dir="auto"><?php echo l::get('no-cart-items') ?></p>
+        <p dir="auto"><?= l::get('no-cart-items') ?></p>
     </div>
 <?php } else { ?>
 
@@ -17,9 +17,9 @@
         <table dir="auto" class="cart uk-table uk-table-striped">
             <thead>
                 <tr>
-                    <th><?php echo l::get('product') ?></th>
-                    <th class="uk-text-center"><?php echo l::get('quantity') ?></th>
-                    <th class="uk-text-right"><?php echo l::get('price') ?></th>
+                    <th><?= l::get('product') ?></th>
+                    <th class="uk-text-center"><?= l::get('quantity') ?></th>
+                    <th class="uk-text-right"><?= l::get('price') ?></th>
                     <th></th>
                 </tr>
             </thead>
@@ -28,11 +28,11 @@
                 <?php foreach($items as $i => $item) { ?>
                     <tr>
                         <td>
-                            <a href="<?php echo url($item->uri) ?>" title="<?php echo $item->fullTitle() ?>">
+                            <a href="<?= url($item->uri) ?>" title="<?= $item->fullTitle() ?>">
                                 <?php if ($item->imgSrc) { ?>
-                                    <img class="uk-float-left uk-margin-small-right" src="<?php echo $item->imgSrc ?>" title="<?php echo $item->name ?>">
+                                    <img class="uk-float-left uk-margin-small-right" src="<?= $item->imgSrc ?>" title="<?= $item->name ?>">
                                 <?php } ?>
-                                <strong><?php echo $item->name ?></strong><br>
+                                <strong><?= $item->name ?></strong><br>
                                 <?php ecco($item->sku,'<strong>SKU</strong> '.$item->sku.' / ') ?>
                                 <?php ecco($item->variant,$item->variant) ?>
                                 <?php ecco($item->option,' / '.$item->option) ?>
@@ -41,7 +41,7 @@
                         <td class="uk-text-center">
                             <form class="uk-display-inline" action="" method="post">
                                 <input type="hidden" name="action" value="remove">
-                                <input type="hidden" name="id" value="<?php echo $item->id ?>">
+                                <input type="hidden" name="id" value="<?= $item->id ?>">
                                 <button class="uk-button uk-button-small" type="submit">
                                     <?php 
                                         if ($item->quantity === 1) {
@@ -52,23 +52,23 @@
                                     ?>
                                 </button>
                             </form>
-                            <span class="uk-margin-small-left uk-margin-small-right"><?php echo $item->quantity ?></span>
+                            <span class="uk-margin-small-left uk-margin-small-right"><?= $item->quantity ?></span>
                             <form class="uk-display-inline" action="" method="post">
                                 <input type="hidden" name="action" value="add">
-                                <input type="hidden" name="id" value="<?php echo $item->id ?>">
+                                <input type="hidden" name="id" value="<?= $item->id ?>">
                                 <button class="uk-button uk-button-small" <?php ecco($item->maxQty,'disabled') ?> type="submit">&#9650;</button>
                             </form>
                         </td>
                         <td class="uk-text-right">
-                            <?php echo $item->priceText ?>
+                            <?= $item->priceText ?>
                             <?php e($item->notax == 1,'<br><span class="uk-badge">'.l::get('no-tax').'</span>') ?>
                             <?php e($item->noshipping == 1,'<br><span class="uk-badge">'.l::get('no-shipping').'</span>') ?>
                         </td>
                         <td>
                             <form action="" method="post">
                                 <input type="hidden" name="action" value="delete">
-                                <input type="hidden" name="id" value="<?php echo $item->id ?>">
-                                <button class="uk-button uk-button-small" type="submit"><?php echo l::get('delete') ?></button> 
+                                <input type="hidden" name="id" value="<?= $item->id ?>">
+                                <button class="uk-button uk-button-small" type="submit"><?= l::get('delete') ?></button> 
                             </form>
                         </td>
                     </tr>
@@ -77,20 +77,20 @@
 
             <tfoot class="uk-text-right">
                 <tr>
-                    <td colspan="2"><?php echo l::get('subtotal') ?></td>
-                    <td><?php echo formatPrice($cart->getAmount()) ?></td>
+                    <td colspan="2"><?= l::get('subtotal') ?></td>
+                    <td><?= formatPrice($cart->getAmount()) ?></td>
                     <td></td>
                 </tr>
                 <?php if (page('shop')->discount_codes()->toStructure()->count() > 0) {  ?>
                     <tr>
-                        <td colspan="2"><?php echo l::get('discount') ?></td>
+                        <td colspan="2"><?= l::get('discount') ?></td>
                         <?php if ($discount) { ?>
-                            <td class="uk-text-success"><?php echo '&ndash; '.formatPrice($discount['amount']) ?></td>
+                            <td class="uk-text-success"><?= '&ndash; '.formatPrice($discount['amount']) ?></td>
                             <td class="uk-text-left">
                                 <form method="post" class="uk-form discount">
                                     <input type="hidden" name="dc" value="">
                                     <button class="uk-button uk-button-small" type="submit">
-                                        <?php echo l::get('delete') ?>
+                                        <?= l::get('delete') ?>
                                     </button>
                                 </form>
                             </td>
@@ -99,7 +99,7 @@
                                 <form method="post" class="uk-form discount">
                                     <input type="text" name="dc" class="uk-form-width-small">
                                     <button class="uk-button" type="submit">
-                                        <?php echo l::get('code-apply') ?>
+                                        <?= l::get('code-apply') ?>
                                     </button>
                                 </form>
                             </td>
@@ -107,19 +107,19 @@
                     </tr>
                 <?php } ?>
                 <tr>
-                    <td colspan="2"><?php echo l::get('shipping') ?></td>
+                    <td colspan="2"><?= l::get('shipping') ?></td>
                     <td colspan="2" class="uk-text-left">
 
                         <!-- Set country -->
                         <form class="uk-form" id="setCountry" action="" method="POST">
                             <select class="uk-form-width-medium" name="country" onChange="document.forms['setCountry'].submit();">
                                 <?php foreach ($countries as $c) { ?>
-                                    <option <?php ecco(s::get('country') === $c->uid(), 'selected') ?> value="<?php echo $c->countrycode() ?>">
-                                        <?php echo $c->title() ?>
+                                    <option <?php ecco(s::get('country') === $c->uid(), 'selected') ?> value="<?= $c->countrycode() ?>">
+                                        <?= $c->title() ?>
                                     </option>
                                 <?php } ?>
                             </select>
-                            <button type="submit"><?php echo l::get('update-country') ?></button>
+                            <button type="submit"><?= l::get('update-country') ?></button>
                         </form>
 
                         <!-- Set shipping -->
@@ -127,51 +127,51 @@
                             <select class="uk-form-width-medium" name="shipping" onChange="document.forms['setShipping'].submit();">
                                 <?php if (count($shipping_rates) > 0) { ?>
                                     <?php foreach ($shipping_rates as $rate) { ?>
-                                        <option value="<?php echo str::slug($rate['title']) ?>" <?php e($shipping['title'] === $rate['title'],'selected') ?>>
-                                            <?php echo $rate['title'] ?> (<?php echo formatPrice($rate['rate']) ?>)
+                                        <option value="<?= str::slug($rate['title']) ?>" <?php e($shipping['title'] === $rate['title'],'selected') ?>>
+                                            <?= $rate['title'] ?> (<?= formatPrice($rate['rate']) ?>)
                                         </option>
                                     <?php } ?>
                                 <?php } else { ?>
                                     <!-- If no shipping rates are set, show free shipping -->
-                                    <option value="free-shipping"><?php echo l::get('free-shipping') ?></option>
+                                    <option value="free-shipping"><?= l::get('free-shipping') ?></option>
                                 <?php } ?>
                             </select>
-                            <button type="submit"><?php echo l::get('update-shipping') ?></button>
+                            <button type="submit"><?= l::get('update-shipping') ?></button>
                         </form>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"><?php echo l::get('tax') ?></td>
+                    <td colspan="2"><?= l::get('tax') ?></td>
                     <td>
-                        <?php echo formatPrice($cart->getTax()) ?>
+                        <?= formatPrice($cart->getTax()) ?>
                     </td>
                     <td></td>
                 </tr>
                 <tr class="total">
-                    <td colspan="2"><?php echo l::get('total') ?></td>
+                    <td colspan="2"><?= l::get('total') ?></td>
                     <td>
-                        <?php echo formatPrice($total) ?>
-                        <?php echo page('shop')->currency_code() ?>
+                        <?= formatPrice($total) ?>
+                        <?= page('shop')->currency_code() ?>
                     </td>
                     <td></td>
                 </tr>
                 <?php if (page('shop')->gift_certificates()->toStructure()->count() > 0) { ?>
                     <tr>
-                        <td colspan="2"><?php echo l::get('gift-certificate') ?></td>
+                        <td colspan="2"><?= l::get('gift-certificate') ?></td>
                         <?php if ($giftCertificate) { ?>
                             <td class="uk-text-success">
                                 <strong>
-                                    <?php echo '&ndash; '.formatPrice($giftCertificate['amount']).' '.page('shop')->currency_code() ?>
+                                    <?= '&ndash; '.formatPrice($giftCertificate['amount']).' '.page('shop')->currency_code() ?>
                                 </strong><br>
                                 <small>
-                                    <?php echo formatPrice($giftCertificate['remaining']).' '.l::get('remaining') ?>
+                                    <?= formatPrice($giftCertificate['remaining']).' '.l::get('remaining') ?>
                                 </small>
                             </td>
                             <td class="uk-text-left">
                                 <form method="post" class="uk-form discount">
                                     <input type="hidden" name="gc" value="">
                                     <button class="uk-button uk-button-small" type="submit">
-                                        <?php echo l::get('delete') ?>
+                                        <?= l::get('delete') ?>
                                     </button>
                                 </form>
                             </td>
@@ -180,7 +180,7 @@
                                 <form method="post" class="uk-form discount">
                                     <input type="text" name="gc" class="uk-form-width-small">
                                     <button class="uk-button" type="submit">
-                                        <?php echo l::get('code-apply') ?>
+                                        <?= l::get('code-apply') ?>
                                     </button>
                                 </form>
                             </td>
@@ -194,7 +194,7 @@
     <!-- Terms and conditions -->
     <?php if ($tc = page('shop/terms-conditions') and $tc->text()->isNotEmpty()) { ?>
         <div class="uk-alert">
-            <p dir="auto"><?php echo l::get('terms-conditions') ?> <a href="<?php echo $tc->url() ?>" target="_blank"><?php echo $tc->title() ?></a>.</p>
+            <p dir="auto"><?= l::get('terms-conditions') ?> <a href="<?= $tc->url() ?>" target="_blank"><?= $tc->title() ?></a>.</p>
         </div>
     <?php } ?>
     

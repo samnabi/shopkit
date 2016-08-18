@@ -1,9 +1,9 @@
 <h1 class="logo">
-  <a href="<?php echo $site->url() ?>">
+  <a href="<?= $site->url() ?>">
     <?php if ($logo = $site->logo()->toFile()) { ?>
-      <img src="<?php echo $logo->thumb(['width'=>400, 'height'=>400, 'upscale'=>false])->dataUri() ?>" title="<?php echo $site->title() ?>"/>
+      <img src="<?= $logo->thumb(['width'=>400, 'height'=>400, 'upscale'=>false])->dataUri() ?>" title="<?= $site->title() ?>"/>
     <?php } else { ?>
-      <?php echo $site->title() ?>
+      <?= $site->title() ?>
     <?php } ?>
   </a>
 </h1>

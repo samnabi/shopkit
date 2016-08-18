@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="<?php echo $site->language() ?>">
+<html lang="<?= $site->language() ?>">
 <head>
 
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
-	<title><?php echo $site->title()->html() ?> | <?php echo $page->title()->html() ?></title>
+	<title><?= $site->title()->html() ?> | <?= $page->title()->html() ?></title>
 
 	<!-- Styles -->
-	<?php echo css(getStylesheet($site->colorbase(),$site->coloraccent(),$site->colorlink())) ?>
-	<?php echo css('assets/css/font.naksh.css') ?>
-	<?php echo css('assets/css/font.asap.css') ?>
+	<?= css(getStylesheet($site->colorbase(),$site->coloraccent(),$site->colorlink())) ?>
+	<?= css('assets/css/font.naksh.css') ?>
+	<?= css('assets/css/font.asap.css') ?>
 	<?php snippet('header.background.style') ?>
 
 </head>

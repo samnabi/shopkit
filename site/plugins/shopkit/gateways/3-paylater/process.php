@@ -15,7 +15,7 @@
     <html lang="en">
     <head>
       <meta charset="utf-8" />
-      <title><?php echo site()->title()->html() ?> | <?php echo page('shop/cart')->title() ?></title>
+      <title><?= site()->title()->html() ?> | <?= page('shop/cart')->title() ?></title>
       <style>
         html { height: 100%; }
         body { min-height: 100%; font-family: sans-serif; text-align: center; display: flex; justify-content: center; }
@@ -33,10 +33,10 @@
 
             <input type="hidden" name="txn_id" value="<?= $txn->txn_id() ?>">
             
-            <label for="payer_email"><?php echo l::get('email') ?></label>
+            <label for="payer_email"><?= l::get('email') ?></label>
             <input autofocus required type="email" name="payer_email" value="">
             
-            <button class="uk-button uk-button-primary uk-form-width-large" type="submit"><?php echo l::get('pay-later') ?></button>
+            <button class="uk-button uk-button-primary uk-form-width-large" type="submit"><?= l::get('pay-later') ?></button>
         </form>
 
         <p><a href="<?= page('shop/cart')->url() ?>" title="Cancel payment">Back to cart</a></p>
