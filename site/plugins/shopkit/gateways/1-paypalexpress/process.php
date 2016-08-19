@@ -42,7 +42,7 @@
 		<?php } ?>
 
 		<!-- Cart discount -->
-		<input type="hidden" name="discount_amount_cart" value="<?= $txn->discount() + $txn->giftcertificate() ?>">
+		<input type="hidden" name="discount_amount_cart" value="<?= number_format($txn->discount()->value + $txn->giftcertificate()->value,2,'.','') ?>">
 
 		<!-- Shipping -->
 		<input type="hidden" name="shipping_1" value="<?= $txn->shipping() ?>">
