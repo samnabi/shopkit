@@ -19,7 +19,7 @@
 <body>
 	<p><?= l::get('redirecting') ?></p>
 
-	<form method="post" action="<?= $paypalexpress['sandbox'] ? $paypalexpress['url_sandbox'] : $paypalexpress['live']  ?>" name="paypalexpress">
+	<form method="post" action="<?= $paypalexpress['sandbox'] ? $paypalexpress['url_sandbox'] : $paypalexpress['url_live']  ?>" name="paypalexpress">
 		<!-- Setup fields -->
 		<input type="hidden" name="cmd" value="_cart"> <!-- Identifies a shopping cart purchase -->
 		<input type="hidden" name="upload" value="1">  <!-- Identifies a third-party cart -->
