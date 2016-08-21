@@ -41,7 +41,14 @@ Keep tabs on the [issues page](https://github.com/samnabi/shopkit/issues) to see
 
 You can try Shopkit for free on your local machine or a test server, forever. Once you're satisfied, [buy a Shopkit license for $19 USD](http://shopkit.samnabi.com) to use it on a public site.
 
+### Licensing
+
 Since Shopkit runs on the Kirby CMS, you'll also have to buy a [Kirby license](http://getkirby.com/license) from Bastian.
+
+Shopkit uses a number of excellent free plugins created by other people. Please consider buying a **moral license** to support their development:
+
+- [Multiselect](https://github.com/distantnative/field-multiselect/tree/d0b6a7895c362b618e128aa69673bc8083594f31) by Nico Hoffman
+- [Kirby Visual Markdown](https://github.com/JonasDoebertin/kirby-visual-markdown/tree/785fb4f37b98ebabb2e95ea717b47ca3e814c0fb) by Jonas Döbertin
 
 ## Installation
 
@@ -279,6 +286,6 @@ Thanks to the following beta testers for getting Shopkit to version 1.0: [dsply]
 
 ## Copyright
 
-Shopkit © 2015 Sam Nabi <http://samnabi.com>
+Shopkit © 2015-2016 Sam Nabi <http://samnabi.com>
 
-Kirby CMS © 2009-2015 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>
+Kirby CMS © 2009-2016 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>
