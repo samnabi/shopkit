@@ -19,7 +19,7 @@
 <body>
 	<p><?= l::get('redirecting') ?></p>
 
-	<form method="post" action="<?= $paypalexpress['sandbox'] ? $paypalexpress['url_sandbox'] : $paypalexpress['url_live']  ?>" name="paypalexpress">
+	<form method="post" action="<?= $paypalexpress['sandbox'] ? $paypalexpress['url_sandbox'] : $paypalexpress['live']  ?>" name="paypalexpress">
 		<!-- Setup fields -->
 		<input type="hidden" name="cmd" value="_cart"> <!-- Identifies a shopping cart purchase -->
 		<input type="hidden" name="upload" value="1">  <!-- Identifies a third-party cart -->
@@ -35,14 +35,14 @@
 		    <?php $i++ ?>
 		    <input type="hidden" name="item_name_<?= $i ?>" value="<?= $item->name().' - '.$item->variant().' - '.$item->option() ?>">
 		    
-		    <?php $itemAmount = $item->sale_amount()->value == '' ? $item->amount()->value : $item->sale_amount()->value ?>
+		    <?php $itemAmount = $item->sale_amount()->isEmpty() ? $item->sale_amount() : $item->amount() ?>
 		    <input type="hidden" name="amount_<?= $i ?>" value="<?= number_format($itemAmount,2,'.','') ?>">
 
 		    <input type="hidden" name="quantity_<?= $i ?>" value="<?= $item->quantity() ?>">
 		<?php } ?>
 
 		<!-- Cart discount -->
-		<input type="hidden" name="discount_amount_cart" value="<?= number_format($txn->discount()->value + $txn->giftcertificate()->value,2,'.','') ?>">
+		<input type="hidden" name="discount_amount_cart" value="<?= $txn->discount() + $txn->giftcertificate() ?>">
 
 		<!-- Shipping -->
 		<input type="hidden" name="shipping_1" value="<?= $txn->shipping() ?>">

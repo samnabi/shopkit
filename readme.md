@@ -2,34 +2,36 @@
 
 Shopkit is a comprehensive commerce solution for the excellent [Kirby CMS](http://getkirby.com).
 
-Documentation available at [shopkit.samnabi.com/docs](http://shopkit.samnabi.com/docs).
+A single-site license is $19 USD. Bulk discounts available. Full details: <http://shopkit.samnabi.com>
+
+Full [docs here](http://shopkit.samnabi.com/docs).
 
 ## Features
 
 ### Products & shop settings
 
-- Easy product <strong>variants and options</strong> (e.g. sizes and colours)
-- <strong>Flexible shipping rates</strong> (Flat rate, per item, by weight, or by total price)
+- Easy product <strong>variants and options</strong> <small>(e.g. sizes and colours)</small>
+- Easy <strong>flexible shipping rates</strong> <small>(Flat rate, per item, by weight, or by total price)</small>
 - <strong>Related products</strong>
 - <strong>Inventory control</strong>
 - <strong>Discount codes</strong> (site-wide and product-specific)
-- <strong>Gift certificates</strong>
-- Control shipping & tax rates by country, with product-specific exceptions
+- <strong>Product-specific</strong> shipping & tax exemptions
+- Shipping & tax <strong>rates by country</strong>
 - <strong>Built-in SEO</strong> for rich snippets using <a href="https://schema.org/Product">RDFa</a> structured data
-- <strong>Colour & background</strong> options
+- Customize <strong>theme colours</strong> & background
 
 ### Payments & orders
 
-- Process payments with <strong>PayPal</strong> and **Stripe** (it's easy to add other payment gateways)
-- Let certain users <strong>pay later</strong>
+- Process payments with <strong>PayPal</strong> <small>(it's easy to add other payment gateways)</small>
+- Let certain users <strong>pay later</strong> <small>(i.e. wholesalers)</small>
 - Manage <strong>pending, paid, and shipped</strong> orders
 - Send <strong>order notifications</strong> to your shipping manager
 - Automatic <strong>PDF invoices</strong>
 
 ### User experience
 
-- <strong>Multi-language</strong> setup (English, French, and German included by default)
-- <strong>No sign-up</strong> required (Orders are tied to PayPal email address)
+- <strong>Multi-language</strong> setup <small>(English, French, and German included by default)</small>
+- <strong>No sign-up</strong> required <small>(Orders are tied to PayPal email address)</small>
 - Browse products in a <strong>grid</strong> or <strong>slideshow</strong>
 - Beautiful <strong>search</strong> layout
 
@@ -41,14 +43,7 @@ Keep tabs on the [issues page](https://github.com/samnabi/shopkit/issues) to see
 
 You can try Shopkit for free on your local machine or a test server, forever. Once you're satisfied, [buy a Shopkit license for $19 USD](http://shopkit.samnabi.com) to use it on a public site.
 
-### Licensing
-
 Since Shopkit runs on the Kirby CMS, you'll also have to buy a [Kirby license](http://getkirby.com/license) from Bastian.
-
-Shopkit uses a number of excellent free plugins created by other people. Please consider buying a **moral license** to support their development:
-
-- [Multiselect](https://github.com/distantnative/field-multiselect/tree/d0b6a7895c362b618e128aa69673bc8083594f31) by Nico Hoffman
-- [Kirby Visual Markdown](https://github.com/JonasDoebertin/kirby-visual-markdown/tree/785fb4f37b98ebabb2e95ea717b47ca3e814c0fb) by Jonas Döbertin
 
 ## Installation
 
@@ -70,45 +65,27 @@ If you are familiar with the terminal, you can clone Shopkit from GitHub.
 
 Use these terminal commands to update Shopkit and all its dependencies to the latest commit in the `master` branch.
 
-    # Update Shopkit
-    git checkout master
-    git pull
-    
     # Update dependencies
     git submodule update --init --recursive
     git submodule foreach --recursive git checkout master
     git submodule foreach --recursive git pull
+    
+    # Update Shopkit
+    git checkout master
+    git pull
 
 
 ## Configuration
 
 Most of Shopkit's configuration happens in the shop page, located at `/content/1-shop/shop.en.txt`. This includes defining your shipping methods, tax rates, user permissions, and payment details.
 
-Your shop logo and theme options are defined in the site options, located at `content/site.en.txt`.
+Your shop logo and theme options are defined in the site options, located at `/content/site.en.txt`.
 
 Of course, there are helpful blueprints so you can easily manage everything from the panel.
 
-Before your site goes public, you'll need to enter your license keys in the `site/config/config.php` file.
+Before your site goes public, you'll need to enter your license keys in the `/site/config/config.php` file.
 
-To configure payment gateways, edit the `config.php` files located in `site/plugins/shopkit/gateways`. As of v1.1, payment gateways cannot be configured from the Panel.
-
-## Upgrading notes
-
-### From v1.0.5
-
-If you're upgrading from Shopkit 1.0.5 or earlier, note that there are 2 new pages under `content/1-shop`. The new folder structure looks like this:
-
-```
-content/
-    1-shop/
-        cart/
-        confirm/          # new page
-        countries/
-        orders/
-        terms-conditions/ # new page
-```
-
-### From v1.0.3
+## Upgrading from v1.0.3
 
 If you're upgrading from Shopkit 1.0.3 or earlier, note that the location of the `Register` page has changed, and a new page called `Reset` has been introduced. The new folder structure looks like this:
 
@@ -119,7 +96,7 @@ content/
         reset/
 ```
 
-### From v0.9.2
+## Upgrading from v0.9
 
 If you're upgrading from Shopkit 0.9.2 or earlier, you'll have to change some things manually:
 
@@ -129,32 +106,6 @@ If you're upgrading from Shopkit 0.9.2 or earlier, you'll have to change some th
 - In every order's text file, change the order status values to reflect the new values: `pending`, `paid`, or `shipped`.
 
 ## Changelog
-
-### v1.1
-
-- Bug fixes
-    - Fix locale-based formatting issues with PayPal gateway
-    - Fix inventory counting errors
-    - Better handling of non-float values in formatPrice()
-    - More reliable shipping calculation
-    - More reliable country detection
-- New features
-    - 💳 Stripe payment gateway
-    - 🛍 Gift certificates
-    - ⬇️ Downloadable products
-    - 🍪 Per-product tax rules
-    - 📗 Terms and conditions
-- Design and UI
-    - Filter orders by status on `View Orders` page
-    - Remember current page on login
-    - Larger photo slider on product page
-    - More detailed order notification emails
-    - Confirm customer name, email, and address after payment
-- Added `robots.txt`
-- Most template, snippet and blueprint files moved to plugins folder
-- Standardized payment gateway structure
-- Moved blueprints to YAML format
-- Updated core and panel to Kirby 2.3.2
 
 ### v1.0.5
 
@@ -276,16 +227,8 @@ If you have a GitHub account, please report issues and post feedback on the [iss
 
 Otherwise, send me an email: <sam@samnabi.com>
 
-## Contributors
-
-Thanks to [Thomas Günther](https://github.com/medienbaecker) for making the German translation.
-
-Thanks to [CelineDesign](https://github.com/CelineDesign) for transitioning Shopkit to object-oriented code in version 0.9.1.
-
-Thanks to the following beta testers for getting Shopkit to version 1.0: [dsply](https://forum.getkirby.com/users/dsply/activity), [distantnative](https://forum.getkirby.com/users/distantnative/activity), [malvese](https://forum.getkirby.com/users/malvese/activity), [texnixe](https://forum.getkirby.com/users/texnixe/activity), [flowfx](https://forum.getkirby.com/users/flowfx/activity), [aftereffectsmagic](https://forum.getkirby.com/users/aftereffectsmagic/activity)
-
 ## Copyright
 
-Shopkit © 2015-2016 Sam Nabi <http://samnabi.com>
+Shopkit © 2015 Sam Nabi <http://samnabi.com>
 
-Kirby CMS © 2009-2016 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>
+Kirby CMS © 2009-2015 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>
