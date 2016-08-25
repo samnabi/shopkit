@@ -47,7 +47,7 @@
 								} else {
 									$priceFormatted = formatPrice($minPrice);
 								}
-								if ($count) $priceFormatted = l::get('from').' '.$priceFormatted;
+								if ($count > 1) $priceFormatted = l::get('from').' '.$priceFormatted;
 								echo $priceFormatted;
 							?>
 						</span>
