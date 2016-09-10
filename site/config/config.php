@@ -100,4 +100,10 @@ c::set('languages', array(
     'locale'  => 'de_DE',
     'url'     => '/de',
   ),
+  array(
+    'code'    => 'es',
+    'name'    => 'Español',
+    'locale'  => 'es_ES',
+    'url'     => '/es',
+  ),
 ));
