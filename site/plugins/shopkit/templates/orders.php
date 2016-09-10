@@ -63,7 +63,7 @@
                                         <?= '/ '.l::get('qty').$product->quantity() ?>
                                     </small>
                                     <?php if ($product->downloads()->files()->isNotEmpty()) { ?>
-                                        <?php if ($product->downloads()->expires()->value > time()) { ?>
+                                        <?php if ($product->downloads()->expires()->isEmpty() or $product->downloads()->expires()->value > time()) { ?>
                                             <?php foreach ($product->downloads()->files() as $file) { ?>
                                                 <br><small><a href="<?= $file ?>" title="File download for <?= $product->name() ?>" download=""><?= substr($file, strrpos($file,'/')+1) ?></a></small>
                                             <?php } ?>
