@@ -6,6 +6,8 @@
 
 <h1 dir="auto"><?= $page->title()->html() ?></h1>
 
+<?= $page->text()->kirbytext() ?>
+
 <?php if ($cart->count() === 0) { ?>
     <div class="uk-alert">
         <p dir="auto"><?= l::get('no-cart-items') ?></p>
