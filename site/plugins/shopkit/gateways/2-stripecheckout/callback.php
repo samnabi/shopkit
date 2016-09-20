@@ -36,8 +36,10 @@ if (get('stripeToken') != '') {
   // Validate the charge against the pending order
   $txn = page('shop/orders/'.get('txn'));
 
+  $total = $txn->subtotal()->value + $txn->shipping()->value + $txn->tax()->value - $txn->discount()->value - $txn->giftcertificate()->value;
+
   // We need to multiply the $txn values by 100 because Stripe gives us the amount in cents
-  if ($charge->amount == 100 * ($txn->subtotal()->value + $txn->tax()->value - $txn->discount()->value - $txn->giftcertificate()->value)) {
+  if ( round($charge->amount, 2) == round($total * 100, 2) ) {
 
     // Charge validated
 
@@ -74,20 +76,20 @@ if (get('stripeToken') != '') {
         'payer_email' => $customer->email,
         'payer_address' => '', // None available from Stripe
       ]);
-      
+
       // Kick the user back to the cart
       go(url('shop/cart'));
     }
   } else {
     // Integrity check failed - possible tampering
     snippet('mail.order.tamper', ['txn' => $txn]);
-    
+
     // Kick the user back to the cart
     go(url('shop/cart'));
   }
 } else {
   // Data didn't come back properly from Stripe
-    
+
   // Kick the user back to the cart
   go(url('shop/cart'));
 }
