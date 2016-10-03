@@ -246,12 +246,7 @@
                         <?php if (!$g['logo']) { ?>
                             <?= $g['label'] ?>
                         <?php } else { ?>
-                            <?php
-                                $logo_path = $g['logo'];
-                                $logo_data = base64_encode(file_get_contents($logo_path));
-                                $logo_src = 'data: '.mime_content_type($logo_path).';base64,'.$logo_data;
-                            ?>
-                            <img src="<?= $logo_src ?>" alt="<?= $g['label'] ?>">
+                            <img src="<?=f::uri($g['logo']) ?>" alt="<?= $g['label'] ?>">
                         <?php } ?>
 
                         <?php if (isset($g['sandbox']) and $g['sandbox']) { ?>
