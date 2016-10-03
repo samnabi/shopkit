@@ -33,6 +33,7 @@
 		<?php
 			// Set the total chargeable amount
 			$amount = number_format(	$txn->subtotal()->value
+															+ $txn->shipping()->value
 															+ $txn->tax()->value
 															- $txn->discount()->value
 															- $txn->giftcertificate()->value,2,'','');

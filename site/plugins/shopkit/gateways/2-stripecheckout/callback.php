@@ -37,7 +37,7 @@ if (get('stripeToken') != '') {
   $txn = page('shop/orders/'.get('txn'));
 
   // We need to multiply the $txn values by 100 because Stripe gives us the amount in cents
-  if ($charge->amount == 100 * ($txn->subtotal()->value + $txn->tax()->value - $txn->discount()->value - $txn->giftcertificate()->value)) {
+  if ($charge->amount == 100 * ($txn->subtotal()->value + $txn->shipping()->value + $txn->tax()->value - $txn->discount()->value - $txn->giftcertificate()->value)) {
 
     // Charge validated
 
