@@ -56,7 +56,7 @@ return function($site, $pages, $page) {
           'payer-name' => get('payer_name'),
           'payer-email' => get('payer_email'),
           'payer-address' => get('payer_address'),
-        ], 'en');
+        ], $site->defaultLanguage()->code());
       } catch(Exception $e) {
         // Update failed
         snippet('mail.order.update.error', [
