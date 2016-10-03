@@ -1,4 +1,4 @@
-plugins/shopkit/<?php l::set([
+<?php l::set([
 
 // multiple pages 
 
