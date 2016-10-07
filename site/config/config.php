@@ -33,6 +33,18 @@ c::set('timezone', 'UTC');
 
 /* 
 ---------------------------------------
+Panel install
+---------------------------------------
+
+Allow the panel installer to be run from the browser
+
+*/
+
+c::set('panel.install', true);
+
+
+/* 
+---------------------------------------
 Homepage
 ---------------------------------------
 
