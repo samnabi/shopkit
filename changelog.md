@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.0.6
+## v1.1.1
 - Bug fixes
     - More reliable staff notification emails
     - More reliable download links
@@ -18,6 +18,32 @@
 - Use default language instead of hardcoded `en` for updating order files on confirmation
 - Add Spanish language option
 - Full seller and buyer address info on PDF invoices
+
+## v1.1
+
+- Bug fixes
+    - Fix locale-based formatting issues with PayPal gateway
+    - Fix inventory counting errors
+    - Better handling of non-float values in formatPrice()
+    - More reliable shipping calculation
+    - More reliable country detection
+- New features
+    - 💳 Stripe payment gateway
+    - 🛍 Gift certificates
+    - ⬇️ Downloadable products
+    - 🍪 Per-product tax rules
+    - 📗 Terms and conditions
+- Design and UI
+    - Filter orders by status on `View Orders` page
+    - Remember current page on login
+    - Larger photo slider on product page
+    - More detailed order notification emails
+    - Confirm customer name, email, and address after payment
+- Added `robots.txt`
+- Most template, snippet and blueprint files moved to plugins folder
+- Standardized payment gateway structure
+- Moved blueprints to YAML format
+- Updated core and panel to Kirby 2.3.2
 
 
 ## v1.0.5
