@@ -137,3 +137,26 @@ body.ltr .selector .item-with-image .item-info {
 .modal-content .tab-nav li.active {
 	background: inherit;
 }
+
+/* Structure field entries */
+.structure-entry-content {
+
+}
+.structure-entry-content .badge {
+	background: #efefef;
+	border: 2px solid #ddd;
+	padding: 0.1em 0.25em;
+	font-size: 0.8em;
+	margin-left: 0.5em;
+	vertical-align: 1px;
+}
+.structure-entry-content small {
+	font-size: 0.8em;
+}
+.structure-entry-content small i {
+	vertical-align: -1px;
+}
+.structure-entry-content input[readonly] {
+	margin-top: 0.5em;
+	width: 100%;
+}

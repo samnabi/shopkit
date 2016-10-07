@@ -161,8 +161,8 @@ fields:
   discount-codes:
     label: Discount codes
     help: These codes are applied at checkout.
-    type: structure
-    style: table
+    type: snippetfield
+    snippet: panel/discount-codes
     fields:
       code:
         label: Discount code
@@ -199,11 +199,12 @@ fields:
         label: Pay later
         type: checkbox
         text: Let customers skip online payment if they use this code
+    width: 1/2
   gift-certificates:
     label: Gift certificates
     help: These can be used multiple times until their balance runs out.
-    type: structure
-    style: table
+    type: snippetfield
+    snippet: panel/gift-certificates
     fields:
       code:
         label: Certificate code
@@ -219,3 +220,4 @@ fields:
         validate:
           min: 0
           - num
+    width: 1/2

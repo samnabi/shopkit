@@ -25,3 +25,6 @@ $kirby->set('snippet', 'slider',                     __DIR__.DS.'..'.DS.'snippet
 $kirby->set('snippet', 'slideshow.product',          __DIR__.DS.'..'.DS.'snippets'.DS.'slideshow.product.php');
 $kirby->set('snippet', 'subpages',                   __DIR__.DS.'..'.DS.'snippets'.DS.'subpages.php');
 $kirby->set('snippet', 'treemenu',                   __DIR__.DS.'..'.DS.'snippets'.DS.'treemenu.php');
+
+// Register snippetfield path
+c::set('snippetfield.path', __DIR__.DS.'..'.DS.'snippets');
