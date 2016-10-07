@@ -112,13 +112,13 @@ function updateStock($txn) {
     $product = page($item->uri());
     $variants = $product->variants()->yaml();
     foreach ($variants as $key => $variant) {
-      if (str::slug($variant['name']) === $item->variant()) {
+      if (str::slug($variant['name']) === $item->variant()->value) {
         if ($variant['stock'] === '') {
           // Unlimited stock
           $variants[$key]['stock'] = '';
         } else {
           // Limited stock
-          $variants[$key]['stock'] = $variant['stock'] - $item->quantity();
+          $variants[$key]['stock'] = intval($variant['stock']) - intval($item->quantity()->value);
         }
         // Update the entire variants field (only one variant has changed)
         $product->update(array('variants' => yaml::encode($variants)));
