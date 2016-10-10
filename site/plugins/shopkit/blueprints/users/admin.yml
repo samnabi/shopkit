@@ -9,7 +9,7 @@ fields:
       fetch: children
   discountcode:
     label: Discount code
-    help: Use this discount code every time you log in
+    help: Use this discount code every time you log in. Letters and numbers only.
     type: text
     validate: alphanum
 

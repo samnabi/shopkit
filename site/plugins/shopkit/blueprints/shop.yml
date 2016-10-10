@@ -67,13 +67,11 @@ fields:
         label: Flat rate
         help: Same rate, no matter how many items
         type: text
-        validate: num
         width: 1/2
       item:
         label: Per item rate
         help: Rate based on number of items in the cart
         type: text
-        validate: num
         width: 1/2
       weight:
         label: Rate by total weight
@@ -183,18 +181,12 @@ fields:
         label: Value
         help: For percentage discounts, use whole numbers.
         type: text
-        validate:
-          min: 0
-          - num
         width: 1/2
         required: true
       minorder:
         label: Minimum order
         help: Only apply the discount if the customer spends at least this much.
         type: text
-        validate:
-          min: 0
-          - num
       paylater:
         label: Pay later
         type: checkbox
@@ -217,7 +209,4 @@ fields:
         help: The certificate amount. Numbers only.
         type: text
         required: true
-        validate:
-          min: 0
-          - num
     width: 1/2

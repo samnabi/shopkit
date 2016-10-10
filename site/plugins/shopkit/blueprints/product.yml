@@ -39,7 +39,6 @@ fields:
       price:
         label: Price
         type:  text
-        validate: num
         width: 1/4
         help: Numbers only
         required: true
@@ -56,7 +55,6 @@ fields:
       stock:
         label: Quantity in stock
         type: text
-        validate: num
         width: 1/2
         help: Leave blank for unlimited stock
       options:
@@ -73,7 +71,6 @@ fields:
       sale-price:
         label: Sale price
         type: text
-        validate: num
       sale-start:
         label: Sale start
         type: date
