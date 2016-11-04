@@ -1,8 +1,7 @@
 <?php
 return function($site, $pages, $page) {
-    // Only logged-in users can see this page
+    
     $user = $site->user();
-
     $action = get('action');
 
     // Mark order as pending

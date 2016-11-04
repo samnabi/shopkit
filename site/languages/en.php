@@ -177,7 +177,8 @@
 // site/plugins/shopkit/templates/orders.php
 
 'no-orders' => 'You haven\'t made any orders yet.',
-'no-auth-orders' => 'To see the orders associated with your email address, please <a href="#user">register or log in</a>.',
+'no-auth-orders' => 'To see your orders, please <a href="#user">register or log in</a>.',
+'no-filtered-orders' => 'There are no orders with this status. <a href="orders">Go back to the full list</a>.',
 
 'products' => 'Products',
 'status' => 'Status',

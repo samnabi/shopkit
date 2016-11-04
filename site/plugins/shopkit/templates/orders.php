@@ -4,20 +4,21 @@
 
 <?= $page->text()->kirbytext()->bidi() ?>
 
-<?php if ($orders and $orders->count() === 0) { ?>
+<?php if ($orders and $orders->count() === 0 and get('status') === null) { ?>
     <p dir="auto"><?= l::get('no-orders') ?></p>
 <?php } ?>
 
-<?php if ($orders and $orders->count()) { ?>
-    <div class="uk-overflow-container">
-        <table dir="auto" class="uk-table uk-table-striped">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th><?= l::get('products') ?></th>
-                    <th><?= l::get('price') ?></th>
-                    <th>
-                        <?= l::get('status') ?>
+
+<div class="uk-overflow-container">
+    <table dir="auto" class="uk-table uk-table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th><?= l::get('products') ?></th>
+                <th><?= l::get('price') ?></th>
+                <th>
+                    <?= l::get('status') ?>
+                    <?php if ($orders) { ?>
                         <label class="toggle" for="filter">
                             <svg role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <title><?= l::get('filter') ?></title>
@@ -34,10 +35,12 @@
                             <?php } ?>
                             <button class="uk-button uk-button-primary uk-button-small uk-width-1-1 uk-margin-small-top"><?= l::get('filter') ?></button>
                         </form>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
+                    <?php } ?>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php if ($orders) { ?>
             <?php foreach ($orders as $order) { ?>
                 <tr>
                     <td>
@@ -154,11 +157,26 @@
                     </td>
                 </tr>
             <?php } ?>
-            </tbody>
-        </table>
-    </div>
-<?php } else { ?>
-    <p dir="auto"><?= l::get('no-auth-orders') ?></p>
-<?php } ?>
+            <?php if (!$orders->count() and get('status')) { ?>
+                <tr>
+                    <td colspan="4">
+                        <p class="uk-alert uk-alert-warning uk-margin-bottom-remove">
+                            <?= l::get('no-filtered-orders') ?>
+                        </p>
+                    </td>
+                </tr>
+            <?php } ?>
+        <?php } else { ?>
+            <tr>
+                <td colspan="4">
+                    <p class="uk-alert uk-alert-warning uk-margin-bottom-remove">
+                        <?= l::get('no-auth-orders') ?>
+                    </p>
+                </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+</div>
 
 <?php snippet('footer') ?>

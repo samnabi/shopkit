@@ -179,6 +179,7 @@
 
 'no-orders' => 'Sie haben noch keine Einkäufe getätigt.',
 'no-auth-orders' => 'Um die Einkäufe über Ihre E-Mail Adresse einzusehen, müssen Sie sich <a href="#user">registrieren oder einloggen</a>.',
+'no-filtered-orders' => 'Es gibt keine Einkäufe mit diesem Status. <a href="orders">Zurück zur vollständigen Liste</a>.',
 
 'products' => 'Produkte',
 'status' => 'Status',

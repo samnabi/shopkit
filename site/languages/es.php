@@ -178,6 +178,7 @@
 
 'no-orders' => 'Aún no has realizado ninguna orden.',
 'no-auth-orders' => 'Para ver órdenes asociadas a tu correo electrónico, por favor <a href="#user">regístrate o inicia sesión.</a>.',
+'no-filtered-orders' => 'No hay órdenes con este estatus. <a href="orders">Volver a la lista completa</a>.',
 
 'products' => 'Productos',
 'status' => 'Estatus',

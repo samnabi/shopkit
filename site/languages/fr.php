@@ -178,6 +178,7 @@
 
 'no-orders' => 'Vous n\'avez aucun transaction.',
 'no-auth-orders' => 'Afin de voir les transactions associés à votre compte, SVP <a href="#user">vous incrire ou connectez</a>.',
+'no-filtered-orders' => 'Il n\'y a aucune transaction avec cet état. <a href="orders">Retournez à la liste complète</a>.',
 
 'products' => 'Produits',
 'status' => 'État',
