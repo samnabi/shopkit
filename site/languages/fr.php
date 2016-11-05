@@ -185,6 +185,7 @@
 
 'download-invoice' => 'Téléchargez facture (PDF)',
 'download-files' => 'Téléchargez fichiers',
+'download-file' => 'Téléchargez fichier',
 'download-expired' => 'Téléchargement expiré',
 'view-on-paypal' => 'Accédez sur PayPal',
 

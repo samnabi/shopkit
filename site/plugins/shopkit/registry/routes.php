@@ -127,12 +127,44 @@ $kirby->set('route',[
 
       // Log in
       if ($user->login($token)) {
-        return go('account?reset=true');
+        return go('/panel/users/'.$user->username().'/edit');
       } else {
         return go('/');
       } 
     } else {
-      return false;
+      return go('/');
     }
+  }
+]);
+$kirby->set('route',[
+  // Masked file download to prevent snooping & circumventing expired downloads
+  'pattern' => '(:all)/(:any)/download/(:any)/([a-f0-9]{32})',
+  'action' => function($product_uri, $variant, $order_uid, $hash) {
+
+    // Find the order
+    $order = page('shop/orders/'.$order_uid);
+    foreach ($order->products()->toStructure() as $product) {
+
+      // Find the right product/variant combination
+      if ($product->uri.'/'.$product->variant === $product_uri.'/'.$variant) {
+
+        // Make sure it's not expired
+        if ($product->downloads()->expires()->isEmpty() or $product->downloads()->expires()->value > time()) {
+
+          // Find the file by its hash
+          if ($file = page($product->uri)->files()->findBy('hash', $hash)) {
+
+            // Download the file
+            $filename = $file->url();
+            header("Content-Description: File Transfer"); 
+            header("Content-Type: application/octet-stream"); 
+            header("Content-Disposition: attachment; filename=".basename($filename)); 
+            return readfile($filename);
+          }
+        }
+      }
+    }
+    // If we get to this point, the URL is invalid
+    return go('shop/orders');
   }
 ]);

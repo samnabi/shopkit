@@ -63,7 +63,13 @@
                                     <?php if ($product->downloads()->files()->isNotEmpty()) { ?>
                                         <?php if ($product->downloads()->expires()->isEmpty() or $product->downloads()->expires()->value > time()) { ?>
                                             <?php foreach ($product->downloads()->files() as $file) { ?>
-                                                <br><small><a href="<?= $file ?>" title="File download for <?= $product->name() ?>" download=""><?= substr($file, strrpos($file,'/')+1) ?></a></small>
+                                                <?php $hash = page($product->uri)->file(substr($file, strrpos($file,'/')+1))->hash() ?>
+                                                <br>
+                                                <small>
+                                                    <a href="<?= u($product->uri.'/'.$product->variant.'/download/'.$order->uid().'/'.$hash) ?>" title="<?= $product->name() ?>">
+                                                        <?= l::get('download-file') ?> [<?= substr($hash,-7) ?>]
+                                                    </a>
+                                                </small>
                                             <?php } ?>
                                         <?php } else { ?>
                                             <br><small class="uk-text-warning"><?= l::get('download-expired') ?></small>

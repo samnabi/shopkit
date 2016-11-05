@@ -185,6 +185,7 @@
 
 'download-invoice' => 'Download Invoice (PDF)',
 'download-files' => 'Download Files',
+'download-file' => 'Download File',
 'download-expired' => 'Download Expired',
 'view-on-paypal' => 'View on PayPal',
 

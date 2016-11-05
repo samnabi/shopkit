@@ -185,6 +185,7 @@
 
 'download-invoice' => 'Descargar Nota de Compra (PDF)',
 'download-files' => 'Descargar Archivos',
+'download-file' => 'Descargar Archivo',
 'download-expired' => 'Descarga ha expirado',
 'view-on-paypal' => 'Ver en PayPal',
 
