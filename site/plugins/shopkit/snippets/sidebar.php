@@ -72,6 +72,9 @@
                 <?php if ($address = $contact->location()->toStructure()->address() and $address != '') { ?>
                     <dt><?= l::get('address') ?></dt>
                     <dd class="uk-margin-bottom"><?= $address ?></dd>
+                <?php } else if ($contact->location()->isNotEmpty()) { ?>
+                    <dt><?= l::get('address') ?></dt>
+                    <dd class="uk-margin-bottom"><?= $contact->location()->kirbytext() ?></dd>
                 <?php } ?>
             </dl>
         </footer>

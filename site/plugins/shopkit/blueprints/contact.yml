@@ -19,10 +19,6 @@ fields:
     validate: email
   location:
     label: Address
-    type: place
-    center:
-      lat: 45.5230622
-      lng: -122.67648159999999
-      zoom: 19
-    help: "Move the pin or type your address."
+    type: textarea
+    buttons:
   slider: slider

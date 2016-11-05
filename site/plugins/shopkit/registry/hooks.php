@@ -1,19 +1,17 @@
 <?php
 
 // All new pages visible by default
-$kirby->set('hook','panel.page.create', 'makeVisible');
-function makeVisible($page) {
+$kirby->set('hook','panel.page.create', function ($page) {
   try {
-    $page->toggle('last');
+    $page->sort('last');
   } catch(Exception $e) {
     return response::error($e->getMessage());
   }
-}
+});
+
 
 // Shrink large images on upload
-$kirby->set('hook','panel.file.upload', 'shrinkImage');
-$kirby->set('hook','panel.file.replace', 'shrinkImage');
-function shrinkImage($file, $maxDimension = 1000) {
+$kirby->set('hook',['panel.file.upload','panel.file.replace'], function ($file, $maxDimension = 1000) {
   try {
     if ($file->type() == 'image' and ($file->width() > $maxDimension or $file->height() > $maxDimension)) {
       
@@ -32,11 +30,10 @@ function shrinkImage($file, $maxDimension = 1000) {
   } catch(Exception $e) {
     return response::error($e->getMessage());
   }
-}
+});
 
 // Format fields on Shop page
-$kirby->set('hook', 'panel.page.update', 'formatShopFields');
-function formatShopFields($page) {
+$kirby->set('hook', 'panel.page.update', function ($page) {
   try {
     // Make sure we're on the Shop page
     if ($page->template() !== 'shop') return true;
@@ -93,11 +90,10 @@ function formatShopFields($page) {
   } catch(Exception $e) {
     return response::error($e->getMessage());
   }
-}
+});
 
 // Format fields on Product page
-$kirby->set('hook', 'panel.page.update', 'formatProductFields');
-function formatProductFields($page) {
+$kirby->set('hook', 'panel.page.update', function ($page) {
   try {
     // Make sure we're on a product page
     if ($page->template() !== 'product') return true;
@@ -133,4 +129,4 @@ function formatProductFields($page) {
   } catch(Exception $e) {
     return response::error($e->getMessage());
   }
-}
+});

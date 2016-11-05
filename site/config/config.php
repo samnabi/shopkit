@@ -21,6 +21,18 @@ c::set('license-shopkit', ''); // put your Shopkit license key here
 
 /* 
 ---------------------------------------
+Debugging
+---------------------------------------
+
+Show detailed error messages by switching this to 'true'
+
+*/
+
+c::set('debug', false);
+
+
+/* 
+---------------------------------------
 Timezone
 ---------------------------------------
 

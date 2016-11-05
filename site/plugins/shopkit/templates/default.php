@@ -6,7 +6,7 @@
 	
 	<?php snippet('subpages') ?>
 
-	<?= $page->text()->kirbytext()->bidi() ?>
+  <?= $page->text()->kirbytext()->bidi() ?>
 
 	<?php snippet('list.related') ?>
 

@@ -20,6 +20,8 @@ $html .= '<h1>'.site()->title().'</h1>';
 $contact = page('contact');
 if ($address = $contact->location()->toStructure()->address() and $address != '') {
   $html .= $address->kirbytext();
+} else if ($contact->location()->isNotEmpty()) {
+  $html .= $contact->location()->kirbytext();
 }
 if ($phone = $contact->phone() and $phone != '') {
   $html .='<p>'.$phone.'</p>';
