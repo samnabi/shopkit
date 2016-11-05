@@ -24,6 +24,7 @@ require('registry/controllers.php');
 require('registry/fields.php');
 require('registry/hooks.php');
 require('registry/options.php');
+require('registry/roles.php');
 require('registry/routes.php');
 require('registry/snippets.php');
 require('registry/templates.php');

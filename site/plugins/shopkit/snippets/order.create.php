@@ -66,7 +66,7 @@ try {
 	if ($user = site()->user()) {
 		page('shop/orders/'.$txn_id)->update([
 			'payer-id' => $user->username(),
-			'payer-name' => $user->firstname(),
+			'payer-name' => $user->firstname().' '.$user->lastname(),
 			'payer-email' => $user->email(),
 			'payer-address' => page('shop/countries/'.$user->country())->title()
 		], site()->defaultLanguage()->code());

@@ -1,7 +1,6 @@
 <?php
 
 // Register controllers
-$kirby->set('controller', 'account',  __DIR__.DS.'..'.DS.'controllers'.DS.'account.php');
 $kirby->set('controller', 'cart',     __DIR__.DS.'..'.DS.'controllers'.DS.'cart.php');
 $kirby->set('controller', 'category', __DIR__.DS.'..'.DS.'controllers'.DS.'category.php');
 $kirby->set('controller', 'confirm',  __DIR__.DS.'..'.DS.'controllers'.DS.'confirm.php');

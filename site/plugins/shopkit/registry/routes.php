@@ -1,5 +1,10 @@
 <?php
 
+// Redirect to frontend login form
+if (substr($kirby->request()->url(), -12) === '/panel/login') {
+  go('/#login');
+}
+
 // Routes
 $kirby->set('route',[
   // Login

@@ -8,7 +8,6 @@ $kirby->set('blueprint', 'fields/tax',           __DIR__.DS.'..'.DS.'blueprints'
 $kirby->set('blueprint', 'fields/title',           __DIR__.DS.'..'.DS.'blueprints'.DS.'fields'.DS.'title.yml');
 
 // Register blueprints
-$kirby->set('blueprint', 'account',   __DIR__.DS.'..'.DS.'blueprints'.DS.'account.yml');
 $kirby->set('blueprint', 'cart',      __DIR__.DS.'..'.DS.'blueprints'.DS.'cart.yml');
 $kirby->set('blueprint', 'category',  __DIR__.DS.'..'.DS.'blueprints'.DS.'category.yml');
 $kirby->set('blueprint', 'confirm',   __DIR__.DS.'..'.DS.'blueprints'.DS.'confirm.yml');
@@ -25,5 +24,4 @@ $kirby->set('blueprint', 'search',    __DIR__.DS.'..'.DS.'blueprints'.DS.'search
 $kirby->set('blueprint', 'shop',      __DIR__.DS.'..'.DS.'blueprints'.DS.'shop.yml');
 
 // Register user blueprints
-$kirby->set('blueprint', 'users/admin',    __DIR__.DS.'..'.DS.'blueprints'.DS.'users'.DS.'admin.yml');
-$kirby->set('blueprint', 'users/customer', __DIR__.DS.'..'.DS.'blueprints'.DS.'users'.DS.'customer.yml');
+$kirby->set('blueprint', 'users/default',    __DIR__.DS.'..'.DS.'blueprints'.DS.'users'.DS.'default.yml');

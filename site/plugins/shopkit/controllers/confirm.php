@@ -20,7 +20,7 @@ return function($site, $pages, $page) {
     $payer_address = $txn->payer_address();
 	} else if ($user = $site->user()) {
     // Third, populate info from the logged in user's profile
-		$payer_name = $user->firstname();
+		$payer_name = $user->firstname().' '.$user->lastname();
 		$payer_email = $user->email();
 		$payer_address = page('shop/countries/'.$user->country())->title();
 	} else {

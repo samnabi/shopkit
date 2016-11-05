@@ -1,7 +1,6 @@
 <?php
 
 // Register templates
-$kirby->set('template', 'account',   __DIR__.DS.'..'.DS.'templates'.DS.'account.php');
 $kirby->set('template', 'cart',      __DIR__.DS.'..'.DS.'templates'.DS.'cart.php');
 $kirby->set('template', 'category',  __DIR__.DS.'..'.DS.'templates'.DS.'category.php');
 $kirby->set('template', 'confirm',   __DIR__.DS.'..'.DS.'templates'.DS.'confirm.php');
