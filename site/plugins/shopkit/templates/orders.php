@@ -4,11 +4,6 @@
 
 <?= $page->text()->kirbytext()->bidi() ?>
 
-<?php if ($orders and $orders->count() === 0 and get('status') === null) { ?>
-    <p dir="auto"><?= l::get('no-orders') ?></p>
-<?php } ?>
-
-
 <div class="uk-overflow-container">
     <table dir="auto" class="uk-table uk-table-striped">
         <thead>
@@ -162,6 +157,14 @@
                     <td colspan="4">
                         <p class="uk-alert uk-alert-warning uk-margin-bottom-remove">
                             <?= l::get('no-filtered-orders') ?>
+                        </p>
+                    </td>
+                </tr>
+            <?php } else if ($orders->count() === 0 and get('status') === null) { ?>
+                <tr>
+                    <td colspan="4">
+                        <p class="uk-alert uk-margin-bottom-remove">
+                            <?= l::get('no-orders') ?>
                         </p>
                     </td>
                 </tr>
