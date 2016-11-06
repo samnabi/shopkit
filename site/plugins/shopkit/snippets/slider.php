@@ -16,10 +16,12 @@ if (is_array($filenames)) {
 <section class="slider uk-margin-bottom">
 	
 	<?php $first = true ?>
-	<?php foreach ($photos as $photo) { ?>	
+	<?php foreach ($photos as $photo) { ?>
+		<?php $fg = $photo->resize(null,300,80) ?>
+		<?php $bg = $photo->blur(80) ?>
 		<input <?php ecco($first,'checked') ?> type="radio" name="thumbnail" id="<?php echo $photo->hash() ?>">
-		<div class="slide" style="background-image: url('<?php echo $photo->thumb(['height'=>300, 'blur'=>true])->dataUri() ?>');">
-			<img src="<?php echo $photo->thumb(['height'=>300,'upscale' => true])->dataUri() ?>" title="<?php echo $photo->title() ?>"/>
+		<div class="slide" style="background-image: url('<?php echo $bg->dataUri() ?>');">
+			<img src="<?php echo $fg->dataUri() ?>" title="<?php echo $photo->title() ?>"/>
 		</div>
 		<?php $first = false ?>
 	<?php } ?>
