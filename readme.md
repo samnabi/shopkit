@@ -35,83 +35,52 @@ Full [docs here](http://shopkit.samnabi.com/docs).
 - Browse products in a <strong>grid</strong> or <strong>slideshow</strong>
 - Beautiful <strong>search</strong> layout
 
-## Roadmap
-
-Keep tabs on the [issues page](https://github.com/samnabi/shopkit/issues) to see what's planned for the future. Please add a new issue to report any bugs or request new features.
-
 ## Pricing
 
 You can try Shopkit for free on your local machine or a test server, forever. Once you're satisfied, [buy a Shopkit license for $19 USD](http://shopkit.samnabi.com) to use it on a public site.
 
 Since Shopkit runs on the Kirby CMS, you'll also have to buy a [Kirby license](http://getkirby.com/license) from Bastian.
 
+Moral licenses for [Visual Markdown](https://gumroad.com/l/visualmarkdown) and [Multiselect](https://gumroad.com/l/kirby-multiselect), two of Shopkit's dependencies, are recommended.
+
 ## Install
 
-Shopkit, just like Kirby, does not require a database, which makes it very easy to install. Just copy the files to your server and visit the URL for your website in the browser.
-
-**Please check if the invisible .htaccess file has been copied to your server correctly**
-
-### Download ZIP
-
-Download the latest version of Shopkit from the [releases page](https://github.com/samnabi/shopkit/releases).
-
-### Clone with Git
-
-If you are familiar with the terminal, you can clone Shopkit from GitHub.
+Download the latest version of Shopkit from the [releases page](https://github.com/samnabi/shopkit/releases), or clone it using git:
 
     git clone --recursive https://github.com/samnabi/shopkit.git
-    
-## Configure
-
-Most of Shopkit's configuration happens in the shop page, located at `/content/1-shop/shop.en.txt`. This includes defining your shipping methods, tax rates, user permissions, and payment details.
-
-Your shop logo and theme options are defined in the site options, located at `/content/site.en.txt`.
-
-Of course, there are helpful blueprints so you can easily manage everything from the panel.
-
-Before your site goes public, you'll need to enter your license keys in the `/site/config/config.php` file.
 
 ## Update
 
 Use these terminal commands to update Shopkit and all its dependencies to the latest commit in the `master` branch.
-
-    # Update dependencies
-    git submodule update --init --recursive
-    git submodule foreach --recursive git checkout master
-    git submodule foreach --recursive git pull
     
     # Update Shopkit
     git checkout master
-    git pull
+    git pull origin master
 
-### Updating from v1.0.3
+    # Update dependencies
+    git submodule update --init --recursive
 
-If you're upgrading from Shopkit 1.0.3 or earlier, note that the location of the `Register` page has changed, and a new page called `Reset` has been introduced. The new folder structure looks like this:
+## Dependencies
 
-```
-content/
-    account/
-        register/
-        reset/
-```
-
-### Updating from v0.9
-
-If you're upgrading from Shopkit 0.9.2 or earlier, you'll have to change some things manually:
-
-- The old Shop page was located at `/content/3-shop`. It has now been changed to `/content/1-shop`. After pulling the updated repo, move your categories and products from `3-shop` to `1-shop`, then delete the `3-shop` directory.
-- Since Shopkit is now multilingual, change all your text filenames to something like `.en.txt`.
-- In every product's text file, change `Prices:` to `Variants:`.
-- In every order's text file, change the order status values to reflect the new values: `pending`, `paid`, or `shipped`.
+- [v2.4.0](https://github.com/getkirby/kirby/tree/2.4.0) `kirby`
+- [v2.4.0](https://github.com/getkirby/panel/tree/2.4.0) `panel`
+- [6ce984e](https://github.com/samnabi/field-bidi/tree/6ce984e85afa191d60fb3d7a18218571f7501731) `site/plugins/field-bidi`
+- [v2.0.0](https://github.com/distantnative/field-multiselect/tree/2.0.0) `site/plugins/field-multiselect`
+- [v1.5.2](https://github.com/storypioneers/kirby-selector/tree/v1.5.2) `site/plugins/field-selector`
+- [fcda14d](https://github.com/ian-cox/Kirby-Color-Picker/tree/fcda14d1ae655870590775a744543a6e40a06ce2) `site/plugins/shopkit/fields/color`
+- [v1.5.1](https://github.com/JonasDoebertin/kirby-visual-markdown/tree/1.5.1) `site/plugins/shopkit/fields/markdown`
+- [a5808fb](https://github.com/samnabi/kirby-snippetfield/tree/a5808fb2173a54b81d22c02618856ad408604cfa) `site/plugins/shopkit/fields/snippetfield`
+- [v1.5](https://github.com/afbora/Kirby-Tabs-Field/tree/ea43fc1452c527f837cc4c19332dc319439c72d6) `site/plugins/shopkit/fields/tabs`
+- [aba268b](https://github.com/samnabi/dompdf/tree/aba268bdebc6e50383fd6758778a4d77ca810c85) dompdf
+    - [v0.4](https://github.com/PhenX/php-font-lib/tree/v0.4) php-font-lib
+    - [v0.1](https://github.com/PhenX/php-svg-lib/tree/v0.1) php-svg-lib
 
 ## Issues and feedback
 
-If you have a GitHub account, please report issues and post feedback on the [issues page](https://github.com/samnabi/shopkit/issues).
-
-Otherwise, send me an email: <sam@samnabi.com>
+Please report issues and request new features on the [issues page](https://github.com/samnabi/shopkit/issues), or send me an email: <sam@samnabi.com>
 
 ## Copyright
 
-Shopkit © 2015 Sam Nabi <http://samnabi.com>
+Shopkit © 2015-2016 Sam Nabi <http://samnabi.com>
 
-Kirby CMS © 2009-2015 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>
+Kirby © 2009-2016 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>

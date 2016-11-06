@@ -1,6 +1,6 @@
 [submodule "kirby"]
 	path = kirby
-	url = https://github.com/getkirby/kirby.git
+	url = https://github.com/getkirby/kirby
 [submodule "panel"]
 	path = panel
 	url = https://github.com/getkirby/panel.git
@@ -19,6 +19,12 @@
 [submodule "site/plugins/shopkit/fields/markdown"]
 	path = site/plugins/shopkit/fields/markdown
 	url = https://github.com/JonasDoebertin/kirby-visual-markdown.git
+[submodule "site/plugins/shopkit/fields/snippetfield"]
+	path = site/plugins/shopkit/fields/snippetfield
+	url = https://github.com/samnabi/kirby-snippetfield/
 [submodule "site/plugins/shopkit/fields/tabs"]
 	path = site/plugins/shopkit/fields/tabs
 	url = https://github.com/afbora/Kirby-Tabs-Field.git
+[submodule "site/plugins/dompdf"]
+	path = site/plugins/dompdf
+	url = https://github.com/dompdf/dompdf

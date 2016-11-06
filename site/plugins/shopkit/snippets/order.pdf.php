@@ -7,6 +7,9 @@ site()->kirby->localize();
 // Page URI sent via POST
 $p = page(get('uri'));
 
+// Load dompdf
+require(kirby()->roots()->plugins().'/dompdf/autoload.inc.php');
+
 // reference the Dompdf namespace
 use Dompdf\Dompdf;
 

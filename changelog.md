@@ -93,6 +93,17 @@
 - Removed `wholesaler` user role (preferential pricing now handled with discount codes instead of roles)
 - Auto-shrink large image uploads
 
+### Updating from v1.0.3
+
+If you're upgrading from Shopkit 1.0.3 or earlier, note that the location of the `Register` page has changed, and a new page called `Reset` has been introduced. The new folder structure looks like this:
+
+```
+content/
+    account/
+        register/
+        reset/
+```
+
 ## v1.0.3
 
 - Bug fixes
@@ -159,3 +170,12 @@
     - Bugfix: Allow multiple options of a variant in the cart
     - Bugfix: Cart stuck in PayPal sandbox mode
     - Security fix: [Rewritebase vulnerability](https://forum.getkirby.com/t/security-check-your-rewritebase-settings/2142)
+
+### Updating from v0.9
+
+If you're upgrading from Shopkit 0.9.2 or earlier, you'll have to change some things manually:
+
+- The old Shop page was located at `/content/3-shop`. It has now been changed to `/content/1-shop`. After pulling the updated repo, move your categories and products from `3-shop` to `1-shop`, then delete the `3-shop` directory.
+- Since Shopkit is now multilingual, change all your text filenames to something like `.en.txt`.
+- In every product's text file, change `Prices:` to `Variants:`.
+- In every order's text file, change the order status values to reflect the new values: `pending`, `paid`, or `shipped`.
