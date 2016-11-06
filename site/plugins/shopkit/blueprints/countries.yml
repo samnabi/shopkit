@@ -1,5 +1,6 @@
 title: Countries
-pages: true
+pages:
+  template: country
 files: false
 options:
   delete: false

@@ -1,9 +1,11 @@
 <?php
 
-// All new pages visible by default
+// All new pages visible by default (except country pages)
 $kirby->set('hook','panel.page.create', function ($page) {
   try {
-    $page->sort('last');
+    if (!$page->isChildOf('shop/countries')) {
+      $page->sort('last');
+    }
   } catch(Exception $e) {
     return response::error($e->getMessage());
   }
