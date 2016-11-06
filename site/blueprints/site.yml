@@ -3,10 +3,6 @@ pages: true
   template:
     - default
 fields:
-  tab1:
-    label: General
-    type: tabs
-    icon: cog
   title:
     extends: title
     label: Site name
@@ -19,10 +15,6 @@ fields:
     help: For products and pages that don't have a photo
     type:  image
     width: 1/2
-  tab2:
-    label: Theme
-    type: tabs
-    icon: paint-brush
   backgroundColor:
     label: Background colour
     type:  color
