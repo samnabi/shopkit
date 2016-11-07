@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.1.2
+- New features
+    - 💯 Automatic formatting for numbers and prices in the panel
+    - 👀 Better download links to prevent snooping and enforce download expiry
+    - 🌏 Simplify adding/removing/editing countries from panel
+- Bug fixes
+    - Prevent template change for products in panel
+- UI & design
+    - Remove tabs from Site options page in panel
+    - Use panel instead of frontend for editing user accounts
+    - More helpful error messages on Orders page
+- Update Kirby Core and Panel to v2.4.0
+- Move Site blueprint inside Shopkit plugin folder
+- Structure all dependencies as git submodules (except Stripe SDK)
+- Use plain textarea instead of map for address in Contact page
+
 ## v1.1.1
 - Bug fixes
     - More reliable staff notification emails
