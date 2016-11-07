@@ -4,7 +4,9 @@ Shopkit is a comprehensive commerce solution for the excellent [Kirby CMS](http:
 
 A single-site license is $19 USD. Bulk discounts available.
 
-Full details and docs: <http://shopkit.samnabi.com>
+Full details and documentation: <http://shopkit.samnabi.com>
+
+![Shopkit sets you up with detailed product blueprints and beautiful, flexible templates](site/plugins/shopkit/preview.jpg)
 
 ## Features
 
@@ -46,7 +48,7 @@ Moral licenses for [Visual Markdown](https://gumroad.com/l/visualmarkdown) and [
 
 ## Install
 
-Download the latest version of Shopkit from the [releases page](https://github.com/samnabi/shopkit/releases), or clone it using git:
+Download the latest version of Shopkit from the [releases page](https://github.com/samnabi/shopkit/releases), or install with git:
 
     git clone --recursive https://github.com/samnabi/shopkit.git
 
