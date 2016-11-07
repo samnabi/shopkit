@@ -2,41 +2,39 @@
 
 Shopkit is a comprehensive commerce solution for the excellent [Kirby CMS](http://getkirby.com).
 
-A single-site license is $19 USD. Bulk discounts available.
-
-Full details and documentation: <http://shopkit.samnabi.com>
+A single-site license is $19 USD. Bulk discounts available. Full details and documentation: <http://shopkit.samnabi.com>
 
 ![Shopkit sets you up with detailed product blueprints and beautiful, flexible templates](site/plugins/shopkit/preview.jpg)
 
 ## Features
 
-### Products & shop settings
+### Shop settings
 
-- **Variants and options** for each product <small>(e.g. sizes and colours)</small>
-- **Flexible shipping rules** <small>(Flat rate, per item, by weight, or by total price)</small>
+- **Variants and options** for each product (e.g. sizes and colours)
+- **Flexible shipping rules** (Flat rate, per item, by weight, or by total price)
 - **Related products**
 - **Inventory control**
 - **Discount codes** and **gift certificates** (site-wide and product-specific)
 - Product-specific shipping & tax exemptions
-- Custom shipping & tax rates by country
+- Country-specific shipping & tax rates
 - **Built-in SEO** for rich snippets
 - Customize **theme colours** & background
 
 ### Payments & orders
 
-- Process payments with **PayPal** and **Stripe** <small>(extensible architecture lets you add other payment gateways)</small>
-- Let certain users **pay later** <small>(i.e. wholesalers)</small>
+- Process payments with **PayPal** and **Stripe** (extensible architecture lets you add other payment gateways)
+- Let certain users **pay later**
 - Manage **pending, paid, and shipped** orders
 - Send **order notifications** to your shipping manager
 - Automatic **PDF invoices**
 
 ### Customer experience
 
-- Automatic **language detection** <small>(English, French, German, and Spanish included by default)</small>
+- Automatic **language detection** (English, French, German, and Spanish included by default)
 - **No sign-up** required
 - Browse products in a **grid** or **slideshow**
 - Beautiful **search** layout
-- **Responsive** layout 
+- **Responsive design** for a great shopping experience on any device 
 
 ## Pricing
 
