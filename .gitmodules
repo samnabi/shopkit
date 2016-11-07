@@ -27,4 +27,4 @@
 	url = https://github.com/afbora/Kirby-Tabs-Field.git
 [submodule "site/plugins/dompdf"]
 	path = site/plugins/dompdf
-	url = https://github.com/dompdf/dompdf
+	url = https://github.com/samnabi/dompdf
