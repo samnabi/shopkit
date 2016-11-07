@@ -225,7 +225,7 @@ class Cart
 	  	$discounts = page('shop')->discount_codes()->toStructure()->filter(function($d){
 	  	  return strtoupper($d->code()) == s::get('discountCode');
 	  	});
-	  	if ($code and $discounts->first()->paylater()->bool()) {
+	  	if ($code and $discounts->first() and $discounts->first()->paylater()->bool()) {
 	  		return true;
 	  	}
 
