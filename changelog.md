@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.3
+- Bug fixes
+    - Simplify panel UI for account management
+    - Restrict customers from exploring the panel dashboard or "all users" list
+    - Stricter checks for discount codes    
+
 ## v1.1.2
 - New features
     - 💯 Automatic formatting for numbers and prices in the panel
