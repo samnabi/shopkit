@@ -1,0 +1,29 @@
+/* Hide toolbar */
+.app {
+	padding-top: 0;
+}
+.topbar {
+	display: none;
+}
+.btn-cancel:before {
+	display: block;
+	background: #efefef;
+	width: 4em;
+	height: 1.5em;
+	line-height: 1.5em;
+	content: 'Back';
+	position: absolute;
+	margin-top: -0.25em;
+	text-align: center;
+	left: 2.5em;
+}
+.btn-cancel:hover:before,
+.btn-cancel:focus:before {
+	background: black;
+	color: white;
+}
+@media screen and (min-width: 50em) {
+	.btn-cancel:before {
+		left: 4em;	
+	}
+}
