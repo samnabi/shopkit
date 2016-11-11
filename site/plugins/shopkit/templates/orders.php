@@ -60,7 +60,7 @@
                                         <?= $product->option()->isNotEmpty() ? ' / '.$product->option() : '' ?>
                                         <?= '/ '.l::get('qty').$product->quantity() ?>
                                     </small>
-                                    <?php if ($product->downloads()->files()->isNotEmpty()) { ?>
+                                    <?php if ($product->downloads()->files()->isNotEmpty() and page($product->uri)) { ?>
                                         <?php if ($product->downloads()->expires()->isEmpty() or $product->downloads()->expires()->value > time()) { ?>
                                             <?php foreach ($product->downloads()->files() as $file) { ?>
                                                 <?php $hash = page($product->uri)->file(substr($file, strrpos($file,'/')+1))->hash() ?>

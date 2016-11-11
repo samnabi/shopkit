@@ -33,7 +33,7 @@ return function($site, $pages, $page) {
     if (get('txn_id') != '') {
         // If single transaction ID passed, show just that one order
         $orders = $page->children()->sortBy('txn_date','desc')->filterBy('txn_id',get('txn_id'));
-    } else if ($user and $user->hasPanelAccess()) {
+    } else if ($user and $user->role() === 'admin') {
         // If admin, show all orders
         $orders = $page->children()->sortBy('txn_date','desc');
     } else if ($user) {
