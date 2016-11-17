@@ -208,6 +208,7 @@
 'register-failure-email' => 'Introduzca una dirección de correo electrónico.',
 'register-failure-fullname' => 'Proporcione su nombre completo.',
 'register-failure-country' => 'Por favor seleccione su país.',
+'register-failure-verification' => 'Lo sentimos, no pudimos enviar su correo electrónico de verificación de cuenta. Póngase en contacto con el propietario de la tienda directamente para activar su cuenta.',
 'register-duplicate' => 'Lo sentimos, actualmente ya hay una cuenta con ese dirección de correo electrónico.',
 
 

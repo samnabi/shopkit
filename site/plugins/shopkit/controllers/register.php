@@ -42,10 +42,12 @@ return function ($site, $pages, $page) {
         	    ));
 
                 // Send password reset email
-                resetPassword($user->email(),true);
-
-        	    $register_message = l::get('register-success');
-                $success = true;
+                if (resetPassword($user->email(),true)) {
+                    $register_message = l::get('register-success');
+                    $success = true;
+                } else {
+                    $register_message = l::get('register-failure-verification');
+                }
 
         	  } catch(Exception $e) {
         	    $register_message = l::get('register-failure');

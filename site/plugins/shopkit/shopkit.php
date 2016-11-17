@@ -344,7 +344,6 @@ function resetPassword($email,$firstTime = false) {
   ]);
 
   // Set the reset link
-  $domain = str_replace('www.', '', $_SERVER['HTTP_HOST']);
   $resetLink = site()->url().'/token/'.$token;
 
   // Build the email text
@@ -359,12 +358,12 @@ function resetPassword($email,$firstTime = false) {
   // Send the confirmation email
   $email = new Email(array(
     'to'      => $user->email(),
-    'from'    => 'noreply@'.$domain,
+    'from'    => 'noreply@'.server::get('server_name'),
     'subject' => $subject,
     'body'    => $body,
   ));
 
-  if($email->send()) {
+  if(v::email($email->from()) and $email->send()) {
     return true;
   } else {
     return false;

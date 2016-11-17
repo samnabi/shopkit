@@ -208,6 +208,7 @@
 'register-failure-email' => 'SVP fournissez votre courriel.',
 'register-failure-fullname' => 'SVP fournissez votre nom complet.',
 'register-failure-country' => 'SVP sélectionnez votre pays.',
+'register-failure-verification' => 'Désolé, on n\'a pas arrivé à envoyer votre courriel de vérification de compte. SVP contactez directement le propriétaire du magasin afin d\'activer votre compte.',
 'register-duplicate' => 'Désolé, votre compte ne pouvait être inscrit. Il y a déja un compte avec ce courriel.',
 
 

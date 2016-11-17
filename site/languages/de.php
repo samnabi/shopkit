@@ -209,6 +209,7 @@
 'register-failure-email' => 'Please provide an email address.',
 'register-failure-fullname' => 'Please provide your full name.',
 'register-failure-country' => 'Please select your country.',
+'register-failure-verification' => 'Wir konnten Ihre Bestätigungs-E-Mail nicht senden. Bitte kontaktieren Sie den Verkäufer direkt, um Ihr Konto zu aktivieren.',
 'register-duplicate' => 'Entschuldigung, es gibt bereits ein Benutzerkonto mit dieser E-Mail Adresse.',
 
 

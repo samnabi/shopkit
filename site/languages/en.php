@@ -208,6 +208,7 @@
 'register-failure-email' => 'Please provide an email address.',
 'register-failure-fullname' => 'Please provide your full name.',
 'register-failure-country' => 'Please select your country.',
+'register-failure-verification' => 'Sorry, we couldn\'t send your account verification email. Please contact the shop owner directly to activate your account.',
 'register-duplicate' => 'Sorry, there\'s already an account with that email address.',
 
 
