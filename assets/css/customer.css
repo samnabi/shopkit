@@ -6,8 +6,9 @@
 	display: none;
 }
 
-/* Hide username field */
-.field-name-username {
+/* Hide some account fields */
+.field-name-username,
+.field-name-role {
 	display: none;
 }
 
