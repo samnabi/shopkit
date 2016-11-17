@@ -204,8 +204,11 @@
 // site/plugins/shopkit/templates/register.php
 
 'register-success' => 'Merci, votre compte est inscrit! Vous recevrez un courriel afin d\'activer votre compte.',
-'register-failure' => 'Désolé, votre compte ne pouvait être inscrit. SVP assurez-vous d\'avoir inscrit tous les infos correctement, y compris votre courriel.',
-'register-duplicate' => 'Désolé, vore compte ne pouvait être inscrit. Il y a déja un compte avec ce nom d\'utilisateur ou courriel.',
+'register-failure' => 'Désolé, votre compte ne pouvait être inscrit. SVP réessayez.',
+'register-failure-email' => 'SVP fournissez votre courriel.',
+'register-failure-fullname' => 'SVP fournissez votre nom complet.',
+'register-failure-country' => 'SVP sélectionnez votre pays.',
+'register-duplicate' => 'Désolé, votre compte ne pouvait être inscrit. Il y a déja un compte avec ce courriel.',
 
 
 // site/plugins/shopkit/templates/reset.php

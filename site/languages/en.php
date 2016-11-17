@@ -204,8 +204,11 @@
 // site/plugins/shopkit/templates/register.php
 
 'register-success' => 'Thanks, your account has been registered! You will receive an email with instructions for activating your account.',
-'register-failure' => 'Sorry, something went wrong. Please make sure all information is entered correctly, including your email address.',
-'register-duplicate' => 'Sorry, there\'s already an account with that username or email address.',
+'register-failure' => 'Sorry, something went wrong. Please try again.',
+'register-failure-email' => 'Please provide an email address.',
+'register-failure-fullname' => 'Please provide your full name.',
+'register-failure-country' => 'Please select your country.',
+'register-duplicate' => 'Sorry, there\'s already an account with that email address.',
 
 
 // site/plugins/shopkit/templates/reset.php

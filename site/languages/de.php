@@ -205,8 +205,11 @@
 // site/plugins/shopkit/templates/register.php
 
 'register-success' => 'Vielen Dank, Ihr Benutzerkonto wurde registriert! Sie können sich nun <a href="#user">einloggen</a>.',
-'register-failure' => 'Entschuldigung, das hat nicht funktioniert. Bitte stellen Sie sicher, dass alle Informationen korrekt eingegeben wurden, insbesondere die E-Mail Adresse.',
-'register-duplicate' => 'Entschuldigung, es gibt bereits ein Benutzerkonto mit diesem Benutzername oder dieser E-Mail Adresse.',
+'register-failure' => 'Entschuldigung, das hat nicht funktioniert. Bitte versuche es erneut.',
+'register-failure-email' => 'Please provide an email address.',
+'register-failure-fullname' => 'Please provide your full name.',
+'register-failure-country' => 'Please select your country.',
+'register-duplicate' => 'Entschuldigung, es gibt bereits ein Benutzerkonto mit dieser E-Mail Adresse.',
 
 
 // site/plugins/shopkit/templates/reset.php

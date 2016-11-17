@@ -204,8 +204,11 @@
 // site/plugins/shopkit/templates/register.php
 
 'register-success' => 'Gracias, tu cuenta ha sido registrada. Recibirás un correo electrónico con instrucciones para activar tu cuenta.',
-'register-failure' => 'Lo sentimos, algo salió mal. Por favor asegúrate de que toda la información sea correcta, incluyendo tu dirección de correo electrónico.',
-'register-duplicate' => 'Lo sentimos, actualmente ya hay una cuenta con ese nombre de usuario o dirección de correo electrónico.',
+'register-failure' => 'Lo sentimos, algo salió mal. Vuelve a intentarlo.',
+'register-failure-email' => 'Introduzca una dirección de correo electrónico.',
+'register-failure-fullname' => 'Proporcione su nombre completo.',
+'register-failure-country' => 'Por favor seleccione su país.',
+'register-duplicate' => 'Lo sentimos, actualmente ya hay una cuenta con ese dirección de correo electrónico.',
 
 
 // site/plugins/shopkit/templates/reset.php

@@ -2,44 +2,58 @@
 
 return function ($site, $pages, $page) {
 
-    // Honeypot trap for robots
-    if(r::is('post') and get('subject') != '') go(url('error'));
-
     // Process registration form
     if(r::is('post') and get('register') !== null) {
 
-    	// Check for duplicate accounts
-    	$duplicateEmail = $site->users()->findBy('email',trim(get('email')));
-    	$duplicateUsername = $site->users()->findBy('username',trim(get('username')));
+        // Honeypot trap for robots
+        if (get('subject') != '') go(url('error'));
 
-    	if (count($duplicateEmail) === 0 and count($duplicateUsername) === 0) {
-    	  try {
+        // Check for required fields
+        $register_message = '';
+        if (get('email') == '') $register_message .= '<p dir="auto">'.l('register-failure-email').'</p>';
+        if (get('fullname') == '') $register_message .= '<p dir="auto">'.l('register-failure-fullname').'</p>';
+        if (get('country') == '') $register_message .= '<p dir="auto">'.l('register-failure-country').'</p>';
 
-    	    // Random password for initial setup.
-            // User will create their own password after opt-in email verification.
-            $password = bin2hex(openssl_random_pseudo_bytes(16));
+        if (!$register_message) {
 
-            // Create account
-    	    $user = $site->users()->create(array(
-    	      'username'  => trim(get('username')),
-    	      'email'     => trim(get('email')),
-    	      'password'  => $password,
-    	      'firstName' => trim(get('fullname')),
-    	      'language'  => 'en',
-    	      'country'   => get('country')
-    	    ));
+            // Username is a slug of the email address with the dashes removed.
+            // End users won't use this, we just need a unique ID for the account.
+            $username = str_replace('-', '', str::slug(get('email')));
 
-            // Send password reset email
-            resetPassword($user->email(),true);
+        	// Check for duplicate accounts
+        	$duplicateEmail = $site->users()->findBy('email',trim(get('email')));
+        	$duplicateUsername = $site->users()->findBy('username',$username);
 
-    	    $register_message = l::get('register-success');
+        	if (count($duplicateEmail) === 0 and count($duplicateUsername) === 0) {
+        	  try {
 
-    	  } catch(Exception $e) {
-    	    $register_message = l::get('register-failure');
-    	  }
-    	} else {
-    	    $register_message = l::get('register-duplicate');
-    	}
+                // Random password for initial setup.
+                // User will create their own password after opt-in email verification.
+                $password = bin2hex(openssl_random_pseudo_bytes(16));
+
+                // Create account
+        	    $user = $site->users()->create(array(
+        	      'username'  => $username,
+        	      'email'     => trim(get('email')),
+        	      'password'  => $password,
+        	      'firstName' => trim(get('fullname')),
+        	      'language'  => 'en',
+        	      'country'   => get('country')
+        	    ));
+
+                // Send password reset email
+                resetPassword($user->email(),true);
+
+        	    $register_message = l::get('register-success');
+                $success = true;
+
+        	  } catch(Exception $e) {
+        	    $register_message = l::get('register-failure');
+        	  }
+        	} else {
+        	    $register_message = l::get('register-duplicate');
+        	}
+        }
     } else {
     	$register_message = false;
     }
@@ -51,5 +65,6 @@ return function ($site, $pages, $page) {
 	return [
 		'register_message' => $register_message,
 		'countries' => $countries,
+        'success' => isset($success) ? true : false,
 	];
 };
