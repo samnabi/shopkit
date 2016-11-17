@@ -5,6 +5,13 @@
 .topbar {
 	display: none;
 }
+
+/* Hide username field */
+.field-name-username {
+	display: none;
+}
+
+/* Change text of "Cancel" to  "Back" */
 .btn-cancel:before {
 	display: block;
 	background: #efefef;
