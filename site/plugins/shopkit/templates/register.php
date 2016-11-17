@@ -18,10 +18,6 @@
       <input type="text" name="subject">
     </div>
     <div class="uk-form-row">
-      <label for="username"><?= l::get('username') ?></label>
-      <input class="uk-form-width-large" type="text" id="username" name="username">
-    </div>
-    <div class="uk-form-row">
       <label for="email"><?= l::get('email-address') ?></label>
       <input class="uk-form-width-large" type="text" id="email" name="email">
     </div>
