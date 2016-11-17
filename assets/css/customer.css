@@ -13,25 +13,23 @@
 }
 
 /* Change text of "Cancel" to  "Back" */
+.btn-cancel {
+	position: relative;
+}
 .btn-cancel:before {
 	display: block;
 	background: #efefef;
-	width: 4em;
+	width: 70%;
+	left: 15%;
 	height: 1.5em;
 	line-height: 1.5em;
 	content: 'Back';
 	position: absolute;
 	margin-top: -0.25em;
 	text-align: center;
-	left: 2.5em;
 }
 .btn-cancel:hover:before,
 .btn-cancel:focus:before {
 	background: black;
 	color: white;
-}
-@media screen and (min-width: 50em) {
-	.btn-cancel:before {
-		left: 4em;	
-	}
 }
