@@ -130,7 +130,7 @@
                         </table>
                     </td>
                     <td>
-                        <?php if($user and $user->role() === 'admin') { ?>
+                        <?php if($user and $user->role() == 'admin') { ?>
                             <div class="uk-button-group">
                                 <form action="" method="POST">
                                     <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
