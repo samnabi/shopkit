@@ -19,7 +19,7 @@
     </div>
     <div class="uk-form-row">
       <label for="email"><?= l::get('email-address') ?></label>
-      <input class="uk-form-width-large" type="text" id="email" name="email">
+      <input class="uk-form-width-large" type="email" id="email" name="email">
     </div>
     <div class="uk-form-row">
       <label for="fullname"><?= l::get('full-name') ?></label>
