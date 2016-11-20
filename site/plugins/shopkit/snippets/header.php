@@ -9,9 +9,9 @@
 
 	<!-- Styles -->
 	<?= css(getStylesheet($site->colorbase(),$site->coloraccent(),$site->colorlink())) ?>
-	<?= css('assets/css/font.naksh.css') ?>
-	<?= css('assets/css/font.asap.css') ?>
+	<?= css('assets/plugins/shopkit/css/font.asap.css') ?>
 	<?php snippet('header.background.style') ?>
+	<?= css('assets/css/custom.css') ?>
 
 </head>
 <body>

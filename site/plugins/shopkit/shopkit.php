@@ -141,11 +141,11 @@ function getStylesheet($base = 'eeeeee', $accent = '00a836', $link = '0077dd') {
 
   // If it's already there, return the filepath
   if (stylesheetIsValid($base,$accent,$link)) {
-    return 'assets/css/shopkit.'.$base.'.'.$accent.'.'.$link.'.css';
+    return 'assets/plugins/shopkit/css/shopkit.'.$base.'.'.$accent.'.'.$link.'.css';
   }
 
-  $defaultPath = kirby()->roots()->index().'/assets/css/shopkit.css';
-  $newPath = kirby()->roots()->index().'/assets/css/shopkit.'.$base.'.'.$accent.'.'.$link.'.css';
+  $defaultPath = kirby()->roots()->index().'/site/plugins/shopkit/assets/css/shopkit.css';
+  $newPath = kirby()->roots()->index().'/site/plugins/shopkit/assets/css/shopkit.'.$base.'.'.$accent.'.'.$link.'.css';
 
   // Copy the default CSS file to the new path
   copy($defaultPath, $newPath);
@@ -157,13 +157,13 @@ function getStylesheet($base = 'eeeeee', $accent = '00a836', $link = '0077dd') {
   file_put_contents($newPath,$file_contents);
 
   // Spit out the filepath
-  return 'assets/css/shopkit.'.$base.'.'.$accent.'.'.$link.'.css';
+  return 'assets/plugins/shopkit/css/shopkit.'.$base.'.'.$accent.'.'.$link.'.css';
 }
 
 function stylesheetIsValid($base = 'eeeeee', $accent = '00a836', $link = '0077dd') {
   // Get paths
-  $defaultPath = kirby()->roots()->index().'/assets/css/shopkit.css';
-  $requestedPath = kirby()->roots()->index().'/assets/css/shopkit.'.$base.'.'.$accent.'.'.$link.'.css';
+  $defaultPath = kirby()->roots()->plugins().'/shopkit/assets/css/shopkit.css';
+  $requestedPath = kirby()->roots()->plugins().'/shopkit/assets/css/shopkit.'.$base.'.'.$accent.'.'.$link.'.css';
   
   // Check if requested stylesheet exists and timestamps make sense
   if (file_exists($requestedPath) and (filemtime($defaultPath) < filemtime($requestedPath))) {

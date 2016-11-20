@@ -168,3 +168,8 @@ $kirby->set('route',[
     return go('shop/orders');
   }
 ]);
+$kirby->set('route',[
+  // Weird hack that somehow ends up calling the route present in kirby.php
+  'pattern' => 'assets/plugins/(:any)/(:all)',
+  'method'  => 'GET',
+]);
