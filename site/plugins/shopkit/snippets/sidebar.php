@@ -66,7 +66,7 @@
                 
                 <?php if ($email = $contact->email() and $email != '') { ?>
                     <dt><?= l::get('email') ?></dt>
-                    <dd class="uk-margin-bottom"><a href="mailto:<?= $email ?>"><?= $email ?></a></dd>
+                    <dd class="uk-margin-bottom"><?= kirbytext('(email: '.trim($email).')') ?></dd>
                 <?php } ?>
                 
                 <?php if ($address = $contact->location()->toStructure()->address() and $address != '') { ?>
