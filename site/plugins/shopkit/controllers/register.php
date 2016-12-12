@@ -16,9 +16,9 @@ return function ($site, $pages, $page) {
 
         if (!$register_message) {
 
-            // Username is a slug of the email address with the dashes removed.
+            // Username is the email address with punctuation removed.
             // End users won't use this, we just need a unique ID for the account.
-            $username = str_replace('-', '', str::slug(get('email')));
+            $username = str::slug(get('email'),'');
 
         	// Check for duplicate accounts
         	$duplicateEmail = $site->users()->findBy('email',trim(get('email')));
