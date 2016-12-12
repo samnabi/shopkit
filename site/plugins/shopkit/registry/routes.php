@@ -168,3 +168,19 @@ $kirby->set('route',[
     return go('shop/orders');
   }
 ]);
+$kirby->set('route',[
+  // Pretty URLs for discount codes
+  'pattern' => 'discount/(:any)',
+  'action' => function($code){
+    s::set('discountCode', strtoupper($code));
+    return go('shop');
+  }
+]);
+$kirby->set('route',[
+  // Pretty URLs for gift certificates
+  'pattern' => 'gift/(:any)',
+  'action' => function($code){
+    s::set('giftCertificateCode', strtoupper($code));
+    return go('shop');
+  }
+]);

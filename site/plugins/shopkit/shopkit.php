@@ -51,18 +51,26 @@ if ($country = get('country')) {
 }
 s::set('country',$country);
 
-// Set discount code from query string or user profile
-if ($code = get('dc') or ($user = site()->user() and $code = $user->discountcode())) {
+// Set discount code from user profile or query string
+if (!s::get('discountCode') and $user = site()->user() and $code = $user->discountcode()) {
   s::set('discountCode', strtoupper($code));
-} else if (get('dc') === '') {
+  go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
+}
+if (get('dc') === '') {
   s::remove('discountCode');
+  go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
+} else if ($code = get('dc')) {
+  s::set('discountCode', strtoupper($code));
+  go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
 }
 
 // Set gift certificate code from query string
-if ($code = get('gc')) {
-  s::set('giftCertificateCode', strtoupper($code));
-} else if (get('gc') === '') {
+if (get('gc') === '') {
   s::remove('giftCertificateCode');
+  go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
+} else if ($code = get('gc')) {
+  s::set('giftCertificateCode', strtoupper($code));
+  go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
 }
 
 
