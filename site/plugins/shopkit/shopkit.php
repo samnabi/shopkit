@@ -27,6 +27,7 @@ require('registry/roles.php');
 require('registry/routes.php');
 require('registry/snippets.php');
 require('registry/templates.php');
+require('registry/widgets.php');
 
 // Include Cart and CartItem objects
 include_once('Cart.php');
