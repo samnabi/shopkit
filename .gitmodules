@@ -25,3 +25,6 @@
 [submodule "site/plugins/dompdf"]
 	path = site/plugins/dompdf
 	url = https://github.com/samnabi/dompdf
+[submodule "site/plugins/shopkit/fields/tabs"]
+	path = site/plugins/shopkit/fields/tabs
+	url = https://github.com/afbora/Kirby-Tabs-Field
