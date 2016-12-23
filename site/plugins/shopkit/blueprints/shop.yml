@@ -75,14 +75,16 @@ fields:
         width: 1/2
       weight:
         label: Rate by total weight
-        help: "Each line is a price tier. Use this format: <span style="font-style: normal;"><br /><strong>weight : shipping</strong><br /><strong>0 : 12.00</strong> <em>($12 for weight of 0 or more)</em><br /><strong>7 : 15.00</strong> <em>($15 for weight of 7 or more)</em><br /><strong>20 : 18.00</strong> <em>($18 for weight of 20 or more)</em></span>"
-        type: textarea
+        type: tiers
         width: 1/2
+        tiersKeyLabel: Weight
+        tiersAmountLabel: Shipping rate
       price:
         label: Rate by total price
-        help: "Each line is a price tier. Use this format: <span style="font-style: normal;"><br /><strong>price : shipping</strong><br /><strong>0.00 : 2.00</strong> <em>($2 for total cart of $0 or more)</em><br /><strong>10.00 : 5.00</strong> <em>($5 for total cart of $7 or more)</em><br /><strong>20.00 : 0.00</strong> <em>(free shipping over $20)</em></span>"
-        type: textarea
+        type: tiers
         width: 1/2
+        tiersKeyLabel: Total cart price
+        tiersAmountLabel: Shipping rate
       calculation:
         label: Resolve multiple shipping rates
         help: When more than one calculation option is defined, choose which one applies

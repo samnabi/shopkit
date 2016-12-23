@@ -89,6 +89,16 @@ function formatPrice($number) {
 	}
 }
 
+function rawPrice($number) {
+  $symbol = page('shop')->currency_symbol();
+  $currencyCode = page('shop')->currency_code();
+  if (page('shop')->currency_position() == 'before') {
+    return $symbol . number_format((float)$number,2);
+  } else {
+    return number_format($number,2) . '&nbsp;' . $symbol;
+  }
+}
+
 
 /**
  * Helper function to check inventory / stock

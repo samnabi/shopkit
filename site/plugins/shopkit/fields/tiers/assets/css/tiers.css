@@ -1,0 +1,41 @@
+.tiers-field .tiers-labels {
+  display: flex;
+  justify-content: space-between;
+  color: #777;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.tiers-field .tiers-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 1em;
+}
+
+.tiers-field .tiers-item input {
+  width: 3em;
+  max-width: calc(50% - 1em);
+}
+.tiers-field .tiers-item input:first-child,
+.tiers-field .tiers-item input:last-child {
+  text-align: right;
+}
+.tiers-field .tiers-item input:last-child {
+  width: 5em;
+  margin-left: auto;
+}
+
+.tier-upper-limit {
+  color: #777;
+  margin-left: 0.5em;
+}
+
+.tiers-field .btn {
+  margin-top: 0.25em;
+  padding: calc(0.75em + 2px) 0;
+  background: white;
+  color: #777;
+  font-size: 0.9em;
+}
