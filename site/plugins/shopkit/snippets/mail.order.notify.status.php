@@ -7,11 +7,11 @@ site()->kirby->localize();
 // Build body text
 $body = l::get('order-notify-status-message').' ';
 $body .= page('shop/orders')->url().'?txn_id='.$txn->txn_id()."\n\n";
-$body .= l::get('transaction-id').' '.$txn->txn_id()."\n\n";
-$body .= l::get('status').' :'.l::get($txn->status())."\n";
-$body .= l::get('full-name')' :'.$txn->payer_name()."\n";
-$body .= l::get('email-address').' :'.$txn->payer_email()."\n";
-$body .= l::get('address').' :'.$txn->payer_address()."\n\n";
+$body .= l::get('transaction-id').': '.$txn->txn_id()."\n\n";
+$body .= l::get('status').': '.l::get($txn->status())."\n";
+$body .= l::get('full-name').': '.$txn->payer_name()."\n";
+$body .= l::get('email-address').': '.$txn->payer_email()."\n";
+$body .= l::get('address').': '.$txn->payer_address()."\n\n";
 foreach ($txn->products()->toStructure() as $item) {
   $body .= page($item->uri())->title().' - '.$item->variant();
   $body .= $item->option() == '' ? '' : ' - '.$item->option();
