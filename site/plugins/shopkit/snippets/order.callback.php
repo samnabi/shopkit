@@ -48,6 +48,3 @@ if ($notifications->count()) {
 
   }
 }
-
-// Notify customer
-snippet('mail.order.notify.status', ['txn' => $txn]);

@@ -57,6 +57,9 @@ return function($site, $pages, $page) {
           'payer-email' => get('payer_email'),
           'payer-address' => get('payer_address'),
         ], $site->defaultLanguage()->code());
+
+        // Notify customer
+        snippet('mail.order.notify.status', ['txn' => $txn]);
       } catch(Exception $e) {
         // Update failed
         snippet('mail.order.update.error', [
