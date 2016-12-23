@@ -92,9 +92,23 @@
 // site/plugins/shopkit/snippets/mail.order.notify.php
 'order-notification-subject' => '['.$site->title().'] Nuevo pedido realizado',
 'order-notification-message' => 'Alguien realizó un pedido desde tu tienda en '.server::get('server_name').'. Administra los detalles de transacción aquí:',
+
+
+// site/plugins/shopkit/snippets/mail.order.update.error.php
 'order-error-subject' => '['.$site->title().'] Problema con una nueva orden',
-'order-error-message-update' => "El pago ha sido recibido, pero algo salió mal en el último paso de la transacción.\n\nLos detalles del cliente no se han guardado, el inventario no se actualizó correctamente, o no se envió la notificación de tu orden.\n\nConoce los detalles de la transacción aquí:",
+'order-error-message-update' => "El pago ha sido recibido, pero algo salió mal en el último paso de la transacción.\n\n",
+'order-error-message-update-admin' => "Los detalles del cliente no se han guardado, el inventario no se actualizó correctamente, o no se envió la notificación de tu orden.\n\nConoce los detalles de la transacción aquí:",
+'order-error-message-update-customer' => 'Póngase en contacto con '.$site->title().' para más detalles',
+
+
+// site/plugins/shopkit/snippets/mail.order.tamper.php
 'order-error-message-tamper' => "El pago ha sido recibido, pero no concuerda con la orden que fue realizada.\n\nConoce los detalles de la transacción aquí:",
+
+
+// site/plugins/shopkit/snippets/mail.order.notify.status.php
+
+'order-notify-status-subject' => '['.$site->title().'] Detalles de su pedido',
+'order-notify-status-message' => 'Su orden de '.server::get('server_name').' ha sido actualizado. Ver los detalles de la transacción aquí:',
 
 
 // site/plugins/shopkit/snippets/sidebar.php

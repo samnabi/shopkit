@@ -10,18 +10,24 @@ $body .= 'status :'.$payment_status."\n";
 $body .= 'payer-name : '.$payer_name."\n";
 $body .= 'payer-email : '.$payer_email."\n";
 $body .= 'payer-address : '.$payer_address."\n\n";
-$body .= l::get('order-error-message-update').' ';
-$body .= page('shop/orders')->url().'?txn_id='.$txn->txn_id();
+$body .= l::get('order-error-message-update');
 
-// Build email
-$email = new Email(array(
+// Send email to admin
+$adminemail = new Email(array(
   'to'      => page('shop')->error_email()->value,
   'from'    => 'noreply@'.server::get('server_name'),
   'subject' => l::get('order-error-subject'),
-  'body'    => $body,
+  'body'    => $body.l::get('order-error-message-update-admin').' '.page('shop/orders')->url().'?txn_id='.$txn->txn_id(),
 ));
+$adminemail->send();
 
-// Send it
-$email->send();
+// Send email to customer
+$customeremail = new Email(array(
+  'to'      => $txn->payer_email(),
+  'from'    => 'noreply@'.server::get('server_name'),
+  'subject' => l::get('order-error-subject'),
+  'body'    => $body.l::get('order-error-message-update-customer'),
+));
+$customeremail->send();
 
 ?>

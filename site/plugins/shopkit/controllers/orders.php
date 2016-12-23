@@ -8,6 +8,7 @@ return function($site, $pages, $page) {
     if ($action === 'mark_pending') {
         try {
             page('shop/orders/'.get('update_id'))->update(['status' => 'pending']);
+            snippet('mail.order.notify.status', ['txn' => page('shop/orders/'.get('update_id'))]);
         } catch(Exception $e) {
             echo $e->getMessage();
         }
@@ -16,6 +17,7 @@ return function($site, $pages, $page) {
     if ($action === 'mark_shipped') {
         try {
             page('shop/orders/'.get('update_id'))->update(['status' => 'shipped']);
+            snippet('mail.order.notify.status', ['txn' => page('shop/orders/'.get('update_id'))]);
         } catch(Exception $e) {
             echo $e->getMessage();
         }
@@ -24,6 +26,7 @@ return function($site, $pages, $page) {
     if ($action === 'mark_paid') {
         try {
             page('shop/orders/'.get('update_id'))->update(['status' => 'paid']);
+            snippet('mail.order.notify.status', ['txn' => page('shop/orders/'.get('update_id'))]);
         } catch(Exception $e) {
             echo $e->getMessage();
         }

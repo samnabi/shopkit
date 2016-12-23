@@ -14,6 +14,7 @@ $kirby->set('snippet', 'list.product',               __DIR__.DS.'..'.DS.'snippet
 $kirby->set('snippet', 'list.related',               __DIR__.DS.'..'.DS.'snippets'.DS.'list.related.php');
 $kirby->set('snippet', 'logo',                       __DIR__.DS.'..'.DS.'snippets'.DS.'logo.php');
 $kirby->set('snippet', 'mail.order.notify',          __DIR__.DS.'..'.DS.'snippets'.DS.'mail.order.notify.php');
+$kirby->set('snippet', 'mail.order.notify.status',   __DIR__.DS.'..'.DS.'snippets'.DS.'mail.order.notify.status.php');
 $kirby->set('snippet', 'mail.order.update.error',    __DIR__.DS.'..'.DS.'snippets'.DS.'mail.order.update.error.php');
 $kirby->set('snippet', 'mail.order.tamper',          __DIR__.DS.'..'.DS.'snippets'.DS.'mail.order.tamper.php');
 $kirby->set('snippet', 'order.callback',             __DIR__.DS.'..'.DS.'snippets'.DS.'order.callback.php');

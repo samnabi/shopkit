@@ -93,10 +93,24 @@
 
 // site/plugins/shopkit/snippets/mail.order.notify.php
 'order-notification-subject' => '['.$site->title().'] New order placed',
-'order-notification-message' => 'Someone placed an order from your shop at '.server::get('server_name').'. Manage transaction details here:',
-'order-error-subject' => '['.$site->title().'] Problem with a new order',
-'order-error-message-update' => "The payment has been received, but something went wrong with the final step of the transaction.\n\nEither the customer's details haven't been saved; the inventory wasn't updated correctly; or the staff order notification didn't get sent.\n\nInvestigate the transaction details here:",
-'order-error-message-tamper' => "A payment was received, but it doesn't match the order that was placed.\n\nInvestigate the transaction details here:",
+'order-notification-message' => 'Jemand hat einen Auftrag von Ihrem Geschäft bei '.server::get('server_name').'. Zeigen Sie die Transaktionsdetails an:',
+
+
+// site/plugins/shopkit/snippets/mail.order.update.error.php
+'order-error-subject' => '['.$site->title().'] Problem mit einer neuen Bestellung',
+'order-error-message-update' => "Die Zahlung wurde empfangen, aber etwas schief ging mit dem letzten Schritt der Transaktion.\n\n",
+'order-error-message-update-admin' => "Entweder wurden die Details des Kunden nicht gespeichert; Das Inventar wurde nicht korrekt aktualisiert; Oder die Mitarbeiterauftragsbenachrichtigung wurde nicht gesendet.\n\nZeigen Sie die Transaktionsdetails an:",
+'order-error-message-update-customer' => 'Bitte kontaktieren Sie '.$site->title().' für weitere Details.',
+
+
+// site/plugins/shopkit/snippets/mail.order.tamper.php
+'order-error-message-tamper' => "Eine Zahlung wurde eingegangen, aber sie stimmt nicht mit der Bestellung überein.\n\nZeigen Sie die Transaktionsdetails an:",
+
+
+// site/plugins/shopkit/snippets/mail.order.notify.status.php
+
+'order-notify-status-subject' => '['.$site->title().'] Ihre Auftragsdetails',
+'order-notify-status-message' => 'Ihre Bestellung von '.server::get('server_name').' wurde aktualisiert. Zeigen Sie die Transaktionsdetails an:',
 
 
 // site/plugins/shopkit/snippets/sidebar.php

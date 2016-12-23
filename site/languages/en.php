@@ -91,11 +91,26 @@
 
 
 // site/plugins/shopkit/snippets/mail.order.notify.php
+
 'order-notification-subject' => '['.$site->title().'] New order placed',
 'order-notification-message' => 'Someone placed an order from your shop at '.server::get('server_name').'. Manage transaction details here:',
+
+
+// site/plugins/shopkit/snippets/mail.order.update.error.php
 'order-error-subject' => '['.$site->title().'] Problem with a new order',
-'order-error-message-update' => "The payment has been received, but something went wrong with the final step of the transaction.\n\nEither the customer's details haven't been saved; the inventory wasn't updated correctly; or the staff order notification didn't get sent.\n\nInvestigate the transaction details here:",
+'order-error-message-update' => "The payment has been received, but something went wrong with the final step of the transaction.\n\n",
+'order-error-message-update-admin' => "Either the customer's details haven't been saved; the inventory wasn't updated correctly; or the staff order notification didn't get sent.\n\nInvestigate the transaction details here:",
+'order-error-message-update-customer' => 'Please contact '.$site->title().' for further details.',
+
+
+// site/plugins/shopkit/snippets/mail.order.tamper.php
 'order-error-message-tamper' => "A payment was received, but it doesn't match the order that was placed.\n\nInvestigate the transaction details here:",
+
+
+// site/plugins/shopkit/snippets/mail.order.notify.status.php
+
+'order-notify-status-subject' => '['.$site->title().'] Your order details',
+'order-notify-status-message' => 'Your order from '.server::get('server_name').' has been updated. View the transaction details here:',
 
 
 // site/plugins/shopkit/snippets/sidebar.php
