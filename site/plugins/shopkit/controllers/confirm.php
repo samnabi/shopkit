@@ -69,7 +69,6 @@ return function($site, $pages, $page) {
           'payer_email' => get('payer_email'),
           'payer_address' => get('payer_address'),
         ]);
-        return false;
       }
 
       // Empty the cart
@@ -83,9 +82,9 @@ return function($site, $pages, $page) {
 
   // Form is invalid or hasn't been submitted yet
   return [
-      'txn' => $txn,
-      'payer_name' => $payer_name,
-      'payer_email' => $payer_email,
-      'payer_address' => $payer_address,
+    'txn' => $txn,
+    'payer_name' => $payer_name,
+    'payer_email' => $payer_email,
+    'payer_address' => $payer_address,
   ];
 };

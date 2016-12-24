@@ -5,29 +5,17 @@ site()->visit('shop', (string) site()->detectedLanguage());
 site()->kirby->localize();
 
 // Build body text
-$body = l::get('transaction-id').' '.$txn->txn_id()."\n\n";
-$body .= 'status :'.$payment_status."\n";
-$body .= 'payer-name : '.$payer_name."\n";
-$body .= 'payer-email : '.$payer_email."\n";
-$body .= 'payer-address : '.$payer_address."\n\n";
+$body = l::get('transaction-id').' '.$txn->txn_id()->value."\n\n";
+$body .= l::get('status').': '.$payment_status."\n";
+$body .= l::get('full-name').': '.$payer_name."\n";
+$body .= l::get('email-address').': '.$payer_email."\n";
+$body .= l::get('address').': '.$payer_address."\n\n";
 $body .= l::get('order-error-message-update');
 
 // Send email to admin
-$adminemail = new Email(array(
-  'to'      => page('shop')->error_email()->value,
-  'from'    => 'noreply@'.server::get('server_name'),
-  'subject' => l::get('order-error-subject'),
-  'body'    => $body.l::get('order-error-message-update-admin').' '.page('shop/orders')->url().'?txn_id='.$txn->txn_id(),
-));
-$adminemail->send();
+sendMail(l::get('order-error-subject'), $body.l::get('order-error-message-update-admin').' '.page('shop/orders')->url().'?txn_id='.$txn->txn_id()->value, page('shop')->error_email()->value);
 
 // Send email to customer
-$customeremail = new Email(array(
-  'to'      => $txn->payer_email(),
-  'from'    => 'noreply@'.server::get('server_name'),
-  'subject' => l::get('order-error-subject'),
-  'body'    => $body.l::get('order-error-message-update-customer'),
-));
-$customeremail->send();
+sendMail(l::get('order-error-subject'), $body.l::get('order-error-message-update-customer'), $txn->payer_email()->value);
 
 ?>

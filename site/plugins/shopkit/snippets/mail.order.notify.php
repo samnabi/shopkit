@@ -6,27 +6,19 @@ site()->kirby->localize();
 
 // Build body text
 $body = l::get('order-notification-message').' ';
-$body .= page('shop/orders')->url().'?txn_id='.$txn->txn_id()."\n\n";
-$body .= l::get('transaction-id').' '.$txn->txn_id()."\n\n";
-$body .= 'status :'.$payment_status."\n";
-$body .= 'payer-name :'.$payer_name."\n";
-$body .= 'payer-email :'.$payer_email."\n";
-$body .= 'payer-address :'.$payer_address."\n\n";
+$body .= page('shop/orders')->url().'?txn_id='.$txn->txn_id()->value."\n\n";
+$body .= l::get('transaction-id').' '.$txn->txn_id()->value."\n\n";
+$body .= l::get('status').': '.$payment_status."\n";
+$body .= l::get('full-name').': '.$payer_name."\n";
+$body .= l::get('email-address').': '.$payer_email."\n";
+$body .= l::get('address').': '.$payer_address."\n\n";
 foreach ($txn->products()->toStructure() as $item) {
-  $body .= page($item->uri())->title().' - '.$item->variant();
-  $body .= $item->option() == '' ? '' : ' - '.$item->option();
-  $body .= "\n".'Qty: '.$item->quantity()."\n\n";
+  $body .= page($item->uri())->title()->value.' - '.$item->variant()->value;
+  $body .= $item->option() == '' ? '' : ' - '.$item->option()->value;
+  $body .= "\n".l::get('qty').$item->quantity()->value."\n\n";
 }
 
-// Build the email
-$email = new Email(array(
-  'to'      => $n->email(),
-  'from'    => 'noreply@'.server::get('server_name'),
-  'subject' => l::get('order-notification-subject'),
-  'body'    => $body,
-));
-
-// Send it
-$email->send();
+// Send the email
+sendMail(l::get('order-notification-subject'), $body, $n->email()->value);
 
 ?>

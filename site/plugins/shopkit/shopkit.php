@@ -76,7 +76,7 @@ if (get('gc') === '') {
 
 
 /**
- * Helper function to format price
+ * Helper functions to format price
  */
 
 function formatPrice($number) {
@@ -375,19 +375,7 @@ function resetPassword($email,$firstTime = false) {
   }
 
   // Send the confirmation email
-  $email = new Email(array(
-    'to'      => $user->email(),
-    'from'    => 'noreply@'.server::get('server_name'),
-    'subject' => $subject,
-    'body'    => $body,
-  ));
-
-  if(v::email($email->from()) and $email->send()) {
-    return true;
-  } else {
-    return false;
-  }
-
+  sendMail($subject, $body, $user->email());
 }
 
 
@@ -456,4 +444,36 @@ function getGiftCertificate($cartTotal) {
     'amount' => $amount,
     'remaining' => $remaining
   ];
+}
+
+
+/**
+ * Send mail
+ */
+
+function sendMail($subject, $body, $to) {
+  // Define from email address
+  $from = 'noreply@'.str_replace('www.', '', server::get('server_name'));
+  
+  // Build email
+  $email = new Email([
+    'subject' => $subject,
+    'body'    => $body,
+    'to'      => $to,
+    'from'    => $from,
+  ]);
+
+  // Log email
+  if (c::get('debug') == true) {
+    $file = kirby()->roots()->index().DS.'logs'.DS.'mail.log';
+    $content = "\n\n----\n\n".date('Y-m-d H:i:s')."\n\n".yaml::encode($email);
+    f::write($file, $content, true);
+  }
+
+  // Vaidate and send
+  if (v::email($to) and v::email($from) and $email->send()) {
+    return true;
+  } else {
+    return false;
+  }
 }
