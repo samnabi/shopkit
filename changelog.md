@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.1.4
+- New features
+    - 💅 Override default CSS in `assets/css/custom.css`
+    - 💸 Pretty URLs for discount codes and gift certificates
+        - `example.com/discount/thisisthecode`
+        - `example.com/gift/thisisthecode`
+    - 🏁 Dashboard widget shows current Shopkit version & upgrade notice
+    - 📦 New panel field for shipping tiers
+    - 📬 Automatic customer notification emails
+        - Notify upon successful purchase
+        - Notify upon changes to their order status
+- Decrufting
+    - Refactor email notification code into a global `sendMail()` function
+    - Move CSS to `plugins/shopkit/assets`
+    - Use kirbytext in templates to obfuscate email links
+
 ## v1.1.3
 - Bug fixes
     - Simplify panel UI for account management

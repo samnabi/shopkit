@@ -22,7 +22,7 @@ A single-site license is $19 USD. Bulk discounts available. Full details and doc
 
 ### Payments & orders
 
-- Process payments with **PayPal** and **Stripe** (extensible architecture lets you add other payment gateways)
+- Process payments with **PayPal** and **Stripe** (modular folder structure lets you add other payment gateways)
 - Let certain users **pay later**
 - Manage **pending, paid, and shipped** orders
 - Send **order notifications** to your shipping manager
@@ -30,11 +30,11 @@ A single-site license is $19 USD. Bulk discounts available. Full details and doc
 
 ### Customer experience
 
-- Automatic **language detection** (English, French, German, and Spanish included by default)
 - **No sign-up** required
+- **Responsive design** for a great shopping experience on any device 
 - Browse products in a **grid** or **slideshow**
 - Beautiful **search** layout
-- **Responsive design** for a great shopping experience on any device 
+- Automatic **language detection** (English, French, German, and Spanish included by default)
 
 ## Pricing
 
@@ -65,19 +65,19 @@ Use these terminal commands to update Shopkit and its dependencies:
     # Update dependencies
     git submodule update --init --recursive
 
-## Dependencies for Shopkit v1.1.3
+## Dependencies for Shopkit v1.1.4
 
-- Kirby Core [v2.4.0](https://github.com/getkirby/kirby/tree/2.4.0)
-- Kirby Panel [v2.4.0](https://github.com/getkirby/panel/tree/2.4.0)
+- Kirby Core [v2.4.1](https://github.com/getkirby/kirby/tree/2.4.1)
+- Kirby Panel [v2.4.1](https://github.com/getkirby/panel/tree/2.4.1)
 - field-bidi @[6ce984e85a](https://github.com/samnabi/field-bidi/tree/6ce984e85afa191d60fb3d7a18218571f7501731)
 - Multiselect field [v2.0.0](https://github.com/distantnative/field-multiselect/tree/2.0.0)
 - Selector field [v1.5.2](https://github.com/storypioneers/kirby-selector/tree/v1.5.2)
 - Color field @[fcda14d1ae](https://github.com/ian-cox/Kirby-Color-Picker/tree/fcda14d1ae655870590775a744543a6e40a06ce2)
 - Visual Markdown field [v1.5.1](https://github.com/JonasDoebertin/kirby-visual-markdown/tree/1.5.1)
 - Snippetfield @[a5808fb217](https://github.com/samnabi/kirby-snippetfield/tree/a5808fb2173a54b81d22c02618856ad408604cfa)
-- Tabs field [v1.5](https://github.com/afbora/Kirby-Tabs-Field/tree/ea43fc1452c527f837cc4c19332dc319439c72d6)
+- Tabs field @[ad7a7d3c9e](https://github.com/afbora/Kirby-Tabs-Field/tree/ad7a7d3c9e667e33dae292e34c3178eb29983556)
 - Dompdf @[aba268bdeb](https://github.com/samnabi/dompdf/tree/aba268bdebc6e50383fd6758778a4d77ca810c85)
-- php-font-lib [v0.4](https://github.com/PhenX/php-font-lib/tree/0.4)
+- php-font-lib @[b8af0cacdc](https://github.com/PhenX/php-font-lib/tree/b8af0cacdc3cbf1e41a586fcb78f506f4121a088)
 - php-svg-lib [v0.1](https://github.com/PhenX/php-svg-lib/tree/v0.1)
 
 ## Issues and feedback
