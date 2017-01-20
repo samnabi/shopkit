@@ -15,10 +15,11 @@ fields:
     type: text
   email:
     label: Email address
-    type: text
+    type: email
     validate: email
   location:
     label: Address
     type: textarea
     buttons:
+      -
   slider: slider

@@ -9,5 +9,4 @@ options:
 fields:
   title: title
   text: markdown
-  slider:
-    extends: slider
+  slider: slider

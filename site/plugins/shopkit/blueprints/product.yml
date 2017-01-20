@@ -52,11 +52,13 @@ fields:
       weight:
         label: Weight
         type: text
+        validate: num
         width: 1/2
         help: Numbers only
       stock:
         label: Quantity in stock
         type: text
+        validate: integer
         width: 1/2
         help: Leave blank for unlimited stock
       options:
@@ -66,6 +68,8 @@ fields:
       description: 
         label: Description
         type: textarea
+        buttons:
+          -
       tab2:
         type: tabs
         label: Discounts
@@ -73,13 +77,16 @@ fields:
       sale-price:
         label: Sale price
         type: text
+        validate: num
       sale-start:
         label: Sale start
         type: date
+        validate: date
         width: 1/2
       sale-end:
         label: Sale end
         type: date
+        validate: date
         width: 1/2
       sale-codes:
         label: Discount codes
@@ -95,8 +102,8 @@ fields:
         options: files
         label: Downloads included in purchase
       download-days:
-        type: number
-        min: 0
+        type: text
+        validate: integer
         label: Number of days to allow downloads
         help: Download link expires after this many days from the transaction date. Leave blank for no time limit.
   tags:

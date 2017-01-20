@@ -12,5 +12,3 @@ fields:
     help: Use this discount code every time you log in. Letters and numbers only.
     type: text
     validate: alphanum
-
-
