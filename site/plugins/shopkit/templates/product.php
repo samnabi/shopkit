@@ -2,7 +2,7 @@
 
 		<?php snippet('breadcrumb') ?>
 
-		<?php if ($page->hasImages()) snippet('slider',['photos'=>$page->images()]) ?>
+		<?php if ($page->slider() != '') snippet('slider',['photos'=>$page->slider()]) ?>
 		
 		<?php if ($page->brand()->isNotempty()) { ?>
 			<small class="brand" property="brand"><?= $page->brand() ?></small>

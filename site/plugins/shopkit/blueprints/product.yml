@@ -110,6 +110,7 @@ fields:
     label: Tags
     type: tags
   relatedproducts: relatedproducts
+  slider: slider
   tab2:
     label: Shipping & tax
     type: tabs
