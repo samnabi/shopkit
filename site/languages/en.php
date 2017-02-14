@@ -17,6 +17,7 @@
 'country-help' => 'To calculate shipping costs',
 
 'shop-by-category' => 'Shop by category',
+'shop-by-brand' => 'Shop by brand',
 
 'buy' => 'Buy',
 'out-of-stock' => 'Out of stock',

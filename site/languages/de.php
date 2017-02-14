@@ -17,6 +17,7 @@
 'country-help' => 'Um die Versandkosten zu kalkulieren',
 
 'shop-by-category' =>  'Einkaufen nach Kategorie',
+'shop-by-brand' =>  'Einkaufen nach Marke',
 
 'buy' => 'Kaufen',
 'out-of-stock' => 'Ausverkauft',

@@ -17,6 +17,7 @@
 'country-help' => 'Para calcular costos de envío',
 
 'shop-by-category' => 'Comprar por categoría',
+'shop-by-brand' => 'Comprar por marca',
 
 'buy' => 'Comprar',
 'out-of-stock' => 'Sin existencias',

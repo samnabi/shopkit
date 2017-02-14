@@ -17,6 +17,7 @@
 'country-help' => 'Afin de calculer les frais de transport',
 
 'shop-by-category' => 'Achetez par catégorie',
+'shop-by-brand' => 'Achetez par marque',
 
 'buy' => 'Achetez',
 'out-of-stock' => 'Épuisé',
