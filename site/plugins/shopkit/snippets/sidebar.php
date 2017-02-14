@@ -40,7 +40,7 @@
             <h3 dir="auto"><?= l::get('shop-by-brand') ?></h3>
             <ul dir="auto" class="uk-nav">
                 <?php foreach ($brands as $brand) { ?>
-                    <li><a href="<?= page('search')->url() ?>?q=<?= urlencode($brand) ?>"><?= $brand ?></a></li>
+                    <li><a href="<?= page('search')->url() ?>?q=&quot;<?= urlencode($brand) ?>&quot;"><?= $brand ?></a></li>
                 <?php } ?>
             </ul>
         </div>
