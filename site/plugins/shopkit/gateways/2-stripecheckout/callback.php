@@ -30,7 +30,7 @@ if (get('stripeToken') != '') {
   $charge = \Stripe\Charge::create(array(
     'customer' => $customer->id,
     'amount'   => get('amount'),
-    'currency' => page('shop')->currency_code()
+    'currency' => site()->currency_code()
   ));
 
   // Validate the charge against the pending order

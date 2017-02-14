@@ -51,7 +51,7 @@ try {
 	page('shop/orders')->children()->create($txn_id, 'order', [
 		'txn-id' => $txn_id,
 		'txn-date'  => $timestamp,
-		'txn-currency' => page('shop')->currency_code(),
+		'txn-currency' => site()->currency_code(),
 		'status'  => $status,
 		'products' => "\n".yaml::encode($items),
 		'subtotal' => number_format($cart->getAmount(),2,'.',''),
@@ -74,7 +74,7 @@ try {
 
 	// Update the giftcard balance
 	if ($giftCertificateRemaining = get('giftCertificateRemaining')) {
-		$certificates = page('shop')->gift_certificates()->yaml();
+		$certificates = site()->gift_certificates()->yaml();
 		foreach ($certificates as $key => $certificate) {
 			if (strtoupper($certificate['code']) == s::get('giftCertificateCode')) {
 				$certificates[$key]['amount'] = number_format($giftCertificateRemaining,2,'.','');

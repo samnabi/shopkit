@@ -28,7 +28,7 @@
 		<input type="hidden" name="cancel_return" value="<?= url('/shop/cart') ?>">
 		<input type="hidden" name="notify_url" value="<?= url('/shop/cart/callback/paypalexpress') ?>">
 		<input type="hidden" name="business" value="<?= $paypalexpress['email'] ?>">
-		<input type="hidden" name="currency_code" value="<?= page('shop')->currency_code() ?>">
+		<input type="hidden" name="currency_code" value="<?= site()->currency_code() ?>">
 
 		<!-- Cart items -->
 		<?php foreach ($txn->products()->toStructure() as $i => $item) { ?>

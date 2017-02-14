@@ -31,3 +31,51 @@ Backgroundcolor: #ffffff
 ----
 
 Backgroundblur: 0
+
+----
+
+Featured: 
+
+----
+
+Mailing-address: 0
+
+----
+
+Shipping: 
+
+----
+
+Tax: 
+
+----
+
+Currency-code: USD
+
+----
+
+Currency-symbol: $
+
+----
+
+Currency-position: before
+
+----
+
+Paylater: admin
+
+----
+
+Notifications: 
+
+----
+
+Error-email: 
+
+----
+
+Discount-codes: 
+
+----
+
+Gift-certificates: 

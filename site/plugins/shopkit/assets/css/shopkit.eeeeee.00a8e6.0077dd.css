@@ -4156,29 +4156,37 @@ body {
     background: white;
     background: rgba(255, 255, 255, 0.8); }
 
+nav .uk-button {
+  line-height: 1.25;
+  padding-bottom: 0.2rem; }
 nav .uk-button,
 nav .uk-button:hover,
 nav .uk-button:focus,
 nav .uk-button:active {
   box-shadow: none; }
 nav svg {
-  display: block;
+  display: inline-block;
   width: 1.6rem;
   height: 1.6rem;
   vertical-align: middle;
-  margin: 0.3rem auto 0.5rem;
+  margin-right: 0.25rem;
   fill: black; }
 nav .cart svg {
-  display: inline-block;
   fill: white;
   width: 2rem;
-  height: 2rem;
-  margin: 0; }
-nav .cart span {
-  margin: 0 -0.2rem 0 0; }
-nav .uk-button {
-  line-height: 1.25;
-  padding-bottom: 0.2rem; }
+  height: 2rem; }
+
+.user {
+  margin-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid lightgrey; }
+  .user a {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 1em;
+    text-decoration: none; }
+    .user a svg {
+      margin: -0.4em 0.25em 0 0; }
 
 .subpages {
   margin: 0;
@@ -4187,9 +4195,6 @@ nav .uk-button {
 
 .sidebar h3 {
   margin-top: 0; }
-
-#login {
-  transition: opacity 0.15s ease-in-out; }
 
 ul.uk-nav-sub {
   padding-left: 30px; }

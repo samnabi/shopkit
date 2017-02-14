@@ -9,13 +9,13 @@ if ($site->users()->count() === 0) {
 	// Check if a panel account has been created
 	$notifications[] = l::get('notification-account');
 
-} else if (page('shop')->currency_symbol() == '' or page('shop')->currency_code() == '') {
+} else if (site()->currency_symbol() == '' or site()->currency_code() == '') {
 
 	if ($site->user() === false) {
 		// Check if user is logged in
 		$notifications[] = l::get('notification-login');
 	} else {
-		// Check if shop options have been set
+		// Check if site options have been set
 		$notifications[] = l::get('notification-options');
 	}
 

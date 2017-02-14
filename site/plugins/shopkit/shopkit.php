@@ -80,9 +80,9 @@ if (get('gc') === '') {
  */
 
 function formatPrice($number) {
-  $symbol = page('shop')->currency_symbol();
-  $currencyCode = page('shop')->currency_code();
-  if (page('shop')->currency_position() == 'before') {
+  $symbol = site()->currency_symbol();
+  $currencyCode = site()->currency_code();
+  if (site()->currency_position() == 'before') {
   	return '<span property="priceCurrency" content="'.$currencyCode.'">'.$symbol.'</span> <span property="price" content="'.number_format((float)$number,2,'.','').'">'.number_format((float)$number,2,'.','').'</span>';
 	} else {
   	return number_format($number,2,'.','') . '&nbsp;' . $symbol;
@@ -90,9 +90,9 @@ function formatPrice($number) {
 }
 
 function rawPrice($number) {
-  $symbol = page('shop')->currency_symbol();
-  $currencyCode = page('shop')->currency_code();
-  if (page('shop')->currency_position() == 'before') {
+  $symbol = site()->currency_symbol();
+  $currencyCode = site()->currency_code();
+  if (site()->currency_position() == 'before') {
     return $symbol . number_format((float)$number,2);
   } else {
     return number_format($number,2) . '&nbsp;' . $symbol;
@@ -387,8 +387,8 @@ function getDiscount($cart) {
   // Make sure there's a code
   if (null == s::get('discountCode')) return false;
 
-  // Find a matching discount code in shop settings
-  $discounts = page('shop')->discount_codes()->toStructure()->filter(function($d){
+  // Find a matching discount code in site options
+  $discounts = site()->discount_codes()->toStructure()->filter(function($d){
     return strtoupper($d->code()) == s::get('discountCode');
   });
   if ($discounts == '') return false;
@@ -423,8 +423,8 @@ function getGiftCertificate($cartTotal) {
   // Make sure there's a code
   if (null == s::get('giftCertificateCode')) return false;
 
-  // Look for a matching certificate code in shop settings
-  $certificates = page('shop')->gift_certificates()->toStructure()->filter(function($c){
+  // Look for a matching certificate code in site options
+  $certificates = site()->gift_certificates()->toStructure()->filter(function($c){
     return strtoupper($c->code()) == s::get('giftCertificateCode');
   });
   if ($certificates == '') return false;

@@ -9,7 +9,7 @@
     <?php
         // Rebuild the featured products list with actual page objects instead of URIs
         $index = $pages->index();
-        foreach (page('shop')->featured()->toStructure() as $f) {
+        foreach ($site->featured()->toStructure() as $f) {
             $featuredProduct = $index->findByURI($f->product());
             if ($featuredProduct->isVisible()) {
                 $featured[] = [
@@ -57,8 +57,6 @@
             </div>
         </form>
     </div>
-
-    <?php snippet('sidebar.login') ?>
     
     <!-- Contact details -->
     <?php $contact = page('contact') ?>

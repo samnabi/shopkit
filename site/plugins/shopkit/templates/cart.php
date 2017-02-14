@@ -83,7 +83,7 @@
                     <td><?= formatPrice($cart->getAmount()) ?></td>
                     <td></td>
                 </tr>
-                <?php if (page('shop')->discount_codes()->toStructure()->count() > 0) {  ?>
+                <?php if (site()->discount_codes()->toStructure()->count() > 0) {  ?>
                     <tr>
                         <td colspan="2"><?= l::get('discount') ?></td>
                         <?php if ($discount) { ?>
@@ -153,17 +153,17 @@
                     <td colspan="2"><?= l::get('total') ?></td>
                     <td>
                         <?= formatPrice($total) ?>
-                        <?= page('shop')->currency_code() ?>
+                        <?= site()->currency_code() ?>
                     </td>
                     <td></td>
                 </tr>
-                <?php if (page('shop')->gift_certificates()->toStructure()->count() > 0) { ?>
+                <?php if (site()->gift_certificates()->toStructure()->count() > 0) { ?>
                     <tr>
                         <td colspan="2"><?= l::get('gift-certificate') ?></td>
                         <?php if ($giftCertificate) { ?>
                             <td class="uk-text-success">
                                 <strong>
-                                    <?= '&ndash; '.formatPrice($giftCertificate['amount']).' '.page('shop')->currency_code() ?>
+                                    <?= '&ndash; '.formatPrice($giftCertificate['amount']).' '.site()->currency_code() ?>
                                 </strong><br>
                                 <small>
                                     <?= formatPrice($giftCertificate['remaining']).' '.l::get('remaining') ?>

@@ -206,7 +206,7 @@ class Cart
 	public function canPayLater()
 	{
 		// Does the current user's role let them pay later?
-	  	$roles = explode(',',str_replace(' ', '', page('shop')->paylater()));
+	  	$roles = explode(',',str_replace(' ', '', site()->paylater()));
 	  	if (in_array('any',$roles)) {
 	  		// Anyone can pay later
 	  		return true;
@@ -222,7 +222,7 @@ class Cart
 
 	  	// Does the current discount code let them pay later?
 	  	$code = s::get('discountCode');
-	  	$discounts = page('shop')->discount_codes()->toStructure()->filter(function($d){
+	  	$discounts = site()->discount_codes()->toStructure()->filter(function($d){
 	  	  return strtoupper($d->code()) == s::get('discountCode');
 	  	});
 	  	if ($code and $discounts->first() and $discounts->first()->paylater()->bool()) {
@@ -260,7 +260,7 @@ class Cart
 		if (!$this->itemsLoaded) $this->getItems();
 
 	    // Get all shipping methods as an array
-	    $methods = yaml(page('shop')->shipping());
+	    $methods = yaml(site()->shipping());
 
 	  	// Initialize output
 	  	$output = [];
@@ -335,8 +335,8 @@ class Cart
 	    // Reset the cart tax
 	    $cartTax = 0;
 
-	   	// Get shop-wide tax categories
-	    $taxCategories = yaml(page('shop')->tax());
+	   	// Get site-wide tax categories
+	    $taxCategories = yaml(site()->tax());
 
 	    // Calculate tax for each cart item
 	    foreach ($this->items as $item) {

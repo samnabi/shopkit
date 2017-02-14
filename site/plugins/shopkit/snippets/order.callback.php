@@ -16,7 +16,7 @@
 updateStock($txn);
 
 // Notify staff
-$notifications = page('shop')->notifications()->toStructure();
+$notifications = site()->notifications()->toStructure();
 if ($notifications->count()) {
   foreach ($notifications as $n) {
     // Reset

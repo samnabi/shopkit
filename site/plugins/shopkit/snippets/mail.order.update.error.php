@@ -13,7 +13,7 @@ $body .= l::get('address').': '.$payer_address."\n\n";
 $body .= l::get('order-error-message-update');
 
 // Send email to admin
-sendMail(l::get('order-error-subject'), $body.l::get('order-error-message-update-admin').' '.page('shop/orders')->url().'?txn_id='.$txn->txn_id()->value, page('shop')->error_email()->value);
+sendMail(l::get('order-error-subject'), $body.l::get('order-error-message-update-admin').' '.page('shop/orders')->url().'?txn_id='.$txn->txn_id()->value, site()->error_email()->value);
 
 // Send email to customer
 sendMail(l::get('order-error-subject'), $body.l::get('order-error-message-update-customer'), $txn->payer_email()->value);

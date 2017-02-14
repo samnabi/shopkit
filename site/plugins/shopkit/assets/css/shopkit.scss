@@ -140,6 +140,12 @@ body {
 // Navigation and admin menu
 
 nav {
+
+	.uk-button {
+		line-height: 1.25;
+		padding-bottom: 0.2rem;
+	}
+
 	.uk-button,
 	.uk-button:hover,
 	.uk-button:focus,
@@ -148,28 +154,35 @@ nav {
 	}
 
 	svg {
-		display: block;
+		display: inline-block;
 		width: 1.6rem;
 		height: 1.6rem;
 		vertical-align: middle;
-		margin: 0.3rem auto 0.5rem;
+		margin-right: 0.25rem;
 		fill: black;
 	}
 
 	.cart svg {
-		display: inline-block;
 		fill: white;
 		width: 2rem;
 		height: 2rem;
-		margin: 0;
 	}
-	.cart span {
-		margin: 0 -0.2rem 0 0;
-	}
+}
 
-	.uk-button {
-		line-height: 1.25;
-		padding-bottom: 0.2rem;
+.user {
+	margin-top: 0.5em;
+	padding-bottom: 0.5em;
+	border-bottom: 1px solid lightgrey;
+	
+	a {
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: 1em;
+		text-decoration: none;
+
+		svg {
+			margin: -0.4em 0.25em 0 0;
+		}
 	}
 }
 
@@ -189,11 +202,6 @@ nav {
 	h3 {
 		margin-top: 0;
 	}
-}
-
-#login {
-	// Smooth opacity flash when called by Javascript (see sidebar.php)
-	transition: opacity 0.15s ease-in-out;
 }
 
 ul.uk-nav-sub {

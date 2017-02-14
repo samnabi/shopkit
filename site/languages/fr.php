@@ -75,9 +75,7 @@
 // site/plugins/shopkit/snippets/header.user.php
 
 'edit-page' => 'Éditer la page',
-'edit-shop' => 'Paramètres',
-'edit-design' => 'Design',
-'dashboard' => 'Tableau de bord',
+'site-options' => 'Paramètres du site',
 'view-orders' => 'Commandes',
 'my-account' => 'Mon compte',
 'logout' => 'Déconnexion',

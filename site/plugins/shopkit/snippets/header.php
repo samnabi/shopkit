@@ -21,6 +21,8 @@
 <div class="uk-grid uk-margin-large-bottom">
 
 	<div class="uk-width-small-1-1 uk-width-medium-2-3 uk-push-1-3">
+
+		<?php snippet('header.user') ?>	
 		
 		<!-- Logo -->
 		<div class="uk-visible-small uk-text-center uk-margin">
@@ -30,8 +32,6 @@
 		<div class="uk-container uk-padding-remove uk-margin-top uk-margin-bottom">
 			<?php snippet('header.nav') ?>
 		</div>
-
-		<?php snippet('header.user') ?>	
 		
 		<?php snippet('header.notifications') ?>
 
