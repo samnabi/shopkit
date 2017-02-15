@@ -5,16 +5,13 @@
  * $_POST    All callback response values
  */
 
-// Get the config variables
-$stripecheckout = kirby()->get('option', 'gateway-stripecheckout');
-
 // Load the Stripe PHP library
 require_once('stripe-php/init.php');
 
 // Set the API key
 $stripe = [
-  "secret_key"      => $stripecheckout['sandbox'] ? $stripecheckout['key_test_secret'] : $stripecheckout['key_live_secret'],
-  "publishable_key" => $stripecheckout['sandbox'] ? $stripecheckout['key_test_publishable'] : $stripecheckout['key_live_publishable']
+  'secret_key' => site()->stripecheckout_status() == 'sandbox' ? site()->stripecheckout_key_test_secret() : site()->stripecheckout_key_live_secret(),
+  'publishable_key' => site()->stripecheckout_status() == 'sandbox' ? site()->stripecheckout_key_test_publishable() : site()->stripecheckout_key_live_publishable()
 ];
 \Stripe\Stripe::setApiKey($stripe['secret_key']);
 

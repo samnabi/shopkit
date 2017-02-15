@@ -201,7 +201,6 @@
     <?php } ?>
     
     <?php if ($giftCertificate and $giftCertificate['amount'] == $total) { ?>
-        <?php $g = $kirby->get('option', 'gateway-paylater') ?>
         <form method="post" action="<?= url('shop/cart/process') ?>">
             
             <input type="hidden" name="gateway" value="paylater">
@@ -225,7 +224,6 @@
         <!-- Gateway payment buttons -->
         <?php foreach($gateways as $gateway) { ?>
             <?php if ($gateway == 'paylater' and !$cart->canPayLater()) continue ?>
-            <?php $g = $kirby->get('option', 'gateway-'.$gateway) ?>
             <form class="gateway uk-float-right uk-width-small-1-1 uk-width-medium-1-3 uk-width-large-1-4" method="post" action="<?= url('shop/cart/process') ?>">
                 
                 <input type="hidden" name="gateway" value="<?= $gateway ?>">
@@ -242,14 +240,14 @@
 
                 <div class="uk-container uk-padding-remove">
                     <button class="gateway uk-button uk-button-primary uk-width-1-1" type="submit">
-                        <?= $gateway != 'paylater' ? '<span class="uk-vertical-align-middle">'.l::get('pay-now').'</span>' : '' ?>
-                        <?php if (!$g['logo']) { ?>
-                            <?= $g['label'] ?>
+                        <?php if ($site->content()->get($gateway.'_logo')->isEmpty()) { ?>
+                            <?= $site->content()->get($gateway.'_text') ?>
                         <?php } else { ?>
-                            <img src="<?=f::uri($g['logo']) ?>" alt="<?= $g['label'] ?>">
+                            <?php if ($gateway != 'paylater') echo '<span class="uk-vertical-align-middle">'.l::get('pay-now').'</span>'; ?>
+                            <img src="<?= $site->file($site->content()->get($gateway.'_logo'))->dataUri()  ?>" alt="<?= $site->content()->get($gateway.'_text') ?>">
                         <?php } ?>
 
-                        <?php if (isset($g['sandbox']) and $g['sandbox']) { ?>
+                        <?php if ($site->content()->get($gateway.'_status') == 'sandbox') { ?>
                             <div class="uk-alert uk-alert-warning">
                                 <?= l::get('sandbox-message') ?>
                             </div>

@@ -1,13 +1,13 @@
 <?php
 
-// Include payment gateways (this needs to happen first, so they can be accessed by other routes)
+// Load payment gateways (this needs to happen first, so they can be accessed by other routes)
 foreach (new DirectoryIterator(__DIR__.DS.'gateways') as $file) {
   if (!$file->isDot() and $file->isDir()) {
-    // Load the config values (if they exist) and snippets
-    $config_path = 'gateways/'.$file->getFilename().'/config.php';
-    if (file_exists($config_path)) require $config_path;
-    $kirby->set('snippet', $file->getFilename().'.process', __DIR__.'/gateways/'.$file->getFilename().'/process.php');
-    $kirby->set('snippet', $file->getFilename().'.callback', __DIR__.'/gateways/'.$file->getFilename().'/callback.php');
+    // Make sure gateway is not disabled
+    if (site()->content()->get($file->getFilename().'_status') != 'disabled') {
+      $kirby->set('snippet', $file->getFilename().'.process', __DIR__.'/gateways/'.$file->getFilename().'/process.php');
+      $kirby->set('snippet', $file->getFilename().'.callback', __DIR__.'/gateways/'.$file->getFilename().'/callback.php');
+    }
   }
 }
 

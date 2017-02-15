@@ -1,20 +1,19 @@
 <?php
-	/**
-	 * Variables passed from /shop/cart/process/GATEWAY/TXN_ID
-	 *
-	 * $txn 		Transaction page object
-	 */
-	$stripecheckout = kirby()->get('option', 'gateway-stripecheckout');
+/**
+ * Variables passed from /shop/cart/process/GATEWAY/TXN_ID
+ *
+ * $txn 		Transaction page object
+ */
 
-	// Load the Stripe PHP library
-	require_once('stripe-php/init.php');
+// Load the Stripe PHP library
+require_once('stripe-php/init.php');
 
-	// Set the API key
-	$stripe = [
-	  "secret_key"      => $stripecheckout['sandbox'] ? $stripecheckout['key_test_secret'] : $stripecheckout['key_live_secret'],
-	  "publishable_key" => $stripecheckout['sandbox'] ? $stripecheckout['key_test_publishable'] : $stripecheckout['key_live_publishable']
-	];
-	\Stripe\Stripe::setApiKey($stripe['secret_key']);
+// Set the API key
+$stripe = [
+  'secret_key' => site()->stripecheckout_status() == 'sandbox' ? site()->stripecheckout_key_test_secret() : site()->stripecheckout_key_live_secret(),
+  'publishable_key' => site()->stripecheckout_status() == 'sandbox' ? site()->stripecheckout_key_test_publishable() : site()->stripecheckout_key_live_publishable()
+];
+\Stripe\Stripe::setApiKey($stripe['secret_key']);
 ?>
 <!DOCTYPE html>
 <html lang="en">

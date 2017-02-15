@@ -8,14 +8,11 @@ return function($site, $pages, $page) {
     // Get gateways
     $gateways = [];
     foreach (new DirectoryIterator(__DIR__.DS.'../gateways') as $file) {
-      if (!$file->isDot() and $file->isDir() and is_numeric(substr($file->getFileName(), 0, 1))) {
-        // Make sure the gateways show up in the right order
-        if ($start = strpos($file->getFileName(), '-')+1) {
-            $gateway_slug = substr($file->getFilename(), $start);
-        } else {
-            $gateway_slug = $file->getFilename();
-        }
-        $gateways[] = $gateway_slug;
+      if (!$file->isDot() and $file->isDir()) {
+        // Make sure gateway is not disabled
+        if (site()->content()->get($file->getFilename().'_status') != 'disabled') {
+            $gateways[] = $file->getFilename();
+        }        
       }
     }
 

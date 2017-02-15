@@ -206,7 +206,7 @@ class Cart
 	public function canPayLater()
 	{
 		// Does the current user's role let them pay later?
-	  	$roles = explode(',',str_replace(' ', '', site()->paylater()));
+	  	$roles = explode(',',str_replace(' ', '', site()->paylater_permissions()));
 	  	if (in_array('any',$roles)) {
 	  		// Anyone can pay later
 	  		return true;

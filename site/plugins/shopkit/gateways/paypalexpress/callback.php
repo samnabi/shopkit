@@ -4,7 +4,7 @@
  *
  * $_POST    All callback response values
  */
-$paypalexpress = kirby()->get('option', 'gateway-paypalexpress');
+$logfile = __DIR__.'/ipn.log';
 
 // Read POST data from input stream
 $raw_post_data = file_get_contents('php://input');
@@ -68,15 +68,15 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array('Connection: Close'));
 $res = curl_exec($ch);
 if (curl_errno($ch) != 0) {
   if($paypalexpress['debug']) { 
-    error_log(date('[Y-m-d H:i e] '). "Can't connect to PayPal to validate IPN message: " . curl_error($ch) . PHP_EOL, 3, $paypalexpress['logfile']);
+    error_log(date('[Y-m-d H:i e] '). "Can't connect to PayPal to validate IPN message: " . curl_error($ch) . PHP_EOL, 3, $logfile);
   }
   curl_close($ch);
   exit;
 } else {
     // Log the entire HTTP response if debug is switched on.
     if($paypalexpress['debug']) {
-      error_log(date('[Y-m-d H:i e] '). "HTTP request of validation request:". curl_getinfo($ch, CURLINFO_HEADER_OUT) ." for IPN payload: $req" . PHP_EOL, 3, $paypalexpress['logfile']);
-      error_log(date('[Y-m-d H:i e] '). "HTTP response of validation request: $res" . PHP_EOL, 3, $paypalexpress['logfile']);
+      error_log(date('[Y-m-d H:i e] '). "HTTP request of validation request:". curl_getinfo($ch, CURLINFO_HEADER_OUT) ." for IPN payload: $req" . PHP_EOL, 3, $logfile);
+      error_log(date('[Y-m-d H:i e] '). "HTTP response of validation request: $res" . PHP_EOL, 3, $logfile);
     }
     curl_close($ch);
 }
@@ -87,11 +87,11 @@ $res = trim(end($tokens));
 
 if (strcmp ($res, "VERIFIED") == 0) {  
   if($paypalexpress['debug']) {
-    error_log(date('[Y-m-d H:i e] '). "Verified IPN: $req ". PHP_EOL, 3, $paypalexpress['logfile']);
+    error_log(date('[Y-m-d H:i e] '). "Verified IPN: $req ". PHP_EOL, 3, $logfile);
   }
 } else if (strcmp ($res, "INVALID") == 0) {
   if($paypalexpress['debug']) {
-    error_log(date('[Y-m-d H:i e] '). "Invalid IPN: $req" . PHP_EOL, 3, $paypalexpress['logfile']);
+    error_log(date('[Y-m-d H:i e] '). "Invalid IPN: $req" . PHP_EOL, 3, $logfile);
   }
 }
 

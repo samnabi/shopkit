@@ -150,15 +150,23 @@ fields:
   paylater:
     type: headline
     label: Pay Later settings
+  paylater-status:
+    label: Status
+    type: select
+    default: live
+    options:
+      disabled: Disabled
+      live: Enabled
+    width: 1/4
   paylater-logo:
-    label: Logo
+    label: Button logo
     type: image
-    width: 1/3
+    width: 1/4
   paylater-text:
     label: Button text
     type: text
     default: Pay Later
-    width: 1/3
+    width: 1/4
   paylater-permissions:
     label: Permissions
     help: Who can submit an order without paying online?
@@ -168,11 +176,11 @@ fields:
       any: Anyone
       logged-in: Logged-in customers
       admin: Admin users
-    width: 1/3
-  paypal:
+    width: 1/4
+  paypalexpress:
     type: headline
     label: PayPal settings
-  paypal-status:
+  paypalexpress-status:
     label: Status
     type: select
     default: sandbox
@@ -181,31 +189,31 @@ fields:
       sandbox: Sandbox (Testing)
       live: Enabled
     width: 1/3
-  paypal-logo:
+  paypalexpress-logo:
     label: Button logo
     type: image
     default: paypal.png
     width: 1/3
-  paypal-text:
-    label: Alternative text for logo
+  paypalexpress-text:
+    label: Button text
     type: text
     default: Pay with PayPal
     width: 1/3
-  paypal-email:
+  paypalexpress-email:
     label: PayPal email
     type: email
     placeholder: your@email.com
     width: 1/2
-  paypal-debug:
+  paypalexpress-debug:
     label: Debug mode
     type: checkbox
     text: Log debug messages
     help: Logfile is located at gateways/paypalexpress/ipn.log
     width: 1/2
-  stripe:
+  stripecheckout:
     type: headline
     label: Stripe settings
-  stripe-status:
+  stripecheckout-status:
     label: Status
     type: select
     default: sandbox
@@ -214,29 +222,29 @@ fields:
       sandbox: Sandbox (Testing)
       live: Enabled
     width: 1/3
-  stripe-logo:
+  stripecheckout-logo:
     label: Button logo
     type: image
     default: stripe-white.png
     width: 1/3
-  stripe-text:
-    label: Alternative text for logo
+  stripecheckout-text:
+    label: Button text
     type: text
     default: Pay with Stripe
     width: 1/3
-  stripe-key-test-secret:
+  stripecheckout-key-test-secret:
     label: Test key (secret)
     type: text
     width: 1/4
-  stripe-key-test-publishable:
+  stripecheckout-key-test-publishable:
     label: Test key (publishable)
     type: text
     width: 1/4
-  stripe-key-live-secret:
+  stripecheckout-key-live-secret:
     label: Live key (secret)
     type: text
     width: 1/4
-  stripe-key-live-publishable:
+  stripecheckout-key-live-publishable:
     label: Live key (publishable)
     type: text
     width: 1/4
