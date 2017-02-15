@@ -1,27 +1,28 @@
 <?php
-	if (!isset($subpages)) {
-		if (isset($template)) {
-			$subpages = $site->children()->filterBy('template',$template);
-		} else {
-			$subpages = $site->children();
-		}
+	if (!isset($parent)) $parent = $site;
+	if (isset($template)) {
+		$subpages = $parent->children()->visible()->filterBy('template',$template);
 	} else {
-		if (isset($template)) {
-			$subpages = $subpages->filterBy('template',$template);
-		} else {
-			$subpages = $subpages;
-		}
+		$subpages = $parent->children()->visible();
 	}
 ?>
 
 <ul dir="auto" class="<?php if ($class) echo $class ?>">
+
+  <!-- Admin -->
+  <?php if ($user = $site->user() and $user->can('panel.access.options') and isset($parent)) { ?>
+    <li>
+      <a href="<?= url('panel/pages/'.$parent->uri().'/add?template='.$template) ?>">+ New category</a>
+    </li>
+  <?php } ?>
+
   <?php $class = false; ?>
   <?php foreach($subpages->visible() AS $p): ?>
-  <li>
-    <a <?php ecco($p->isActive(), 'class="uk-active"') ?> href="<?php echo $p->url() ?>"><?php echo $p->title() ?></a>
-    <?php if($p->hasChildren()): ?>
-        <?php snippet('treemenu',array('subpages' => $p->children(), 'template' => 'category', 'class' => 'uk-nav-sub')) ?>
-    <?php endif ?>
-  </li>
+    <li>
+      <a <?php ecco($p->isActive(), 'class="uk-active"') ?> href="<?php echo $p->url() ?>">
+        <?php echo $p->title() ?>
+      </a>
+      <?php snippet('treemenu',array('parent' => $p, 'template' => 'category', 'class' => 'uk-nav-sub')) ?>
+    </li>
   <?php endforeach ?>
 </ul>

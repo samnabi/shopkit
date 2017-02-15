@@ -4,8 +4,6 @@
 	
 	<?= $page->text()->kirbytext()->bidi() ?>
 
-	<?php snippet('list.product', ['products' => $products]) ?>
-
 	<?php snippet('list.category', ['categories' => $categories]) ?>
 
 <?php snippet('footer') ?>

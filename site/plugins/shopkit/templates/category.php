@@ -16,10 +16,7 @@
 
 		<?php snippet('list.product', ['products' => $products]) ?>
 		
-		<?php if ($categories->count()) { ?>
-			<h2><?= l::get('shop-by-category') ?></h2>
-			<?php snippet('list.category', ['categories' => $categories]) ?>
-		<?php } ?>
+		<?php snippet('list.category', ['categories' => $categories]) ?>
 
 	<?php } ?>
 

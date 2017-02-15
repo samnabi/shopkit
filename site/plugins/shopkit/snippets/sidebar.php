@@ -29,7 +29,7 @@
     <?php if (page('shop')->children()->filterBy('template','category')->count() > 0) { ?>
         <div class="uk-panel uk-panel-divider">
             <h3 dir="auto"><?= l::get('shop-by-category') ?></h3>
-            <?php snippet('treemenu',array('subpages' => page('shop')->children(), 'template' => 'category', 'class' => 'uk-nav')) ?>
+            <?php snippet('treemenu',array('parent' => page('shop'), 'template' => 'category', 'class' => 'uk-nav')) ?>
         </div>
     <?php } ?>
 
