@@ -36,6 +36,31 @@ fields:
     label: Show quantity in stock
     type: checkbox
     text: Display "X remaining" on Product pages
+  notifications:
+    label: Order notifications
+    help: Notify specific email addresses when orders are submitted
+    type: structure
+    style: table
+    fields:
+      email:
+        required: true
+        label: Email address
+        type: email
+        validate: email
+        help: Who will be notified?
+      products:
+        label: Products
+        help: Which products should trigger the notification?
+        type: multiselect
+        options: query
+        query: 
+          page: shop
+          fetch: pages
+          template: product
+  error-email:
+    label: Error notifications
+    help: Who will be notified if an order runs into a technical error?
+    type: email
   tab2:
     label: Shipping & tax
     type: tabs
@@ -123,39 +148,98 @@ fields:
     width: 1/2
     required: true
   paylater:
-    label: Pay later
+    type: headline
+    label: Pay Later settings
+  paylater-logo:
+    label: Logo
+    type: image
+    width: 1/3
+  paylater-text:
+    label: Button text
+    type: text
+    default: Pay Later
+    width: 1/3
+  paylater-permissions:
+    label: Permissions
     help: Who can submit an order without paying online?
-    type: checkboxes
+    type: multiselect
     default: admin
     options:
       any: Anyone
       logged-in: Logged-in customers
       admin: Admin users
-  notifications:
-    label: Order notifications
-    help: Notify specific email addresses when orders are submitted
-    type: structure
-    style: table
-    fields:
-      email:
-        required: true
-        label: Email address
-        type: email
-        validate: email
-        help: Who will be notified?
-      products:
-        label: Products
-        help: Which products should trigger the notification?
-        type: multiselect
-        options: query
-        query: 
-          page: shop
-          fetch: pages
-          template: product
-  error-email:
-    label: Error notifications
-    help: Who will be notified if an order runs into a technical error?
+    width: 1/3
+  paypal:
+    type: headline
+    label: PayPal settings
+  paypal-status:
+    label: Status
+    type: select
+    default: sandbox
+    options:
+      disabled: Disabled
+      sandbox: Sandbox (Testing)
+      live: Enabled
+    width: 1/3
+  paypal-logo:
+    label: Button logo
+    type: image
+    default: paypal.png
+    width: 1/3
+  paypal-text:
+    label: Alternative text for logo
+    type: text
+    default: Pay with PayPal
+    width: 1/3
+  paypal-email:
+    label: PayPal email
     type: email
+    placeholder: your@email.com
+    width: 1/2
+  paypal-debug:
+    label: Debug mode
+    type: checkbox
+    text: Log debug messages
+    help: Logfile is located at gateways/paypalexpress/ipn.log
+    width: 1/2
+  stripe:
+    type: headline
+    label: Stripe settings
+  stripe-status:
+    label: Status
+    type: select
+    default: sandbox
+    options:
+      disabled: Disabled
+      sandbox: Sandbox (Testing)
+      live: Enabled
+    width: 1/3
+  stripe-logo:
+    label: Button logo
+    type: image
+    default: stripe-white.png
+    width: 1/3
+  stripe-text:
+    label: Alternative text for logo
+    type: text
+    default: Pay with Stripe
+    width: 1/3
+  stripe-key-test-secret:
+    label: Test key (secret)
+    type: text
+    width: 1/4
+  stripe-key-test-publishable:
+    label: Test key (publishable)
+    type: text
+    width: 1/4
+  stripe-key-live-secret:
+    label: Live key (secret)
+    type: text
+    width: 1/4
+  stripe-key-live-publishable:
+    label: Live key (publishable)
+    type: text
+    width: 1/4
   tab4:
     label: Discounts
     type: tabs

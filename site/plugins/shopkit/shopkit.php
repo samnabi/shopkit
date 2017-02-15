@@ -2,19 +2,12 @@
 
 // Include payment gateways (this needs to happen first, so they can be accessed by other routes)
 foreach (new DirectoryIterator(__DIR__.DS.'gateways') as $file) {
-  if (!$file->isDot() and $file->isDir() and is_numeric(substr($file->getFileName(), 0, 1))) {
-
-    // Find the gateway slug
-    if ($start = strpos($file->getFileName(), '-')) {
-        $gateway_slug = substr($file->getFilename(), $start+1);
-    } else {
-        $gateway_slug = $file->getFilename();
-    }
-
-    // Load the config values and snippets
-    require('gateways/'.$file->getFilename().'/config.php');
-    $kirby->set('snippet', $gateway_slug.'.process', __DIR__.'/gateways/'.$file->getFilename().'/process.php');
-    $kirby->set('snippet', $gateway_slug.'.callback', __DIR__.'/gateways/'.$file->getFilename().'/callback.php');
+  if (!$file->isDot() and $file->isDir()) {
+    // Load the config values (if they exist) and snippets
+    $config_path = 'gateways/'.$file->getFilename().'/config.php';
+    if (file_exists($config_path)) require $config_path;
+    $kirby->set('snippet', $file->getFilename().'.process', __DIR__.'/gateways/'.$file->getFilename().'/process.php');
+    $kirby->set('snippet', $file->getFilename().'.callback', __DIR__.'/gateways/'.$file->getFilename().'/callback.php');
   }
 }
 

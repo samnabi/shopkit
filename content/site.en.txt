@@ -79,3 +79,67 @@ Discount-codes:
 ----
 
 Gift-certificates: 
+
+----
+
+Showstock: 0
+
+----
+
+Paylater-logo: 
+
+----
+
+Paylater-text: Pay Later
+
+----
+
+Paylater-permissions: 
+
+----
+
+Paypal-status: sandbox
+
+----
+
+Paypal-logo: paypal.png
+
+----
+
+Paypal-text: Pay with PayPal
+
+----
+
+Paypal-email: 
+
+----
+
+Paypal-debug: 0
+
+----
+
+Stripe-status: sandbox
+
+----
+
+Stripe-logo: stripe-white.png
+
+----
+
+Stripe-text: Pay with Stripe
+
+----
+
+Stripe-key-test-secret: 
+
+----
+
+Stripe-key-test-publishable: 
+
+----
+
+Stripe-key-live-secret: 
+
+----
+
+Stripe-key-live-publishable: 

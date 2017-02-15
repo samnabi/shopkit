@@ -28,7 +28,7 @@ Show detailed error messages by switching this to 'true'
 
 */
 
-c::set('debug', false);
+c::set('debug', true);
 
 
 /* 
