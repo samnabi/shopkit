@@ -83,7 +83,7 @@ function formatPrice($number) {
   $symbol = site()->currency_symbol();
   $currencyCode = site()->currency_code();
   if (site()->currency_position() == 'before') {
-  	return '<span property="priceCurrency" content="'.$currencyCode.'">'.$symbol.'</span><span property="price" content="'.number_format((float)$number,2,'.','').'">'.number_format((float)$number,2,'.','').'</span>';
+  	return '<span property="priceCurrency" content="'.$currencyCode.'">'.$symbol.'&thinsp;</span><span property="price" content="'.number_format((float)$number,2,'.','').'">'.number_format((float)$number,2,'.','').'</span>';
 	} else {
   	return '<span property="price" content="'.number_format((float)$number,2,'.','').'">' . number_format((float)$number,2,'.','') . '</span>' . '&nbsp;' . '<span property="priceCurrency" content="'.$currencyCode.'">'.$symbol.'</span>';
 	}

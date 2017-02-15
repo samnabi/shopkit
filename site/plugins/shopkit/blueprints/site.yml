@@ -32,6 +32,10 @@ fields:
           low: Show lowest price
           high: Show highest price
         default: low
+  showStock:
+    label: Show quantity in stock
+    type: checkbox
+    text: Display "X remaining" on Product pages
   tab2:
     label: Shipping & tax
     type: tabs

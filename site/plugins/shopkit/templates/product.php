@@ -30,18 +30,18 @@
 				<section class="variants">
 					<?php foreach ($variants as $variant) { ?>
 						<div class="uk-width-1-2 uk-text-left" vocab="http://schema.org/" typeof="Product">
-				            <form class="uk-form uk-panel uk-panel-box" method="post" action="<?= url('shop/cart') ?>">
+	            <form class="uk-form uk-panel uk-panel-box" method="post" action="<?= url('shop/cart') ?>">
 
 								<!-- Schema.org markup -->
-				            	<?php if($page->hasImages()) { ?>
-				            		<link property="image" content="<?= $page->images()->first()->url() ?>" />
-				            	<?php } ?>
-				            	<link property="brand" content="<?= $page->brand() ?>" />
+	            	<?php if($page->hasImages()) { ?>
+	            		<link property="image" content="<?= $page->images()->first()->url() ?>" />
+	            	<?php } ?>
+	            	<link property="brand" content="<?= $page->brand() ?>" />
 
-				            	<!-- Hidden fields -->
-				            	<input type="hidden" name="action" value="add">
-				            	<input type="hidden" name="uri" value="<?= $page->uri() ?>">
-				            	<input type="hidden" name="variant" value="<?= str::slug($variant->name()) ?>">
+	            	<!-- Hidden fields -->
+	            	<input type="hidden" name="action" value="add">
+	            	<input type="hidden" name="uri" value="<?= $page->uri() ?>">
+	            	<input type="hidden" name="variant" value="<?= str::slug($variant->name()) ?>">
 
 								<h3 dir="auto" class="uk-margin-small-bottom" property="name" content="<?= $page->title().' &ndash; '.$variant->name() ?>"><?= $variant->name() ?></h3>
 
@@ -61,7 +61,12 @@
 									<?= $variant->priceText ?>
 									<link property="availability" href="<?php e(inStock($variant),'http://schema.org/InStock','http://schema.org/OutOfStock') ?>" />
 								</button>
-				            </form>
+
+								<?php if ($site->showStock()->bool() === true and $variant->stock()->isNotEmpty()) { ?>
+									<p class="uk-text-center uk-text-small uk-margin-small-top"><?= $variant->stock() ?> remaining</p>
+								<?php } ?>
+
+				      </form>
 						</div>
 					<?php } ?>
 				</section>
