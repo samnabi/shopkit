@@ -29,7 +29,7 @@ if ($site->users()->count() === 0) {
 		$notifications[] = l::get('notification-category');
 	}
 
-} else if (page('shop')->index()->filterBy('template','product')->count() === 0) {
+} else if (page('shop')->grandChildren()->filterBy('template','product')->count() === 0 and page('shop')->index()->filterBy('template','product')->count() === 0) {
 
 	if ($site->user() === false) {
 		// Check if user is logged in
