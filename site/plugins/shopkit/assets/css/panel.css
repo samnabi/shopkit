@@ -142,3 +142,8 @@ body.ltr .selector .item-with-image .item-info {
 	margin-top: 0.5em;
 	width: 100%;
 }
+
+/* Hide url-appendix field when creating a page */
+form[action$="/add"] .field-name-uid {
+	display: none;
+}
