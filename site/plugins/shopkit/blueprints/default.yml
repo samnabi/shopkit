@@ -4,6 +4,6 @@ pages: true
     - default
 fields:
   title: title
-  text: markdown
   slider: slider
+  text: markdown
   relatedproducts: relatedproducts

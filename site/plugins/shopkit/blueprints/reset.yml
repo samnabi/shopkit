@@ -7,5 +7,5 @@ options:
   url: false
 fields:
   title: title
-  text: markdown
   slider: slider
+  text: markdown

@@ -6,6 +6,7 @@ options:
   url: false
 fields:
   title: title
+  slider: slider
   text: markdown
   hours:
     extends: markdown
@@ -22,4 +23,3 @@ fields:
     type: textarea
     buttons:
       -
-  slider: slider
