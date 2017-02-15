@@ -26,7 +26,7 @@ class TiersField extends BaseField {
     ));
 
     if(!is_array($value)) {
-      $input->val(html($value, false));
+      $input->val($value);
     }
 
     if($this->readonly() or $readonly or $this->disabled() or $disabled) {
