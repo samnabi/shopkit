@@ -23,90 +23,93 @@ fields:
   Variants:
     label: Variants
     help: 'Each variant defines a price point, with associated SKU and other options.'
-    type: structure
-    entry: >
-      <p style="border-bottom: 1px solid #DDD; margin-bottom: 0.2rem; padding-bottom: 0.2rem">{{name}} <span style="float: right;"><strong>SKU</strong> {{sku}}</span></p>
-      <div style="display: inline-block; vertical-align: top; width: 49%"><strong>Price </strong> {{price}}</div>
-      <div style="display: inline-block; vertical-align: top; width: 49%"><strong>Weight </strong> {{weight}}</div>
-    fields:
-      tab1:
-        type: tabs
-        label: General
-        icon: cog
-      name:
-        label: Variant name
-        type:  text
-        width: 1/2
-        help: Usually describes a product's physical qualities (e.g. 16oz bottle, 12x16" canvas)
-        required: true
-      price:
-        label: Price
-        type:  text
-        width: 1/4
-        help: Numbers only
-        required: true
-      sku:
-        label: SKU
-        type:  text
-        help: Unique product identifier
-        width: 1/4
-      weight:
-        label: Weight
-        type: text
-        validate: num
-        width: 1/2
-        help: Numbers only
-      stock:
-        label: Quantity in stock
-        type: text
-        validate: integer
-        width: 1/2
-        help: Leave blank for unlimited stock
-      options:
-        label: Options
-        type: tags
-        help: Displayed as a drop-down list on the product page.
-      description: 
-        label: Description
-        type: textarea
-        buttons:
-          -
-      tab2:
-        type: tabs
-        label: Discounts
-        icon: ticket
-      sale-price:
-        label: Sale price
-        type: text
-        validate: num
-      sale-start:
-        label: Sale start
-        type: date
-        validate: date
-        width: 1/2
-      sale-end:
-        label: Sale end
-        type: date
-        validate: date
-        width: 1/2
-      sale-codes:
-        label: Discount codes
-        help: Require a discount code to unlock the sale price. You can enter multiple codes.
-        type: tags
-      tab3:
-        type: tabs
-        label: Downloads
-        icon: arrow-circle-down
-      download-files:
-        type: selector
-        mode: multiple
-        options: files
-        label: Downloads included in purchase
-      download-days:
-        type: text
-        validate: integer
-        label: Number of days to allow downloads
-        help: Download link expires after this many days from the transaction date. Leave blank for no time limit.
+    type: builder
+    fieldsets:
+      variant:
+        label: Variant
+        entry: >
+          <p style="border-bottom: 1px solid #DDD; margin-bottom: 0.2rem; padding-bottom: 0.2rem">{{name}} <span style="float: right;"><strong>SKU</strong> {{sku}}</span></p>
+          <div style="display: inline-block; vertical-align: top; width: 49%"><strong>Price </strong> {{price}}</div>
+          <div style="display: inline-block; vertical-align: top; width: 49%"><strong>Weight </strong> {{weight}}</div>
+        fields:
+          tab1:
+            type: tabs
+            label: General
+            icon: cog
+          name:
+            label: Variant name
+            type:  text
+            width: 1/2
+            help: Usually describes a product's physical qualities (e.g. 16oz bottle, 12x16" canvas)
+            required: true
+          price:
+            label: Price
+            type:  text
+            width: 1/4
+            help: Numbers only
+            required: true
+          sku:
+            label: SKU
+            type:  text
+            help: Unique product identifier
+            width: 1/4
+          weight:
+            label: Weight
+            type: text
+            validate: num
+            width: 1/2
+            help: Numbers only
+          stock:
+            label: Quantity in stock
+            type: text
+            validate: integer
+            width: 1/2
+            help: Leave blank for unlimited stock
+          options:
+            label: Options
+            type: tags
+            help: Displayed as a drop-down list on the product page.
+          description: 
+            label: Description
+            type: textarea
+            buttons:
+              -
+          tab2:
+            type: tabs
+            label: Discounts
+            icon: ticket
+          sale-price:
+            label: Sale price
+            type: text
+            validate: num
+          sale-start:
+            label: Sale start
+            type: date
+            validate: date
+            width: 1/2
+          sale-end:
+            label: Sale end
+            type: date
+            validate: date
+            width: 1/2
+          sale-codes:
+            label: Discount codes
+            help: Require a discount code to unlock the sale price. You can enter multiple codes.
+            type: tags
+          tab3:
+            type: tabs
+            label: Downloads
+            icon: arrow-circle-down
+          download-files:
+            type: selector
+            mode: multiple
+            options: files
+            label: Downloads included in purchase
+          download-days:
+            type: text
+            validate: integer
+            label: Number of days to allow downloads
+            help: Download link expires after this many days from the transaction date. Leave blank for no time limit.
   tags:
     label: Tags
     type: tags

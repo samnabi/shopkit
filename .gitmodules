@@ -19,12 +19,12 @@
 [submodule "site/plugins/shopkit/fields/markdown"]
 	path = site/plugins/shopkit/fields/markdown
 	url = https://github.com/JonasDoebertin/kirby-visual-markdown.git
-[submodule "site/plugins/shopkit/fields/snippetfield"]
-	path = site/plugins/shopkit/fields/snippetfield
-	url = https://github.com/samnabi/kirby-snippetfield/
 [submodule "site/plugins/dompdf"]
 	path = site/plugins/dompdf
 	url = https://github.com/samnabi/dompdf
 [submodule "site/plugins/shopkit/fields/tabs"]
 	path = site/plugins/shopkit/fields/tabs
 	url = https://github.com/afbora/Kirby-Tabs-Field
+[submodule "site/plugins/builder"]
+	path = site/plugins/shopkit/fields/builder
+	url = https://github.com/TimOetting/kirby-builder.git
