@@ -34,6 +34,15 @@ html[lang="en"] .marginalia[href="#upload"]:after {
 	color: inherit;
 }
 
+/* Page save button */
+.ltr .mainbar .form .buttons {
+	border-top: 2px solid #ddd;
+	background: #efefef;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+
 /* Selector */
 
 .selector .input-with-items .item {
