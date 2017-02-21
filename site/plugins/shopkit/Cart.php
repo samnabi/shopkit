@@ -307,7 +307,7 @@ class Cart
 
 	      	// Remove rate calculations that are blank or falsy
 	      	foreach ($rate as $key => $r) {
-	        	if ($r == '' or $r == 0) {
+	        	if ($r == '') {
 	          	unset($rate[$key]);
 	        	}
 	      	}
