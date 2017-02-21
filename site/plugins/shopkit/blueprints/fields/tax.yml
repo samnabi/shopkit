@@ -3,8 +3,7 @@ type: builder
 fieldsets:
   taxrate:
     label: Tax rate
-    entry: >
-      {{rate}}
+    snippet: tax
     fields:
       rate:
         label: Tax rate

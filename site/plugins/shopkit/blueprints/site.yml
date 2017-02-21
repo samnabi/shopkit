@@ -17,8 +17,7 @@ fields:
     fieldsets:
       product:
         label: Featured product
-        entry: >
-          {{product}}
+        snippet: featured-product
         fields:
           product:
             label: Featured product
@@ -28,6 +27,7 @@ fields:
               page: shop
               fetch: pages
               template: product
+            required: true
           calculation:
             label: Default price variant
             help: When a product has more than one price variant, choose which one is used for the "buy now" button
@@ -36,6 +36,7 @@ fields:
               low: Show lowest price
               high: Show highest price
             default: low
+            required: true
   showStock:
     label: Show quantity in stock
     type: checkbox
@@ -47,8 +48,7 @@ fields:
     fieldsets:
       notification:
         label: Notification recipient
-        entry: >
-          {{email}}: {{products}}
+        snippet: notification
         fields:
           email:
             required: true
@@ -77,14 +77,23 @@ fields:
     label: Mailing address
     type: checkbox 
     text: Require a mailing address for each order
+  weightunit:
+    label: Weight unit
+    type: select
+    default: kg
+    options:
+      g: Grams (g)
+      kg: Kilograms (kg)
+      lb: Pounds (lb)
+    help: Unit of measurement for calculating shipping weight
+    required: true
   shipping:
     label: Shipping methods
     type: builder
     fieldsets:
       shippingmethod:
         label: Shipping method
-        entry: >
-          {{method}}
+        snippet: shipping
         fields:
           method:
             label: Method
@@ -130,6 +139,7 @@ fields:
               low: Use lowest shipping rate
               high: Use highest shipping rate
             default: low
+            required: true
   tax: tax
   tab3:
     label: Payment
@@ -169,6 +179,7 @@ fields:
       disabled: Disabled
       live: Enabled
     width: 1/4
+    required: true
   paylater-logo:
     label: Button logo
     type: image
@@ -200,6 +211,7 @@ fields:
       sandbox: Sandbox (Testing)
       live: Enabled
     width: 1/3
+    required: true
   paypalexpress-logo:
     label: Button logo
     type: image
@@ -233,6 +245,7 @@ fields:
       sandbox: Sandbox (Testing)
       live: Enabled
     width: 1/3
+    required: true
   stripecheckout-logo:
     label: Button logo
     type: image

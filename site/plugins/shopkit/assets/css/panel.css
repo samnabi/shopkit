@@ -147,3 +147,41 @@ body.ltr .selector .item-with-image .item-info {
 form[action$="/add"] .field-name-uid {
 	display: none;
 }
+
+/* Tables in builder previews */
+.builder-entry-content table th {
+	font-size: 0.8em;
+}
+.builder-entry-content table td + td,
+.builder-entry-content table th + th {
+	padding-left: 0.5em;
+}
+body.ltr .text .shipping-rates {
+	list-style: none;
+	margin: 0.4em 0 0;
+	padding: 0;
+}
+.shipping-rates li + li {
+	border-top: 1px solid #DDD;
+	margin-top: 0.8em;
+	padding-top: 0.7em;
+	position: relative;
+}
+.shipping-rates li + li:before {
+	content: 'OR';
+	position: absolute;
+	top: -1.05em;
+	font-size: 0.8em;
+	color: #777;
+	background: white;
+	padding-right: 0.5em;
+}
+.calculation {
+	color: #777;
+	font-style: italic;
+}
+
+/* Discount codes */
+.builder-entry-content input[readonly] {
+	border: 0;
+}
