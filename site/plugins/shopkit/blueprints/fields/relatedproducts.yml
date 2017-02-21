@@ -3,8 +3,7 @@ type: builder
 fieldsets:
   product:
     label: Related product
-    entry: >
-      {{product}}
+    snippet: related-product
     fields:
       product:
         type: select
@@ -13,3 +12,4 @@ fieldsets:
           page: shop
           fetch: pages
           template: product
+        required: true

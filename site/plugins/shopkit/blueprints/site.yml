@@ -231,7 +231,7 @@ fields:
     label: Debug mode
     type: checkbox
     text: Log debug messages
-    help: Logfile is located at gateways/paypalexpress/ipn.log
+    help: Logfile is located at site/plugins/shopkit/gateways/paypalexpress/ipn.log
     width: 1/2
   stripecheckout:
     type: headline
