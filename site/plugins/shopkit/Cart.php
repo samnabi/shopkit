@@ -269,7 +269,7 @@ class Cart
 
 	    	if (!$this->appliesToCountry($method)) continue;
 
-	    	// Flat-rate shipping cost
+	    		// Flat-rate shipping cost
 	      	$rate['flat'] = '';
 	      	if ($method['flat'] != '' and $this->shippingQty > 0) $rate['flat'] = (float)$method['flat'];
 
@@ -305,10 +305,10 @@ class Cart
 		        }
 	      	}
 
-	      	// Remove rate calculations that are blank
+	      	// Remove rate calculations that are blank or falsy
 	      	foreach ($rate as $key => $r) {
-	        	if ($r === '') {
-	          		unset($rate[$key]);
+	        	if ($r == '' or $r == 0) {
+	          	unset($rate[$key]);
 	        	}
 	      	}
 
