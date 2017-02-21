@@ -1,1 +1,0 @@
-<?= page('shop')->index()->findByURI($data->product())->title() ?>

@@ -1,0 +1,1 @@
+<?= page('shop')->index()->findByURI($values->product())->title() ?>

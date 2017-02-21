@@ -1,20 +1,17 @@
 label: Tax rates
-type: builder
-fieldsets:
-  taxrate:
+type: snippetfield
+snippet: tax
+fields:
+  rate:
     label: Tax rate
-    snippet: tax
-    fields:
-      rate:
-        label: Tax rate
-        help: Decimal format. e.g. <strong>0.13</strong> means 13% sales tax
-        type: text
-        validate: num
-      countries:
-        label: Countries
-        help: "Apply this tax rate to certain countries (<strong>All countries</strong> does not override other rules)"
-        type: multiselect
-        options: query
-        query:
-          page: 'shop/countries'
-          fetch: children
+    help: Decimal format. e.g. <strong>0.13</strong> means 13% sales tax
+    type: text
+    validate: num
+  countries:
+    label: Countries
+    help: "Apply this tax rate to certain countries (<strong>All countries</strong> does not override other rules)"
+    type: multiselect
+    options: query
+    query:
+      page: 'shop/countries'
+      fetch: children
