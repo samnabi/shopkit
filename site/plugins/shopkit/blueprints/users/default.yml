@@ -7,6 +7,7 @@ fields:
     query:
       page: /shop/countries
       fetch: children
+    required: true
   discountcode:
     label: Discount code
     help: Use this discount code every time you log in. Letters and numbers only.
