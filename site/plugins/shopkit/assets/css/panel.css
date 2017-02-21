@@ -35,7 +35,7 @@ html[lang="en"] .marginalia[href="#upload"]:after {
 }
 
 /* Page save button */
-.ltr .mainbar .form .buttons {
+.mainbar .section > form > .buttons {
 	border-top: 2px solid #ddd;
 	background: #efefef;
 	padding-top: 0.5em;
@@ -149,14 +149,7 @@ form[action$="/add"] .field-name-uid {
 	display: none;
 }
 
-/* Tables in builder previews */
-.builder-entry-content table th {
-	font-size: 0.8em;
-}
-.builder-entry-content table td + td,
-.builder-entry-content table th + th {
-	padding-left: 0.5em;
-}
+/* Shipping methods */
 body.ltr .text .shipping-rates {
 	list-style: none;
 	margin: 0.4em 0 0;
@@ -183,6 +176,6 @@ body.ltr .text .shipping-rates {
 }
 
 /* Discount codes */
-.builder-entry-content input[readonly] {
+.structure-entry-content input[readonly] {
 	border: 0;
 }

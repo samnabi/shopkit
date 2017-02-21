@@ -25,6 +25,3 @@
 [submodule "site/plugins/shopkit/fields/tabs"]
 	path = site/plugins/shopkit/fields/tabs
 	url = https://github.com/afbora/Kirby-Tabs-Field
-[submodule "site/plugins/builder"]
-	path = site/plugins/shopkit/fields/builder
-	url = https://github.com/TimOetting/kirby-builder.git
