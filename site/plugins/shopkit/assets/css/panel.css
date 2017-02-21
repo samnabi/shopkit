@@ -178,3 +178,22 @@ body.ltr .text .shipping-rates {
 .structure-entry-content input[readonly] {
 	border: 0;
 }
+
+/* Structure field buttons */
+.structure-entry {
+	position: relative;
+	padding-right: 5em;
+}
+.structure-entry-options {
+	position: absolute;
+	bottom: 0.25em;
+	right: 0;
+}
+.structure-entry-options .btn {
+	display: block;
+	float: none;
+	width: auto;
+	border-right: none;
+	font-size: 0.9em;
+	padding: 0 0.75em 0.5em;
+}
