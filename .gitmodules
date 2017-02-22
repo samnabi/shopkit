@@ -27,4 +27,4 @@
 	url = https://github.com/samnabi/kirby-snippetfield.git
 [submodule "site/plugins/shopkit/fields/field-wysiwyg"]
 	path = site/plugins/field-wysiwyg
-	url = https://github.com/storypioneers/kirby-wysiwyg
+	url = https://github.com/samnabi/kirby-wysiwyg
