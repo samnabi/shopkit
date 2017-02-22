@@ -30,7 +30,7 @@
             $upperlimit = '+';
           }
           echo '<span class="tier-upper-limit">'.$upperlimit.'</span>';
-          echo $field->inputField(rawPrice($tier['amount']));
+          echo $field->inputField(formatPrice($tier['amount'], true)); // Format price as plaintext
         echo '</div>';
       }
     ?>

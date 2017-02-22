@@ -80,7 +80,7 @@ try {
 				$certificates[$key]['amount'] = number_format($giftCertificateRemaining,2,'.','');
 			}
 		}
-		page('shop')->update(['gift-certificates' => yaml::encode($certificates)]);
+		site()->update(['gift-certificates' => yaml::encode($certificates)], site()->defaultLanguage()->code());
 	}
 } catch(Exception $e) {
 	// Order creation failed

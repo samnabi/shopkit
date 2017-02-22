@@ -72,23 +72,25 @@ if (get('gc') === '') {
  * Helper functions to format price
  */
 
-function formatPrice($number) {
-  $symbol = site()->currency_symbol();
-  $currencyCode = site()->currency_code();
-  if (site()->currency_position() == 'before') {
-  	return '<span property="priceCurrency" content="'.$currencyCode.'">'.$symbol.'&thinsp;</span><span property="price" content="'.number_format((float)$number,2,'.','').'">'.number_format((float)$number,2,'.','').'</span>';
-	} else {
-  	return '<span property="price" content="'.number_format((float)$number,2,'.','').'">' . number_format((float)$number,2,'.','') . '</span>' . '&nbsp;' . '<span property="priceCurrency" content="'.$currencyCode.'">'.$symbol.'</span>';
-	}
-}
+function formatPrice($number, $plaintext = false, $showSymbol = true) {
+  $symbol = $showSymbol === true ? site()->currency_symbol() : '';
+  $code = site()->currency_code();
+  $decimal = site()->currency_decimal_point();
+  $thousands = site()->currency_thousands_separator() == 'space' ? ' ' : site()->currency_thousands_separator();
+  $rawPrice = number_format((float)$number, 2, '.', '');
+  $price = number_format((float)$number, 2, $decimal, $thousands);
 
-function rawPrice($number) {
-  $symbol = site()->currency_symbol();
-  $currencyCode = site()->currency_code();
+  // Upgrade plaintext to markup if necessary
+  if (!$plaintext) {
+    $symbol = '<span property="priceCurrency" content="'.$code.'">'.$symbol.'</span>';
+    $price = '<span property="price" content="'.$rawPrice.'">'.$price.'</span>';
+  }
+
+  // Arrange the pieces and return it
   if (site()->currency_position() == 'before') {
-    return $symbol . number_format((float)$number,2);
+    return $symbol.'&nbsp;'.$price;
   } else {
-    return number_format($number,2) . '&nbsp;' . $symbol;
+    return $price.'&nbsp;'.$symbol;
   }
 }
 

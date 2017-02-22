@@ -4117,9 +4117,6 @@ video {
   line-height: 1;
   margin-bottom: 0.6rem; }
 
-.uk-button span[property="priceCurrency"] {
-  white-space: nowrap; }
-
 .uk-form-stacked label {
   display: block; }
 
