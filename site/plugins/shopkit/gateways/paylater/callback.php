@@ -9,7 +9,7 @@ if (get('payer_email') != '') {
     // Update transaction record
     $txn->update([
       'payer-email' => get('payer_email'),
-    ], 'en');
+    ], site()->defaultLanguage()->code());
   } catch(Exception $e) {
     // $txn->update() failed
     snippet('mail.order.update.error', [

@@ -37,7 +37,7 @@ return function ($site, $pages, $page) {
         	      'email'     => trim(get('email')),
         	      'password'  => $password,
         	      'firstName' => trim(get('fullname')),
-        	      'language'  => 'en',
+        	      'language'  => site()->defaultLanguage()->code(),
         	      'country'   => get('country')
         	    ));
 

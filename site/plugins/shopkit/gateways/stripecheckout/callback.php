@@ -48,7 +48,7 @@ if (get('stripeToken') != '') {
         'status'  => $payment_status,
         'payer-id' => $charge->customer,
         'payer-email' => $customer->email,
-      ], 'en');
+      ], site()->defaultLanguage()->code());
 
       // Update stock and notify staff
       snippet('order.callback', [

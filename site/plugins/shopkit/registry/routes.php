@@ -104,7 +104,7 @@ $kirby->set('route',[
   // Default lang slideshow
   'pattern' => 'shop/(:all)/(:any)/slide',
   'action' => function($category,$slug) {
-    site()->visit($category, 'en');
+    site()->visit($category, site()->defaultLanguage()->code());
     return array('shop/'.$category, array('slidePath' => 'shop/'.$category.'/'.$slug));
   }
 ]);
