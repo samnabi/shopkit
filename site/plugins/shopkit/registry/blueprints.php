@@ -1,11 +1,11 @@
 <?php
 
 // Register blueprint field snippets
-$kirby->set('blueprint', 'fields/markdown',        __DIR__.DS.'..'.DS.'blueprints'.DS.'fields'.DS.'markdown.yml');
 $kirby->set('blueprint', 'fields/relatedproducts', __DIR__.DS.'..'.DS.'blueprints'.DS.'fields'.DS.'relatedproducts.yml');
 $kirby->set('blueprint', 'fields/slider',          __DIR__.DS.'..'.DS.'blueprints'.DS.'fields'.DS.'slider.yml');
 $kirby->set('blueprint', 'fields/tax',           __DIR__.DS.'..'.DS.'blueprints'.DS.'fields'.DS.'tax.yml');
 $kirby->set('blueprint', 'fields/title',           __DIR__.DS.'..'.DS.'blueprints'.DS.'fields'.DS.'title.yml');
+$kirby->set('blueprint', 'fields/wysiwyg',        __DIR__.DS.'..'.DS.'blueprints'.DS.'fields'.DS.'wysiwyg.yml');
 
 // Register blueprints
 $kirby->set('blueprint', 'cart',      __DIR__.DS.'..'.DS.'blueprints'.DS.'cart.yml');

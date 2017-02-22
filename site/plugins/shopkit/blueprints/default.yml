@@ -5,5 +5,5 @@ pages: true
 fields:
   title: title
   slider: slider
-  text: markdown
+  text: wysiwyg
   relatedproducts: relatedproducts

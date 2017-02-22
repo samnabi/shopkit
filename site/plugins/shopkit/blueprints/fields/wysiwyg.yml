@@ -1,0 +1,9 @@
+label: Text
+type:  wysiwyg
+buttons:
+  - bold
+  - italic
+  - underline
+  - anchor
+  - orderedlist
+  - unorderedlist

@@ -16,9 +16,6 @@
 [submodule "site/plugins/shopkit/fields/color"]
 	path = site/plugins/shopkit/fields/color
 	url = https://github.com/ian-cox/Kirby-Color-Picker.git
-[submodule "site/plugins/shopkit/fields/markdown"]
-	path = site/plugins/shopkit/fields/markdown
-	url = https://github.com/JonasDoebertin/kirby-visual-markdown.git
 [submodule "site/plugins/dompdf"]
 	path = site/plugins/dompdf
 	url = https://github.com/samnabi/dompdf
@@ -28,3 +25,6 @@
 [submodule "site/plugins/shopkit/fields/snippetfield"]
 	path = site/plugins/shopkit/fields/snippetfield
 	url = https://github.com/samnabi/kirby-snippetfield.git
+[submodule "site/plugins/shopkit/fields/field-wysiwyg"]
+	path = site/plugins/field-wysiwyg
+	url = https://github.com/storypioneers/kirby-wysiwyg

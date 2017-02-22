@@ -7,9 +7,9 @@ options:
 fields:
   title: title
   slider: slider
-  text: markdown
+  text: wysiwyg
   hours:
-    extends: markdown
+    extends: wysiwyg
     label: Hours of operation
   phone:
     label: Phone number

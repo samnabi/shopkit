@@ -8,5 +8,5 @@ fields:
   title: title
   slider: slider
   text:
-    extends: markdown
+    extends: wysiwyg
     label: Description

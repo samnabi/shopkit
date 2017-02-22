@@ -18,7 +18,7 @@ fields:
     width: 1/4
   slider: slider
   text:
-    extends: markdown
+    extends: wysiwyg
     label: Description
   variants:
     label: Variants

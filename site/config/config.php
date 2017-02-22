@@ -131,3 +131,17 @@ c::set('languages', array(
     'url'     => '/es',
   ),
 ));
+
+
+
+
+/* 
+---------------------------------------
+WYSIWYG
+---------------------------------------
+
+Enable drag-and-drop for WYSIWYG plugin
+
+*/
+c::set('field.wysiwyg.dragdrop.kirby', true);
+c::set('field.wysiwyg.dragdrop.medium', true);

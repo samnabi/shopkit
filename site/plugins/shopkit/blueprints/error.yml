@@ -7,4 +7,4 @@ options:
   url: false
 fields:
   title: title
-  text: markdown
+  text: wysiwyg
