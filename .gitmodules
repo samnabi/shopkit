@@ -28,3 +28,6 @@
 [submodule "site/plugins/shopkit/fields/field-wysiwyg"]
 	path = site/plugins/field-wysiwyg
 	url = https://github.com/samnabi/kirby-wysiwyg
+[submodule "site/plugins/stats"]
+	path = site/plugins/stats
+	url = https://github.com/samnabi/kirby-stats.git
