@@ -68,5 +68,5 @@
 
 <!-- Admin -->
 <?php if ($page->template() == 'category' and $user = $site->user() and $user->can('panel.access.options')) { ?>
-	<a href="<?= url('panel/pages/'.$page->uri().'/add?template=product') ?>">+ New Product</a>
+	<a class="uk-button uk-button-mini uk-border-rounded uk-display-inline-block" href="<?= url('panel/pages/'.$page->uri().'/add?template=product') ?>">+ New Product</a>
 <?php } ?>

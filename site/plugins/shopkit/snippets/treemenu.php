@@ -12,7 +12,7 @@
   <!-- Admin -->
   <?php if ($user = $site->user() and $user->can('panel.access.options') and isset($parent)) { ?>
     <li>
-      <a href="<?= url('panel/pages/'.$parent->uri().'/add?template='.$template) ?>">+ New category</a>
+      <a class="uk-button uk-button-mini uk-border-rounded uk-display-inline-block" href="<?= url('panel/pages/'.$parent->uri().'/add?template='.$template) ?>">+ New category</a>
     </li>
   <?php } ?>
 

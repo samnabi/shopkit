@@ -24,9 +24,10 @@
 	    </li>
 	  <?php endforeach ?>
 	</ul>
-<?php } ?>
+	
 
-<!-- Admin -->
-<?php if ($user = $site->user() and $user->can('panel.access.options')) { ?>
-	<a href="<?= url('panel/pages/'.$page->uri().'/add?template=category') ?>">+ New Category</a>
+	<!-- Admin -->
+	<?php if ($user = $site->user() and $user->can('panel.access.options')) { ?>
+		<a class="uk-button uk-button-mini uk-border-rounded uk-display-inline-block" href="<?= url('panel/pages/'.$page->uri().'/add?template=category') ?>">+ New Category</a>
+	<?php } ?>
 <?php } ?>
