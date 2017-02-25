@@ -1,9 +1,0 @@
-Title: Account settings
-
-----
-
-Text: Update your information here. We don't store your payment details or mailing address -- those are managed through PayPal.
-
-----
-
-Slider: 

@@ -37,7 +37,7 @@
     <a class="uk-button uk-button-mini uk-border-rounded uk-display-inline-block" href="<?= url('panel/users/'.$user->username().'/edit') ?>">
         <!-- http://iconmonstr.com/user-20/ -->
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm7.753 18.305c-.26-.586-.79-.99-1.87-1.24-2.294-.53-4.43-.994-3.394-2.946C17.633 8.176 15.32 5 12 5c-3.388 0-5.644 3.3-2.49 9.12 1.067 1.963-1.147 2.426-3.392 2.944-1.084.25-1.608.658-1.867 1.246A9.954 9.954 0 0 1 2 12C2 6.486 6.486 2 12 2s10 4.486 10 10c0 2.39-.845 4.583-2.247 6.305z"/></svg>
-        <?= $user->firstname() != '' ? $user->firstname().' '.$user->lastname() : $user->username() ?>
+        My account
     </a>
     
     <!-- Logout -->

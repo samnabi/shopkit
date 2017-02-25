@@ -4396,4 +4396,9 @@ a.slideshow {
   .toggle + input:checked + form {
     display: block; }
 
+.sidebar .uk-nav > li > .uk-button,
+.sidebar .uk-nav-sub .uk-button {
+  margin-top: -1.5em;
+  padding: 0 0.5em; }
+
 /*# sourceMappingURL=shopkit.css.map */
