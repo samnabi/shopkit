@@ -88,9 +88,9 @@ function formatPrice($number, $plaintext = false, $showSymbol = true) {
 
   // Arrange the pieces and return it
   if (site()->currency_position() == 'before') {
-    return $symbol.'&nbsp;'.$price;
+    return $symbol.$price;
   } else {
-    return $price.'&nbsp;'.$symbol;
+    return $price.' '.$symbol;
   }
 }
 
