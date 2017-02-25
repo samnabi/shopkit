@@ -53,10 +53,10 @@
 
 // site/plugins/shopkit/snippets/header.notifications.php
 
-'notification-account' => 'No se ha establecido ningún usuario. <a href="'.url('panel').'/install" title="Página de instalación de panel">Crea una cuenta ahora.</a>.',
+'notification-account' => 'No se ha establecido ningún usuario. <a href="'.url('panel/install').'" title="Página de instalación de panel">Crea una cuenta ahora.</a>.',
 'notification-login' => '¡Finaliza la configuración de tu tienda! <a href="#user">Inicia sesión</a> para continuar.',
-'notification-options' => 'No se han configurado las opciones de tu tienda. <a href="'.url('panel').'/pages/shop/edit" title="Opciones de tienda">Define ajustes de tipo de moneda, envío e impuestos aquí.</a>.',
-'notification-category' => 'No cuentas con ningúna categoría de productos. <a href="'.url('panel').'/pages/shop/add" title="Crea una nueva categoría">Crea tu primera categoría aquí:</a>.',
+'notification-options' => 'No se han configurado las opciones de tu tienda. <a href="'.url('panel/options').'" title="Opciones de tienda">Define ajustes de tipo de moneda, envío e impuestos aquí.</a>.',
+'notification-category' => 'No cuentas con ningúna categoría de productos. <a href="'.url('panel/pages/shop/add').'" title="Crea una nueva categoría">Crea tu primera categoría aquí:</a>.',
 'notification-product-first' => 'No cuentas con ningún producto. <a href="'.url('panel').'/pages/',
 'notification-product-last' => '/add" title="Crea un nuevo producto">Crea tu primer producto con el Tablero</a>.',
 'notification-license' => 'Esta tienda no cuenta con una clave de licencia Shopkit. Asegúrate de agregar una en el archivo <strong>config.php</strong> antes de que la página web esté en línea.',

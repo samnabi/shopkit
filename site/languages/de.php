@@ -54,13 +54,12 @@
 
 // site/plugins/shopkit/snippets/header.notifications.php
 
-'notification-account' => 'Sie haben noch keine Benutzer angelegt. <a href="'.url('panel').'/install" title="Installationsseite">Benutzer anlegen</a>.',
+'notification-account' => 'Sie haben noch keine Benutzer angelegt. <a href="'.url('panel/install').'" title="Installationsseite">Benutzer anlegen</a>.',
 'notification-login' => 'Lassen Sie uns beenden Sie Ihren Shop einrichten! <a href="#user">Melden Sie</a> sich an, um fortzufahren.',
-'notification-options' => 'Sie haben noch keine Shop-Optionen angelegt. <a href="'.url('panel').'/pages/shop/edit" title="Shop-Optionen">Währung, Versand, und Umsatzsteuer definieren</a>.',
-'notification-category' => 'Sie haben noch keine Produkt-Kategorien angelegt. <a href="'.url('panel').'/pages/shop/edit" title="Kategorie anlegen">Erste Kategorie anlegen</a>.',
+'notification-options' => 'Sie haben noch keine Shop-Optionen angelegt. <a href="'.url('panel/options').'" title="Shop-Optionen">Währung, Versand, und Umsatzsteuer definieren</a>.',
+'notification-category' => 'Sie haben noch keine Produkt-Kategorien angelegt. <a href="'.url('panel/pages/shop/add').'" title="Kategorie anlegen">Erste Kategorie anlegen</a>.',
 'notification-product-first' => 'Sie haben noch keine Produkt angelegt. <a href="'.url('panel').'/pages/',
 'notification-product-last' => '/add" title="Produkt anlegen">Erstellen Sie Ihr erstes Produkt mit dem Armaturenbrett</a>.',
-'notification-product' => 'Sie haben keine Produkte. <a href="'.url('panel').'/pages/shop/edit" title="Neues Produkt erstellen">Erstes Produkt im Dashboard anlegen</a>.',
 'notification-license' => 'Dieser Shop hat keine Shopkit-Lizenz. Geben Sie den Lizenzschlüssen in der <strong>config.php</strong> Datei ein, bevor Sie die Website live schalten.',
 'notification-discount' => 'Ihr Rabatt-Code <strong><code>'.s::get('discountCode').'</code></strong> wird an der Kasse aktiviert werden.',
 'notification-giftcertificate' => 'Ihr Geschenkgutschein <strong><code>'.s::get('giftCertificateCode').'</code></strong> wird an der Kasse aktiviert werden.',
