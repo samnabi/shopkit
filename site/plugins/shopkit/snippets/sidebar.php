@@ -25,27 +25,6 @@
         </div>
     <?php } ?>
 
-    <!-- Global category listing -->
-    <?php if (page('shop')->children()->filterBy('template','category')->count() > 0) { ?>
-        <div class="uk-panel uk-panel-divider">
-            <h3 dir="auto"><?= l::get('shop-by-category') ?></h3>
-            <?php snippet('treemenu',array('parent' => page('shop'), 'template' => 'category', 'class' => 'uk-nav')) ?>
-        </div>
-    <?php } ?>
-
-    <!-- Brand listing -->
-    <?php $brands = page('shop')->index()->filterBy('template','product')->filterBy('brand', '!=', '')->pluck('brand', null, true) ?>
-    <?php if (count($brands) > 0) { ?>
-        <div class="uk-panel uk-panel-divider">
-            <h3 dir="auto"><?= l::get('shop-by-brand') ?></h3>
-            <ul dir="auto" class="uk-nav">
-                <?php foreach ($brands as $brand) { ?>
-                    <li><a href="<?= page('search')->url() ?>?q=&quot;<?= urlencode($brand) ?>&quot;"><?= $brand ?></a></li>
-                <?php } ?>
-            </ul>
-        </div>
-    <?php } ?>
-
     <!-- Search -->
     <div class="uk-panel uk-panel-divider">
         <form dir="auto" class="uk-form uk-grid uk-grid-collapse" action="<?= url('/search') ?>" method="get">
@@ -57,6 +36,27 @@
             </div>
         </form>
     </div>
+
+    <!-- Global category listing -->
+    <?php if (page('shop')->children()->filterBy('template','category')->count() > 0) { ?>
+        <div class="uk-panel uk-panel-divider">
+            <h3 dir="auto"><?= l::get('shop-by-category') ?></h3>
+            <?php snippet('treemenu',array('parent' => page('shop'), 'template' => 'category', 'class' => 'uk-nav')) ?>
+        </div>
+    <?php } ?>
+
+    <!-- Brand listing -->
+    <?php $brands = page('shop')->index()->filterBy('template','product')->filterBy('brand', '!=', '')->sortBy('brand')->pluck('brand', null, true) ?>
+    <?php if (count($brands) > 0) { ?>
+        <div class="uk-panel uk-panel-divider">
+            <h3 dir="auto"><?= l::get('shop-by-brand') ?></h3>
+            <ul dir="auto" class="uk-nav">
+                <?php foreach ($brands as $brand) { ?>
+                    <li><a href="<?= page('search')->url() ?>?q=&quot;<?= urlencode($brand) ?>&quot;"><?= $brand ?></a></li>
+                <?php } ?>
+            </ul>
+        </div>
+    <?php } ?>
     
     <!-- Contact details -->
     <?php $contact = page('contact') ?>

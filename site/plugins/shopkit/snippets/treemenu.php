@@ -1,9 +1,9 @@
 <?php
 	if (!isset($parent)) $parent = $site;
 	if (isset($template)) {
-		$subpages = $parent->children()->visible()->filterBy('template',$template);
+		$subpages = $parent->children()->visible()->filterBy('template',$template)->sortBy('title');
 	} else {
-		$subpages = $parent->children()->visible();
+		$subpages = $parent->children()->visible()->sortBy('title');
 	}
 ?>
 
