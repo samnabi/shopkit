@@ -1,10 +1,13 @@
 <?php
+// Set site and user
+$site = site();
+$user = $site->user();
 
 // Load payment gateways (this needs to happen first, so they can be accessed by other routes)
 foreach (new DirectoryIterator(__DIR__.DS.'gateways') as $file) {
   if (!$file->isDot() and $file->isDir()) {
     // Make sure gateway is not disabled
-    if (site()->content()->get($file->getFilename().'_status') != 'disabled') {
+    if ($site->content()->get($file->getFilename().'_status') != 'disabled') {
       $kirby->set('snippet', $file->getFilename().'.process', __DIR__.'/gateways/'.$file->getFilename().'/process.php');
       $kirby->set('snippet', $file->getFilename().'.callback', __DIR__.'/gateways/'.$file->getFilename().'/callback.php');
     }
@@ -36,7 +39,7 @@ if ($country = get('country')) {
 } else if (s::get('country')) {
   // Second option: the country has already been set in the session
   $country = s::get('country');
-} else if ($user = site()->user()) {
+} else if ($user) {
   // Third option: see if the user has set a country in their profile
   $country = $user->country();
 } else {
@@ -46,7 +49,7 @@ if ($country = get('country')) {
 s::set('country',$country);
 
 // Set discount code from user profile or query string
-if (!s::get('discountCode') and $user = site()->user() and $code = $user->discountcode()) {
+if (!s::get('discountCode') and $user and $code = $user->discountcode()) {
   s::set('discountCode', strtoupper($code));
   go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
 }

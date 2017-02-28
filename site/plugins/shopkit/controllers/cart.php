@@ -10,7 +10,7 @@ return function($site, $pages, $page) {
     foreach (new DirectoryIterator(__DIR__.DS.'../gateways') as $file) {
       if (!$file->isDot() and $file->isDir()) {
         // Make sure gateway is not disabled
-        if (site()->content()->get($file->getFilename().'_status') != 'disabled') {
+        if ($site->content()->get($file->getFilename().'_status') != 'disabled') {
             $gateways[] = $file->getFilename();
         }        
       }

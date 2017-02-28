@@ -1,3 +1,8 @@
+<?php
+// Set site variable
+$site = site();
+?>
+
 <?= $values->method() ?> &mdash;
 <small>
   <?php
@@ -48,7 +53,7 @@
         </tr>
         <?php foreach (yaml($values->weight()) as $key => $value) { ?>
           <tr>
-            <td><?= $key ?> <?= site()->weightunit() ?></td>
+            <td><?= $key ?> <?= $site->weightunit() ?></td>
             <td><?= formatPrice($value) ?></td>
           </tr>
         <?php } ?>

@@ -2,6 +2,8 @@
 // Honeypot trap for robots
 if(r::is('post') and get('subject') != '') go(url('error'));
 
+$site = site();
+
 $cart = Cart::getCart();
 
 $shipping = s::get('shipping');
@@ -51,7 +53,7 @@ try {
 	page('shop/orders')->children()->create($txn_id, 'order', [
 		'txn-id' => $txn_id,
 		'txn-date'  => $timestamp,
-		'txn-currency' => site()->currency_code(),
+		'txn-currency' => $site->currency_code(),
 		'status'  => $status,
 		'products' => "\n".yaml::encode($items),
 		'subtotal' => number_format($cart->getAmount(),2,'.',''),
@@ -63,24 +65,24 @@ try {
 	]);
 
 	// Add payer info if it's available at this point
-	if ($user = site()->user()) {
+	if ($user = $site->user()) {
 		page('shop/orders/'.$txn_id)->update([
 			'payer-id' => $user->username(),
 			'payer-name' => $user->firstname().' '.$user->lastname(),
 			'payer-email' => $user->email(),
 			'payer-address' => page('shop/countries/'.$user->country())->title()
-		], site()->defaultLanguage()->code());
+		], $site->defaultLanguage()->code());
 	}	
 
 	// Update the giftcard balance
 	if ($giftCertificateRemaining = get('giftCertificateRemaining')) {
-		$certificates = site()->gift_certificates()->yaml();
+		$certificates = $site->gift_certificates()->yaml();
 		foreach ($certificates as $key => $certificate) {
 			if (strtoupper($certificate['code']) == s::get('giftCertificateCode')) {
 				$certificates[$key]['amount'] = number_format($giftCertificateRemaining,2,'.','');
 			}
 		}
-		site()->update(['gift-certificates' => yaml::encode($certificates)], site()->defaultLanguage()->code());
+		$site->update(['gift-certificates' => yaml::encode($certificates)], $site->defaultLanguage()->code());
 	}
 } catch(Exception $e) {
 	// Order creation failed

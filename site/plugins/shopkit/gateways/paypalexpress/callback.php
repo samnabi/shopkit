@@ -4,6 +4,7 @@
  *
  * $_POST    All callback response values
  */
+$site = site();
 $logfile = __DIR__.'/ipn.log';
 
 // Read POST data from input stream
@@ -118,7 +119,7 @@ if($_POST['txn_id'] != '' ) {
         'payer-name' => $_POST['first_name']." ".$_POST['last_name'],
         'payer-email' => $_POST['payer_email'],
         'payer-address' => $_POST['address_street']."\n".$_POST['address_city'].", ".$_POST['address_state']." ".$_POST['address_zip']."\n".$_POST['address_country']
-      ], site()->defaultLanguage()->code());
+      ], $site->defaultLanguage()->code());
       
       // Update stock and notify staff
       snippet('order.callback', [

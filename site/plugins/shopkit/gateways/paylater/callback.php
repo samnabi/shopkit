@@ -1,4 +1,5 @@
 <?php
+$site = site();
 
 // Set transaction
 $txn = page('shop/orders/'.get('txn_id'));
@@ -9,7 +10,7 @@ if (get('payer_email') != '') {
     // Update transaction record
     $txn->update([
       'payer-email' => get('payer_email'),
-    ], site()->defaultLanguage()->code());
+    ], $site->defaultLanguage()->code());
   } catch(Exception $e) {
     // $txn->update() failed
     snippet('mail.order.update.error', [

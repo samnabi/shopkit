@@ -1,8 +1,10 @@
 <?php
+// Set site
+$site = site();
 
 // Set detected language
-site()->visit('home', $lang);
-site()->kirby->localize();
+$site->visit('home', $lang);
+$site->kirby->localize();
 
 // Page URI sent via POST
 $p = page(get('uri'));
@@ -18,7 +20,7 @@ $dompdf = new Dompdf();
 
 // Build the HTML
 $html = '<style>body{font-family: sans-serif;}</style>';
-$html .= '<h1>'.site()->title().'</h1>';
+$html .= '<h1>'.$site->title().'</h1>';
 
 $contact = page('contact');
 if ($address = $contact->location()->toStructure()->address() and $address != '') {

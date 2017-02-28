@@ -4,14 +4,18 @@
 
 $notifications = [];
 
+$categories = page('shop')->children()->filterBy('template','category');
+
+$user = $site->user();
+
 if ($site->users()->count() === 0) {
 
 	// Check if a panel account has been created
 	$notifications[] = l::get('notification-account');
 
-} else if (site()->currency_symbol() == '' or site()->currency_code() == '') {
+} else if ($site->currency_symbol() == '' or $site->currency_code() == '') {
 
-	if ($site->user() === false) {
+	if (!$user) {
 		// Check if user is logged in
 		$notifications[] = l::get('notification-login');
 	} else {
@@ -19,9 +23,9 @@ if ($site->users()->count() === 0) {
 		$notifications[] = l::get('notification-options');
 	}
 
-} else if (page('shop')->children()->filterBy('template','category')->count() === 0) {
+} else if ($categories->count() === 0) {
 
-	if ($site->user() === false) {
+	if (!$user) {
 		// Check if user is logged in
 		$notifications[] = l::get('notification-login');
 	} else {
@@ -31,12 +35,12 @@ if ($site->users()->count() === 0) {
 
 } else if (!$allProducts->count()) {
 
-	if ($site->user() === false) {
+	if (!$user) {
 		// Check if user is logged in
 		$notifications[] = l::get('notification-login');
 	} else {
 		// Check if a product has been created
-		$uri = page('shop')->children()->filterBy('template','category')->first()->uri();
+		$uri = $categories->first()->uri();
 		$notifications[] = l::get('notification-product-first').$uri.l::get('notification-product-last');
 	}
 

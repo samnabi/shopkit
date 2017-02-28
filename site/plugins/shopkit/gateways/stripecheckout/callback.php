@@ -4,14 +4,15 @@
  *
  * $_POST    All callback response values
  */
+$site = site();
 
 // Load the Stripe PHP library
 require_once('stripe-php/init.php');
 
 // Set the API key
 $stripe = [
-  'secret_key' => site()->stripecheckout_status() == 'sandbox' ? site()->stripecheckout_key_test_secret() : site()->stripecheckout_key_live_secret(),
-  'publishable_key' => site()->stripecheckout_status() == 'sandbox' ? site()->stripecheckout_key_test_publishable() : site()->stripecheckout_key_live_publishable()
+  'secret_key' => $site->stripecheckout_status() == 'sandbox' ? $site->stripecheckout_key_test_secret() : $site->stripecheckout_key_live_secret(),
+  'publishable_key' => $site->stripecheckout_status() == 'sandbox' ? $site->stripecheckout_key_test_publishable() : $site->stripecheckout_key_live_publishable()
 ];
 \Stripe\Stripe::setApiKey($stripe['secret_key']);
 
@@ -27,7 +28,7 @@ if (get('stripeToken') != '') {
   $charge = \Stripe\Charge::create(array(
     'customer' => $customer->id,
     'amount'   => get('amount'),
-    'currency' => site()->currency_code()
+    'currency' => $site->currency_code()
   ));
 
   // Validate the charge against the pending order
@@ -48,7 +49,7 @@ if (get('stripeToken') != '') {
         'status'  => $payment_status,
         'payer-id' => $charge->customer,
         'payer-email' => $customer->email,
-      ], site()->defaultLanguage()->code());
+      ], $site->defaultLanguage()->code());
 
       // Update stock and notify staff
       snippet('order.callback', [

@@ -6,7 +6,7 @@
 
 <?= $values->code() ?>
 
-<br><small><input type="text" value="<?= site()->url() ?>/discount/<?= $values->code() ?>" readonly></small>
+<br><small><input type="text" value="<?= url('discount/'.$values->code()) ?>" readonly></small>
 
 <?php if ($values->minorder() != '') { ?>
   <br><small><?= formatPrice($values->minorder()) ?> min. order</small>

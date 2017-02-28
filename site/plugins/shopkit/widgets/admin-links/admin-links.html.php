@@ -3,7 +3,7 @@
   #admin-links-widget i { margin-right: 0.25em; }
 </style>
 <p>
-  <a href="<?= site()->url() ?>">
+  <a href="<?= url() ?>">
     <i class="fa fa-home" aria-hidden="true"></i>
     Visit site
   </a>

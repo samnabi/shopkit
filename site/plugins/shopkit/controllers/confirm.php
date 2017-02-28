@@ -34,10 +34,10 @@ return function($site, $pages, $page) {
   if (isset($_POST['txn_id'])) {
     $valid = false;
     if (get('payer_name') and get('payer_email')) {
-      if (!site()->mailing_address()->bool()) {
+      if (!$site->mailing_address()->bool()) {
         // No address required, we're good.
         $valid = true;
-      } else if (site()->mailing_address()->bool() and get('payer_address')) {
+      } else if ($site->mailing_address()->bool() and get('payer_address')) {
         // Address provided, we're good.
         $valid = true;
       } else {

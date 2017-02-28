@@ -1,12 +1,13 @@
 <?php
+$site = site();
 
 // Set detected language
-site()->visit('shop', (string) site()->detectedLanguage());
-site()->kirby->localize();
+$site->visit('shop', (string) $site->detectedLanguage());
+$site->kirby->localize();
 
 // Build body text
 $body = l::get('order-notification-message').' ';
-$body .= page('shop/orders')->url().'?txn_id='.$txn->txn_id()->value."\n\n";
+$body .= url('shop/orders').'?txn_id='.$txn->txn_id()->value."\n\n";
 $body .= l::get('transaction-id').' '.$txn->txn_id()->value."\n\n";
 $body .= l::get('status').': '.$payment_status."\n";
 $body .= l::get('full-name').': '.$payer_name."\n";

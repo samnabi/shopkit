@@ -11,14 +11,15 @@ $kirby->set('route',[
   'pattern' => 'login',
   'method' => 'POST',
   'action'  => function() {
+    $site = site();
     // Set the redirect page
     $redirect = get('redirect') ? get('redirect') : 'shop';
 
     // Try to log in
-    if($user = site()->users()->findBy('email',get('email')) and $user->login(get('password'))) {
+    if($user = $site->users()->findBy('email',get('email')) and $user->login(get('password'))) {
       return go($redirect);
     } else {
-      return go(site()->url().'/'.$redirect.'/?login=failed');
+      return go($redirect.'/?login=failed');
     }
   }
 ]);
@@ -49,10 +50,11 @@ $kirby->set('route',[
   'pattern' => 'shop/cart/process',
   'method' => 'POST',
   'action' => function() {
+    $site = site();
 
     // Set detected language
-    site()->visit('shop', (string) site()->detectedLanguage());
-    site()->kirby->localize();
+    $site->visit('shop', (string) $site->detectedLanguage());
+    $site->kirby->localize();
     
     snippet('order.create');
   }
@@ -61,10 +63,11 @@ $kirby->set('route', [
   // Forwards transaction data to payment gateway
   'pattern' => 'shop/cart/process/(:any)/(:any)',
   'action' => function($gateway, $txn_id) {
+    $site = site();
 
     // Set detected language
-    site()->visit('shop', (string) site()->detectedLanguage());
-    site()->kirby->localize();
+    $site->visit('shop', (string) $site->detectedLanguage());
+    $site->kirby->localize();
 
     // Get the transaction file we just created
     $txn = page('shop/orders/'.$txn_id);
@@ -104,7 +107,8 @@ $kirby->set('route',[
   // Default lang slideshow
   'pattern' => 'shop/(:all)/(:any)/slide',
   'action' => function($category,$slug) {
-    site()->visit($category, site()->defaultLanguage()->code());
+    $site = site();
+    $site->visit($category, $site->defaultLanguage()->code());
     return array('shop/'.$category, array('slidePath' => 'shop/'.$category.'/'.$slug));
   }
 ]);
@@ -112,12 +116,13 @@ $kirby->set('route',[
   // Password reset and account opt-in verification
   'pattern' => 'token/([a-f0-9]{32})',
   'action' => function($token) {
+    $site = site();
 
     // Log out any active users
-    if($u = site()->user()) $u->logout();
+    if($u = $site->user()) $u->logout();
 
     // Find user by token
-    if ($user = site()->users()->findBy('token',$token)) {
+    if ($user = $site->users()->findBy('token',$token)) {
 
       // Destroy the token and update the password temporarily
       $user->update([
