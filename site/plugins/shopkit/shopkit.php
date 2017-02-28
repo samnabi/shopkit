@@ -361,7 +361,7 @@ function resetPassword($email,$firstTime = false) {
   ]);
 
   // Set the reset link
-  $resetLink = site()->url().'/token/'.$token;
+  $resetLink = url('token/'.$token);
 
   // Build the email text
   if ($firstTime) {

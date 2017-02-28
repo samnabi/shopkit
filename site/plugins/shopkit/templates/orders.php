@@ -44,7 +44,7 @@
                         <?php ecco($order->payer_email() != '','<a href="mailto:'.$order->payer_email().'">'.$order->payer_email().'</a><br>') ?>
                         <?= strftime('%e %B %Y, %H:%M',$order->txn_date()->value) ?><br>
 
-                        <form action="<?= $site->url() ?>/<?= $site->language() ?>/shop/orders/pdf" method="POST">
+                        <form action="<?= url($site->language().'/shop/orders/pdf') ?>" method="POST">
                             <input type="hidden" name="uri" value="<?= $order->uri() ?>">
                             <button class="uk-button uk-button-small" type="submit"><?= l::get('download-invoice') ?></button>
                         </form>

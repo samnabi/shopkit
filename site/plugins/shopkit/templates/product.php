@@ -19,7 +19,7 @@
 					<?php if (count($tags)) { ?>
 						<p dir="auto">
 							<?php foreach ($tags as $tag) { ?>
-								<a href="<?= $site->url().'/search/?q='.urlencode($tag) ?>">#<?= $tag ?></a>
+								<a href="<?= url('search/?q='.urlencode($tag)) ?>">#<?= $tag ?></a>
 							<?php } ?>
 						</p>
 					<?php } ?>
