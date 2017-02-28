@@ -20,6 +20,7 @@ $kirby->set('snippet', 'mail.order.tamper',          __DIR__.DS.'..'.DS.'snippet
 $kirby->set('snippet', 'order.callback',             __DIR__.DS.'..'.DS.'snippets'.DS.'order.callback.php');
 $kirby->set('snippet', 'order.create',               __DIR__.DS.'..'.DS.'snippets'.DS.'order.create.php');
 $kirby->set('snippet', 'order.pdf',                  __DIR__.DS.'..'.DS.'snippets'.DS.'order.pdf.php');
+$kirby->set('snippet', 'search',                     __DIR__.DS.'..'.DS.'snippets'.DS.'search.php');
 $kirby->set('snippet', 'sidebar',                    __DIR__.DS.'..'.DS.'snippets'.DS.'sidebar.php');
 $kirby->set('snippet', 'slider',                     __DIR__.DS.'..'.DS.'snippets'.DS.'slider.php');
 $kirby->set('snippet', 'slideshow.product',          __DIR__.DS.'..'.DS.'snippets'.DS.'slideshow.product.php');

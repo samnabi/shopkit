@@ -4,10 +4,9 @@
     if ($values->products() == '') {
       echo 'All products';
     } else {
-      $pgs = page('shop')->index();
       $first = true;
       foreach (explode(',',$values->products()) as $product) {
-        if ($pg = $pgs->findByURI(trim($product))) {
+        if ($pg = page(trim($product)) {
           $title = $pg->title();
           if ($first) {
             echo $title;
@@ -15,6 +14,8 @@
           } else {
             echo ', '.$title;
           }
+        } else {
+          echo '<strong class="field-with-error"><span class="label">Missing reference, please select again</span></strong>';
         }
       }
     }

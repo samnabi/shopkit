@@ -43,7 +43,7 @@ return function($site, $pages, $page) {
     foreach ($items as $item) {
 
         // Image src (base64 encoded)
-        $img = $pages->findByUri($item->uri)->images()->first();
+        $img = page($item->uri)->images()->first();
         if (!$img) {
             $item->imgSrc = false;
         } else {

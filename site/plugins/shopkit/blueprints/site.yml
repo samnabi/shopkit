@@ -24,6 +24,8 @@ fields:
           page: shop
           fetch: pages
           template: product
+          value: "{{uri}}"
+          text: "{{title}}"
         required: true
       calculation:
         label: Default price variant
@@ -59,6 +61,8 @@ fields:
           page: shop
           fetch: pages
           template: product
+          value: "{{uri}}"
+          text: "{{title}}"
   error-email:
     label: Error notifications
     help: Who will be notified if an order runs into a technical error?

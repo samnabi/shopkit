@@ -472,3 +472,24 @@ function sendMail($subject, $body, $to) {
     return false;
   }
 }
+
+
+/**
+ * Load all products in a flat collection
+ * This is faster than index()
+ */
+
+function allProducts($parent){
+  $collection = new Pages();
+  if ($parent->hasVisibleChildren()) {
+    $children = $parent->children()->visible();
+    $collection->add($children->filterBy('template','product'));
+    foreach ($children->filterBy('template','category') as $product) {
+      $collection->add(allProducts($product));
+    }
+  }
+  return $collection;
+}
+
+// Set $allProducts for use in templates and snippets
+tpl::set('allProducts', allProducts(page('shop')));

@@ -1,9 +1,8 @@
 <!-- Related products -->
 <?php
-	$index = $pages->index();
 	$products = [];
 	foreach ($page->relatedproducts()->toStructure() as $slug) {
-		$product = $index->findByURI($slug->product());
+		$product = $allProducts->find($slug->product());
 		if($product->isVisible()) {
 			$products[] = $product;
 		}

@@ -1,7 +1,7 @@
 <?php if(count($products)) { ?>
 	<ul class="featured uk-grid uk-grid-width-1-1 uk-container-center">
 	  <?php foreach($products as $featuredProduct) { ?>
-	  	  <?php $product = $featuredProduct['product'] ?>
+	  	  <?php $product = page($featuredProduct->product()) ?>
 		  <li class="uk-overlay uk-padding-remove uk-margin-bottom">
 			  	<?php
 			  		// Get featured product's price for one-click button
@@ -16,11 +16,11 @@
 			  			}
 
 			  			// For each variant, override the price as necessary 
-			  			if ($featuredProduct['calculation'] === 'low' and $variant->price()->value < $featuredPrice){
+			  			if ($featuredProduct->calculation() == 'low' and $variant->price()->value < $featuredPrice){
 			  				$featuredVariant = $variant;
 			  				$featuredPrice = $variant->price()->value;
 			  				$featuredSalePrice = salePrice($variant);
-			  			} else if ($featuredProduct['calculation'] === 'high' and $variant->price()->value > $featuredPrice) {
+			  			} else if ($featuredProduct->calculation() == 'high' and $variant->price()->value > $featuredPrice) {
 			  				$featuredVariant = $variant;
 			  				$featuredPrice = $variant->price()->value;
 			  				$featuredSalePrice = salePrice($variant);

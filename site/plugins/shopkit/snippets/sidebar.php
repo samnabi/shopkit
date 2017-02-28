@@ -6,36 +6,14 @@
     </div>
     
     <!-- Featured products -->
-    <?php
-        // Rebuild the featured products list with actual page objects instead of URIs
-        $index = $pages->index();
-        foreach ($site->featured()->toStructure() as $f) {
-            $featuredProduct = $index->findByURI($f->product());
-            if ($featuredProduct->isVisible()) {
-                $featured[] = [
-                    'product' => $featuredProduct,
-                    'calculation' => $f->calculation()->value
-                ];
-            }
-        }
-    ?>
-    <?php if(isset($featured) and count($featured)){ ?>
+    <?php if($site->featured()->toStructure()->count()){ ?>
         <div class="uk-panel uk-panel-divider">
-            <?php snippet('list.featured', ['products' => $featured]) ?>
+            <?php snippet('list.featured', ['products' => $site->featured()->toStructure()]) ?>
         </div>
     <?php } ?>
 
-    <!-- Search -->
-    <div class="uk-panel uk-panel-divider">
-        <form dir="auto" class="uk-form uk-grid uk-grid-collapse" action="<?= url('/search') ?>" method="get">
-            <div class="uk-width-3-5">
-                <input class="uk-width-1-1" type="text" name="q" value="<?= get('q') ?>" placeholder="">
-            </div>
-            <div class="uk-width-2-5">
-                <button class="uk-button uk-width-1-1" type="submit"><?= l::get('search') ?></button>
-            </div>
-        </form>
-    </div>
+    <!-- Search bar -->
+    <?php snippet('search') ?>
 
     <!-- Global category listing -->
     <?php if (page('shop')->children()->filterBy('template','category')->count() > 0) { ?>
@@ -46,13 +24,13 @@
     <?php } ?>
 
     <!-- Brand listing -->
-    <?php $brands = page('shop')->index()->filterBy('template','product')->filterBy('brand', '!=', '')->sortBy('brand')->pluck('brand', null, true) ?>
+    <?php $brands = $allProducts->filterBy('brand', '!=', '')->sortBy('brand')->pluck('brand', null, true); ?>
     <?php if (count($brands) > 0) { ?>
         <div class="uk-panel uk-panel-divider">
             <h3 dir="auto"><?= l::get('shop-by-brand') ?></h3>
             <ul dir="auto" class="uk-nav">
                 <?php foreach ($brands as $brand) { ?>
-                    <li><a href="<?= page('search')->url() ?>?q=&quot;<?= urlencode($brand) ?>&quot;"><?= $brand ?></a></li>
+                    <li><a href="<?= page('search')->url() ?>?q=<?= urlencode($brand) ?>"><?= $brand ?></a></li>
                 <?php } ?>
             </ul>
         </div>

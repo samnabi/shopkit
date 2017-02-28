@@ -9,4 +9,6 @@ fields:
       page: shop
       fetch: pages
       template: product
+      value: "{{uri}}"
+      text: "{{title}}"
     required: true
