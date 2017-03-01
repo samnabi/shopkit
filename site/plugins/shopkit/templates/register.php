@@ -1,46 +1,52 @@
 <?php snippet('header') ?>
+<div class="uk-width-small-1-1 uk-width-medium-2-3 uk-push-1-3">
+<?php snippet('header.menus') ?>
+<main class="uk-container uk-padding-remove">
+    
+<?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
 
-  <?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
+<h1 dir="auto"><?= $page->title()->html() ?></h1>
 
-  <h1 dir="auto"><?= $page->title()->html() ?></h1>
+<?= $page->text()->kirbytext()->bidi() ?>
 
-  <?= $page->text()->kirbytext()->bidi() ?>
+<?php if($register_message) { ?>
+  <div class="uk-alert uk-alert-warning">
+    <?= $register_message ?>
+  </div>
+<?php } ?>
 
-  <?php if($register_message) { ?>
-    <div class="uk-alert uk-alert-warning">
-      <?= $register_message ?>
+<?php if (!$success) { ?>
+  <form dir="auto" class="uk-form uk-form-stacked" method="post">
+    <div class="forRobots">
+      <label for="subject"><?= l::get('honeypot-label') ?></label>
+      <input type="text" name="subject">
     </div>
-  <?php } ?>
+    <div class="uk-form-row">
+      <label for="email"><?= l::get('email-address') ?></label>
+      <input class="uk-form-width-large" type="email" id="email" name="email" value="<?= get('email') ?>">
+    </div>
+    <div class="uk-form-row">
+      <label for="fullname"><?= l::get('full-name') ?></label>
+      <input class="uk-form-width-large" type="text" id="fullname" name="fullname" value="<?= get('fullname') ?>">
+    </div>
+    <div class="uk-form-row">
+      <label for="country"><?= l::get('country') ?></label>
+      <select class="uk-form-width-large" name="country" id="country">
+        <?php foreach ($countries as $c) { ?>
+          <option value="<?= $c->slug() ?>" <?= $c->slug() == get('country') ? 'selected' : '' ?>><?= $c->title() ?></option>
+        <?php } ?>
+      </select>
+      <p class="uk-form-help-block uk-text-muted uk-margin-remove"><?= l::get('country-help') ?></p>
+    </div>
+    <div class="uk-form-row">
+      <button class="uk-button uk-button-primary uk-button-large uk-width-small-1-1 uk-width-medium-1-2" type="submit" name="register">
+        <?= l::get('register') ?>
+      </button>
+    </div>
+  </form>
+<?php } ?>
 
-  <?php if (!$success) { ?>
-    <form dir="auto" class="uk-form uk-form-stacked" method="post">
-      <div class="forRobots">
-        <label for="subject"><?= l::get('honeypot-label') ?></label>
-        <input type="text" name="subject">
-      </div>
-      <div class="uk-form-row">
-        <label for="email"><?= l::get('email-address') ?></label>
-        <input class="uk-form-width-large" type="email" id="email" name="email" value="<?= get('email') ?>">
-      </div>
-      <div class="uk-form-row">
-        <label for="fullname"><?= l::get('full-name') ?></label>
-        <input class="uk-form-width-large" type="text" id="fullname" name="fullname" value="<?= get('fullname') ?>">
-      </div>
-      <div class="uk-form-row">
-        <label for="country"><?= l::get('country') ?></label>
-        <select class="uk-form-width-large" name="country" id="country">
-          <?php foreach ($countries as $c) { ?>
-            <option value="<?= $c->slug() ?>" <?= $c->slug() == get('country') ? 'selected' : '' ?>><?= $c->title() ?></option>
-          <?php } ?>
-        </select>
-        <p class="uk-form-help-block uk-text-muted uk-margin-remove"><?= l::get('country-help') ?></p>
-      </div>
-      <div class="uk-form-row">
-        <button class="uk-button uk-button-primary uk-button-large uk-width-small-1-1 uk-width-medium-1-2" type="submit" name="register">
-          <?= l::get('register') ?>
-        </button>
-      </div>
-    </form>
-  <?php } ?>
-
+</main>
+</div>
+<?php snippet('sidebar') ?>
 <?php snippet('footer') ?>

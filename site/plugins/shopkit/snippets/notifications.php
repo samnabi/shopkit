@@ -1,8 +1,7 @@
 <?php
-
-// Shopkit onboarding process
-
 $notifications = [];
+
+// Shopkit onboarding messages
 
 $categories = page('shop')->children()->filterBy('template','category');
 
@@ -64,6 +63,7 @@ if (c::get('license-shopkit') == "") {
 <?php } ?>
 
 <?php
+
 // Success messages
 
 $successes = [];

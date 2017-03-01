@@ -6,67 +6,18 @@
     </div>
     
     <!-- Featured products -->
-    <?php if($site->featured()->toStructure()->count()){ ?>
-        <div class="uk-panel uk-panel-divider">
-            <?php snippet('list.featured', ['products' => $site->featured()->toStructure()]) ?>
-        </div>
-    <?php } ?>
+    <?php snippet('list.featured') ?>
 
     <!-- Search bar -->
     <?php snippet('search') ?>
 
-    <!-- Global category listing -->
-    <?php if (page('shop')->children()->filterBy('template','category')->count() > 0) { ?>
-        <div class="uk-panel uk-panel-divider">
-            <h3 dir="auto"><?= l::get('shop-by-category') ?></h3>
-            <?php snippet('treemenu',array('parent' => page('shop'), 'template' => 'category', 'class' => 'uk-nav')) ?>
-        </div>
-    <?php } ?>
+    <!-- Shop by category -->
+    <?php snippet('menu.categories') ?>
 
     <!-- Brand listing -->
-    <?php $brands = $allProducts->filterBy('brand', '!=', '')->sortBy('brand')->pluck('brand', null, true); ?>
-    <?php if (count($brands) > 0) { ?>
-        <div class="uk-panel uk-panel-divider">
-            <h3 dir="auto"><?= l::get('shop-by-brand') ?></h3>
-            <ul dir="auto" class="uk-nav">
-                <?php foreach ($brands as $brand) { ?>
-                    <li><a href="<?= url('search/?q='.urlencode($brand)) ?>"><?= $brand ?></a></li>
-                <?php } ?>
-            </ul>
-        </div>
-    <?php } ?>
+    <?php snippet('menu.brands') ?>
     
     <!-- Contact details -->
-    <?php $contact = page('contact') ?>
-    <?php if ($contact->hours()->isNotEmpty() or $contact->phone()->isNotEmpty() or $contact->email()->isNotEmpty() or $contact->location()->isNotEmpty()) { ?>
-        <footer class="uk-panel uk-panel-divider uk-margin-large-bottom">
-            <h3 dir="auto"><?= page('contact')->title()->html() ?></h3>
-
-            <?php if($hours = page('contact')->hours() and $hours != '') { ?>
-                <h4 dir="auto">Hours of operation</h4>
-                <?= $hours->kirbytext()->bidi() ?>
-            <?php } ?>
-
-            <dl dir="auto">
-                <?php if ($phone = $contact->phone() and $phone != '') { ?>
-                    <dt><?= l::get('phone') ?></dt>
-                    <dd class="uk-margin-bottom"><?= $phone ?></dd>
-                <?php } ?>
-                
-                <?php if ($email = $contact->email() and $email != '') { ?>
-                    <dt><?= l::get('email') ?></dt>
-                    <dd class="uk-margin-bottom"><?= kirbytext('(email: '.trim($email).')') ?></dd>
-                <?php } ?>
-                
-                <?php if ($address = $contact->location()->toStructure()->address() and $address != '') { ?>
-                    <dt><?= l::get('address') ?></dt>
-                    <dd class="uk-margin-bottom"><?= $address ?></dd>
-                <?php } else if ($contact->location()->isNotEmpty()) { ?>
-                    <dt><?= l::get('address') ?></dt>
-                    <dd class="uk-margin-bottom"><?= $contact->location()->kirbytext() ?></dd>
-                <?php } ?>
-            </dl>
-        </footer>
-    <?php } ?>
+    <?php snippet('contact') ?>
 
 </aside>

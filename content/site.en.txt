@@ -147,3 +147,15 @@ Stripecheckout-key-live-secret:
 ----
 
 Stripecheckout-key-live-publishable: 
+
+----
+
+Weightunit: kg
+
+----
+
+Currency-decimal-point: .
+
+----
+
+Currency-thousands-separator: ,

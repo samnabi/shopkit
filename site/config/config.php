@@ -29,6 +29,7 @@ Show detailed error messages by switching this to 'true'
 */
 
 c::set('debug', true);
+c::set('whoops',false);
 
 
 /* 
