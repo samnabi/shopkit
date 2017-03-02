@@ -1,6 +1,6 @@
 <?php $contact = page('contact') ?>
 <?php if ($contact->hours()->isNotEmpty() or $contact->phone()->isNotEmpty() or $contact->email()->isNotEmpty() or $contact->location()->isNotEmpty()) { ?>
-    <footer class="uk-panel uk-panel-divider uk-margin-large-bottom">
+    <section class="contact">
         <h3 dir="auto"><?= page('contact')->title()->html() ?></h3>
 
         <?php if($hours = page('contact')->hours() and $hours != '') { ?>
@@ -11,21 +11,21 @@
         <dl dir="auto">
             <?php if ($phone = $contact->phone() and $phone != '') { ?>
                 <dt><?= l::get('phone') ?></dt>
-                <dd class="uk-margin-bottom"><?= $phone ?></dd>
+                <dd><?= $phone ?></dd>
             <?php } ?>
             
             <?php if ($email = $contact->email() and $email != '') { ?>
                 <dt><?= l::get('email') ?></dt>
-                <dd class="uk-margin-bottom"><?= kirbytext('(email: '.trim($email).')') ?></dd>
+                <dd><?= kirbytext('(email: '.trim($email).')') ?></dd>
             <?php } ?>
             
             <?php if ($address = $contact->location()->toStructure()->address() and $address != '') { ?>
                 <dt><?= l::get('address') ?></dt>
-                <dd class="uk-margin-bottom"><?= $address ?></dd>
+                <dd><?= $address ?></dd>
             <?php } else if ($contact->location()->isNotEmpty()) { ?>
                 <dt><?= l::get('address') ?></dt>
-                <dd class="uk-margin-bottom"><?= $contact->location()->kirbytext() ?></dd>
+                <dd><?= $contact->location()->kirbytext() ?></dd>
             <?php } ?>
         </dl>
-    </footer>
+    </section>
 <?php } ?>

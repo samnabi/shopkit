@@ -1,25 +1,25 @@
 <?php $product = page($slidePath) ?>
 
-<nav class="uk-margin uk-text-center slideshow-nav">
+<nav class="slideshow-nav">
 
-	<a id="slideshow-prev" class="uk-button" <?php if($product->hasPrevVisible()){ echo 'href="'.$product->prevVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
+	<a id="slideshow-prev" <?php if($product->hasPrevVisible()){ echo 'href="'.$product->prevVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
 		<?= f::read('site/plugins/shopkit/assets/svg/arrow-left.svg') ?>
 		<span><?php echo l::get('prev') ?></span>
 	</a>
 
-    <a id="view-grid" class="uk-button uk-button-link" href="<?php echo $product->parent()->url() ?>">
+    <a id="view-grid" href="<?php echo $product->parent()->url() ?>">
     	<?= f::read('site/plugins/shopkit/assets/svg/grid.svg') ?>
     	<span><?php echo l::get('view-grid') ?></span>
     </a>
 
-	<a id="slideshow-next" class="uk-button" <?php if($product->hasNextVisible()){ echo 'href="'.$product->nextVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
+	<a id="slideshow-next" <?php if($product->hasNextVisible()){ echo 'href="'.$product->nextVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
 		<?= f::read('site/plugins/shopkit/assets/svg/arrow-right.svg') ?>
 		<span><?php echo l::get('next') ?></span>
 	</a>
 </nav>
 
-<a class="slideshow uk-grid uk-grid-small" href="<?php echo $product->url() ?>" vocab="http://schema.org" typeof="Product">
-	<div class="image uk-width-1-1 uk-width-medium-3-4">
+<a class="slideshow" href="<?php echo $product->url() ?>" vocab="http://schema.org" typeof="Product">
+	<div class="image">
 		<?php 
 			if ($product->hasImages()) {
 				$image = $product->images()->sortBy('sort', 'asc')->first();
@@ -28,10 +28,10 @@
 			}
 			$thumb = $image->thumb(['width' => 600]);
 		?>
-		<img property="image" content="<?php echo $thumb->url() ?>" class="uk-width-1-1" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
+		<img property="image" content="<?php echo $thumb->url() ?>" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
 	</div>
 
-	<div class="description uk-width-1-1 uk-width-medium-1-4">
+	<div class="description">
 		<h3 dir="auto" property="name"><?php echo $product->title()->html() ?></h3>
 		
 		<?php if ($product->text() != '') { ?>
@@ -52,7 +52,7 @@
 
     			$saleprice = $salepricelist[min(array_keys($pricelist, min($pricelist)))];
 			?>
-			<span class="uk-button uk-button-primary" property="offers" typeof="Offer">
+			<span property="offers" typeof="Offer">
 				<?php
 					if ($saleprice) {
 						echo formatPrice($saleprice);

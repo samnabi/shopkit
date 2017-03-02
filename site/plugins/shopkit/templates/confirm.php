@@ -1,7 +1,7 @@
 <?php snippet('header') ?>
-<div class="uk-width-small-1-1 uk-width-medium-2-3 uk-push-1-3">
+<div>
 <?php snippet('header.menus') ?>
-<main class="uk-container uk-padding-remove">
+<main>
     
 <h1 dir="auto"><?= $page->title() ?></h1>
 
@@ -9,7 +9,7 @@
 
 <h2 dir="auto"><?= l::get('order-details') ?></h2>
 
-<ul dir="auto">
+<ul dir="auto" class="order-details">
     <?php foreach ($txn->products()->toStructure() as $product) { ?>
         <li>
             <strong><?= $product->name() ?></strong> / <?= $product->variant() ?> <?= $product->option() != '' ? '/ '.$product->option() : '' ?> / <?= l('qty').' '.$product->quantity() ?><br>
@@ -20,28 +20,29 @@
 
 <h2 dir="auto"><?= l::get('personal-details') ?></h2>
 
-<form class="uk-form uk-form-stacked" method="post">
+<form class="confirm" method="post">
 
     <input type="hidden" name="txn_id" value="<?= $txn->txn_id() ?>">
 
-    <div class="uk-form-row">
-        <label for="payer_name"><?= l::get('full-name') ?></label>
-        <input required class="uk-form-width-large" type="text" name="payer_name" value="<?= $payer_name ?>">
-    </div>
+    <label>
+        <span><?= l::get('full-name') ?></span>
+        <input required type="text" name="payer_name" value="<?= $payer_name ?>">
+    </label>
     
-    <div class="uk-form-row">
-        <label for="payer_email"><?= l::get('email') ?></label>
-        <input required class="uk-form-width-large" type="email" name="payer_email" value="<?= $payer_email ?>">
-    </div>
+    <label>
+        <span><?= l::get('email') ?></span>
+        <input required type="email" name="payer_email" value="<?= $payer_email ?>">
+    </label>
 
-    <div class="uk-form-row">
-        <label for="payer_address"><?= l::get('mailing-address') ?></label>
-        <textarea class="uk-form-width-large" name="payer_address"><?= $payer_address ?></textarea>
-    </div>
-    
-    <div class="uk-form-row">
-	   <button class="uk-button uk-button-primary uk-form-width-large" type="submit"><?= l::get('confirm-order') ?></button>
-    </div>
+    <label>
+        <span><?= l::get('mailing-address') ?></span>
+        <textarea name="payer_address"><?= $payer_address ?></textarea>
+    </label>
+
+	<button type="submit">
+        <?= l::get('confirm-order') ?>
+    </button>
+
 </form>
 
 </main>

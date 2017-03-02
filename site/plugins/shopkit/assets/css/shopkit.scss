@@ -1,335 +1,237 @@
-/*! UIkit 2.22.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/**
+ * Global settings
+ * 
+ */
 
-// The order of these components is important! Don't rearrange them.
-// To disable a component, simply comment it out.
-@import 'uikit.base';
-@import 'uikit.grid';
-@import 'uikit.panel';
-//@import 'uikit.block';
-@import 'uikit.nav';
-@import 'uikit.navbar';
-@import 'uikit.subnav';
-@import 'uikit.breadcrumb';
-@import 'uikit.thumbnav';
-@import 'uikit.table';
-@import 'uikit.form';
-@import 'uikit.button';
-@import 'uikit.badge';
-@import 'uikit.alert';
-//@import 'uikit.thumbnail';
-@import 'uikit.overlay';
-//@import 'uikit.animation';
-@import 'uikit.text';
-@import 'uikit.utility';
-@import 'uikit.flex';
-@import 'uikit.contrast';
-@import 'uikit.print';
-
-// Height
-html { height: 100%; }
-body { min-height: 100%; }
-
-
-// Typography
-
-h1,
-.uk-h1 {
-	font-weight: bold;
+html {
+	height: 100%;
+	box-sizing: border-box;
 }
+
+body {
+	min-height: 100%;
+	line-height: 1.6;
+	background-position: center top;
+	background-attachment: fixed;
+	background-repeat: repeat-y; 
+	background-size: 100% auto; /* Fallback */
+	background-size: cover;
+
+	& > .wrapper {
+		background: white; /* Fallback */
+		background: rgba(255,255,255,0.8);
+	}
+}
+
+*, *:before, *:after {
+	// https://www.paulirish.com/2012/box-sizing-border-box-ftw/
+  box-sizing: inherit;
+}
+
+* + * {
+	// https://alistapart.com/article/axiomatic-css-and-lobotomized-owls
+	margin-top: 1em;
+}
+
+/**
+ * Define colours
+ *
+ */
+
+$base: #eeeeee;
+$link: #0077dd;
+$accent: #00a8e6;
+
+
+/**
+ * Typography
+ * 
+ */
+
+body,
+input,
+textarea,
+button,
+.button {
+	color: black;
+	font-family: asap, sans-serif;
+}
+
+
+// Inline semantic tags
 
 :not(pre) > code,
 :not(pre) > kbd,
 :not(pre) > samp {
-  font-size: 14px;
+	font-size: 1em;
+	font-family: courier, monospace;
   color: inherit;
-  padding: 0.2rem 0.4rem 0.1rem;
-  background: #ffffaa;
+  padding: 0.2em 0.5em;
+  background: $base;
+  background: rgba(0,0,0,0.1);
 }
 
-em {
-  color: inherit;
+
+// Links
+
+a {
+	color: $link;
+	text-decoration: none;
+	transition: color 0.2s, text-decoration 0.2s;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+		text-decoration-color: desaturate(lighten($link, 30), 40);
+	}
+
+	&:active,
+	&:target {
+		color: desaturate(lighten($link,30), 40);
+	}
+}
+
+li a,
+nav a {
+	&:hover,
+	&:focus {
+		text-decoration: none;
+	}
 }
 
 
-// Videos
+// Lists
 
-video {
+ul {
+	padding: 0;
+	list-style: none;
+
+	ul {
+		margin-left: 1em;
+	}
+}
+
+
+/**
+ * Elements
+ * 
+ */
+
+video, iframe, img, figure, audio, object {
 	max-width: 100%;
 }
 
 
-// Buttons
-
-.uk-button {
-	box-shadow: inset 0 0 0 1px rgba(0,0,0,0.2);
-}
-.uk-button:hover,
-.uk-button:focus,
-.uk-button:active {
-	box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4), 0 0 0 1px white;
+svg {
+	display: inline-block;
+	width: 1.5em;
+	height: 1.5em;
+	vertical-align: top;
+	fill: black;
 }
 
-.uk-button del {
+
+/**
+ * Buttons
+ * 
+ */
+
+button, .button {
+	display: inline-block;
+	color: black;
+	padding: 0.2em 0.5em;
+	cursor: pointer;
+	border: none;
+	background-color: $base;
+	transition: background-color 0.2s, box-shadow 0.2s;
+	box-shadow: inset 0 0 0 2px darken($base, 10);
+
+	&:hover,
+	&:focus {
+		box-shadow: inset 0 0 0 2px darken($base, 20);
+	}
+
+	&:active {
+		background-color: darken($base, 10);
+	}
+
+	.primary {
+		color: white;
+		background-color: $accent;
+
+		&:hover,
+		&:focus {
+			box-shadow: inset 0 0 0 2px darken($accent, 20);
+		}
+
+		&:active {
+			background-color: darken($accent, 10);
+		}
+	}
+}
+
+
+/**
+ * Notification banners
+ * 
+ */
+
+
+/**
+ * Forms
+ * 
+ */
+
+input,
+button,
+.button,
+textarea {
+	font-size: 1em;
+	line-height: 1.6;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+	background: white;
+	border: 1px solid darken($base, 10);
+	padding: 0.2em 0.5em;
+	width: 10em;
+}
+
+label {
 	display: block;
-	font-size: 0.8rem;
-	opacity: 0.8;
-	line-height: 1;
-	margin-bottom: 0.6rem;
+}
+label > span {
+	font-size: 0.8em;
+	display: block; 
+
+	& + input {
+		margin-top: 0;
+	}
 }
 
-
-// Forms
-
-.uk-form-stacked label {
-	display: block;
-}
-
-.logo a {
-	display: block;
-}
-
-// Honeypot form field
+// Honeypot field
 .forRobots {
 	visibility: hidden;
 	z-index: -1;
 	position: absolute;
 }
 
-// Delete account
-.deleteAccount {
-	input[type="checkbox"],
-	label {
-		display: inline-block;
-		vertical-align: middle;
-	}
-	input[type="checkbox"] {
-		width: 10%;
-	}
-	label {
-		width: 85%;
-	}
-	input[type="checkbox"] ~ button {
-		display: none;
-	}
-	input[type="checkbox"]:checked ~ button {
-		display: block;
-		margin-left: 10%;
-	}
+
+/**
+ * Logo
+ *
+ */
+
+.logo {
+	text-align: center;
 }
 
-
-// Background
-
-body {
-	background-position: center top;
-	background-size: 100% auto; /* Fallback */
-	background-repeat: repeat-y;
-	background-attachment: fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-
-	& > .uk-container {
-		background: white;
-		background: rgba(255,255,255,0.8);
-	}
-}
-
-
-// Navigation and admin menu
-
-nav {
-
-	.uk-button {
-		line-height: 1.25;
-		padding-bottom: 0.2rem;
-	}
-
-	.uk-button,
-	.uk-button:hover,
-	.uk-button:focus,
-	.uk-button:active {
-		box-shadow: none;
-	}
-
-	svg {
-		display: inline-block;
-		width: 1.6rem;
-		height: 1.6rem;
-		vertical-align: middle;
-		margin-right: 0.25rem;
-		fill: black;
-	}
-
-	.cart svg {
-		fill: white;
-		width: 2rem;
-		height: 2rem;
-	}
-}
-
-.user {
-	margin-top: 0.5em;
-	padding-bottom: 0.5em;
-	border-bottom: 1px solid lightgrey;
-	
-	a {
-		display: inline-block;
-		vertical-align: middle;
-		margin-right: 1em;
-		text-decoration: none;
-
-		svg {
-			margin: -0.4em 0.25em 0 0;
-		}
-	}
-}
-
-
-// Subpage menu
-
-.subpages {
-	margin: 0;
-	border-top: 1px solid;
-	border-bottom: 1px solid;
-}
-
-
-// Sidebar
-
-.sidebar {
-	h3 {
-		margin-top: 0;
-	}
-}
-
-ul.uk-nav-sub {
-  padding-left: 30px;
-}
-
-
-// Main content area
-
-main {
-	padding-bottom: 2rem;
-	border-bottom: 1px solid #DDD;
-
-	&.uk-padding-remove {
-		padding-bottom: 1rem !important;
-	}
-}
-
-
-// Brand and date tags
-
-.brand, .date {
-	display: block;
-	text-transform: uppercase;
-
-	& + h1,
-	& + h3 {
-		margin-top: 0;
-	}
-}
-
-// Featured product listing
-
-.featured .uk-overlay a {
-	text-decoration: none;
-
-	&:active {
-		opacity: 0.8;
-	}
-}
-
-
-// Product and category listings
-
-.listing {
-
-	li {
-		position: relative;
-		vertical-align: top;
-		display: inline-block;
-		max-width: 100%;
-		border-bottom: 1px solid;
-
-		a {
-			color: inherit;
-			display: block;
-			padding-bottom: 5px;
-			max-width: 300px;
-
-			&:hover,
-			&:focus {
-				color: inherit;
-				text-decoration: none;
-			}
-
-			&:active {
-				opacity: 0.8;
-			}
-		}
-
-		.image {
-			background-size: 100%;
-			background-position: center;
-			min-width: 150px;
-			height: 150px;
-			line-height: 130px;
-			text-align: center;
-		}
-
-		p {
-			margin: 5px 0 0;
-		}
-
-		.fullscreen {
-			display: none;
-			position: absolute;
-			top: 0.5rem;
-			right: 0.5rem;
-			background: black;
-
-			svg {
-				width: 1.5rem;
-				height: 1.5rem;
-				margin: 0.7rem 0.7rem 0;
-				margin-bottom: 0;
-				fill: white;
-			}
-		}
-
-		&:hover .fullscreen,
-		&:focus .fullscreen {
-			display: block;
-		}
-	}
-}
-
-
-// Product page variants
-
-.variants {
-
-	font-size: 0;
-
-	& > div {
-		font-size: 14px;
-		padding: 5px;
-		display: inline-block;
-	}
-
-	p,
-	select,
-	h3 {
-		margin: 0 0 5px;
-	}
-}
-
-
-// Image slider
+/**
+ * Image slider
+ *
+ */
 
 .slider {
 	position: relative;
@@ -387,7 +289,10 @@ main {
 }
 
 
-// Product slideshow
+/**
+ * Slideshow
+ *
+ */
 
 .slideshow-nav {
 	a, span {
@@ -407,10 +312,6 @@ main {
 	svg {
 		width: 2rem;
 		height: 2rem;
-	}
-
-	.uk-button > span {
-		display: block;
 	}
 }
 
@@ -439,72 +340,12 @@ a.slideshow {
 }
 
 
-// Cart page
+/**
+ * Orders page
+ *
+ */
 
-.cart {
-
-	a:hover,
-	a:focus,
-	a:active {
-		text-decoration: none;
-	}
-	a:active {
-		opacity: 0.8;
-	}
-
-	.uk-button {
-		vertical-align: top;
-		min-width: 32px;
-		margin-top: -2px;
-	}
-
-	del {
-		display: inline-block;
-		font-size: 0.8rem;
-		opacity: 0.8;
-	}
-
-	.discount > * {
-		vertical-align: bottom;
-	}
-	
-	tfoot {
-		font-style: normal;
-		font-size: inherit;
-		border-top: 1px solid #DEDEDE;
-
-		td:first-child {
-			vertical-align: middle;
-		}
-
-		.total {
-			font-weight: bold;
-		}
-	}
-}
-
-.gateway {
-	padding: 0 0 0 1rem;
-}
-.gateway button {
-	padding: 0.5rem;
-	line-height: 1;
-}
-.gateway button img {
-	display: block;
-	max-height: 2rem;
-	margin: 0.5rem auto;
-}
-.gateway button .uk-alert {
-	margin: 0.5rem 0 0;
-	line-height: 1.5;
-}
-
-// Orders page
 .toggle svg {
-	vertical-align: middle;
-	height: 1.5rem;
-	margin-top: -0.2rem;
 	fill: #3399ff;
 	cursor: pointer;
 
@@ -531,10 +372,4 @@ a.slideshow {
 	&:checked + form {
 		display: block;
 	}
-}
-
-.sidebar .uk-nav > li > .uk-button,
-.sidebar .uk-nav-sub .uk-button {
-	margin-top: -1.5em;
-	padding: 0 0.5em;
 }

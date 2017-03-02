@@ -4,6 +4,14 @@
 
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="description" content="">
+	<!--
+		e.g. 
+
+    <META NAME="Description" CONTENT="Author: J. K. Rowling, Illustrator: Mary GrandPré, Category: Books, Price: $17.99, Length: 784 pages">
+
+		No duplication, more information, and everything is clearly tagged and separated. No real additional work is required to generate something of this quality: the price and length are the only new data, and they are already displayed on the site.
+	-->
 
 	<title><?= $page->title()->html() ?> | <?= $site->title()->html() ?></title>
 
@@ -16,11 +24,6 @@
 </head>
 <body>
 
-<div class="uk-container uk-container-center">
+<div class="wrapper">
 
-<div class="uk-grid uk-margin-large-bottom">
-
-	<!-- Logo -->
-	<div class="uk-visible-small uk-text-center uk-margin">
-		<?php snippet('logo') ?>
-	</div>
+	<?php snippet('logo') ?>

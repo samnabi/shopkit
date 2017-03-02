@@ -1,13 +1,13 @@
 <?php snippet('header') ?>
-<div class="uk-width-small-1-1 uk-width-medium-2-3 uk-push-1-3">
+<div>
 <?php snippet('header.menus') ?>
-<main class="uk-container uk-padding-remove">
+<main>
     
 <?php if ($page->slider() != '') snippet('slider',['photos'=>$page->slider()]) ?>
 
 <h1 dir="auto"><?= $page->title()->html() ?></h1>
 
-<?php snippet('subpages') ?>
+<?php snippet('menu.subpages') ?>
 
 <?= $page->text()->kirbytext()->bidi() ?>
 

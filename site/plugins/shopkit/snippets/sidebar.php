@@ -1,23 +1,15 @@
-<aside class="sidebar uk-width-small-1-1 uk-width-medium-1-3 uk-pull-2-3">
+<aside class="sidebar">
 
-    <!-- Logo -->
-    <div class="uk-panel uk-panel-divider uk-margin-top uk-hidden-small uk-text-center">
-        <?php snippet('logo') ?>
-    </div>
-    
-    <!-- Featured products -->
-    <?php snippet('list.featured') ?>
+  <?php snippet('logo') ?>
 
-    <!-- Search bar -->
-    <?php snippet('search') ?>
+  <?php snippet('list.featured') ?>
 
-    <!-- Shop by category -->
-    <?php snippet('menu.categories') ?>
+  <?php snippet('search') ?>
 
-    <!-- Brand listing -->
-    <?php snippet('menu.brands') ?>
-    
-    <!-- Contact details -->
-    <?php snippet('contact') ?>
+  <?php snippet('menu.categories') ?>
+
+  <?php snippet('menu.brands') ?>
+
+  <?php snippet('contact') ?>
 
 </aside>

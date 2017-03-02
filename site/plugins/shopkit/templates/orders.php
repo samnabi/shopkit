@@ -1,14 +1,14 @@
 <?php snippet('header') ?>
-<div class="uk-width-small-1-1 uk-width-medium-2-3 uk-push-1-3">
+<div>
 <?php snippet('header.menus') ?>
-<main class="uk-container uk-padding-remove">
+<main>
     
 <h1 dir="auto"><?= $page->title()->html() ?></h1>
 
 <?= $page->text()->kirbytext()->bidi() ?>
 
-<div class="uk-overflow-container">
-    <table dir="auto" class="uk-table uk-table-striped">
+<div class="table-overflow">
+    <table dir="auto">
         <thead>
             <tr>
                 <th></th>
@@ -17,21 +17,18 @@
                 <th>
                     <?= l::get('status') ?>
                     <?php if ($orders) { ?>
-                        <label class="toggle" for="filter">
-                            <svg role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <title><?= l::get('filter') ?></title>
-                                <path d="M19 0h-14c-2.762 0-5 2.239-5 5v14c0 2.761 2.238 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-4 4h2v3h-2v-3zm-8 0h2v8h-2v-8zm4 13h-2v3h-2v-3h-2v-3h6v3zm8-5h-2v8h-2v-8h-2v-3h6v3z"/>
-                            </svg>
-                        </label>
+                        <label class="toggle" for="filter"><?= f::read('site/plugins/shopkit/assets/svg/filter.svg') ?></label>
                         <input type="checkbox" id="filter" <?php if(get('status')) echo 'checked' ?>>
-                        <form class="filter uk-form uk-text-small uk-text-center uk-alert uk-grid uk-grid-collapse uk-margin-remove" action="" method="post">
+                        <form class="filter" action="" method="post">
                             <?php foreach (['pending','paid','shipped'] as $status) { ?>
-                                <label class="uk-width-1-3">
+                                <label>
                                     <input type="checkbox" name="status[]" value="<?= $status ?>" <?php if(get('status') and in_array($status, get('status'))) echo 'checked' ?>><br>
                                     <?= l::get($status) ?>
                                 </label>
                             <?php } ?>
-                            <button class="uk-button uk-button-primary uk-button-small uk-width-1-1 uk-margin-small-top"><?= l::get('filter') ?></button>
+                            <button>
+                                <?= l::get('filter') ?>
+                            </button>
                         </form>
                     <?php } ?>
                 </th>
@@ -42,21 +39,21 @@
             <?php foreach ($orders as $order) { ?>
                 <tr>
                     <td>
-                        <strong class="uk-text-small"><?= $order->txn_id() ?></strong><br>
+                        <strong><?= $order->txn_id() ?></strong><br>
                         <?php ecco($order->payer_name() != '',$order->payer_name().'<br>') ?>
                         <?php ecco($order->payer_email() != '','<a href="mailto:'.$order->payer_email().'">'.$order->payer_email().'</a><br>') ?>
                         <?= strftime('%e %B %Y, %H:%M',$order->txn_date()->value) ?><br>
 
                         <form action="<?= url($site->language().'/shop/orders/pdf') ?>" method="POST">
                             <input type="hidden" name="uri" value="<?= $order->uri() ?>">
-                            <button class="uk-button uk-button-small" type="submit"><?= l::get('download-invoice') ?></button>
+                            <button type="submit"><?= l::get('download-invoice') ?></button>
                         </form>
                     </td>
                     <td>
                         <?php if (strpos($order->products(),'uri:')) { ?>
                             <!-- Show products overview with download links -->
                             <?php foreach ($order->products()->toStructure() as $product) { ?>
-                                <div class="uk-margin-bottom">
+                                <div>
                                     <?= $product->name() ?><br>
                                     <small>
                                         <?= $product->variant() ?>
@@ -75,7 +72,7 @@
                                                 </small>
                                             <?php } ?>
                                         <?php } else { ?>
-                                            <br><small class="uk-text-warning"><?= l::get('download-expired') ?></small>
+                                            <br><small><?= l::get('download-expired') ?></small>
                                         <?php } ?>
                                     <?php } ?>
                                 </div>
@@ -86,7 +83,7 @@
                         <?php } ?>
                     </td>
                     <td>
-                        <table class="uk-table uk-table-condensed uk-text-right">
+                        <table>
                             <tr>
                                 <td><?= l::get('subtotal') ?></td>
                                 <td>
@@ -123,7 +120,7 @@
                                 </td>
                             </tr>
                             <?php if ($order->giftcertificate()->isNotEmpty() and $order->giftcertificate()->value > 0) { ?>
-                                <tr class="uk-text-success">
+                                <tr>
                                     <td><?= str_replace(' ', '&nbsp;', l::get('gift-certificate')) ?></td>
                                     <td>
                                         &ndash;&nbsp;<?= formatPrice($order->giftcertificate()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
@@ -134,21 +131,21 @@
                     </td>
                     <td>
                         <?php if($user and $user->role() == 'admin') { ?>
-                            <div class="uk-button-group">
+                            <div>
                                 <form action="" method="POST">
                                     <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
                                     <input type="hidden" name="action" value="mark_pending">
-                                    <input class="uk-button uk-button-small <?php ecco($order->status()->value === 'pending','uk-button-success') ?>" type="submit" value="<?= l::get('pending') ?>">
+                                    <input <?php ecco($order->status()->value === 'pending','class="active"') ?> type="submit" value="<?= l::get('pending') ?>">
                                 </form>
                                 <form action="" method="POST">
                                     <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
                                     <input type="hidden" name="action" value="mark_paid">
-                                    <input class="uk-button uk-button-small <?php ecco($order->status()->value === 'paid','uk-button-success') ?>" type="submit" value="<?= l::get('paid') ?>">
+                                    <input <?php ecco($order->status()->value === 'paid','class="active"') ?> type="submit" value="<?= l::get('paid') ?>">
                                 </form>
                                 <form action="" method="POST">
                                     <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
                                     <input type="hidden" name="action" value="mark_shipped">
-                                    <input class="uk-button uk-button-small <?php ecco($order->status()->value === 'shipped','uk-button-success') ?>" type="submit" value="<?= l::get('shipped') ?>">
+                                    <input <?php ecco($order->status()->value === 'shipped','class="active"') ?> type="submit" value="<?= l::get('shipped') ?>">
                                 </form>
                             </div>
                         <?php } else {
@@ -157,14 +154,14 @@
                                 case 'shipped': echo l::get('shipped'); break;
                                 default: echo l::get('pending'); break;
                             }
-                        } ?><br><br>
+                        } ?>
                     </td>
                 </tr>
             <?php } ?>
             <?php if (!$orders->count() and get('status')) { ?>
                 <tr>
                     <td colspan="4">
-                        <p class="uk-alert uk-alert-warning uk-margin-bottom-remove">
+                        <p class="notification warning">
                             <?= l::get('no-filtered-orders') ?>
                         </p>
                     </td>
@@ -172,7 +169,7 @@
             <?php } else if ($orders->count() === 0 and get('status') === null) { ?>
                 <tr>
                     <td colspan="4">
-                        <p class="uk-alert uk-margin-bottom-remove">
+                        <p class="notification">
                             <?= l::get('no-orders') ?>
                         </p>
                     </td>
@@ -181,7 +178,7 @@
         <?php } else { ?>
             <tr>
                 <td colspan="4">
-                    <p class="uk-alert uk-alert-warning uk-margin-bottom-remove">
+                    <p class="notification warning">
                         <?= l::get('no-auth-orders') ?>
                     </p>
                 </td>

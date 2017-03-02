@@ -1,7 +1,6 @@
 <?php
 
 // Register snippets
-$kirby->set('snippet', 'breadcrumb',                 __DIR__.DS.'..'.DS.'snippets'.DS.'breadcrumb.php');
 $kirby->set('snippet', 'cart',                       __DIR__.DS.'..'.DS.'snippets'.DS.'cart.php');
 $kirby->set('snippet', 'contact',                    __DIR__.DS.'..'.DS.'snippets'.DS.'contact.php');
 $kirby->set('snippet', 'footer',                     __DIR__.DS.'..'.DS.'snippets'.DS.'footer.php');
@@ -19,8 +18,10 @@ $kirby->set('snippet', 'mail.order.notify.status',   __DIR__.DS.'..'.DS.'snippet
 $kirby->set('snippet', 'mail.order.update.error',    __DIR__.DS.'..'.DS.'snippets'.DS.'mail.order.update.error.php');
 $kirby->set('snippet', 'mail.order.tamper',          __DIR__.DS.'..'.DS.'snippets'.DS.'mail.order.tamper.php');
 $kirby->set('snippet', 'menu.brands',                __DIR__.DS.'..'.DS.'snippets'.DS.'menu.brands.php');
+$kirby->set('snippet', 'menu.breadcrumb',            __DIR__.DS.'..'.DS.'snippets'.DS.'menu.breadcrumb.php');
 $kirby->set('snippet', 'menu.categories',            __DIR__.DS.'..'.DS.'snippets'.DS.'menu.categories.php');
 $kirby->set('snippet', 'menu.primary',               __DIR__.DS.'..'.DS.'snippets'.DS.'menu.primary.php');
+$kirby->set('snippet', 'menu.subpages',              __DIR__.DS.'..'.DS.'snippets'.DS.'menu.subpages.php');
 $kirby->set('snippet', 'menu.user',                  __DIR__.DS.'..'.DS.'snippets'.DS.'menu.user.php');
 $kirby->set('snippet', 'notifications',              __DIR__.DS.'..'.DS.'snippets'.DS.'notifications.php');
 $kirby->set('snippet', 'order.callback',             __DIR__.DS.'..'.DS.'snippets'.DS.'order.callback.php');
@@ -30,4 +31,3 @@ $kirby->set('snippet', 'search',                     __DIR__.DS.'..'.DS.'snippet
 $kirby->set('snippet', 'sidebar',                    __DIR__.DS.'..'.DS.'snippets'.DS.'sidebar.php');
 $kirby->set('snippet', 'slider',                     __DIR__.DS.'..'.DS.'snippets'.DS.'slider.php');
 $kirby->set('snippet', 'slideshow.product',          __DIR__.DS.'..'.DS.'snippets'.DS.'slideshow.product.php');
-$kirby->set('snippet', 'subpages',                   __DIR__.DS.'..'.DS.'snippets'.DS.'subpages.php');
