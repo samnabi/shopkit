@@ -1,5 +1,5 @@
 <?php snippet('header') ?>
-<div>
+<div class="wrapper-main">
 <?php snippet('header.menus') ?>
 <main>
 

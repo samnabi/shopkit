@@ -37,17 +37,7 @@ body {
 
 
 /**
- * Layout
- *
- */
-
-.wrapper {
-	padding: 1em;
-}
-
-
-/**
- * Define colours
+ * Define common variables
  *
  */
 
@@ -59,6 +49,49 @@ $warning: #ffdc00;
 $success: #2ecc40;
 
 $text-s: 0.8em;
+
+$breakpoint-s-m: 45em;
+$breakpoint-m-l: 75em;
+
+
+/**
+ * Layout
+ *
+ */
+
+.wrapper {
+	padding: 0.5em 1em;
+}
+
+@media (min-width: $breakpoint-s-m) {
+	.wrapper {
+		display: flex;
+	}
+	.sidebar {
+		order: 1;
+		width: 12em;
+		flex-shrink: 0;
+		margin-right: 2em;
+	}
+	.wrapper-main {
+		order: 2;
+		flex-grow: 1;
+	}
+}
+
+@media (min-width: $breakpoint-m-l) {
+	.wrapper {
+		justify-content: center;
+	}
+	.sidebar {
+		width: 16em;
+	}
+	.wrapper-main {
+		max-width: 60em;
+	}
+}
+
+
 
 
 /**
@@ -148,6 +181,7 @@ svg {
 	height: 1.5em;
 	vertical-align: top;
 	fill: $accent;
+	transition: fill 0.2s;
 }
 
 
@@ -192,15 +226,40 @@ button, .button {
 			fill: white;
 		}
 	}
+
+	&.admin {
+		font-size: 0.8em;
+		color: black;
+		text-transform: uppercase;
+		border-radius: 0.2em;
+		border-width: 1px;
+
+		&:hover,
+		&:focus {
+			background-color: $accent;
+			border-color: darken($accent, 20);
+			color: white;
+			text-decoration: none;
+
+			svg {
+				fill: white;
+			}
+		}
+
+		&:active {
+			background-color: darken($accent, 10);
+		}
+	}
 }
 
+
 // Toggle buttons
+
 button[aria-expanded] {
 	display: none; /* Overriden by JS */
 	padding: 0;
 	border: 0;
 	background: inherit;
-	margin-left: 0.5em;
 	line-height: 1;
 }
 button[aria-expanded] svg {
@@ -225,6 +284,10 @@ button[aria-expanded] + * {
 button[aria-expanded="false"] + * {
 	opacity: 0;
 	max-height: 0 !important; /* Overrides the inline max-height applied by JavaScript */
+}
+
+.menu button[aria-expanded] {
+	margin-left: 0.5em;
 }
 
 
@@ -303,8 +366,31 @@ label > span {
  */
 
 .logo {
-	text-align: center;
+	margin: 0;
+
+	a, img {
+		display: block;
+	}
+
+	img {
+		margin: 0 auto;
+	}
 }
+
+.sidebar .logo {
+	display: none;
+}
+
+@media (min-width: $breakpoint-s-m) {
+	.sidebar .logo {
+		display: block;
+	}
+
+	.wrapper-main .logo {
+		display: none;
+	}
+}
+
 
 
 /**
@@ -313,10 +399,21 @@ label > span {
  */
 
 .login {
+	margin-bottom: 0.5em;
+	text-align: right;
+
+	.notification {
+		text-align: left;
+	}
+
+	& > button[aria-expanded] {
+		font-size: 0.8em;
+	}
 
 	form {
 		display: flex;
 		flex-direction: column;
+		text-align: left;
 
 		input {
 			width: 100%;
@@ -324,6 +421,8 @@ label > span {
 	}
 
 	ul {
+		padding-bottom: 1em;
+		border-bottom: 2px solid $accent;
 		text-align: center;
 
 		li {
@@ -338,6 +437,48 @@ label > span {
 	}
 }
 
+@media screen and (min-width: 25em) {
+	.login form {
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		justify-content: flex-end;
+
+		label {
+			width: 40%;
+			padding-right: 1em;
+			max-width: 10em;
+		}
+
+		button {
+			max-width: 20%;
+		}
+
+		ul {
+			text-align: right;
+			width: 100%;
+		}
+	}
+}
+
+
+/**
+ * Admin menu
+ *
+ */
+
+.user {
+	padding-bottom: 0.5em;
+	margin-bottom: 1em;
+	border-bottom: 2px solid $base;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+
+	a {
+		margin: 0.5em;
+	}
+}
 
 /**
  * Primary navigation menu
@@ -349,6 +490,7 @@ label > span {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	align-items: center;
 
 	a {
 		margin: 0 0.5em 0.5em;
@@ -385,10 +527,6 @@ label > span {
  *
  */
 
-.sidebar .logo {
-	display: none;
-}
-
 .sidebar h3 {
 	margin-top: 2em;
 }
@@ -396,6 +534,10 @@ label > span {
 .search {
 	display: flex;
 	align-items: space-between;
+	margin-top: 1em;
+	padding-top: 1em;
+	border-top: 2px solid $accent;
+
 
 	input {
 		width: 0; /* Undo 10em width for normal inputs */
@@ -407,6 +549,60 @@ label > span {
 		margin-top: 0;
 	}
 }
+
+
+/**
+ * Category list
+ *
+ */
+
+.list {
+	font-size: 1.5em;
+}
+
+.list.categories {
+
+	li {
+		background-color: $accent;
+		background-image: linear-gradient(45deg, darken($accent, 20) 0%, $accent 100%);
+	}
+
+	li, a {
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center center;
+	}
+
+	a {
+		background-size: auto 100%;
+		display: flex;
+		min-height: 200px;
+		color: white;
+		text-shadow: 0 0 0.5em black;
+		position: relative;
+
+		&:hover,
+		&:focus {
+			text-decoration: none;
+		}
+
+		span {
+			align-self: flex-end;
+			padding: 1rem;
+			z-index: 1;
+		}
+
+		&:hover span:before,
+		&:focus span:after {
+			position: absolute;
+			content: '';
+			top: 0; right: 0; bottom: 0; left: 0;
+			background-image: linear-gradient(45deg, rgba(darken($accent, 40),0.4) 0%, rgba($accent, 0.4) 100%);
+			z-index: -1;
+		}
+	}
+}
+
 
 /**
  * Image slider

@@ -5,6 +5,12 @@
     </p>
   <?php } ?>
 
+  <button aria-expanded="true" aria-controls="login">
+    <?= l('login') ?>
+    <span class="expand"><?= f::read('site/plugins/shopkit/assets/svg/caret-down.svg') ?></span>
+    <span class="collapse"><?= f::read('site/plugins/shopkit/assets/svg/caret-up.svg') ?></span>
+  </button>
+
   <form dir="auto" action="<?= url('/login') ?>" method="POST" id="login">
     <input type="hidden" name="redirect" value="<?= $page->uri() ?>">
       
@@ -21,14 +27,14 @@
     <button type="submit" name="login">
       <?= l::get('login') ?>
     </button>
-  </form>
 
-  <ul>
-    <li>
-      <a href="<?= url('account/reset') ?>" title="<?= l::get('forgot-password') ?>"><?= l::get('forgot-password') ?></a>
-    </li>
-    <li>
-      <a href="<?= url('account/register') ?>" title="<?= l::get('register') ?>"><?= l::get('register') ?></a>
-    </li>
-  </ul>
+    <ul>
+      <li>
+        <a href="<?= url('account/reset') ?>" title="<?= l::get('forgot-password') ?>"><?= l::get('forgot-password') ?></a>
+      </li>
+      <li>
+        <a href="<?= url('account/register') ?>" title="<?= l::get('register') ?>"><?= l::get('register') ?></a>
+      </li>
+    </ul>
+  </form>
 </aside>

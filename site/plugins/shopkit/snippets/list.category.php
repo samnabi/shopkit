@@ -1,34 +1,32 @@
 <?php if($categories->count()) { ?>
-	<ul class="list categories">
-	  <?php foreach($categories as $category) { ?>
-	  	<?php if (!$category->isVisible()) continue; ?>
-	  	<li>
-	  		<a href="<?php echo $category->url() ?>">
-		  		<?php 
-		  			if ($category->hasImages()) {
-		  				$image = $category->images()->sortBy('sort', 'asc')->first();
-		  			} else {
-		  				$image = $site->images()->find($site->placeholder());
-		  			}
-		  			$thumb = $image->thumb(['height'=>150]);
-						$backgroundThumb = $image->thumb(['height'=>300,'width'=>300,'crop'=>true,'blur'=>true]);
-		  		?>
-					<div class="image" <?php if ($backgroundThumb) echo 'style="background-image: url('.$backgroundThumb->dataUri().');"' ?>>
-						<img property="image" content="<?php echo $thumb->url() ?>" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $category->title() ?>">
-					</div>
 
-			    <h3 dir="auto"><?php echo $category->title()->html() ?></h3>
-			    <p dir="auto"><?php echo $category->text()->excerpt(80) ?></p>
+	<ul class="list categories">
+	  
+	  <?php foreach($categories as $category) { ?>
+		  <?php
+		  	if ($category->hasImages()) {
+		  		$image = $category->images()->sortBy('sort', 'asc')->first();
+		  		$thumb = 'style="background-image: url(\''.$image->resize(300)->url().'\');"';
+		  		$blurred = 'style="background-image: url(\''.$image->thumb(['width' => null, 'height' => 300, 'blur' => true])->url().'\');"';
+		  	} else {
+		  		$image = false;
+		  	}
+		  ?>
+	  	<li dir="auto" <?= !$image ? '' : $blurred ?>>
+	  		<a href="<?= $category->url() ?>" title="<?= $category->text()->excerpt(140) ?>" <?= !$image ?: $thumb ?>>
+			    <span><?= $category->title()->html()->smartypants() ?></span>
 				</a>
 	    </li>
 	  <?php } ?>
+
 	</ul>
 	
 
 	<!-- Admin -->
 	<?php if ($user = $site->user() and $user->can('panel.access.options')) { ?>
 		<a class="button admin" href="<?= url('panel/pages/'.$page->uri().'/add?template=category') ?>">
-			+ New Category
+			<?= f::read('site/plugins/shopkit/assets/svg/new-page.svg') ?>
+			New Category
 		</a>
 	<?php } ?>
 <?php } ?>

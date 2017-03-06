@@ -5,13 +5,14 @@
   if (!mustard) return;
 
   // Find toggle buttons and loop through them
-  var toggles = document.querySelectorAll('.menu button[aria-expanded]');
+  var toggles = document.querySelectorAll('button[aria-expanded]');
   toggles.forEach(function(element) {
 
-    // Set dynamic max-height (for smoother transitions)
+    // Set max-height (for smoother transitions)
+    function setMaxHeight(element) { element.style.maxHeight = element.offsetHeight + 'px'; }
     var sibling = element.nextElementSibling;
-    var h = sibling.offsetHeight;
-    sibling.style.maxHeight = h + 'px';
+    setMaxHeight(sibling);
+    window.addEventListener("resize", setMaxHeight(sibling)); // Reset max-height on window resize
 
     // Show button and collapse its related content
     element.style.display = 'inline-block';

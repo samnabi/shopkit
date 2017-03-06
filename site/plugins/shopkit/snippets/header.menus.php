@@ -4,6 +4,8 @@
   <?php snippet('login') ?>
 <?php } ?>
 
+<?php snippet('logo') ?>
+
 <?php snippet('menu.primary') ?>
 <?php snippet('cart') ?>
 

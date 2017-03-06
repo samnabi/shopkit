@@ -4,6 +4,13 @@
       <?= $p->title()->html() ?>
     </a>
   <?php } ?>
+
+  <?php if ($user = $site->user() and $user->can('panel.access.options')) { ?>
+    <a class="button admin" href="<?= url('panel/site/add') ?>">
+      <?= f::read('site/plugins/shopkit/assets/svg/new-page.svg') ?>
+      New page
+    </a>
+  <?php } ?>
   
   <a class="cart button accent" href="<?= url('shop/cart') ?>" title="<?php l::get('view-cart') ?>">
     <?php $cart = Cart::getCart() ?>

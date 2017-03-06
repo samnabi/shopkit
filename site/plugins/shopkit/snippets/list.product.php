@@ -1,7 +1,6 @@
 <?php if(count($products) or $products->count()) { ?>
 	<ul class="list products">
 	  <?php foreach($products as $product) { ?>
-	  <?php if (!$product->isVisible()) continue; ?>
 		<li>
 			<a href="<?php echo $product->url() ?>" vocab="http://schema.org" typeof="Product">
 				<?php 
@@ -66,6 +65,7 @@
 <!-- Admin -->
 <?php if ($page->template() == 'category' and $user = $site->user() and $user->can('panel.access.options')) { ?>
 	<a class="button admin" href="<?= url('panel/pages/'.$page->uri().'/add?template=product') ?>">
-		+ New Product
+		<?= f::read('site/plugins/shopkit/assets/svg/new-page.svg') ?>
+		New Product
 	</a>
 <?php } ?>

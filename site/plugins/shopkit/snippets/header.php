@@ -25,5 +25,3 @@
 <body>
 
 <div class="wrapper">
-
-	<?php snippet('logo') ?>
