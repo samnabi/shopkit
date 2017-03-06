@@ -1,0 +1,30 @@
+(function () { // Enclose in an anonymous function to limit scope
+
+  // Cut the mustard
+  var mustard = !!document.querySelector && !!document.querySelectorAll && !!window.addEventListener && !!document.documentElement.classList && !!document.documentElement.getAttribute && !!document.documentElement.setAttribute;
+  if (!mustard) return;
+
+  // Find toggle buttons and loop through them
+  var toggles = document.querySelectorAll('.menu button[aria-expanded]');
+  toggles.forEach(function(element) {
+
+    // Set dynamic max-height (for smoother transitions)
+    var sibling = element.nextElementSibling;
+    var h = sibling.offsetHeight;
+    sibling.style.maxHeight = h + 'px';
+
+    // Show button and collapse its related content
+    element.style.display = 'inline-block';
+    element.setAttribute('aria-expanded','false');
+
+    // Attach click events
+    element.addEventListener('click',function(){
+      if (this.getAttribute('aria-expanded') == 'false') {
+        this.setAttribute('aria-expanded','true');
+      } else {
+        this.setAttribute('aria-expanded','false');
+      }
+    });
+  });
+
+})(); // Close up the function

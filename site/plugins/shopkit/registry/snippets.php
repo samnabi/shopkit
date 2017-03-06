@@ -1,7 +1,6 @@
 <?php
 
 // Register snippets
-$kirby->set('snippet', 'cart',                       __DIR__.DS.'..'.DS.'snippets'.DS.'cart.php');
 $kirby->set('snippet', 'contact',                    __DIR__.DS.'..'.DS.'snippets'.DS.'contact.php');
 $kirby->set('snippet', 'footer',                     __DIR__.DS.'..'.DS.'snippets'.DS.'footer.php');
 $kirby->set('snippet', 'header',                     __DIR__.DS.'..'.DS.'snippets'.DS.'header.php');
