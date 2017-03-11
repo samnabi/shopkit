@@ -272,17 +272,18 @@ button, .button {
   cursor: pointer;
   transition: background-color 0.2s, border-color 0.2s;
   background-color: rgba(0, 0, 0, 0.08);
-  border: 2px solid rgba(0, 0, 0, 0.08); }
+  border: 2px solid black;
+  border-color: rgba(0, 0, 0, 0.1); }
   button:hover, button:focus, .button:hover, .button:focus {
-    border-color: rgba(0, 0, 0, 0.08); }
+    border-color: rgba(0, 0, 0, 0.2); }
   button:active, .button:active {
-    background-color: rgba(0, 0, 0, 0.08); }
+    background-color: rgba(0, 0, 0, 0.15); }
   button.accent, .button.accent {
     color: white;
     background-color: #00a8e6;
-    border-color: #0083b3; }
+    border-color: rgba(0, 0, 0, 0.2); }
     button.accent:hover, button.accent:focus, .button.accent:hover, .button.accent:focus {
-      border-color: #005d80; }
+      border-color: rgba(0, 0, 0, 0.4); }
     button.accent:active, .button.accent:active {
       background-color: #0083b3; }
     button.accent svg, .button.accent svg {
@@ -290,18 +291,11 @@ button, .button {
   button.admin, .button.admin {
     font-size: 0.8em;
     color: black;
-    text-transform: uppercase;
-    border-radius: 0.2em;
-    border-width: 1px; }
+    border-radius: 10em; }
+    button.admin svg, .button.admin svg {
+      fill: black; }
     button.admin:hover, button.admin:focus, .button.admin:hover, .button.admin:focus {
-      background-color: #00a8e6;
-      border-color: #005d80;
-      color: white;
       text-decoration: none; }
-      button.admin:hover svg, button.admin:focus svg, .button.admin:hover svg, .button.admin:focus svg {
-        fill: white; }
-    button.admin:active, .button.admin:active {
-      background-color: #0083b3; }
 
 button[aria-expanded] {
   display: none;
@@ -340,14 +334,14 @@ button[aria-expanded="false"] + * {
  * 
  */
 .notification {
-  background-color: #bee5f4;
+  background-color: #d4eef7;
   padding: 1em; }
 
 .notification.warning {
-  background-color: #f7e46e; }
+  background-color: #faed9e; }
 
 .notification.success {
-  background-color: #86da90; }
+  background-color: #ade6b4; }
 
 /**
  * Breadcrumb menus
@@ -362,7 +356,7 @@ button[aria-expanded="false"] + * {
     display: inline-block; }
     .breadcrumb li:after {
       content: '/';
-      color: rgba(0, 0, 0, 0.08);
+      color: rgba(0, 0, 0, 0.3);
       display: inline-block;
       margin: 0 0.5em; }
     .breadcrumb li:last-child:after {
@@ -385,7 +379,7 @@ input[type="email"],
 input[type="password"],
 textarea {
   background: white;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   padding: 0.2em 0.5em;
   /* Fallback */
   padding: calc(0.2em + 1px) 0.5em;
@@ -510,7 +504,6 @@ option + option {
       color: #00a8e6;
       border-bottom-color: #99d1e6; }
     .menu.primary a:not(.button):active {
-      border-bottom-color: #99d1e6;
       color: #99d1e6; }
     .menu.primary a:not(.button).active {
       border-bottom-color: #00a8e6; }
@@ -622,8 +615,7 @@ option + option {
     display: flex;
     min-height: 200px;
     color: white;
-    position: relative;
-    border: 2px solid white; }
+    position: relative; }
     .list.categories a span {
       align-self: flex-end;
       width: 100%;
@@ -642,7 +634,7 @@ option + option {
     .list.categories a:hover span:before, .list.categories a:focus span:before {
       background-image: linear-gradient(10deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 168, 230, 0.3) 100%); }
     .list.categories a:active span:before {
-      box-shadow: inset 0 0 0 2px #bee5f4, inset 0 0 0 4px white; }
+      box-shadow: inset 0 0 0 2px #99d1e6, inset 0 0 0 4px white; }
 
 @media (min-width: 45em) {
   .list.categories li {

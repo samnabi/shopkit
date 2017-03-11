@@ -42,11 +42,23 @@ body {
  */
 
 $base: rgba(0,0,0,0.08);
-$link: #0077dd;
+$baseDark: rgba(0,0,0,0.15);
+$baseDarker: rgba(0,0,0,0.3);
+
 $accent: #00a8e6;
+$accentTranslucent: rgba($accent, 0.3);
+$accentDark: darken($accent, 10);
+$accentLight: desaturate(lighten($accent, 30), 40);
+$accentPale: desaturate(lighten($accent, 45), 30);
+
+$link: #0077dd;
+$linkPale: desaturate(lighten($link, 30), 40); 
 
 $warning: #ffdc00;
+$warningPale: desaturate(lighten($warning, 30), 10);
+
 $success: #2ecc40;
+$successPale: desaturate(lighten($success, 30), 10);
 
 $text-s: 0.8em;
 
@@ -138,12 +150,12 @@ a {
 	&:hover,
 	&:focus {
 		text-decoration: underline;
-		text-decoration-color: desaturate(lighten($link, 30), 40);
+		text-decoration-color: $linkPale;
 	}
 
 	&:active,
 	&:target {
-		color: desaturate(lighten($link,30), 40);
+		color: $linkPale;
 	}
 }
 
@@ -201,29 +213,30 @@ button, .button {
 	cursor: pointer;
 	transition: background-color 0.2s, border-color 0.2s;
 	background-color: $base;
-	border: 2px solid darken($base, 10);
+	border: 2px solid black;
+	border-color: rgba(0,0,0,0.1);
 
 	&:hover,
 	&:focus {
-		border-color: darken($base, 20);
+		border-color: rgba(0,0,0,0.2);
 	}
 
 	&:active {
-		background-color: darken($base, 10);
+		background-color: $baseDark;
 	}
 
 	&.accent {
 		color: white;
 		background-color: $accent;
-		border-color: darken($accent, 10);
+		border-color: rgba(0,0,0,0.2);
 
 		&:hover,
 		&:focus {
-			border-color: darken($accent, 20);
+			border-color: rgba(0,0,0,0.4);
 		}
 
 		&:active {
-			background-color: darken($accent, 10);
+			background-color: $accentDark;
 		}
 
 		& svg {
@@ -234,24 +247,15 @@ button, .button {
 	&.admin {
 		font-size: $text-s;
 		color: black;
-		text-transform: uppercase;
-		border-radius: 0.2em;
-		border-width: 1px;
+		border-radius: 10em;
+
+		svg {
+			fill: black;
+		}
 
 		&:hover,
 		&:focus {
-			background-color: $accent;
-			border-color: darken($accent, 20);
-			color: white;
 			text-decoration: none;
-
-			svg {
-				fill: white;
-			}
-		}
-
-		&:active {
-			background-color: darken($accent, 10);
 		}
 	}
 }
@@ -302,16 +306,16 @@ button[aria-expanded="false"] + * {
  */
 
 .notification {
-	background-color: desaturate(lighten($accent, 40), 30);
+	background-color: $accentPale;
 	padding: 1em;
 }
 
 .notification.warning {
-	background-color: desaturate(lighten($warning, 20), 10);
+	background-color: $warningPale;
 }
 
 .notification.success {
-	background-color: desaturate(lighten($success, 20), 10);	
+	background-color: $successPale;	
 }
 
 
@@ -331,7 +335,7 @@ button[aria-expanded="false"] + * {
 
 		&:after {
 			content: '/';
-			color: darken($base, 30);
+			color: $baseDarker;
 			display: inline-block;
 			margin: 0 0.5em;
 		}
@@ -361,7 +365,7 @@ input[type="email"],
 input[type="password"],
 textarea {
 	background: white;
-	border: 1px solid darken($base, 10);
+	border: 1px solid $baseDark;
 	padding: 0.2em 0.5em; /* Fallback */
 	padding: calc(0.2em + 1px) 0.5em;
 	width: 10em;
@@ -540,12 +544,11 @@ option + option {
 		&:hover,
 		&:focus {
 			color: $accent;
-			border-bottom-color: desaturate(lighten($accent, 30), 40);
+			border-bottom-color: $accentLight;
 		}
 
 		&:active {
-			border-bottom-color: desaturate(lighten($accent,30), 40);
-			color: desaturate(lighten($accent,30), 40);
+			color: $accentLight;
 		}
 
 		&.active {
@@ -609,7 +612,7 @@ option + option {
 			}
 
 			&:active {
-				background-color: darken($accent, 10);
+				background-color: $accentDark;
 			}
 		}
 	}
@@ -709,7 +712,6 @@ option + option {
 		min-height: 200px;
 		color: white;
 		position: relative;
-		border: 2px solid white;
 
 		span {
 			align-self: flex-end;
@@ -729,11 +731,11 @@ option + option {
 
 		&:hover span:before,
 		&:focus span:before {
-			background-image: linear-gradient(10deg, rgba(black, 0.8) 0%, rgba($accent, 0.3) 100%);
+			background-image: linear-gradient(10deg, rgba(black, 0.8) 0%, $accentTranslucent 100%);
 		}
 
 		&:active span:before {
-			box-shadow: inset 0 0 0 2px desaturate(lighten($accent, 40), 30), inset 0 0 0 4px white;	
+			box-shadow: inset 0 0 0 2px $accentLight, inset 0 0 0 4px white;	
 		}
 	}
 }
@@ -826,7 +828,7 @@ option + option {
 		}
 
 		&:active {
-			background-color: darken($accent, 10);
+			background-color: $accentDark;
 		}
 
 		svg {
