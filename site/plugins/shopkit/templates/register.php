@@ -10,7 +10,7 @@
 <?= $page->text()->kirbytext()->bidi() ?>
 
 <?php if($register_message) { ?>
-  <div class="uk-alert uk-alert-warning">
+  <div class="notification warning">
     <?= $register_message ?>
   </div>
 <?php } ?>

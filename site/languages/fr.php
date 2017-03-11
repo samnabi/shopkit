@@ -16,8 +16,8 @@
 'country' => 'Pays',
 'country-help' => 'Afin de calculer les frais de transport',
 
-'shop-by-category' => 'Achetez par catégorie',
-'shop-by-brand' => 'Achetez par marque',
+'brands' => 'Marques',
+'tags' => 'Tags',
 
 'buy' => 'Achetez',
 'out-of-stock' => 'Épuisé',
@@ -30,6 +30,7 @@
 'total' => 'Total',
 
 'from' => 'À partir de',
+'remaining' => 'restants',
 
 
 // plugins/shopkit/shopkit.php

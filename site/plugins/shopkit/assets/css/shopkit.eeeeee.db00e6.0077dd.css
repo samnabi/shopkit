@@ -223,7 +223,7 @@ option {
   background: rgba(0, 0, 0, 0.1); }
 
 a {
-  color: #0077dd;
+  color: #0F76CE;
   text-decoration: none;
   transition: color 0.2s; }
   a:hover, a:focus {
@@ -258,7 +258,7 @@ svg {
   width: 1.5em;
   height: 1.5em;
   vertical-align: top;
-  fill: #00a8e6;
+  fill: #D00BDA;
   transition: fill 0.2s; }
 
 /**
@@ -279,7 +279,7 @@ button, .button {
     background-color: rgba(0, 0, 0, 0.08); }
   button.accent, .button.accent {
     color: white;
-    background-color: #00a8e6;
+    background-color: #D00BDA;
     border-color: #0083b3; }
     button.accent:hover, button.accent:focus, .button.accent:hover, .button.accent:focus {
       border-color: #005d80; }
@@ -294,7 +294,7 @@ button, .button {
     border-radius: 0.2em;
     border-width: 1px; }
     button.admin:hover, button.admin:focus, .button.admin:hover, .button.admin:focus {
-      background-color: #00a8e6;
+      background-color: #D00BDA;
       border-color: #005d80;
       color: white;
       text-decoration: none; }
@@ -450,7 +450,7 @@ option + option {
       width: 100%; }
   .login ul {
     padding-bottom: 1em;
-    border-bottom: 2px solid #00a8e6;
+    border-bottom: 2px solid #D00BDA;
     text-align: center; }
     .login ul li {
       margin-top: 0;
@@ -507,13 +507,13 @@ option + option {
     /* Align better with .cart button */
     color: inherit; }
     .menu.primary a:not(.button):hover, .menu.primary a:not(.button):focus {
-      color: #00a8e6;
+      color: #D00BDA;
       border-bottom-color: #99d1e6; }
     .menu.primary a:not(.button):active {
       border-bottom-color: #99d1e6;
       color: #99d1e6; }
     .menu.primary a:not(.button).active {
-      border-bottom-color: #00a8e6; }
+      border-bottom-color: #D00BDA; }
 
 /**
  * Sidebar
@@ -554,7 +554,7 @@ option + option {
     .menu.tags li a:hover, .menu.tags li a:focus,
     .menu.brands li a:hover,
     .menu.brands li a:focus {
-      background-color: #00a8e6;
+      background-color: #D00BDA;
       color: white; }
     .menu.tags li a:active,
     .menu.brands li a:active {
@@ -582,7 +582,7 @@ option + option {
     margin-top: 0;
     color: black; }
     .list.featured a:hover h3, .list.featured a:focus h3 {
-      color: #0077dd; }
+      color: #0F76CE; }
   .list.featured h3,
   .list.featured p,
   .list.featured form,
@@ -609,7 +609,7 @@ option + option {
   margin-left: -0.5em;
   margin-right: -0.5em; }
   .list.categories li {
-    background-color: #00a8e6;
+    background-color: #D00BDA;
     margin: 0.5em;
     flex-grow: 1; }
   .list.categories li, .list.categories a {
@@ -637,7 +637,7 @@ option + option {
         bottom: 0;
         left: 0;
         background-image: linear-gradient(10deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
-        box-shadow: inset 0 0 0 2px #00a8e6, inset 0 0 0 4px white;
+        box-shadow: inset 0 0 0 2px #D00BDA, inset 0 0 0 4px white;
         z-index: -1; }
     .list.categories a:hover span:before, .list.categories a:focus span:before {
       background-image: linear-gradient(10deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 168, 230, 0.3) 100%); }
@@ -661,9 +661,9 @@ option + option {
   position: relative; }
   .list.products li:hover .product, .list.products li:focus .product {
     background: rgba(0, 0, 0, 0.08);
-    box-shadow: inset 0 -4px 0 -2px #00a8e6, inset 0 0 0 2px rgba(0, 0, 0, 0.08); }
+    box-shadow: inset 0 -4px 0 -2px #D00BDA, inset 0 0 0 2px rgba(0, 0, 0, 0.08); }
     .list.products li:hover .product h3, .list.products li:focus .product h3 {
-      color: #0077dd; }
+      color: #0F76CE; }
 .list.products .product {
   display: block;
   color: black;
@@ -683,7 +683,7 @@ option + option {
       margin-top: 0.5em;
       margin-bottom: 0; }
   .list.products .product .price {
-    color: #00a8e6;
+    color: #D00BDA;
     float: right;
     margin: 0 0 0.4em 1em; }
 .list.products .fullscreen {
@@ -697,14 +697,14 @@ option + option {
   border: 2px solid white;
   background-color: white; }
   .list.products .fullscreen:hover, .list.products .fullscreen:focus {
-    background-color: #00a8e6; }
+    background-color: #D00BDA; }
     .list.products .fullscreen:hover svg, .list.products .fullscreen:focus svg {
       fill: white; }
   .list.products .fullscreen:active {
     background-color: #0083b3; }
   .list.products .fullscreen svg {
     display: block;
-    fill: #00a8e6; }
+    fill: #D00BDA; }
 .list.products .product:hover + .fullscreen,
 .list.products .product:focus + .fullscreen,
 .list.products .fullscreen:hover,
@@ -770,7 +770,7 @@ main.product .brand + h1 {
       margin-top: 0;
       font-size: 0.8em;
       text-align: center;
-      color: #00a8e6; }
+      color: #D00BDA; }
 
 /**
  * Image slider

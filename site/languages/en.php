@@ -16,8 +16,8 @@
 'country' => 'Country',
 'country-help' => 'To calculate shipping costs',
 
-'shop-by-category' => 'Shop by category',
-'shop-by-brand' => 'Shop by brand',
+'brands' => 'Brands',
+'tags' => 'Tags',
 
 'buy' => 'Buy',
 'out-of-stock' => 'Out of stock',
@@ -30,6 +30,7 @@
 'total' => 'Total',
 
 'from' => 'From',
+'remaining' => 'remaining',
 
 // plugins/shopkit/shopkit.php
 

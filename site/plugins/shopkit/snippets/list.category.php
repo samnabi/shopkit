@@ -6,7 +6,7 @@
 		  <?php
 		  	if ($category->hasImages()) {
 		  		$image = $category->images()->sortBy('sort', 'asc')->first();
-		  		$thumb = 'style="background-image: url(\''.$image->resize(300)->url().'\');"';
+		  		$thumb = 'style="background-image: url(\''.$image->resize(400)->url().'\');"';
 		  		$blurred = 'style="background-image: url(\''.$image->thumb(['width' => null, 'height' => 300, 'blur' => true])->url().'\');"';
 		  	} else {
 		  		$image = false;

@@ -41,7 +41,7 @@ body {
  *
  */
 
-$base: #eeeeee;
+$base: rgba(0,0,0,0.08);
 $link: #0077dd;
 $accent: #00a8e6;
 
@@ -50,6 +50,7 @@ $success: #2ecc40;
 
 $text-s: 0.8em;
 
+$breakpoint-xs-s: 30em;
 $breakpoint-s-m: 45em;
 $breakpoint-m-l: 75em;
 
@@ -104,7 +105,9 @@ body,
 input,
 textarea,
 button,
-.button {
+.button,
+select,
+option {
 	color: black;
 	line-height: 1.6;
 	font-family: asap, sans-serif;
@@ -144,10 +147,11 @@ a {
 	}
 }
 
-.menu a,
-nav a {
-	&:hover,
-	&:focus {
+.menu,
+nav,
+.list {
+	a:hover,
+	a:focus {
 		text-decoration: none;
 	}
 }
@@ -228,7 +232,7 @@ button, .button {
 	}
 
 	&.admin {
-		font-size: 0.8em;
+		font-size: $text-s;
 		color: black;
 		text-transform: uppercase;
 		border-radius: 0.2em;
@@ -312,6 +316,33 @@ button[aria-expanded="false"] + * {
 
 
 /**
+ * Breadcrumb menus
+ * 
+ */
+
+.breadcrumb {
+	margin-top: 0;
+	font-size: $text-s;
+	border-bottom: 2px solid $base;
+	padding: 0 1em 1em;
+
+	li {
+		display: inline-block;
+
+		&:after {
+			content: '/';
+			color: darken($base, 30);
+			display: inline-block;
+			margin: 0 0.5em;
+		}
+
+		&:last-child:after {
+			content: '';
+		}
+	}
+}
+
+/**
  * Forms
  * 
  */
@@ -348,6 +379,10 @@ label {
 label > span {
 	font-size: $text-s;
 	display: block; 
+}
+
+option + option {
+	margin-top: 0;
 }
 
 // Honeypot field
@@ -407,7 +442,7 @@ label > span {
 	}
 
 	& > button[aria-expanded] {
-		font-size: 0.8em;
+		font-size: $text-s;
 	}
 
 	form {
@@ -473,7 +508,7 @@ label > span {
 	border-bottom: 2px solid $base;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: flex-end;
+	justify-content: center;
 
 	a {
 		margin: 0.5em;
@@ -527,17 +562,20 @@ label > span {
  *
  */
 
-.sidebar h3 {
+.sidebar > h3 {
 	margin-top: 2em;
+	border-bottom: 2px solid $base;
+}
+
+.sidebar > .menu.categories {
+	margin-top: 2em;
+	padding-top: 1em;
 }
 
 .search {
 	display: flex;
 	align-items: space-between;
-	margin-top: 1em;
-	padding-top: 1em;
-	border-top: 2px solid $accent;
-
+	margin-top: 2em;
 
 	input {
 		width: 0; /* Undo 10em width for normal inputs */
@@ -550,21 +588,112 @@ label > span {
 	}
 }
 
+.menu.tags,
+.menu.brands {
+	li {
+		margin: 0;
+		display: inline;
+		font-size: $text-s;
+		line-height: 2;
+
+
+		a {
+			display: inline;
+			background: $base;
+			padding: 0.2em 0.5em;
+
+			&:hover,
+			&:focus {
+				background-color: $accent;
+				color: white;
+			}
+
+			&:active {
+				background-color: darken($accent, 10);
+			}
+		}
+	}
+}
+
+
+/**
+ * Common list styles
+ *
+ */
+
+.list + .button.admin {
+	margin-top: 0;
+	margin-bottom: 3em;
+}
+
+
+/**
+ * Featured product list
+ *
+ */
+
+.list.featured {
+	margin-top: 2em;
+
+	li {
+		box-shadow: inset 0 0 0 2px $base;
+		padding-bottom: 0.5em;
+	}
+	
+	a {
+		display: block;
+		margin-top: 0;
+		color: black;
+
+		&:hover,
+		&:focus {
+			h3 {
+				color: $link;
+			}
+		}
+	}
+
+	h3,
+	p,
+	form,
+	small {
+		margin: 0 0.5rem;
+	}
+
+	h3 {
+		font-size: 1em;
+		line-height: 1.2;
+	}
+
+	button {
+		margin-top: 0.5em;
+	}
+
+	img {
+		display: block;
+	}
+
+	.variant {
+		font-size: $text-s;
+	}
+}
 
 /**
  * Category list
  *
  */
 
-.list {
-	font-size: 1.5em;
-}
-
 .list.categories {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 0;
+	margin-left: -0.5em;
+	margin-right: -0.5em;
 
 	li {
 		background-color: $accent;
-		background-image: linear-gradient(45deg, darken($accent, 20) 0%, $accent 100%);
+		margin: 0.5em;
+		flex-grow: 1;
 	}
 
 	li, a {
@@ -574,35 +703,238 @@ label > span {
 	}
 
 	a {
+		font-size: 1.5em;
 		background-size: auto 100%;
 		display: flex;
 		min-height: 200px;
 		color: white;
-		text-shadow: 0 0 0.5em black;
 		position: relative;
-
-		&:hover,
-		&:focus {
-			text-decoration: none;
-		}
+		border: 2px solid white;
 
 		span {
 			align-self: flex-end;
-			padding: 1rem;
+			width: 100%;
+			padding: 0 0 0.5rem 1rem;
 			z-index: 1;
+
+			&:before {
+				position: absolute;
+				content: '';
+				top: 0; right: 0; bottom: 0; left: 0;
+				background-image: linear-gradient(10deg, rgba(black, 0.8) 0%, rgba(black, 0.2) 50%, transparent 100%);
+				box-shadow: inset 0 0 0 2px $accent, inset 0 0 0 4px white;
+				z-index: -1;
+			}
 		}
 
 		&:hover span:before,
-		&:focus span:after {
-			position: absolute;
-			content: '';
-			top: 0; right: 0; bottom: 0; left: 0;
-			background-image: linear-gradient(45deg, rgba(darken($accent, 40),0.4) 0%, rgba($accent, 0.4) 100%);
-			z-index: -1;
+		&:focus span:before {
+			background-image: linear-gradient(10deg, rgba(black, 0.8) 0%, rgba($accent, 0.3) 100%);
+		}
+
+		&:active span:before {
+			box-shadow: inset 0 0 0 2px desaturate(lighten($accent, 40), 30), inset 0 0 0 4px white;	
 		}
 	}
 }
 
+@media (min-width: $breakpoint-s-m) {
+	.list.categories li { width: 40%; }
+}
+
+@media (min-width: $breakpoint-m-l) {
+	.list.categories li { width: 20%; }
+}
+
+
+/**
+ * Product list
+ *
+ */
+
+.brand {
+	text-transform: uppercase;
+}
+
+.list.products {
+	li {
+		position: relative;
+
+		&:hover .product,
+		&:focus .product {
+			background: $base;
+			box-shadow: inset 0 -4px 0 -2px $accent, inset 0 0 0 2px $base;
+
+			h3 {
+				color: $link;
+			}
+		}
+	}
+
+	.product {
+		display: block;
+		color: black;
+		box-shadow: inset 0 0 0 2px $base;
+
+		img {
+			display: block;
+			width: 100%;
+		}
+
+		.description {
+			margin-top: 0;
+			padding: 1em;
+		}
+
+		h3 {
+			margin-top: 0;
+			margin-bottom: 0;
+			font-size: 1.25em;
+			line-height: 1.2;
+
+			& ~ * {
+				margin-top: 0.5em;
+				margin-bottom: 0;
+			}
+		}
+
+		.price {
+			color: $accent;
+			float: right;
+			margin: 0 0 0.4em 1em;
+		}
+	}
+
+	.fullscreen {
+		position: absolute;
+		top: 0.5em;
+		right: 0.5em;
+		margin: 0;
+		display: none;
+		border-radius: 10em;
+		padding: 0.5em;
+		border: 2px solid white;
+		background-color: white;
+
+		&:hover,
+		&:focus {
+			background-color: $accent;
+
+			svg {
+				fill: white;
+			}
+		}
+
+		&:active {
+			background-color: darken($accent, 10);
+		}
+
+		svg {
+			display: block;
+			fill: $accent;
+		}
+	}
+	.product:hover + .fullscreen,
+	.product:focus + .fullscreen,
+	.fullscreen:hover,
+	.fullscreen:focus {
+		display: block;
+	}
+}
+
+@media (min-width: $breakpoint-xs-s) {
+	.list.products {
+		display: flex;
+		flex-wrap: wrap;
+		margin-left: -0.5em;
+		margin-right: -0.5em;
+
+		li {
+			margin: 0.5em;
+			width: 12em;
+			flex-grow: 1;
+			display: flex;
+		}
+
+		.product {
+			width: 100%;
+		}
+
+		img {
+			flex-shrink: 0;
+		}	
+	}
+}
+
+@media (min-width: $breakpoint-s-m) {
+	.list.products li {
+		max-width: 24em;
+	}
+}
+
+/**
+ * Product page
+ *
+ */
+
+main.product {
+	.slider {
+		margin-bottom: 1em;
+	}
+	.brand + h1 {
+		margin-top: 0;
+	}
+}
+
+@media (min-width: $breakpoint-xs-s) {
+	.variants {
+		float: right;
+		margin: 0 0 1em 1em;
+		max-width: 50%;
+	}
+}
+
+.variants form {
+	border: 2px solid $base;
+	padding: 0.5em;
+	display: flex;
+	justify-content: space-between;
+
+	h3 {
+		margin: 0;
+		line-height: 1.2;
+		padding: calc(0.2em + 2px) 0 0;
+	}
+
+	.description p {
+		margin-top: 0.5em;
+		flex-grow: 1;
+	}
+
+	.action {
+		margin-top: 0;
+		margin-left: 1em;
+		flex-shrink: 0;
+		text-align: right;
+
+		select {
+			margin: 0 0 0.5em;
+			display: block;
+		}
+
+		button {
+			display: inline-block;
+			margin: 0;
+		}
+
+		.remaining {
+			margin-top: 0;
+			font-size: $text-s;
+			text-align: center;
+			color: $accent;
+		}
+	}
+}
 
 /**
  * Image slider
@@ -622,6 +954,7 @@ label > span {
 
 		img {
 			display: block;
+			max-height: 15em;
 			margin: 0 auto;
 		}
 	}
@@ -664,6 +997,17 @@ label > span {
 	}
 }
 
+@media (min-width: $breakpoint-s-m) {
+	.slider .slide img {
+		max-height: 20em;
+	}
+}
+
+@media (min-width: $breakpoint-m-l) {
+	.slider .slide img {
+		max-height: 30em;
+	}
+}
 
 /**
  * Slideshow

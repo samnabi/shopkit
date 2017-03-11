@@ -21,6 +21,7 @@ $kirby->set('snippet', 'menu.breadcrumb',            __DIR__.DS.'..'.DS.'snippet
 $kirby->set('snippet', 'menu.categories',            __DIR__.DS.'..'.DS.'snippets'.DS.'menu.categories.php');
 $kirby->set('snippet', 'menu.primary',               __DIR__.DS.'..'.DS.'snippets'.DS.'menu.primary.php');
 $kirby->set('snippet', 'menu.subpages',              __DIR__.DS.'..'.DS.'snippets'.DS.'menu.subpages.php');
+$kirby->set('snippet', 'menu.tags',                __DIR__.DS.'..'.DS.'snippets'.DS.'menu.tags.php');
 $kirby->set('snippet', 'menu.user',                  __DIR__.DS.'..'.DS.'snippets'.DS.'menu.user.php');
 $kirby->set('snippet', 'notifications',              __DIR__.DS.'..'.DS.'snippets'.DS.'notifications.php');
 $kirby->set('snippet', 'order.callback',             __DIR__.DS.'..'.DS.'snippets'.DS.'order.callback.php');

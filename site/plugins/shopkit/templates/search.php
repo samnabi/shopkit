@@ -14,28 +14,7 @@
 <?= $page->text()->kirbytext()->bidi() ?>
 
 <?php if($results->count()) { ?>
-	<ul class="list search">
-		<?php foreach ($results as $result) { ?>
-			<li>
-				<a href="<?= $result->url() ?>">
-					<img src="<?= $result->imgSrc ?>" title="<?= $result->title() ?>">
-					<div style="max-width: <?= $result->maxWidth ?>px;">
-						<h3 dir="auto"><?= $result->title() ?></h3>
-						
-						<span dir="auto"><?= $result->text()->excerpt(80) ?></span>
-
-						<?php if ($result->tags) { ?>
-							<p>
-								<?php foreach ($result->tags as $tag) { ?>
-									#<?= $tag ?>
-								<?php } ?>
-							</p>
-						<?php } ?>
-					</div>
-				</a>
-			</li>
-		<?php } ?>
-	</ul>
+	<?php snippet('list.product',['products' => $results]) ?>
 <?php } else { ?>
 	<p dir="auto" class="notification warning"><?= l::get('no-search-results') ?></p>
 <?php } ?>

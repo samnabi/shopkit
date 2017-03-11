@@ -13,11 +13,11 @@
 	
 	<?php $first = true ?>
 	<?php foreach ($photos->sortBy('sort') as $photo) { ?>
-		<?php $fg = $photo->resize(null,300,80) ?>
+		<?php $fg = $photo->resize(null,480,80) ?>
 		<?php $bg = $photo->blur() ?>
 		<input <?php ecco($first,'checked') ?> type="radio" name="thumbnail" id="<?php echo $photo->hash() ?>">
-		<div class="slide" style="background-image: url('<?php echo $bg->dataUri() ?>');">
-			<img src="<?php echo $fg->dataUri() ?>" title="<?php echo $photo->title() ?>"/>
+		<div class="slide" style="background-image: url('<?php echo $bg->url() ?>');">
+			<img src="<?php echo $fg->url() ?>" title="<?php echo $photo->title() ?>"/>
 		</div>
 		<?php $first = false ?>
 	<?php } ?>
@@ -28,7 +28,7 @@
 			<?php foreach ($photos->sortBy('sort') as $photo) { ?>	
 				<li>
 					<label for="<?php echo $photo->hash() ?>">
-						<img src="<?php echo $photo->thumb(['width'=>100,'height'=>100, 'quality'=>80, 'crop'=>true])->dataUri() ?>" title="<?php echo $photo->title() ?>"/>
+						<img src="<?php echo $photo->thumb(['width'=>100,'height'=>100, 'quality'=>80, 'crop'=>true])->url() ?>" title="<?php echo $photo->title() ?>"/>
 					</label>
 				</li>
 			<?php } ?>

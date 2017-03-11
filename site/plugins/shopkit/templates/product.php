@@ -1,11 +1,11 @@
 <?php snippet('header') ?>
 <div class="wrapper-main">
 <?php snippet('header.menus') ?>
-<main>
+<main class="product">
     
 <?php snippet('menu.breadcrumb') ?>
 
-<?php if ($page->slider() != '') snippet('slider',['photos'=>$page->slider()]) ?>
+<?php if ($page->hasImages()) snippet('slider',['photos' => $page->images()]) ?>
 
 <?php if ($page->brand()->isNotempty()) { ?>
 	<small class="brand" property="brand"><?= $page->brand() ?></small>
@@ -13,67 +13,65 @@
 
 <h1 dir="auto"><?= $page->title()->html() ?></h1>
 
-<div class="uk-grid uk-grid-width-medium-1-2">
+<div class="details">
 	
-	<div>
-		<section>
-			<?= $page->text()->kirbytext()->bidi() ?>
 
-			<?php if (count($tags)) { ?>
-				<p dir="auto">
-					<?php foreach ($tags as $tag) { ?>
-						<a href="<?= url('search/?q='.urlencode($tag)) ?>">#<?= $tag ?></a>
-					<?php } ?>
-				</p>
-			<?php } ?>
-		</section>
-	</div>
-	
-	<?php if (count($variants)) { ?>
-		<section class="variants">
-			<?php foreach ($variants as $variant) { ?>
-				<div class="uk-width-1-2 uk-text-left" vocab="http://schema.org/" typeof="Product">
-          <form class="uk-form uk-panel uk-panel-box" method="post" action="<?= url('shop/cart') ?>">
+<?php if (count($variants)) { ?>
+	<section class="variants">
+		<?php foreach ($variants as $variant) { ?>
+      <form method="post" action="<?= url('shop/cart') ?>" vocab="http://schema.org/" typeof="Product">
+				
+				<div class="description">
+					<!-- Schema.org markup -->
+        	<?php if($page->hasImages()) { ?>
+        		<link property="image" content="<?= $page->images()->first()->url() ?>" />
+        	<?php } ?>
+        	<link property="brand" content="<?= $page->brand() ?>" />
 
-						<!-- Schema.org markup -->
-          	<?php if($page->hasImages()) { ?>
-          		<link property="image" content="<?= $page->images()->first()->url() ?>" />
-          	<?php } ?>
-          	<link property="brand" content="<?= $page->brand() ?>" />
+        	<!-- Hidden fields -->
+        	<input type="hidden" name="action" value="add">
+        	<input type="hidden" name="uri" value="<?= $page->uri() ?>">
+        	<input type="hidden" name="variant" value="<?= str::slug($variant->name()) ?>">
 
-          	<!-- Hidden fields -->
-          	<input type="hidden" name="action" value="add">
-          	<input type="hidden" name="uri" value="<?= $page->uri() ?>">
-          	<input type="hidden" name="variant" value="<?= str::slug($variant->name()) ?>">
+					<h3 dir="auto" property="name" content="<?= $page->title().' &ndash; '.$variant->name() ?>"><?= $variant->name() ?></h3>
 
-						<h3 dir="auto" class="uk-margin-small-bottom" property="name" content="<?= $page->title().' &ndash; '.$variant->name() ?>"><?= $variant->name() ?></h3>
+					<?php ecco(trim($variant->description()) != '',$variant->description()->kirbytext()->bidi()) ?>
+				</div>
 
-						<div property="description">
-							<?php ecco(trim($variant->description()) != '',$variant->description()->kirbytext()->bidi()) ?>
-						</div>
-
-						<?php if ($variant->hasOptions) { ?>
-							<select dir="auto" class="uk-width-1-1" name="option">
-								<?php foreach (str::split($variant->options()) as $option) { ?>
-									<option value="<?= str::slug($option) ?>"><?= str::ucfirst($option) ?></option>
+				<div class="action">
+					<?php if ($variant->hasOptions) { ?>
+						<select dir="auto" name="option">
+							<?php foreach (str::split($variant->options()) as $option) { ?>
+								<option value="<?= str::slug($option) ?>"><?= str::ucfirst($option) ?></option>
 								<?php } ?>
 							</select>
 						<?php } ?>
 
-						<button <?php e(inStock($variant),'','disabled') ?> class="uk-button uk-button-primary uk-width-1-1" type="submit" property="offers" typeof="Offer">
+						<button <?php e(inStock($variant),'','disabled') ?> class="accent" type="submit" property="offers" typeof="Offer">
 							<?= $variant->priceText ?>
 							<link property="availability" href="<?php e(inStock($variant),'http://schema.org/InStock','http://schema.org/OutOfStock') ?>" />
 						</button>
 
 						<?php if ($site->showStock()->bool() === true and $variant->stock()->isNotEmpty()) { ?>
-							<p class="uk-text-center uk-text-small uk-margin-small-top"><?= $variant->stock() ?> remaining</p>
+							<p class="remaining"><?= $variant->stock() ?> <?= l('remaining') ?></p>
 						<?php } ?>
+					</div>
 
-		      </form>
-				</div>
+	      </form>
 			<?php } ?>
 		</section>
 	<?php } ?>
+	<section>
+		<?= $page->text()->kirbytext()->bidi() ?>
+
+		<?php if (count($tags)) { ?>
+			<ul class="menu tags" dir="auto">
+				<?php foreach ($tags as $tag) { ?>
+					<li><a href="<?= url('search/?q='.urlencode($tag)) ?>">#<?= $tag ?></a></li>
+				<?php } ?>
+			</ul>
+		<?php } ?>
+	</section>
 </div>
 
 <?php snippet('list.related') ?>

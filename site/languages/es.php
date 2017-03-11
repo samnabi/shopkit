@@ -16,8 +16,8 @@
 'country' => 'País',
 'country-help' => 'Para calcular costos de envío',
 
-'shop-by-category' => 'Comprar por categoría',
-'shop-by-brand' => 'Comprar por marca',
+'brands' => 'Marcas',
+'tags' => 'Etiquetas',
 
 'buy' => 'Comprar',
 'out-of-stock' => 'Sin existencias',
@@ -30,6 +30,7 @@
 'total' => 'Total',
 
 'from' => 'Desde',
+'remaining' => 'restantes',
 
 // plugins/shopkit/shopkit.php
 

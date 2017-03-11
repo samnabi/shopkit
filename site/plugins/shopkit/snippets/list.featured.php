@@ -29,27 +29,21 @@
 		  		}
 		  	?>
 
-				<?php
-					// Get image
-					if ($product->hasImages()){
-						$image = $product->images()->sortBy('sort', 'asc')->first();
-					} else {
-						$image = $site->images()->find($site->placeholder());
-					}
-				?>
-
-				<a href="<?= $product->url() ?>" title="<?= $product->title() ?>">
-					<img src="<?= $image->thumb(['height'=>300])->dataUri() ?>" title="<?= $product->title() ?>"/>
-				</a>
+				<?php if ($product->hasImages()){ ?>
+					<?php $image = $product->images()->sortBy('sort', 'asc')->first() ?>
+					<a class="image" href="<?= $product->url() ?>" title="<?= $product->title() ?>">
+						<img src="<?= $image->thumb(['height'=>300])->url() ?>" title="<?= $product->title() ?>"/>
+					</a>
+				<?php } ?>
 
 	  		<a dir="auto" href="<?= $product->url() ?>" title="<?= $product->title() ?>">
-	  			<?php if ($product->brand() != '') { ?>
+	  			<?php if ($product->brand()->isNotEmpty()) { ?>
 	  				<small class="brand"><?= $product->brand() ?></small>
 	  			<?php } ?>
-					<h3><?= $product->title()->html() ?></h3>
-					<span><?= $featuredVariant->name() ?></span>
+					<h3 class="name"><?= $product->title()->html() ?></h3>
+					<p class="variant"><?= $featuredVariant->name() ?></p>
 				</a>
-	            
+
 	      <form method="post" action="<?= url('shop/cart') ?>">
           <input type="hidden" name="action" value="add">
           <input type="hidden" name="uri" value="<?= $product->uri() ?>">
@@ -64,7 +58,7 @@
 					<?php } ?>
 
 					<?php if (inStock($featuredVariant)) { ?>
-						<button type="submit">
+						<button class="accent" type="submit">
 							<?= l::get('buy') ?>
 							<?php
 								if ($featuredSalePrice) {

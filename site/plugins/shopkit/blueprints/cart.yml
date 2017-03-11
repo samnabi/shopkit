@@ -8,5 +8,4 @@ options:
   url: false
 fields:
   title: title
-  slider: slider
   text: wysiwyg

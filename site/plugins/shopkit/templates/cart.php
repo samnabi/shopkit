@@ -3,8 +3,6 @@
 <?php snippet('header.menus') ?>
 <main>
 
-<?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
-
 <?php snippet('menu.breadcrumb') ?>
 
 <h1 dir="auto"><?= $page->title()->html() ?></h1>
@@ -247,7 +245,7 @@
                             <?= $site->content()->get($gateway.'_text') ?>
                         <?php } else { ?>
                             <?php if ($gateway != 'paylater') echo '<span>'.l::get('pay-now').'</span>'; ?>
-                            <img src="<?= $site->file($site->content()->get($gateway.'_logo'))->dataUri()  ?>" alt="<?= $site->content()->get($gateway.'_text') ?>">
+                            <img src="<?= $site->file($site->content()->get($gateway.'_logo'))->url()  ?>" alt="<?= $site->content()->get($gateway.'_text') ?>">
                         <?php } ?>
 
                         <?php if ($site->content()->get($gateway.'_status') == 'sandbox') { ?>

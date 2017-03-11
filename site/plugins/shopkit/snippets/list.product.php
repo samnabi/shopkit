@@ -1,63 +1,58 @@
 <?php if(count($products) or $products->count()) { ?>
+
 	<ul class="list products">
+
 	  <?php foreach($products as $product) { ?>
-		<li>
-			<a href="<?php echo $product->url() ?>" vocab="http://schema.org" typeof="Product">
-				<?php 
-					if ($product->hasImages()) {
-						$image = $product->images()->sortBy('sort', 'asc')->first();
-					} else {
-						$image = $site->images()->find($site->placeholder());
-					}
-					$thumb = $image->thumb(['height'=>150]);
-					$backgroundThumb = $image->thumb(['height'=>300,'width'=>300,'crop'=>true,'blur'=>true]);
-				?>
-				<div class="image" <?php if ($backgroundThumb) echo 'style="background-image: url('.$backgroundThumb->dataUri().');"' ?>>
-					<img property="image" content="<?php echo $thumb->url() ?>" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
-				</div>
-		
-				<?php if ($product->brand() != '') { ?>
-					<small class="brand" property="brand"><?php echo $product->brand() ?></small>
-				<?php } ?>
-				<h3 property="name"><?php echo $product->title()->html() ?></h3>
+	  	<?php
+	  		if ($product->hasImages()) {
+	  			$image = $product->images()->sortBy('sort', 'asc')->first()->resize(400);
+	  		} else {
+	  			$image = false;
+	  		}
+	  	?>
+			<li dir="auto">
+				<a class="product" href="<?= $product->url() ?>" title="<?= $product->title() ?>" vocab="http://schema.org" typeof="Product">
+					<?php if ($image) { ?>
+						<img property="image" content="<?= $image->url() ?>" src="<?= $image->url() ?>" title="<?= $product->title() ?>">
+					<?php } ?>
+					
+					<div class="description">
+						<?php if ($product->variants()->isNotEmpty()) { ?>
+							<span class="price" property="offers" typeof="Offer">
+								<?php
+									$minVariant = $product->variants()->toStructure()->sortBy('price','asc')->first();
+									$minSalePrice = salePrice($minVariant);
+									if ($minSalePrice) {
+										$priceFormatted = formatPrice($minSalePrice);
+										$priceFormatted .= '<del>'.formatPrice($minVariant->price()->value).'</del>';
+									} else {
+										$priceFormatted = formatPrice($minVariant->price()->value);
+									}
+									if ($product->variants()->toStructure()->count() > 1) {
+										$priceFormatted = l::get('from').' '.$priceFormatted;
+									}
+									echo $priceFormatted;
+								?>
+							</span>
+						<?php } ?>
 
-	    		<?php
-	    			$count = $minPrice = $minSalePrice = 0;
-	    			foreach ($product->variants()->toStructure() as $variant) {
-	    				// Assign the first price
-	    				if (!$count) {
-	    					$minVariant = $variant;
-	    					$minPrice = $variant->price()->value;
-	    					$minSalePrice = salePrice($variant);
-	    				} else if ($variant->price()->value < $minPrice){
-	    					$minVariant = $variant;
-	    					$minPrice = $variant->price()->value;
-	    					$minSalePrice = salePrice($variant);
-	    				}
-	    				$count++;
-	    			}
-				?>
-				<span property="offers" typeof="Offer">
-					<?php
-						if ($minSalePrice) {
-							$priceFormatted = formatPrice($minSalePrice);
-							$priceFormatted .= '<del>'.formatPrice($minPrice).'</del>';
-						} else {
-							$priceFormatted = formatPrice($minPrice);
-						}
-						if ($count > 1) $priceFormatted = l::get('from').' '.$priceFormatted;
-						echo $priceFormatted;
-					?>
-				</span>
+						<h3 property="name"><?= $product->title()->html() ?></h3>
+						
+						<?php if ($product->brand()->isNotEmpty()) { ?>
+							<small class="brand" property="brand"><?= $product->brand() ?></small>
+						<?php } ?>
 
-				<?php if ($product->text() != '') { ?>
-					<p dir="auto" property="description"><?php echo $product->text()->excerpt(50) ?></p>
+						<?php if ($product->text()->isNotEmpty()) { ?>
+							<p dir="auto" property="description"><?= $product->text()->excerpt(80) ?></p>
+						<?php } ?>
+					</div>
+				</a>
+				<?php if ($product->hasTemplate('product') and $image) { ?>
+					<a class="fullscreen" href="<?= $product->url().'/slide' ?>">
+						<?= f::read('site/plugins/shopkit/assets/svg/expand.svg') ?>
+					</a>
 				<?php } ?>
-			</a>
-			<a class="fullscreen" href="<?= $product->url().'/slide' ?>">
-				<?= f::read('site/plugins/shopkit/assets/svg/expand.svg') ?>
-			</a>
-		</li>
+			</li>
 	  <?php } ?>
 	</ul>
 <?php } ?>

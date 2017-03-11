@@ -31,7 +31,7 @@ $user = $site->user();
 
       <div class="center">
 
-        <img src="<?= $site->logo()->toFile()->dataURI() ?>" alt="">
+        <img src="<?= $site->logo()->toFile()->url() ?>" alt="">
 
         <form method="post" action="<?= url('shop/cart/callback/paylater') ?>">
 
@@ -40,7 +40,7 @@ $user = $site->user();
             <label for="payer_email"><?= l::get('email') ?></label>
             <input autofocus required type="email" name="payer_email" value="">
             
-            <button class="uk-button uk-button-primary uk-form-width-large" type="submit"><?= l::get('pay-later') ?></button>
+            <button type="submit"><?= l::get('pay-later') ?></button>
         </form>
 
         <p><a href="<?= url('shop/cart') ?>" title="Cancel payment">Back to cart</a></p>

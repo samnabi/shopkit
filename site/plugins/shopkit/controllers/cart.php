@@ -47,7 +47,7 @@ return function($site, $pages, $page) {
         if (!$img) {
             $item->imgSrc = false;
         } else {
-            $item->imgSrc = $img->thumb(['width'=>60, 'height'=>60, 'crop'=>true])->dataUri();
+            $item->imgSrc = $img->thumb(['width'=>60, 'height'=>60, 'crop'=>true])->url();
         }
 
         // Max quantity

@@ -28,7 +28,7 @@
 			}
 			$thumb = $image->thumb(['width' => 600]);
 		?>
-		<img property="image" content="<?php echo $thumb->url() ?>" src="<?php echo $thumb->dataUri() ?>" title="<?php echo $product->title() ?>">
+		<img property="image" content="<?php echo $thumb->url() ?>" src="<?php echo $thumb->url() ?>" title="<?php echo $product->title() ?>">
 	</div>
 
 	<div class="description">

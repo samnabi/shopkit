@@ -9,9 +9,9 @@
 	
 <?php } else { ?>
 
-	<?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
-
 	<?php snippet('menu.breadcrumb') ?>
+
+	<?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
 	
 	<h1 dir="auto"><?= $page->title()->html() ?></h1>
 	

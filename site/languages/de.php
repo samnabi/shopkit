@@ -16,8 +16,8 @@
 'country' => 'Land',
 'country-help' => 'Um die Versandkosten zu kalkulieren',
 
-'shop-by-category' =>  'Einkaufen nach Kategorie',
-'shop-by-brand' =>  'Einkaufen nach Marke',
+'brands' => 'Marken',
+'tags' => 'Tagen',
 
 'buy' => 'Kaufen',
 'out-of-stock' => 'Ausverkauft',
@@ -30,6 +30,7 @@
 'total' => 'Insgesamt',
 
 'from' => 'Von',
+'remaining' => 'verbleibende',
 
 // plugins/shopkit/shopkit.php
 
