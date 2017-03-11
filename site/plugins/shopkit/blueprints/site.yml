@@ -352,11 +352,6 @@ fields:
     label: Site logo
     type:  image
     width: 1/2
-  placeholder:
-    label: Placeholder photo
-    help: For products and pages that don't have a photo
-    type:  image
-    width: 1/2
   backgroundColor:
     label: Background colour
     type:  color

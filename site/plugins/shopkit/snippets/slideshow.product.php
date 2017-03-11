@@ -19,17 +19,15 @@
 </nav>
 
 <a class="slideshow" href="<?= $product->url() ?>" vocab="http://schema.org" typeof="Product">
-	<div class="image">
-		<?php 
-			if ($product->hasImages()) {
-				$image = $product->images()->sortBy('sort', 'asc')->first();
-			} else {
-				$image = $site->images()->find($site->placeholder());
-			}
-			$thumb = $image->thumb(['width' => 600]);
-		?>
-		<img property="image" content="<?= $thumb->url() ?>" src="<?= $thumb->url() ?>" title="<?= $product->title() ?>">
-	</div>
+  <?php if ($product->hasImages()) { ?>
+	  <div class="image">
+      <?php
+  		  $image = $product->images()->sortBy('sort', 'asc')->first();
+	 		  $thumb = $image->thumb(['width' => 600]);
+		  ?>
+		  <img property="image" content="<?= $thumb->url() ?>" src="<?= $thumb->url() ?>" title="<?= $product->title() ?>">
+	  </div>
+  <?php } ?>
 
 	<div class="description">
 		<h3 dir="auto" property="name"><?= $product->title()->html() ?></h3>
