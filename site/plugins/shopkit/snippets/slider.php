@@ -15,9 +15,9 @@
 	<?php foreach ($photos->sortBy('sort') as $photo) { ?>
 		<?php $fg = $photo->resize(null,480,80) ?>
 		<?php $bg = $photo->blur() ?>
-		<input <?php ecco($first,'checked') ?> type="radio" name="thumbnail" id="<?php echo $photo->hash() ?>">
-		<div class="slide" style="background-image: url('<?php echo $bg->url() ?>');">
-			<img src="<?php echo $fg->url() ?>" title="<?php echo $photo->title() ?>"/>
+		<input <?php ecco($first,'checked') ?> type="radio" name="thumbnail" id="<?= $photo->hash() ?>">
+		<div class="slide" style="background-image: url('<?= $bg->url() ?>');">
+			<img src="<?= $fg->url() ?>" title="<?= $photo->title() ?>"/>
 		</div>
 		<?php $first = false ?>
 	<?php } ?>
@@ -27,8 +27,8 @@
 		<ul class="thumbnails">
 			<?php foreach ($photos->sortBy('sort') as $photo) { ?>	
 				<li>
-					<label for="<?php echo $photo->hash() ?>">
-						<img src="<?php echo $photo->thumb(['width'=>100,'height'=>100, 'quality'=>80, 'crop'=>true])->url() ?>" title="<?php echo $photo->title() ?>"/>
+					<label for="<?= $photo->hash() ?>">
+						<img src="<?= $photo->thumb(['width'=>100,'height'=>100, 'quality'=>80, 'crop'=>true])->url() ?>" title="<?= $photo->title() ?>"/>
 					</label>
 				</li>
 			<?php } ?>

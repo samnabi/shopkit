@@ -2,9 +2,9 @@
   
   <script class="tiers-item-template" type="text/x-handlebars-template">
     <div class="tiers-item">
-      <?php echo $field->inputField(''); ?>
+      <?= $field->inputField(''); ?>
       <span class="tier-upper-limit">+</span>
-      <?php echo $field->inputField(''); ?>
+      <?= $field->inputField(''); ?>
     </div>
   </script>
 

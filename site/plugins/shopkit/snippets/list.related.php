@@ -7,7 +7,7 @@
 ?>
 <?php if (count($products)) { ?>
 	<section class="related">
-		<h2 dir="auto"><?php echo l::get('related-products') ?></h2>
+		<h2 dir="auto"><?= l::get('related-products') ?></h2>
 		<?php snippet('list.product',['products' => $products]) ?>
 	</section>
 <?php } ?>

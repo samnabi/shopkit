@@ -2,8 +2,8 @@
 	<ul dir="auto" class="subpages">
 		<?php foreach($page->children()->visible() as $subpage) { ?>
 	    <li>
-	      <a href="<?php echo $subpage->url() ?>">
-          <?php echo $subpage->title()->html() ?>
+	      <a href="<?= $subpage->url() ?>">
+          <?= $subpage->title()->html() ?>
         </a>
 	    </li>
 		<?php } ?>

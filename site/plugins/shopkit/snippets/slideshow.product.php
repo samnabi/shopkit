@@ -4,21 +4,21 @@
 
 	<a id="slideshow-prev" <?php if($product->hasPrevVisible()){ echo 'href="'.$product->prevVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
 		<?= f::read('site/plugins/shopkit/assets/svg/arrow-left.svg') ?>
-		<span><?php echo l::get('prev') ?></span>
+		<span><?= l::get('prev') ?></span>
 	</a>
 
-    <a id="view-grid" href="<?php echo $product->parent()->url() ?>">
+    <a id="view-grid" href="<?= $product->parent()->url() ?>">
     	<?= f::read('site/plugins/shopkit/assets/svg/grid.svg') ?>
-    	<span><?php echo l::get('view-grid') ?></span>
+    	<span><?= l::get('view-grid') ?></span>
     </a>
 
 	<a id="slideshow-next" <?php if($product->hasNextVisible()){ echo 'href="'.$product->nextVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
 		<?= f::read('site/plugins/shopkit/assets/svg/arrow-right.svg') ?>
-		<span><?php echo l::get('next') ?></span>
+		<span><?= l::get('next') ?></span>
 	</a>
 </nav>
 
-<a class="slideshow" href="<?php echo $product->url() ?>" vocab="http://schema.org" typeof="Product">
+<a class="slideshow" href="<?= $product->url() ?>" vocab="http://schema.org" typeof="Product">
 	<div class="image">
 		<?php 
 			if ($product->hasImages()) {
@@ -28,14 +28,14 @@
 			}
 			$thumb = $image->thumb(['width' => 600]);
 		?>
-		<img property="image" content="<?php echo $thumb->url() ?>" src="<?php echo $thumb->url() ?>" title="<?php echo $product->title() ?>">
+		<img property="image" content="<?= $thumb->url() ?>" src="<?= $thumb->url() ?>" title="<?= $product->title() ?>">
 	</div>
 
 	<div class="description">
-		<h3 dir="auto" property="name"><?php echo $product->title()->html() ?></h3>
+		<h3 dir="auto" property="name"><?= $product->title()->html() ?></h3>
 		
 		<?php if ($product->text() != '') { ?>
-			<p dir="auto" property="description"><?php echo $product->text()->excerpt(80) ?></p>
+			<p dir="auto" property="description"><?= $product->text()->excerpt(80) ?></p>
 		<?php } ?>
 		
 		<div dir="auto">
