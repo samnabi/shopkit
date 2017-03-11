@@ -11,7 +11,7 @@
 
 <?php if ($cart->count() === 0) { ?>
     <p dir="auto" class="notification warning">
-        <?= l::get('no-cart-items') ?>
+        <?= l('no-cart-items') ?>
     </p>
 <?php } else { ?>
 
@@ -20,9 +20,9 @@
         <table dir="auto" class="checkout">
             <thead>
                 <tr>
-                    <th><?= l::get('product') ?></th>
-                    <th><?= l::get('quantity') ?></th>
-                    <th><?= l::get('price') ?></th>
+                    <th><?= l('product') ?></th>
+                    <th><?= l('quantity') ?></th>
+                    <th><?= l('price') ?></th>
                     <th></th>
                 </tr>
             </thead>
@@ -64,14 +64,14 @@
                         </td>
                         <td>
                             <?= $item->priceText ?>
-                            <?php e($item->notax == 1,'<br><span class="badge">'.l::get('no-tax').'</span>') ?>
-                            <?php e($item->noshipping == 1,'<br><span class="badge">'.l::get('no-shipping').'</span>') ?>
+                            <?php e($item->notax == 1,'<br><span class="badge">'.l('no-tax').'</span>') ?>
+                            <?php e($item->noshipping == 1,'<br><span class="badge">'.l('no-shipping').'</span>') ?>
                         </td>
                         <td>
                             <form action="" method="post">
                                 <input type="hidden" name="action" value="delete">
                                 <input type="hidden" name="id" value="<?= $item->id ?>">
-                                <button type="submit"><?= l::get('delete') ?></button> 
+                                <button type="submit"><?= l('delete') ?></button> 
                             </form>
                         </td>
                     </tr>
@@ -80,20 +80,20 @@
 
             <tfoot>
                 <tr>
-                    <td colspan="2"><?= l::get('subtotal') ?></td>
+                    <td colspan="2"><?= l('subtotal') ?></td>
                     <td><?= formatPrice($cart->getAmount()) ?></td>
                     <td></td>
                 </tr>
                 <?php if ($site->discount_codes()->toStructure()->count() > 0) {  ?>
                     <tr>
-                        <td colspan="2"><?= l::get('discount') ?></td>
+                        <td colspan="2"><?= l('discount') ?></td>
                         <?php if ($discount) { ?>
                             <td><?= '&ndash; '.formatPrice($discount['amount']) ?></td>
                             <td>
                                 <form method="post" class="discount">
                                     <input type="hidden" name="dc" value="">
                                     <button type="submit">
-                                        <?= l::get('delete') ?>
+                                        <?= l('delete') ?>
                                     </button>
                                 </form>
                             </td>
@@ -102,7 +102,7 @@
                                 <form method="post" class="discount">
                                     <input type="text" name="dc">
                                     <button type="submit">
-                                        <?= l::get('code-apply') ?>
+                                        <?= l('code-apply') ?>
                                     </button>
                                 </form>
                             </td>
@@ -110,7 +110,7 @@
                     </tr>
                 <?php } ?>
                 <tr>
-                    <td colspan="2"><?= l::get('shipping') ?></td>
+                    <td colspan="2"><?= l('shipping') ?></td>
                     <td colspan="2">
 
                         <!-- Set country -->
@@ -122,7 +122,7 @@
                                     </option>
                                 <?php } ?>
                             </select>
-                            <button type="submit"><?= l::get('update-country') ?></button>
+                            <button type="submit"><?= l('update-country') ?></button>
                         </form>
 
                         <!-- Set shipping -->
@@ -136,22 +136,22 @@
                                     <?php } ?>
                                 <?php } else { ?>
                                     <!-- If no shipping rates are set, show free shipping -->
-                                    <option value="free-shipping"><?= l::get('free-shipping') ?></option>
+                                    <option value="free-shipping"><?= l('free-shipping') ?></option>
                                 <?php } ?>
                             </select>
-                            <button type="submit"><?= l::get('update-shipping') ?></button>
+                            <button type="submit"><?= l('update-shipping') ?></button>
                         </form>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"><?= l::get('tax') ?></td>
+                    <td colspan="2"><?= l('tax') ?></td>
                     <td>
                         <?= formatPrice($cart->getTax()) ?>
                     </td>
                     <td></td>
                 </tr>
                 <tr class="total">
-                    <td colspan="2"><?= l::get('total') ?></td>
+                    <td colspan="2"><?= l('total') ?></td>
                     <td>
                         <?= formatPrice($total) ?>
                         <?= $site->currency_code() ?>
@@ -160,21 +160,21 @@
                 </tr>
                 <?php if ($site->gift_certificates()->toStructure()->count() > 0) { ?>
                     <tr>
-                        <td colspan="2"><?= l::get('gift-certificate') ?></td>
+                        <td colspan="2"><?= l('gift-certificate') ?></td>
                         <?php if ($giftCertificate) { ?>
                             <td>
                                 <strong>
                                     <?= '&ndash; '.formatPrice($giftCertificate['amount']).' '.$site->currency_code() ?>
                                 </strong><br>
                                 <small>
-                                    <?= formatPrice($giftCertificate['remaining']).' '.l::get('remaining') ?>
+                                    <?= formatPrice($giftCertificate['remaining']).' '.l('remaining') ?>
                                 </small>
                             </td>
                             <td>
                                 <form method="post" class="discount">
                                     <input type="hidden" name="gc" value="">
                                     <button type="submit">
-                                        <?= l::get('delete') ?>
+                                        <?= l('delete') ?>
                                     </button>
                                 </form>
                             </td>
@@ -183,7 +183,7 @@
                                 <form method="post" class="discount">
                                     <input type="text" name="gc">
                                     <button type="submit">
-                                        <?= l::get('code-apply') ?>
+                                        <?= l('code-apply') ?>
                                     </button>
                                 </form>
                             </td>
@@ -197,7 +197,7 @@
     <!-- Terms and conditions -->
     <?php if ($tc = page('shop/terms-conditions') and $tc->text()->isNotEmpty()) { ?>
         <p dir="auto" class="notification">
-            <?= l::get('terms-conditions') ?> <a href="<?= $tc->url() ?>" target="_blank"><?= $tc->title() ?></a>.
+            <?= l('terms-conditions') ?> <a href="<?= $tc->url() ?>" target="_blank"><?= $tc->title() ?></a>.
         </p>
     <?php } ?>
     
@@ -211,7 +211,7 @@
             <input type="hidden" name="giftCertificatePaid" value="true">
 
             <div class="forRobots">
-              <label for="subject"><?= l::get('honeypot-label') ?></label>
+              <label for="subject"><?= l('honeypot-label') ?></label>
               <input type="text" name="subject">
             </div>
 
@@ -235,7 +235,7 @@
                 <?php } ?>
 
                 <div class="forRobots">
-                  <label for="subject"><?= l::get('honeypot-label') ?></label>
+                  <label for="subject"><?= l('honeypot-label') ?></label>
                   <input type="text" name="subject">
                 </div>
 
@@ -244,13 +244,13 @@
                         <?php if ($site->content()->get($gateway.'_logo')->isEmpty()) { ?>
                             <?= $site->content()->get($gateway.'_text') ?>
                         <?php } else { ?>
-                            <?php if ($gateway != 'paylater') echo '<span>'.l::get('pay-now').'</span>'; ?>
+                            <?php if ($gateway != 'paylater') echo '<span>'.l('pay-now').'</span>'; ?>
                             <img src="<?= $site->file($site->content()->get($gateway.'_logo'))->url()  ?>" alt="<?= $site->content()->get($gateway.'_text') ?>">
                         <?php } ?>
 
                         <?php if ($site->content()->get($gateway.'_status') == 'sandbox') { ?>
                             <p class="notification warning">
-                                <?= l::get('sandbox-message') ?>
+                                <?= l('sandbox-message') ?>
                             </p>
                         <?php } ?>
                     </button>

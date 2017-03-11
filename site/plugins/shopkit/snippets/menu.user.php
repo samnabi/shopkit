@@ -4,7 +4,7 @@
 
     <a class="button admin" href="<?= url('panel/pages/'.$page->uri().'/edit') ?>">
       <?= f::read('site/plugins/shopkit/assets/svg/edit-page.svg') ?>
-      <?= l::get('edit-page') ?>
+      <?= l('edit-page') ?>
     </a>
 
     <a class="button admin" href="<?= url('panel') ?>">
@@ -14,14 +14,14 @@
 
 	<a class="button admin" href="<?= url('panel/options') ?>">
       <?= f::read('site/plugins/shopkit/assets/svg/gear.svg') ?>
-	  <?= l::get('site-options') ?>
+	  <?= l('site-options') ?>
 	</a>
 
   <?php } ?>
   
   <a class="button admin" href="<?= url('shop/orders') ?>">
     <?= f::read('site/plugins/shopkit/assets/svg/orders.svg') ?>
-    <?= l::get('view-orders') ?>
+    <?= l('view-orders') ?>
   </a>
   
   <a class="button admin" href="<?= url('panel/users/'.$user->username().'/edit') ?>">
@@ -31,7 +31,7 @@
   
   <a class="button admin" href="<?= url('logout') ?>">
     <?= f::read('site/plugins/shopkit/assets/svg/logout.svg') ?>
-    <?= l::get('logout') ?>
+    <?= l('logout') ?>
   </a>
   
 </nav>

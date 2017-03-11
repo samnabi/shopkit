@@ -21,7 +21,7 @@ return function ($site, $pages, $page) {
 
 		// priceText
 		if (inStock($variant)) {
-			$variant->priceText = l::get('buy').' ';
+			$variant->priceText = l('buy').' ';
 			if ($saleprice = salePrice($variant)) {
 				$variant->priceText .= formatPrice($saleprice);
 				$variant->priceText .= '<del>'.formatPrice($variant->price()->value).'</del>';
@@ -29,7 +29,7 @@ return function ($site, $pages, $page) {
 				$variant->priceText .= formatPrice($variant->price()->value);
 			}
 		} else {
-			$variant->priceText = l::get('out-of-stock').' ';
+			$variant->priceText = l('out-of-stock').' ';
 			if ($saleprice = salePrice($variant)) {
 				$variant->priceText .= formatPrice($saleprice);
 				$variant->priceText .= '<del>'.formatPrice($variant->price()->value).'</del>';

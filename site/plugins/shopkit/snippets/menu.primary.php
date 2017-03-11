@@ -12,7 +12,7 @@
     </a>
   <?php } ?>
   
-  <a class="cart button accent" href="<?= url('shop/cart') ?>" title="<?php l::get('view-cart') ?>">
+  <a class="cart button accent" href="<?= url('shop/cart') ?>" title="<?php l('view-cart') ?>">
     <?php $cart = Cart::getCart() ?>
     <?php $count = $cart->count() ?>
     <?= f::read('site/plugins/shopkit/assets/svg/cart.svg') ?>

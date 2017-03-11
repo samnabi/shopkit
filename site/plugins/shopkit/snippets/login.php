@@ -1,7 +1,7 @@
 <aside class="login">
   <?php if (get('login') === 'failed')  { ?>
     <p dir="auto" class="notification warning">
-      <?= l::get('notification-login-failed') ?>
+      <?= l('notification-login-failed') ?>
     </p>
   <?php } ?>
 
@@ -15,25 +15,25 @@
     <input type="hidden" name="redirect" value="<?= $page->uri() ?>">
       
     <label>
-      <span><?= l::get('email-address') ?></span>
+      <span><?= l('email-address') ?></span>
       <input type="text" id="email" name="email">
     </label>
     
     <label>
-      <span><?= l::get('password') ?></span>
+      <span><?= l('password') ?></span>
       <input type="password" id="password" name="password">
     </label>
 
     <button type="submit" name="login">
-      <?= l::get('login') ?>
+      <?= l('login') ?>
     </button>
 
     <ul>
       <li>
-        <a href="<?= url('account/reset') ?>" title="<?= l::get('forgot-password') ?>"><?= l::get('forgot-password') ?></a>
+        <a href="<?= url('account/reset') ?>" title="<?= l('forgot-password') ?>"><?= l('forgot-password') ?></a>
       </li>
       <li>
-        <a href="<?= url('account/register') ?>" title="<?= l::get('register') ?>"><?= l::get('register') ?></a>
+        <a href="<?= url('account/register') ?>" title="<?= l('register') ?>"><?= l('register') ?></a>
       </li>
     </ul>
   </form>

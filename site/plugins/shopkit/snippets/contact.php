@@ -10,20 +10,20 @@
 
         <dl dir="auto">
             <?php if ($phone = $contact->phone() and $phone != '') { ?>
-                <dt><?= l::get('phone') ?></dt>
+                <dt><?= l('phone') ?></dt>
                 <dd><?= $phone ?></dd>
             <?php } ?>
             
             <?php if ($email = $contact->email() and $email != '') { ?>
-                <dt><?= l::get('email') ?></dt>
+                <dt><?= l('email') ?></dt>
                 <dd><?= kirbytext('(email: '.trim($email).')') ?></dd>
             <?php } ?>
             
             <?php if ($address = $contact->location()->toStructure()->address() and $address != '') { ?>
-                <dt><?= l::get('address') ?></dt>
+                <dt><?= l('address') ?></dt>
                 <dd><?= $address ?></dd>
             <?php } else if ($contact->location()->isNotEmpty()) { ?>
-                <dt><?= l::get('address') ?></dt>
+                <dt><?= l('address') ?></dt>
                 <dd><?= $contact->location()->kirbytext() ?></dd>
             <?php } ?>
         </dl>

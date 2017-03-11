@@ -15,17 +15,17 @@
 
 <dl dir="auto">
     <?php if ($phone) { ?>
-        <dt><?= l::get('phone') ?></dt>
+        <dt><?= l('phone') ?></dt>
         <dd><?= $phone ?></dd>
     <?php } ?>
     
     <?php if ($email) { ?>
-        <dt><?= l::get('email') ?></dt>
+        <dt><?= l('email') ?></dt>
         <dd><?= kirbytext('(email: '.trim($email).')') ?></dd>
     <?php } ?>
 
     <?php if ($address) { ?>
-        <dt><?= l::get('address') ?></dt>
+        <dt><?= l('address') ?></dt>
         <dd><?= $address ?></dd>
     <?php } ?>
 </dl>

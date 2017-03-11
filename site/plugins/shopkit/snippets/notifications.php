@@ -10,37 +10,37 @@ $user = $site->user();
 if ($site->users()->count() === 0) {
 
 	// Check if a panel account has been created
-	$notifications[] = l::get('notification-account');
+	$notifications[] = l('notification-account');
 
 } else if ($site->currency_symbol() == '' or $site->currency_code() == '') {
 
 	if (!$user) {
 		// Check if user is logged in
-		$notifications[] = l::get('notification-login');
+		$notifications[] = l('notification-login');
 	} else {
 		// Check if site options have been set
-		$notifications[] = l::get('notification-options');
+		$notifications[] = l('notification-options');
 	}
 
 } else if ($categories->count() === 0) {
 
 	if (!$user) {
 		// Check if user is logged in
-		$notifications[] = l::get('notification-login');
+		$notifications[] = l('notification-login');
 	} else {
 		// Check if a category has been created
-		$notifications[] = l::get('notification-category');
+		$notifications[] = l('notification-category');
 	}
 
 } else if (!$allProducts->count()) {
 
 	if (!$user) {
 		// Check if user is logged in
-		$notifications[] = l::get('notification-login');
+		$notifications[] = l('notification-login');
 	} else {
 		// Check if a product has been created
 		$uri = $categories->first()->uri();
-		$notifications[] = l::get('notification-product-first').$uri.l::get('notification-product-last');
+		$notifications[] = l('notification-product-first').$uri.l('notification-product-last');
 	}
 
 }
@@ -49,7 +49,7 @@ if ($site->users()->count() === 0) {
 
 if (c::get('license-shopkit') == "") {
 	// Check if there is a license key
-	$notifications[] = l::get('notification-license');
+	$notifications[] = l('notification-license');
 }
 
 ?>
@@ -69,11 +69,11 @@ if (c::get('license-shopkit') == "") {
 $successes = [];
 
 if (null !== s::get('discountCode')) {
-	$successes[] = l::get('notification-discount');
+	$successes[] = l('notification-discount');
 }
 
 if (null !== s::get('giftCertificateCode')) {
-	$successes[] = l::get('notification-giftcertificate');
+	$successes[] = l('notification-giftcertificate');
 }
 
 ?>

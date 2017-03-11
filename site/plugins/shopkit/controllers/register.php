@@ -43,17 +43,17 @@ return function ($site, $pages, $page) {
 
                 // Send password reset email
                 if (resetPassword($user->email(),true)) {
-                    $register_message = l::get('register-success');
+                    $register_message = l('register-success');
                     $success = true;
                 } else {
-                    $register_message = l::get('register-failure-verification');
+                    $register_message = l('register-failure-verification');
                 }
 
         	  } catch(Exception $e) {
-        	    $register_message = l::get('register-failure');
+        	    $register_message = l('register-failure');
         	  }
         	} else {
-        	    $register_message = l::get('register-duplicate');
+        	    $register_message = l('register-duplicate');
         	}
         }
     } else {

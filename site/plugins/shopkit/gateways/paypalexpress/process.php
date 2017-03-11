@@ -18,7 +18,7 @@ $site = site();
 	</style>
 </head>
 <body>
-	<p><?= l::get('redirecting') ?></p>
+	<p><?= l('redirecting') ?></p>
 
 	<form method="post" action="<?= $site->paypalexpress_status() == 'sandbox' ? 'https://www.sandbox.paypal.com/cgi-bin/webscr' : 'https://www.paypal.com/cgi-bin/webscr'  ?>" name="paypalexpress">
 		<!-- Setup fields -->
@@ -54,7 +54,7 @@ $site = site();
 		<!-- Transaction ID (Callback for the success page to grab the right transaction page) -->
 		<input type="hidden" name="custom" value="<?= $txn->slug() ?>">
 
-		<button type="submit"><?= l::get('continue-to-paypal') ?></button>
+		<button type="submit"><?= l('continue-to-paypal') ?></button>
 	</form>
 
 	<script>

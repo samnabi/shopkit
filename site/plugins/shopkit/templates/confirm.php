@@ -7,7 +7,7 @@
 
 <?= $page->text()->kirbytext()->bidi() ?>
 
-<h2 dir="auto"><?= l::get('order-details') ?></h2>
+<h2 dir="auto"><?= l('order-details') ?></h2>
 
 <ul dir="auto" class="order-details">
     <?php foreach ($txn->products()->toStructure() as $product) { ?>
@@ -18,29 +18,29 @@
     <?php } ?>
 </ul>
 
-<h2 dir="auto"><?= l::get('personal-details') ?></h2>
+<h2 dir="auto"><?= l('personal-details') ?></h2>
 
 <form class="confirm" method="post">
 
     <input type="hidden" name="txn_id" value="<?= $txn->txn_id() ?>">
 
     <label>
-        <span><?= l::get('full-name') ?></span>
+        <span><?= l('full-name') ?></span>
         <input required type="text" name="payer_name" value="<?= $payer_name ?>">
     </label>
     
     <label>
-        <span><?= l::get('email') ?></span>
+        <span><?= l('email') ?></span>
         <input required type="email" name="payer_email" value="<?= $payer_email ?>">
     </label>
 
     <label>
-        <span><?= l::get('mailing-address') ?></span>
+        <span><?= l('mailing-address') ?></span>
         <textarea name="payer_address"><?= $payer_address ?></textarea>
     </label>
 
 	<button type="submit">
-        <?= l::get('confirm-order') ?>
+        <?= l('confirm-order') ?>
     </button>
 
 </form>

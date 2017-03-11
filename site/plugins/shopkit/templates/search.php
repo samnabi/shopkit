@@ -16,7 +16,7 @@
 <?php if($results->count()) { ?>
 	<?php snippet('list.product',['products' => $results]) ?>
 <?php } else { ?>
-	<p dir="auto" class="notification warning"><?= l::get('no-search-results') ?></p>
+	<p dir="auto" class="notification warning"><?= l('no-search-results') ?></p>
 <?php } ?>
 
 </main>

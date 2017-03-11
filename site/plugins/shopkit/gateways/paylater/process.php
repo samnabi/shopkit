@@ -37,10 +37,10 @@ $user = $site->user();
 
             <input type="hidden" name="txn_id" value="<?= $txn->txn_id() ?>">
             
-            <label for="payer_email"><?= l::get('email') ?></label>
+            <label for="payer_email"><?= l('email') ?></label>
             <input autofocus required type="email" name="payer_email" value="">
             
-            <button type="submit"><?= l::get('pay-later') ?></button>
+            <button type="submit"><?= l('pay-later') ?></button>
         </form>
 
         <p><a href="<?= url('shop/cart') ?>" title="Cancel payment">Back to cart</a></p>

@@ -4,17 +4,17 @@
 
 	<a id="slideshow-prev" <?php if($product->hasPrevVisible()){ echo 'href="'.$product->prevVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
 		<?= f::read('site/plugins/shopkit/assets/svg/arrow-left.svg') ?>
-		<span><?= l::get('prev') ?></span>
+		<span><?= l('prev') ?></span>
 	</a>
 
     <a id="view-grid" href="<?= $product->parent()->url() ?>">
     	<?= f::read('site/plugins/shopkit/assets/svg/grid.svg') ?>
-    	<span><?= l::get('view-grid') ?></span>
+    	<span><?= l('view-grid') ?></span>
     </a>
 
 	<a id="slideshow-next" <?php if($product->hasNextVisible()){ echo 'href="'.$product->nextVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
 		<?= f::read('site/plugins/shopkit/assets/svg/arrow-right.svg') ?>
-		<span><?= l::get('next') ?></span>
+		<span><?= l('next') ?></span>
 	</a>
 </nav>
 
@@ -48,7 +48,7 @@
     			}
 
     			$priceFormatted = is_array($pricelist) ? formatPrice(min($pricelist)) : 0;
-    			if (count($variants) > 1) $priceFormatted = l::get('from').' '.$priceFormatted;
+    			if (count($variants) > 1) $priceFormatted = l('from').' '.$priceFormatted;
 
     			$saleprice = $salepricelist[min(array_keys($pricelist, min($pricelist)))];
 			?>

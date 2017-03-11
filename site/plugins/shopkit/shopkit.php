@@ -365,11 +365,11 @@ function resetPassword($email,$firstTime = false) {
 
   // Build the email text
   if ($firstTime) {
-    $subject = l::get('activate-account');
-    $body = l::get('activate-message-first')."\n\n".$resetLink."\n\n".l::get('activate-message-last');
+    $subject = l('activate-account');
+    $body = l('activate-message-first')."\n\n".$resetLink."\n\n".l('activate-message-last');
   } else {
-    $subject = l::get('reset-password');
-    $body = l::get('reset-message-first')."\n\n".$resetLink."\n\n".l::get('reset-message-last');
+    $subject = l('reset-password');
+    $body = l('reset-message-first')."\n\n".$resetLink."\n\n".l('reset-message-last');
   }
 
   // Send the confirmation email

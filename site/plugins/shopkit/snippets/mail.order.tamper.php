@@ -6,11 +6,11 @@ $site->visit('shop', (string) $site->detectedLanguage());
 $site->kirby->localize();
     
 // Build body text
-$body = l::get('transaction-id').' '.$txn->txn_id()."\n\n";
-$body .= l::get('order-error-message-tamper').' ';
+$body = l('transaction-id').' '.$txn->txn_id()."\n\n";
+$body .= l('order-error-message-tamper').' ';
 $body .= url('shop/orders').'?txn_id='.$txn->txn_id();
 
 // Send the email
-sendMail(l::get('order-error-subject'), $body, $site->error_email()->value);
+sendMail(l('order-error-subject'), $body, $site->error_email()->value);
 
 ?>

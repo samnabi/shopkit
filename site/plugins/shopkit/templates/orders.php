@@ -12,10 +12,10 @@
         <thead>
             <tr>
                 <th></th>
-                <th><?= l::get('products') ?></th>
-                <th><?= l::get('price') ?></th>
+                <th><?= l('products') ?></th>
+                <th><?= l('price') ?></th>
                 <th>
-                    <?= l::get('status') ?>
+                    <?= l('status') ?>
                     <?php if ($orders) { ?>
                         <label class="toggle" for="filter"><?= f::read('site/plugins/shopkit/assets/svg/filter.svg') ?></label>
                         <input type="checkbox" id="filter" <?php if(get('status')) echo 'checked' ?>>
@@ -23,11 +23,11 @@
                             <?php foreach (['pending','paid','shipped'] as $status) { ?>
                                 <label>
                                     <input type="checkbox" name="status[]" value="<?= $status ?>" <?php if(get('status') and in_array($status, get('status'))) echo 'checked' ?>><br>
-                                    <?= l::get($status) ?>
+                                    <?= l($status) ?>
                                 </label>
                             <?php } ?>
                             <button>
-                                <?= l::get('filter') ?>
+                                <?= l('filter') ?>
                             </button>
                         </form>
                     <?php } ?>
@@ -46,7 +46,7 @@
 
                         <form action="<?= url($site->language().'/shop/orders/pdf') ?>" method="POST">
                             <input type="hidden" name="uri" value="<?= $order->uri() ?>">
-                            <button type="submit"><?= l::get('download-invoice') ?></button>
+                            <button type="submit"><?= l('download-invoice') ?></button>
                         </form>
                     </td>
                     <td>
@@ -58,7 +58,7 @@
                                     <small>
                                         <?= $product->variant() ?>
                                         <?= $product->option()->isNotEmpty() ? ' / '.$product->option() : '' ?>
-                                        <?= '/ '.l::get('qty').$product->quantity() ?>
+                                        <?= '/ '.l('qty').$product->quantity() ?>
                                     </small>
                                     <?php if ($product->downloads()->files()->isNotEmpty() and page($product->uri)) { ?>
                                         <?php if ($product->downloads()->expires()->isEmpty() or $product->downloads()->expires()->value > time()) { ?>
@@ -67,12 +67,12 @@
                                                 <br>
                                                 <small>
                                                     <a href="<?= u($product->uri.'/'.$product->variant.'/download/'.$order->uid().'/'.$hash) ?>" title="<?= $product->name() ?>">
-                                                        <?= l::get('download-file') ?> [<?= substr($hash,-7) ?>]
+                                                        <?= l('download-file') ?> [<?= substr($hash,-7) ?>]
                                                     </a>
                                                 </small>
                                             <?php } ?>
                                         <?php } else { ?>
-                                            <br><small><?= l::get('download-expired') ?></small>
+                                            <br><small><?= l('download-expired') ?></small>
                                         <?php } ?>
                                     <?php } ?>
                                 </div>
@@ -85,34 +85,34 @@
                     <td>
                         <table>
                             <tr>
-                                <td><?= l::get('subtotal') ?></td>
+                                <td><?= l('subtotal') ?></td>
                                 <td>
                                     <?= formatPrice($order->subtotal()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
                                 </td>
                             </tr>
                             <?php if ($order->discount()->value and $order->discount()->value != '0.00') { ?>
                                 <tr>
-                                    <td><?= l::get('discount') ?></td>
+                                    <td><?= l('discount') ?></td>
                                     <td>
                                         <?= '&ndash; '.formatPrice($order->discount()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
                                     </td>
                                 </tr>
                             <?php } ?>
                             <tr>
-                                <td><?= l::get('shipping') ?></td>
+                                <td><?= l('shipping') ?></td>
                                 <td>
                                     <!-- Need to cast as (float) to handle null or nonexistent shipping value -->
                                     <?= formatPrice((float)$order->shipping()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td><?= l::get('tax') ?></td>
+                                <td><?= l('tax') ?></td>
                                 <td>
                                     <?= formatPrice($order->tax()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td><strong><?= l::get('total') ?></strong></td>
+                                <td><strong><?= l('total') ?></strong></td>
                                 <td>
                                     <strong>
                                         <?= formatPrice($order->subtotal()->value+$order->shipping()->value+$order->tax()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
@@ -121,7 +121,7 @@
                             </tr>
                             <?php if ($order->giftcertificate()->isNotEmpty() and $order->giftcertificate()->value > 0) { ?>
                                 <tr>
-                                    <td><?= str_replace(' ', '&nbsp;', l::get('gift-certificate')) ?></td>
+                                    <td><?= str_replace(' ', '&nbsp;', l('gift-certificate')) ?></td>
                                     <td>
                                         &ndash;&nbsp;<?= formatPrice($order->giftcertificate()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
                                     </td>
@@ -135,24 +135,24 @@
                                 <form action="" method="POST">
                                     <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
                                     <input type="hidden" name="action" value="mark_pending">
-                                    <input <?php ecco($order->status()->value === 'pending','class="active"') ?> type="submit" value="<?= l::get('pending') ?>">
+                                    <input <?php ecco($order->status()->value === 'pending','class="active"') ?> type="submit" value="<?= l('pending') ?>">
                                 </form>
                                 <form action="" method="POST">
                                     <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
                                     <input type="hidden" name="action" value="mark_paid">
-                                    <input <?php ecco($order->status()->value === 'paid','class="active"') ?> type="submit" value="<?= l::get('paid') ?>">
+                                    <input <?php ecco($order->status()->value === 'paid','class="active"') ?> type="submit" value="<?= l('paid') ?>">
                                 </form>
                                 <form action="" method="POST">
                                     <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
                                     <input type="hidden" name="action" value="mark_shipped">
-                                    <input <?php ecco($order->status()->value === 'shipped','class="active"') ?> type="submit" value="<?= l::get('shipped') ?>">
+                                    <input <?php ecco($order->status()->value === 'shipped','class="active"') ?> type="submit" value="<?= l('shipped') ?>">
                                 </form>
                             </div>
                         <?php } else {
                             switch ($order->status()->value) {
-                                case 'paid': echo l::get('paid'); break;
-                                case 'shipped': echo l::get('shipped'); break;
-                                default: echo l::get('pending'); break;
+                                case 'paid': echo l('paid'); break;
+                                case 'shipped': echo l('shipped'); break;
+                                default: echo l('pending'); break;
                             }
                         } ?>
                     </td>
@@ -162,7 +162,7 @@
                 <tr>
                     <td colspan="4">
                         <p class="notification warning">
-                            <?= l::get('no-filtered-orders') ?>
+                            <?= l('no-filtered-orders') ?>
                         </p>
                     </td>
                 </tr>
@@ -170,7 +170,7 @@
                 <tr>
                     <td colspan="4">
                         <p class="notification">
-                            <?= l::get('no-orders') ?>
+                            <?= l('no-orders') ?>
                         </p>
                     </td>
                 </tr>
@@ -179,7 +179,7 @@
             <tr>
                 <td colspan="4">
                     <p class="notification warning">
-                        <?= l::get('no-auth-orders') ?>
+                        <?= l('no-auth-orders') ?>
                     </p>
                 </td>
             </tr>

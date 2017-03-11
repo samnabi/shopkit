@@ -1,6 +1,6 @@
 <?php $tags = $allProducts->filterBy('tags', '!=', '')->pluck('tags', ',', true) ?>
 <?php if (count($tags) > 0) { ?>
-  <h3 dir="auto"><?= l::get('tags') ?></h3>
+  <h3 dir="auto"><?= l('tags') ?></h3>
   <ul dir="auto" class="menu tags">
     <?php natcasesort($tags) ?>
     <?php foreach ($tags as $tag) { ?>

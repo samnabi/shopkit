@@ -19,32 +19,32 @@
   <form dir="auto" class="register" method="post">
     
     <div class="forRobots">
-      <label for="subject"><?= l::get('honeypot-label') ?></label>
+      <label for="subject"><?= l('honeypot-label') ?></label>
       <input type="text" name="subject">
     </div>
     
     <label>
-      <span><?= l::get('email-address') ?></span>
+      <span><?= l('email-address') ?></span>
       <input type="email" name="email" value="<?= get('email') ?>">
     </label>
   
     <label>
-      <span><?= l::get('full-name') ?></span>
+      <span><?= l('full-name') ?></span>
       <input type="text" name="fullname" value="<?= get('fullname') ?>">
     </label>
   
     <label>
-      <span><?= l::get('country') ?></span>
+      <span><?= l('country') ?></span>
       <select name="country">
         <?php foreach ($countries as $c) { ?>
           <option value="<?= $c->slug() ?>" <?= $c->slug() == get('country') ? 'selected' : '' ?>><?= $c->title() ?></option>
         <?php } ?>
       </select>
-      <span><?= l::get('country-help') ?></span>
+      <span><?= l('country-help') ?></span>
     </label>
   
     <button type="submit" name="register">
-      <?= l::get('register') ?>
+      <?= l('register') ?>
     </button>
 
   </form>

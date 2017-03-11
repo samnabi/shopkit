@@ -29,7 +29,7 @@
 										$priceFormatted = formatPrice($minVariant->price()->value);
 									}
 									if ($product->variants()->toStructure()->count() > 1) {
-										$priceFormatted = l::get('from').' '.$priceFormatted;
+										$priceFormatted = l('from').' '.$priceFormatted;
 									}
 									echo $priceFormatted;
 								?>

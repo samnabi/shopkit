@@ -14,17 +14,17 @@
 <form dir="auto" method="post">
   
   <div class="forRobots">
-    <label for="subject"><?= l::get('honeypot-label') ?></label>
+    <label for="subject"><?= l('honeypot-label') ?></label>
     <input type="text" name="subject">
   </div>
 
   <label>
-    <span><?= l::get('email-address') ?></span>
+    <span><?= l('email-address') ?></span>
     <input type="text" name="email">
   </label>
 
   <button type="submit" name="reset">
-    <?= l::get('reset-submit') ?>
+    <?= l('reset-submit') ?>
   </button>
   
 </form>
