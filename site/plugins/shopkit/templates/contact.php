@@ -1,7 +1,7 @@
 <?php snippet('header') ?>
 <div class="wrapper-main">
 <?php snippet('header.menus') ?>
-<main>
+<main class="contact">
     
 <?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
 
