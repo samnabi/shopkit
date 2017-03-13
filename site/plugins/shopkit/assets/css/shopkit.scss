@@ -73,7 +73,9 @@ $breakpoint-m-l: 75em;
  */
 
 .wrapper {
-	padding: 0.5em 1em;
+	padding: 0.5em 1em 2em;
+	border-bottom: 2px solid $accent;
+	margin-bottom: 2em;
 }
 
 @media (min-width: $breakpoint-s-m) {
@@ -95,12 +97,12 @@ $breakpoint-m-l: 75em;
 @media (min-width: $breakpoint-m-l) {
 	.wrapper {
 		justify-content: center;
+		max-width: 80em;
+		margin-left: auto;
+		margin-right: auto;
 	}
 	.sidebar {
 		width: 16em;
-	}
-	.wrapper-main {
-		max-width: 60em;
 	}
 }
 
@@ -565,7 +567,8 @@ option + option {
  *
  */
 
-.sidebar > h3 {
+.sidebar > h3,
+.sidebar .contact h3 {
 	margin-top: 2em;
 	border-bottom: 2px solid $base;
 }
@@ -618,6 +621,21 @@ option + option {
 	}
 }
 
+.contact h4 { margin-bottom: 0; }
+.contact h4 + p { margin-top: 0; }
+
+.contact dl {
+	dt {
+		font-size: 0.8em;
+		text-transform: uppercase;
+	}
+	dd,
+	dd p:first-child {
+		margin-left: 0;
+		margin-top: 0;
+	}
+
+}
 
 /**
  * Common list styles
@@ -888,40 +906,61 @@ main.product {
 	}
 }
 
+
+@media (min-width: $breakpoint-m-l) {
+	main.product {
+		.details {
+			display: flex;
+			align-items: flex-start;
+		}
+		.slider {
+			width: 40em;
+			margin-right: 1em;
+		}
+		.text {
+			margin-top: 0;
+		}
+	}
+}
+
 @media (min-width: $breakpoint-xs-s) {
-	.variants {
-		float: right;
-		margin: 0 0 1em 1em;
-		max-width: 50%;
+	main.product {
+		.text {
+			.variants {
+				float: right;
+				width: 15em;
+				margin: 0 0 0 1em;
+			}
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+		}
 	}
 }
 
 .variants form {
 	border: 2px solid $base;
 	padding: 0.5em;
-	display: flex;
-	justify-content: space-between;
+	max-width: 100%;
 
 	h3 {
 		margin: 0;
 		line-height: 1.2;
-		padding: calc(0.2em + 2px) 0 0;
 	}
 
 	.description p {
-		margin-top: 0.5em;
-		flex-grow: 1;
+		margin: 0.5em 0 0;
 	}
 
 	.action {
-		margin-top: 0;
-		margin-left: 1em;
-		flex-shrink: 0;
-		text-align: right;
+		margin-top: 0.5em;
 
 		select {
 			margin: 0 0 0.5em;
 			display: block;
+			max-width: 100%;
 		}
 
 		button {
@@ -938,6 +977,7 @@ main.product {
 	}
 }
 
+
 /**
  * Image slider
  *
@@ -953,6 +993,7 @@ main.product {
 		height: 0;
 		overflow: hidden;
 		transition: opacity 0.2s ease-in-out;
+		margin-top: 0;
 
 		img {
 			display: block;
@@ -973,9 +1014,10 @@ main.product {
 	.thumbnails {
 		width: 100%;
 		position: absolute;
-		bottom: 0;
+		top: 0;
 		list-style: none;
 		font-size: 0;
+		text-align: right;
 		
 		li {
 			font-size: 1rem;

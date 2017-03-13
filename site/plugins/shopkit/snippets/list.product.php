@@ -3,6 +3,7 @@
 	<ul class="list products">
 
 	  <?php foreach($products as $product) { ?>
+	  	<?php if(!$product) continue; ?>
 	  	<?php
 	  		if ($product->hasImages()) {
 	  			$image = $product->images()->sortBy('sort', 'asc')->first()->resize(400);
