@@ -42,9 +42,12 @@ if ($country = get('country')) {
 } else if ($user) {
   // Third option: see if the user has set a country in their profile
   $country = $user->country();
+} else if ($site->defaultcountry()->isNotEmpty()) {
+  // Fourth option: get default country from site options
+  $country = $site->defaultcountry();
 } else {
-  // Last resort: assume everybody is American. Lol.
-  $country = 'united-states';
+  // Last resort: choose the first available country
+  $country = page('shop/countries')->children()->invisible()->first()->uid();
 }
 s::set('country',$country);
 

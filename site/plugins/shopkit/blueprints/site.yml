@@ -136,6 +136,14 @@ fields:
         default: low
         required: true
   tax: tax
+  defaultcountry:
+    label: Default country
+    help: Used to calculate shipping and tax if we don't know the visitor's country yet.
+    type: select
+    options: query
+    query:
+      page: 'shop/countries'
+      fetch: invisibleChildren
   tab3:
     label: Payment
     type: tabs
@@ -351,7 +359,6 @@ fields:
   logo:
     label: Site logo
     type:  image
-    width: 1/2
   backgroundColor:
     label: Background colour
     type:  color

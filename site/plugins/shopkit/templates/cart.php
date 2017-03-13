@@ -117,7 +117,7 @@
                         <form id="setCountry" action="" method="POST">
                             <select name="country" onChange="document.forms['setCountry'].submit();">
                                 <?php foreach ($countries as $c) { ?>
-                                    <option <?php ecco(s::get('country') === $c->uid(), 'selected') ?> value="<?= $c->countrycode() ?>">
+                                    <option <?php ecco(s::get('country') == $c->uid(), 'selected') ?> value="<?= $c->countrycode() ?>">
                                         <?= $c->title() ?>
                                     </option>
                                 <?php } ?>
