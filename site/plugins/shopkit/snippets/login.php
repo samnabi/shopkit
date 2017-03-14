@@ -7,8 +7,8 @@
 
   <button aria-expanded="true" aria-controls="login">
     <?= l('login') ?>
-    <span class="expand"><?= f::read('site/plugins/shopkit/assets/svg/caret-down.svg') ?></span>
-    <span class="collapse"><?= f::read('site/plugins/shopkit/assets/svg/caret-up.svg') ?></span>
+    <span class="expand"><?= f::read('site/plugins/shopkit/assets/svg/chevron-down.svg') ?></span>
+    <span class="collapse"><?= f::read('site/plugins/shopkit/assets/svg/chevron-up.svg') ?></span>
   </button>
 
   <form dir="auto" action="<?= url('/login') ?>" method="POST" id="login">

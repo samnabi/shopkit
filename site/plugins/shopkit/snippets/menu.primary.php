@@ -7,7 +7,7 @@
 
   <?php if ($user = $site->user() and $user->can('panel.access.options')) { ?>
     <a class="button admin" href="<?= url('panel/site/add') ?>">
-      <?= f::read('site/plugins/shopkit/assets/svg/new-page.svg') ?>
+      <?= f::read('site/plugins/shopkit/assets/svg/plus.svg') ?>
       New page
     </a>
   <?php } ?>

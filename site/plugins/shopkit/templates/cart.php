@@ -41,16 +41,16 @@
                                 <?php ecco($item->option,' / '.$item->option) ?>
                             </a>
                         </td>
-                        <td>
+                        <td class="quantity">
                             <form action="" method="post">
                                 <input type="hidden" name="action" value="remove">
                                 <input type="hidden" name="id" value="<?= $item->id ?>">
                                 <button type="submit">
                                     <?php 
                                         if ($item->quantity === 1) {
-                                            echo '&#10005;'; // x (delete)
+                                            echo f::read('site/plugins/shopkit/assets/svg/x.svg');
                                         } else {
-                                            echo '&#9660;'; // Down arrow
+                                            echo f::read('site/plugins/shopkit/assets/svg/minus.svg');
                                         }
                                     ?>
                                 </button>
@@ -59,7 +59,9 @@
                             <form action="" method="post">
                                 <input type="hidden" name="action" value="add">
                                 <input type="hidden" name="id" value="<?= $item->id ?>">
-                                <button <?php ecco($item->maxQty,'disabled') ?> type="submit">&#9650;</button>
+                                <button <?php ecco($item->maxQty,'disabled') ?> type="submit">
+                                    <?= f::read('site/plugins/shopkit/assets/svg/plus.svg') ?>
+                                </button>
                             </form>
                         </td>
                         <td>
@@ -111,7 +113,7 @@
                 <?php } ?>
                 <tr>
                     <td colspan="2"><?= l('shipping') ?></td>
-                    <td colspan="2">
+                    <td>
 
                         <!-- Set country -->
                         <form id="setCountry" action="" method="POST">
@@ -142,19 +144,12 @@
                             <button type="submit"><?= l('update-shipping') ?></button>
                         </form>
                     </td>
+                    <td>
                 </tr>
                 <tr>
                     <td colspan="2"><?= l('tax') ?></td>
                     <td>
                         <?= formatPrice($cart->getTax()) ?>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr class="total">
-                    <td colspan="2"><?= l('total') ?></td>
-                    <td>
-                        <?= formatPrice($total) ?>
-                        <?= $site->currency_code() ?>
                     </td>
                     <td></td>
                 </tr>
@@ -179,7 +174,7 @@
                                 </form>
                             </td>
                         <?php } else { ?>
-                            <td colspan="2">
+                            <td>
                                 <form method="post" class="discount">
                                     <input type="text" name="gc">
                                     <button type="submit">
@@ -187,9 +182,18 @@
                                     </button>
                                 </form>
                             </td>
+                            <td></td>
                         <?php } ?>
                     </tr>
                 <?php } ?>
+                <tr class="total">
+                    <td colspan="2"><?= l('total') ?></td>
+                    <td>
+                        <?= $site->currency_code() ?>
+                        <?= formatPrice($total) ?>
+                    </td>
+                    <td></td>
+                </tr>
             </tfoot>
         </table>
     </div>
@@ -201,38 +205,15 @@
         </p>
     <?php } ?>
     
-    <?php if ($giftCertificate and $giftCertificate['amount'] == $total) { ?>
-        <form method="post" action="<?= url('shop/cart/process') ?>">
-            
-            <input type="hidden" name="gateway" value="paylater">
-
-            <input type="hidden" name="giftCertificateAmount" value="<?= $giftCertificate['amount'] ?>">
-            <input type="hidden" name="giftCertificateRemaining" value="<?= $giftCertificate['remaining'] ?>">
-            <input type="hidden" name="giftCertificatePaid" value="true">
-
-            <div class="forRobots">
-              <label for="subject"><?= l('honeypot-label') ?></label>
-              <input type="text" name="subject">
-            </div>
-
-            <div>
-                <button type="submit">
-                    <?= l('confirm-order') ?>
-                </button>
-            </div>
-        </form>
-    <?php } else { ?>
-        <!-- Gateway payment buttons -->
-        <?php foreach($gateways as $gateway) { ?>
-            <?php if ($gateway == 'paylater' and !$cart->canPayLater()) continue ?>
-            <form class="gateway" method="post" action="<?= url('shop/cart/process') ?>">
+    <div class="gateways">
+        <?php if ($giftCertificate and $giftCertificate['amount'] == $total) { ?>
+            <form method="post" action="<?= url('shop/cart/process') ?>">
                 
-                <input type="hidden" name="gateway" value="<?= $gateway ?>">
+                <input type="hidden" name="gateway" value="paylater">
 
-                <?php if ($giftCertificate) { ?>
-                    <input type="hidden" name="giftCertificateAmount" value="<?= $giftCertificate['amount'] ?>">
-                    <input type="hidden" name="giftCertificateRemaining" value="<?= $giftCertificate['remaining'] ?>">
-                <?php } ?>
+                <input type="hidden" name="giftCertificateAmount" value="<?= $giftCertificate['amount'] ?>">
+                <input type="hidden" name="giftCertificateRemaining" value="<?= $giftCertificate['remaining'] ?>">
+                <input type="hidden" name="giftCertificatePaid" value="true">
 
                 <div class="forRobots">
                   <label for="subject"><?= l('honeypot-label') ?></label>
@@ -240,24 +221,49 @@
                 </div>
 
                 <div>
-                    <button type="submit">
-                        <?php if ($site->content()->get($gateway.'_logo')->isEmpty()) { ?>
-                            <?= $site->content()->get($gateway.'_text') ?>
-                        <?php } else { ?>
-                            <?php if ($gateway != 'paylater') echo '<span>'.l('pay-now').'</span>'; ?>
-                            <img src="<?= $site->file($site->content()->get($gateway.'_logo'))->url()  ?>" alt="<?= $site->content()->get($gateway.'_text') ?>">
-                        <?php } ?>
-
-                        <?php if ($site->content()->get($gateway.'_status') == 'sandbox') { ?>
-                            <p class="notification warning">
-                                <?= l('sandbox-message') ?>
-                            </p>
-                        <?php } ?>
+                    <button class="accent" type="submit">
+                        <?= l('confirm-order') ?>
                     </button>
                 </div>
             </form>
+        <?php } else { ?>
+            <!-- Gateway payment buttons -->
+            <?php foreach($gateways as $gateway) { ?>
+                <?php if ($gateway == 'paylater' and !$cart->canPayLater()) continue ?>
+                <form method="post" action="<?= url('shop/cart/process') ?>">
+                    
+                    <input type="hidden" name="gateway" value="<?= $gateway ?>">
+
+                    <?php if ($giftCertificate) { ?>
+                        <input type="hidden" name="giftCertificateAmount" value="<?= $giftCertificate['amount'] ?>">
+                        <input type="hidden" name="giftCertificateRemaining" value="<?= $giftCertificate['remaining'] ?>">
+                    <?php } ?>
+
+                    <div class="forRobots">
+                      <label for="subject"><?= l('honeypot-label') ?></label>
+                      <input type="text" name="subject">
+                    </div>
+
+                    <div>
+                        <button class="accent" type="submit">
+                            <?php if ($site->content()->get($gateway.'_logo')->isEmpty()) { ?>
+                                <?= $site->content()->get($gateway.'_text') ?>
+                            <?php } else { ?>
+                                <?php if ($gateway != 'paylater') echo '<span>'.l('pay-now').'</span>'; ?>
+                                <img src="<?= $site->file($site->content()->get($gateway.'_logo'))->url()  ?>" alt="<?= $site->content()->get($gateway.'_text') ?>">
+                            <?php } ?>
+
+                            <?php if ($site->content()->get($gateway.'_status') == 'sandbox') { ?>
+                                <p class="notification warning">
+                                    <?= l('sandbox-message') ?>
+                                </p>
+                            <?php } ?>
+                        </button>
+                    </div>
+                </form>
+            <?php } ?>
         <?php } ?>
-    <?php } ?>
+    </div>
 
     <script type="text/javascript">
         // Hide setCountry and setShipping submit buttons

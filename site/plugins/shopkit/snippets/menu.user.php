@@ -3,24 +3,24 @@
   <?php if ($user->can('panel.access.options')) { ?>
 
     <a class="button admin" href="<?= url('panel/pages/'.$page->uri().'/edit') ?>">
-      <?= f::read('site/plugins/shopkit/assets/svg/edit-page.svg') ?>
+      <?= f::read('site/plugins/shopkit/assets/svg/pencil.svg') ?>
       <?= l('edit-page') ?>
     </a>
 
     <a class="button admin" href="<?= url('panel') ?>">
-      <?= f::read('site/plugins/shopkit/assets/svg/dashboard.svg') ?>
+      <?= f::read('site/plugins/shopkit/assets/svg/tachometer.svg') ?>
       Dashboard
     </a>
 
 	<a class="button admin" href="<?= url('panel/options') ?>">
-      <?= f::read('site/plugins/shopkit/assets/svg/gear.svg') ?>
+      <?= f::read('site/plugins/shopkit/assets/svg/cog.svg') ?>
 	  <?= l('site-options') ?>
 	</a>
 
   <?php } ?>
   
   <a class="button admin" href="<?= url('shop/orders') ?>">
-    <?= f::read('site/plugins/shopkit/assets/svg/orders.svg') ?>
+    <?= f::read('site/plugins/shopkit/assets/svg/creditcard.svg') ?>
     <?= l('view-orders') ?>
   </a>
   
@@ -30,7 +30,7 @@
   </a>
   
   <a class="button admin" href="<?= url('logout') ?>">
-    <?= f::read('site/plugins/shopkit/assets/svg/logout.svg') ?>
+    <?= f::read('site/plugins/shopkit/assets/svg/sign-out.svg') ?>
     <?= l('logout') ?>
   </a>
   

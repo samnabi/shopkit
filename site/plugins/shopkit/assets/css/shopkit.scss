@@ -1103,37 +1103,196 @@ a.slideshow {
 	padding-bottom: 1rem;
 }
 
-
 /**
- * Orders page
+ * Cart page
  *
  */
 
-.toggle svg {
-	fill: #3399ff;
-	cursor: pointer;
-
-	&:hover,
-	&:focus {
-		fill: #40B7E3;
-	}
-
-	&:active {
-		fill: #0A90C2;
-	}
+.table-overflow {
+	overflow-x: auto;
 }
-.toggle + input {
-	visibility: hidden;
 
-	& + form {
+.checkout {
+	min-width: 100%;
+	border-collapse: collapse;
+	text-align: right;
+
+	& * + * { margin-top: 0; }
+
+	td {
+		display: inline-block;
+
+		img {
+			float: left;
+			margin: 0 0.5em 0 0;
+		}
+
+		&:first-child {
+			padding-left: 0;
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+		}
+
+		select {
+			width: 10em;
+			max-width: 100%;
+		}
+	}
+
+	thead tr {
 		display: none;
 	}
 
-	&:checked {
-		margin-bottom: 1rem;
+	tbody tr {
+		width: 100%;
+		display: block;
+
+		td:first-child {
+			width: 100%;
+			display: block;
+			text-align: left;
+			padding-top: 0.5em;
+		}
+
+		td:not(:first-child) {
+			padding-bottom: 0.5em;
+		}
+
+		& td:first-child {
+			border-top: 2px solid $base;
+		}
+
+		button {
+			font-size: 0.8em;
+		}
 	}
 
-	&:checked + form {
-		display: block;
+	tfoot {
+		border-top: 2px solid $base;
+
+		tr {
+			display: block;
+			font-size: 0;
+
+			&:last-child {
+				font-weight: bold;
+			}
+
+			td {
+				font-size: 1rem;
+				width: 50%;
+
+				&:first-child {
+					text-align: left;
+				}
+			}
+		}
+
+		.discount {
+			text-align: right;
+			font-size: 0.8em;
+			white-space: nowrap;
+
+			input,
+			button {
+				display: inline-block;
+			}
+
+			input {
+				max-width: 40%;
+			}
+		}
+	}
+
+	.quantity {
+		white-space: nowrap;
+		margin-right: 0.5em;
+	}
+	.quantity > form,
+	.quantity > span {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.quantity button {
+		background: inherit;
+		border: none;
+		padding: 0;
+		margin: 0;
+		
+		svg {
+			fill: $baseDarker;
+		}
+	}
+}
+
+@media (min-width: $breakpoint-xs-s) {
+	.checkout {
+		thead tr,
+		tbody tr,
+		tfoot tr {
+			display: table-row;
+		}
+
+		td,
+		tbody tr td:first-child {
+			width: auto;
+			display: table-cell;
+		}
+
+		td,
+		th {
+			padding: 0.5em;
+		}
+
+		td:last-child {
+			padding-right: 0;
+		}
+
+		tbody tr td {
+			border-top: 2px solid $base;
+		}
+
+		thead th:first-child {
+			padding-left: 0;
+			text-align: left;
+		}
+
+		tfoot tr td {
+			width: auto;
+
+			&:first-child {
+				text-align: right;
+			}
+			&:last-child .discount {
+				text-align: left;
+			}
+		}
+	}
+}
+
+.gateways {
+	text-align: right;
+
+	form {
+		vertical-align: top;
+		display: inline-block;
+		max-width: 15em;
+		margin: 0 0 0 1em;
+
+		img {
+			max-height: 2em;
+			max-width: 100%;
+			display: block;
+			margin: 0 auto;
+		}
+
+		.notification {
+			font-size: 0.8em;
+			color: black;
+			margin: 1em -0.5rem -0.2rem;
+		}
 	}
 }

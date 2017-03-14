@@ -15,10 +15,12 @@
                 <th><?= l('products') ?></th>
                 <th><?= l('price') ?></th>
                 <th>
-                    <?= l('status') ?>
                     <?php if ($orders) { ?>
-                        <label class="toggle" for="filter"><?= f::read('site/plugins/shopkit/assets/svg/filter.svg') ?></label>
-                        <input type="checkbox" id="filter" <?php if(get('status')) echo 'checked' ?>>
+                        <button aria-expanded="true" aria-controls="login">
+                          <?= l('status') ?>
+                          <span class="expand"><?= f::read('site/plugins/shopkit/assets/svg/chevron-down.svg') ?></span>
+                          <span class="collapse"><?= f::read('site/plugins/shopkit/assets/svg/chevron-up.svg') ?></span>
+                        </button>
                         <form class="filter" action="" method="post">
                             <?php foreach (['pending','paid','shipped'] as $status) { ?>
                                 <label>
@@ -30,6 +32,8 @@
                                 <?= l('filter') ?>
                             </button>
                         </form>
+                    <?php } else { ?>
+                        <?= l('status') ?>
                     <?php } ?>
                 </th>
             </tr>
