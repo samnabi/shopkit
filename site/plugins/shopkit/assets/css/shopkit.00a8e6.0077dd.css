@@ -363,6 +363,22 @@ input[type="submit"] {
     input[type="submit"].admin:hover,
     input[type="submit"].admin:focus {
       text-decoration: none; }
+  button[disabled],
+  .button[disabled],
+  input[type="submit"][disabled] {
+    cursor: not-allowed;
+    color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.1); }
+    button[disabled]:hover, button[disabled]:focus, button[disabled]:active,
+    .button[disabled]:hover,
+    .button[disabled]:focus,
+    .button[disabled]:active,
+    input[type="submit"][disabled]:hover,
+    input[type="submit"][disabled]:focus,
+    input[type="submit"][disabled]:active {
+      background-color: rgba(0, 0, 0, 0.08);
+      border-color: rgba(0, 0, 0, 0.1); }
 
 button[aria-expanded] {
   display: none;
@@ -914,7 +930,8 @@ main.product .brand + h1 {
   .slideshow-nav a:hover, .slideshow-nav a:focus, .slideshow-nav span:hover, .slideshow-nav span:focus {
     text-decoration: none; }
   .slideshow-nav a[disabled], .slideshow-nav span[disabled] {
-    opacity: 0.2; }
+    opacity: 0.2;
+    cursor: not-allowed; }
 .slideshow-nav svg {
   width: 2rem;
   height: 2rem; }
@@ -1014,6 +1031,8 @@ a.slideshow {
     margin: 0; }
     .checkout .quantity button svg {
       fill: rgba(0, 0, 0, 0.3); }
+    .checkout .quantity button[disabled] svg {
+      fill: rgba(0, 0, 0, 0.08); }
 
 @media (min-width: 30em) {
   .checkout thead tr,

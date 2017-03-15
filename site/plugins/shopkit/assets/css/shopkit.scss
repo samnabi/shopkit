@@ -282,6 +282,20 @@ input[type="submit"] {
 			text-decoration: none;
 		}
 	}
+
+	&[disabled] {
+		cursor: not-allowed;
+		color: $baseDarker;
+		background-color: $base;
+		border-color: rgba(0,0,0,0.1);
+
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: $base;
+			border-color: rgba(0,0,0,0.1);
+		}
+	}
 }
 
 
@@ -1094,6 +1108,7 @@ main.product {
 
 		&[disabled] {
 			opacity: 0.2;
+			cursor: not-allowed;
 		}
 	}
 
@@ -1249,6 +1264,10 @@ a.slideshow {
 		
 		svg {
 			fill: $baseDarker;
+		}
+
+		&[disabled] svg {
+			fill: $base;
 		}
 	}
 }
