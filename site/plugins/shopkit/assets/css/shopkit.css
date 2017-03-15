@@ -319,6 +319,7 @@ input[type="submit"] {
   button:active,
   .button:active,
   input[type="submit"]:active {
+    color: black;
     background-color: rgba(0, 0, 0, 0.15); }
   button.accent, button.warning, button.success,
   .button.accent,
@@ -380,7 +381,7 @@ input[type="submit"] {
   button.admin,
   .button.admin,
   input[type="submit"].admin {
-    font-size: 0.8em;
+    font-size: 0.8rem;
     color: black;
     border-radius: 10em; }
     button.admin svg,
@@ -429,7 +430,6 @@ button[aria-expanded="false"] .collapse {
 button[aria-expanded] + * {
   margin-top: 0;
   overflow-y: hidden;
-  transition: max-height 0.3s, opacity 0.5s;
   opacity: 1; }
   button[aria-expanded] + * > li:first-child {
     margin-top: 1em; }
@@ -438,6 +438,9 @@ button[aria-expanded="false"] + * {
   opacity: 0;
   max-height: 0 !important;
   /* Overrides the inline max-height applied by JavaScript */ }
+
+.animate button[aria-expanded] + * {
+  transition: max-height 0.3s, opacity 0.5s; }
 
 .menu button[aria-expanded] {
   margin-left: 0.5em; }
@@ -462,7 +465,7 @@ button[aria-expanded="false"] + * {
  */
 .breadcrumb {
   margin-top: 0;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   border-bottom: 2px solid rgba(0, 0, 0, 0.08);
   padding: 0 1em 1em; }
   .breadcrumb li {
@@ -507,7 +510,7 @@ label {
   display: block; }
 
 label > span {
-  font-size: 0.8em;
+  font-size: 0.8rem;
   display: block; }
 
 option + option {
@@ -548,7 +551,7 @@ option + option {
   .login .notification {
     text-align: left; }
   .login > button[aria-expanded] {
-    font-size: 0.8em; }
+    font-size: 0.8rem; }
   .login form {
     display: flex;
     flex-direction: column;
@@ -564,7 +567,7 @@ option + option {
     .login ul li {
       margin-top: 0;
       display: inline-block;
-      font-size: 0.8em; }
+      font-size: 0.8rem; }
       .login ul li + li {
         margin-left: 1em; }
 
@@ -649,7 +652,7 @@ option + option {
 .menu.brands li {
   margin: 0;
   display: inline;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   line-height: 2; }
   .menu.tags li a,
   .menu.brands li a {
@@ -713,7 +716,7 @@ option + option {
   .list.featured img {
     display: block; }
   .list.featured .variant {
-    font-size: 0.8em; }
+    font-size: 0.8rem; }
 
 /**
  * Category list
@@ -768,6 +771,7 @@ option + option {
  *
  */
 .brand {
+  font-size: 0.8rem;
   text-transform: uppercase; }
 
 .list.products li {
@@ -880,7 +884,7 @@ main.product .brand + h1 {
       margin: 0; }
     .variants form .action .remaining {
       margin-top: 0;
-      font-size: 0.8em;
+      font-size: 0.8rem;
       text-align: center;
       color: #00a8e6; }
 
@@ -939,35 +943,45 @@ main.product .brand + h1 {
  * Slideshow
  *
  */
-.slideshow-nav a, .slideshow-nav span {
-  line-height: 1;
-  padding: 0.5rem 0.5rem 0.3rem; }
-  .slideshow-nav a:hover, .slideshow-nav a:focus, .slideshow-nav span:hover, .slideshow-nav span:focus {
-    text-decoration: none; }
-  .slideshow-nav a[disabled], .slideshow-nav span[disabled] {
-    opacity: 0.2;
-    cursor: not-allowed; }
-.slideshow-nav svg {
-  width: 2rem;
-  height: 2rem; }
+.slideshow-nav {
+  text-align: center;
+  font-size: 0.8rem; }
+  .slideshow-nav .button {
+    margin: 0 1em; }
+  .slideshow-nav svg {
+    fill: black;
+    display: block;
+    margin: 0.2em auto 0; }
 
 a.slideshow {
   display: block;
   color: black;
-  padding-bottom: 1rem; }
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.08); }
   a.slideshow:hover, a.slideshow:focus {
+    background: rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 -4px 0 -2px #00a8e6, inset 0 0 0 2px rgba(0, 0, 0, 0.08);
     text-decoration: none; }
-  a.slideshow:active {
-    opacity: 0.8; }
+    a.slideshow:hover h3, a.slideshow:focus h3 {
+      color: #0077dd; }
+  a.slideshow .description {
+    margin-top: 0;
+    padding: 1em; }
+    a.slideshow .description h3,
+    a.slideshow .description p {
+      margin-top: 0;
+      margin-bottom: 0; }
+    a.slideshow .description .price {
+      color: #00a8e6;
+      margin-top: 1em;
+      margin-bottom: 1em; }
 
-.slideshow .description > h3 {
-  border-top: 1px solid black;
-  padding-top: 1rem; }
-
-.slideshow .description > div:last-child {
-  border-bottom: 1px solid black;
-  padding-bottom: 1rem; }
-
+@media (min-width: 75em) {
+  a.slideshow {
+    display: flex; }
+    a.slideshow img {
+      flex-grow: 1; }
+    a.slideshow img + .description {
+      max-width: 15em; } }
 /**
  * Cart page
  *
@@ -1010,7 +1024,7 @@ a.slideshow {
     .checkout tbody tr td:first-child {
       border-top: 2px solid rgba(0, 0, 0, 0.08); }
     .checkout tbody tr button {
-      font-size: 0.8em; }
+      font-size: 0.8rem; }
   .checkout tfoot {
     border-top: 2px solid rgba(0, 0, 0, 0.08); }
     .checkout tfoot tr {
@@ -1025,7 +1039,7 @@ a.slideshow {
           text-align: left; }
     .checkout tfoot .discount {
       text-align: right;
-      font-size: 0.8em;
+      font-size: 0.8rem;
       white-space: nowrap; }
       .checkout tfoot .discount input,
       .checkout tfoot .discount button {
@@ -1087,7 +1101,7 @@ a.slideshow {
       display: block;
       margin: 0 auto; }
     .gateways form .notification {
-      font-size: 0.8em;
+      font-size: 0.8rem;
       color: black;
       margin: 1em -0.5rem -0.2rem; }
 
@@ -1120,7 +1134,7 @@ a.slideshow {
     text-align: right; }
   .orders .filter {
     font-weight: normal;
-    font-size: 0.8em; }
+    font-size: 0.8rem; }
     .orders .filter label {
       white-space: nowrap; }
     .orders .filter button {
@@ -1135,6 +1149,6 @@ a.slideshow {
   .orders td input[type="submit"],
   .orders td button {
     margin-top: 0.5em;
-    font-size: 0.8em; }
+    font-size: 0.8rem; }
 
 /*# sourceMappingURL=shopkit.css.map */
