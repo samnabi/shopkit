@@ -34,16 +34,15 @@
     </label>
   
     <label>
-      <span><?= l('country') ?></span>
+      <span><?= l('country') ?> (<?= l('country-help') ?>)</span>
       <select name="country">
         <?php foreach ($countries as $c) { ?>
           <option value="<?= $c->slug() ?>" <?= $c->slug() == get('country') ? 'selected' : '' ?>><?= $c->title() ?></option>
         <?php } ?>
       </select>
-      <span><?= l('country-help') ?></span>
     </label>
   
-    <button type="submit" name="register">
+    <button class="accent" type="submit" name="register">
       <?= l('register') ?>
     </button>
 

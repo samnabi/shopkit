@@ -4,9 +4,10 @@
 
   <?php snippet('list.featured') ?>
 
-  <?php snippet('menu.categories') ?>
-
-  <?php snippet('search') ?>
+  <section>
+    <?php snippet('menu.categories') ?>
+    <?php snippet('search') ?>
+  </section>
 
   <?php snippet('menu.brands') ?>
 

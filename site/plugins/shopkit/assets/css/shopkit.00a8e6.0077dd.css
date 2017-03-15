@@ -152,10 +152,6 @@ body {
   background-size: 100% auto;
   /* Fallback */
   background-size: cover; }
-  body > .wrapper {
-    background: white;
-    /* Fallback */
-    background: rgba(255, 255, 255, 0.8); }
 
 *, *:before, *:after {
   box-sizing: inherit; }
@@ -172,19 +168,25 @@ body {
  *
  */
 .wrapper {
-  padding: 0.5em 1em 2em;
-  border-bottom: 2px solid #0BA2DA;
-  margin-bottom: 2em; }
+  padding: 0.5em; }
 
 @media (min-width: 45em) {
   .wrapper {
-    display: flex; }
+    padding: 1em; } }
+.wrapper-main {
+  background: white;
+  padding: 1em; }
+
+@media (min-width: 45em) {
+  .wrapper {
+    display: flex;
+    align-items: flex-start; }
 
   .sidebar {
     order: 1;
-    width: 12em;
+    width: 15em;
     flex-shrink: 0;
-    margin-right: 2em; }
+    margin: 0 1em 0 0; }
 
   .wrapper-main {
     order: 2;
@@ -197,22 +199,50 @@ body {
     margin-right: auto; }
 
   .sidebar {
-    width: 16em; } }
+    width: 18em; } }
 /**
  * Typography
  * 
  */
+@font-face {
+  font-family: 'asap';
+  src: url("../fonts/asap-bold.woff2") format("woff2"), url("../fonts/asap-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal; }
+@font-face {
+  font-family: 'asap';
+  src: url("../fonts/asap-bolditalic.woff2") format("woff2"), url("../fonts/asap-bolditalic.woff") format("woff");
+  font-weight: bold;
+  font-style: italic; }
+@font-face {
+  font-family: 'asap';
+  src: url("../fonts/asap-italic.woff2") format("woff2"), url("../fonts/asap-italic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic; }
+@font-face {
+  font-family: 'asap';
+  src: url("../fonts/asap-regular.woff2") format("woff2"), url("../fonts/asap-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
 html,
 body,
 input,
 textarea,
 button,
-.button,
 select,
 option {
   color: black;
   line-height: 1.6;
-  font-family: asap, sans-serif; }
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; }
+
+.fonts-loaded html,
+.fonts-loaded body,
+.fonts-loaded input,
+.fonts-loaded textarea,
+.fonts-loaded button,
+.fonts-loaded select,
+.fonts-loaded option {
+  font-family: asap, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; }
 
 :not(pre) > code,
 :not(pre) > kbd,
@@ -461,12 +491,12 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 textarea {
-  background: white;
+  background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.15);
   padding: 0.2em 0.5em;
   /* Fallback */
   padding: calc(0.2em + 1px) 0.5em;
-  width: 10em; }
+  width: 15em; }
 
 form button,
 form input[type="submit"] {
@@ -528,7 +558,9 @@ option + option {
   .login ul {
     padding-bottom: 1em;
     border-bottom: 2px solid #0BA2DA;
-    text-align: center; }
+    text-align: center;
+    text-align: right;
+    width: 100%; }
     .login ul li {
       margin-top: 0;
       display: inline-block;
@@ -547,23 +579,19 @@ option + option {
       padding-right: 1em;
       max-width: 10em; }
     .login form button {
-      max-width: 20%; }
-    .login form ul {
-      text-align: right;
-      width: 100%; } }
+      max-width: 20%; } }
 /**
  * Admin menu
  *
  */
 .user {
-  padding-bottom: 0.5em;
   margin-bottom: 1em;
   border-bottom: 2px solid rgba(0, 0, 0, 0.08);
   display: flex;
   flex-wrap: wrap;
   justify-content: center; }
   .user a {
-    margin: 0.5em; }
+    margin: 0 0.5em 1em; }
 
 /**
  * Primary navigation menu
@@ -595,24 +623,24 @@ option + option {
  * Sidebar
  *
  */
-.sidebar > h3,
-.sidebar .contact h3 {
-  margin-top: 2em;
+.sidebar section,
+.sidebar h1 {
+  background-color: white;
+  padding: 1rem; }
+
+.sidebar section > h3 {
+  margin-top: 0;
   border-bottom: 2px solid rgba(0, 0, 0, 0.08); }
 
-.sidebar > .menu.categories {
-  margin-top: 2em;
-  padding-top: 1em; }
+.sidebar section > .menu.categories {
+  margin-top: 0; }
 
 .search {
   display: flex;
-  align-items: space-between;
-  margin-top: 2em; }
+  align-items: space-between; }
   .search input {
-    width: 0;
-    /* Undo 10em width for normal inputs */
+    width: 50%;
     flex-grow: 1;
-    /* Takes all available space */
     margin-right: 0.5em; }
   .search button {
     margin-top: 0; }
@@ -655,8 +683,7 @@ option + option {
  *
  */
 .list + .button.admin {
-  margin-top: 0;
-  margin-bottom: 3em; }
+  margin-top: 0; }
 
 /**
  * Featured product list
@@ -716,7 +743,7 @@ option + option {
     .list.categories a span {
       align-self: flex-end;
       width: 100%;
-      padding: 0 0 0.5rem 1rem;
+      padding: 0 1rem 0.5rem 1rem;
       z-index: 1; }
       .list.categories a span:before {
         position: absolute;
@@ -726,12 +753,9 @@ option + option {
         bottom: 0;
         left: 0;
         background-image: linear-gradient(10deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
-        box-shadow: inset 0 0 0 2px #0BA2DA, inset 0 0 0 4px white;
         z-index: -1; }
     .list.categories a:hover span:before, .list.categories a:focus span:before {
       background-image: linear-gradient(10deg, rgba(0, 0, 0, 0.8) 0%, hsla(196,90%,45%,0.3) 100%); }
-    .list.categories a:active span:before {
-      box-shadow: inset 0 0 0 2px #9FCEDF, inset 0 0 0 4px white; }
 
 @media (min-width: 45em) {
   .list.categories li {
@@ -827,15 +851,6 @@ main.product .slider {
 main.product .brand + h1 {
   margin-top: 0; }
 
-@media (min-width: 75em) {
-  main.product .details {
-    display: flex;
-    align-items: flex-start; }
-  main.product .slider {
-    width: 40em;
-    margin-right: 1em; }
-  main.product .text {
-    margin-top: 0; } }
 @media (min-width: 30em) {
   main.product .text .variants {
     float: right;
