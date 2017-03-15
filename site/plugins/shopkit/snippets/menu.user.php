@@ -9,7 +9,7 @@
 
     <a class="button admin" href="<?= url('panel') ?>">
       <?= f::read('site/plugins/shopkit/assets/svg/tachometer.svg') ?>
-      Dashboard
+      <?= l('dashboard') ?>
     </a>
 
 	<a class="button admin" href="<?= url('panel/options') ?>">
@@ -32,7 +32,7 @@
   
   <a class="button admin" href="<?= url('panel/users/'.$user->username().'/edit') ?>">
     <?= f::read('site/plugins/shopkit/assets/svg/user.svg') ?>
-    My account
+    <?= l('my-account') ?>
   </a>
   
   <a class="button admin" href="<?= url('logout') ?>">

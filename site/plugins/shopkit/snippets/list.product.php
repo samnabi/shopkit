@@ -62,6 +62,6 @@
 <?php if ($page->template() == 'category' and $user = $site->user() and $user->can('panel.access.options')) { ?>
 	<a class="button admin" href="<?= url('panel/pages/'.$page->uri().'/add?template=product') ?>">
 		<?= f::read('site/plugins/shopkit/assets/svg/plus.svg') ?>
-		New Product
+		<?= l('new-product') ?>
 	</a>
 <?php } ?>

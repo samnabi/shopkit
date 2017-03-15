@@ -32,6 +32,10 @@
 'from' => 'À partir de',
 'remaining' => 'restants',
 
+'new-page' => 'Nouvelle page',
+'new-category' => 'Nouvelle catégorie',
+'new-product' => 'Nouveau produit',
+
 
 // plugins/shopkit/shopkit.php
 
@@ -76,6 +80,7 @@
 // site/plugins/shopkit/snippets/header.user.php
 
 'edit-page' => 'Éditer la page',
+'dashboard' => 'Tableau de bord',
 'site-options' => 'Paramètres du site',
 'view-orders' => 'Commandes',
 'my-account' => 'Mon compte',

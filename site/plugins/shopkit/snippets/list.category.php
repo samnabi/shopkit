@@ -26,7 +26,7 @@
 	<?php if ($user = $site->user() and $user->can('panel.access.options')) { ?>
 		<a class="button admin" href="<?= url('panel/pages/'.$page->uri().'/add?template=category') ?>">
 			<?= f::read('site/plugins/shopkit/assets/svg/plus.svg') ?>
-			New Category
+			<?= l('new-category') ?>
 		</a>
 	<?php } ?>
 <?php } ?>
