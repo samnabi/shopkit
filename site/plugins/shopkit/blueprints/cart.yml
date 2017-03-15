@@ -1,6 +1,5 @@
 title: Cart
-pages:
-  max: 1
+pages: false
 options:
   delete: false
   status: false
