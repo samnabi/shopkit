@@ -173,7 +173,8 @@ nav,
 
 // Lists
 
-ul {
+.menu,
+.list {
 	padding: 0;
 	list-style: none;
 
@@ -208,7 +209,9 @@ svg {
  * 
  */
 
-button, .button {
+button,
+.button,
+input[type="submit"] {
 	display: inline-block;
 	color: black;
 	padding: 0.2em 0.5em;
@@ -227,7 +230,9 @@ button, .button {
 		background-color: $baseDark;
 	}
 
-	&.accent {
+	&.accent,
+	&.warning,
+	&.success {
 		color: white;
 		background-color: $accent;
 		border-color: rgba(0,0,0,0.2);
@@ -243,6 +248,23 @@ button, .button {
 
 		& svg {
 			fill: white;
+		}
+	}
+
+	&.warning {
+		background-color: $warning;
+		color: black;
+
+		&:active {
+			background-color: darken($warning, 10);
+		}
+	}
+
+	&.success {
+		background-color: $success;
+
+		&:active {
+			background-color: darken($success, 10);
 		}
 	}
 
@@ -626,8 +648,7 @@ option + option {
 
 .contact dl {
 	dt {
-		font-size: 0.8em;
-		text-transform: uppercase;
+		font-weight: bold;
 	}
 	dd,
 	dd p:first-child {
@@ -636,6 +657,7 @@ option + option {
 	}
 
 }
+
 
 /**
  * Common list styles
@@ -698,6 +720,7 @@ option + option {
 		font-size: $text-s;
 	}
 }
+
 
 /**
  * Category list
@@ -892,6 +915,7 @@ option + option {
 	}
 }
 
+
 /**
  * Product page
  *
@@ -905,7 +929,6 @@ main.product {
 		margin-top: 0;
 	}
 }
-
 
 @media (min-width: $breakpoint-m-l) {
 	main.product {
@@ -1053,6 +1076,7 @@ main.product {
 	}
 }
 
+
 /**
  * Slideshow
  *
@@ -1102,6 +1126,7 @@ a.slideshow {
 	border-bottom: 1px solid black;
 	padding-bottom: 1rem;
 }
+
 
 /**
  * Cart page
@@ -1166,7 +1191,7 @@ a.slideshow {
 		}
 
 		button {
-			font-size: 0.8em;
+			font-size: $text-s;
 		}
 	}
 
@@ -1193,7 +1218,7 @@ a.slideshow {
 
 		.discount {
 			text-align: right;
-			font-size: 0.8em;
+			font-size: $text-s;
 			white-space: nowrap;
 
 			input,
@@ -1290,9 +1315,83 @@ a.slideshow {
 		}
 
 		.notification {
-			font-size: 0.8em;
+			font-size: $text-s;
 			color: black;
 			margin: 1em -0.5rem -0.2rem;
 		}
+	}
+}
+
+
+/**
+ * Orders page
+ *
+ */
+
+.orders {
+	min-width: 100%;
+	border-collapse: collapse;
+
+	& * + * { margin-top: 0; }
+
+	& > tbody > tr > td {
+		border-top: 2px solid $base;
+		padding: 0.5em 0.5em 0.8em;
+
+		&:first-child { padding-left: 0; }
+		&:last-child { padding-right: 0; }
+	}
+
+	th {
+		text-align: left;
+		padding: 0.5em 0.5em 1em;
+
+		& > button {
+			white-space: nowrap;
+			font-weight: bold;
+		}
+
+		&:last-child {
+			padding-right: 0;
+		}
+	}
+
+	th:nth-child(3),
+	td:nth-child(3) {
+		text-align: right;
+	}
+
+	.filter {
+		font-weight: normal;
+		font-size: $text-s;
+
+		label {
+			white-space: nowrap;
+		}
+
+		button {
+			margin-top: 0.5em;
+		}
+	}
+
+	td {
+		vertical-align: top;
+	}
+
+
+
+	ul {
+		padding: 0;
+		margin: 0 0 0 1em;
+	}
+
+	table {
+		width: 100%;
+	}
+
+	td input[type="submit"],
+	td button {
+		margin-top: 0.5em;
+		font-size: $text-s;	
 	}
 }

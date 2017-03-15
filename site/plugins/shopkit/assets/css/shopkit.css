@@ -242,10 +242,12 @@ nav a:focus,
 .list a:focus {
   text-decoration: none; }
 
-ul {
+.menu,
+.list {
   padding: 0;
   list-style: none; }
-  ul ul {
+  .menu ul,
+  .list ul {
     margin-left: 1em; }
 
 /**
@@ -267,7 +269,9 @@ svg {
  * Buttons
  * 
  */
-button, .button {
+button,
+.button,
+input[type="submit"] {
   display: inline-block;
   color: black;
   padding: 0.2em 0.5em;
@@ -276,27 +280,88 @@ button, .button {
   background-color: rgba(0, 0, 0, 0.08);
   border: 2px solid black;
   border-color: rgba(0, 0, 0, 0.1); }
-  button:hover, button:focus, .button:hover, .button:focus {
+  button:hover, button:focus,
+  .button:hover,
+  .button:focus,
+  input[type="submit"]:hover,
+  input[type="submit"]:focus {
     border-color: rgba(0, 0, 0, 0.2); }
-  button:active, .button:active {
+  button:active,
+  .button:active,
+  input[type="submit"]:active {
     background-color: rgba(0, 0, 0, 0.15); }
-  button.accent, .button.accent {
+  button.accent, button.warning, button.success,
+  .button.accent,
+  .button.warning,
+  .button.success,
+  input[type="submit"].accent,
+  input[type="submit"].warning,
+  input[type="submit"].success {
     color: white;
     background-color: #00a8e6;
     border-color: rgba(0, 0, 0, 0.2); }
-    button.accent:hover, button.accent:focus, .button.accent:hover, .button.accent:focus {
+    button.accent:hover, button.accent:focus, button.warning:hover, button.warning:focus, button.success:hover, button.success:focus,
+    .button.accent:hover,
+    .button.accent:focus,
+    .button.warning:hover,
+    .button.warning:focus,
+    .button.success:hover,
+    .button.success:focus,
+    input[type="submit"].accent:hover,
+    input[type="submit"].accent:focus,
+    input[type="submit"].warning:hover,
+    input[type="submit"].warning:focus,
+    input[type="submit"].success:hover,
+    input[type="submit"].success:focus {
       border-color: rgba(0, 0, 0, 0.4); }
-    button.accent:active, .button.accent:active {
+    button.accent:active, button.warning:active, button.success:active,
+    .button.accent:active,
+    .button.warning:active,
+    .button.success:active,
+    input[type="submit"].accent:active,
+    input[type="submit"].warning:active,
+    input[type="submit"].success:active {
       background-color: #0083b3; }
-    button.accent svg, .button.accent svg {
+    button.accent svg, button.warning svg, button.success svg,
+    .button.accent svg,
+    .button.warning svg,
+    .button.success svg,
+    input[type="submit"].accent svg,
+    input[type="submit"].warning svg,
+    input[type="submit"].success svg {
       fill: white; }
-  button.admin, .button.admin {
+  button.warning,
+  .button.warning,
+  input[type="submit"].warning {
+    background-color: #ffdc00;
+    color: black; }
+    button.warning:active,
+    .button.warning:active,
+    input[type="submit"].warning:active {
+      background-color: #ccb000; }
+  button.success,
+  .button.success,
+  input[type="submit"].success {
+    background-color: #2ecc40; }
+    button.success:active,
+    .button.success:active,
+    input[type="submit"].success:active {
+      background-color: #25a233; }
+  button.admin,
+  .button.admin,
+  input[type="submit"].admin {
     font-size: 0.8em;
     color: black;
     border-radius: 10em; }
-    button.admin svg, .button.admin svg {
+    button.admin svg,
+    .button.admin svg,
+    input[type="submit"].admin svg {
       fill: black; }
-    button.admin:hover, button.admin:focus, .button.admin:hover, .button.admin:focus {
+    button.admin:hover, button.admin:focus,
+    .button.admin:hover,
+    .button.admin:focus,
+    input[type="submit"].admin:hover,
+    input[type="submit"].admin:focus {
       text-decoration: none; }
 
 button[aria-expanded] {
@@ -563,8 +628,7 @@ option + option {
   margin-top: 0; }
 
 .contact dl dt {
-  font-size: 0.8em;
-  text-transform: uppercase; }
+  font-weight: bold; }
 .contact dl dd,
 .contact dl dd p:first-child {
   margin-left: 0;
@@ -992,3 +1056,51 @@ a.slideshow {
       font-size: 0.8em;
       color: black;
       margin: 1em -0.5rem -0.2rem; }
+
+/**
+ * Orders page
+ *
+ */
+.orders {
+  min-width: 100%;
+  border-collapse: collapse; }
+  .orders * + * {
+    margin-top: 0; }
+  .orders > tbody > tr > td {
+    border-top: 2px solid rgba(0, 0, 0, 0.08);
+    padding: 0.5em 0.5em 0.8em; }
+    .orders > tbody > tr > td:first-child {
+      padding-left: 0; }
+    .orders > tbody > tr > td:last-child {
+      padding-right: 0; }
+  .orders th {
+    text-align: left;
+    padding: 0.5em 0.5em 1em; }
+    .orders th > button {
+      white-space: nowrap;
+      font-weight: bold; }
+    .orders th:last-child {
+      padding-right: 0; }
+  .orders th:nth-child(3),
+  .orders td:nth-child(3) {
+    text-align: right; }
+  .orders .filter {
+    font-weight: normal;
+    font-size: 0.8em; }
+    .orders .filter label {
+      white-space: nowrap; }
+    .orders .filter button {
+      margin-top: 0.5em; }
+  .orders td {
+    vertical-align: top; }
+  .orders ul {
+    padding: 0;
+    margin: 0 0 0 1em; }
+  .orders table {
+    width: 100%; }
+  .orders td input[type="submit"],
+  .orders td button {
+    margin-top: 0.5em;
+    font-size: 0.8em; }
+
+/*# sourceMappingURL=shopkit.css.map */
