@@ -8,7 +8,7 @@
 <?= $page->text()->kirbytext()->bidi() ?>
 
 <div class="table-overflow">
-    <table dir="auto">
+    <table class="orders" dir="auto">
         <thead>
             <tr>
                 <th></th>
@@ -24,7 +24,7 @@
                         <form class="filter" action="" method="post">
                             <?php foreach (['pending','paid','shipped'] as $status) { ?>
                                 <label>
-                                    <input type="checkbox" name="status[]" value="<?= $status ?>" <?php if(get('status') and in_array($status, get('status'))) echo 'checked' ?>><br>
+                                    <input type="checkbox" name="status[]" value="<?= $status ?>" <?php if(get('status') and in_array($status, get('status'))) echo 'checked' ?>>
                                     <?= l($status) ?>
                                 </label>
                             <?php } ?>
@@ -56,31 +56,33 @@
                     <td>
                         <?php if (strpos($order->products(),'uri:')) { ?>
                             <!-- Show products overview with download links -->
-                            <?php foreach ($order->products()->toStructure() as $product) { ?>
-                                <div>
-                                    <?= $product->name() ?><br>
-                                    <small>
-                                        <?= $product->variant() ?>
-                                        <?= $product->option()->isNotEmpty() ? ' / '.$product->option() : '' ?>
-                                        <?= '/ '.l('qty').$product->quantity() ?>
-                                    </small>
-                                    <?php if ($product->downloads()->files()->isNotEmpty() and page($product->uri)) { ?>
-                                        <?php if ($product->downloads()->expires()->isEmpty() or $product->downloads()->expires()->value > time()) { ?>
-                                            <?php foreach ($product->downloads()->files() as $file) { ?>
-                                                <?php $hash = page($product->uri)->file(substr($file, strrpos($file,'/')+1))->hash() ?>
-                                                <br>
-                                                <small>
-                                                    <a href="<?= u($product->uri.'/'.$product->variant.'/download/'.$order->uid().'/'.$hash) ?>" title="<?= $product->name() ?>">
-                                                        <?= l('download-file') ?> [<?= substr($hash,-7) ?>]
-                                                    </a>
-                                                </small>
+                            <ul>
+                                <?php foreach ($order->products()->toStructure() as $product) { ?>
+                                    <li>
+                                        <?= $product->name() ?><br>
+                                        <small>
+                                            <?= $product->variant() ?>
+                                            <?= $product->option()->isNotEmpty() ? ' / '.$product->option() : '' ?>
+                                            <?= '/ '.l('qty').$product->quantity() ?>
+                                        </small>
+                                        <?php if ($product->downloads()->files()->isNotEmpty() and page($product->uri)) { ?>
+                                            <?php if ($product->downloads()->expires()->isEmpty() or $product->downloads()->expires()->value > time()) { ?>
+                                                <?php foreach ($product->downloads()->files() as $file) { ?>
+                                                    <?php $hash = page($product->uri)->file(substr($file, strrpos($file,'/')+1))->hash() ?>
+                                                    <br>
+                                                    <small>
+                                                        <a href="<?= u($product->uri.'/'.$product->variant.'/download/'.$order->uid().'/'.$hash) ?>" title="<?= $product->name() ?>">
+                                                            <?= l('download-file') ?> [<?= substr($hash,-7) ?>]
+                                                        </a>
+                                                    </small>
+                                                <?php } ?>
+                                            <?php } else { ?>
+                                                <br><small><?= l('download-expired') ?></small>
                                             <?php } ?>
-                                        <?php } else { ?>
-                                            <br><small><?= l('download-expired') ?></small>
                                         <?php } ?>
-                                    <?php } ?>
-                                </div>
-                            <?php } ?>
+                                    </li>
+                                <?php } ?>
+                            </ul>
                         <?php } else { ?>
                             <!-- Old transaction files from Shopkit 1.0.5 and earlier -->
                             <?= $order->products()->kirbytext()->bidi() ?>
@@ -139,17 +141,17 @@
                                 <form action="" method="POST">
                                     <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
                                     <input type="hidden" name="action" value="mark_pending">
-                                    <input <?php ecco($order->status()->value === 'pending','class="active"') ?> type="submit" value="<?= l('pending') ?>">
+                                    <input <?php ecco($order->status()->value === 'pending','class="warning"') ?> type="submit" value="<?= l('pending') ?>">
                                 </form>
                                 <form action="" method="POST">
                                     <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
                                     <input type="hidden" name="action" value="mark_paid">
-                                    <input <?php ecco($order->status()->value === 'paid','class="active"') ?> type="submit" value="<?= l('paid') ?>">
+                                    <input <?php ecco($order->status()->value === 'paid','class="accent"') ?> type="submit" value="<?= l('paid') ?>">
                                 </form>
                                 <form action="" method="POST">
                                     <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
                                     <input type="hidden" name="action" value="mark_shipped">
-                                    <input <?php ecco($order->status()->value === 'shipped','class="active"') ?> type="submit" value="<?= l('shipped') ?>">
+                                    <input <?php ecco($order->status()->value === 'shipped','class="success"') ?> type="submit" value="<?= l('shipped') ?>">
                                 </form>
                             </div>
                         <?php } else {
