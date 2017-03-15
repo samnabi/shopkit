@@ -20,7 +20,13 @@
   <?php } ?>
   
   <a class="button admin" href="<?= url('shop/orders') ?>">
-    <?= f::read('site/plugins/shopkit/assets/svg/creditcard.svg') ?>
+    <?php
+      $currency_code_lower = str::lower($site->currency_code());
+      if (!in_array($currency_code_lower, ['inr','krw','ils','rub','gbp','try','jpy','eur'])) {
+        $currency_code_lower = 'dollar';
+      }
+    ?>
+    <?= f::read('site/plugins/shopkit/assets/svg/'.$currency_code_lower.'.svg') ?>
     <?= l('view-orders') ?>
   </a>
   
