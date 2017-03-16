@@ -116,8 +116,8 @@
                     <td>
 
                         <!-- Set country -->
-                        <form id="setCountry" action="" method="POST">
-                            <select name="country" onChange="document.forms['setCountry'].submit();">
+                        <form action="" method="POST">
+                            <select name="country">
                                 <?php foreach ($countries as $c) { ?>
                                     <option <?php ecco(s::get('country') == $c->uid(), 'selected') ?> value="<?= $c->countrycode() ?>">
                                         <?= $c->title() ?>
@@ -128,8 +128,8 @@
                         </form>
 
                         <!-- Set shipping -->
-                        <form id="setShipping" action="" method="POST">
-                            <select name="shipping" onChange="document.forms['setShipping'].submit();">
+                        <form action="" method="POST">
+                            <select name="shipping">
                                 <?php if (count($shipping_rates) > 0) { ?>
                                     <?php foreach ($shipping_rates as $rate) { ?>
                                         <option value="<?= str::slug($rate['title']) ?>" <?php e($shipping['title'] === $rate['title'],'selected') ?>>
@@ -265,11 +265,8 @@
         <?php } ?>
     </div>
 
-    <script type="text/javascript">
-        // Hide setCountry and setShipping submit buttons
-        document.querySelector('#setCountry button').style.display = 'none';
-        document.querySelector('#setShipping button').style.display = 'none';
-    </script>
+    <?= js('assets/plugins/shopkit/js/ajax-helpers.min.js') ?>
+    <?= js('assets/plugins/shopkit/js/cart.min.js') ?>
 
 <?php } ?>
 

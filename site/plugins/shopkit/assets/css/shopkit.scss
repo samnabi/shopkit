@@ -63,6 +63,15 @@ $breakpoint-m-l: 75em;
 
 
 /**
+ * Helper classes
+ *
+ */
+
+.hide {
+	display: none !important;
+}
+
+/**
  * Layout
  *
  */
@@ -1129,6 +1138,10 @@ main.product {
 
 	.button {
 		margin: 0 1em;
+
+		&[disabled] svg {
+			fill: $baseDark;
+		}
 	}
 
 	svg {
@@ -1310,6 +1323,14 @@ a.slideshow {
 		&[disabled] svg {
 			fill: $base;
 		}
+	}
+
+	select[name="country"] + button,
+	select[name="shipping"] + button {
+		font-size: $text-s;
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0.25em 0 1em 0.5em;
 	}
 }
 

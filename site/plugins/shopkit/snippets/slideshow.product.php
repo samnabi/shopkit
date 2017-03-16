@@ -2,17 +2,17 @@
 
 <nav class="slideshow-nav">
 
-	<a class="button" id="slideshow-prev" <?php if($product->hasPrevVisible()){ echo 'href="'.$product->prevVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
+	<a class="button prev" <?php if($product->hasPrevVisible()){ echo 'href="'.$product->prevVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
 		<?= f::read('site/plugins/shopkit/assets/svg/arrow-left.svg') ?>
 		<span><?= l('prev') ?></span>
 	</a>
 
-  <a class="button" id="view-grid" href="<?= $product->parent()->url() ?>">
+  <a class="button grid" href="<?= $product->parent()->url() ?>">
   	<?= f::read('site/plugins/shopkit/assets/svg/grid.svg') ?>
   	<span><?= l('view-grid') ?></span>
   </a>
 
-	<a class="button" id="slideshow-next" <?php if($product->hasNextVisible()){ echo 'href="'.$product->nextVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
+	<a class="button next" <?php if($product->hasNextVisible()){ echo 'href="'.$product->nextVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
 		<?= f::read('site/plugins/shopkit/assets/svg/arrow-right.svg') ?>
 		<span><?= l('next') ?></span>
 	</a>
@@ -60,31 +60,7 @@
       <p dir="auto" property="description"><?= $product->text()->excerpt(300) ?></p>
     <?php } ?>
 	</div>
-
 </a>
 
-<script>
-// Keybindings for left, right, escape
-document.onkeydown = function(e) {
-
-	if(!(/INPUT|TEXTAREA/i.test(e.target))) {
-    e = e || window.event;
-    switch(e.which || e.keyCode) {
-      case 37: // left
-      document.getElementById('slideshow-prev').click();
-      break;
-
-      case 39: // right
-      document.getElementById('slideshow-next').click();
-      break;
-
-      case 27: // esc
-      document.getElementById('view-grid').click();
-      break;
-
-      default: return; // exit this handler for other keys
-    }
-    e.preventDefault(); // prevent the default action (scroll / move caret)
-	}
-};
-</script>
+<?= js('assets/plugins/shopkit/js/ajax-helpers.min.js') ?>
+<?= js('assets/plugins/shopkit/js/slideshow.min.js') ?>

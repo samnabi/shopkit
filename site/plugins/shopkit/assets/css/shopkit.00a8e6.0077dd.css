@@ -164,6 +164,13 @@ body {
  *
  */
 /**
+ * Helper classes
+ *
+ */
+.hide {
+  display: none !important; }
+
+/**
  * Layout
  *
  */
@@ -948,6 +955,8 @@ main.product .brand + h1 {
   font-size: 0.8rem; }
   .slideshow-nav .button {
     margin: 0 1em; }
+    .slideshow-nav .button[disabled] svg {
+      fill: rgba(0, 0, 0, 0.15); }
   .slideshow-nav svg {
     fill: black;
     display: block;
@@ -1062,6 +1071,12 @@ a.slideshow {
       fill: rgba(0, 0, 0, 0.3); }
     .checkout .quantity button[disabled] svg {
       fill: rgba(0, 0, 0, 0.08); }
+  .checkout select[name="country"] + button,
+  .checkout select[name="shipping"] + button {
+    font-size: 0.8rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0.25em 0 1em 0.5em; }
 
 @media (min-width: 30em) {
   .checkout thead tr,
