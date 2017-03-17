@@ -2,7 +2,7 @@
 
 <nav class="slideshow-nav">
 
-	<a class="button prev" <?php if($product->hasPrevVisible()){ echo 'href="'.$product->prevVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
+	<a class="button prev" <?php if($product->hasPrevVisible() and $product->prevVisible()->template() == 'product'){ echo 'href="'.$product->prevVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
 		<?= f::read('site/plugins/shopkit/assets/svg/arrow-left.svg') ?>
 		<span><?= l('prev') ?></span>
 	</a>
@@ -12,7 +12,7 @@
   	<span><?= l('view-grid') ?></span>
   </a>
 
-	<a class="button next" <?php if($product->hasNextVisible()){ echo 'href="'.$product->nextVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
+	<a class="button next" <?php if($product->hasNextVisible() and $product->nextVisible()->template() == 'product'){ echo 'href="'.$product->nextVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
 		<?= f::read('site/plugins/shopkit/assets/svg/arrow-right.svg') ?>
 		<span><?= l('next') ?></span>
 	</a>
