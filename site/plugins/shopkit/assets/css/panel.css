@@ -1,12 +1,3 @@
-/* List of Subpages */
-.sidebar-list .invisible {
-	opacity: 0.3;
-}
-.sidebar-list .invisible:hover,
-.sidebar-list .invisible:active {
-	opacity: 1;
-}
-
 /* Dropzone for list of file */
 .marginalia[href="#upload"] {
 	padding: 1rem 1rem 1rem 4rem;

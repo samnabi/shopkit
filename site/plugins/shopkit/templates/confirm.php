@@ -39,7 +39,7 @@
         <textarea name="payer_address"><?= $payer_address ?></textarea>
     </label>
 
-	<button type="submit">
+	<button class="accent" type="submit">
         <?= l('confirm-order') ?>
     </button>
 

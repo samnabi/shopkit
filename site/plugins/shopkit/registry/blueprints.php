@@ -17,12 +17,14 @@ $kirby->set('blueprint', 'country',   __DIR__.DS.'..'.DS.'blueprints'.DS.'countr
 $kirby->set('blueprint', 'default',   __DIR__.DS.'..'.DS.'blueprints'.DS.'default.yml');
 $kirby->set('blueprint', 'error',     __DIR__.DS.'..'.DS.'blueprints'.DS.'error.yml');
 $kirby->set('blueprint', 'orders',    __DIR__.DS.'..'.DS.'blueprints'.DS.'orders.yml');
+$kirby->set('blueprint', 'order',    __DIR__.DS.'..'.DS.'blueprints'.DS.'order.yml');
 $kirby->set('blueprint', 'product',   __DIR__.DS.'..'.DS.'blueprints'.DS.'product.yml');
 $kirby->set('blueprint', 'register',  __DIR__.DS.'..'.DS.'blueprints'.DS.'register.yml');
 $kirby->set('blueprint', 'reset',     __DIR__.DS.'..'.DS.'blueprints'.DS.'reset.yml');
 $kirby->set('blueprint', 'search',    __DIR__.DS.'..'.DS.'blueprints'.DS.'search.yml');
 $kirby->set('blueprint', 'shop',      __DIR__.DS.'..'.DS.'blueprints'.DS.'shop.yml');
 $kirby->set('blueprint', 'site',      __DIR__.DS.'..'.DS.'blueprints'.DS.'site.yml');
+$kirby->set('blueprint', 'stats',      __DIR__.DS.'..'.DS.'blueprints'.DS.'stats.yml');
 
 // Register user blueprints
 $kirby->set('blueprint', 'users/default',    __DIR__.DS.'..'.DS.'blueprints'.DS.'users'.DS.'default.yml');

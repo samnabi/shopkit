@@ -6,8 +6,8 @@
 
   <?php if (!$parent->is('shop')) { ?>
     <button aria-expanded="true" aria-controls="<?= $parent->hash() ?>">
-      <span class="expand"><?= f::read('site/plugins/shopkit/assets/svg/caret-down.svg') ?></span>
-      <span class="collapse"><?= f::read('site/plugins/shopkit/assets/svg/caret-up.svg') ?></span>
+      <span class="expand"><?= f::read('site/plugins/shopkit/assets/svg/chevron-down.svg') ?></span>
+      <span class="collapse"><?= f::read('site/plugins/shopkit/assets/svg/chevron-up.svg') ?></span>
     </button>
   <?php } ?>
 
@@ -25,8 +25,8 @@
     <?php if ($user = $site->user() and $user->can('panel.access.options')) { ?>
       <li>
         <a class="button admin" href="<?= url('panel/pages/'.$parent->uri().'/add?template=category') ?>">
-          <?= f::read('site/plugins/shopkit/assets/svg/new-page.svg') ?>
-          New category
+          <?= f::read('site/plugins/shopkit/assets/svg/plus.svg') ?>
+          <?= l('new-category') ?>
         </a>
       </li>
     <?php } ?>

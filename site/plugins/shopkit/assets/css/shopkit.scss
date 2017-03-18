@@ -18,11 +18,6 @@ body {
 	background-repeat: repeat-y; 
 	background-size: 100% auto; /* Fallback */
 	background-size: cover;
-
-	& > .wrapper {
-		background: white; /* Fallback */
-		background: rgba(255,255,255,0.8);
-	}
 }
 
 *, *:before, *:after {
@@ -60,7 +55,7 @@ $warningPale: desaturate(lighten($warning, 30), 10);
 $success: #2ecc40;
 $successPale: desaturate(lighten($success, 30), 10);
 
-$text-s: 0.8em;
+$text-s: 0.8rem;
 
 $breakpoint-xs-s: 30em;
 $breakpoint-s-m: 45em;
@@ -68,23 +63,43 @@ $breakpoint-m-l: 75em;
 
 
 /**
+ * Helper classes
+ *
+ */
+
+.hide {
+	display: none !important;
+}
+
+/**
  * Layout
  *
  */
 
 .wrapper {
-	padding: 0.5em 1em;
+	padding: 0.5em;
+}
+@media (min-width: $breakpoint-s-m) {
+	.wrapper {
+		padding: 1em;
+	}
+}
+
+.wrapper-main {
+	background: white;
+	padding: 1em;
 }
 
 @media (min-width: $breakpoint-s-m) {
 	.wrapper {
 		display: flex;
+		align-items: flex-start;
 	}
 	.sidebar {
 		order: 1;
-		width: 12em;
+		width: 15em;
 		flex-shrink: 0;
-		margin-right: 2em;
+		margin: 0 1em 0 0;
 	}
 	.wrapper-main {
 		order: 2;
@@ -95,12 +110,12 @@ $breakpoint-m-l: 75em;
 @media (min-width: $breakpoint-m-l) {
 	.wrapper {
 		justify-content: center;
+		max-width: 80em;
+		margin-left: auto;
+		margin-right: auto;
 	}
 	.sidebar {
-		width: 16em;
-	}
-	.wrapper-main {
-		max-width: 60em;
+		width: 18em;
 	}
 }
 
@@ -112,17 +127,60 @@ $breakpoint-m-l: 75em;
  * 
  */
 
+@font-face {
+	font-family: 'asap';
+	src: url('../fonts/asap-bold.woff2') format('woff2'),
+	     url('../fonts/asap-bold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'asap';
+	src: url('../fonts/asap-bolditalic.woff2') format('woff2'),
+	     url('../fonts/asap-bolditalic.woff') format('woff');
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'asap';
+	src: url('../fonts/asap-italic.woff2') format('woff2'),
+	     url('../fonts/asap-italic.woff') format('woff');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'asap';
+	src: url('../fonts/asap-regular.woff2') format('woff2'),
+	     url('../fonts/asap-regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
 html,
 body,
 input,
 textarea,
 button,
-.button,
 select,
 option {
 	color: black;
 	line-height: 1.6;
-	font-family: asap, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.fonts-loaded {
+	html,
+	body,
+	input,
+	textarea,
+	button,
+	select,
+	option {
+		font-family: asap, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	}
 }
 
 
@@ -171,7 +229,8 @@ nav,
 
 // Lists
 
-ul {
+.menu,
+.list {
 	padding: 0;
 	list-style: none;
 
@@ -206,7 +265,9 @@ svg {
  * 
  */
 
-button, .button {
+button,
+.button,
+input[type="submit"] {
 	display: inline-block;
 	color: black;
 	padding: 0.2em 0.5em;
@@ -222,10 +283,13 @@ button, .button {
 	}
 
 	&:active {
+		color: black;
 		background-color: $baseDark;
 	}
 
-	&.accent {
+	&.accent,
+	&.warning,
+	&.success {
 		color: white;
 		background-color: $accent;
 		border-color: rgba(0,0,0,0.2);
@@ -244,6 +308,23 @@ button, .button {
 		}
 	}
 
+	&.warning {
+		background-color: $warning;
+		color: black;
+
+		&:active {
+			background-color: darken($warning, 10);
+		}
+	}
+
+	&.success {
+		background-color: $success;
+
+		&:active {
+			background-color: darken($success, 10);
+		}
+	}
+
 	&.admin {
 		font-size: $text-s;
 		color: black;
@@ -256,6 +337,20 @@ button, .button {
 		&:hover,
 		&:focus {
 			text-decoration: none;
+		}
+	}
+
+	&[disabled] {
+		cursor: not-allowed;
+		color: $baseDarker;
+		background-color: $base;
+		border-color: rgba(0,0,0,0.1);
+
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: $base;
+			border-color: rgba(0,0,0,0.1);
 		}
 	}
 }
@@ -282,7 +377,6 @@ button[aria-expanded="false"] .collapse, {
 button[aria-expanded] + * {
 	margin-top: 0;
 	overflow-y: hidden;
-	transition: max-height 0.3s, opacity 0.5s;
 	opacity: 1;
 
 	& > li:first-child {
@@ -292,6 +386,9 @@ button[aria-expanded] + * {
 button[aria-expanded="false"] + * {
 	opacity: 0;
 	max-height: 0 !important; /* Overrides the inline max-height applied by JavaScript */
+}
+.animate button[aria-expanded] + * {
+	transition: max-height 0.3s, opacity 0.5s;
 }
 
 .menu button[aria-expanded] {
@@ -364,11 +461,11 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 textarea {
-	background: white;
+	background-color: white;
 	border: 1px solid $baseDark;
 	padding: 0.2em 0.5em; /* Fallback */
 	padding: calc(0.2em + 1px) 0.5em;
-	width: 10em;
+	width: 15em;
 }
 
 form button,
@@ -463,6 +560,8 @@ option + option {
 		padding-bottom: 1em;
 		border-bottom: 2px solid $accent;
 		text-align: center;
+		text-align: right;
+		width: 100%;
 
 		li {
 			margin-top: 0;
@@ -492,11 +591,6 @@ option + option {
 		button {
 			max-width: 20%;
 		}
-
-		ul {
-			text-align: right;
-			width: 100%;
-		}
 	}
 }
 
@@ -507,7 +601,6 @@ option + option {
  */
 
 .user {
-	padding-bottom: 0.5em;
 	margin-bottom: 1em;
 	border-bottom: 2px solid $base;
 	display: flex;
@@ -515,7 +608,7 @@ option + option {
 	justify-content: center;
 
 	a {
-		margin: 0.5em;
+		margin: 0 0.5em 1em;
 	}
 }
 
@@ -565,24 +658,28 @@ option + option {
  *
  */
 
-.sidebar > h3 {
-	margin-top: 2em;
+.sidebar section,
+.sidebar h1 {
+	background-color: white;
+	padding: 1rem;
+}
+
+.sidebar section > h3 {
+	margin-top: 0;
 	border-bottom: 2px solid $base;
 }
 
-.sidebar > .menu.categories {
-	margin-top: 2em;
-	padding-top: 1em;
+.sidebar section > .menu.categories {
+	margin-top: 0;
 }
 
 .search {
 	display: flex;
 	align-items: space-between;
-	margin-top: 2em;
 
 	input {
-		width: 0; /* Undo 10em width for normal inputs */
-		flex-grow: 1; /* Takes all available space */
+		width: 50%;
+		flex-grow: 1;
 		margin-right: 0.5em;
 	}
 
@@ -618,6 +715,20 @@ option + option {
 	}
 }
 
+.contact h4 { margin-bottom: 0; }
+.contact h4 + p { margin-top: 0; }
+.contact dl {
+	dt {
+		font-weight: bold;
+	}
+	dd,
+	dd p:first-child {
+		margin-left: 0;
+		margin-top: 0;
+	}
+
+}
+
 
 /**
  * Common list styles
@@ -626,7 +737,6 @@ option + option {
 
 .list + .button.admin {
 	margin-top: 0;
-	margin-bottom: 3em;
 }
 
 
@@ -681,6 +791,7 @@ option + option {
 	}
 }
 
+
 /**
  * Category list
  *
@@ -716,7 +827,7 @@ option + option {
 		span {
 			align-self: flex-end;
 			width: 100%;
-			padding: 0 0 0.5rem 1rem;
+			padding: 0 1rem 0.5rem 1rem;
 			z-index: 1;
 
 			&:before {
@@ -724,7 +835,6 @@ option + option {
 				content: '';
 				top: 0; right: 0; bottom: 0; left: 0;
 				background-image: linear-gradient(10deg, rgba(black, 0.8) 0%, rgba(black, 0.2) 50%, transparent 100%);
-				box-shadow: inset 0 0 0 2px $accent, inset 0 0 0 4px white;
 				z-index: -1;
 			}
 		}
@@ -732,10 +842,6 @@ option + option {
 		&:hover span:before,
 		&:focus span:before {
 			background-image: linear-gradient(10deg, rgba(black, 0.8) 0%, $accentTranslucent 100%);
-		}
-
-		&:active span:before {
-			box-shadow: inset 0 0 0 2px $accentLight, inset 0 0 0 4px white;	
 		}
 	}
 }
@@ -755,6 +861,7 @@ option + option {
  */
 
 .brand {
+	font-size: $text-s;
 	text-transform: uppercase;
 }
 
@@ -874,6 +981,7 @@ option + option {
 	}
 }
 
+
 /**
  * Product page
  *
@@ -889,39 +997,43 @@ main.product {
 }
 
 @media (min-width: $breakpoint-xs-s) {
-	.variants {
-		float: right;
-		margin: 0 0 1em 1em;
-		max-width: 50%;
+	main.product {
+		.text {
+			.variants {
+				float: right;
+				width: 15em;
+				margin: 0 0 0 1em;
+			}
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+		}
 	}
 }
 
 .variants form {
 	border: 2px solid $base;
 	padding: 0.5em;
-	display: flex;
-	justify-content: space-between;
+	max-width: 100%;
 
 	h3 {
 		margin: 0;
 		line-height: 1.2;
-		padding: calc(0.2em + 2px) 0 0;
 	}
 
 	.description p {
-		margin-top: 0.5em;
-		flex-grow: 1;
+		margin: 0.5em 0 0;
 	}
 
 	.action {
-		margin-top: 0;
-		margin-left: 1em;
-		flex-shrink: 0;
-		text-align: right;
+		margin-top: 0.5em;
 
 		select {
 			margin: 0 0 0.5em;
 			display: block;
+			max-width: 100%;
 		}
 
 		button {
@@ -938,6 +1050,7 @@ main.product {
 	}
 }
 
+
 /**
  * Image slider
  *
@@ -953,6 +1066,7 @@ main.product {
 		height: 0;
 		overflow: hidden;
 		transition: opacity 0.2s ease-in-out;
+		margin-top: 0;
 
 		img {
 			display: block;
@@ -973,9 +1087,10 @@ main.product {
 	.thumbnails {
 		width: 100%;
 		position: absolute;
-		bottom: 0;
+		top: 0;
 		list-style: none;
 		font-size: 0;
+		text-align: right;
 		
 		li {
 			font-size: 1rem;
@@ -1011,54 +1126,281 @@ main.product {
 	}
 }
 
+
 /**
  * Slideshow
  *
  */
 
 .slideshow-nav {
-	a, span {
-		line-height: 1;
-		padding: 0.5rem 0.5rem 0.3rem;
+	text-align: center;
+	font-size: $text-s;
 
-		&:hover,
-		&:focus {
-			text-decoration: none;
-		}
+	.button {
+		margin: 0 1em;
 
-		&[disabled] {
-			opacity: 0.2;
+		&[disabled] svg {
+			fill: $baseDark;
 		}
 	}
 
 	svg {
-		width: 2rem;
-		height: 2rem;
+		fill: black;
+		display: block;
+		margin: 0.2em auto 0;
 	}
 }
 
 a.slideshow {
 	display: block;
 	color: black;
-	padding-bottom: 1rem;
+	box-shadow: inset 0 0 0 2px $base;
 
 	&:hover,
 	&:focus {
+		background: $base;
+		box-shadow: inset 0 -4px 0 -2px $accent, inset 0 0 0 2px $base;
 		text-decoration: none;
+
+		h3 {
+			color: $link;
+		}
 	}
 
-	&:active {
-		opacity: 0.8;
+	.description {
+		margin-top: 0;
+		padding: 1em;
+
+		h3,
+		p {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+
+		.price {
+			color: $accent;
+			margin-top: 1em;
+			margin-bottom: 1em;
+		}
 	}
 }
 
-.slideshow .description > h3 {
-	border-top: 1px solid black;
-	padding-top: 1rem;
+@media (min-width: $breakpoint-m-l) {
+	a.slideshow {
+		display: flex;
+
+		img { flex-grow: 1; }
+		img + .description {
+			max-width: 15em;
+		}
+	}
 }
-.slideshow .description > div:last-child {
-	border-bottom: 1px solid black;
-	padding-bottom: 1rem;
+
+
+/**
+ * Cart page
+ *
+ */
+
+.table-overflow {
+	overflow-x: auto;
+}
+
+.checkout {
+	min-width: 100%;
+	border-collapse: collapse;
+	text-align: right;
+
+	& * + * { margin-top: 0; }
+
+	td {
+		display: inline-block;
+
+		img {
+			float: left;
+			margin: 0 0.5em 0 0;
+		}
+
+		&:first-child {
+			padding-left: 0;
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+		}
+
+		select {
+			width: 10em;
+			max-width: 100%;
+		}
+	}
+
+	thead tr {
+		display: none;
+	}
+
+	tbody tr {
+		width: 100%;
+		display: block;
+
+		td:first-child {
+			width: 100%;
+			display: block;
+			text-align: left;
+			padding-top: 0.5em;
+		}
+
+		td:not(:first-child) {
+			padding-bottom: 0.5em;
+		}
+
+		& td:first-child {
+			border-top: 2px solid $base;
+		}
+
+		button {
+			font-size: $text-s;
+		}
+	}
+
+	tfoot {
+		border-top: 2px solid $base;
+
+		tr {
+			display: block;
+			font-size: 0;
+
+			&:last-child {
+				font-weight: bold;
+			}
+
+			td {
+				font-size: 1rem;
+				width: 50%;
+
+				&:first-child {
+					text-align: left;
+				}
+			}
+		}
+
+		.discount {
+			text-align: right;
+			font-size: $text-s;
+			white-space: nowrap;
+
+			input,
+			button {
+				display: inline-block;
+			}
+
+			input {
+				max-width: 40%;
+			}
+		}
+	}
+
+	.quantity {
+		white-space: nowrap;
+		margin-right: 0.5em;
+	}
+	.quantity > form,
+	.quantity > span {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.quantity button {
+		background: inherit;
+		border: none;
+		padding: 0;
+		margin: 0;
+		
+		svg {
+			fill: $baseDarker;
+		}
+
+		&[disabled] svg {
+			fill: $base;
+		}
+	}
+
+	select[name="country"] + button,
+	select[name="shipping"] + button {
+		font-size: $text-s;
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0.25em 0 1em 0.5em;
+	}
+}
+
+@media (min-width: $breakpoint-xs-s) {
+	.checkout {
+		thead tr,
+		tbody tr,
+		tfoot tr {
+			display: table-row;
+		}
+
+		td,
+		tbody tr td:first-child {
+			width: auto;
+			display: table-cell;
+		}
+
+		td,
+		th {
+			padding: 0.5em;
+		}
+
+		td:last-child {
+			padding-right: 0;
+		}
+
+		tbody tr td {
+			border-top: 2px solid $base;
+		}
+
+		thead th:first-child {
+			padding-left: 0;
+			text-align: left;
+		}
+
+		tfoot tr td {
+			width: auto;
+
+			&:first-child {
+				text-align: right;
+			}
+			&:last-child .discount {
+				text-align: left;
+			}
+		}
+	}
+}
+
+.gateways {
+	text-align: right;
+
+	form {
+		vertical-align: top;
+		display: inline-block;
+		max-width: 15em;
+		margin: 0 0 0 1em;
+
+		img {
+			max-height: 2em;
+			max-width: 100%;
+			display: block;
+			margin: 0 auto;
+		}
+
+		.notification {
+			font-size: $text-s;
+			color: black;
+			margin: 1em -0.5rem -0.2rem;
+		}
+	}
 }
 
 
@@ -1067,31 +1409,70 @@ a.slideshow {
  *
  */
 
-.toggle svg {
-	fill: #3399ff;
-	cursor: pointer;
+.orders {
+	min-width: 100%;
+	border-collapse: collapse;
 
-	&:hover,
-	&:focus {
-		fill: #40B7E3;
+	& * + * { margin-top: 0; }
+
+	& > tbody > tr > td {
+		border-top: 2px solid $base;
+		padding: 0.5em 0.5em 0.8em;
+
+		&:first-child { padding-left: 0; }
+		&:last-child { padding-right: 0; }
 	}
 
-	&:active {
-		fill: #0A90C2;
-	}
-}
-.toggle + input {
-	visibility: hidden;
+	th {
+		text-align: left;
+		padding: 0.5em 0.5em 1em;
 
-	& + form {
-		display: none;
+		& > button {
+			white-space: nowrap;
+			font-weight: bold;
+		}
+
+		&:last-child {
+			padding-right: 0;
+		}
 	}
 
-	&:checked {
-		margin-bottom: 1rem;
+	th:nth-child(3),
+	td:nth-child(3) {
+		text-align: right;
 	}
 
-	&:checked + form {
-		display: block;
+	.filter {
+		font-weight: normal;
+		font-size: $text-s;
+
+		label {
+			white-space: nowrap;
+		}
+
+		button {
+			margin-top: 0.5em;
+		}
+	}
+
+	td {
+		vertical-align: top;
+	}
+
+
+
+	ul {
+		padding: 0;
+		margin: 0 0 0 1em;
+	}
+
+	table {
+		width: 100%;
+	}
+
+	td input[type="submit"],
+	td button {
+		margin-top: 0.5em;
+		font-size: $text-s;	
 	}
 }

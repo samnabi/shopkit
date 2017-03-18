@@ -1,5 +1,7 @@
 title: Orders
-pages: false
+pages:
+  max: 1
+  sort: txn_date desc
 options:
   delete: false
   status: false

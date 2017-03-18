@@ -32,6 +32,10 @@
 'from' => 'From',
 'remaining' => 'remaining',
 
+'new-page' => 'New Page',
+'new-category' => 'New Category',
+'new-product' => 'New Product',
+
 // plugins/shopkit/shopkit.php
 
 'activate-account' => 'Activate your account',
@@ -77,6 +81,7 @@
 // site/plugins/shopkit/snippets/header.user.php
 
 'edit-page' => 'Edit Page',
+'dashboard' => 'Dashboard',
 'site-options' => 'Site Options',
 'view-orders' => 'View Orders',
 'my-account' => 'My Account',

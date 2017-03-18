@@ -10,7 +10,6 @@
 
 	<!-- Styles -->
 	<?= css(getStylesheet($site->coloraccent(),$site->colorlink())) ?>
-	<?= css('assets/plugins/shopkit/css/font.asap.css') ?>
 	<?php snippet('header.background.style') ?>
 	<?= css('assets/css/custom.css') ?>
 

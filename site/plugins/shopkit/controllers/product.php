@@ -2,6 +2,9 @@
 
 return function ($site, $pages, $page) {
 
+	// Initialize SEO description
+	$seo_description = '';
+
 	// Get tags
 	$tags = str::split($page->tags());
 
@@ -37,11 +40,20 @@ return function ($site, $pages, $page) {
 				$variant->priceText .= formatPrice($variant->price()->value);
 			}
 		}
+
+		// Populate SEO Description
+		$seo_description .= $variant->name().': '.formatPrice($variant->price()->value, true).' / ';
 	}
+
+	// Finish SEO description
+	$seo_description .= $page->text()->excerpt(80);
+	if ($page->brand()->isNotEmpty()) $seo_description .= ' / '.l('brands').': '.$page->brand();
+	if ($page->tags()->isNotEmpty()) $seo_description .= ' / '.l('tags').': '.$page->tags();
 
 	// Pass variables to the template
 	return [
 		'tags' => $tags,
 		'variants' => $variants,
+		'seo_description' => esc($seo_description)
 	];
 };

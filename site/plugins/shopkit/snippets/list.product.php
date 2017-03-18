@@ -3,6 +3,7 @@
 	<ul class="list products">
 
 	  <?php foreach($products as $product) { ?>
+	  	<?php if(!$product) continue; ?>
 	  	<?php
 	  		if ($product->hasImages()) {
 	  			$image = $product->images()->sortBy('sort', 'asc')->first()->resize(400);
@@ -60,7 +61,7 @@
 <!-- Admin -->
 <?php if ($page->template() == 'category' and $user = $site->user() and $user->can('panel.access.options')) { ?>
 	<a class="button admin" href="<?= url('panel/pages/'.$page->uri().'/add?template=product') ?>">
-		<?= f::read('site/plugins/shopkit/assets/svg/new-page.svg') ?>
-		New Product
+		<?= f::read('site/plugins/shopkit/assets/svg/plus.svg') ?>
+		<?= l('new-product') ?>
 	</a>
 <?php } ?>

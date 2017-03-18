@@ -146,3 +146,4 @@ Enable drag-and-drop for WYSIWYG plugin
 */
 c::set('field.wysiwyg.dragdrop.kirby', true);
 c::set('field.wysiwyg.dragdrop.medium', true);
+c::set('field.wysiwyg.double-returns', true);

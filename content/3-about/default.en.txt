@@ -6,7 +6,7 @@ Text:
 
 ----
 
-Slider: 
+Slider: screen-shot-2017-03-13-at-13.44.27.png
 
 ----
 

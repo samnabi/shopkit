@@ -26,6 +26,11 @@
         this.setAttribute('aria-expanded','false');
       }
     });
+
+    // Enable CSS animations
+    setTimeout(function(){
+      document.documentElement.className += " animate";
+    }, 500);
   });
 
 })(); // Close up the function
