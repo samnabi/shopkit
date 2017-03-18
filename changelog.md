@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.5
+- Bug fixes
+    - Remove poorly-formatted HTML entities in panel fields
+    - Add a blank `site/blueprints` folder to prevent panel errors
+
 ## v1.1.4
 - New features
     - 💅 Override default CSS in `assets/css/custom.css`
