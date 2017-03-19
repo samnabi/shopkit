@@ -15,6 +15,9 @@ $kirby->set('route',[
     // Set the redirect page
     $redirect = get('redirect') ? get('redirect') : 'shop';
 
+    // Save the old session ID temporarily, so we can keep cart history
+    s::set('oldid', s::id());
+
     // Try to log in
     if($user = $site->users()->findBy('email',get('email')) and $user->login(get('password'))) {
       return go($redirect);

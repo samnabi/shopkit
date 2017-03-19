@@ -13,9 +13,8 @@
   <?php } ?>
   
   <a class="cart button accent" href="<?= url('shop/cart') ?>" title="<?php l('view-cart') ?>">
-    <?php $cart = Cart::getCart() ?>
-    <?php $count = $cart->count() ?>
     <?= f::read('site/plugins/shopkit/assets/svg/cart.svg') ?>
-    <span><?= $count ?></span>
+    <?php $cart = Cart::getCart() ?>
+    <span><?= $cart->count() ?></span>
   </a>
 </nav>

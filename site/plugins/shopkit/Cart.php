@@ -130,17 +130,6 @@ class Cart
 	    s::set('cart', $this->data);
 	}
 
-	public function update($id, $quantity)
-	{
-	    if ($quantity < 1) {
-	        unset($this->data[$id]);
-	        s::set('cart', $this->data);
-	        return;
-	    }
-	    $this->data[$id] = $quantity;
-	    s::set('cart', $this->data);
-	}
-
 	public function delete($id)
 	{
 	    if (!array_key_exists($id, $this->data)) {
@@ -247,7 +236,7 @@ class Cart
 		$countries = explode(', ',$data['countries']);
 		
 	  	// Check if country is in the array
-	  	if(in_array(s::get('country'), $countries) or in_array('all-countries', $countries)) {
+	  	if(in_array(page(s::get('txn'))->country(), $countries) or in_array('all-countries', $countries)) {
       		return true;
     	} else {
 	  		return false;

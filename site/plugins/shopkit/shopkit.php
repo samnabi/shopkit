@@ -30,26 +30,49 @@ include_once('Cart.php');
 include_once('CartItem.php');
 $cart = Cart::getCart();
 
-// Set country as a session variable
+// Log order details
+s::start();
+if (null !== s::get('oldid') and $txn = page('shop/orders/'.s::get('oldid'))) {
+  $txn->update(['txn-id' => s::id()]);
+  $txn->move(s::id());
+  s::remove('oldid');
+
+  if ($user and $user->country() != '') {
+    $txn->update(['country' => $user->country()]);
+  }
+} else if (!page('shop/orders/'.s::id())) {
+  page('shop/orders')->children()->create(s::id(), 'order', [
+    'status' => 'pending',
+    'session-start' => time(),
+    'session-end' => time()
+  ], $site->defaultLanguage());
+}
+s::set('txn', 'shop/orders/'.s::id());
+
+// Set elapsed time
+page(s::get('txn'))->update(['session-end' => time()]);
+
+// Set country
 if ($country = get('country')) {
   // First: See if country was sent through a form submission.
-  // Translate country code to UIDs if needed
-  $c = page('shop/countries')->children()->filterBy('countrycode',$country)->first();
-  if ($c) $country = $c->uid();
-} else if (s::get('country')) {
-  // Second option: the country has already been set in the session
-  $country = s::get('country');
-} else if ($user) {
+  if ($c = page('shop/countries')->children()->filterBy('countrycode',$country)->first()) {
+    // Translate country code to UID if needed
+    $country = $c->uid();
+  }
+  page(s::get('txn'))->update(['country' => $country]);
+} else if (page(s::get('txn'))->country()->isNotEmpty()) {
+  // Second option: the country has already been set in the session.
+  // Do nothing.
+} else if ($user and $user->country() != '') {
   // Third option: see if the user has set a country in their profile
-  $country = $user->country();
+  page(s::get('txn'))->update(['country' => $user->country()]);
 } else if ($site->defaultcountry()->isNotEmpty()) {
   // Fourth option: get default country from site options
-  $country = $site->defaultcountry();
+  page(s::get('txn'))->update(['country' => $site->defaultcountry()]);
 } else {
   // Last resort: choose the first available country
-  $country = page('shop/countries')->children()->invisible()->first()->uid();
+  page(s::get('txn'))->update(['country' => page('shop/countries')->children()->invisible()->first()->uid()]);
 }
-s::set('country',$country);
 
 // Set discount code from user profile or query string
 if (!s::get('discountCode') and $user and $code = $user->discountcode()) {

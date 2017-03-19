@@ -119,7 +119,7 @@
                         <form action="" method="POST">
                             <select name="country">
                                 <?php foreach ($countries as $c) { ?>
-                                    <option <?php ecco(s::get('country') == $c->uid(), 'selected') ?> value="<?= $c->countrycode() ?>">
+                                    <option <?php ecco(page(s::get('txn'))->country() == $c->uid(), 'selected') ?> value="<?= $c->countrycode() ?>">
                                         <?= $c->title() ?>
                                     </option>
                                 <?php } ?>

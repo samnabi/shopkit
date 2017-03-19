@@ -7,6 +7,5 @@
 <?php snippet('logo') ?>
 
 <?php snippet('menu.primary') ?>
-<?php snippet('cart') ?>
 
 <?php snippet('notifications') ?>

@@ -29,9 +29,6 @@ return function($site, $pages, $page) {
             case 'remove':
                 $cart->remove($id);
                 break;
-            case 'update':
-                $cart->update($id, $quantity);
-                break;
             case 'delete':
                 $cart->delete($id);
                 break;
