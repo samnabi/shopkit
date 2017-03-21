@@ -68,7 +68,7 @@
 'notification-product-last' => '/add" title="Créez un nouveau produit">Créez votre premier produit avec le tableau de bord</a>.',
 'notification-license' => 'Vous n\'avez pas enregistré votre code de license. SVP mettez-le dans le fichier <strong>config.php</strong> avant de donner accès au public.',
 'notification-discount' => 'Votre code de rabais <strong><code>'.page(s::get('txn'))->discountcode().'</code></strong> sera appliqué à la caisse.',
-'notification-giftcertificate' => 'Votre carte cadeau <strong><code>'.page(s::get('txn'))->giftcertificatecode().'</code></strong> sera appliqué à la caisse.',
+'notification-giftcertificate' => 'Votre carte cadeau <strong><code>'.page(s::get('txn'))->giftcode().'</code></strong> sera appliqué à la caisse.',
 'notification-login-failed' => 'Le connexion ne pouvait pas être complété. Soit le mot de passe soit le courriel n\'est pas bon.',
 
 

@@ -74,7 +74,7 @@ try {
 	if ($giftCertificateRemaining = get('giftCertificateRemaining')) {
 		$certificates = $site->gift_certificates()->yaml();
 		foreach ($certificates as $key => $certificate) {
-			if (strtoupper($certificate['code']) == page('shop/orders/'.$txn_id)->giftcertificatecode()) {
+			if (strtoupper($certificate['code']) == page('shop/orders/'.$txn_id)->giftcode()) {
 				$certificates[$key]['amount'] = number_format($giftCertificateRemaining,2,'.','');
 			}
 		}

@@ -88,10 +88,10 @@ if (get('dc') === '') {
 
 // Set gift certificate code from query string
 if (get('gc') === '') {
-  page(s::get('txn'))->update(['giftcertificatecode' => '']);
+  page(s::get('txn'))->update(['giftcode' => '']);
   go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
 } else if ($code = get('gc')) {
-  page(s::get('txn'))->update(['giftcertificatecode' => str::upper($code)]);
+  page(s::get('txn'))->update(['giftcode' => str::upper($code)]);
   go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
 }
 
@@ -410,11 +410,11 @@ function getDiscount($cart) {
 
 function getGiftCertificate($cartTotal) {
   // Make sure there's a code
-  if (page(s::get('txn'))->giftcertificatecode()->isEmpty()) return false;
+  if (page(s::get('txn'))->giftcode()->isEmpty()) return false;
 
   // Look for a matching certificate code in site options
   $certificates = site()->gift_certificates()->toStructure()->filter(function($c){
-    return str::upper($c->code()) == page(s::get('txn'))->giftcertificatecode();
+    return str::upper($c->code()) == page(s::get('txn'))->giftcode();
   });
   if ($certificates == '') return false;
   $certificate = $certificates->first();
@@ -429,7 +429,7 @@ function getGiftCertificate($cartTotal) {
 
   // Return certificate data
   return [
-    'code' => page(s::get('txn'))->giftcertificatecode(),
+    'code' => page(s::get('txn'))->giftcode(),
     'amount' => $amount,
     'remaining' => $remaining
   ];

@@ -188,7 +188,7 @@ $kirby->set('route',[
   // Pretty URLs for gift certificates
   'pattern' => 'gift/(:any)',
   'action' => function($code){
-    page(s::get('txn'))->update(['giftcertificatecode' => str::upper($code)]);
+    page(s::get('txn'))->update(['giftcode' => str::upper($code)]);
     return go('shop');
   }
 ]);

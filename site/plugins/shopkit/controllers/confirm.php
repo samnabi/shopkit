@@ -72,7 +72,7 @@ return function($site, $pages, $page) {
       }
 
       // Empty the cart by setting a new txn id
-      s::restart();
+      s::destroy();
 
       // Redirect to orders page
       go('shop/orders?txn_id='.$txn->txn_id());

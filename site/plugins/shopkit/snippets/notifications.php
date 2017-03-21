@@ -72,7 +72,7 @@ if (page(s::get('txn'))->discountcode()->isNotEmpty()) {
 	$successes[] = l('notification-discount');
 }
 
-if (page(s::get('txn'))->giftcertificatecode()->isNotEmpty()) {
+if (page(s::get('txn'))->giftcode()->isNotEmpty()) {
 	$successes[] = l('notification-giftcertificate');
 }
 
