@@ -80,10 +80,6 @@ Discount-codes:
 
 Gift-certificates: 
 
-- 
-  code: asdfas
-  amount: "3"
-
 ----
 
 Showstock: 0

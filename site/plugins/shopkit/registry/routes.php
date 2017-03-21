@@ -180,7 +180,7 @@ $kirby->set('route',[
   // Pretty URLs for discount codes
   'pattern' => 'discount/(:any)',
   'action' => function($code){
-    s::set('discountCode', strtoupper($code));
+    page(s::get('txn'))->update(['discountcode' => str::upper($code)]);
     return go('shop');
   }
 ]);
@@ -188,7 +188,7 @@ $kirby->set('route',[
   // Pretty URLs for gift certificates
   'pattern' => 'gift/(:any)',
   'action' => function($code){
-    s::set('giftCertificateCode', strtoupper($code));
+    page(s::get('txn'))->update(['giftcertificatecode' => str::upper($code)]);
     return go('shop');
   }
 ]);

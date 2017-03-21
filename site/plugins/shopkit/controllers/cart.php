@@ -97,28 +97,28 @@ return function($site, $pages, $page) {
           $shippingMethod = $method;
         }
       }
-    } else if (s::get('shipping') and !empty($shippingMethods) and !get('country')) {
+    } else if (page(s::get('txn'))->shippingmethod()->isNotEmpty() and !empty($shippingMethods) and !get('country')) {
       // Second option: the shipping has already been set in the session, and the country hasn't changed
-      $currentMethod = s::get('shipping');
+      $currentMethod = page(s::get('txn'))->shippingmethod();
       foreach ($shippingMethods as $key => $method) {
-        if ($currentMethod['title'] == $method['title']) {
+        if ($currentMethod == $method['title']) {
           $shippingMethod = $method;
         }
       }
     } else {
       // Last resort: choose the first shipping method
-      $shippingMethod = array_shift($shippingMethods);      
+      $shippingMethod = array_shift($shippingMethods);
     }
-    s::set('shipping',$shippingMethod);
-
-    // Get selected shipping rate
-    $shipping = s::get('shipping');
+    page(s::get('txn'))->update([
+      'shippingmethod' => $shippingMethod['title'],
+      'shipping' => $shippingMethod['rate'],
+    ]);
 
     // Get discount
     $discount = getDiscount($cart);
 
     // Get cart total
-    $total = $cart->getAmount() + $cart->getTax() + $shipping['rate'];
+    $total = $cart->getAmount() + $cart->getTax() + page(s::get('txn'))->shipping();
     if ($discount) $total = $total - $discount['amount'];
 
     // Get gift certificate 
@@ -129,7 +129,6 @@ return function($site, $pages, $page) {
         'items' => $items,
         'countries' => $countries,
         'shipping_rates' => $shipping_rates,
-        'shipping' => $shipping,
         'discount' => $discount,
         'total' => $total,
         'giftCertificate' => $giftCertificate,

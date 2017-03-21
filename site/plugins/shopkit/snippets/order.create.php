@@ -6,8 +6,6 @@ $site = site();
 
 $cart = Cart::getCart();
 
-$shipping = s::get('shipping');
-
 $discount = getDiscount($cart);
 
 // Set transaction status
@@ -58,8 +56,6 @@ try {
 		'products' => "\n".yaml::encode($items),
 		'subtotal' => number_format($cart->getAmount(),2,'.',''),
 		'discount' => number_format($discount['amount'],2,'.',''),
-		'shipping' => $shipping['rate'],
-		'shipping-method' => $shipping['title'],
 		'tax' => number_format($cart->getTax(),2,'.',''),
 		'giftcertificate' => null !== get('giftCertificateAmount') ? number_format(get('giftCertificateAmount'),2,'.','') : '0.00',
 	]);
@@ -78,7 +74,7 @@ try {
 	if ($giftCertificateRemaining = get('giftCertificateRemaining')) {
 		$certificates = $site->gift_certificates()->yaml();
 		foreach ($certificates as $key => $certificate) {
-			if (strtoupper($certificate['code']) == s::get('giftCertificateCode')) {
+			if (strtoupper($certificate['code']) == page('shop/orders/'.$txn_id)->giftcertificatecode()) {
 				$certificates[$key]['amount'] = number_format($giftCertificateRemaining,2,'.','');
 			}
 		}

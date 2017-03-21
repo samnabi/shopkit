@@ -68,11 +68,11 @@ if (c::get('license-shopkit') == "") {
 
 $successes = [];
 
-if (null !== s::get('discountCode')) {
+if (page(s::get('txn'))->discountcode()->isNotEmpty()) {
 	$successes[] = l('notification-discount');
 }
 
-if (null !== s::get('giftCertificateCode')) {
+if (page(s::get('txn'))->giftcertificatecode()->isNotEmpty()) {
 	$successes[] = l('notification-giftcertificate');
 }
 

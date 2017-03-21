@@ -75,24 +75,23 @@ if ($country = get('country')) {
 }
 
 // Set discount code from user profile or query string
-if (!s::get('discountCode') and $user and $code = $user->discountcode()) {
-  s::set('discountCode', strtoupper($code));
-  go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
+if (!page(s::get('txn'))->discountcode() and $user and $code = $user->discountcode()) {
+  page(s::get('txn'))->update(['discountcode' => str::upper($code)]);
 }
 if (get('dc') === '') {
-  s::remove('discountCode');
+  page(s::get('txn'))->update(['discountcode' => '']);
   go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
 } else if ($code = get('dc')) {
-  s::set('discountCode', strtoupper($code));
+  page(s::get('txn'))->update(['discountcode' => str::upper($code)]);
   go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
 }
 
 // Set gift certificate code from query string
 if (get('gc') === '') {
-  s::remove('giftCertificateCode');
+  page(s::get('txn'))->update(['giftcertificatecode' => '']);
   go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
 } else if ($code = get('gc')) {
-  s::set('giftCertificateCode', strtoupper($code));
+  page(s::get('txn'))->update(['giftcertificatecode' => str::upper($code)]);
   go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
 }
 
@@ -314,7 +313,7 @@ function salePrice($variant) {
   // Check that the discount codes are valid
   if (count($saleCodes) and $saleCodes[0] != '') {
     $saleCodes = array_map('strtoupper', $saleCodes);
-    if (in_array($cart->discountCode, $saleCodes)) {
+    if (in_array(page(s::get('txn'))->discountcode(), $saleCodes)) {
       // Codes match, the product is on sale
       return $salePrice;
     } else {
@@ -375,11 +374,11 @@ function resetPassword($email,$firstTime = false) {
 
 function getDiscount($cart) {
   // Make sure there's a code
-  if (null == s::get('discountCode')) return false;
+  if (null == page(s::get('txn'))->discountcode()) return false;
 
   // Find a matching discount code in site options
   $discounts = site()->discount_codes()->toStructure()->filter(function($d){
-    return strtoupper($d->code()) == s::get('discountCode');
+    return str::upper($d->code()) == page(s::get('txn'))->discountcode();
   });
   if ($discounts == '') return false;
   $discount = $discounts->first();
@@ -399,7 +398,7 @@ function getDiscount($cart) {
 
   // Return discount data
   return [
-    'code' => s::get('discountCode'),
+    'code' => page(s::get('txn'))->discountcode(),
     'amount' => $amount,
   ];
 }
@@ -411,11 +410,11 @@ function getDiscount($cart) {
 
 function getGiftCertificate($cartTotal) {
   // Make sure there's a code
-  if (null == s::get('giftCertificateCode')) return false;
+  if (page(s::get('txn'))->giftcertificatecode()->isEmpty()) return false;
 
   // Look for a matching certificate code in site options
   $certificates = site()->gift_certificates()->toStructure()->filter(function($c){
-    return strtoupper($c->code()) == s::get('giftCertificateCode');
+    return str::upper($c->code()) == page(s::get('txn'))->giftcertificatecode();
   });
   if ($certificates == '') return false;
   $certificate = $certificates->first();
@@ -430,7 +429,7 @@ function getGiftCertificate($cartTotal) {
 
   // Return certificate data
   return [
-    'code' => s::get('giftCertificateCode'),
+    'code' => page(s::get('txn'))->giftcertificatecode(),
     'amount' => $amount,
     'remaining' => $remaining
   ];

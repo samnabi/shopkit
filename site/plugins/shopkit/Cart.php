@@ -48,11 +48,6 @@ class Cart
 	    return new self($data);
 	}
 
-	public function emptyItems()
-	{
-		s::set('cart',[]);
-	}
-
 	private function __construct(array $data)
 	{
 		$this->data = $data;
@@ -64,6 +59,8 @@ class Cart
 	    $newQty = array_key_exists($id, $this->data) ? $this->data[$id] + $quantityToAdd : $quantityToAdd;
 	    $this->data[$id] = $this->updateQty($id,$newQty);
 	    s::set('cart', $this->data);
+
+
 	}
 
 	private function updateQty($id, $newQty) {
@@ -212,11 +209,10 @@ class Cart
   	}
 
 	  // Does the current discount code let them pay later?
-  	$code = s::get('discountCode');
   	$discounts = $site->discount_codes()->toStructure()->filter(function($d){
-  	  return strtoupper($d->code()) == s::get('discountCode');
+  	  return strtoupper($d->code()) == page(s::get('txn'))->discountcode();
   	});
-  	if ($code and $discounts->first() and $discounts->first()->paylater()->bool()) {
+  	if (page(s::get('txn'))->discountcode() and $discounts->first() and $discounts->first()->paylater()->bool()) {
   		return true;
   	}
 

@@ -65,8 +65,8 @@
 'notification-product-first' => 'No cuentas con ningún producto. <a href="'.url('panel').'/pages/',
 'notification-product-last' => '/add" title="Crea un nuevo producto">Crea tu primer producto con el Tablero</a>.',
 'notification-license' => 'Esta tienda no cuenta con una clave de licencia Shopkit. Asegúrate de agregar una en el archivo <strong>config.php</strong> antes de que la página web esté en línea.',
-'notification-discount' => 'Tu código de descuento <strong><code>'.s::get('discountCode').'</code></strong> se aplicará al momento de pagar.',
-'notification-giftcertificate' => 'Tu certficado de regalo <strong><code>'.s::get('giftCertificateCode').'</code></strong> se aplicará al momento de pagar.',
+'notification-discount' => 'Tu código de descuento <strong><code>'.page(s::get('txn'))->discountcode().'</code></strong> se aplicará al momento de pagar.',
+'notification-giftcertificate' => 'Tu certficado de regalo <strong><code>'.page(s::get('txn'))->giftcertificatecode().'</code></strong> se aplicará al momento de pagar.',
 'discount-code-help' => 'Usa este código de descuento cada vez que inicies sesión.',
 
 'notification-login-failed' => 'Lo sentimos, no hemos podido iniciar tu sesión. La contraseña o el correo electrónico son incorrectos.',

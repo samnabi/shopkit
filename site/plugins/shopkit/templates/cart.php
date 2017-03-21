@@ -132,7 +132,7 @@
                             <select name="shipping">
                                 <?php if (count($shipping_rates) > 0) { ?>
                                     <?php foreach ($shipping_rates as $rate) { ?>
-                                        <option value="<?= str::slug($rate['title']) ?>" <?php e($shipping['title'] === $rate['title'],'selected') ?>>
+                                        <option value="<?= str::slug($rate['title']) ?>" <?php e(page(s::get('txn'))->shippingmethod() == $rate['title'],'selected') ?>>
                                             <?= $rate['title'] ?> (<?= formatPrice($rate['rate']) ?>)
                                         </option>
                                     <?php } ?>
