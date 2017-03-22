@@ -53,87 +53,98 @@ class Cart
 		$this->data = $data;
 	}
 
-	public function add($id, $quantity)
-	{
-	    $quantityToAdd = $quantity ? $quantity : 1;
-	    $newQty = array_key_exists($id, $this->data) ? $this->data[$id] + $quantityToAdd : $quantityToAdd;
-	    $this->data[$id] = $this->updateQty($id,$newQty);
-	    s::set('cart', $this->data);
 
 
+
+	public function add($id, $quantity) {
+    // Using session cart
+    $quantityToAdd = $quantity ? $quantity : 1;
+    $newQty = array_key_exists($id, $this->data) ? $this->data[$id] + $quantityToAdd : $quantityToAdd;
+    $this->data[$id] = updateQty($id,$newQty);
+    s::set('cart', $this->data);
+
+    // Using file cart
+    $quantityToAdd = $quantity ? $quantity : 1;
+    $item = page(s::get('txn'))->products()->toStructure()->findBy('id', $id);
+    $items = page(s::get('txn'))->products()->yaml();
+    $idParts = explode('::',$id); // $id is formatted uri::variantslug::optionslug
+    $uri = $idParts[0];
+    $variantSlug = $idParts[1];
+    $optionSlug = $idParts[2];
+    $product = page($uri);
+    $variant = null;
+    foreach (page($uri)->variants()->toStructure() as $v) {
+    	if (str::slug($v->name()) === $variantSlug) $variant = $v;
+    }
+
+    if (!$item) {
+    	// Add a new item
+    	$items[] = [
+    		'id' => $id,
+    		'uri' => $uri,
+    		'variant' => $variantSlug,
+    		'option' => $optionSlug,
+    		'name' => $product->title(),
+    		'sku' => $variant->sku(),
+    		'amount' => $variant->price(),
+    		'sale-amount' => $salePrice = salePrice($variant) ? $salePrice : '',
+    		'quantity' => updateQty($id, $quantityToAdd),
+    		'weight' => $variant->weight(),
+    		'noshipping' => $variant->noshipping()
+    	];
+    } else {
+    	// Increase the quantity of an existing item
+    	foreach ($items as $key => $i) {
+    		if ($i['id'] == $item->id()) {
+    			$items[$key]['quantity'] = updateQty($id, $item->quantity()->value + $quantityToAdd);
+    			continue;
+    		}
+    	}
+    }
+    page(s::get('txn'))->update(['products' => yaml::encode($items)]);
 	}
 
-	private function updateQty($id, $newQty) {
-		// $id is formatted uri::variantslug::optionslug
-		$idParts = explode('::',$id);
-		$uri = $idParts[0];
-		$variantSlug = $idParts[1];
-		$optionSlug = $idParts[2];
-
-		// Get combined quantity of this option's siblings
-		$siblingsQty = 0;
-		foreach ($this->data as $key => $qty) {
-			if (strpos($key, $uri.'::'.$variantSlug) === 0 and $key != $id) $siblingsQty += $qty;
-		}
-
-		foreach (page($uri)->variants()->toStructure() as $variant) {
-			if (str::slug($variant->name()) === $variantSlug) {
-
-				// Store the stock in a variable for quicker processing
-				$stock = inStock($variant);
-
-				 // If there are no siblings
-				if ($siblingsQty === 0) {
-					// If there is enough stock
-					if ($stock === true or $stock >= $newQty){
-						return $newQty; }
-					// If there is no stock
-					else if ($stock === false) {
-						return 0; }
-					// If there is insufficient stock
-					else {
-						return $stock; }
-				}
-
-				// If there are siblings
-				else {
-					// If the siblings plus $newQty won't exceed the max stock, go ahead
-					if ($stock === true or $stock >= $siblingsQty + $newQty) {
-						return $newQty; }
-					// If the siblings have already maxed out the stock, return 0 
-					else if ($stock === false or $stock <= $siblingsQty) {
-						return 0; }
-					// If the siblings don't exceed max stock, but the newQty will, reduce newQty to the appropriate level
-					else if ($stock > $siblingsQty and $stock <= $siblingsQty + $newQty) {
-						return $stock - $siblingsQty; }
-				}
-
-			} 
-		}
-
-		// The script should never get to this point
-		return 0;
-	}
-
-	public function remove($id)
-	{
-	    if (!array_key_exists($id, $this->data)) return;
-	    
-	    $this->data[$id]--;
-	    if ($this->data[$id] < 1) {
-	        $this->delete($id);
-	        return;
+	public function remove($id) {
+			// Using session cart
+	    if (array_key_exists($id, $this->data)) {
+	    	$this->data[$id]--;
+	    	if ($this->data[$id] < 1) {
+	    	    $this->delete($id);
+	    	    return;
+	    	}
+	    	s::set('cart', $this->data);
 	    }
-	    s::set('cart', $this->data);
+
+	    // Using file cart
+	    $items = page(s::get('txn'))->products()->yaml();
+	    foreach ($items as $key => $i) {
+	    	if ($i['id'] == $id) {
+	    		if ($i['quantity'] <= 1) {
+	    			$this->delete($id);
+	    		} else {
+	    			$items[$key]['quantity']--;
+	    			page(s::get('txn'))->update(['products' => yaml::encode($items)]);
+	    		}
+	    		return;
+	    	}
+	    }
 	}
 
-	public function delete($id)
-	{
-	    if (!array_key_exists($id, $this->data)) {
-	        return;
+	public function delete($id) {
+		  // Using session cart
+	    if (array_key_exists($id, $this->data)) {
+	    	unset($this->data[$id]);
+	    	s::set('cart', $this->data);
 	    }
-	    unset($this->data[$id]);
-	    s::set('cart', $this->data);
+
+	    // Using file cart
+	    $items = page(s::get('txn'))->products()->yaml();
+	    foreach ($items as $key => $i) {
+	    	if ($i['id'] == $id) {
+	    		unset($items[$key]);
+	    	}
+	    }
+	    page(s::get('txn'))->update(['products' => yaml::encode($items)]);
 	}
 
 	public function count() {

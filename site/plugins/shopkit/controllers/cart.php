@@ -118,7 +118,7 @@ return function($site, $pages, $page) {
     $discount = getDiscount($cart);
 
     // Get cart total
-    $total = $cart->getAmount() + $cart->getTax() + page(s::get('txn'))->shipping();
+    $total = $cart->getAmount() + $cart->getTax() + page(s::get('txn'))->shipping()->value;
     if ($discount) $total = $total - $discount['amount'];
 
     // Get gift certificate 
