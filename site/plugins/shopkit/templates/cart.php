@@ -9,7 +9,7 @@
 
 <?= $page->text()->kirbytext() ?>
 
-<?php if ($cart->count() === 0) { ?>
+<?php if (page(s::get('txn'))->products()->toStructure()->count() === 0) { ?>
     <p dir="auto" class="notification warning">
         <?= l('no-cart-items') ?>
     </p>

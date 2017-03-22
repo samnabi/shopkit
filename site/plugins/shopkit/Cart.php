@@ -147,14 +147,6 @@ class Cart
 	    page(s::get('txn'))->update(['products' => yaml::encode($items)]);
 	}
 
-	public function count() {
-	    $count = 0;
-	    foreach ($this->data as $id => $quantity) {
-	        $count += $quantity;
-	    }
-	    return $count;
-	}
-
 	public function getItems()
 	{
 		if ($this->itemsLoaded) return $this->items;

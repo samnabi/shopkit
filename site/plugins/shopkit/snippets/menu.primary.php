@@ -15,6 +15,6 @@
   <a class="cart button accent" href="<?= url('shop/cart') ?>" title="<?php l('view-cart') ?>">
     <?= f::read('site/plugins/shopkit/assets/svg/cart.svg') ?>
     <?php $cart = Cart::getCart() ?>
-    <span><?= $cart->count() ?></span>
+    <span><?= page(s::get('txn'))->products()->toStructure()->count() ?></span>
   </a>
 </nav>
