@@ -129,19 +129,21 @@
                         </form>
 
                         <!-- Set shipping -->
-                        <form action="" method="POST">
-                            <select name="shipping">
-                                <?php if (count($shipping_rates) > 0) { ?>
-                                    <?php foreach ($shipping_rates as $rate) { ?>
-                                        <option value="<?= str::slug($rate['title']) ?>" <?php e(page(s::get('txn'))->shippingmethod() == $rate['title'],'selected') ?>>
-                                            <?= $rate['title'] ?> (<?= formatPrice($rate['rate']) ?>)
-                                        </option>
-                                    <?php } ?>
-                                <?php } else { ?>
-                                    <!-- If no shipping rates are set, show free shipping -->
-                                    <option value="free-shipping"><?= l('free-shipping') ?></option>
+                        <form class="shipping" action="" method="POST">
+                            <?php if (count($shipping_rates) > 0) { ?>
+                                <?php foreach ($shipping_rates as $rate) { ?>
+                                    <label>
+                                        <input type="radio" name="shipping" value="<?= str::slug($rate['title']) ?>" <?php e(page(s::get('txn'))->shippingmethod() == $rate['title'],'checked') ?>>
+                                        <?= $rate['title'] ?> (<?= formatPrice($rate['rate']) ?>)
+                                    </label>
                                 <?php } ?>
-                            </select>
+                            <?php } else { ?>
+                                <!-- If no shipping rates are set, show free shipping -->
+                                <label>
+                                    <input type="radio" name="shipping" value="free-shipping" checked>
+                                    <?= l('free-shipping') ?>
+                                </label>
+                            <?php } ?>
                             <button type="submit"><?= l('update-shipping') ?></button>
                         </form>
                     </td>

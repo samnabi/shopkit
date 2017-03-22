@@ -7,7 +7,7 @@
     // Hide submit buttons
     function hideButtons() {
      document.querySelector('select[name="country"] + button').className += ' hide';
-     document.querySelector('select[name="shipping"] + button').className += ' hide';   
+     document.querySelector('.shipping button').className += ' hide';   
     }
 
     // Attach listeners to <main> because its child elements may be replaced by new DOM
