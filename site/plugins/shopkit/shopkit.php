@@ -544,3 +544,37 @@ function allProducts($parent){
 
 // Set $allProducts for use in templates and snippets
 tpl::set('allProducts', allProducts(page('shop')));
+
+
+/**
+ * @return bool
+ */
+function canPayLater() {
+  $site = site();
+
+  // Does the current user's role let them pay later?
+  $roles = explode(',',str_replace(' ', '', $site->paylater_permissions()));
+  if (in_array('any',$roles)) {
+    // Anyone can pay later
+    return true;
+  } else if ($user = $site->user()) {
+    if (in_array('logged-in',$roles)) {
+      // All logged-in users can pay later
+      return true;
+    } else if (in_array($user->role(),$roles)) {
+      // Admins can pay later
+      return true;
+    }
+  }
+
+  // Does the current discount code let them pay later?
+  $discounts = $site->discount_codes()->toStructure()->filter(function($d){
+    return strtoupper($d->code()) == page(s::get('txn'))->discountcode();
+  });
+  if (page(s::get('txn'))->discountcode() and $discounts->first() and $discounts->first()->paylater()->bool()) {
+    return true;
+  }
+
+  // Nothing matched. Sorry, you can't pay later!
+  return false;
+}

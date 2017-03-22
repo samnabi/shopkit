@@ -230,7 +230,7 @@
         <?php } else { ?>
             <!-- Gateway payment buttons -->
             <?php foreach($gateways as $gateway) { ?>
-                <?php if ($gateway == 'paylater' and !$cart->canPayLater()) continue ?>
+                <?php if ($gateway == 'paylater' and !canPayLater()) continue ?>
                 <form method="post" action="<?= url('shop/cart/process') ?>">
                     
                     <input type="hidden" name="gateway" value="<?= $gateway ?>">
