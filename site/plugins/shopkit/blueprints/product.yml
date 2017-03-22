@@ -16,7 +16,6 @@ fields:
     label: Brand
     type: text
     width: 1/4
-  slider: slider
   text:
     extends: wysiwyg
     label: Description
