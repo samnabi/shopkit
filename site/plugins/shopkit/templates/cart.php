@@ -43,17 +43,18 @@
                         </td>
                         <td class="quantity">
                             <form action="" method="post">
-                                <input type="hidden" name="action" value="remove">
                                 <input type="hidden" name="id" value="<?= $item->id ?>">
-                                <button type="submit">
-                                    <?php 
-                                        if ($item->quantity === 1) {
-                                            echo f::read('site/plugins/shopkit/assets/svg/x.svg');
-                                        } else {
-                                            echo f::read('site/plugins/shopkit/assets/svg/minus.svg');
-                                        }
-                                    ?>
-                                </button>
+                                <?php if ($item->quantity === 1) { ?>
+                                    <input type="hidden" name="action" value="delete">
+                                    <button type="submit">
+                                        <?= f::read('site/plugins/shopkit/assets/svg/x.svg'); ?>
+                                    </button>
+                                <?php } else { ?>
+                                    <input type="hidden" name="action" value="remove">
+                                    <button type="submit">
+                                        <?= f::read('site/plugins/shopkit/assets/svg/minus.svg'); ?>
+                                    </button>
+                                <?php } ?>
                             </form>
                             <span><?= $item->quantity ?></span>
                             <form action="" method="post">
