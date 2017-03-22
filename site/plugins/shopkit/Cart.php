@@ -191,22 +191,6 @@ class Cart
 
 
 	/**
-	 * @param array $data Shipping or tax data
-	 */
-	protected function appliesToCountry(array $data)
-	{
-		// Get array from countries string
-		$countries = explode(', ',$data['countries']);
-		
-	  	// Check if country is in the array
-	  	if(in_array(page(s::get('txn'))->country(), $countries) or in_array('all-countries', $countries)) {
-      		return true;
-    	} else {
-	  		return false;
-	  	}
-	}
-
-	/**
 	 * @return array
 	 */
 	public function getShippingRates()
@@ -221,7 +205,7 @@ class Cart
 
 	  	foreach ($methods as $method) {
 
-	    	if (!$this->appliesToCountry($method)) continue;
+	    	if (!appliesToCountry($method)) continue;
 
 	    		// Flat-rate shipping cost
 	      	$rate['flat'] = '';
@@ -314,7 +298,7 @@ class Cart
 
 	    	// Add applicable tax to the taxes array
     	  foreach ($itemTaxCategories as $i => $taxCategory) {
-    	  	if ($this->appliesToCountry($taxCategory)) {
+    	  	if (appliesToCountry($taxCategory)) {
     	    		$applicableTaxes[] = $taxCategory['rate'] * $taxableAmount;
     	  	}
     		}

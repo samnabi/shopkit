@@ -578,3 +578,19 @@ function canPayLater() {
   // Nothing matched. Sorry, you can't pay later!
   return false;
 }
+
+/**
+ * @param array $data Shipping or tax data
+ */
+function appliesToCountry(array $data)
+{
+  // Get array from countries string
+  $countries = explode(', ',$data['countries']);
+  
+    // Check if country is in the array
+    if(in_array(page(s::get('txn'))->country(), $countries) or in_array('all-countries', $countries)) {
+        return true;
+    } else {
+      return false;
+    }
+}
