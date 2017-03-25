@@ -147,39 +147,6 @@ class Cart
 	    page(s::get('txn'))->update(['products' => yaml::encode($items)]);
 	}
 
-	public function getItems()
-	{
-		if ($this->itemsLoaded) return $this->items;
-
-        foreach ($this->data as $id => $quantity) {
-
-        	// Extract URI from item ID
-        	$uri = substr($id, 0,strpos($id, '::'));
-
-        	// Check if product exists
-            if($product = page($uri)) {
-            	$item = new CartItem($id, $product, $quantity);
-                $this->items[] = $item;
-
-                // Check if the item's on sale
-                $itemAmount = $item->sale_amount ? $item->sale_amount : $item->amount;
-                
-                // Add to cart amount
-                $this->amount += floatval($itemAmount) * $quantity;
-
-                // If shipping applies, factor this item into the calculation for shipping properties 
-               	if ($item->noshipping != 1) {
-               		$this->shippingAmount += floatval($itemAmount) * $quantity;
-               		$this->shippingWeight += floatval($item->weight) * $quantity;
-               		$this->shippingQty += $quantity;
-               	}
-            }
-        }
-
-	    $this->itemsLoaded = true;
-	    return $this->items;
-	}
-
 	/**
 	 * @return float
 	 */

@@ -594,3 +594,47 @@ function appliesToCountry(array $data)
       return false;
     }
 }
+
+/**
+ * @return array $data Shipping or tax data
+ */
+function getItems() {
+
+  $items = page(s::get('txn'))->products()->toStructure();
+
+  if (!$items->count()) return null;
+
+  foreach ($items as $item) {
+
+    // Check if product, variant and option exists
+    if ($product = page($item->uri()) and $product->variants()->toStructure()->filter(function($v) use ($item) {
+      return str::slug($v->name()) == $item->variant();
+    })->count()) {
+      // Variant exists
+      if ($item->)
+    } else {
+      // Variant does not exist.
+      continue;
+    }
+    if($product = page($uri)) {
+      $item = new CartItem($id, $product, $quantity);
+      $this->items[] = $item;
+
+      // Check if the item's on sale
+      $itemAmount = $item->sale_amount ? $item->sale_amount : $item->amount;
+      
+      // Add to cart amount
+      $this->amount += floatval($itemAmount) * $quantity;
+
+      // If shipping applies, factor this item into the calculation for shipping properties 
+      if ($item->noshipping != 1) {
+        $this->shippingAmount += floatval($itemAmount) * $quantity;
+        $this->shippingWeight += floatval($item->weight) * $quantity;
+        $this->shippingQty += $quantity;
+      }
+    }
+  }
+
+  return $items;
+}
+dump(getItems()); die;
