@@ -448,7 +448,7 @@ function getDiscount($cart) {
   if ($discount->kind() == 'percentage') {
     $value = $discount->amount()->value > 100 ? 100 : $discount->amount()->value;
     $amount = $cart->getAmount() * ($value/100);
-  } else if ($discount->kind() == 'amount') {
+  } else if ($discount->kind() == 'flat') {
     $value = $discount->amount()->value > $cart->getAmount() ? $cart->getAmount() : $discount->amount()->value;
     $amount = $value;
   }
