@@ -607,31 +607,32 @@ function getItems() {
   foreach ($items as $item) {
 
     // Check if product, variant and option exists
-    if ($product = page($item->uri()) and $product->variants()->toStructure()->filter(function($v) use ($item) {
+    if ($product = page($item->uri()) and $variant = $product->variants()->toStructure()->filter(function($v) use ($item) {
       return str::slug($v->name()) == $item->variant();
-    })->count()) {
+    })->first()) {
       // Variant exists
-      if ($item->)
+      if ($item->option() != '' and !in_array($item->option(), $variant->options()->split())) {
+        // Invalid option set
+        continue;
+      }
     } else {
-      // Variant does not exist.
+      // Variant does not exist
       continue;
     }
-    if($product = page($uri)) {
-      $item = new CartItem($id, $product, $quantity);
-      $this->items[] = $item;
 
-      // Check if the item's on sale
-      $itemAmount = $item->sale_amount ? $item->sale_amount : $item->amount;
-      
-      // Add to cart amount
-      $this->amount += floatval($itemAmount) * $quantity;
+    dump($item);
 
-      // If shipping applies, factor this item into the calculation for shipping properties 
-      if ($item->noshipping != 1) {
-        $this->shippingAmount += floatval($itemAmount) * $quantity;
-        $this->shippingWeight += floatval($item->weight) * $quantity;
-        $this->shippingQty += $quantity;
-      }
+    // Check if the item's on sale
+    $itemAmount = $item->sale_amount ? $item->sale_amount : $item->amount;
+    
+    // Add to cart amount
+    $this->amount += floatval($itemAmount) * $quantity;
+
+    // If shipping applies, factor this item into the calculation for shipping properties 
+    if ($item->noshipping != 1) {
+      $this->shippingAmount += floatval($itemAmount) * $quantity;
+      $this->shippingWeight += floatval($item->weight) * $quantity;
+      $this->shippingQty += $quantity;
     }
   }
 
