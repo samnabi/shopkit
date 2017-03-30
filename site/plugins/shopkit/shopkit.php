@@ -318,7 +318,7 @@ function salePrice($variant) {
   // Check that the discount codes are valid
   if (count($saleCodes) and $saleCodes[0] != '') {
     $saleCodes = array_map('strtoupper', $saleCodes);
-    if (in_array($cart->discountCode, $saleCodes)) {
+    if (in_array(s::get('discountCode'), $saleCodes)) {
       // Codes match, the product is on sale
       return $salePrice;
     } else {
