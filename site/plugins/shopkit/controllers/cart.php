@@ -2,9 +2,6 @@
 
 return function($site, $pages, $page) {
 
-    // Initialize cart
-    $cart = Cart::getCart();
-
     // Get gateways
     $gateways = [];
     foreach (new DirectoryIterator(__DIR__.DS.'../gateways') as $file) {
@@ -24,66 +21,27 @@ return function($site, $pages, $page) {
         $option = get('option');
         switch ($action) {
             case 'add':
-                $cart->add($id, $quantity);
+                add($id, $quantity);
             break;
             case 'remove':
-                $cart->remove($id);
+                remove($id);
                 break;
             case 'delete':
-                $cart->delete($id);
+                delete($id);
                 break;
         }
-    }
-    
-    // Add properties to cart items
-    $items = $cart->getItems();
-    foreach ($items as $item) {
-
-        // Image src (base64 encoded)
-        $img = page($item->uri)->images()->first();
-        if (!$img) {
-            $item->imgSrc = false;
-        } else {
-            $item->imgSrc = $img->thumb(['width'=>60, 'height'=>60, 'crop'=>true])->url();
-        }
-
-        // Max quantity
-        foreach (page($item->uri)->variants()->toStructure() as $variant) {
-            if (str::slug($variant->name()) === $item->variant) {
-
-                // Determine if we're at the maximum quantity
-                $siblingsQty = 0;
-                foreach ($cart->data as $key => $qty) {
-                    if (strpos($key, $item->uri.'::'.$item->variant) === 0 and $key != $item->id) $siblingsQty += $qty;
-                }
-                // Determine if we are at the maximum quantity
-                if (inStock($variant) !== true and inStock($variant) <= ($item->quantity + $siblingsQty)) {
-                    $item->maxQty = true;
-                } else {
-                    $item->maxQty = false;
-                }
-            }
-        }
-
-        // Price text
-        if ($item->sale_amount) {
-            $item->priceText = formatPrice($item->sale_amount * $item->quantity).'<br><del>'.formatPrice($item->amount * $item->quantity).'</del>';
-        } else {
-            $item->priceText = formatPrice($item->amount * $item->quantity);
-        }
-
     }
 
     // Get countries
     $countries = page('/shop/countries')->children()->invisible();
 
     // Get shipping rates
-    $shipping_rates = $cart->getShippingRates();
+    $shipping_rates = getShippingRates();
 
 
     // Set shipping method as a session variable
     // Shipping method is an array containing 'title' and 'rate'
-    $shippingMethods = $cart->getShippingRates();
+    $shippingMethods = getShippingRates();
     if (get('shipping')) {
       // First option: see if a shipping method was set through a form submission
       if (get('shipping') == 'free-shipping') {
@@ -113,20 +71,19 @@ return function($site, $pages, $page) {
       'shippingmethod' => $shippingMethod['title'],
       'shipping' => $shippingMethod['rate'],
     ]);
-
+    
     // Get discount
-    $discount = getDiscount($cart);
+    $discount = getDiscount();
 
     // Get cart total
-    $total = $cart->getAmount() + $cart->getTax() + page(s::get('txn'))->shipping()->value;
+    $total = cartSubtotal(getItems()) + cartTax() + page(s::get('txn'))->shipping()->value;
     if ($discount) $total = $total - $discount['amount'];
 
     // Get gift certificate 
     $giftCertificate = getGiftCertificate($total);
 
     return [
-        'cart' => $cart,
-        'items' => $items,
+        'items' => getItems(),
         'countries' => $countries,
         'shipping_rates' => $shipping_rates,
         'discount' => $discount,

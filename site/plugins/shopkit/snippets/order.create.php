@@ -54,7 +54,7 @@ try {
 		'txn-currency' => $site->currency_code(),
 		'status'  => $status,
 		'products' => "\n".yaml::encode($items),
-		'subtotal' => number_format($cart->getAmount(),2,'.',''),
+		'subtotal' => number_format(cartSubtotal(getItems()),2,'.',''),
 		'discount' => number_format($discount['amount'],2,'.',''),
 		'tax' => number_format($cart->getTax(),2,'.',''),
 		'giftcertificate' => null !== get('giftCertificateAmount') ? number_format(get('giftCertificateAmount'),2,'.','') : '0.00',

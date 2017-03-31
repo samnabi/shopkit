@@ -44,9 +44,40 @@ Mailing-address: 0
 
 Shipping: 
 
+- 
+  method: Tortoise
+  countries: all-countries
+  flat: "8"
+  item: "7"
+  weight: '0 : 0'
+  price: '0 : 0'
+  calculation: high
+- 
+  method: Hare
+  countries: canada
+  flat: ""
+  item: ""
+  weight: '0 : 2'
+  price: |
+    0 : 8
+    10 : 9
+    12 : 13
+  calculation: low
+
 ----
 
 Tax: 
+
+- 
+  rate: "0.13"
+  countries: >
+    canada, canada-alberta,
+    canada-british-columbia,
+    canada-manitoba, canada-new-brunswick,
+    canada-newfoundland-and-labrador,
+    canada-northwest-territories,
+    canada-nova-scotia, canada-nunavut,
+    canada-ontario
 
 ----
 

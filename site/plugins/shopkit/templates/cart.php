@@ -29,22 +29,23 @@
 
             <tbody>
                 <?php foreach($items as $i => $item) { ?>
+                    <?php $product = page($item->uri()) ?>
                     <tr>
                         <td>
-                            <a href="<?= url($item->uri) ?>" title="<?= $item->fullTitle() ?>">
-                                <?php if ($item->imgSrc) { ?>
-                                    <img src="<?= $item->imgSrc ?>" title="<?= $item->name ?>">
+                            <a href="<?= $product->url() ?>">
+                                <?php if ($product->hasImages()) { ?>
+                                    <img src="<?= $product->images()->first()->thumb(['width'=>60, 'height'=>60, 'crop'=>true])->url() ?>" title="<?= $item->name() ?>">
                                 <?php } ?>
                                 <strong><?= $item->name ?></strong><br>
-                                <?php ecco($item->sku,'<strong>SKU</strong> '.$item->sku.' / ') ?>
-                                <?php ecco($item->variant,$item->variant) ?>
-                                <?php ecco($item->option,' / '.$item->option) ?>
+                                <?php e($item->sku()->isNotEmpty(), '<strong>SKU</strong> '.$item->sku().' / ') ?>
+                                <?php e($item->variant()->isNotEmpty(), $item->variant()) ?>
+                                <?php e($item->option()->isNotEmpty(), ' / '.$item->option()) ?>
                             </a>
                         </td>
                         <td class="quantity">
                             <form action="" method="post">
-                                <input type="hidden" name="id" value="<?= $item->id ?>">
-                                <?php if ($item->quantity === 1) { ?>
+                                <input type="hidden" name="id" value="<?= $item->id() ?>">
+                                <?php if ($item->quantity()->value == 1) { ?>
                                     <input type="hidden" name="action" value="delete">
                                     <button type="submit">
                                         <?= f::read('site/plugins/shopkit/assets/svg/x.svg'); ?>
@@ -56,24 +57,32 @@
                                     </button>
                                 <?php } ?>
                             </form>
-                            <span><?= $item->quantity ?></span>
+                            <span><?= $item->quantity() ?></span>
                             <form action="" method="post">
                                 <input type="hidden" name="action" value="add">
-                                <input type="hidden" name="id" value="<?= $item->id ?>">
-                                <button <?php ecco($item->maxQty,'disabled') ?> type="submit">
+                                <input type="hidden" name="id" value="<?= $item->id() ?>">
+                                <button <?php e(isMaxQty($item),'disabled') ?> type="submit">
                                     <?= f::read('site/plugins/shopkit/assets/svg/plus.svg') ?>
                                 </button>
                             </form>
                         </td>
                         <td>
-                            <?= $item->priceText ?>
-                            <?php e($item->notax == 1,'<br><span class="badge">'.l('no-tax').'</span>') ?>
-                            <?php e($item->noshipping == 1,'<br><span class="badge">'.l('no-shipping').'</span>') ?>
+                            <?php
+                                // Price text
+                                if ($item->sale_amount()->isNotEmpty()) {
+                                    echo formatPrice($item->sale_amount()->value * $item->quantity()->value).'<br>';
+                                    echo '<del>'.formatPrice($item->amount()->value * $item->quantity()->value).'</del>';
+                                } else {
+                                    echo formatPrice($item->amount()->value * $item->quantity()->value);
+                                }
+                            ?>
+                            <?php e($item->notax()->isNotEmpty(),'<br><span class="badge">'.l('no-tax').'</span>') ?>
+                            <?php e($item->noshipping()->isNotEmpty(),'<br><span class="badge">'.l('no-shipping').'</span>') ?>
                         </td>
                         <td>
                             <form action="" method="post">
                                 <input type="hidden" name="action" value="delete">
-                                <input type="hidden" name="id" value="<?= $item->id ?>">
+                                <input type="hidden" name="id" value="<?= $item->id() ?>">
                                 <button type="submit"><?= l('delete') ?></button> 
                             </form>
                         </td>
@@ -84,7 +93,7 @@
             <tfoot>
                 <tr>
                     <td colspan="2"><?= l('subtotal') ?></td>
-                    <td><?= formatPrice($cart->getAmount()) ?></td>
+                    <td><?= formatPrice(cartSubtotal(getItems())) ?></td>
                     <td></td>
                 </tr>
                 <?php if ($site->discount_codes()->toStructure()->count() > 0) {  ?>
@@ -133,8 +142,8 @@
                             <?php if (count($shipping_rates) > 0) { ?>
                                 <?php foreach ($shipping_rates as $rate) { ?>
                                     <label>
+                                        <?= $rate['title'] ?> (<?= formatPrice($rate['rate'], true) ?>)
                                         <input type="radio" name="shipping" value="<?= str::slug($rate['title']) ?>" <?php e(page(s::get('txn'))->shippingmethod() == $rate['title'],'checked') ?>>
-                                        <?= $rate['title'] ?> (<?= formatPrice($rate['rate']) ?>)
                                     </label>
                                 <?php } ?>
                             <?php } else { ?>
@@ -152,7 +161,7 @@
                 <tr>
                     <td colspan="2"><?= l('tax') ?></td>
                     <td>
-                        <?= formatPrice($cart->getTax()) ?>
+                        <?= formatPrice(cartTax()) ?>
                     </td>
                     <td></td>
                 </tr>

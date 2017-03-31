@@ -1,12 +1,11 @@
 <?php
-// Set site and user
+// Store site and user variables for faster access
 $site = site();
 $user = $site->user();
 
-// Load payment gateways (this needs to happen first, so they can be accessed by other routes)
+// Load payment gateways (this needs to happen before registering extensions)
 foreach (new DirectoryIterator(__DIR__.DS.'gateways') as $file) {
   if (!$file->isDot() and $file->isDir()) {
-    // Make sure gateway is not disabled
     if ($site->content()->get($file->getFilename().'_status') != 'disabled') {
       $kirby->set('snippet', $file->getFilename().'.process', __DIR__.'/gateways/'.$file->getFilename().'/process.php');
       $kirby->set('snippet', $file->getFilename().'.callback', __DIR__.'/gateways/'.$file->getFilename().'/callback.php');
@@ -14,7 +13,7 @@ foreach (new DirectoryIterator(__DIR__.DS.'gateways') as $file) {
   }
 }
 
-// Extension registry
+// Register extensions
 require('registry/blueprints.php');
 require('registry/controllers.php');
 require('registry/fields.php');
@@ -25,22 +24,18 @@ require('registry/snippets.php');
 require('registry/templates.php');
 require('registry/widgets.php');
 
-// Include Cart and CartItem objects
-include_once('Cart.php');
-include_once('CartItem.php');
-$cart = Cart::getCart();
-
 // Log order details
 s::start();
 if (null !== s::get('oldid') and $txn = page('shop/orders/'.s::get('oldid'))) {
+  // User just logged in. Rename the transaction file with the current session ID.
   $txn->update(['txn-id' => s::id()]);
   $txn->move(s::id());
   s::remove('oldid');
-
   if ($user and $user->country() != '') {
     $txn->update(['country' => $user->country()]);
   }
 } else if (!page('shop/orders/'.s::id())) {
+  // New session, create the transaction file
   page('shop/orders')->children()->create(s::id(), 'order', [
     'status' => 'pending',
     'session-start' => time(),
@@ -49,7 +44,7 @@ if (null !== s::get('oldid') and $txn = page('shop/orders/'.s::get('oldid'))) {
 }
 s::set('txn', 'shop/orders/'.s::id());
 
-// Set elapsed time
+// Log elapsed time
 page(s::get('txn'))->update(['session-end' => time()]);
 
 // Set country
@@ -64,7 +59,7 @@ if ($country = get('country')) {
   // Second option: the country has already been set in the session.
   // Do nothing.
 } else if ($user and $user->country() != '') {
-  // Third option: see if the user has set a country in their profile
+  // Third option: get country from user profile
   page(s::get('txn'))->update(['country' => $user->country()]);
 } else if ($site->defaultcountry()->isNotEmpty()) {
   // Fourth option: get default country from site options
@@ -74,7 +69,7 @@ if ($country = get('country')) {
   page(s::get('txn'))->update(['country' => page('shop/countries')->children()->invisible()->first()->uid()]);
 }
 
-// Set discount code from user profile or query string
+// Set discount code
 if (!page(s::get('txn'))->discountcode() and $user and $code = $user->discountcode()) {
   page(s::get('txn'))->update(['discountcode' => str::upper($code)]);
 }
@@ -86,7 +81,7 @@ if (get('dc') === '') {
   go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
 }
 
-// Set gift certificate code from query string
+// Set gift certificate code
 if (get('gc') === '') {
   page(s::get('txn'))->update(['giftcode' => '']);
   go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
@@ -97,7 +92,7 @@ if (get('gc') === '') {
 
 
 /**
- * Helper functions to format price
+ * Helper function to format price
  */
 
 function formatPrice($number, $plaintext = false, $showSymbol = true) {
@@ -133,7 +128,7 @@ function inStock($variant) {
   if (!is_numeric($variant->stock()->value) and $variant->stock()->value === '') return true;
 
   // If it's zero then the item is out of stock
-  if (is_numeric($variant->stock()->value) and intval($variant->stock()->value) === 0) return false;
+  if (is_numeric($variant->stock()->value) and intval($variant->stock()->value) <= 0) return false;
 
   // If it's greater than zero, return the number of items
   if (is_numeric($variant->stock()->value) and intval($variant->stock()->value) > 0) return intval($variant->stock()->value);
@@ -142,9 +137,93 @@ function inStock($variant) {
   return true;
 }
 
+
+/**
+ * Increase quantity of cart item
+ * Or create it if it doesn't exist
+ */
+
+function add($id, $quantity) {
+  $quantityToAdd = $quantity ? $quantity : 1;
+  $item = page(s::get('txn'))->products()->toStructure()->findBy('id', $id);
+  $items = page(s::get('txn'))->products()->yaml();
+  $idParts = explode('::',$id); // $id is formatted uri::variantslug::optionslug
+  $uri = $idParts[0];
+  $variantSlug = $idParts[1];
+  $optionSlug = $idParts[2];
+  $product = page($uri);
+  $variant = null;
+  foreach (page($uri)->variants()->toStructure() as $v) {
+    if (str::slug($v->name()) === $variantSlug) $variant = $v;
+  }
+
+  if (!$item) {
+    // Add a new item
+    $items[] = [
+      'id' => $id,
+      'uri' => $uri,
+      'variant' => $variantSlug,
+      'option' => $optionSlug,
+      'name' => $product->title(),
+      'sku' => $variant->sku(),
+      'amount' => $variant->price(),
+      'sale-amount' => $salePrice = salePrice($variant) ? $salePrice : '',
+      'quantity' => updateQty($id, $quantityToAdd),
+      'weight' => $variant->weight(),
+      'noshipping' => $variant->noshipping()
+    ];
+  } else {
+    // Increase the quantity of an existing item
+    foreach ($items as $key => $i) {
+      if ($i['id'] == $item->id()) {
+        $items[$key]['quantity'] = updateQty($id, $item->quantity()->value + $quantityToAdd);
+        continue;
+      }
+    }
+  }
+  page(s::get('txn'))->update(['products' => yaml::encode($items)]);
+}
+
+
+/**
+ * Decrease quantity of cart item
+ */
+
+function remove($id) {
+  $items = page(s::get('txn'))->products()->yaml();
+  foreach ($items as $key => $i) {
+    if ($i['id'] == $id) {
+      if ($i['quantity'] <= 1) {
+        delete($id);
+      } else {
+        $items[$key]['quantity']--;
+        page(s::get('txn'))->update(['products' => yaml::encode($items)]);
+      }
+      return;
+    }
+  }
+}
+
+
+/**
+ * Delete a cart item entirely
+ */
+
+function delete($id) {
+  // Using file cart
+  $items = page(s::get('txn'))->products()->yaml();
+  foreach ($items as $key => $i) {
+    if ($i['id'] == $id) {
+      unset($items[$key]);
+    }
+  }
+  page(s::get('txn'))->update(['products' => yaml::encode($items)]);
+}
+
+
 /**
  * Helper function to ensure we don't add more items to the cart than we have
- * Returns the number of items in stock, or TRUE if there's no stock limit.
+ * Returns the number of items in stock
  */
 
 function updateQty($id, $newQty) {
@@ -157,7 +236,9 @@ function updateQty($id, $newQty) {
   // Get combined quantity of this option's siblings
   $siblingsQty = 0;
   foreach (page(s::get('txn'))->products()->toStructure() as $item) {
-    if (strpos($item->id(), $uri.'::'.$variantSlug) === 0 and $item->id() != $id) $siblingsQty += $item->quantity()->value;
+    if (strpos($item->id(), $uri.'::'.$variantSlug) === 0 and $item->id() != $id) {
+      $siblingsQty += $item->quantity()->value;
+    }
   }
 
   foreach (page($uri)->variants()->toStructure() as $variant) {
@@ -166,32 +247,31 @@ function updateQty($id, $newQty) {
       // Store the stock in a variable for quicker processing
       $stock = inStock($variant);
 
-       // If there are no siblings
       if ($siblingsQty === 0) {
-        // If there is enough stock
+        // If there are no siblings
         if ($stock === true or $stock >= $newQty){
-          return $newQty; }
-        // If there is no stock
-        else if ($stock === false) {
-          return 0; }
-        // If there is insufficient stock
-        else {
-          return $stock; }
-      }
-
-      // If there are siblings
-      else {
-        // If the siblings plus $newQty won't exceed the max stock, go ahead
+          // If there is enough stock
+          return $newQty;
+        } else if ($stock === false) {
+          // If there is no stock
+          return 0;
+        } else {
+          // If there is insufficient stock
+          return $stock;
+        }
+      } else {
+        // If there are siblings
         if ($stock === true or $stock >= $siblingsQty + $newQty) {
-          return $newQty; }
-        // If the siblings have already maxed out the stock, return 0 
-        else if ($stock === false or $stock <= $siblingsQty) {
-          return 0; }
-        // If the siblings don't exceed max stock, but the newQty will, reduce newQty to the appropriate level
-        else if ($stock > $siblingsQty and $stock <= $siblingsQty + $newQty) {
-          return $stock - $siblingsQty; }
+          // If the siblings plus $newQty won't exceed the max stock, go ahead
+          return $newQty;
+        } else if ($stock === false or $stock <= $siblingsQty) {
+          // If the siblings have already maxed out the stock, return 0 
+          return 0;
+        } else if ($stock > $siblingsQty and $stock <= $siblingsQty + $newQty) {
+          // If the siblings don't exceed max stock, but the newQty will, reduce newQty to the appropriate level
+          return $stock - $siblingsQty;
+        }
       }
-
     } 
   }
 
@@ -199,6 +279,9 @@ function updateQty($id, $newQty) {
   return 0;
 }
 
+function isMaxQty($item) {
+  return updateQty($item->id()->value, $item->quantity()->value + 1) <= $item->quantity()->value;
+}
 
 /**
  * After a successful transaction, update product stock
@@ -218,6 +301,11 @@ function updateStock($txn) {
         } else {
           // Limited stock
           $variants[$key]['stock'] = intval($variant['stock']) - intval($item->quantity()->value);
+
+          // Ensure stock doesn't drop below zero
+          if ($variants[$key]['stock'] < 0) {
+            $variants[$key]['stock'] = 0;
+          }
         }
         // Update the entire variants field (only one variant has changed)
         $product->update(array('variants' => yaml::encode($variants)));
@@ -429,7 +517,7 @@ function resetPassword($email,$firstTime = false) {
  * Set discount code
  */
 
-function getDiscount($cart) {
+function getDiscount() {
   // Make sure there's a code
   if (null == page(s::get('txn'))->discountcode()) return false;
 
@@ -440,16 +528,19 @@ function getDiscount($cart) {
   if ($discounts == '') return false;
   $discount = $discounts->first();
 
+  // Set subtotal in a variable for quicker processing
+  $subtotal = cartSubtotal(getItems());
+
   // Check that the minimum order threshold is met
-  if ($discount->minorder() != '' and $cart->getAmount() < $discount->minorder()->value) return false;
+  if ($discount->minorder() != '' and $subtotal < $discount->minorder()->value) return false;
 
   // Calculate discount amount and save the value
   $value = $discount->amount()->value < 0 ? 0 : $discount->amount()->value;
   if ($discount->kind() == 'percentage') {
     $value = $discount->amount()->value > 100 ? 100 : $discount->amount()->value;
-    $amount = $cart->getAmount() * ($value/100);
+    $amount = $subtotal * ($value/100);
   } else if ($discount->kind() == 'flat') {
-    $value = $discount->amount()->value > $cart->getAmount() ? $cart->getAmount() : $discount->amount()->value;
+    $value = $discount->amount()->value > $subtotal ? $subtotal : $discount->amount()->value;
     $amount = $value;
   }
 
@@ -579,63 +670,211 @@ function canPayLater() {
   return false;
 }
 
+
 /**
  * @param array $data Shipping or tax data
  */
-function appliesToCountry(array $data)
-{
+function appliesToCountry(array $data) {
   // Get array from countries string
   $countries = explode(', ',$data['countries']);
   
-    // Check if country is in the array
-    if(in_array(page(s::get('txn'))->country(), $countries) or in_array('all-countries', $countries)) {
-        return true;
-    } else {
-      return false;
-    }
+  // Check if country is in the array
+  if(in_array(page(s::get('txn'))->country(), $countries) or in_array('all-countries', $countries)) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
+
 /**
- * @return array $data Shipping or tax data
+ * Returns a collection of items from the transaction file
  */
+
 function getItems() {
 
+  $return = new Collection();
+  
   $items = page(s::get('txn'))->products()->toStructure();
 
-  if (!$items->count()) return null;
+  // Return the empty collection if there are no items
+  if (!$items->count()) return $return;
 
-  foreach ($items as $item) {
+  foreach ($items as $key => $item) {
 
     // Check if product, variant and option exists
     if ($product = page($item->uri()) and $variant = $product->variants()->toStructure()->filter(function($v) use ($item) {
       return str::slug($v->name()) == $item->variant();
     })->first()) {
       // Variant exists
-      if ($item->option() != '' and !in_array($item->option(), $variant->options()->split())) {
-        // Invalid option set
-        continue;
+      if ($item->option()->isNotEmpty()) {
+        $matches = 0;
+        foreach ($variant->options()->split() as $option) {
+          if ($item->option() == str::slug($option)) {
+            $matches++;
+          }
+        }
+        // Invalid option
+        if ($matches == 0) continue;
       }
     } else {
       // Variant does not exist
       continue;
     }
 
-    dump($item);
-
-    // Check if the item's on sale
-    $itemAmount = $item->sale_amount ? $item->sale_amount : $item->amount;
-    
-    // Add to cart amount
-    $this->amount += floatval($itemAmount) * $quantity;
-
-    // If shipping applies, factor this item into the calculation for shipping properties 
-    if ($item->noshipping != 1) {
-      $this->shippingAmount += floatval($itemAmount) * $quantity;
-      $this->shippingWeight += floatval($item->weight) * $quantity;
-      $this->shippingQty += $quantity;
-    }
+    // Passed validation, add to the return object
+    $return->append($key, $item);
   }
 
-  return $items;
+  return $return;
 }
-dump(getItems()); die;
+
+/**
+ * Helper functions to get cart totals
+ */
+
+function cartSubtotal($items) {
+  $subtotal = 0;
+  foreach ($items as $item) {
+    $itemAmount = $item->sale_amount()->isNotEmpty() ? $item->sale_amount()->value : $item->amount()->value;
+    $subtotal += $itemAmount * $item->quantity()->value;
+  }
+  return $subtotal;
+}
+
+function cartQty($items) {
+  $qty = 0;
+  foreach ($items as $item) {
+    $qty += $item->quantity()->value;
+  }
+  return $qty;
+}
+
+function cartWeight($items) {
+  $weight = 0;
+  foreach ($items as $item) {
+    $weight += $item->weight()->value * $item->quantity()->value;
+  }
+  return $weight;
+}
+
+function cartTax() {
+  // Initialize tax
+  $tax = 0;
+
+  // Get site-wide tax categories
+  $taxCategories = yaml(site()->tax());
+
+  // Calculate tax for each cart item
+  foreach (getItems() as $item) {
+
+    // Initialize applicable taxes array. Start with 0 so we can use max() later on.
+    $applicableTaxes = [0];
+
+    // Get taxable amount
+    $itemAmount = $item->sale_amount()->isNotEmpty() ? $item->sale_amount()->value : $item->amount()->value;
+    $taxableAmount = $itemAmount * $item->quantity()->value;
+
+    // Check for product-specific tax rules
+    $productTax = page($item->uri)->tax();
+    if ($productTax->exists() and $productTax->isNotEmpty()) {
+      $itemTaxCategories = yaml($productTax);
+    } else {
+      $itemTaxCategories = $taxCategories;
+    }
+
+    // Add applicable tax to the taxes array
+    foreach ($itemTaxCategories as $taxCategory) {
+      if (appliesToCountry($taxCategory)) {
+        $applicableTaxes[] = $taxCategory['rate'] * $taxableAmount;
+      }
+    }
+
+    // Add highest applicable tax to the cart tax
+    $tax += max($applicableTaxes);
+  }
+
+  // Return the total Cart tax
+  return $tax;
+}
+
+function getShippingRates() {
+
+    // Get all shipping methods as an array
+    $methods = yaml(site()->shipping());
+
+    // Exclude items marked with "noshipping"
+    $filteredItems = getItems()->filter(function($item){
+      return $item->noshipping()->isEmpty();
+    });
+    $qty = cartQty($filteredItems);
+    $weight = cartWeight($filteredItems);
+    $subtotal = cartSubtotal($filteredItems);
+
+    // Initialize output
+    $output = [];
+
+    foreach ($methods as $method) {
+
+      if (!appliesToCountry($method)) continue;
+
+        // Flat-rate shipping cost
+        $rate['flat'] = '';
+        if ($method['flat'] != '' and $qty > 0) $rate['flat'] = (float)$method['flat'];
+
+        // Per-item shipping cost
+        $rate['item'] = '';
+        if ($method['item'] != '') $rate['item'] = $method['item'] * $qty;
+
+        // Shipping cost by weight
+        $rate['weight'] = '';
+        $tiers = str::split($method['weight'], "\n");
+        if (count($tiers)) {
+          foreach ($tiers as $tier) {
+            $t = str::split($tier, ':');
+            $tier_weight = $t[0];
+            $tier_amount = $t[1];
+            if ($weight != 0 and $weight >= $tier_weight) {
+              $rate['weight'] = $tier_amount;
+            }
+          }
+          // If no tiers match the shipping weight, set the rate to 0
+          // (This may happen if you don't set a tier for 0 weight)
+          if ($rate['weight'] === '') $rate['weight'] = 0;
+        }
+
+        // Shipping cost by price
+        $rate['price'] = '';
+        foreach (str::split($method['price'], "\n") as $tier) {
+          $t = str::split($tier, ':');
+          $tier_price = $t[0];
+          $tier_amount = $t[1];
+          if ($subtotal >= $tier_price) {
+            $rate['price'] = $tier_amount;
+          }
+        }
+
+        // Remove rate calculations that are blank or falsy
+        foreach ($rate as $key => $r) {
+          if ($r == '') {
+            unset($rate[$key]);
+          }
+        }
+
+        if (count($rate) === 0) {
+          // If rate is empty, return zero
+          $output[] = array('title' => $method['method'],'rate' => 0);
+        } else {
+          // Finally, choose which calculation type to choose for this shipping method
+          if ($method['calculation'] === 'low') {
+            $shipping = min($rate);
+          } else {
+            $shipping = max($rate);
+          }
+
+          $output[] = array('title' => $method['method'],'rate' => $shipping);  
+        }
+    }
+
+    return $output;
+}
