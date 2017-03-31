@@ -103,14 +103,14 @@ function inStock($variant) {
   // It it's a blank string, item has unlimited stock
   if (!is_numeric($variant->stock()->value) and $variant->stock()->value === '') return true;
 
-  // If it's zero then the item is out of stock
-  if (is_numeric($variant->stock()->value) and intval($variant->stock()->value) === 0) return false;
+  // If it's zero or less, the item is out of stock
+  if (is_numeric($variant->stock()->value) and intval($variant->stock()->value) <= 0) return false;
 
   // If it's greater than zero, return the number of items
   if (is_numeric($variant->stock()->value) and intval($variant->stock()->value) > 0) return intval($variant->stock()->value);
 
-  // Otherwise, assume unlimited stock and return true
-  return true;
+  // Otherwise, it's an invalid value (e.g. non-blank arbitrary string)
+  return false;
 }
 
 
@@ -132,6 +132,11 @@ function updateStock($txn) {
         } else {
           // Limited stock
           $variants[$key]['stock'] = intval($variant['stock']) - intval($item->quantity()->value);
+
+          // Ensure stock doesn't drop below zero
+          if ($variants[$key]['stock'] < 0) {
+            $variants[$key]['stock'] = 0;
+          }
         }
         // Update the entire variants field (only one variant has changed)
         $product->update(array('variants' => yaml::encode($variants)));
