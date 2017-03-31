@@ -127,14 +127,14 @@ function inStock($variant) {
   // It it's a blank string, item has unlimited stock
   if (!is_numeric($variant->stock()->value) and $variant->stock()->value === '') return true;
 
-  // If it's zero then the item is out of stock
+  // If it's zero or less, item is out of stock
   if (is_numeric($variant->stock()->value) and intval($variant->stock()->value) <= 0) return false;
 
   // If it's greater than zero, return the number of items
   if (is_numeric($variant->stock()->value) and intval($variant->stock()->value) > 0) return intval($variant->stock()->value);
 
-  // Otherwise, assume unlimited stock and return true
-  return true;
+  // Otherwise, it's an invalid value (e.g. a non-blank arbitrary string)
+  return false;
 }
 
 
