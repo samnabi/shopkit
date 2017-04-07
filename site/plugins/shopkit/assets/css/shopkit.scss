@@ -88,6 +88,7 @@ $breakpoint-m-l: 75em;
 .wrapper-main {
 	background: white;
 	padding: 1em;
+	position: relative;
 }
 
 @media (min-width: $breakpoint-s-m) {
@@ -535,7 +536,6 @@ option + option {
  */
 
 .login {
-	margin-bottom: 0.5em;
 	text-align: right;
 
 	.notification {
@@ -550,6 +550,12 @@ option + option {
 		display: flex;
 		flex-direction: column;
 		text-align: left;
+		position: absolute;
+		right: 1em;
+		background-color: white;
+		border: 2px solid $accent;
+		padding: 0 1em;
+		z-index: 2;
 
 		input {
 			width: 100%;
@@ -557,39 +563,15 @@ option + option {
 	}
 
 	ul {
-		padding-bottom: 1em;
-		border-bottom: 2px solid $accent;
+		padding-left: 0;
 		text-align: center;
-		text-align: right;
 		width: 100%;
 
 		li {
 			margin-top: 0;
 			display: inline-block;
 			font-size: $text-s;
-
-			& + li {
-				margin-left: 1em;
-			}
-		}
-	}
-}
-
-@media screen and (min-width: 25em) {
-	.login form {
-		flex-direction: row;
-		flex-wrap: wrap;
-		align-items: flex-end;
-		justify-content: flex-end;
-
-		label {
-			width: 40%;
-			padding-right: 1em;
-			max-width: 10em;
-		}
-
-		button {
-			max-width: 20%;
+			margin: 0 0.5em;
 		}
 	}
 }
