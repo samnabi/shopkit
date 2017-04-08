@@ -65,7 +65,7 @@ Use these terminal commands to update Shopkit and its dependencies:
     # Update dependencies
     git submodule update --init --recursive
 
-## Dependencies for Shopkit v1.1.5
+## Dependencies for Shopkit v1.1.6
 
 - Kirby Core [v2.4.1](https://github.com/getkirby/kirby/tree/2.4.1)
 - Kirby Panel [v2.4.1](https://github.com/getkirby/panel/tree/2.4.1)
@@ -86,6 +86,6 @@ Please report issues and request new features on the [issues page](https://githu
 
 ## Copyright
 
-Shopkit © 2015-2016 Sam Nabi <http://samnabi.com>
+Shopkit © 2015-2017 Sam Nabi <http://samnabi.com>
 
-Kirby © 2009-2016 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>
+Kirby © 2009-2017 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>

@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.1.6
+- Security fixes
+    - `c::set('debug', true)` no longer enables mail logging
+- Bug fixes
+    - Fix `getDiscount()` check for flat discounts
+    - Fix per-variant sale price codes
+    - Fix negative stock bug
+
 ## v1.1.5
 - Bug fixes
     - Remove poorly-formatted HTML entities in panel fields
