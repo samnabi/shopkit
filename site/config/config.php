@@ -33,6 +33,17 @@ c::set('debug', false);
 
 /* 
 ---------------------------------------
+Mail Logging
+---------------------------------------
+Log a copy of all emails sent by Shopkit.
+Useful for debugging, but don't enable this on a live site!
+The log saves all email content, including one-time access tokens and transaction details.
+*/
+c::set('mail.log', false);
+
+
+/* 
+---------------------------------------
 Timezone
 ---------------------------------------
 

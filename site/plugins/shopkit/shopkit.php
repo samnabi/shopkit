@@ -606,7 +606,7 @@ function sendMail($subject, $body, $to) {
   ]);
 
   // Log email
-  if (c::get('debug') == true) {
+  if (c::get('mail.log') == true) {
     $file = kirby()->roots()->index().DS.'logs'.DS.'mail.log';
     $content = "\n\n----\n\n".date('Y-m-d H:i:s')."\n\n".yaml::encode($email);
     f::write($file, $content, true);
