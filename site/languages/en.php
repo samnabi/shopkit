@@ -128,6 +128,7 @@
 'search-shop' => 'Search shop',
 'search' => 'Search',
 
+'hours-of-operation' => 'Hours of operation',
 'phone' => 'Phone',
 'email' => 'Email',
 'address' => 'Address',

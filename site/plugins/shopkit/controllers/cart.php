@@ -15,21 +15,13 @@ return function($site, $pages, $page) {
 
     // Handle cart updates
     if ($action = get('action')) {
-        $id = get('id', implode('::', array(get('uri', ''), get('variant', ''), get('option', ''))));
-        $quantity = intval(get('quantity'));
-        $variant = get('variant');
-        $option = get('option');
-        switch ($action) {
-            case 'add':
-                add($id, $quantity);
-            break;
-            case 'remove':
-                remove($id);
-                break;
-            case 'delete':
-                delete($id);
-                break;
-        }
+      $id = get('id', implode('::', array(get('uri', ''), get('variant', ''), get('option', ''))));
+      $quantity = intval(get('quantity'));
+      $variant = get('variant');
+      $option = get('option');
+      if ($action == 'add') add($id, $quantity);
+      if ($action == 'remove') remove($id);
+      if ($action == 'delete') delete($id);
     }
 
     // Get countries
@@ -39,9 +31,8 @@ return function($site, $pages, $page) {
     $shipping_rates = getShippingRates();
 
 
-    // Set shipping method as a session variable
-    // Shipping method is an array containing 'title' and 'rate'
-    $shippingMethods = getShippingRates();
+    // Set shipping method and rate in the transaction file
+    $shippingMethods = $shipping_rates;
     if (get('shipping')) {
       // First option: see if a shipping method was set through a form submission
       if (get('shipping') == 'free-shipping') {

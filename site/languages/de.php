@@ -127,6 +127,7 @@
 'search-shop' =>  'Shop durchsuchen',
 'search' =>  'Suchen',
 
+'hours-of-operation' => 'Öffnungszeiten',
 'phone' => 'Telefon',
 'email' => 'E-Mail',
 'address' => 'Adresse',

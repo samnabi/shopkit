@@ -9,12 +9,12 @@ return function ($site, $pages, $page) {
         if (get('subject') != '') go(url('error'));
 
         // Check for required fields
-        $register_message = '';
-        if (get('email') == '') $register_message .= '<p dir="auto">'.l('register-failure-email').'</p>';
-        if (get('fullname') == '') $register_message .= '<p dir="auto">'.l('register-failure-fullname').'</p>';
-        if (get('country') == '') $register_message .= '<p dir="auto">'.l('register-failure-country').'</p>';
+        $register_message = [];
+        if (get('email') == '') $register_message[] = l('register-failure-email');
+        if (get('fullname') == '') $register_message[] = l('register-failure-fullname');
+        if (get('country') == '') $register_message[] = l('register-failure-country');
 
-        if (!$register_message) {
+        if (!count($register_message)) {
 
             // Username is the email address with punctuation removed.
             // End users won't use this, we just need a unique ID for the account.
@@ -43,17 +43,17 @@ return function ($site, $pages, $page) {
 
                 // Send password reset email
                 if (resetPassword($user->email(),true)) {
-                    $register_message = l('register-success');
+                    $register_message[] = l('register-success');
                     $success = true;
                 } else {
-                    $register_message = l('register-failure-verification');
+                    $register_message[] = l('register-failure-verification');
                 }
 
         	  } catch(Exception $e) {
-        	    $register_message = l('register-failure');
+        	    $register_message[] = l('register-failure');
         	  }
         	} else {
-        	    $register_message = l('register-duplicate');
+        	    $register_message[] = l('register-duplicate');
         	}
         }
     } else {
@@ -61,7 +61,7 @@ return function ($site, $pages, $page) {
     }
 
     // Get countries
-    $countries = page('/shop/countries')->children()->invisible();
+    $countries = page('shop/countries')->children()->invisible();
 
 	// Pass variables to the template
 	return [

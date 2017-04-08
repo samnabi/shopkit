@@ -57,7 +57,7 @@ Shipping:
   countries: canada
   flat: ""
   item: ""
-  weight: '0 : 2'
+  weight: '0 : '
   price: |
     0 : 8
     10 : 9

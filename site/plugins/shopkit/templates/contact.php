@@ -11,22 +11,25 @@
 
 <?= $page->text()->kirbytext()->bidi() ?>
 
-<?= $page->hours()->kirbytext()->bidi() ?>
-
 <dl dir="auto">
-    <?php if ($phone) { ?>
+    <?php if ($page->hours()->isNotEmpty()) { ?>
+        <dt><?= l('hours-of-operation') ?></dt>
+        <dd><?= $page->hours()->kirbytext() ?></dd>
+    <?php } ?>
+
+    <?php if ($page->phone()->isNotEmpty()) { ?>
         <dt><?= l('phone') ?></dt>
-        <dd><?= $phone ?></dd>
+        <dd><?= $page->phone() ?></dd>
     <?php } ?>
     
-    <?php if ($email) { ?>
+    <?php if ($page->email()->isNotEmpty()) { ?>
         <dt><?= l('email') ?></dt>
-        <dd><?= kirbytext('(email: '.trim($email).')') ?></dd>
+        <dd><?= kirbytext('(email: '.trim($page->email()).')') ?></dd>
     <?php } ?>
 
-    <?php if ($address) { ?>
+    <?php if ($page->location()->isNotEmpty()) { ?>
         <dt><?= l('address') ?></dt>
-        <dd><?= $address ?></dd>
+        <dd><?= $page->location() ?></dd>
     <?php } ?>
 </dl>
 

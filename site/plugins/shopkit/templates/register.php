@@ -9,9 +9,9 @@
 
 <?= $page->text()->kirbytext()->bidi() ?>
 
-<?php if($register_message) { ?>
-  <div class="notification warning">
-    <?= $register_message ?>
+<?php if($register_message and count($register_message)) { ?>
+  <div class="notification warning" dir="auto">
+    <?= implode('<br>', $register_message) ?>
   </div>
 <?php } ?>
 

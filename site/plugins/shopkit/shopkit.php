@@ -279,6 +279,11 @@ function updateQty($id, $newQty) {
   return 0;
 }
 
+
+/**
+ * Check if we are at the maximum number of items in stock
+ */
+
 function isMaxQty($item) {
   return updateQty($item->id()->value, $item->quantity()->value + 1) <= $item->quantity()->value;
 }

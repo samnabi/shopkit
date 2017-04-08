@@ -126,6 +126,7 @@
 'search-shop' => 'Buscar tienda',
 'search' => 'Buscar',
 
+'hours-of-operation' => 'Horas de operación',
 'phone' => 'Teléfono',
 'email' => 'Correo Electrónico',
 'address' => 'Dirección',

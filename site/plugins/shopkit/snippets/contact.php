@@ -3,28 +3,25 @@
     <section class="contact">
         <h3 dir="auto"><?= page('contact')->title()->html() ?></h3>
 
-        <?php if($hours = page('contact')->hours() and $hours != '') { ?>
-            <h4 dir="auto">Hours of operation</h4>
-            <?= $hours->kirbytext()->bidi() ?>
-        <?php } ?>
-
         <dl dir="auto">
-            <?php if ($phone = $contact->phone() and $phone != '') { ?>
+            <?php if ($contact->hours()->isNotEmpty()) { ?>
+                <dt><?= l('hours-of-operation') ?></dt>
+                <dd><?= $contact->hours()->kirbytext() ?></dd>
+            <?php } ?>
+
+            <?php if ($page->phone()->isNotEmpty()) { ?>
                 <dt><?= l('phone') ?></dt>
-                <dd><?= $phone ?></dd>
+                <dd><?= $page->phone() ?></dd>
             <?php } ?>
             
-            <?php if ($email = $contact->email() and $email != '') { ?>
+            <?php if ($page->email()->isNotEmpty()) { ?>
                 <dt><?= l('email') ?></dt>
-                <dd><?= kirbytext('(email: '.trim($email).')') ?></dd>
+                <dd><?= kirbytext('(email: '.trim($page->email()).')') ?></dd>
             <?php } ?>
-            
-            <?php if ($address = $contact->location()->toStructure()->address() and $address != '') { ?>
+
+            <?php if ($page->location()->isNotEmpty()) { ?>
                 <dt><?= l('address') ?></dt>
-                <dd><?= $address ?></dd>
-            <?php } else if ($contact->location()->isNotEmpty()) { ?>
-                <dt><?= l('address') ?></dt>
-                <dd><?= $contact->location()->kirbytext() ?></dd>
+                <dd><?= $page->location() ?></dd>
             <?php } ?>
         </dl>
     </section>

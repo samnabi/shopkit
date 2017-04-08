@@ -23,7 +23,7 @@
     <input type="text" name="email">
   </label>
 
-  <button type="submit" name="reset">
+  <button class="accent" type="submit" name="reset">
     <?= l('reset-submit') ?>
   </button>
   

@@ -5,9 +5,6 @@ return function ($site, $pages, $page) {
 	// Initialize SEO description
 	$seo_description = '';
 
-	// Get tags
-	$tags = str::split($page->tags());
-
 	// Get variants
 	$variants = $page->variants()->toStructure();
 
@@ -52,7 +49,6 @@ return function ($site, $pages, $page) {
 
 	// Pass variables to the template
 	return [
-		'tags' => $tags,
 		'variants' => $variants,
 		'seo_description' => esc($seo_description)
 	];

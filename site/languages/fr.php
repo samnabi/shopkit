@@ -128,6 +128,7 @@
 'search-shop' => 'Recherchez',
 'search' => 'Recherchez',
 
+'hours-of-operation' => 'Heures d\'ouverture',
 'phone' => 'Téléphone',
 'email' => 'Courriel',
 'address' => 'Addresse',

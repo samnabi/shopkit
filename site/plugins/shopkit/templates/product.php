@@ -63,9 +63,9 @@
 		<section>
 			<?= $page->text()->kirbytext()->bidi() ?>
 
-			<?php if (count($tags)) { ?>
+			<?php if ($page->tags()->isNotEmpty()) { ?>
 				<ul class="menu tags" dir="auto">
-					<?php foreach ($tags as $tag) { ?>
+					<?php foreach (str::split($page->tags()) as $tag) { ?>
 						<li><a href="<?= url('search/?q='.urlencode($tag)) ?>">#<?= $tag ?></a></li>
 					<?php } ?>
 				</ul>

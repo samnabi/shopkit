@@ -3,7 +3,7 @@
 return function($site, $pages, $page) {
 
   // Find transaction
-  // Using explicit GET to avoid conflict with txn_id POSTed from PayPal
+  // Not using Kirby's get() method to avoid conflict with txn_id POSTed from PayPal
   $txn = page('shop/orders/'.$_GET['txn_id']);
   if(!$txn or $_GET['txn_id'] == '') go('shop/cart');
 
