@@ -374,7 +374,7 @@ function resetPassword($email,$firstTime = false) {
   }
 
   // Send the confirmation email
-  sendMail($subject, $body, $user->email());
+  return sendMail($subject, $body, $user->email());
 }
 
 
