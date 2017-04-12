@@ -30,3 +30,6 @@
 
 # Ignore log files
 /logs/*
+
+# Ignore local config files
+/site/config/config.*.local.php
