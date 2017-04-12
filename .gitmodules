@@ -10,6 +10,9 @@
 [submodule "site/plugins/field-multiselect"]
 	path = site/plugins/field-multiselect
 	url = https://github.com/distantnative/field-multiselect.git
+[submodule "site/plugins/field-selector"]
+	path = site/plugins/field-selector
+	url = https://github.com/storypioneers/kirby-selector.git
 [submodule "site/plugins/shopkit/fields/color"]
 	path = site/plugins/shopkit/fields/color
 	url = https://github.com/ian-cox/Kirby-Color-Picker.git
