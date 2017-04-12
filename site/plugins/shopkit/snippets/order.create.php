@@ -13,31 +13,6 @@ if (get('giftCertificatePaid') == 'true') {
 	$status = 'pending';
 }
 
-// Add download links
-foreach (getItems() as $i => $item) {
-	foreach (page($item->uri())->variants()->toStructure() as $variant) {
-		if (str::slug($variant->name()) == $item->variant()) {
-			if ($variant->download_files()->isNotEmpty()) {
-
-				// Build full URLs for downloads
-				$files = [];
-				foreach (explode(',', $variant->download_files()) as $filename) {
-					$files[] = url($item->uri()).'/'.$filename;
-				}
-				$downloads = [
-					'files' => $files,
-					'expires' => $variant->download_days()->isEmpty() ? NULL : $timestamp + ($variant->download_days()->value * 60 * 60 * 24)
-				];
-
-				// Update transaction file
-				page(s::get('txn'))->update([
-					'downloads' => yaml::encode($downloads)
-				]);
-			}
-		}
-	} 
-}
-
 // Add transaction details
 $discount = getDiscount();
 page(s::get('txn'))->update([

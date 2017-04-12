@@ -209,6 +209,7 @@
 'download-expired' => 'Download abgelaufen',
 'view-on-paypal' => 'Auf PayPal anzeigen',
 
+'abandoned' => 'Aufgegebener',
 'pending' => 'Ausstehend',
 'paid' => 'Bezahlt',
 'shipped' => 'Verschickt',

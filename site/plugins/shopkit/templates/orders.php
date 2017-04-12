@@ -22,7 +22,7 @@
                           <span class="collapse"><?= f::read('site/plugins/shopkit/assets/svg/chevron-up.svg') ?></span>
                         </button>
                         <form class="filter" action="" method="post">
-                            <?php foreach (['pending','paid','shipped'] as $status) { ?>
+                            <?php foreach (['abandoned','pending','paid','shipped'] as $status) { ?>
                                 <label>
                                     <input type="checkbox" name="status[]" value="<?= $status ?>" <?php if(get('status') and in_array($status, get('status'))) echo 'checked' ?>>
                                     <?= l($status) ?>
@@ -46,12 +46,13 @@
                         <strong><?= $order->txn_id() ?></strong><br>
                         <?php ecco($order->payer_name() != '',$order->payer_name().'<br>') ?>
                         <?php ecco($order->payer_email() != '','<a href="mailto:'.$order->payer_email().'">'.$order->payer_email().'</a><br>') ?>
-                        <?= strftime('%e %B %Y, %H:%M',$order->txn_date()->value) ?><br>
-
-                        <form action="<?= url($site->language().'/shop/orders/pdf') ?>" method="POST">
-                            <input type="hidden" name="uri" value="<?= $order->uri() ?>">
-                            <button type="submit"><?= l('download-invoice') ?></button>
-                        </form>
+                        <?php if ($order->status() != 'abandoned') { ?>
+                            <?= strftime('%e %B %Y, %H:%M',$order->txn_date()->value) ?><br>
+                            <form action="<?= url($site->language().'/shop/orders/pdf') ?>" method="POST">
+                                <input type="hidden" name="uri" value="<?= $order->uri() ?>">
+                                <button type="submit"><?= l('download-invoice') ?></button>
+                            </form>
+                        <?php } ?>
                     </td>
                     <td>
                         <?php if (strpos($order->products(),'uri:')) { ?>
@@ -65,13 +66,13 @@
                                             <?= $product->option()->isNotEmpty() ? ' / '.$product->option() : '' ?>
                                             <?= '/ '.l('qty').$product->quantity() ?>
                                         </small>
-                                        <?php if ($product->downloads()->files()->isNotEmpty() and page($product->uri)) { ?>
-                                            <?php if ($product->downloads()->expires()->isEmpty() or $product->downloads()->expires()->value > time()) { ?>
-                                                <?php foreach ($product->downloads()->files() as $file) { ?>
-                                                    <?php $hash = page($product->uri)->file(substr($file, strrpos($file,'/')+1))->hash() ?>
+                                        <?php if ($downloads = $product->downloads() and $downloads->isNotEmpty() and $downloads->files()->isNotEmpty() and page($product->uri())) { ?>
+                                            <?php if ($downloads->expires()->isEmpty() or $downloads->expires()->value > time()) { ?>
+                                                <?php foreach ($downloads->files() as $file) { ?>
+                                                    <?php $hash = page($product->uri())->file(substr($file, strrpos($file,'/')+1))->hash() ?>
                                                     <br>
                                                     <small>
-                                                        <a href="<?= u($product->uri.'/'.$product->variant.'/download/'.$order->uid().'/'.$hash) ?>" title="<?= $product->name() ?>">
+                                                        <a href="<?= u($product->uri().'/'.$product->variant().'/download/'.$order->uid().'/'.$hash) ?>" title="<?= $product->name() ?>">
                                                             <?= l('download-file') ?> [<?= substr($hash,-7) ?>]
                                                         </a>
                                                     </small>
@@ -140,6 +141,11 @@
                             <div>
                                 <form action="" method="POST">
                                     <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
+                                    <input type="hidden" name="action" value="mark_abandoned">
+                                    <input <?php ecco($order->status()->value === 'abandoned','class="warning"') ?> type="submit" value="<?= l('abandoned') ?>">
+                                </form>
+                                <form action="" method="POST">
+                                    <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
                                     <input type="hidden" name="action" value="mark_pending">
                                     <input <?php ecco($order->status()->value === 'pending','class="warning"') ?> type="submit" value="<?= l('pending') ?>">
                                 </form>
@@ -156,6 +162,7 @@
                             </div>
                         <?php } else {
                             switch ($order->status()->value) {
+                                case 'abandoned': echo l('abandoned'); break;
                                 case 'paid': echo l('paid'); break;
                                 case 'shipped': echo l('shipped'); break;
                                 default: echo l('pending'); break;

@@ -5,6 +5,7 @@ return function($site, $pages, $page) {
 
     // Mark order as pending, paid, or shipped
     $action = get('action');
+    if ($action === 'mark_abandoned') page('shop/orders/'.get('update_id'))->update(['status' => 'abandoned']);
     if ($action === 'mark_pending') page('shop/orders/'.get('update_id'))->update(['status' => 'pending']);
     if ($action === 'mark_shipped') page('shop/orders/'.get('update_id'))->update(['status' => 'shipped']);
     if ($action === 'mark_paid')    page('shop/orders/'.get('update_id'))->update(['status' => 'paid']);
@@ -15,8 +16,11 @@ return function($site, $pages, $page) {
         // If single transaction ID passed, show just that one order
         $orders = $page->children()->sortBy('txn_date','desc')->filterBy('txn_id',get('txn_id'));
     } else if ($user and $user->role() == 'admin') {
-        // If admin, show all orders
+        // If admin, show all orders except abandoned
         $orders = $page->children()->sortBy('txn_date','desc');
+        if (null === get('status')) {
+            $orders = $orders->filterBy('status', '!=', 'abandoned');
+        }
     } else if ($user) {
         // If logged in, show this user's orders
         $orders = $page->children()->sortBy('txn_date','desc')->filterBy('payer_email',$user->email());

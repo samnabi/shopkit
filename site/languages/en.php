@@ -210,6 +210,7 @@
 'download-expired' => 'Download Expired',
 'view-on-paypal' => 'View on PayPal',
 
+'abandoned' => 'Abandoned',
 'pending' => 'Pending',
 'paid' => 'Paid',
 'shipped' => 'Shipped',

@@ -37,7 +37,7 @@ if (null !== s::get('oldid') and $txn = page('shop/orders/'.s::get('oldid'))) {
 } else if (!page('shop/orders/'.s::id())) {
   // New session, create the transaction file
   page('shop/orders')->children()->create(s::id(), 'order', [
-    'status' => 'pending',
+    'status' => 'abandoned',
     'session-start' => time(),
     'session-end' => time()
   ], $site->defaultLanguage());
@@ -157,6 +157,18 @@ function add($id, $quantity) {
     if (str::slug($v->name()) === $variantSlug) $variant = $v;
   }
 
+  $downloads = null;
+  if ($variant->download_files()->isNotEmpty()) {
+    $files = [];
+    foreach (explode(',', $variant->download_files()) as $filename) {
+      $files[] = url($uri).'/'.$filename;
+    }
+    $downloads = [
+      'files' => $files,
+      'expires' => $variant->download_days()->isEmpty() ? NULL : $timestamp + ($variant->download_days()->value * 60 * 60 * 24)
+    ];
+  }
+
   if (!$item) {
     // Add a new item
     $items[] = [
@@ -170,7 +182,8 @@ function add($id, $quantity) {
       'sale-amount' => $salePrice = salePrice($variant) ? $salePrice : '',
       'quantity' => updateQty($id, $quantityToAdd),
       'weight' => $variant->weight(),
-      'noshipping' => $variant->noshipping()
+      'noshipping' => $variant->noshipping(),
+      'downloads' => $downloads,
     ];
   } else {
     // Increase the quantity of an existing item
@@ -837,8 +850,8 @@ function getShippingRates() {
         if (count($tiers)) {
           foreach ($tiers as $tier) {
             $t = str::split($tier, ':');
-            $tier_weight = $t[0];
-            $tier_amount = $t[1];
+            $tier_weight = a::first($t);
+            $tier_amount = a::last($t);
             if ($weight != 0 and $weight >= $tier_weight) {
               $rate['weight'] = $tier_amount;
             }
