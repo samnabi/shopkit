@@ -31,3 +31,6 @@
 [submodule "site/plugins/stats"]
 	path = site/plugins/stats
 	url = https://github.com/samnabi/kirby-stats.git
+[submodule "site/plugins/shopkit/gateways/stripecheckout/stripe-php"]
+	path = site/plugins/shopkit/gateways/stripecheckout/stripe-php
+	url = https://github.com/stripe/stripe-php
