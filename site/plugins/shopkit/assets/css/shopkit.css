@@ -1102,14 +1102,15 @@ a.slideshow {
     max-width: 15em;
     margin: 0 0 0 1em; }
     .gateways form img {
-      max-height: 2em;
+      max-height: 2.5em;
       max-width: 100%;
       display: block;
-      margin: 0 auto; }
+      margin: 0 auto;
+      padding: 0 0.5em 0.5em; }
     .gateways form .notification {
       font-size: 0.8rem;
       color: black;
-      margin: 1em -0.5rem -0.2rem; }
+      margin: 0 -0.5rem -0.2rem; }
 
 /**
  * Orders page

@@ -37,6 +37,7 @@ if (null !== s::get('oldid') and $txn = page('shop/orders/'.s::get('oldid'))) {
 } else if (!page('shop/orders/'.s::id())) {
   // New session, create the transaction file
   page('shop/orders')->children()->create(s::id(), 'order', [
+    'txn-id' => s::id(),
     'status' => 'abandoned',
     'session-start' => time(),
     'session-end' => time()
