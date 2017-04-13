@@ -36,11 +36,13 @@ if (null !== s::get('oldid') and $txn = page('shop/orders/'.s::get('oldid'))) {
   }
 } else if (!page('shop/orders/'.s::id())) {
   // New session, create the transaction file
+  $timestamp = time();
   page('shop/orders')->children()->create(s::id(), 'order', [
     'txn-id' => s::id(),
+    'txn-date'  => $timestamp,
     'status' => 'abandoned',
-    'session-start' => time(),
-    'session-end' => time()
+    'session-start' => $timestamp,
+    'session-end' => $timestamp
   ], $site->defaultLanguage());
 }
 s::set('txn', 'shop/orders/'.s::id());
