@@ -37,16 +37,6 @@ $kirby->set('route',[
   }
 ]);
 $kirby->set('route',[
-  // Empties cart
-  'pattern' => 'shop/cart/empty',
-  'action' => function() {
-    s::start();
-    s::set('cart', array()); // Empty the cart
-    // Send along a status message
-    return go('shop/cart');
-  }
-]);
-$kirby->set('route',[
   // Creates transaction page from Cart data
   'pattern' => 'shop/cart/process',
   'method' => 'POST',

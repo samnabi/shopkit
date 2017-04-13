@@ -173,7 +173,6 @@
 
 'pay-now' => 'Pay now',
 'pay-later' => 'Pay later',
-'empty-cart' => 'Empty cart',
 
 'discount' => 'Discount',
 'gift-certificate' => 'Gift certificate',

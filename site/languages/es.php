@@ -171,7 +171,6 @@
 
 'pay-now' => 'Pagar ahora',
 'pay-later' => 'Pagar después',
-'empty-cart' => 'Vaciar carrito',
 
 'discount' => 'Descuento',
 'discount-apply' => 'Aplicar Descuento',

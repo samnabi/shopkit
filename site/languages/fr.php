@@ -174,7 +174,6 @@
 
 'pay-now' => 'Achetez maintenant',
 'pay-later' => 'Achetez plus tard',
-'empty-cart' => 'Videz le panier',
 
 'discount' => 'Rabais',
 'gift-certificate' => 'Carte cadeau',

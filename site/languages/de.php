@@ -172,7 +172,6 @@
 
 'pay-now' => 'Jetzt bezahlen',
 'pay-later' => 'Später bezahlen',
-'empty-cart' => 'Leerer Warenkorb',
 
 'discount' => 'Rabatt',
 'gift-certificate' => 'Geschenkgutschein',
