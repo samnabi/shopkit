@@ -16,12 +16,12 @@
                 <th><?= l('price') ?></th>
                 <th>
                     <?php if ($orders) { ?>
-                        <button aria-expanded="true" aria-controls="login">
+                        <button aria-expanded="true" aria-controls="filter">
                           <?= l('status') ?>
                           <span class="expand"><?= f::read('site/plugins/shopkit/assets/svg/chevron-down.svg') ?></span>
                           <span class="collapse"><?= f::read('site/plugins/shopkit/assets/svg/chevron-up.svg') ?></span>
                         </button>
-                        <form class="filter" action="" method="post">
+                        <form class="filter" action="" method="post" id="filter">
                             <?php foreach (['abandoned','pending','paid','shipped'] as $status) { ?>
                                 <label>
                                     <input type="checkbox" name="status[]" value="<?= $status ?>" <?php if(get('status') and in_array($status, get('status'))) echo 'checked' ?>>

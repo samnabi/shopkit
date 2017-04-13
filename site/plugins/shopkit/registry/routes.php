@@ -22,7 +22,7 @@ $kirby->set('route',[
     if($user = $site->users()->findBy('email',get('email')) and $user->login(get('password'))) {
       return go($redirect);
     } else {
-      return go($redirect.'/?login=failed');
+      return page($redirect)->isHomePage() ? go('/login:failed#login') : go($redirect.'/login:failed#login');
     }
   }
 ]);
@@ -31,8 +31,6 @@ $kirby->set('route',[
   'pattern' => 'logout',
   'action'  => function() {
     if($user = site()->user()) {
-      s::start();
-      s::set('cart', array()); // Empty the cart
       $user->logout();
     }
     return go('/');

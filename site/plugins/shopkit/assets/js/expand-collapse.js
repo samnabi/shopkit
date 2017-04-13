@@ -16,7 +16,12 @@
 
     // Show button and collapse its related content
     element.style.display = 'inline-block';
-    element.setAttribute('aria-expanded','false');
+    console.log(window.location.hash);
+    if (window.location.hash == '#login' && element.getAttribute('aria-controls') == 'loginform') {
+      // Do nothing
+    } else {
+      element.setAttribute('aria-expanded','false');
+    }
 
     // Attach click events
     element.addEventListener('click',function(){
