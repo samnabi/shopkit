@@ -2,8 +2,4 @@ Title: Cart
 
 ----
 
-Text: 
-
-----
-
-Slider: 
+Text:

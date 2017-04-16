@@ -27,51 +27,21 @@ require('registry/snippets.php');
 require('registry/templates.php');
 require('registry/widgets.php');
 
-// Log order details
+// If user just logged in, and has an active transaction file,
+// rename the transaction file with the current session ID.
 if (null !== s::get('oldid') and $txn = page('shop/orders/'.s::get('oldid'))) {
-  // User just logged in. Rename the transaction file with the current session ID.
   $txn->update(['txn-id' => s::id()]);
   $txn->move(s::id());
   s::remove('oldid');
   if ($user and $user->country() != '') {
     $txn->update(['country' => $user->country()]);
   }
-} else if (!page('shop/orders/'.s::id())) {
-  // New session, create the transaction file
-  $timestamp = time();
-  page('shop/orders')->children()->create(s::id(), 'order', [
-    'txn-id' => s::id(),
-    'txn-date'  => $timestamp,
-    'status' => 'abandoned',
-    'session-start' => $timestamp,
-    'session-end' => $timestamp
-  ], $site->defaultLanguage());
 }
-s::set('txn', 'shop/orders/'.s::id());
 
-// Log elapsed time
-page(s::get('txn'))->update(['session-end' => time()]);
-
-// Set country
-if ($country = get('country')) {
-  // First: See if country was sent through a form submission.
-  if ($c = page('shop/countries')->children()->filterBy('countrycode',$country)->first()) {
-    // Translate country code to UID if needed
-    $country = $c->uid();
-  }
-  page(s::get('txn'))->update(['country' => $country]);
-} else if (page(s::get('txn'))->country()->isNotEmpty()) {
-  // Second option: the country has already been set in the session.
-  // Do nothing.
-} else if ($user and $user->country() != '') {
-  // Third option: get country from user profile
-  page(s::get('txn'))->update(['country' => $user->country()]);
-} else if ($site->defaultcountry()->isNotEmpty()) {
-  // Fourth option: get default country from site options
-  page(s::get('txn'))->update(['country' => $site->defaultcountry()]);
-} else {
-  // Last resort: choose the first available country
-  page(s::get('txn'))->update(['country' => page('shop/countries')->children()->invisible()->first()->uid()]);
+// Transaction file exists, save it in session
+if (page('shop/orders/'.s::id())) {
+  s::set('txn', 'shop/orders/'.s::id());
+  page(s::get('txn'))->update(['session-end' => time()]);
 }
 
 // Set discount code
@@ -151,6 +121,20 @@ function inStock($variant) {
  */
 
 function add($id, $quantity) {
+
+  // Create the transaction file if we don't have one yet
+  if (!page('shop/orders/'.s::id())) {
+    $timestamp = time();
+    page('shop/orders')->children()->create(s::id(), 'order', [
+      'txn-id' => s::id(),
+      'txn-date'  => $timestamp,
+      'status' => 'abandoned',
+      'session-start' => $timestamp,
+      'session-end' => $timestamp
+    ], site()->defaultLanguage());
+    s::set('txn', 'shop/orders/'.s::id());
+  }
+
   $quantityToAdd = $quantity ? $quantity : 1;
   $item = page(s::get('txn'))->products()->toStructure()->findBy('id', $id);
   $items = page(s::get('txn'))->products()->yaml();

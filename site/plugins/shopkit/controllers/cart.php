@@ -1,7 +1,14 @@
 <?php
 
 return function($site, $pages, $page) {
+  $site = site();
+  $user = $site->user();
 
+  if (!s::get('txn') and get('action') != 'add') {
+    // Show the empty cart page if no transaction file has been created yet
+    return true;
+
+  } else {
     // Get gateways
     $gateways = [];
     foreach (new DirectoryIterator(__DIR__.DS.'../gateways') as $file) {
@@ -24,8 +31,28 @@ return function($site, $pages, $page) {
       if ($action == 'delete') delete($id);
     }
 
-    // Get countries
+    // Set country
     $countries = page('/shop/countries')->children()->invisible();
+    if ($country = get('country')) {
+      // First: See if country was sent through a form submission.
+      if ($c = $countries->filterBy('countrycode',$country)->first()) {
+        // Translate country code to UID if needed
+        $country = $c->uid();
+      }
+      page(s::get('txn'))->update(['country' => $country]);
+    } else if (page(s::get('txn'))->country()->isNotEmpty()) {
+      // Second option: the country has already been set in the session.
+      // Do nothing.
+    } else if ($user and $user->country() != '') {
+      // Third option: get country from user profile
+      page(s::get('txn'))->update(['country' => $user->country()]);
+    } else if ($site->defaultcountry()->isNotEmpty()) {
+      // Fourth option: get default country from site options
+      page(s::get('txn'))->update(['country' => $site->defaultcountry()]);
+    } else {
+      // Last resort: choose the first available country
+      page(s::get('txn'))->update(['country' => $countries->first()->uid()]);
+    }
 
     // Get shipping rates
     $shipping_rates = getShippingRates();
@@ -82,4 +109,5 @@ return function($site, $pages, $page) {
         'giftCertificate' => $giftCertificate,
         'gateways' => $gateways,
     ];
+  }
 };
