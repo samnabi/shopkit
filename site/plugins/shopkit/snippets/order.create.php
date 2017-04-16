@@ -20,8 +20,10 @@ page(s::get('txn'))->update([
 	'txn-currency' => $site->currency_code(),
 	'status'  => $status,
 	'subtotal' => number_format(cartSubtotal(getItems()),2,'.',''),
+	'discountcode' => s::get('discountcode'),
 	'discount' => number_format($discount['amount'],2,'.',''),
 	'tax' => number_format(cartTax(),2,'.',''),
+	'giftcode' => s::get('giftcode'),
 	'giftcertificate' => null !== get('giftCertificateAmount') ? number_format(get('giftCertificateAmount'),2,'.','') : '0.00',
 ]);
 
@@ -39,7 +41,7 @@ if ($user) {
 if ($giftCertificateRemaining = get('giftCertificateRemaining')) {
 	$certificates = $site->gift_certificates()->yaml();
 	foreach ($certificates as $key => $certificate) {
-		if (strtoupper($certificate['code']) == page(s::get('txn'))->giftcode()) {
+		if (str::upper($certificate['code']) == s::get('giftcode')) {
 			$certificates[$key]['amount'] = number_format($giftCertificateRemaining,2,'.','');
 		}
 	}

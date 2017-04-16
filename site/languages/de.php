@@ -66,8 +66,8 @@
 'notification-product-first' => 'Sie haben noch keine Produkt angelegt. <a href="'.url('panel').'/pages/',
 'notification-product-last' => '/add" title="Produkt anlegen">Erstellen Sie Ihr erstes Produkt mit dem Armaturenbrett</a>.',
 'notification-license' => 'Dieser Shop hat keine Shopkit-Lizenz. Geben Sie den Lizenzschlüssen in der <strong>config.php</strong> Datei ein, bevor Sie die Website live schalten.',
-'notification-discount' => 'Ihr Rabatt-Code <strong><code>'.page(s::get('txn'))->discountcode().'</code></strong> wird an der Kasse aktiviert werden.',
-'notification-giftcertificate' => 'Ihr Geschenkgutschein <strong><code>'.page(s::get('txn'))->giftcode().'</code></strong> wird an der Kasse aktiviert werden.',
+'notification-discount' => 'Ihr Rabatt-Code <strong><code>'.s::get('discountcode').'</code></strong> wird an der Kasse aktiviert werden.',
+'notification-giftcertificate' => 'Ihr Geschenkgutschein <strong><code>'.s::get('giftcode').'</code></strong> wird an der Kasse aktiviert werden.',
 'discount-code-help' => 'Verwenden Sie diesen Rabatt Code jedes Mal, wenn Sie sich anmelden.',
 
 'notification-login-failed' => 'Leider können wir konnte Sie nicht anmelden in. Entweder ist das Kennwort oder E-Mail-Adresse nicht richtig ist.',

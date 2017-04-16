@@ -1,4 +1,7 @@
 <?php
+// Start session
+s::start();
+
 // Store site and user variables for faster access
 $site = site();
 $user = $site->user();
@@ -25,7 +28,6 @@ require('registry/templates.php');
 require('registry/widgets.php');
 
 // Log order details
-s::start();
 if (null !== s::get('oldid') and $txn = page('shop/orders/'.s::get('oldid'))) {
   // User just logged in. Rename the transaction file with the current session ID.
   $txn->update(['txn-id' => s::id()]);
@@ -73,14 +75,14 @@ if ($country = get('country')) {
 }
 
 // Set discount code
-if (!page(s::get('txn'))->discountcode() and $user and $code = $user->discountcode()) {
-  page(s::get('txn'))->update(['discountcode' => str::upper($code)]);
+if (!s::get('discountcode') and $user and $code = $user->discountcode()) {
+  s::set('discountcode', str::upper($code));
 }
 if (null !== get('dc')) {
   if (get('dc') === '') {
-    page(s::get('txn'))->update(['discountcode' => '']);
+    s::remove('discountcode');
   } else {
-    page(s::get('txn'))->update(['discountcode' => str::upper(get('dc'))]);
+    s::set('discountcode', str::upper(get('dc')));
   } 
   go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
 }
@@ -88,9 +90,9 @@ if (null !== get('dc')) {
 // Set gift certificate code
 if (null !== get('gc')) {
   if (get('gc') === '') {
-    page(s::get('txn'))->update(['giftcode' => '']);
+    s::remove('giftcode');
   } else {
-    page(s::get('txn'))->update(['giftcode' => str::upper(get('gc'))]);
+    s::set('giftcode', str::upper(get('gc')));
   }
   go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
 }
@@ -481,7 +483,7 @@ function salePrice($variant) {
   // Check that the discount codes are valid
   if (count($saleCodes) and $saleCodes[0] != '') {
     $saleCodes = array_map('strtoupper', $saleCodes);
-    if (in_array(page(s::get('txn'))->discountcode(), $saleCodes)) {
+    if (in_array(s::get('discountcode'), $saleCodes)) {
       // Codes match, the product is on sale
       return $salePrice;
     } else {
@@ -542,11 +544,11 @@ function resetPassword($email,$firstTime = false) {
 
 function getDiscount() {
   // Make sure there's a code
-  if (null == page(s::get('txn'))->discountcode()) return false;
+  if (!s::get('discountcode')) return false;
 
   // Find a matching discount code in site options
   $discounts = site()->discount_codes()->toStructure()->filter(function($d){
-    return str::upper($d->code()) == page(s::get('txn'))->discountcode();
+    return str::upper($d->code()) == s::get('discountcode');
   });
   if ($discounts == '') return false;
   $discount = $discounts->first();
@@ -569,7 +571,7 @@ function getDiscount() {
 
   // Return discount data
   return [
-    'code' => page(s::get('txn'))->discountcode(),
+    'code' => $discount->code(),
     'amount' => $amount,
   ];
 }
@@ -581,11 +583,11 @@ function getDiscount() {
 
 function getGiftCertificate($cartTotal) {
   // Make sure there's a code
-  if (page(s::get('txn'))->giftcode()->isEmpty()) return false;
+  if (!s::get('giftcode')) return false;
 
   // Look for a matching certificate code in site options
   $certificates = site()->gift_certificates()->toStructure()->filter(function($c){
-    return str::upper($c->code()) == page(s::get('txn'))->giftcode();
+    return str::upper($c->code()) == s::get('giftcode');
   });
   if ($certificates == '') return false;
   $certificate = $certificates->first();
@@ -600,7 +602,7 @@ function getGiftCertificate($cartTotal) {
 
   // Return certificate data
   return [
-    'code' => page(s::get('txn'))->giftcode(),
+    'code' => $certificate->code(),
     'amount' => $amount,
     'remaining' => $remaining
   ];
@@ -683,9 +685,9 @@ function canPayLater() {
 
   // Does the current discount code let them pay later?
   $discounts = $site->discount_codes()->toStructure()->filter(function($d){
-    return strtoupper($d->code()) == page(s::get('txn'))->discountcode();
+    return str::upper($d->code()) == s::get('discountcode');
   });
-  if (page(s::get('txn'))->discountcode() and $discounts->first() and $discounts->first()->paylater()->bool()) {
+  if (s::get('discountcode') and $discount = $discounts->first() and $discount->paylater()->bool()) {
     return true;
   }
 

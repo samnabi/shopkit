@@ -66,8 +66,8 @@
 'notification-product-first' => 'You don\'t have any products. <a href="'.url('panel').'/pages/',
 'notification-product-last' => '/add" title="Create a new product">Create your first product with the Dashboard</a>.',
 'notification-license' => 'This shop doesn\'t have a Shopkit license key. Be sure to add one in the <strong>config.php</strong> file before the website goes live.',
-'notification-discount' => 'Your discount code <strong><code>'.page(s::get('txn'))->discountcode().'</code></strong> will be applied at checkout.',
-'notification-giftcertificate' => 'Your gift certificate <strong><code>'.page(s::get('txn'))->giftcode().'</code></strong> will be applied at checkout.',
+'notification-discount' => 'Your discount code <strong><code>'.s::get('discountcode').'</code></strong> will be applied at checkout.',
+'notification-giftcertificate' => 'Your gift certificate <strong><code>'.s::get('giftcode').'</code></strong> will be applied at checkout.',
 'discount-code-help' => 'Use this discount code every time you log in.',
 
 'notification-login-failed' => 'Sorry, we couldn\'t log you in. Either the password or email address isn\'t right.',
