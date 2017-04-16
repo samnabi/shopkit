@@ -86,11 +86,12 @@ if (null !== get('dc')) {
 }
 
 // Set gift certificate code
-if (get('gc') === '') {
-  page(s::get('txn'))->update(['giftcode' => '']);
-  go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
-} else if ($code = get('gc')) {
-  page(s::get('txn'))->update(['giftcode' => str::upper($code)]);
+if (null !== get('gc')) {
+  if (get('gc') === '') {
+    page(s::get('txn'))->update(['giftcode' => '']);
+  } else {
+    page(s::get('txn'))->update(['giftcode' => str::upper(get('gc'))]);
+  }
   go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
 }
 
