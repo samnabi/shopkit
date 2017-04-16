@@ -76,11 +76,12 @@ if ($country = get('country')) {
 if (!page(s::get('txn'))->discountcode() and $user and $code = $user->discountcode()) {
   page(s::get('txn'))->update(['discountcode' => str::upper($code)]);
 }
-if (get('dc') === '') {
-  page(s::get('txn'))->update(['discountcode' => '']);
-  go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
-} else if ($code = get('dc')) {
-  page(s::get('txn'))->update(['discountcode' => str::upper($code)]);
+if (null !== get('dc')) {
+  if (get('dc') === '') {
+    page(s::get('txn'))->update(['discountcode' => '']);
+  } else {
+    page(s::get('txn'))->update(['discountcode' => str::upper(get('dc'))]);
+  } 
   go(parse_url(server::get('REQUEST_URI'), PHP_URL_PATH));
 }
 
