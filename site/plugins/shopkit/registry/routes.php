@@ -47,7 +47,7 @@ $kirby->set('route',[
     $site->visit('shop', (string) $site->detectedLanguage());
     $site->kirby->localize();
     
-    snippet('order.create');
+    snippet('order.process');
   }
 ]);
 $kirby->set('route', [
