@@ -162,4 +162,4 @@ Currency-thousands-separator: ,
 
 ----
 
-Defaultcountry: 
+Defaultcountry: canada
