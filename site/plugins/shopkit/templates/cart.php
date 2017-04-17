@@ -149,8 +149,8 @@
                             <?php } else { ?>
                                 <!-- If no shipping rates are set, show free shipping -->
                                 <label>
-                                    <input type="radio" name="shipping" value="free-shipping" checked>
                                     <?= l('free-shipping') ?>
+                                    <input type="radio" name="shipping" value="free-shipping" checked>
                                 </label>
                             <?php } ?>
                             <button type="submit"><?= l('update-shipping') ?></button>
@@ -218,7 +218,7 @@
     <?php } ?>
     
     <div class="gateways">
-        <?php if ($giftCertificate and $giftCertificate['amount'] == $total) { ?>
+        <?php if ($giftCertificate and $total == 0) { ?>
             <form method="post" action="<?= url('shop/cart/process') ?>">
                 
                 <input type="hidden" name="gateway" value="paylater">

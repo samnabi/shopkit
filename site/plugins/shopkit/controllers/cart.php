@@ -95,10 +95,14 @@ return function($site, $pages, $page) {
 
     // Get cart total
     $total = cartSubtotal(getItems()) + cartTax() + page(s::get('txn'))->shipping()->value;
+    
+    // Handle discount codes
     if ($discount) $total = $total - $discount['amount'];
 
-    // Get gift certificate 
+    // Handle gift certificates
     $giftCertificate = getGiftCertificate($total);
+    if ($giftCertificate) $total = $total - $giftCertificate['amount'];
+
 
     return [
         'items' => getItems(),

@@ -827,62 +827,66 @@ function getShippingRates() {
 
       if (!appliesToCountry($method)) continue;
 
-        // Flat-rate shipping cost
-        $rate['flat'] = '';
-        if ($method['flat'] != '' and $qty > 0) $rate['flat'] = (float)$method['flat'];
+      // Flat-rate shipping cost
+      $rate['flat'] = '';
+      if ($method['flat'] != '' and $qty > 0) {
+        $rate['flat'] = (float)$method['flat'];
+      }
 
-        // Per-item shipping cost
-        $rate['item'] = '';
-        if ($method['item'] != '') $rate['item'] = $method['item'] * $qty;
+      // Per-item shipping cost
+      $rate['item'] = '';
+      if ($method['item'] != '') {
+        $rate['item'] = $method['item'] * $qty;
+      }
 
-        // Shipping cost by weight
-        $rate['weight'] = '';
-        $tiers = str::split($method['weight'], "\n");
-        if (count($tiers)) {
-          foreach ($tiers as $tier) {
-            $t = str::split($tier, ':');
-            $tier_weight = a::first($t);
-            $tier_amount = a::last($t);
-            if ($weight != 0 and $weight >= $tier_weight) {
-              $rate['weight'] = $tier_amount;
-            }
-          }
-          // If no tiers match the shipping weight, set the rate to 0
-          // (This may happen if you don't set a tier for 0 weight)
-          if ($rate['weight'] === '') $rate['weight'] = 0;
-        }
-
-        // Shipping cost by price
-        $rate['price'] = '';
-        foreach (str::split($method['price'], "\n") as $tier) {
-          $t = str::split($tier, ':');
-          $tier_price = $t[0];
-          $tier_amount = $t[1];
-          if ($subtotal >= $tier_price) {
-            $rate['price'] = $tier_amount;
+      // Shipping cost by weight
+      $rate['weight'] = '';
+      $tiers = str::split($method['weight'], "\n");
+      if (count($tiers)) {
+        foreach ($tiers as $tier) {
+          $t = explode(':', $tier);
+          $tier_weight = trim($t[0]);
+          $tier_amount = trim($t[1]);
+          if (is_numeric($tier_amount) and $weight != 0 and $weight >= $tier_weight) {
+            $rate['weight'] = $tier_amount;
           }
         }
+        // If no tiers match the shipping weight, set the rate to 0
+        // (This may happen if you don't set a tier for 0 weight)
+        if ($rate['weight'] === '') $rate['weight'] = 0;
+      }
 
-        // Remove rate calculations that are blank or falsy
-        foreach ($rate as $key => $r) {
-          if ($r == '') {
-            unset($rate[$key]);
-          }
+      // Shipping cost by price
+      $rate['price'] = '';
+      foreach (str::split($method['price'], "\n") as $tier) {
+        $t = explode(':', $tier);
+        $tier_price = trim($t[0]);
+        $tier_amount = trim($t[1]);
+        if (is_numeric($tier_amount) and $subtotal >= $tier_price) {
+          $rate['price'] = $tier_amount;
         }
+      }
 
-        if (count($rate) === 0) {
-          // If rate is empty, return zero
-          $output[] = array('title' => $method['method'],'rate' => 0);
+      // Remove rate calculations that are blank or falsy
+      foreach ($rate as $key => $r) {
+        if ($r == '') {
+          unset($rate[$key]);
+        }
+      }
+
+      if (count($rate) === 0) {
+        // If rate is empty, return zero
+        $output[] = array('title' => $method['method'],'rate' => 0);
+      } else {
+        // Finally, choose which calculation type to choose for this shipping method
+        if ($method['calculation'] === 'low') {
+          $shipping = min($rate);
         } else {
-          // Finally, choose which calculation type to choose for this shipping method
-          if ($method['calculation'] === 'low') {
-            $shipping = min($rate);
-          } else {
-            $shipping = max($rate);
-          }
-
-          $output[] = array('title' => $method['method'],'rate' => $shipping);  
+          $shipping = max($rate);
         }
+
+        $output[] = array('title' => $method['method'],'rate' => $shipping);  
+      }
     }
 
     return $output;

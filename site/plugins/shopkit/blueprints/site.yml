@@ -98,6 +98,7 @@ fields:
         label: Countries
         help: Apply this shipping method to certain countries
         type: multiselect
+        required: true
         options: query
         query:
           page: 'shop/countries'
