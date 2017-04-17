@@ -141,6 +141,7 @@ fields:
     label: Default country
     help: Used to calculate shipping and tax if we don't know the visitor's country yet.
     type: select
+    required: true
     options: query
     query:
       page: 'shop/countries'
