@@ -10,31 +10,31 @@ A single-site license is $19 USD. Bulk discounts available. Full details and doc
 
 ### Shop settings
 
-- **Variants and options** for each product (e.g. sizes and colours)
-- **Flexible shipping rules** (Flat rate, per item, by weight, or by total price)
-- **Related products**
-- **Inventory control**
-- **Discount codes** and **gift certificates** (site-wide and product-specific)
+- Variants and options for each product (e.g. sizes and colours)
+- Flexible shipping rules (Flat rate, per item, by weight, or by total price)
+- Related products
+- Inventory control
+- Discount codes and gift certificates (site-wide and product-specific)
 - Product-specific shipping & tax exemptions
 - Country-specific shipping & tax rates
-- **Built-in SEO** for rich snippets
-- Customize **theme colours** & background
+- Built-in SEO for rich snippets
+- Customize theme colours & background
 
 ### Payments & orders
 
-- Process payments with **PayPal** and **Stripe** (modular folder structure lets you add other payment gateways)
-- Let certain users **pay later**
-- Manage **pending, paid, and shipped** orders
-- Send **order notifications** to your shipping manager
-- Automatic **PDF invoices**
+- Process payments with PayPal and Stripe (modular folder structure lets you add other payment gateways)
+- Let certain users pay later
+- Manage pending, paid, and shipped orders
+- Send order notifications to your shipping manager
+- Automatic PDF invoices
 
 ### Customer experience
 
-- **No sign-up** required
-- **Responsive design** for a great shopping experience on any device 
-- Browse products in a **grid** or **slideshow**
-- Beautiful **search** layout
-- Automatic **language detection** (English, French, German, and Spanish included by default)
+- No sign-up required
+- Responsive design for a great shopping experience on any device 
+- Browse products in a grid or slideshow
+- Beautiful search layout
+- Automatic language detection (English, French, German, and Spanish included by default)
 
 ## Pricing
 

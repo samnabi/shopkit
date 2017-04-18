@@ -1,5 +1,43 @@
 # Changelog
 
+## v2.0
+- Panel
+    - Consolidate Shop options into Site options page
+    - New Site options
+        - Set default country
+        - Show quantity in stock on Product pages
+        - Number formatting (decimal and thousands separator)
+    - Remove slider option from Product blueprints
+    - Replace structure fields with snippetfield plugin (better entry summaries)
+    - Replace Visual Markdown with WYSIWYG editor
+- Widgets
+    - Basic visitor stats (forked from [Fabian Sperrle](https://github.com/FabianSperrle/kirby-stats))
+    - Aggregate order stats (abandoned, pending, paid & shipped)
+- New cart handling
+    - Store cart details in transaction file instead of session variable
+    - Rename `order.create` snippet to `order.process`
+    - New transaction status: "abandoned"
+- New theme
+    - Remove the UIKit framework
+    - Use normal URLs instead of data-URIs for product photos
+    - AJAX quantity selector on Cart page
+    - AJAX product slideshow
+    - Tag cloud in sidebar
+    - Shop by Brand in the sidebar
+    - Use radio buttons instead of select box for shipping options on Cart page
+    - Remove base colour in colour options (only link and accent colour can be edited from Site options)
+    - Product-specific page descriptions for better SEO
+    - New frontend admin buttons
+- Easier to change default language in `config.php`
+- Bug fixes
+    - Fix false error message on registration
+    - Fix multiple orders bug (#131)
+- Performance enhancements
+    - Limit use of `index()`
+    - Limit re-declaration of `site()` and `page()`
+    - Faster font loading
+    - Consolidate most logic into `shopkit.php`
+
 ## v1.1.4
 - New features
     - 💅 Override default CSS in `assets/css/custom.css`
