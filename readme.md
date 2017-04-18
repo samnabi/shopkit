@@ -42,7 +42,7 @@ You can try Shopkit for free on your test server, forever. Once you're satisfied
 
 Since Shopkit runs on the Kirby CMS, you'll also have to buy a [Kirby license](http://getkirby.com/license) from Bastian.
 
-Moral licenses for [Visual Markdown](https://gumroad.com/l/visualmarkdown) and [Multiselect](https://gumroad.com/l/kirby-multiselect), two of Shopkit's dependencies, are recommended.
+Moral licenses for [Snippetfield](https://www.paypal.me/DevoneraAB) and [Multiselect](https://gumroad.com/l/kirby-multiselect), two of Shopkit's dependencies, are recommended.
 
 ## Install
 
@@ -66,6 +66,13 @@ Use these terminal commands to update Shopkit and its dependencies:
     git submodule update --init --recursive
 
 ## Dependencies for Shopkit v2.0-dev
+
+curl
+json
+mbstring
+DOM extension
+GD extension
+MBString extension
 
 - Kirby Core [2.4.1](https://github.com/getkirby/kirby/tree/2.4.1)
 - Kirby Panel [2.4.1](https://github.com/getkirby/panel/tree/2.4.1)
