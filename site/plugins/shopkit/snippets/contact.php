@@ -9,19 +9,19 @@
                 <dd><?= $contact->hours()->kirbytext() ?></dd>
             <?php } ?>
 
-            <?php if ($page->phone()->isNotEmpty()) { ?>
+            <?php if ($contact->phone()->isNotEmpty()) { ?>
                 <dt><?= l('phone') ?></dt>
-                <dd><?= $page->phone() ?></dd>
+                <dd><?= $contact->phone() ?></dd>
             <?php } ?>
             
-            <?php if ($page->email()->isNotEmpty()) { ?>
+            <?php if ($contact->email()->isNotEmpty()) { ?>
                 <dt><?= l('email') ?></dt>
-                <dd><?= kirbytext('(email: '.trim($page->email()).')') ?></dd>
+                <dd><?= kirbytext('(email: '.trim($contact->email()).')') ?></dd>
             <?php } ?>
 
-            <?php if ($page->location()->isNotEmpty()) { ?>
+            <?php if ($contact->location()->isNotEmpty()) { ?>
                 <dt><?= l('address') ?></dt>
-                <dd><?= $page->location() ?></dd>
+                <dd><?= $contact->location() ?></dd>
             <?php } ?>
         </dl>
     </section>
