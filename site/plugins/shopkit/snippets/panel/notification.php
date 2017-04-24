@@ -6,7 +6,7 @@
     } else {
       $first = true;
       foreach (explode(',',$values->products()) as $product) {
-        if ($pg = page(trim($product)) {
+        if ($pg = page(trim($product))) {
           $title = $pg->title();
           if ($first) {
             echo $title;
