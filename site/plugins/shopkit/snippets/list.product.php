@@ -59,7 +59,7 @@
 <?php } ?>
 
 <!-- Admin -->
-<?php if (in_array($page->template(), ['category', 'shop']) and $user = $site->user() and $user->can('panel.access.options')) { ?>
+<?php if ($user = $site->user() and $user->can('panel.access.options')) { ?>
 	<a class="button admin" href="<?= url('panel/pages/'.$page->uri().'/add?template=product') ?>">
 		<?= f::read('site/plugins/shopkit/assets/svg/plus.svg') ?>
 		<?= l('new-product') ?>

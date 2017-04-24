@@ -782,7 +782,7 @@ option + option {
 .list.categories {
 	display: flex;
 	flex-wrap: wrap;
-	margin-top: 0;
+	margin-top: 2em;
 	margin-left: -0.5em;
 	margin-right: -0.5em;
 
@@ -848,6 +848,8 @@ option + option {
 }
 
 .list.products {
+	margin-top: 1em;
+
 	li {
 		position: relative;
 
