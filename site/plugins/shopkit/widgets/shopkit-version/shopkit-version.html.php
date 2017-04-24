@@ -45,22 +45,29 @@ if (file_exists($cachefile)) {
 
 if ($cache_expired) {
   // Find the latest version from GitHub
-  $releases = simplexml_load_file('https://github.com/samnabi/shopkit/tags.atom');
-  $latest_id = $releases->entry[0]->id;
-  $latest_tag = substr($latest_id, strrpos($latest_id, '/')+1);
-  file_put_contents($cachefile, time().','.$latest_tag);
+  $releases = @simplexml_load_file('https://github.com/samnabi/shopkit/tags.atom');
+  if ($releases) {
+   $latest_id = $releases->entry[0]->id;
+   $latest_tag = substr($latest_id, strrpos($latest_id, '/')+1);
+   file_put_contents($cachefile, time().','.$latest_tag); 
+  } else {
+    $latest_tag = false;
+    $tags_valid = false;
+  }
 }
 
-// Find the current version from local changelog
-$changelog = file_get_contents(kirby()->roots()->site().'/../changelog.md');
-preg_match('/##\s(.+)\s*\n/', $changelog, $match);
-$current_tag = $match[1];
+if ($latest_tag) {
+  // Find the current version from local changelog
+  $changelog = file_get_contents(kirby()->roots()->site().'/../changelog.md');
+  preg_match('/##\s(.+)\s*\n/', $changelog, $match);
+  $current_tag = $match[1];
 
-// Make sure tags are valid
-$tags_valid = substr($current_tag, 0, 1) === 'v' and substr($latest_tag, 0, 1) === 'v' ? true : false;
+  // Make sure tags are valid
+  $tags_valid = substr($current_tag, 0, 1) === 'v' and substr($latest_tag, 0, 1) === 'v' ? true : false;
 
-// Compare versions
-$up_to_date = version_compare($current_tag, $latest_tag, ">=") ? true : false;
+  // Compare versions
+  $up_to_date = version_compare($current_tag, $latest_tag, ">=") ? true : false;
+}
 
 if (!$tags_valid) { ?>
 
