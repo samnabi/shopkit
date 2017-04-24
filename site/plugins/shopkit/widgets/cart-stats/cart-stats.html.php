@@ -101,63 +101,70 @@ $time_count_total = $time_count['abandoned'] + $time_count['pending'] + $time_co
 </style>
 
 <div class="cart-stats">
-  <div class="cart-stats-card abandoned">
-    <h3>Abandoned</h3>
-    <p class="amount">
-      <?= formatPrice($amount['abandoned']) ?>
-      <br><small>Total Value</small>
-    </p>
-    <p>
-      <?= round($count['abandoned'] / $count_total * 100) ?>%
-      <br><small><?= $count['abandoned'] == 1 ? $count['abandoned'].' order' : $count['abandoned'].' orders' ?></small>
-    </p>
-    <p class="time">
-      <?php if ($time_count['abandoned']) { ?>
-        <?= round($time['abandoned'] / $time_count['abandoned'] / 60) ?> min.
-      <?php } else { ?>
-        0 min.
-      <?php } ?>
-      <br><small>Avg. Visit Length</small>
-    </p>  
-  </div>
 
-  <div class="cart-stats-card pending">
-    <h3>Pending</h3>
-    <p class="amount">
-      <?= formatPrice($amount['pending']) ?>
-      <br><small>Total Value</small>
-    </p>
-    <p>
-      <?= round($count['pending'] / $count_total * 100) ?>%
-      <br><small><?= $count['pending'] == 1 ? $count['pending'].' order' : $count['pending'].' orders' ?></small>
-    </p>
-    <p class="time">
-      <?php if ($time_count['pending']) { ?>
-        <?= round($time['pending'] / $time_count['pending'] / 60) ?> min.
-      <?php } else { ?>
-        0 min.
-      <?php } ?>
-      <br><small>Avg. Visit Length</small>
-    </p>  
-  </div>
+  <?php if ($count['abandoned']) { ?>
+    <div class="cart-stats-card abandoned">
+      <h3>Abandoned</h3>
+      <p class="amount">
+        <?= formatPrice($amount['abandoned']) ?>
+        <br><small>Total Value</small>
+      </p>
+      <p>
+        <?= round($count['abandoned'] / $count_total * 100) ?>%
+        <br><small><?= $count['abandoned'] == 1 ? $count['abandoned'].' order' : $count['abandoned'].' orders' ?></small>
+      </p>
+      <p class="time">
+        <?php if ($time_count['abandoned']) { ?>
+          <?= round($time['abandoned'] / $time_count['abandoned'] / 60) ?> min.
+        <?php } else { ?>
+          0 min.
+        <?php } ?>
+        <br><small>Avg. Visit Length</small>
+      </p>  
+    </div>
+  <?php } ?>
 
-  <div class="cart-stats-card paid">
-    <h3>Paid/Shipped</h3>
-    <p class="amount">
-      <?= formatPrice($amount['paid'] + $amount['shipped']) ?>
-      <br><small>Total Value</small>
-    </p>
-    <p>
-      <?= round(($count['paid'] + $count['shipped']) / $count_total * 100) ?>%
-      <br><small><?= ($count['paid'] + $count['shipped']) == 1 ? $count['paid'] + $count['shipped'].' order' : $count['paid'] + $count['shipped'].' orders' ?></small>
-    </p>
-    <p class="time">
-      <?php if ($time_count['paid'] or $time_count['shipped']) { ?>
-        <?= round(($time['paid'] + $time['shipped']) / ($time_count['paid'] + $time_count['shipped']) / 60) ?> min.
-      <?php } else { ?>
-        0 min.
-      <?php } ?>
-      <br><small>Avg. Visit Length</small>
-    </p>  
-  </div>
+  <?php if ($count['pending']) { ?>
+    <div class="cart-stats-card pending">
+      <h3>Pending</h3>
+      <p class="amount">
+        <?= formatPrice($amount['pending']) ?>
+        <br><small>Total Value</small>
+      </p>
+      <p>
+        <?= round($count['pending'] / $count_total * 100) ?>%
+        <br><small><?= $count['pending'] == 1 ? $count['pending'].' order' : $count['pending'].' orders' ?></small>
+      </p>
+      <p class="time">
+        <?php if ($time_count['pending']) { ?>
+          <?= round($time['pending'] / $time_count['pending'] / 60) ?> min.
+        <?php } else { ?>
+          0 min.
+        <?php } ?>
+        <br><small>Avg. Visit Length</small>
+      </p>  
+    </div>
+  <?php } ?>
+
+  <?php if ($count['paid'] or $count['shipped']) { ?>
+    <div class="cart-stats-card paid">
+      <h3>Paid/Shipped</h3>
+      <p class="amount">
+        <?= formatPrice($amount['paid'] + $amount['shipped']) ?>
+        <br><small>Total Value</small>
+      </p>
+      <p>
+        <?= round(($count['paid'] + $count['shipped']) / $count_total * 100) ?>%
+        <br><small><?= ($count['paid'] + $count['shipped']) == 1 ? $count['paid'] + $count['shipped'].' order' : $count['paid'] + $count['shipped'].' orders' ?></small>
+      </p>
+      <p class="time">
+        <?php if ($time_count['paid'] or $time_count['shipped']) { ?>
+          <?= round(($time['paid'] + $time['shipped']) / ($time_count['paid'] + $time_count['shipped']) / 60) ?> min.
+        <?php } else { ?>
+          0 min.
+        <?php } ?>
+        <br><small>Avg. Visit Length</small>
+      </p>  
+    </div>
+  <?php } ?>
 </div>
