@@ -2,11 +2,9 @@
 
 return function ($site, $pages, $page) {
 
-	// Get categories
-	$categories = $page->children()->visible()->filterBy('template','category');
-
-	// Pass variables to the template
-	return [
-		'categories' => $categories,
-	];
+  // Get categories and products
+  return [
+    'categories' => $page->children()->visible()->filterBy('template','category'),
+    'products' => $page->children()->visible()->filterBy('template','product'),
+  ];
 };

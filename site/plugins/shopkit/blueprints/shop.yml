@@ -1,6 +1,8 @@
 title: Home page
 pages: true
-  template: category
+  template:
+    - category
+    - product
 options:
   delete: false
   status: false
