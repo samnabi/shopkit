@@ -10,7 +10,7 @@
 
 	<!-- Styles -->
 	<?= css(getStylesheet($site->coloraccent(),$site->colorlink())) ?>
-	<?php snippet('header.background.style') ?>
+	<?php snippet('header.background.style', ['site' => $site]) ?>
 	<?= css('assets/css/custom.css') ?>
 
 </head>

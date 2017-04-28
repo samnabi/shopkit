@@ -34,3 +34,6 @@
 [submodule "site/plugins/shopkit/gateways/stripecheckout/stripe-php"]
 	path = site/plugins/shopkit/gateways/stripecheckout/stripe-php
 	url = https://github.com/stripe/stripe-php
+[submodule "site/plugins/shopkit/gateways/square/connect-php-sdk"]
+	path = site/plugins/shopkit/gateways/square/connect-php-sdk
+	url = https://github.com/square/connect-php-sdk

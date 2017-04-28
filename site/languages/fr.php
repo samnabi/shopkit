@@ -58,6 +58,25 @@
 'continue-to-paypal' => 'Continuez vers PayPal',
 
 
+// plugins/shopkit/gateways/square/process.php
+
+'card-number' => 'Numéro de carte',
+'expiry-date' => 'Date d\'expiration',
+'cvv' => 'CVV',
+'address-line-1' => 'Adresse',
+'address-line-2' => 'Adresse (ligne 2)',
+'city' => 'Ville',
+'state' => 'État / Province / Région',
+'postal-code' => 'Code postale',
+'postal-code-verify' => '(Pour vérifier la carte de crédit)',
+'optional' => 'Facultatif',
+
+'square-error' => 'Désolé, on ne pouvait pas réaliser le paiement.',
+'square-card-no-charge' => 'Votre carte n\'a pas été facturée.',
+
+'try-again' => 'Réessayez',
+
+
 // site/plugins/shopkit/snippets/header.notifications.php
 
 'notification-account' => 'Vous n\'avez aucun compte. <a href="'.url('panel/install').'" title="Page d\'installation du panneau">Créez-en un maintenant</a>.',

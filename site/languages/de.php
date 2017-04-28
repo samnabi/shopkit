@@ -57,6 +57,25 @@
 'continue-to-paypal' => 'Weiter zu PayPal',
 
 
+// plugins/shopkit/gateways/square/process.php
+
+'card-number' => 'Kartennummer',
+'expiry-date' => '',
+'cvv' => '',
+'address-line-1' => 'Adresse',
+'address-line-2' => 'Adresse (Reihe 2)',
+'city' => 'Stadt',
+'state' => 'Bundesland',
+'postal-code' => 'Postleitzahl',
+'postal-code-verify' => '(Um die Kreditkarte zu überprüfen)',
+'optional' => 'Fakultativ',
+
+'square-error' => 'Entschuldigung, wir konnten die Zahlung nicht verarbeiten.',
+'square-card-no-charge' => 'Ihre Karte wurde nicht belastet',
+
+'try again' => 'Versuch es noch einmal',
+
+
 // site/plugins/shopkit/snippets/header.notifications.php
 
 'notification-account' => 'Sie haben noch keine Benutzer angelegt. <a href="'.url('panel/install').'" title="Installationsseite">Benutzer anlegen</a>.',

@@ -73,6 +73,12 @@ $kirby->set('route',[
   'pattern' => 'shop/cart/callback/(:any)',
   'method' => 'GET|POST',
   'action' => function($gateway) {
+    $site = site();
+
+    // Set detected language
+    $site->visit('shop', (string) $site->detectedLanguage());
+    $site->kirby->localize();
+    
     snippet($gateway.'.callback');
     return true;
   }

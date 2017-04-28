@@ -296,6 +296,49 @@ fields:
     label: Live key (publishable)
     type: text
     width: 1/4
+  square:
+    type: headline
+    label: Square settings
+  square-status:
+    label: Status
+    type: select
+    default: sandbox
+    options:
+      disabled: Disabled
+      sandbox: Sandbox (Testing)
+      live: Enabled
+    width: 1/3
+    required: true
+  square-logo:
+    label: Button logo
+    type: image
+    default: square-white.png
+    width: 1/3
+  square-text:
+    label: Button text
+    type: text
+    default: Pay with Square
+    width: 1/3
+  square-id-sandbox:
+    label: Sandbox Application ID
+    type: text
+    width: 1/4
+  square-token-sandbox:
+    label: Sandbox Access Token
+    type: text
+    width: 1/4
+  square-id-live:
+    label: Application ID
+    type: text
+    width: 1/4
+  square-token-live:
+    label: Personal Access Token
+    type: text
+    width: 1/4
+  square-location:
+    label: Location ID (optional)
+    type: text
+    help: Visit <strong>https://squareup.com/dashboard/locations</strong> to select your location. The ID is the last portion of the URL. This location must have credit card processing capabilities.
   tab4:
     label: Discounts
     type: tabs

@@ -51,10 +51,29 @@
 'qty' => 'Qty: ',
 
 
-// plugins/shopkit/gateways/1-paypalexpress/process.php
+// plugins/shopkit/gateways/paypalexpress/process.php
 
 'redirecting' => 'Redirecting...',
 'continue-to-paypal' => 'Continue to PayPal',
+
+
+// plugins/shopkit/gateways/square/process.php
+
+'card-number' => 'Card number',
+'expiry-date' => 'Expiry date',
+'cvv' => 'CVV',
+'address-line-1' => 'Address',
+'address-line-2' => 'Address (line 2)',
+'city' => 'City',
+'state' => 'State / Province / Region',
+'postal-code' => 'Postal code',
+'postal-code-verify' => '(To verify credit card)',
+'optional' => 'Optional',
+
+'square-error' => 'Sorry, we could not process the payment.',
+'square-card-no-charge' => 'Your card was not charged.',
+
+'try-again' => 'Try again',
 
 
 // site/plugins/shopkit/snippets/header.notifications.php

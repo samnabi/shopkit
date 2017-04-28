@@ -342,7 +342,8 @@ input[type="submit"] {
   .button:focus,
   input[type="submit"]:hover,
   input[type="submit"]:focus {
-    border-color: rgba(0, 0, 0, 0.2); }
+    border-color: rgba(0, 0, 0, 0.2);
+    text-decoration: none; }
   button:active,
   .button:active,
   input[type="submit"]:active {
@@ -437,6 +438,12 @@ input[type="submit"] {
     input[type="submit"][disabled]:active {
       background-color: rgba(0, 0, 0, 0.08);
       border-color: rgba(0, 0, 0, 0.1); }
+  button del,
+  .button del,
+  input[type="submit"] del {
+    display: block;
+    font-size: 0.8em;
+    margin-top: 0; }
 
 button[aria-expanded] {
   display: none;
@@ -527,6 +534,9 @@ textarea {
   /* Fallback */
   padding: calc(0.2em + 1px) 0.5em;
   width: 15em; }
+
+input[disabled] {
+  background-color: rgba(0, 0, 0, 0.08); }
 
 form button,
 form input[type="submit"] {
@@ -1177,5 +1187,109 @@ a.slideshow {
   .orders td button {
     margin-top: 0.5em;
     font-size: 0.8rem; }
+
+/**
+ * Gateway pages
+ *
+ */
+.gateway {
+  max-width: 40em;
+  margin: 0 auto 3em;
+  padding-bottom: 2em;
+  border-bottom: 2px solid #0BA2DA; }
+  .gateway .logo {
+    display: block;
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.08); }
+    .gateway .logo img {
+      max-width: 5em; }
+
+.txn-summary {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #0BA2DA;
+  padding-bottom: 1em; }
+  .txn-summary div + div {
+    margin-top: 0; }
+
+#sq-card label,
+#sq-card iframe {
+  display: block; }
+#sq-card iframe {
+  margin-top: 0; }
+#sq-card .sq-input {
+  outline: 1px auto rgba(0, 0, 0, 0.08);
+  border: 3px solid white;
+  box-sizing: content-box;
+  width: calc(100% - 8px); }
+#sq-card .sq-input--focus {
+  outline: 1px auto #0BA2DA; }
+#sq-card .sq-input--error {
+  outline: 1px auto #ffdc00; }
+#sq-card #sq-expiration-date,
+#sq-card #sq-cvv,
+#sq-card #sq-postal-code {
+  max-width: 5em; }
+#sq-card > div {
+  padding: 1em; }
+#sq-card > div:first-child {
+  background-color: rgba(0, 0, 0, 0.08);
+  border-radius: 0.5em; }
+#sq-card > div {
+  margin-top: 0; }
+#sq-card .exp-cvv {
+  display: flex;
+  justify-content: space-between; }
+  #sq-card .exp-cvv div {
+    margin-top: 0; }
+
+#sq-card {
+  margin: 2em 0;
+  padding-bottom: 2em;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08); }
+  #sq-card .card {
+    background-position: top -2px right 1em;
+    background-size: auto 2em;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    max-width: 18em;
+    /* Roughly twice the height, to approximate the ratio of a credit card */ }
+
+@media (min-width: 30em) {
+  #sq-card {
+    display: flex; } }
+#sq-card.visa .card {
+  background-image: url("/assets/plugins/shopkit/img/visa.png");
+  background-color: #E9F3F7; }
+
+#sq-card.masterCard .card {
+  background-image: url("/assets/plugins/shopkit/img/mastercard.png");
+  background-color: #FFF8EC; }
+
+#sq-card.JCB .card {
+  background-image: url("/assets/plugins/shopkit/img/jcb.png");
+  background-color: #F4FBF8; }
+
+#sq-card.americanExpress .card {
+  background-image: url("/assets/plugins/shopkit/img/amex.png");
+  background-color: #E6F5FC; }
+
+#sq-card.discover .card {
+  background-image: url("/assets/plugins/shopkit/img/discover.png");
+  background-color: #FEF4EB; }
+
+#nonce-form fieldset {
+  border: 0;
+  padding: 0; }
+#nonce-form label:first-child {
+  margin-top: 1em; }
+
+@media (min-width: 40em) {
+  #nonce-form {
+    display: flex; }
+    #nonce-form label:first-child {
+      margin-top: 0; }
+    #nonce-form fieldset + fieldset {
+      margin-left: 2em; } }
 
 /*# sourceMappingURL=shopkit.css.map */

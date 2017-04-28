@@ -56,6 +56,25 @@
 'continue-to-paypal' => 'Continuar con PayPal',
 
 
+// plugins/shopkit/gateways/square/process.php
+
+'card-number' => 'Número de tarjeta',
+'expiry-date' => 'Fecha de caducidad',
+'cvv' => 'CVV',
+'address-line-1' => 'Dirección',
+'address-line-2' => 'Dirección (línea 2)',
+'city' => 'Ciudad',
+'state' => 'Estado / Provincia / Jurisdicción',
+'postal-code' => 'Código postal',
+'postal-code-verify' => '(Para verificar la tarjeta de crédito)',
+'optional' => 'Opcional',
+
+'square-error' => 'Lo sentimos, no pudimos procesar el pago.',
+'square-card-no-charge' => 'Su tarjeta no se ha cargado',
+
+'try-again' => 'Inténtalo de nuevo',
+
+
 // site/plugins/shopkit/snippets/header.notifications.php
 
 'notification-account' => 'No se ha establecido ningún usuario. <a href="'.url('panel/install').'" title="Página de instalación de panel">Crea una cuenta ahora.</a>.',
