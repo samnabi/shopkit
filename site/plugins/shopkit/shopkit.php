@@ -170,7 +170,7 @@ function add($id, $quantity) {
       'name' => $product->title(),
       'sku' => $variant->sku(),
       'amount' => $variant->price(),
-      'sale-amount' => $salePrice = salePrice($variant) ? $salePrice : '',
+      'sale-amount' => salePrice($variant) ? salePrice($variant) : '',
       'quantity' => updateQty($id, $quantityToAdd),
       'weight' => $variant->weight(),
       'noshipping' => $variant->noshipping(),
@@ -745,7 +745,7 @@ function getItems() {
 function cartSubtotal($items) {
   $subtotal = 0;
   foreach ($items as $item) {
-    $itemAmount = $item->sale_amount()->isNotEmpty() ? $item->sale_amount()->value : $item->amount()->value;
+    $itemAmount = $item->{'sale-amount'}->isNotEmpty() ? $item->{'sale-amount'}->value : $item->amount()->value;
     $subtotal += $itemAmount * $item->quantity()->value;
   }
   return $subtotal;
@@ -781,7 +781,7 @@ function cartTax() {
     $applicableTaxes = [0];
 
     // Get taxable amount
-    $itemAmount = $item->sale_amount()->isNotEmpty() ? $item->sale_amount()->value : $item->amount()->value;
+    $itemAmount = $item->{'sale-amount'}->isNotEmpty() ? $item->{'sale-amount'}->value : $item->amount()->value;
     $taxableAmount = $itemAmount * $item->quantity()->value;
 
     // Check for product-specific tax rules

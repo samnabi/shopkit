@@ -69,8 +69,8 @@
                         <td>
                             <?php
                                 // Price text
-                                if ($item->sale_amount()->isNotEmpty()) {
-                                    echo formatPrice($item->sale_amount()->value * $item->quantity()->value).'<br>';
+                                if ($item->{'sale-amount'}->isNotEmpty()) {
+                                    echo formatPrice($item->{'sale-amount'}->value * $item->quantity()->value).'<br>';
                                     echo '<del>'.formatPrice($item->amount()->value * $item->quantity()->value).'</del>';
                                 } else {
                                     echo formatPrice($item->amount()->value * $item->quantity()->value);

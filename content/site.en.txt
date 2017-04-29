@@ -159,3 +159,35 @@ Currency-thousands-separator: ,
 ----
 
 Defaultcountry: canada
+
+----
+
+Square-status: sandbox
+
+----
+
+Square-logo: square-white.png
+
+----
+
+Square-text: Pay with Square
+
+----
+
+Square-id-sandbox: 
+
+----
+
+Square-token-sandbox: 
+
+----
+
+Square-id-live: 
+
+----
+
+Square-token-live: 
+
+----
+
+Square-location: 
