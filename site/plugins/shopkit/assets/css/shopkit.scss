@@ -419,6 +419,14 @@ button[aria-expanded="false"] + * {
 }
 
 
+// Badges
+
+.badge {
+	color: $success;
+	font-size: $text-s;
+}
+
+
 
 /**
  * Notification banners

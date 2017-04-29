@@ -70,14 +70,14 @@
                             <?php
                                 // Price text
                                 if ($item->{'sale-amount'}->isNotEmpty()) {
-                                    echo formatPrice($item->{'sale-amount'}->value * $item->quantity()->value).'<br>';
-                                    echo '<del>'.formatPrice($item->amount()->value * $item->quantity()->value).'</del>';
+                                    echo '<del class="badge">'.formatPrice($item->amount()->value * $item->quantity()->value).'</del><br>';
+                                    echo formatPrice($item->{'sale-amount'}->value * $item->quantity()->value);
                                 } else {
                                     echo formatPrice($item->amount()->value * $item->quantity()->value);
                                 }
                             ?>
-                            <?php e($item->notax()->isNotEmpty(),'<br><span class="badge">'.l('no-tax').'</span>') ?>
-                            <?php e($item->noshipping()->isNotEmpty(),'<br><span class="badge">'.l('no-shipping').'</span>') ?>
+                            <?php e($product->notax()->bool(),'<br><span class="badge">'.l('no-tax').'</span>') ?>
+                            <?php e($product->noshipping()->bool(),'<br><span class="badge">'.l('no-shipping').'</span>') ?>
                         </td>
                         <td>
                             <form action="" method="post">

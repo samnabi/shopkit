@@ -479,6 +479,10 @@ button[aria-expanded="false"] + * {
 .menu button[aria-expanded] {
   margin-left: 0.5em; }
 
+.badge {
+  color: #2ecc40;
+  font-size: 0.8rem; }
+
 /**
  * Notification banners
  * 
