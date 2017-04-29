@@ -28,7 +28,7 @@ foreach ($orders as $key => $group) {
     } else if ($products = $order->products()->toStructure()) {
       foreach ($products as $product) {
         $amount_count[$key]++;
-        $price = $product->sale_amount()->isNotEmpty() ? $product->sale_amount()->value : $product->amount()->value;
+        $price = $product->{'sale-amount'}->isNotEmpty() ? $product->{'sale-amount'}->value : $product->amount()->value;
         $amount[$key] += $price * $product->quantity()->value;
       }
     }
