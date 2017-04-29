@@ -491,6 +491,10 @@ textarea {
 	width: 15em;
 }
 
+textarea {
+	min-height: 10em;
+}
+
 input[disabled] {
 	background-color: $base;
 }

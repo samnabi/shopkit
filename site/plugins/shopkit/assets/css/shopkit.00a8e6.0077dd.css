@@ -535,6 +535,9 @@ textarea {
   padding: calc(0.2em + 1px) 0.5em;
   width: 15em; }
 
+textarea {
+  min-height: 10em; }
+
 input[disabled] {
   background-color: rgba(0, 0, 0, 0.08); }
 
