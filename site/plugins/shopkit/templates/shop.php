@@ -9,8 +9,6 @@
   
 <?php } else { ?>
 
-  <?php snippet('menu.breadcrumb') ?>
-
   <?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
   
   <?= $page->text()->kirbytext()->bidi() ?>
