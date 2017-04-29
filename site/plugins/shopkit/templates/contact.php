@@ -29,7 +29,7 @@
 
     <?php if ($page->location()->isNotEmpty()) { ?>
         <dt><?= l('address') ?></dt>
-        <dd><?= $contact->location()->toStructure()->address()->isNotEmpty() ? $contact->location()->toStructure()->address() : $contact->location() ?></dd>
+        <dd><?= $page->location()->toStructure()->address()->isNotEmpty() ? $page->location()->toStructure()->address() : $page->location() ?></dd>
     <?php } ?>
 </dl>
 
