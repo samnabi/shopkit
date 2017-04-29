@@ -18,8 +18,10 @@
     element.style.display = 'inline-block';
     console.log(window.location.hash);
     if (window.location.hash == '#login' && element.getAttribute('aria-controls') == 'loginform') {
-      // Do nothing
+      // Focus on the form and don't collapse it
+      document.getElementById('email').focus();
     } else {
+      // Collapse it
       element.setAttribute('aria-expanded','false');
     }
 
@@ -27,6 +29,11 @@
     element.addEventListener('click',function(){
       if (this.getAttribute('aria-expanded') == 'false') {
         this.setAttribute('aria-expanded','true');
+
+        // Autofocus on the login form
+        if (this.getAttribute('aria-controls') == 'loginform') {
+          document.getElementById('email').focus();
+        }
       } else {
         this.setAttribute('aria-expanded','false');
       }
