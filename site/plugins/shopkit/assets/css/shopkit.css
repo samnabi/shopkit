@@ -733,7 +733,7 @@ option + option {
 .list.products.featured .product:focus, .list.products.featured:hover .product, .list.products.featured:focus .product {
   box-shadow: none;
   background: none; }
-.list.products.featured h3 {
+.list.products.featured .product h3 {
   margin-top: 0.25em; }
 .list.products.featured .description {
   margin: 0.5em; }
