@@ -664,12 +664,13 @@ option + option {
 .sidebar h1 {
   padding: 1rem; }
 
-.sidebar section > h3 {
-  margin-top: 0;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.08); }
-
-.sidebar section > .menu.categories {
+.sidebar section {
   margin-top: 0; }
+  .sidebar section > h3 {
+    margin-top: 0;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.08); }
+  .sidebar section > .menu.categories {
+    margin-top: 0; }
 
 .search {
   display: flex;
@@ -725,31 +726,21 @@ option + option {
  * Featured product list
  *
  */
-.list.featured {
-  margin-top: 2em; }
-  .list.featured li {
-    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.08);
-    padding-bottom: 0.5em; }
-  .list.featured a {
-    display: block;
-    margin-top: 0;
-    color: black; }
-    .list.featured a:hover h3, .list.featured a:focus h3 {
-      color: #0F76CE; }
-  .list.featured h3,
-  .list.featured p,
-  .list.featured form,
-  .list.featured small {
-    margin: 0 0.5rem; }
-  .list.featured h3 {
-    font-size: 1em;
-    line-height: 1.2; }
-  .list.featured button {
-    margin-top: 0.5em; }
-  .list.featured img {
-    display: block; }
-  .list.featured .variant {
-    font-size: 0.8rem; }
+.list.products.featured li {
+  border: 2px solid rgba(0, 0, 0, 0.08); }
+.list.products.featured .product,
+.list.products.featured .product:hover,
+.list.products.featured .product:focus, .list.products.featured:hover .product, .list.products.featured:focus .product {
+  box-shadow: none;
+  background: none; }
+.list.products.featured .description {
+  margin: 0.5em; }
+.list.products.featured .variant {
+  font-size: 0.8rem; }
+.list.products.featured form {
+  margin-top: 0.25em; }
+.list.products.featured button {
+  margin-top: 0.5em; }
 
 /**
  * Category list
@@ -918,9 +909,9 @@ main.product .brand + h1 {
       display: inline-block;
       margin: 0; }
     .variants form .action .remaining {
-      margin-top: 0;
+      margin-top: 0.25em;
+      margin-bottom: 0;
       font-size: 0.8rem;
-      text-align: center;
       color: #0BA2DA; }
 
 /**
