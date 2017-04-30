@@ -517,6 +517,19 @@ button[aria-expanded="false"] + * {
       content: ''; }
 
 /**
+ * Subpage menus
+ * 
+ */
+.subpages {
+  list-style: none;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.08);
+  padding: 0.5em; }
+  .subpages li {
+    display: inline-block;
+    padding: 0 0.5em; }
+
+/**
  * Forms
  * 
  */

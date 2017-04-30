@@ -474,6 +474,25 @@ button[aria-expanded="false"] + * {
 	}
 }
 
+
+/**
+ * Subpage menus
+ * 
+ */
+
+.subpages {
+	list-style: none;
+	text-align: center;
+	background-color: $base;
+	padding: 0.5em;
+
+	li {
+		display: inline-block;
+		padding: 0 0.5em;
+	}
+}
+
+
 /**
  * Forms
  * 
