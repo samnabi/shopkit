@@ -6,6 +6,9 @@
 
   <section>
     <?php snippet('menu.categories') ?>
+  </section>
+  
+  <section>
     <?php snippet('search') ?>
   </section>
 
