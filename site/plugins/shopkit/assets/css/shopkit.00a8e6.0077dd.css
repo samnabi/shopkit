@@ -1272,23 +1272,23 @@ a.slideshow {
   #sq-card {
     display: flex; } }
 #sq-card.visa .card {
-  background-image: url("/assets/plugins/shopkit/img/visa.png");
+  background-image: url("/site/plugins/shopkit/assets/img/visa.png");
   background-color: #E9F3F7; }
 
 #sq-card.masterCard .card {
-  background-image: url("/assets/plugins/shopkit/img/mastercard.png");
+  background-image: url("/site/plugins/shopkit/assets/img/mastercard.png");
   background-color: #FFF8EC; }
 
 #sq-card.JCB .card {
-  background-image: url("/assets/plugins/shopkit/img/jcb.png");
+  background-image: url("/site/plugins/shopkit/assets/img/jcb.png");
   background-color: #F4FBF8; }
 
 #sq-card.americanExpress .card {
-  background-image: url("/assets/plugins/shopkit/img/amex.png");
+  background-image: url("/site/plugins/shopkit/assets/img/amex.png");
   background-color: #E6F5FC; }
 
 #sq-card.discover .card {
-  background-image: url("/assets/plugins/shopkit/img/discover.png");
+  background-image: url("/site/plugins/shopkit/assets/img/discover.png");
   background-color: #FEF4EB; }
 
 #nonce-form fieldset {

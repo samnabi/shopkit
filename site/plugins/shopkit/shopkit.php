@@ -336,7 +336,7 @@ function getStylesheet($accent = '00a836', $link = '0077dd') {
 
   $defaultPath = kirby()->roots()->plugins().'/shopkit/assets/css/shopkit.css';
   $newPath = kirby()->roots()->plugins().'/shopkit/assets/css/shopkit.'.$accent.'.'.$link.'.css';
-  $url = 'assets/plugins/shopkit/css/shopkit.'.$accent.'.'.$link.'.css';
+  $url = 'site/plugins/shopkit/assets/css/shopkit.'.$accent.'.'.$link.'.css';
 
   if (file_exists($newPath) and (filemtime($defaultPath) < filemtime($newPath))) {
     // Fetch custom stylesheet from cache
