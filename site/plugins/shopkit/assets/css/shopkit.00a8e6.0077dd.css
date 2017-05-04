@@ -945,7 +945,8 @@ main.product .brand + h1 {
       display: block;
       max-width: 100%; }
     .variants form .action button {
-      display: inline-block;
+      display: block;
+      width: 100%;
       margin: 0; }
     .variants form .action .remaining {
       margin-top: 0.25em;
