@@ -21,7 +21,7 @@
 
             <?php if ($contact->location()->isNotEmpty()) { ?>
                 <dt><?= l('address') ?></dt>
-                <dd><?= $contact->location()->toStructure()->address()->isNotEmpty() ? $contact->location()->toStructure()->address() : $contact->location() ?></dd>
+                <dd><?= $contact->location()->toStructure()->address()->isNotEmpty() ? $contact->location()->toStructure()->address() : $contact->location()->kirbytext() ?></dd>
             <?php } ?>
         </dl>
     </section>

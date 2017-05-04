@@ -14,7 +14,10 @@ Email: skndj@ksjadn.com
 
 ----
 
-Location: adskjnf asjndf asjdfn
+Location: 
+
+adskjnf asjndf 
+asjdfn
 
 ----
 
@@ -27,7 +30,7 @@ Tues 9-6
 Wed 7-9
 
 Thu 8-8  
-Fri 8-9
+ Fri 8-9
 
 ----
 

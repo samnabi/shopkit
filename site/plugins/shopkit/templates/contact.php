@@ -29,7 +29,7 @@
 
     <?php if ($page->location()->isNotEmpty()) { ?>
         <dt><?= l('address') ?></dt>
-        <dd><?= $page->location()->toStructure()->address()->isNotEmpty() ? $page->location()->toStructure()->address() : $page->location() ?></dd>
+        <dd><?= $page->location()->toStructure()->address()->isNotEmpty() ? $page->location()->toStructure()->address() : $page->location()->kirbytext() ?></dd>
     <?php } ?>
 </dl>
 
