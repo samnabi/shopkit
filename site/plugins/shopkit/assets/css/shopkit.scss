@@ -29,6 +29,9 @@ body {
 	// https://alistapart.com/article/axiomatic-css-and-lobotomized-owls
 	margin-top: 1em;
 }
+body, br, th, td, option {
+  margin-top: 0;
+}
 
 
 /**

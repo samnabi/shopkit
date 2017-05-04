@@ -159,6 +159,9 @@ body {
 * + * {
   margin-top: 1em; }
 
+body, br, th, td, option {
+  margin-top: 0; }
+
 /**
  * Define common variables
  *
@@ -945,8 +948,7 @@ main.product .brand + h1 {
       display: block;
       max-width: 100%; }
     .variants form .action button {
-      display: block;
-      width: 100%;
+      display: inline-block;
       margin: 0; }
     .variants form .action .remaining {
       margin-top: 0.25em;

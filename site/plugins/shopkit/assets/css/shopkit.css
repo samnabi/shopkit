@@ -159,6 +159,9 @@ body {
 * + * {
   margin-top: 1em; }
 
+body, br, th, td, option {
+  margin-top: 0; }
+
 /**
  * Define common variables
  *
