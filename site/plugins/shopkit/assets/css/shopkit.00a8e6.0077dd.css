@@ -858,6 +858,10 @@ option + option {
       color: #0BA2DA;
       float: right;
       margin: 0 0 0.4em 1em; }
+      .list.products .product .price del {
+        display: block;
+        font-size: 0.8em;
+        margin-top: 0; }
   .list.products .fullscreen {
     position: absolute;
     top: 0.5em;
