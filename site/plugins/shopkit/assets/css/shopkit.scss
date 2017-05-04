@@ -1152,22 +1152,17 @@ main.product {
 
 	.thumbnails {
 		width: 100%;
-		position: absolute;
-		top: 0;
 		list-style: none;
 		font-size: 0;
-		text-align: right;
+		text-align: center;
+		padding-left: 0;
 		
 		li {
 			font-size: 1rem;
 			display: inline-block;
-			margin: 0.5rem 0.5rem 0;
+			margin: 0.5rem;
 			width: 10%;
 			max-width: 50px;
-
-			&:first-child {
-				margin-left: 1rem;
-			}
 		}
 
 		img {
@@ -1175,6 +1170,7 @@ main.product {
 			border-radius: 100%;
 			display: block;
 			border: 2px solid white;
+			box-shadow: 0 0 0 2px $accent;
 			cursor: pointer;
 		}
 	}

@@ -978,24 +978,22 @@ main.product .brand + h1 {
       opacity: 1; }
   .slider .thumbnails {
     width: 100%;
-    position: absolute;
-    top: 0;
     list-style: none;
     font-size: 0;
-    text-align: right; }
+    text-align: center;
+    padding-left: 0; }
     .slider .thumbnails li {
       font-size: 1rem;
       display: inline-block;
-      margin: 0.5rem 0.5rem 0;
+      margin: 0.5rem;
       width: 10%;
       max-width: 50px; }
-      .slider .thumbnails li:first-child {
-        margin-left: 1rem; }
     .slider .thumbnails img {
       width: 100%;
       border-radius: 100%;
       display: block;
       border: 2px solid white;
+      box-shadow: 0 0 0 2px #00a8e6;
       cursor: pointer; }
 
 @media (min-width: 45em) {
