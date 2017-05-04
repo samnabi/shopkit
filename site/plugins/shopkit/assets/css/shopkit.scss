@@ -95,6 +95,7 @@ $breakpoint-m-l: 75em;
 	background-size: 100% auto; /* Fallback */
 	background-size: cover;
 }
+
 @media (min-width: $breakpoint-s-m) {
 	.wrapper {
 		padding: 1em;
@@ -102,8 +103,10 @@ $breakpoint-m-l: 75em;
 }
 
 .wrapper-main {
-	padding: 1em;
+	padding: 1em 1em 2em;
 	position: relative;
+	margin-bottom: 5em;
+	border-bottom: 2px solid $accent;
 }
 
 @media (min-width: $breakpoint-s-m) {
@@ -282,6 +285,13 @@ table {
   	border: 1px solid $base;
   	padding: 0.5em;
   }
+}
+
+hr {
+	height: 2px;
+	width: 100%;
+	background: $base;
+	border: none;
 }
 
 
@@ -1025,6 +1035,10 @@ option + option {
 	}
 }
 
+.related {
+	margin-top: 2em;
+	border-top: 2px solid $base;
+}
 
 /**
  * Product page

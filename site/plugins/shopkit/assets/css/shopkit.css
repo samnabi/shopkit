@@ -201,8 +201,10 @@ body {
   .wrapper {
     padding: 1em; } }
 .wrapper-main {
-  padding: 1em;
-  position: relative; }
+  padding: 1em 1em 2em;
+  position: relative;
+  margin-bottom: 5em;
+  border-bottom: 2px solid #00a8e6; }
 
 @media (min-width: 45em) {
   .wrapper {
@@ -327,6 +329,12 @@ table {
   table td {
     border: 1px solid rgba(0, 0, 0, 0.08);
     padding: 0.5em; }
+
+hr {
+  height: 2px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.08);
+  border: none; }
 
 /**
  * Buttons
@@ -893,6 +901,10 @@ option + option {
 @media (min-width: 45em) {
   .list.products li {
     max-width: 24em; } }
+.related {
+  margin-top: 2em;
+  border-top: 2px solid rgba(0, 0, 0, 0.08); }
+
 /**
  * Product page
  *
