@@ -859,7 +859,8 @@ option + option {
     .list.products .product .price {
       color: #00a8e6;
       float: right;
-      margin: 0 0 0.4em 1em; }
+      margin: 0 0 0.4em 1em;
+      text-align: center; }
       .list.products .product .price del {
         display: block;
         font-size: 0.8em;
