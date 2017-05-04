@@ -626,7 +626,6 @@ option + option {
     display: flex;
     flex-direction: column;
     text-align: left;
-    position: absolute;
     right: 1em;
     background-color: white;
     border: 2px solid #0BA2DA;
@@ -643,6 +642,9 @@ option + option {
       display: inline-block;
       font-size: 0.8rem;
       margin: 0 0.5em; }
+
+.animate .login form {
+  position: absolute; }
 
 /**
  * Admin menu

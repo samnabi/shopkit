@@ -3,8 +3,8 @@
 	<section>
 		<ul class="list products featured">
 		  <?php foreach($products as $featuredProduct) { ?>
-		  	<?php $product = page($featuredProduct->product()) ?>
-		  	<li dir="auto">
+		  	<?php if ($product = page($featuredProduct->product())) { ?>
+		  		<li dir="auto">
 		  		<div class="description">
 			  		<a class="product" href="<?= $product->url() ?>" title="<?= $product->title() ?>" vocab="http://schema.org" typeof="Product">
 					  	<?php
@@ -83,7 +83,8 @@
 							<?php } ?>
 			      </form>
 		    	</div>
-			  </li>
+			  	</li>
+			  <?php } ?>
 		  <?php } ?>
 		</ul>	
 	</section>

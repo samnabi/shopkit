@@ -626,7 +626,6 @@ option + option {
 		display: flex;
 		flex-direction: column;
 		text-align: left;
-		position: absolute;
 		right: 1em;
 		background-color: white;
 		border: 2px solid $accent;
@@ -652,6 +651,9 @@ option + option {
 	}
 }
 
+.animate .login form {
+	position: absolute;
+}
 
 /**
  * Admin menu
