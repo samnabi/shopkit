@@ -322,6 +322,12 @@ svg {
   fill: #0BA2DA;
   transition: fill 0.2s; }
 
+table {
+  border-collapse: collapse; }
+  table td {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0.5em; }
+
 /**
  * Buttons
  * 

@@ -275,6 +275,15 @@ svg {
 	transition: fill 0.2s;
 }
 
+table {
+  border-collapse: collapse;
+
+  td {
+  	border: 1px solid $base;
+  	padding: 0.5em;
+  }
+}
+
 
 /**
  * Buttons
