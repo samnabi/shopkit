@@ -14,7 +14,7 @@
 	<?php $first = true ?>
 	<?php foreach ($photos->sortBy('sort') as $photo) { ?>
 		<?php $fg = $photo->resize(null,480,80) ?>
-		<?php $bg = $photo->blur(70) ?>
+		<?php $bg = $photo->blur() ?>
 		<input <?php ecco($first,'checked') ?> type="radio" name="thumbnail" id="<?= $photo->hash() ?>">
 		<div class="slide" style="background-image: url('<?= $bg->url() ?>');">
 			<img src="<?= $fg->url() ?>" title="<?= $photo->title() ?>"/>
