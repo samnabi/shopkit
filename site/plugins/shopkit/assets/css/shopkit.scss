@@ -1062,27 +1062,19 @@ main.product {
 	}
 }
 
-@media (min-width: $breakpoint-xs-s) {
-	main.product {
-		.text {
-			.variants {
-				float: right;
-				width: 15em;
-				margin: 0 0 0 1em;
-			}
-			&:after {
-				content: '';
-				display: block;
-				clear: both;
-			}
-		}
-	}
+.variants {
+	margin: 0;
+	text-align: center;
 }
 
 .variants form {
 	border: 2px solid $base;
 	padding: 0.5em;
-	max-width: 100%;
+	margin: 0 0.5em 1em;
+	max-width: 20em;
+	display: inline-block;
+	vertical-align: top;
+	text-align: left;
 
 	h3 {
 		margin: 0;
@@ -1112,6 +1104,31 @@ main.product {
 			margin-bottom: 0;
 			font-size: $text-s;
 			color: $accent;
+		}
+	}
+}
+
+@media (min-width: $breakpoint-s-m) {
+
+	.product-details {
+		display: flex;	
+	}
+
+	.variants form {
+		margin-right: 1em;
+		margin-left: 0;
+		width: 10em;
+	}
+	.variants form:first-child {
+		margin-top: 0;
+	}
+
+	.slider + .variants {
+		text-align: left;
+		margin-left: 1em;
+
+		form {
+			margin-right: 0;
 		}
 	}
 }
@@ -1161,7 +1178,7 @@ main.product {
 			font-size: 1rem;
 			display: inline-block;
 			margin: 0.5rem;
-			width: 10%;
+			width: 5em;
 			max-width: 50px;
 		}
 
