@@ -1090,6 +1090,9 @@ a.slideshow {
     .checkout td select {
       width: 10em;
       max-width: 100%; }
+  .checkout td,
+  .checkout th {
+    border: none; }
   .checkout thead tr {
     display: none; }
   .checkout tbody tr {
