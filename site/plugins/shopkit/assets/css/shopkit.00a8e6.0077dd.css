@@ -206,8 +206,9 @@ body, br, th, td, option {
 .wrapper-main {
   padding: 1em 1em 2em;
   position: relative;
-  margin-bottom: 5em;
-  border-bottom: 2px solid #0BA2DA; }
+  margin-bottom: 5em; }
+  .wrapper-main main {
+    border-bottom: 2px solid #0BA2DA; }
 
 @media (min-width: 45em) {
   .wrapper {
@@ -318,6 +319,9 @@ nav a:focus,
  */
 video, iframe, img, figure, audio, object {
   max-width: 100%; }
+
+figure {
+  margin: 1em 0; }
 
 svg {
   display: inline-block;

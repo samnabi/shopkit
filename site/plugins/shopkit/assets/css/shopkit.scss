@@ -109,7 +109,10 @@ $breakpoint-m-l: 75em;
 	padding: 1em 1em 2em;
 	position: relative;
 	margin-bottom: 5em;
-	border-bottom: 2px solid $accent;
+	
+	main {
+		border-bottom: 2px solid $accent;
+	}
 }
 
 @media (min-width: $breakpoint-s-m) {

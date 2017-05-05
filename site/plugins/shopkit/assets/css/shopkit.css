@@ -206,8 +206,9 @@ body, br, th, td, option {
 .wrapper-main {
   padding: 1em 1em 2em;
   position: relative;
-  margin-bottom: 5em;
-  border-bottom: 2px solid #00a8e6; }
+  margin-bottom: 5em; }
+  .wrapper-main main {
+    border-bottom: 2px solid #00a8e6; }
 
 @media (min-width: 45em) {
   .wrapper {
