@@ -319,6 +319,9 @@ nav a:focus,
 video, iframe, img, figure, audio, object {
   max-width: 100%; }
 
+figure {
+  margin: 1em 0; }
+
 svg {
   display: inline-block;
   width: 1.5em;
