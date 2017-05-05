@@ -106,12 +106,12 @@ $breakpoint-m-l: 75em;
 }
 
 .wrapper-main {
-	padding: 1em 1em 2em;
+	padding: 1em;
 	position: relative;
-	margin-bottom: 5em;
-	
 	main {
 		border-bottom: 2px solid $accent;
+		margin-bottom: 5em;
+		padding-bottom: 2em;
 	}
 }
 
