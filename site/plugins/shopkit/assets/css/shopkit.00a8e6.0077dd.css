@@ -1241,6 +1241,9 @@ a.slideshow {
       margin-top: 0.5em; }
   .orders td {
     vertical-align: top; }
+  .orders td,
+  .orders th {
+    border: none; }
   .orders ul {
     padding: 0;
     margin: 0 0 0 1em; }

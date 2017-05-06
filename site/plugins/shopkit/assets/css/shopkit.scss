@@ -1554,7 +1554,10 @@ a.slideshow {
 		vertical-align: top;
 	}
 
-
+	td,
+	th {
+		border: none;
+	}
 
 	ul {
 		padding: 0;
