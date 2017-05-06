@@ -53,6 +53,10 @@
                                 <button type="submit"><?= l('download-invoice') ?></button>
                             </form>
                         <?php } ?>
+                        
+                        <?php if($user and $user->role() == 'admin') { ?>
+                            <small><a href="<?= url('/panel/pages/'.$order->uri().'/delete') ?>"><?= l('delete') ?></a></small>
+                        <?php } ?>
                     </td>
                     <td>
                         <?php if (strpos($order->products(),'uri:')) { ?>

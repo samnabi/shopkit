@@ -3,7 +3,6 @@ pages: false
 files: false
 preview: parent
 options:
-  delete: false
   status: false
   template: false
   url: false
