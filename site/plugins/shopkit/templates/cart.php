@@ -277,8 +277,8 @@
         <?php } ?>
     </div>
 
-    <?= js('assets/plugins/shopkit/js/ajax-helpers.min.js') ?>
-    <?= js('assets/plugins/shopkit/js/cart.min.js') ?>
+    <?= js('site/plugins/shopkit/assets/js/ajax-helpers.min.js') ?>
+    <?= js('site/plugins/shopkit/assets/js/cart.min.js') ?>
 
 <?php } ?>
 

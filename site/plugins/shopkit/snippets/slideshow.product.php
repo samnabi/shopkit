@@ -62,5 +62,5 @@
 	</div>
 </a>
 
-<?= js('assets/plugins/shopkit/js/ajax-helpers.min.js') ?>
-<?= js('assets/plugins/shopkit/js/slideshow.min.js') ?>
+<?= js('site/plugins/shopkit/assets/js/ajax-helpers.min.js') ?>
+<?= js('site/plugins/shopkit/assets/js/slideshow.min.js') ?>
