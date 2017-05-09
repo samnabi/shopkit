@@ -1,12 +1,14 @@
 (function () { // Enclose in an anonymous function to limit scope
 
   // Cut the mustard
-  var mustard = !!document.querySelector && !!document.querySelectorAll && !!window.addEventListener && !!document.documentElement.classList && !!document.documentElement.getAttribute && !!document.documentElement.setAttribute;
+  var mustard = !!document.querySelectorAll && !!window.addEventListener && !!document.documentElement.classList && !!document.documentElement.getAttribute && !!document.documentElement.setAttribute;
   if (!mustard) return;
 
   // Find toggle buttons and loop through them
   var toggles = document.querySelectorAll('button[aria-expanded]');
-  toggles.forEach(function(element) {
+
+  for (var i = toggles.length - 1; i >= 0; i--) {
+    var element = toggles[i];
 
     // Set max-height (for smoother transitions)
     function setMaxHeight(element) { element.style.maxHeight = element.offsetHeight + 'px'; }
@@ -38,11 +40,11 @@
         this.setAttribute('aria-expanded','false');
       }
     });
+  };
 
-    // Enable CSS animations
-    setTimeout(function(){
-      document.documentElement.className += " animate";
-    }, 500);
-  });
+  // Enable CSS animations
+  setTimeout(function(){
+    document.documentElement.className += " animate";
+  }, 500);
 
 })(); // Close up the function
