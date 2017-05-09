@@ -86,6 +86,7 @@ $breakpoint-m-l: 75em;
 	background-color: hsla(0,0%,100%,0.9);
   overflow: hidden;
 	padding: 0.5em;
+	margin-bottom: 5em;
 }
 .wrapper::before {
 	content: '';
@@ -110,7 +111,6 @@ $breakpoint-m-l: 75em;
 	position: relative;
 	main {
 		border-bottom: 2px solid $accent;
-		margin-bottom: 5em;
 		padding-bottom: 2em;
 	}
 }
