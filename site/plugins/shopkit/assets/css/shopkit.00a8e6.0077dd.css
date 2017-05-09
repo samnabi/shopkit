@@ -608,6 +608,7 @@ option + option {
   .logo a, .logo img {
     display: block; }
   .logo img {
+    max-height: 4em;
     margin: 0 auto; }
 
 .sidebar .logo {
