@@ -116,7 +116,7 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
         $txn->update([
           'square-txn-id' => $charge->getTransaction()->getId(),
           'square-location-id' => $charge->getTransaction()->getLocationId(),
-          'status'  => 'paid',
+          'status'  => $site->square_status() == 'live' ? 'paid' : 'pending',
           'payer-name' => esc(get('sq-first-name')).' '.esc(get('sq-last-name')),
           'payer-email' => esc(get('sq-buyer-email-address')),
           'payer-address' => $address,
