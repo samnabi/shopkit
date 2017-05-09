@@ -14,7 +14,7 @@ $body .= l('full-name').': '.$txn->payer_name()->value."\n";
 $body .= l('email-address').': '.$txn->payer_email()->value."\n";
 $body .= l('address').': '.$txn->payer_address()->value."\n\n";
 foreach ($txn->products()->toStructure() as $item) {
-  $body .= page($item->uri())->title()->value.' - '.$item->variant()->value;
+  $body .= $item->name()->value.' - '.$item->variant()->value;
   $body .= $item->option() == '' ? '' : ' - '.$item->option()->value;
   $body .= "\n".l('qty').$item->quantity()->value."\n\n";
 }
