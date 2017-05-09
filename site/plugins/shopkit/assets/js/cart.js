@@ -1,7 +1,7 @@
 (function () { // Enclose in an anonymous function to limit scope
 
     // Cut the mustard
-    var mustard = !!document.querySelector && !!document.querySelectorAll && !!window.addEventListener && !!document.documentElement.classList;
+    var mustard = !!document.querySelector && !!window.addEventListener && !!document.documentElement.classList;
     if (!mustard) return;
 
     // Hide submit buttons
@@ -13,7 +13,7 @@
     // Attach listeners to <main> because its child elements may be replaced by new DOM
     document.querySelector('main').addEventListener('change', function(event){
         // Only continue if it's shipping/country dropdown
-        if (!['country','shipping'].includes(event.target.name)) return true;
+        if (event.target.name != 'country' && event.target.name != 'shipping') return true;
 
         // Submit the form
         event.target.form.submit();
@@ -24,7 +24,7 @@
     document.querySelector('main').addEventListener('submit', function(event){
         
         // Only continue if it's an add/remove action
-        if (!['add','remove'].includes(event.target.action.value)) return true;
+        if (event.target.action.value != 'add' && event.target.action.value != 'remove') return true;
 
         // Stop standard submit action
         event.preventDefault();
