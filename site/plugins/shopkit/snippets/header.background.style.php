@@ -1,12 +1,16 @@
 <?php
   // Background colour
-  if ($site->backgroundcolor() != '' and $site->backgroundcolor() != '#FFFFFF') {
+  if ($site->backgroundcolor()->isNotEmpty() and $site->backgroundcolor() != '#FFFFFF') {
   	echo '<style> body { background-color: '.$site->backgroundcolor().'; } </style>';
   }
 
   // Background image
-  if ($site->backgroundimage() != '') {
+  if ($site->backgroundimage()->isNotEmpty()) {
     $bg = $site->backgroundimage()->toFile()->thumb(['width' => 2000, 'quality' => 80, 'upscale' => false]);
-    echo '<style> body, .wrapper::before { background-image: url('.$bg->url().'); } </style>';
+    $bg_blur = $site->backgroundimage()->toFile()->thumb(['width' => 2000, 'quality' => 80, 'upscale' => false, 'blur' => true, 'blurpx' => 80]);
+    echo '<style>
+      body { background-image: url('.$bg->url().'); }
+      .wrapper::before { background-image: url('.$bg_blur->url().'); }
+    </style>';
   }
 ?>

@@ -179,7 +179,7 @@ body, br, th, td, option {
  */
 .wrapper {
   position: relative;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
   overflow: hidden;
   padding: 0.5em; }
 
@@ -190,8 +190,6 @@ body, br, th, td, option {
   right: 0;
   bottom: 0;
   left: 0;
-  filter: blur(15px);
-  margin: -30px;
   z-index: -1;
   background-position: center top;
   background-attachment: fixed;
@@ -511,7 +509,8 @@ button[aria-expanded="false"] + * {
  */
 .notification {
   background-color: #D6EDF5;
-  padding: 1em; }
+  padding: 1em;
+  border: 2px solid rgba(0, 0, 0, 0.08); }
 
 .notification.warning {
   background-color: #faed9e; }
