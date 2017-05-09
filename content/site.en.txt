@@ -32,11 +32,6 @@ Backgroundblur: 0
 
 Featured: 
 
-- 
-  product: >
-    shop/coffee-beans/indonesian-french-roast
-  calculation: low
-
 ----
 
 Mailing-address: 0
