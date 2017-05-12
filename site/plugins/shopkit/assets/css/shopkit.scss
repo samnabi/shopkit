@@ -676,6 +676,7 @@ option + option {
 	border-bottom: 2px solid $base;
 	display: flex;
 	flex-wrap: wrap;
+	width: 100%;
 	justify-content: center;
 
 	a {
@@ -692,6 +693,7 @@ option + option {
 .menu.primary {
 	display: flex;
 	flex-wrap: wrap;
+	width: 100%;
 	justify-content: center;
 	align-items: center;
 
@@ -865,6 +867,7 @@ option + option {
 .list.categories {
 	display: flex;
 	flex-wrap: wrap;
+	width: 100%;
 	margin-top: 2em;
 	margin-left: -0.5em;
 	margin-right: -0.5em;
@@ -1029,6 +1032,7 @@ option + option {
 	.list.products {
 		display: flex;
 		flex-wrap: wrap;
+		width: 100%;
 		margin-left: -0.5em;
 		margin-right: -0.5em;
 

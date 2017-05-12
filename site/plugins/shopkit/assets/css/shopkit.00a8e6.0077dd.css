@@ -663,6 +663,7 @@ option + option {
   border-bottom: 2px solid rgba(0, 0, 0, 0.08);
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
   justify-content: center; }
   .user a {
     margin: 0 0.5em 1em; }
@@ -675,6 +676,7 @@ option + option {
 .menu.primary {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
   justify-content: center;
   align-items: center; }
   .menu.primary a {
@@ -788,6 +790,7 @@ option + option {
 .list.categories {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
   margin-top: 2em;
   margin-left: -0.5em;
   margin-right: -0.5em; }
@@ -902,6 +905,7 @@ option + option {
   .list.products {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
     margin-left: -0.5em;
     margin-right: -0.5em; }
     .list.products li {
