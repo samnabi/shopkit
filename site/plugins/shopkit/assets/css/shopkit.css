@@ -203,6 +203,7 @@ body, br, th, td, option {
   .wrapper {
     padding: 1em; } }
 .wrapper-main {
+  width: 100%;
   padding: 1em;
   position: relative; }
   .wrapper-main main {
