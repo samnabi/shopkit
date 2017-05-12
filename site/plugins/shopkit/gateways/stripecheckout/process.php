@@ -37,7 +37,8 @@ $stripe = [
 															+ $txn->shipping()->value
 															+ $txn->tax()->value
 															- $txn->discount()->value
-															- $txn->giftcertificate()->value,2,'','');
+															- $txn->giftcertificate()->value,
+																decimalPlaces($site->currency_code()), '', '');
 		?>
 
 		<!-- Stripe Checkout form. Copied from https://stripe.com/docs/checkout/tutorial -->
@@ -50,6 +51,7 @@ $stripe = [
 		    data-description="<?= $txn->txn_id() ?>"
 		    data-image="<?= $site->logo()->toFile()->crop(100)->url() ?>"
 		    data-locale="auto"
+		    data-currency="<?= $site->currency_code() ?>"
 		    data-zip-code="true">
 		  </script>
 		  <input type="hidden" name="amount" value="<?= $amount ?>">

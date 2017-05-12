@@ -72,13 +72,34 @@ if (null !== get('gc')) {
  * Helper function to format price
  */
 
+function decimalPlaces($currency_code) {
+  // Find the number of decimal places for the site's defined currency code
+  // Reference: https://en.wikipedia.org/wiki/ISO_4217#Active_codes
+  $c = trim(str::upper($currency_code));
+  if (in_array($c, ['BIF','BYR','CLP','CVE','DJF','GNF','ISK','JPY','KMF','KRW','PYG','RWF','UGX','UYI','VND','VUV','XAF','XOF','XPF'])) {
+    return 0;
+  } else if (in_array($c, ['MGA','MRO'])) {
+    return 1;
+  } else if (in_array($c, ['AED','AFN','ALL','AMD','ANG','AOA','ARS','AUD','AWG','AZN','BAM','BBD','BDT','BGN','BMD','BND','BOB','BOV','BRL','BSD','BTN','BWP','BYN','BZD','CAD','CDF','CHE','CHF','CHW','CNY','COP','COU','CRC','CUC','CUP','CZK','DKK','DOP','DZD','EGP','ERN','ETB','EUR','FJD','FKP','GBP','GEL','GHS','GIP','GMD','GTQ','GYD','HKD','HNL','HRK','HTG','HUF','IDR','ILS','INR','IRR','JMD','KES','KGS','KHR','KPW','KYD','KZT','LAK','LBP','LKR','LRD','LSL','MAD','MDL','MKD','MMK','MNT','MOP','MUR','MVR','MWK','MXN','MXV','MYR','MZN','NAD','NGN','NIO','NOK','NPR','NZD','PAB','PEN','PGK','PHP','PKR','PLN','QAR','RON','RSD','RUB','SAR','SBD','SCR','SDG','SEK','SGD','SHP','SLL','SOS','SRD','SSP','STD','SVC','SYP','SZL','THB','TJS','TMT','TOP','TRY','TTD','TWD','TZS','UAH','USD','USN','UYU','UZS','VEF','WST','XCD','YER','ZAR','ZMW','ZWL'])) {
+    return 2;
+  } else if (in_array($c, ['BHD','IQD','JOD','KWD','LYD','OMR','TND'])) {
+    return 3;
+  } else if (in_array($c, ['CLF'])) {
+    return 4;
+  } else {
+    // Fallback to 2 decimal places by default
+    return 2;
+  }
+}
+
 function formatPrice($number, $plaintext = false, $showSymbol = true) {
   $symbol = $showSymbol === true ? site()->currency_symbol() : '';
   $code = site()->currency_code();
   $decimal = site()->currency_decimal_point();
   $thousands = site()->currency_thousands_separator() == 'space' ? ' ' : site()->currency_thousands_separator();
-  $rawPrice = number_format((float)$number, 2, '.', '');
-  $price = number_format((float)$number, 2, $decimal, $thousands);
+  $decimal_places = decimalPlaces($code);
+  $rawPrice = number_format((float)$number, $decimal_places, '.', '');
+  $price = number_format((float)$number, $decimal_places, $decimal, $thousands);
 
   // Upgrade plaintext to markup if necessary
   if (!$plaintext) {
