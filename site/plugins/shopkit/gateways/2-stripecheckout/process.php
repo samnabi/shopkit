@@ -50,6 +50,7 @@
 		    data-description="<?= $txn->txn_id() ?>"
 		    data-image="<?= site()->logo()->toFile()->crop(100)->url() ?>"
 		    data-locale="auto"
+		    data-currency="<?= page('shop')->currency_code() ?>"
 		    data-zip-code="true">
 		  </script>
 		  <input type="hidden" name="amount" value="<?= $amount ?>">
