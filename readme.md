@@ -2,7 +2,7 @@
 
 Shopkit is a comprehensive commerce solution for the excellent [Kirby CMS](http://getkirby.com).
 
-A single-site license is $19 USD. Bulk discounts available. Full details and documentation: <http://shopkit.samnabi.com>
+A single-site license is $25 CAD. Bulk discounts available. Full details and documentation: <http://shopkit.samnabi.com>
 
 ![Shopkit sets you up with detailed product blueprints and beautiful, flexible templates](site/plugins/shopkit/preview.jpg)
 
@@ -38,7 +38,7 @@ A single-site license is $19 USD. Bulk discounts available. Full details and doc
 
 ## Pricing
 
-You can try Shopkit for free on your test server, forever. Once you're satisfied, [buy a Shopkit license for $19 USD](http://shopkit.samnabi.com) to use it on a public site.
+You can try Shopkit for free on your test server, forever. Once you're satisfied, [buy a Shopkit license for $25 CAD](http://shopkit.samnabi.com) to use it on a public site.
 
 Since Shopkit runs on the Kirby CMS, you'll also have to buy a [Kirby license](http://getkirby.com/license) from Bastian.
 
@@ -48,7 +48,7 @@ Moral licenses for [Visual Markdown](https://gumroad.com/l/visualmarkdown) and [
 
 Download the latest version of Shopkit from the [releases page](https://github.com/samnabi/shopkit/releases), or install with git:
 
-    git clone --recursive https://github.com/samnabi/shopkit.git
+    git clone --recursive -b v1-stable https://github.com/samnabi/shopkit.git
 
 ### Sample content
 
@@ -65,7 +65,7 @@ Use these terminal commands to update Shopkit and its dependencies:
     # Update dependencies
     git submodule update --init --recursive
 
-## Dependencies for Shopkit v1.1.6
+## Dependencies for Shopkit v1.1.7
 
 - Kirby Core [v2.4.1](https://github.com/getkirby/kirby/tree/2.4.1)
 - Kirby Panel [v2.4.1](https://github.com/getkirby/panel/tree/2.4.1)

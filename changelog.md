@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.7
+- Bug fixes
+    - Add currency detection to Stripe Checkout
+    - Support zero-decimal currencies, such as Japanese Yen
+    - Fix false error message on registration
+
 ## v1.1.6
 - Security fixes
     - `c::set('debug', true)` no longer enables mail logging
