@@ -54,12 +54,12 @@ try {
 		'txn-currency' => page('shop')->currency_code(),
 		'status'  => $status,
 		'products' => "\n".yaml::encode($items),
-		'subtotal' => number_format($cart->getAmount(),2,'.',''),
-		'discount' => number_format($discount['amount'],2,'.',''),
+		'subtotal' => number_format($cart->getAmount(),decimalPlaces(page('shop')->currency_code()),'.',''),
+		'discount' => number_format($discount['amount'],decimalPlaces(page('shop')->currency_code()),'.',''),
 		'shipping' => $shipping['rate'],
 		'shipping-method' => $shipping['title'],
-		'tax' => number_format($cart->getTax(),2,'.',''),
-		'giftcertificate' => null !== get('giftCertificateAmount') ? number_format(get('giftCertificateAmount'),2,'.','') : '0.00',
+		'tax' => number_format($cart->getTax(),decimalPlaces(page('shop')->currency_code()),'.',''),
+		'giftcertificate' => null !== get('giftCertificateAmount') ? number_format(get('giftCertificateAmount'),decimalPlaces(page('shop')->currency_code()),'.','') : '0.00',
 	]);
 
 	// Add payer info if it's available at this point
@@ -77,7 +77,7 @@ try {
 		$certificates = page('shop')->gift_certificates()->yaml();
 		foreach ($certificates as $key => $certificate) {
 			if (strtoupper($certificate['code']) == s::get('giftCertificateCode')) {
-				$certificates[$key]['amount'] = number_format($giftCertificateRemaining,2,'.','');
+				$certificates[$key]['amount'] = number_format($giftCertificateRemaining,decimalPlaces(page('shop')->currency_code()),'.','');
 			}
 		}
 		page('shop')->update(['gift-certificates' => yaml::encode($certificates)]);

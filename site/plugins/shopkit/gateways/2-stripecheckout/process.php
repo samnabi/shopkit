@@ -36,7 +36,8 @@
 															+ $txn->shipping()->value
 															+ $txn->tax()->value
 															- $txn->discount()->value
-															- $txn->giftcertificate()->value,2,'','');
+															- $txn->giftcertificate()->value,
+															  decimalPlaces(page('shop')->currency_code()), '', '');
 		?>
 
 		<!-- Stripe Checkout form. Copied from https://stripe.com/docs/checkout/tutorial -->

@@ -36,7 +36,7 @@
 		    <input type="hidden" name="item_name_<?= $i ?>" value="<?= $item->name().' - '.$item->variant().' - '.$item->option() ?>">
 		    
 		    <?php $itemAmount = $item->sale_amount()->value != '' ? $item->sale_amount()->value : $item->amount()->value ?>
-		    <input type="hidden" name="amount_<?= $i ?>" value="<?= number_format($itemAmount,2,'.','') ?>">
+		    <input type="hidden" name="amount_<?= $i ?>" value="<?= number_format($itemAmount, decimalPlaces(page('shop')->currency_code()), '.', '') ?>">
 
 		    <input type="hidden" name="quantity_<?= $i ?>" value="<?= $item->quantity() ?>">
 		<?php } ?>

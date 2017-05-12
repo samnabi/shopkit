@@ -87,14 +87,14 @@
                             <tr>
                                 <td><?= l::get('subtotal') ?></td>
                                 <td>
-                                    <?= number_format($order->subtotal()->value,2,'.','') ?>&nbsp;<?= $order->txn_currency() ?>
+                                    <?= number_format($order->subtotal()->value,decimalPlaces(page('shop')->currency_code()),'.','') ?>&nbsp;<?= $order->txn_currency() ?>
                                 </td>
                             </tr>
                             <?php if ($order->discount()->value and $order->discount()->value != '0.00') { ?>
                                 <tr>
                                     <td><?= l::get('discount') ?></td>
                                     <td>
-                                        <?= '&ndash; '.number_format($order->discount()->value,2,'.','') ?>&nbsp;<?= $order->txn_currency() ?>
+                                        <?= '&ndash; '.number_format($order->discount()->value,decimalPlaces(page('shop')->currency_code()),'.','') ?>&nbsp;<?= $order->txn_currency() ?>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -102,20 +102,20 @@
                                 <td><?= l::get('shipping') ?></td>
                                 <td>
                                     <!-- Need to cast as (float) to handle null or nonexistent shipping value -->
-                                    <?= number_format((float)$order->shipping()->value,2,'.','') ?>&nbsp;<?= $order->txn_currency() ?>
+                                    <?= number_format((float)$order->shipping()->value,decimalPlaces(page('shop')->currency_code()),'.','') ?>&nbsp;<?= $order->txn_currency() ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td><?= l::get('tax') ?></td>
                                 <td>
-                                    <?= number_format($order->tax()->value,2,'.','') ?>&nbsp;<?= $order->txn_currency() ?>
+                                    <?= number_format($order->tax()->value,decimalPlaces(page('shop')->currency_code()),'.','') ?>&nbsp;<?= $order->txn_currency() ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td><strong><?= l::get('total') ?></strong></td>
                                 <td>
                                     <strong>
-                                        <?= number_format($order->subtotal()->value+$order->shipping()->value+$order->tax()->value,2,'.','') ?>&nbsp;<?= $order->txn_currency() ?>
+                                        <?= number_format($order->subtotal()->value+$order->shipping()->value+$order->tax()->value,decimalPlaces(page('shop')->currency_code()),'.','') ?>&nbsp;<?= $order->txn_currency() ?>
                                     </strong>
                                 </td>
                             </tr>
@@ -123,7 +123,7 @@
                                 <tr class="uk-text-success">
                                     <td><?= str_replace(' ', '&nbsp;', l::get('gift-certificate')) ?></td>
                                     <td>
-                                        &ndash;&nbsp;<?= number_format($order->giftcertificate()->value,2,'.','') ?>&nbsp;<?= $order->txn_currency() ?>
+                                        &ndash;&nbsp;<?= number_format($order->giftcertificate()->value,decimalPlaces(page('shop')->currency_code()),'.','') ?>&nbsp;<?= $order->txn_currency() ?>
                                     </td>
                                 </tr>
                             <?php } ?>
