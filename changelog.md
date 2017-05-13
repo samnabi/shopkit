@@ -1,42 +1,72 @@
 # Changelog
 
 ## v2.0
+- Payment gateways
+    - New gateway: [Square](https://squareup.com/i/01D1F3F5)
+    - Move gateway settings from `config.php` to Site options in Panel
+    - Remove numeric prefixes for gateway folders
+    - Make [Stripe SDK](https://github.com/stripe/stripe-php) a submodule
 - Panel
-    - Consolidate Shop options into Site options page
-    - New Site options
+    - New widget: Basic visitor stats (forked from [Fabian Sperrle](https://github.com/FabianSperrle/kirby-stats))
+    - New widget: Basic order stats for the last 30 days
+    - Consolidate options into Site Options page
+    - New Site Options
         - Set default country
-        - Show quantity in stock on Product pages
-        - Number formatting (decimal and thousands separator)
-    - Remove slider option from Product blueprints
-    - Replace structure fields with snippetfield plugin (better entry summaries)
-    - Replace Visual Markdown with WYSIWYG editor
-- Widgets
-    - Basic visitor stats (forked from [Fabian Sperrle](https://github.com/FabianSperrle/kirby-stats))
-    - Aggregate order stats (abandoned, pending, paid & shipped)
-- New cart handling
-    - Store cart details in transaction file instead of session variable
-    - Rename `order.create` snippet to `order.process`
-    - New transaction status: "abandoned"
+        - Show/hide quantity in stock
+        - Set symbols for decimal and thousands separators
+    - Product blueprints: remove slider option (the template adds all page images to the slider)
+    - Replace structure fields with Jens Törnell's [Snippetfield](https://github.com/jenstornell/kirby-snippetfield) plugin (for nicer-looking entries)
+    - Replace Visual Markdown with [WYSIWYG editor](https://github.com/samnabi/kirby-wysiwyg)
+    - Allow orders to be deleted from the Panel
 - New theme
     - Remove the UIKit framework
     - Use normal URLs instead of data-URIs for product photos
     - AJAX quantity selector on Cart page
     - AJAX product slideshow
+    - Expand-collapse toggle for login form
+    - Expand-collapse toggle for subcategories in sidebar menu
     - Tag cloud in sidebar
     - Shop by Brand in the sidebar
-    - Use radio buttons instead of select box for shipping options on Cart page
-    - Remove base colour in colour options (only link and accent colour can be edited from Site options)
+    - Radio buttons instead of select box for shipping options on Cart page
+    - Remove base colour from theme options (only link and accent colour can be edited from the Panel)
     - Product-specific page descriptions for better SEO
     - New frontend admin buttons
-- Easier to change default language in `config.php`
-- Bug fixes
-    - Fix false error message on registration
-    - Fix multiple orders bug (#131)
+    - Move slider thumbnails below image instead of overlapping
+- New cart logic
+    - Store cart details in a transaction file instead of session variable
+    - Rename `order.create` snippet to `order.process`
+    - New transaction status: "abandoned" (for people that add things to cart, but never click Pay Now)
 - Performance enhancements
     - Limit use of `index()`
     - Limit re-declaration of `site()` and `page()`
     - Faster font loading
+- Decrufting
     - Consolidate most logic into `shopkit.php`
+    - Refactor giftcard and discount code detection
+- Bug fixes
+    - Fix multiple orders bug (#131)
+    - Fix error on version checker widget when not connected to the internet
+- Other
+    - Easier to change default language in `config.php`
+
+## v1.1.7
+- Bug fixes
+    - Add currency detection to Stripe Checkout
+    - Support zero-decimal currencies, such as Japanese Yen
+    - Fix false error message on registration
+
+## v1.1.6
+- Security fixes
+    - `c::set('debug', true)` no longer enables mail logging
+- Bug fixes
+    - Fix `getDiscount()` check for flat discounts
+    - Fix per-variant sale price codes
+    - Fix negative stock bug
+
+## v1.1.5
+- Bug fixes
+    - Remove poorly-formatted HTML entities in panel fields
+    - Add a blank `site/blueprints` folder to prevent panel errors
 
 ## v1.1.4
 - New features
