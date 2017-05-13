@@ -40,6 +40,7 @@
     - Limit use of `index()`
     - Limit re-declaration of `site()` and `page()`
     - Faster font loading
+    - Reduced total page weight by 75%
 - Decrufting
     - Consolidate most logic into `shopkit.php`
     - Refactor giftcard and discount code detection
