@@ -5,6 +5,5 @@ c::set('snippetfield.path', kirby()->roots()->plugins().DS.'shopkit'.DS.'snippet
 
 // Register fields
 $kirby->set('field', 'color',        __DIR__.DS.'..'.DS.'fields'.DS.'color');
-$kirby->set('field', 'snippetfield', __DIR__.DS.'..'.DS.'fields'.DS.'snippetfield');
 $kirby->set('field', 'tabs',         __DIR__.DS.'..'.DS.'fields'.DS.'tabs');
 $kirby->set('field', 'tiers',        __DIR__.DS.'..'.DS.'fields'.DS.'tiers');

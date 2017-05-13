@@ -80,6 +80,7 @@ Shopkit depends on these submodules:
 - Kirby Core [2.4.1](https://github.com/getkirby/kirby/tree/2.4.1)
 - Kirby Panel [2.4.1](https://github.com/getkirby/panel/tree/2.4.1)
 - Stripe PHP SDK [v4.7.0](https://github.com/stripe/stripe-php)
+- Square Connect SDK [v2.0.1](https://github.com/square/connect-php-sdk)
 - Multiselect field [2.1.0](https://github.com/distantnative/field-multiselect/tree/2.1.0)
 - Selector field [v1.5.2](https://github.com/storypioneers/kirby-selector/tree/v1.5.2)
 - Color field @[fcda14d1ae](https://github.com/ian-cox/Kirby-Color-Picker/tree/fcda14d1ae655870590775a744543a6e40a06ce2)

@@ -22,9 +22,6 @@
 [submodule "site/plugins/shopkit/fields/tabs"]
 	path = site/plugins/shopkit/fields/tabs
 	url = https://github.com/afbora/Kirby-Tabs-Field
-[submodule "site/plugins/shopkit/fields/snippetfield"]
-	path = site/plugins/shopkit/fields/snippetfield
-	url = https://github.com/samnabi/kirby-snippetfield.git
 [submodule "site/plugins/shopkit/fields/field-wysiwyg"]
 	path = site/plugins/field-wysiwyg
 	url = https://github.com/samnabi/kirby-wysiwyg
@@ -37,3 +34,6 @@
 [submodule "site/plugins/shopkit/gateways/square/connect-php-sdk"]
 	path = site/plugins/shopkit/gateways/square/connect-php-sdk
 	url = https://github.com/square/connect-php-sdk
+[submodule "site/plugins/kirby-snippetfield"]
+	path = site/plugins/kirby-snippetfield
+	url = https://github.com/jenstornell/kirby-snippetfield
