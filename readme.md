@@ -67,24 +67,25 @@ Use these terminal commands to update Shopkit and its dependencies:
 
 ## Dependencies for Shopkit v2.0-dev
 
-curl
-json
-mbstring
-DOM extension
-GD extension
-MBString extension
+Your server's PHP configuration must include the following extensions:
+
+- curl
+- json
+- mbstring
+- dom
+- gd
+
+Shopkit depends on these submodules:
 
 - Kirby Core [2.4.1](https://github.com/getkirby/kirby/tree/2.4.1)
 - Kirby Panel [2.4.1](https://github.com/getkirby/panel/tree/2.4.1)
 - Stripe PHP SDK [v4.7.0](https://github.com/stripe/stripe-php)
-
 - Multiselect field [2.1.0](https://github.com/distantnative/field-multiselect/tree/2.1.0)
 - Selector field [v1.5.2](https://github.com/storypioneers/kirby-selector/tree/v1.5.2)
 - Color field @[fcda14d1ae](https://github.com/ian-cox/Kirby-Color-Picker/tree/fcda14d1ae655870590775a744543a6e40a06ce2)
 - Snippetfield @[a5808fb217](https://github.com/samnabi/kirby-snippetfield/tree/a5808fb2173a54b81d22c02618856ad408604cfa)
-- Wysiwyg field @[d0315f6](https://github.com/samnabi/kirby-wysiwyg)
+- WYSIWYG field @[d0315f6](https://github.com/samnabi/kirby-wysiwyg)
 - Tabs field @[ad7a7d3c9e](https://github.com/afbora/Kirby-Tabs-Field/tree/ad7a7d3c9e667e33dae292e34c3178eb29983556)
-
 - field-bidi @[6ce984e85a](https://github.com/samnabi/field-bidi/tree/6ce984e85afa191d60fb3d7a18218571f7501731)
 - Stats @[4dff5ef](https://github.com/samnabi/kirby-stats)
 - Dompdf @[aba268bdeb](https://github.com/samnabi/dompdf/tree/aba268bdebc6e50383fd6758778a4d77ca810c85)
@@ -97,6 +98,6 @@ Please report issues and request new features on the [issues page](https://githu
 
 ## Copyright
 
-Shopkit © 2015-2016 Sam Nabi <http://samnabi.com>
+Shopkit © 2015-2017 Sam Nabi <http://samnabi.com>
 
-Kirby © 2009-2016 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>
+Kirby © 2009-2017 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>
