@@ -9,9 +9,9 @@ return function ($site, $pages, $page) {
     if(r::is('post') and get('reset') !== null) {
 
         if (resetPassword(get('email'))) {
-            $reset_message = l::get('reset-success');
+            $reset_message = l('reset-success');
         } else {
-            $reset_message = l::get('reset-error');
+            $reset_message = l('reset-error');
         }
     } else {
         $reset_message = false;

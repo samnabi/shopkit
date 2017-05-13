@@ -16,7 +16,8 @@
 'country' => 'Pays',
 'country-help' => 'Afin de calculer les frais de transport',
 
-'shop-by-category' => 'Achetez par catégorie',
+'brands' => 'Marques',
+'tags' => 'Tags',
 
 'buy' => 'Achetez',
 'out-of-stock' => 'Épuisé',
@@ -29,6 +30,11 @@
 'total' => 'Total',
 
 'from' => 'À partir de',
+'remaining' => 'restants',
+
+'new-page' => 'Nouvelle page',
+'new-category' => 'Nouvelle catégorie',
+'new-product' => 'Nouveau produit',
 
 
 // plugins/shopkit/shopkit.php
@@ -52,17 +58,36 @@
 'continue-to-paypal' => 'Continuez vers PayPal',
 
 
+// plugins/shopkit/gateways/square/process.php
+
+'card-number' => 'Numéro de carte',
+'expiry-date' => 'Date d\'expiration',
+'cvv' => 'CVV',
+'address-line-1' => 'Adresse',
+'address-line-2' => 'Adresse (ligne 2)',
+'city' => 'Ville',
+'state' => 'État / Province / Région',
+'postal-code' => 'Code postale',
+'postal-code-verify' => '(Pour vérifier la carte de crédit)',
+'optional' => 'Facultatif',
+
+'square-error' => 'Désolé, on ne pouvait pas réaliser le paiement.',
+'square-card-no-charge' => 'Votre carte n\'a pas été facturée.',
+
+'try-again' => 'Réessayez',
+
+
 // site/plugins/shopkit/snippets/header.notifications.php
 
-'notification-account' => 'Vous n\'avez aucun compte. <a href="'.url('panel').'/install" title="Page d\'installation du panneau">Créez-en un maintenant</a>.',
+'notification-account' => 'Vous n\'avez aucun compte. <a href="'.url('panel/install').'" title="Page d\'installation du panneau">Créez-en un maintenant</a>.',
 'notification-login' => 'Finissons l\'installation de votre magasin! <a href="#user">Connectez-vous</a> afin de continuer.',
-'notification-options' => 'Vous n\'avez pas entré les options de votre magasin. <a href="'.url('panel').'/pages/shop/edit" title="Options de magasin">Entrez-les ici</a>.',
-'notification-category' => 'Vous n\'avez aucune catégorie pour vos produits. <a href="'.url('panel').'/pages/shop/add" title="Créez une nouvelle catégorie">Créez votre première catégorie ici</a>.',
+'notification-options' => 'Vous n\'avez pas entré les options de votre magasin. <a href="'.url('panel/options').'" title="Options de magasin">Entrez-les ici</a>.',
+'notification-category' => 'Vous n\'avez aucune catégorie pour vos produits. <a href="'.url('panel/pages/shop/add').'" title="Créez une nouvelle catégorie">Créez votre première catégorie ici</a>.',
 'notification-product-first' => 'Vous n\'avez aucun produit. <a href="'.url('panel').'/pages/',
 'notification-product-last' => '/add" title="Créez un nouveau produit">Créez votre premier produit avec le tableau de bord</a>.',
 'notification-license' => 'Vous n\'avez pas enregistré votre code de license. SVP mettez-le dans le fichier <strong>config.php</strong> avant de donner accès au public.',
-'notification-discount' => 'Votre code de rabais <strong><code>'.s::get('discountCode').'</code></strong> sera appliqué à la caisse.',
-'notification-giftcertificate' => 'Votre carte cadeau <strong><code>'.s::get('giftCertificateCode').'</code></strong> sera appliqué à la caisse.',
+'notification-discount' => 'Votre code de rabais <strong><code>'.s::get('discountcode').'</code></strong> sera appliqué à la caisse.',
+'notification-giftcertificate' => 'Votre carte cadeau <strong><code>'.s::get('giftcode').'</code></strong> sera appliqué à la caisse.',
 'notification-login-failed' => 'Le connexion ne pouvait pas être complété. Soit le mot de passe soit le courriel n\'est pas bon.',
 
 
@@ -74,9 +99,8 @@
 // site/plugins/shopkit/snippets/header.user.php
 
 'edit-page' => 'Éditer la page',
-'edit-shop' => 'Paramètres',
-'edit-design' => 'Design',
 'dashboard' => 'Tableau de bord',
+'site-options' => 'Paramètres du site',
 'view-orders' => 'Commandes',
 'my-account' => 'Mon compte',
 'logout' => 'Déconnexion',
@@ -123,6 +147,7 @@
 'search-shop' => 'Recherchez',
 'search' => 'Recherchez',
 
+'hours-of-operation' => 'Heures d\'ouverture',
 'phone' => 'Téléphone',
 'email' => 'Courriel',
 'address' => 'Addresse',
@@ -168,7 +193,6 @@
 
 'pay-now' => 'Achetez maintenant',
 'pay-later' => 'Achetez plus tard',
-'empty-cart' => 'Videz le panier',
 
 'discount' => 'Rabais',
 'gift-certificate' => 'Carte cadeau',
@@ -205,6 +229,7 @@
 'download-expired' => 'Téléchargement expiré',
 'view-on-paypal' => 'Accédez sur PayPal',
 
+'abandoned' => 'Abandonné',
 'pending' => 'En attente',
 'paid' => 'Payé',
 'shipped' => 'Envoyé',

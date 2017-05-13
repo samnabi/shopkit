@@ -1,100 +1,70 @@
 <?php
 
 return function($site, $pages, $page) {
+  $site = site();
+  $user = $site->user();
 
-    // Initialize cart
-    $cart = Cart::getCart();
+  if (!s::get('txn') and get('action') != 'add') {
+    // Show the empty cart page if no transaction file has been created yet
+    return true;
 
+  } else {
     // Get gateways
     $gateways = [];
     foreach (new DirectoryIterator(__DIR__.DS.'../gateways') as $file) {
-      if (!$file->isDot() and $file->isDir() and is_numeric(substr($file->getFileName(), 0, 1))) {
-        // Make sure the gateways show up in the right order
-        if ($start = strpos($file->getFileName(), '-')+1) {
-            $gateway_slug = substr($file->getFilename(), $start);
-        } else {
-            $gateway_slug = $file->getFilename();
-        }
-        $gateways[] = $gateway_slug;
+      if (!$file->isDot() and $file->isDir()) {
+        // Make sure gateway is not disabled
+        if ($site->content()->get($file->getFilename().'_status') != 'disabled') {
+            $gateways[] = $file->getFilename();
+        }        
       }
     }
 
     // Handle cart updates
     if ($action = get('action')) {
-        $id = get('id', implode('::', array(get('uri', ''), get('variant', ''), get('option', ''))));
-        $quantity = intval(get('quantity'));
-        $variant = get('variant');
-        $option = get('option');
-        switch ($action) {
-            case 'add':
-                $cart->add($id, $quantity);
-            break;
-            case 'remove':
-                $cart->remove($id);
-                break;
-            case 'update':
-                $cart->update($id, $quantity);
-                break;
-            case 'delete':
-                $cart->delete($id);
-                break;
-        }
-    }
-    
-    // Add properties to cart items
-    $items = $cart->getItems();
-    foreach ($items as $item) {
-
-        // Image src (base64 encoded)
-        $img = $pages->findByUri($item->uri)->images()->first();
-        if (!$img) {
-            $item->imgSrc = false;
-        } else {
-            $item->imgSrc = $img->thumb(['width'=>60, 'height'=>60, 'crop'=>true])->dataUri();
-        }
-
-        // Max quantity
-        foreach (page($item->uri)->variants()->toStructure() as $variant) {
-            if (str::slug($variant->name()) === $item->variant) {
-
-                // Determine if we're at the maximum quantity
-                $siblingsQty = 0;
-                foreach ($cart->data as $key => $qty) {
-                    if (strpos($key, $item->uri.'::'.$item->variant) === 0 and $key != $item->id) $siblingsQty += $qty;
-                }
-                // Determine if we are at the maximum quantity
-                if (inStock($variant) !== true and inStock($variant) <= ($item->quantity + $siblingsQty)) {
-                    $item->maxQty = true;
-                } else {
-                    $item->maxQty = false;
-                }
-            }
-        }
-
-        // Price text
-        if ($item->sale_amount) {
-            $item->priceText = formatPrice($item->sale_amount * $item->quantity).'<br><del>'.formatPrice($item->amount * $item->quantity).'</del>';
-        } else {
-            $item->priceText = formatPrice($item->amount * $item->quantity);
-        }
-
+      $id = get('id', implode('::', array(get('uri', ''), get('variant', ''), get('option', ''))));
+      $quantity = intval(get('quantity'));
+      $variant = get('variant');
+      $option = get('option');
+      if ($action == 'add') add($id, $quantity);
+      if ($action == 'remove') remove($id);
+      if ($action == 'delete') delete($id);
     }
 
-    // Get countries
+    // Set country
     $countries = page('/shop/countries')->children()->invisible();
+    if ($country = get('country')) {
+      // First: See if country was sent through a form submission.
+      if ($c = $countries->filterBy('countrycode',$country)->first()) {
+        // Translate country code to UID if needed
+        $country = $c->uid();
+      }
+      page(s::get('txn'))->update(['country' => $country]);
+    } else if (page(s::get('txn'))->country()->isNotEmpty()) {
+      // Second option: the country has already been set in the session.
+      // Do nothing.
+    } else if ($user and $user->country() != '') {
+      // Third option: get country from user profile
+      page(s::get('txn'))->update(['country' => $user->country()]);
+    } else if ($site->defaultcountry()->isNotEmpty()) {
+      // Fourth option: get default country from site options
+      page(s::get('txn'))->update(['country' => $site->defaultcountry()]);
+    } else {
+      // Last resort: choose the first available country
+      page(s::get('txn'))->update(['country' => $countries->first()->uid()]);
+    }
 
     // Get shipping rates
-    $shipping_rates = $cart->getShippingRates();
+    $shipping_rates = getShippingRates();
 
 
-    // Set shipping method as a session variable
-    // Shipping method is an array containing 'title' and 'rate'
-    $shippingMethods = $cart->getShippingRates();
+    // Set shipping method and rate in the transaction file
+    $shippingMethods = $shipping_rates;
     if (get('shipping')) {
       // First option: see if a shipping method was set through a form submission
       if (get('shipping') == 'free-shipping') {
         $shippingMethod = [
-          'title' => l::get('free-shipping'),
+          'title' => l('free-shipping'),
           'rate' => 0
         ];
       }
@@ -103,42 +73,45 @@ return function($site, $pages, $page) {
           $shippingMethod = $method;
         }
       }
-    } else if (s::get('shipping') and !empty($shippingMethods) and !get('country')) {
+    } else if (page(s::get('txn'))->shippingmethod()->isNotEmpty() and !empty($shippingMethods) and !get('country')) {
       // Second option: the shipping has already been set in the session, and the country hasn't changed
-      $currentMethod = s::get('shipping');
+      $currentMethod = page(s::get('txn'))->shippingmethod();
       foreach ($shippingMethods as $key => $method) {
-        if ($currentMethod['title'] == $method['title']) {
+        if ($currentMethod == $method['title']) {
           $shippingMethod = $method;
         }
       }
     } else {
       // Last resort: choose the first shipping method
-      $shippingMethod = array_shift($shippingMethods);      
+      $shippingMethod = array_shift($shippingMethods);
     }
-    s::set('shipping',$shippingMethod);
-
-    // Get selected shipping rate
-    $shipping = s::get('shipping');
-
+    page(s::get('txn'))->update([
+      'shippingmethod' => $shippingMethod['title'],
+      'shipping' => $shippingMethod['rate'],
+    ]);
+    
     // Get discount
-    $discount = getDiscount($cart);
+    $discount = getDiscount();
 
     // Get cart total
-    $total = $cart->getAmount() + $cart->getTax() + $shipping['rate'];
+    $total = cartSubtotal(getItems()) + cartTax() + page(s::get('txn'))->shipping()->value;
+    
+    // Handle discount codes
     if ($discount) $total = $total - $discount['amount'];
 
-    // Get gift certificate 
+    // Handle gift certificates
     $giftCertificate = getGiftCertificate($total);
+    if ($giftCertificate) $total = $total - $giftCertificate['amount'];
+
 
     return [
-        'cart' => $cart,
-        'items' => $items,
+        'items' => getItems(),
         'countries' => $countries,
         'shipping_rates' => $shipping_rates,
-        'shipping' => $shipping,
         'discount' => $discount,
         'total' => $total,
         'giftCertificate' => $giftCertificate,
         'gateways' => $gateways,
     ];
+  }
 };

@@ -35,11 +35,9 @@ c::set('debug', false);
 ---------------------------------------
 Mail Logging
 ---------------------------------------
-
 Log a copy of all emails sent by Shopkit.
 Useful for debugging, but don't enable this on a live site!
 The log saves all email content, including one-time access tokens and transaction details.
-
 */
 
 c::set('mail.log', false);
@@ -145,3 +143,18 @@ c::set('languages', array(
     'url'     => '/es',
   ),
 ));
+
+
+
+
+/* 
+---------------------------------------
+WYSIWYG
+---------------------------------------
+
+Enable drag-and-drop for WYSIWYG plugin
+
+*/
+c::set('field.wysiwyg.dragdrop.kirby', true);
+c::set('field.wysiwyg.dragdrop.medium', true);
+c::set('field.wysiwyg.double-returns', true);

@@ -6,19 +6,20 @@ options:
   url: false
 fields:
   title: title
-  text: markdown
+  slider: slider
+  text: wysiwyg
   hours:
-    extends: markdown
+    extends: wysiwyg
     label: Hours of operation
   phone:
     label: Phone number
     type: text
   email:
     label: Email address
-    type: text
+    type: email
     validate: email
   location:
     label: Address
     type: textarea
     buttons:
-  slider: slider
+      -

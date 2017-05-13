@@ -1,13 +1,14 @@
 label: Related products
-type: structure
-entry: >
-  {{product}}
+type: snippetfield
+snippet: related-product
 fields:
   product:
-    label: Related product
     type: select
     options: query
     query: 
       page: shop
       fetch: pages
       template: product
+      value: "{{uri}}"
+      text: "{{title}}"
+    required: true

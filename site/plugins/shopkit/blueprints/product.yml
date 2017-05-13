@@ -17,16 +17,13 @@ fields:
     type: text
     width: 1/4
   text:
-    extends: markdown
+    extends: wysiwyg
     label: Description
-  Variants:
+  variants:
     label: Variants
     help: 'Each variant defines a price point, with associated SKU and other options.'
-    type: structure
-    entry: >
-      <p style="border-bottom: 1px solid #DDD; margin-bottom: 0.2rem; padding-bottom: 0.2rem">{{name}} <span style="float: right;"><strong>SKU</strong> {{sku}}</span></p>
-      <div style="display: inline-block; vertical-align: top; width: 49%"><strong>Price </strong> {{price}}</div>
-      <div style="display: inline-block; vertical-align: top; width: 49%"><strong>Weight </strong> {{weight}}</div>
+    type: snippetfield
+    snippet: variant
     fields:
       tab1:
         type: tabs
@@ -52,11 +49,13 @@ fields:
       weight:
         label: Weight
         type: text
+        validate: num
         width: 1/2
         help: Numbers only
       stock:
         label: Quantity in stock
         type: text
+        validate: integer
         width: 1/2
         help: Leave blank for unlimited stock
       options:
@@ -66,6 +65,8 @@ fields:
       description: 
         label: Description
         type: textarea
+        buttons:
+          -
       tab2:
         type: tabs
         label: Discounts
@@ -73,13 +74,16 @@ fields:
       sale-price:
         label: Sale price
         type: text
+        validate: num
       sale-start:
         label: Sale start
         type: date
+        validate: date
         width: 1/2
       sale-end:
         label: Sale end
         type: date
+        validate: date
         width: 1/2
       sale-codes:
         label: Discount codes
@@ -95,8 +99,8 @@ fields:
         options: files
         label: Downloads included in purchase
       download-days:
-        type: number
-        min: 0
+        type: text
+        validate: integer
         label: Number of days to allow downloads
         help: Download link expires after this many days from the transaction date. Leave blank for no time limit.
   tags:

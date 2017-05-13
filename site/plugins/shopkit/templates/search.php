@@ -1,42 +1,25 @@
 <?php snippet('header') ?>
+<div class="wrapper-main">
+<?php snippet('header.menus') ?>
+<main>
+    
+<?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
 
-	<?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
+<h1 dir="auto"><?= $page->title()->html() ?></h1>
 
-	<h1 dir="auto"><?= $page->title()->html() ?></h1>
+<p dir="auto" class="notification">
+	Results for <strong><?= urldecode(get('q')) ?></strong>
+</p>
 
-	<div class="uk-alert uk-alert-success">
-		<p>Results for <strong><?= urldecode(get('q')) ?></strong></p>
-	</div>
+<?= $page->text()->kirbytext()->bidi() ?>
 
-	<?= $page->text()->kirbytext()->bidi() ?>
+<?php if($results->count()) { ?>
+	<?php snippet('list.product',['products' => $results]) ?>
+<?php } else { ?>
+	<p dir="auto" class="notification warning"><?= l('no-search-results') ?></p>
+<?php } ?>
 
-	<?php if($results->count()) { ?>
-		<ul class="listing uk-container uk-padding-remove">
-			<?php foreach ($results as $result) { ?>
-				<li class="uk-margin-right uk-margin-bottom">
-					<a href="<?= $result->url() ?>">
-						<img class="uk-float-left uk-margin-small-right" src="<?= $result->imgSrc ?>" title="<?= $result->title() ?>">
-						<div style="max-width: <?= $result->maxWidth ?>px;" class="uk-margin-small-top">
-							<h3 dir="auto" class="uk-margin-remove"><?= $result->title() ?></h3>
-							
-							<span dir="auto"><?= $result->text()->excerpt(80) ?></span>
-
-							<?php if ($result->tags) { ?>
-								<p>
-									<?php foreach ($result->tags as $tag) { ?>
-										#<?= $tag ?>
-									<?php } ?>
-								</p>
-							<?php } ?>
-						</div>
-					</a>
-				</li>
-			<?php } ?>
-		</ul>
-	<?php } else { ?>
-    	<div class="uk-alert uk-alert-warning">
-			<p dir="auto"><?= l::get('no-search-results') ?></p>
-		</div>
-	<?php } ?>
-
+</main>
+</div>
+<?php snippet('sidebar') ?>
 <?php snippet('footer') ?>

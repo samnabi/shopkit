@@ -2,11 +2,7 @@ Title: My Shop
 
 ----
 
-Logo: shopkit-800-buffer.png
-
-----
-
-Placeholder: placeholder.png
+Logo: shopkit.png
 
 ----
 
@@ -31,3 +27,167 @@ Backgroundcolor: #ffffff
 ----
 
 Backgroundblur: 0
+
+----
+
+Featured: 
+
+----
+
+Mailing-address: 0
+
+----
+
+Shipping: 
+
+----
+
+Tax: 
+
+----
+
+Currency-code: USD
+
+----
+
+Currency-symbol: $
+
+----
+
+Currency-position: before
+
+----
+
+Paylater: admin
+
+----
+
+Notifications: 
+
+----
+
+Error-email: 
+
+----
+
+Discount-codes: 
+
+----
+
+Gift-certificates: 
+
+----
+
+Showstock: 0
+
+----
+
+Paylater-logo: 
+
+----
+
+Paylater-text: Pay Later
+
+----
+
+Paylater-permissions: admin
+
+----
+
+Paylater-status: live
+
+----
+
+Paypalexpress-status: sandbox
+
+----
+
+Paypalexpress-logo: paypal.png
+
+----
+
+Paypalexpress-text: Pay with PayPal
+
+----
+
+Paypalexpress-email: 
+
+----
+
+Paypalexpress-debug: 0
+
+----
+
+Stripecheckout-status: sandbox
+
+----
+
+Stripecheckout-logo: stripe-white.png
+
+----
+
+Stripecheckout-text: Pay with Stripe
+
+----
+
+Stripecheckout-key-test-secret: 
+
+----
+
+Stripecheckout-key-test-publishable: 
+
+----
+
+Stripecheckout-key-live-secret: 
+
+----
+
+Stripecheckout-key-live-publishable: 
+
+----
+
+Weightunit: kg
+
+----
+
+Currency-decimal-point: .
+
+----
+
+Currency-thousands-separator: ,
+
+----
+
+Defaultcountry: canada
+
+----
+
+Square-status: sandbox
+
+----
+
+Square-logo: square-white.png
+
+----
+
+Square-text: Pay with Square
+
+----
+
+Square-id-sandbox: 
+
+----
+
+Square-token-sandbox: 
+
+----
+
+Square-id-live: 
+
+----
+
+Square-token-live: 
+
+----
+
+Square-location: 

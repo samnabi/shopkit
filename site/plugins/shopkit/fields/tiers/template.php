@@ -2,9 +2,9 @@
   
   <script class="tiers-item-template" type="text/x-handlebars-template">
     <div class="tiers-item">
-      <?php echo $field->inputField(''); ?>
+      <?= $field->inputField(''); ?>
       <span class="tier-upper-limit">+</span>
-      <?php echo $field->inputField(''); ?>
+      <?= $field->inputField(''); ?>
     </div>
   </script>
 
@@ -30,7 +30,12 @@
             $upperlimit = '+';
           }
           echo '<span class="tier-upper-limit">'.$upperlimit.'</span>';
-          echo $field->inputField(rawPrice($tier['amount']));
+          if ($tier['amount'] === '') {
+            echo $field->inputField(''); // Format price as plaintext
+          } else {
+            echo $field->inputField(formatPrice($tier['amount'], true)); // Format price as plaintext
+          }
+          
         echo '</div>';
       }
     ?>

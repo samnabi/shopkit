@@ -1,46 +1,55 @@
 <?php snippet('header') ?>
+<div class="wrapper-main">
+<?php snippet('header.menus') ?>
+<main>
+    
+<?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
 
-  <?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
+<h1 dir="auto"><?= $page->title()->html() ?></h1>
 
-  <h1 dir="auto"><?= $page->title()->html() ?></h1>
+<?= $page->text()->kirbytext()->bidi() ?>
 
-  <?= $page->text()->kirbytext()->bidi() ?>
+<?php if($register_message and count($register_message)) { ?>
+  <div class="notification warning" dir="auto">
+    <?= implode('<br>', $register_message) ?>
+  </div>
+<?php } ?>
 
-  <?php if($register_message) { ?>
-    <div class="uk-alert uk-alert-warning">
-      <?= $register_message ?>
+<?php if (!$success) { ?>
+  <form dir="auto" class="register" method="post">
+    
+    <div class="forRobots">
+      <label for="subject"><?= l('honeypot-label') ?></label>
+      <input type="text" name="subject">
     </div>
-  <?php } ?>
+    
+    <label>
+      <span><?= l('email-address') ?></span>
+      <input type="email" name="email" value="<?= get('email') ?>">
+    </label>
+  
+    <label>
+      <span><?= l('full-name') ?></span>
+      <input type="text" name="fullname" value="<?= get('fullname') ?>">
+    </label>
+  
+    <label>
+      <span><?= l('country') ?> (<?= l('country-help') ?>)</span>
+      <select name="country">
+        <?php foreach ($countries as $c) { ?>
+          <option value="<?= $c->slug() ?>" <?= $c->slug() == get('country') ? 'selected' : '' ?>><?= $c->title() ?></option>
+        <?php } ?>
+      </select>
+    </label>
+  
+    <button class="accent" type="submit" name="register">
+      <?= l('register') ?>
+    </button>
 
-  <?php if (!$success) { ?>
-    <form dir="auto" class="uk-form uk-form-stacked" method="post">
-      <div class="forRobots">
-        <label for="subject"><?= l::get('honeypot-label') ?></label>
-        <input type="text" name="subject">
-      </div>
-      <div class="uk-form-row">
-        <label for="email"><?= l::get('email-address') ?></label>
-        <input class="uk-form-width-large" type="email" id="email" name="email" value="<?= get('email') ?>">
-      </div>
-      <div class="uk-form-row">
-        <label for="fullname"><?= l::get('full-name') ?></label>
-        <input class="uk-form-width-large" type="text" id="fullname" name="fullname" value="<?= get('fullname') ?>">
-      </div>
-      <div class="uk-form-row">
-        <label for="country"><?= l::get('country') ?></label>
-        <select class="uk-form-width-large" name="country" id="country">
-          <?php foreach ($countries as $c) { ?>
-            <option value="<?= $c->slug() ?>" <?= $c->slug() == get('country') ? 'selected' : '' ?>><?= $c->title() ?></option>
-          <?php } ?>
-        </select>
-        <p class="uk-form-help-block uk-text-muted uk-margin-remove"><?= l::get('country-help') ?></p>
-      </div>
-      <div class="uk-form-row">
-        <button class="uk-button uk-button-primary uk-button-large uk-width-small-1-1 uk-width-medium-1-2" type="submit" name="register">
-          <?= l::get('register') ?>
-        </button>
-      </div>
-    </form>
-  <?php } ?>
+  </form>
+<?php } ?>
 
+</main>
+</div>
+<?php snippet('sidebar') ?>
 <?php snippet('footer') ?>

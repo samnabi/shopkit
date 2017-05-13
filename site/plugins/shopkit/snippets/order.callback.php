@@ -12,11 +12,14 @@
  * $payer_address string
  */
 
+// Set site variable
+$site = site();
+
 // Update stock
 updateStock($txn);
 
 // Notify staff
-$notifications = page('shop')->notifications()->toStructure();
+$notifications = $site->notifications()->toStructure();
 if ($notifications->count()) {
   foreach ($notifications as $n) {
     // Reset

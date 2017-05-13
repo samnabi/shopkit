@@ -1,6 +1,5 @@
 title: Cart
-pages:
-  max: 1
+pages: false
 options:
   delete: false
   status: false
@@ -8,6 +7,4 @@ options:
   url: false
 fields:
   title: title
-  text: markdown
-  slider:
-    extends: slider
+  text: wysiwyg

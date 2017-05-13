@@ -12,19 +12,28 @@
 	url = https://github.com/distantnative/field-multiselect.git
 [submodule "site/plugins/field-selector"]
 	path = site/plugins/field-selector
-	url = https://github.com/storypioneers/kirby-selector
+	url = https://github.com/storypioneers/kirby-selector.git
 [submodule "site/plugins/shopkit/fields/color"]
 	path = site/plugins/shopkit/fields/color
 	url = https://github.com/ian-cox/Kirby-Color-Picker.git
-[submodule "site/plugins/shopkit/fields/markdown"]
-	path = site/plugins/shopkit/fields/markdown
-	url = https://github.com/JonasDoebertin/kirby-visual-markdown.git
-[submodule "site/plugins/shopkit/fields/snippetfield"]
-	path = site/plugins/shopkit/fields/snippetfield
-	url = https://github.com/samnabi/kirby-snippetfield/
-[submodule "site/plugins/dompdf"]
-	path = site/plugins/dompdf
-	url = https://github.com/samnabi/dompdf
 [submodule "site/plugins/shopkit/fields/tabs"]
 	path = site/plugins/shopkit/fields/tabs
 	url = https://github.com/afbora/Kirby-Tabs-Field
+[submodule "site/plugins/shopkit/fields/field-wysiwyg"]
+	path = site/plugins/field-wysiwyg
+	url = https://github.com/samnabi/kirby-wysiwyg
+[submodule "site/plugins/stats"]
+	path = site/plugins/stats
+	url = https://github.com/samnabi/kirby-stats.git
+[submodule "site/plugins/shopkit/gateways/stripecheckout/stripe-php"]
+	path = site/plugins/shopkit/gateways/stripecheckout/stripe-php
+	url = https://github.com/stripe/stripe-php
+[submodule "site/plugins/shopkit/gateways/square/connect-php-sdk"]
+	path = site/plugins/shopkit/gateways/square/connect-php-sdk
+	url = https://github.com/square/connect-php-sdk
+[submodule "site/plugins/kirby-snippetfield"]
+	path = site/plugins/kirby-snippetfield
+	url = https://github.com/jenstornell/kirby-snippetfield
+[submodule "site/plugins/dompdf"]
+	path = site/plugins/dompdf
+	url = https://github.com/samnabi/dompdf/

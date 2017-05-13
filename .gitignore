@@ -26,6 +26,10 @@
 !/content/1-shop/orders/orders.en.txt
 !/content/1-shop/shop.en.txt
 /content/4-docs
+/content/kirbystats
 
 # Ignore log files
 /logs/*
+
+# Ignore local config files
+/site/config/config.*.local.php

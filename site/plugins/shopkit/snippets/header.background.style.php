@@ -1,14 +1,16 @@
 <?php
-// Background image & colour
-if ($site->backgroundimage() != '') {
-	if ($site->backgroundblur()->bool()) {
-		$bg = $site->backgroundimage()->toFile()->thumb(['width' => 1200, 'quality' => 80, 'blur' => true]);
-	} else {
-		$bg = $site->backgroundimage()->toFile()->thumb(['width' => 1200, 'quality' => 80]);
-	}
-	echo '<style> body { background-image: url('.$bg->url().'); } </style>';
-}
-if ($site->backgroundcolor() != '' and $site->backgroundcolor() != '#FFFFFF') {
-	echo '<style> body { background-color: '.$site->backgroundcolor().'; } </style>';
-}
+  // Background colour
+  if ($site->backgroundcolor()->isNotEmpty() and $site->backgroundcolor() != '#FFFFFF') {
+  	echo '<style> body { background-color: '.$site->backgroundcolor().'; } </style>';
+  }
+
+  // Background image
+  if ($site->backgroundimage()->isNotEmpty()) {
+    $bg = $site->backgroundimage()->toFile()->thumb(['width' => 2000, 'quality' => 80, 'upscale' => false]);
+    $bg_blur = $site->backgroundimage()->toFile()->thumb(['width' => 2000, 'quality' => 80, 'upscale' => false, 'blur' => true, 'blurpx' => 80]);
+    echo '<style>
+      body { background-image: url('.$bg->url().'); }
+      .wrapper::before { background-image: url('.$bg_blur->url().'); }
+    </style>';
+  }
 ?>

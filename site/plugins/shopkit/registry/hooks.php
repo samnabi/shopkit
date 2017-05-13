@@ -34,14 +34,11 @@ $kirby->set('hook',['panel.file.upload','panel.file.replace'], function ($file, 
   }
 });
 
-// Format fields on Shop page
-$kirby->set('hook', 'panel.page.update', function ($page) {
+// Format fields on site options
+$kirby->set('hook', 'panel.site.update', function ($site) {
   try {
-    // Make sure we're on the Shop page
-    if ($page->template() !== 'shop') return true;
-
     // Numeric tax rates (no currency symbols, etc.)
-    $taxes = $page->tax()->yaml();
+    $taxes = $site->tax()->yaml();
     foreach ($taxes as $key => $tax) {
       if (!is_numeric($tax['rate'])) {
         $taxes[$key]['rate'] = preg_replace('/[^0-9.]/', '', $tax['rate']);
@@ -50,7 +47,7 @@ $kirby->set('hook', 'panel.page.update', function ($page) {
 
     // Numeric shipping rates
     // (Whitespace and colons allowed for weight/price rates)
-    $shipping_rates = $page->shipping()->yaml();
+    $shipping_rates = $site->shipping()->yaml();
     foreach ($shipping_rates as $key => $shipping) {
       if (!is_numeric($shipping['flat'])) {
         $shipping_rates[$key]['flat'] = preg_replace('/[^0-9.]/', '', $shipping['flat']);
@@ -63,7 +60,7 @@ $kirby->set('hook', 'panel.page.update', function ($page) {
     }
 
     // Numeric discount amount and minorder
-    $discounts = $page->discount_codes()->yaml();
+    $discounts = $site->discount_codes()->yaml();
     foreach ($discounts as $key => $discount) {
       if (!is_numeric($discount['amount'])) {
         $discounts[$key]['amount'] = preg_replace('/[^0-9.]/', '', $discount['amount']);
@@ -74,7 +71,7 @@ $kirby->set('hook', 'panel.page.update', function ($page) {
     }
 
     // Numeric gift certificate balance
-    $gift_certificates = $page->gift_certificates()->yaml();
+    $gift_certificates = $site->gift_certificates()->yaml();
     foreach ($gift_certificates as $key => $gift_certificate) {
       if (!is_numeric($gift_certificate['amount'])) {
         $gift_certificates[$key]['amount'] = preg_replace('/[^0-9.]/', '', $gift_certificate['amount']);
@@ -82,7 +79,7 @@ $kirby->set('hook', 'panel.page.update', function ($page) {
     }
 
     // Save changes
-    $page->update([
+    $site->update([
       'tax' => yaml::encode($taxes),
       'shipping' => yaml::encode($shipping_rates),
       'discount-codes' => yaml::encode($discounts),

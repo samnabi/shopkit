@@ -1,15 +1,16 @@
 <?php
+$site = site();
 
 // Set detected language
-site()->visit('shop', (string) site()->detectedLanguage());
-site()->kirby->localize();
+$site->visit('shop', (string) $site->detectedLanguage());
+$site->kirby->localize();
     
 // Build body text
-$body = l::get('transaction-id').' '.$txn->txn_id()."\n\n";
-$body .= l::get('order-error-message-tamper').' ';
-$body .= page('shop/orders')->url().'?txn_id='.$txn->txn_id();
+$body = l('transaction-id').' '.$txn->txn_id()."\n\n";
+$body .= l('order-error-message-tamper').' ';
+$body .= url('shop/orders').'?txn_id='.$txn->txn_id();
 
 // Send the email
-sendMail(l::get('order-error-subject'), $body, page('shop')->error_email()->value);
+sendMail(l('order-error-subject'), $body, $site->error_email()->value);
 
 ?>

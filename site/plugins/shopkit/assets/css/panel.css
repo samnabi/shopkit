@@ -1,12 +1,3 @@
-/* List of Subpages */
-.sidebar-list .invisible {
-	opacity: 0.3;
-}
-.sidebar-list .invisible:hover,
-.sidebar-list .invisible:active {
-	opacity: 1;
-}
-
 /* Dropzone for list of file */
 .marginalia[href="#upload"] {
 	padding: 1rem 1rem 1rem 4rem;
@@ -35,87 +26,11 @@ html[lang="en"] .marginalia[href="#upload"]:after {
 }
 
 /* Page save button */
-.ltr .mainbar .form .buttons {
+.mainbar .section > form > .buttons {
 	border-top: 2px solid #ddd;
 	background: #efefef;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
-}
-
-/* Selector */
-
-.selector .input-with-items .item {
-	display: inline-block;
-	border: 1px solid #E6E7E0;
-	margin: 0.4rem 0 0 0.4rem;
-	padding-top: 0.4rem;
-	color: grey;
-}
-.selector .input-with-items .item.selector-item-selected {
-	background: #E6E7E0;
-	color: black;
-	border-color: #CCC;
-}
-.selector .item-image {
-	position: relative;
-	width: 5rem;
-	height: 5rem;
-	margin: 0 auto;
-}
-.selector .item-options,
-.selector .item-options .nav li,
-.selector .item-options .nav li .btn {
-	background: transparent;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	padding: 0;
-}
-.selector .item-options ul,
-.selector .item-options li {
-	border-left: none;
-}
-.selector .item-options li:first-child {
-	display: none;
-}
-.selector .item-options .btn span {
-	display: none;
-}
-.selector .item-options .btn i {
-	left: 50%;
-	margin-left: -2.3rem;
-	top: 0.7rem;
-	padding: 1px 2px;
-	background: white;
-	border-radius: 1rem;
-}
-.selector .item-options .btn i.fa-check-circle {
-	color: #97A830;
-}
-body.ltr .selector .item-options,
-body.ltr .selector .item-options li {
-	border-left: 0;
-}
-body.ltr .selector .item-with-image .item-info {
-	margin-left: 0;
-}
-.selector .item-info {
-	margin: 0;
-	height: auto;
-	text-align: center;
-}
-.selector .item-info .fix {
-	display: inline;
-	position: relative;
-}
-.selector .item-title {
-	font-weight: normal;
-	font-size: 0.8rem;
-}
-.selector .item-info .marginalia {
-	display: none;
 }
 
 /* Tabs in modal boxes */
@@ -129,7 +44,6 @@ body.ltr .selector .item-with-image .item-info {
 	border: 2px solid #ddd;
 	padding: 0.1em 0.25em;
 	font-size: 0.8em;
-	margin-left: 0.5em;
 	vertical-align: 1px;
 }
 .structure-entry-content small {
@@ -141,4 +55,59 @@ body.ltr .selector .item-with-image .item-info {
 .structure-entry-content input[readonly] {
 	margin-top: 0.5em;
 	width: 100%;
+}
+
+/* Hide url-appendix field when creating a page */
+form[action$="/add"] .field-name-uid {
+	display: none;
+}
+
+/* Shipping methods */
+body.ltr .text .shipping-rates {
+	list-style: none;
+	margin: 0.4em 0 0;
+	padding: 0;
+}
+.shipping-rates li + li {
+	border-top: 1px solid #DDD;
+	margin-top: 0.8em;
+	padding-top: 0.7em;
+	position: relative;
+}
+.shipping-rates li + li:before {
+	content: 'OR';
+	position: absolute;
+	top: -1.05em;
+	font-size: 0.8em;
+	color: #777;
+	background: white;
+	padding-right: 0.5em;
+}
+.calculation {
+	color: #777;
+	font-style: italic;
+}
+
+/* Discount codes */
+.structure-entry-content input[readonly] {
+	border: 0;
+}
+
+/* Structure field buttons */
+.structure-entry {
+	position: relative;
+	padding-right: 5em;
+}
+.structure-entry-options {
+	position: absolute;
+	bottom: 0.25em;
+	right: 0;
+}
+.structure-entry-options .btn {
+	display: block;
+	float: none;
+	width: auto;
+	border-right: none;
+	font-size: 0.9em;
+	padding: 0 0.75em 0.5em;
 }

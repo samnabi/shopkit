@@ -42,7 +42,7 @@ You can try Shopkit for free on your test server, forever. Once you're satisfied
 
 Since Shopkit runs on the Kirby CMS, you'll also have to buy a [Kirby license](http://getkirby.com/license) from Bastian.
 
-Moral licenses for [Visual Markdown](https://gumroad.com/l/visualmarkdown) and [Multiselect](https://gumroad.com/l/kirby-multiselect), two of Shopkit's dependencies, are recommended.
+Moral licenses for [Snippetfield](https://www.paypal.me/DevoneraAB) and [Multiselect](https://gumroad.com/l/kirby-multiselect), two of Shopkit's dependencies, are recommended.
 
 ## Install
 
@@ -65,17 +65,30 @@ Use these terminal commands to update Shopkit and its dependencies:
     # Update dependencies
     git submodule update --init --recursive
 
-## Dependencies for Shopkit v1.1.7
+## Dependencies for Shopkit v2.0
 
-- Kirby Core [v2.4.1](https://github.com/getkirby/kirby/tree/2.4.1)
-- Kirby Panel [v2.4.1](https://github.com/getkirby/panel/tree/2.4.1)
-- field-bidi @[6ce984e85a](https://github.com/samnabi/field-bidi/tree/6ce984e85afa191d60fb3d7a18218571f7501731)
-- Multiselect field [v2.0.0](https://github.com/distantnative/field-multiselect/tree/2.0.0)
+Your server's PHP configuration must have the following extensions (most do):
+
+- curl
+- json
+- mbstring
+- dom
+- gd
+
+Shopkit also depends on these submodules:
+
+- Kirby Core [2.4.1](https://github.com/getkirby/kirby/tree/2.4.1)
+- Kirby Panel [2.4.1](https://github.com/getkirby/panel/tree/2.4.1)
+- Stripe PHP SDK [v4.7.0](https://github.com/stripe/stripe-php)
+- Square Connect SDK [v2.0.1](https://github.com/square/connect-php-sdk)
+- Multiselect field [2.1.0](https://github.com/distantnative/field-multiselect/tree/2.1.0)
 - Selector field [v1.5.2](https://github.com/storypioneers/kirby-selector/tree/v1.5.2)
 - Color field @[fcda14d1ae](https://github.com/ian-cox/Kirby-Color-Picker/tree/fcda14d1ae655870590775a744543a6e40a06ce2)
-- Visual Markdown field [v1.5.1](https://github.com/JonasDoebertin/kirby-visual-markdown/tree/1.5.1)
 - Snippetfield @[a5808fb217](https://github.com/samnabi/kirby-snippetfield/tree/a5808fb2173a54b81d22c02618856ad408604cfa)
+- WYSIWYG field @[d0315f6](https://github.com/samnabi/kirby-wysiwyg)
 - Tabs field @[ad7a7d3c9e](https://github.com/afbora/Kirby-Tabs-Field/tree/ad7a7d3c9e667e33dae292e34c3178eb29983556)
+- field-bidi @[6ce984e85a](https://github.com/samnabi/field-bidi/tree/6ce984e85afa191d60fb3d7a18218571f7501731)
+- Stats @[4dff5ef](https://github.com/samnabi/kirby-stats)
 - Dompdf @[aba268bdeb](https://github.com/samnabi/dompdf/tree/aba268bdebc6e50383fd6758778a4d77ca810c85)
 - php-font-lib @[b8af0cacdc](https://github.com/PhenX/php-font-lib/tree/b8af0cacdc3cbf1e41a586fcb78f506f4121a088)
 - php-svg-lib [v0.1](https://github.com/PhenX/php-svg-lib/tree/v0.1)

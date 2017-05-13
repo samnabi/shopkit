@@ -1,10 +1,7 @@
-		</main>
-	</div>
+</div><!-- .wrapper -->
 
-	<?php snippet('sidebar') ?>
-
-</div>
-</div>
+<?= js('assets/plugins/shopkit/js/expand-collapse.min.js'); ?>
+<?= js('assets/plugins/shopkit/js/load-fonts.js'); ?>
 
 </body>
 </html>

@@ -1,5 +1,55 @@
 # Changelog
 
+## v2.0
+- Payment gateways
+    - New gateway: [Square](https://squareup.com/i/01D1F3F5)
+    - Move gateway settings from `config.php` to Site options in Panel
+    - Remove numeric prefixes for gateway folders
+    - Make [Stripe SDK](https://github.com/stripe/stripe-php) a submodule
+- Panel
+    - New widget: Basic visitor stats (forked from [Fabian Sperrle](https://github.com/FabianSperrle/kirby-stats))
+    - New widget: Basic order stats for the last 30 days
+    - Consolidate options into Site Options page
+    - New Site Options
+        - Set default country
+        - Show/hide quantity in stock
+        - Set symbols for decimal and thousands separators
+    - Product blueprints: remove slider option (the template adds all page images to the slider)
+    - Replace structure fields with Jens Törnell's [Snippetfield](https://github.com/jenstornell/kirby-snippetfield) plugin (for nicer-looking entries)
+    - Replace Visual Markdown with [WYSIWYG editor](https://github.com/samnabi/kirby-wysiwyg)
+    - Allow orders to be deleted from the Panel
+- New theme
+    - Remove the UIKit framework
+    - Use normal URLs instead of data-URIs for product photos
+    - AJAX quantity selector on Cart page
+    - AJAX product slideshow
+    - Expand-collapse toggle for login form
+    - Expand-collapse toggle for subcategories in sidebar menu
+    - Tag cloud in sidebar
+    - Shop by Brand in the sidebar
+    - Radio buttons instead of select box for shipping options on Cart page
+    - Remove base colour from theme options (only link and accent colour can be edited from the Panel)
+    - Product-specific page descriptions for better SEO
+    - New frontend admin buttons
+    - Move slider thumbnails below image instead of overlapping
+- New cart logic
+    - Store cart details in a transaction file instead of session variable
+    - Rename `order.create` snippet to `order.process`
+    - New transaction status: "abandoned" (for people that add things to cart, but never click Pay Now)
+- Performance enhancements
+    - Limit use of `index()`
+    - Limit re-declaration of `site()` and `page()`
+    - Faster font loading
+    - Reduced total page weight by 75%
+- Decrufting
+    - Consolidate most logic into `shopkit.php`
+    - Refactor giftcard and discount code detection
+- Bug fixes
+    - Fix multiple orders bug (#131)
+    - Fix error on version checker widget when not connected to the internet
+- Other
+    - Easier to change default language in `config.php`
+
 ## v1.1.7
 - Bug fixes
     - Add currency detection to Stripe Checkout

@@ -16,7 +16,8 @@
 'country' => 'País',
 'country-help' => 'Para calcular costos de envío',
 
-'shop-by-category' => 'Comprar por categoría',
+'brands' => 'Marcas',
+'tags' => 'Etiquetas',
 
 'buy' => 'Comprar',
 'out-of-stock' => 'Sin existencias',
@@ -29,6 +30,11 @@
 'total' => 'Total',
 
 'from' => 'Desde',
+'remaining' => 'restantes',
+
+'new-page' => 'Nueva pagina',
+'new-category' => 'Nueva categoría',
+'new-product' => 'Nuevo producto',
 
 // plugins/shopkit/shopkit.php
 
@@ -50,17 +56,36 @@
 'continue-to-paypal' => 'Continuar con PayPal',
 
 
+// plugins/shopkit/gateways/square/process.php
+
+'card-number' => 'Número de tarjeta',
+'expiry-date' => 'Fecha de caducidad',
+'cvv' => 'CVV',
+'address-line-1' => 'Dirección',
+'address-line-2' => 'Dirección (línea 2)',
+'city' => 'Ciudad',
+'state' => 'Estado / Provincia / Jurisdicción',
+'postal-code' => 'Código postal',
+'postal-code-verify' => '(Para verificar la tarjeta de crédito)',
+'optional' => 'Opcional',
+
+'square-error' => 'Lo sentimos, no pudimos procesar el pago.',
+'square-card-no-charge' => 'Su tarjeta no se ha cargado',
+
+'try-again' => 'Inténtalo de nuevo',
+
+
 // site/plugins/shopkit/snippets/header.notifications.php
 
-'notification-account' => 'No se ha establecido ningún usuario. <a href="'.url('panel').'/install" title="Página de instalación de panel">Crea una cuenta ahora.</a>.',
+'notification-account' => 'No se ha establecido ningún usuario. <a href="'.url('panel/install').'" title="Página de instalación de panel">Crea una cuenta ahora.</a>.',
 'notification-login' => '¡Finaliza la configuración de tu tienda! <a href="#user">Inicia sesión</a> para continuar.',
-'notification-options' => 'No se han configurado las opciones de tu tienda. <a href="'.url('panel').'/pages/shop/edit" title="Opciones de tienda">Define ajustes de tipo de moneda, envío e impuestos aquí.</a>.',
-'notification-category' => 'No cuentas con ningúna categoría de productos. <a href="'.url('panel').'/pages/shop/add" title="Crea una nueva categoría">Crea tu primera categoría aquí:</a>.',
+'notification-options' => 'No se han configurado las opciones de tu tienda. <a href="'.url('panel/options').'" title="Opciones de tienda">Define ajustes de tipo de moneda, envío e impuestos aquí.</a>.',
+'notification-category' => 'No cuentas con ningúna categoría de productos. <a href="'.url('panel/pages/shop/add').'" title="Crea una nueva categoría">Crea tu primera categoría aquí:</a>.',
 'notification-product-first' => 'No cuentas con ningún producto. <a href="'.url('panel').'/pages/',
 'notification-product-last' => '/add" title="Crea un nuevo producto">Crea tu primer producto con el Tablero</a>.',
 'notification-license' => 'Esta tienda no cuenta con una clave de licencia Shopkit. Asegúrate de agregar una en el archivo <strong>config.php</strong> antes de que la página web esté en línea.',
-'notification-discount' => 'Tu código de descuento <strong><code>'.s::get('discountCode').'</code></strong> se aplicará al momento de pagar.',
-'notification-giftcertificate' => 'Tu certficado de regalo <strong><code>'.s::get('giftCertificateCode').'</code></strong> se aplicará al momento de pagar.',
+'notification-discount' => 'Tu código de descuento <strong><code>'.s::get('discountcode').'</code></strong> se aplicará al momento de pagar.',
+'notification-giftcertificate' => 'Tu certficado de regalo <strong><code>'.s::get('giftcode').'</code></strong> se aplicará al momento de pagar.',
 'discount-code-help' => 'Usa este código de descuento cada vez que inicies sesión.',
 
 'notification-login-failed' => 'Lo sentimos, no hemos podido iniciar tu sesión. La contraseña o el correo electrónico son incorrectos.',
@@ -74,9 +99,8 @@
 // site/plugins/shopkit/snippets/header.user.php
 
 'edit-page' => 'Editar página',
-'edit-shop' => 'Configuración de la tienda',
-'edit-design' => 'Diseño',
 'dashboard' => 'Tablero',
+'site-options' => 'Variables del sitio',
 'view-orders' => 'Ver órdenes',
 'my-account' => 'Mi cuenta',
 'logout' => 'Cerrar sesión',
@@ -121,6 +145,7 @@
 'search-shop' => 'Buscar tienda',
 'search' => 'Buscar',
 
+'hours-of-operation' => 'Horas de operación',
 'phone' => 'Teléfono',
 'email' => 'Correo Electrónico',
 'address' => 'Dirección',
@@ -165,7 +190,6 @@
 
 'pay-now' => 'Pagar ahora',
 'pay-later' => 'Pagar después',
-'empty-cart' => 'Vaciar carrito',
 
 'discount' => 'Descuento',
 'discount-apply' => 'Aplicar Descuento',
@@ -203,6 +227,7 @@
 'download-expired' => 'Descarga ha expirado',
 'view-on-paypal' => 'Ver en PayPal',
 
+'abandoned' => 'Abandonado',
 'pending' => 'Pendiente',
 'paid' => 'Pagado',
 'shipped' => 'Enviado',

@@ -28,7 +28,7 @@ if ($user = site()->user() and $user->hasRole('customer')) {
 
   // Ensure customers don't stray onto the wrong page
   if (strpos($kirby->request()->url(),'/panel') and strstr($kirby->path(),'users/'.$user->username()) === false) {
-    go(site()->url());
+    go(c::get('home'));
   }
 } else {
   // Standard Shopkit CSS for customers

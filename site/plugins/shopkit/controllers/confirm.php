@@ -3,7 +3,7 @@
 return function($site, $pages, $page) {
 
   // Find transaction
-  // Using explicit GET to avoid conflict with txn_id POSTed from PayPal
+  // Not using Kirby's get() method to avoid conflict with txn_id POSTed from PayPal
   $txn = page('shop/orders/'.$_GET['txn_id']);
   if(!$txn or $_GET['txn_id'] == '') go('shop/cart');
 
@@ -34,10 +34,10 @@ return function($site, $pages, $page) {
   if (isset($_POST['txn_id'])) {
     $valid = false;
     if (get('payer_name') and get('payer_email')) {
-      if (!page('shop')->mailing_address()->bool()) {
+      if (!$site->mailing_address()->bool()) {
         // No address required, we're good.
         $valid = true;
-      } else if (page('shop')->mailing_address()->bool() and get('payer_address')) {
+      } else if ($site->mailing_address()->bool() and get('payer_address')) {
         // Address provided, we're good.
         $valid = true;
       } else {
@@ -71,9 +71,8 @@ return function($site, $pages, $page) {
         ]);
       }
 
-      // Empty the cart
-      $cart = Cart::getCart();
-      $cart->emptyItems();
+      // Empty the cart by setting a new txn id
+      s::destroy();
 
       // Redirect to orders page
       go('shop/orders?txn_id='.$txn->txn_id());

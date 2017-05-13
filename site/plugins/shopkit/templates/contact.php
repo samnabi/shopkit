@@ -1,30 +1,39 @@
 <?php snippet('header') ?>
+<div class="wrapper-main">
+<?php snippet('header.menus') ?>
+<main class="contact">
+    
+<?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
 
-	<?php if ($page->slider()->isNotEmpty()) snippet('slider',['photos'=>$page->slider()]) ?>
+<h1 dir="auto"><?= $page->title()->html() ?></h1>
 
-	<h1 dir="auto"><?= $page->title()->html() ?></h1>
+<?php snippet('menu.subpages') ?>
 
-	<?php snippet('subpages') ?>
+<?= $page->text()->kirbytext()->bidi() ?>
 
-	<?= $page->text()->kirbytext()->bidi() ?>
+<dl dir="auto">
+    <?php if ($page->hours()->isNotEmpty()) { ?>
+        <dt><?= l('hours-of-operation') ?></dt>
+        <dd><?= $page->hours()->kirbytext() ?></dd>
+    <?php } ?>
 
-	<?= $page->hours()->kirbytext()->bidi() ?>
+    <?php if ($page->phone()->isNotEmpty()) { ?>
+        <dt><?= l('phone') ?></dt>
+        <dd><?= $page->phone() ?></dd>
+    <?php } ?>
+    
+    <?php if ($page->email()->isNotEmpty()) { ?>
+        <dt><?= l('email') ?></dt>
+        <dd><?= kirbytext('(email: '.trim($page->email()).')') ?></dd>
+    <?php } ?>
 
-	<dl dir="auto">
-	    <?php if ($phone) { ?>
-	        <dt><?= l::get('phone') ?></dt>
-	        <dd class="uk-margin-bottom"><?= $phone ?></dd>
-	    <?php } ?>
-	    
-	    <?php if ($email) { ?>
-	        <dt><?= l::get('email') ?></dt>
-	        <dd class="uk-margin-bottom"><?= kirbytext('(email: '.trim($email).')') ?></dd>
-	    <?php } ?>
+    <?php if ($page->location()->isNotEmpty()) { ?>
+        <dt><?= l('address') ?></dt>
+        <dd><?= $page->location()->toStructure()->address()->isNotEmpty() ? $page->location()->toStructure()->address() : $page->location()->kirbytext() ?></dd>
+    <?php } ?>
+</dl>
 
-	    <?php if ($address) { ?>
-	        <dt><?= l::get('address') ?></dt>
-	        <dd class="uk-margin-bottom"><?= $address ?></dd>
-	    <?php } ?>
-	</dl>
-
+</main>
+</div>
+<?php snippet('sidebar') ?>
 <?php snippet('footer') ?>

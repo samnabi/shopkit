@@ -16,7 +16,8 @@
 'country' => 'Country',
 'country-help' => 'To calculate shipping costs',
 
-'shop-by-category' => 'Shop by category',
+'brands' => 'Brands',
+'tags' => 'Tags',
 
 'buy' => 'Buy',
 'out-of-stock' => 'Out of stock',
@@ -29,6 +30,11 @@
 'total' => 'Total',
 
 'from' => 'From',
+'remaining' => 'remaining',
+
+'new-page' => 'New Page',
+'new-category' => 'New Category',
+'new-product' => 'New Product',
 
 // plugins/shopkit/shopkit.php
 
@@ -45,23 +51,42 @@
 'qty' => 'Qty: ',
 
 
-// plugins/shopkit/gateways/1-paypalexpress/process.php
+// plugins/shopkit/gateways/paypalexpress/process.php
 
 'redirecting' => 'Redirecting...',
 'continue-to-paypal' => 'Continue to PayPal',
 
 
+// plugins/shopkit/gateways/square/process.php
+
+'card-number' => 'Card number',
+'expiry-date' => 'Expiry date',
+'cvv' => 'CVV',
+'address-line-1' => 'Address',
+'address-line-2' => 'Address (line 2)',
+'city' => 'City',
+'state' => 'State / Province / Region',
+'postal-code' => 'Postal code',
+'postal-code-verify' => '(To verify credit card)',
+'optional' => 'Optional',
+
+'square-error' => 'Sorry, we could not process the payment.',
+'square-card-no-charge' => 'Your card was not charged.',
+
+'try-again' => 'Try again',
+
+
 // site/plugins/shopkit/snippets/header.notifications.php
 
-'notification-account' => 'You haven\'t set up any users. <a href="'.url('panel').'/install" title="Panel installation page">Create an account now</a>.',
+'notification-account' => 'You haven\'t set up any users. <a href="'.url('panel/install').'" title="Panel installation page">Create an account now</a>.',
 'notification-login' => 'Let\'s finish setting up your shop! <a href="#user">Log in</a> to continue.',
-'notification-options' => 'You haven\'t set up your shop options. <a href="'.url('panel').'/pages/shop/edit" title="Shop options">Define currency, shipping, and tax settings here</a>.',
-'notification-category' => 'You don\'t have any product categories. <a href="'.url('panel').'/pages/shop/add" title="Create a new category">Create your first category here</a>.',
+'notification-options' => 'You haven\'t set up your shop options. <a href="'.url('panel/options').'" title="Shop options">Define currency, shipping, and tax settings here</a>.',
+'notification-category' => 'You don\'t have any product categories. <a href="'.url('panel/pages/shop/add').'" title="Create a new category">Create your first category here</a>.',
 'notification-product-first' => 'You don\'t have any products. <a href="'.url('panel').'/pages/',
 'notification-product-last' => '/add" title="Create a new product">Create your first product with the Dashboard</a>.',
 'notification-license' => 'This shop doesn\'t have a Shopkit license key. Be sure to add one in the <strong>config.php</strong> file before the website goes live.',
-'notification-discount' => 'Your discount code <strong><code>'.s::get('discountCode').'</code></strong> will be applied at checkout.',
-'notification-giftcertificate' => 'Your gift certificate <strong><code>'.s::get('giftCertificateCode').'</code></strong> will be applied at checkout.',
+'notification-discount' => 'Your discount code <strong><code>'.s::get('discountcode').'</code></strong> will be applied at checkout.',
+'notification-giftcertificate' => 'Your gift certificate <strong><code>'.s::get('giftcode').'</code></strong> will be applied at checkout.',
 'discount-code-help' => 'Use this discount code every time you log in.',
 
 'notification-login-failed' => 'Sorry, we couldn\'t log you in. Either the password or email address isn\'t right.',
@@ -75,9 +100,8 @@
 // site/plugins/shopkit/snippets/header.user.php
 
 'edit-page' => 'Edit Page',
-'edit-shop' => 'Shop Settings',
-'edit-design' => 'Design',
 'dashboard' => 'Dashboard',
+'site-options' => 'Site Options',
 'view-orders' => 'View Orders',
 'my-account' => 'My Account',
 'logout' => 'Logout',
@@ -123,6 +147,7 @@
 'search-shop' => 'Search shop',
 'search' => 'Search',
 
+'hours-of-operation' => 'Hours of operation',
 'phone' => 'Phone',
 'email' => 'Email',
 'address' => 'Address',
@@ -167,7 +192,6 @@
 
 'pay-now' => 'Pay now',
 'pay-later' => 'Pay later',
-'empty-cart' => 'Empty cart',
 
 'discount' => 'Discount',
 'gift-certificate' => 'Gift certificate',
@@ -204,6 +228,7 @@
 'download-expired' => 'Download Expired',
 'view-on-paypal' => 'View on PayPal',
 
+'abandoned' => 'Abandoned',
 'pending' => 'Pending',
 'paid' => 'Paid',
 'shipped' => 'Shipped',
