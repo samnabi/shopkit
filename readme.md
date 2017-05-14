@@ -4,7 +4,7 @@ Shopkit is a comprehensive commerce solution for the excellent [Kirby CMS](http:
 
 A single-site license is $25 CAD. Bulk discounts available. Full details and documentation: <http://shopkit.samnabi.com>
 
-![Shopkit sets you up with detailed product blueprints and beautiful, flexible templates](site/plugins/shopkit/preview.jpg)
+![Shopkit sets you up with detailed product blueprints and beautiful, flexible templates](site/plugins/shopkit/preview.png)
 
 ## Features
 
@@ -42,13 +42,16 @@ You can try Shopkit for free on your test server, forever. Once you're satisfied
 
 Since Shopkit runs on the Kirby CMS, you'll also have to buy a [Kirby license](http://getkirby.com/license) from Bastian.
 
-Moral licenses for [Snippetfield](https://www.paypal.me/DevoneraAB) and [Multiselect](https://gumroad.com/l/kirby-multiselect), two of Shopkit's dependencies, are recommended.
+Shopkit also depends on some plugins whose authors you should support:
+
+- [Multiselect](https://gumroad.com/l/kirby-multiselect) by Nico Hoffman
+- [Snippetfield](https://github.com/jenstornell/kirby-snippetfield/issues/5) by Jens Törnell
 
 ## Install
 
 Download the latest version of Shopkit from the [releases page](https://github.com/samnabi/shopkit/releases), or install with git:
 
-    git clone --recursive -b v1-stable https://github.com/samnabi/shopkit.git
+    git clone --recursive https://github.com/samnabi/shopkit.git
 
 ### Sample content
 
@@ -57,12 +60,9 @@ To get a feel for the different features and product options, you might want to 
 ## Update
 
 Use these terminal commands to update Shopkit and its dependencies:
-    
-    # Update Shopkit
+
     git checkout master
     git pull origin master
-
-    # Update dependencies
     git submodule update --init --recursive
 
 ## Dependencies for Shopkit v2.0
@@ -84,7 +84,7 @@ Shopkit also depends on these submodules:
 - Multiselect field [2.1.0](https://github.com/distantnative/field-multiselect/tree/2.1.0)
 - Selector field [v1.5.2](https://github.com/storypioneers/kirby-selector/tree/v1.5.2)
 - Color field @[fcda14d1ae](https://github.com/ian-cox/Kirby-Color-Picker/tree/fcda14d1ae655870590775a744543a6e40a06ce2)
-- Snippetfield @[a5808fb217](https://github.com/samnabi/kirby-snippetfield/tree/a5808fb2173a54b81d22c02618856ad408604cfa)
+- Snippetfield @[49feb6f](https://github.com/jenstornell/kirby-snippetfield/tree/49feb6f35899e116446afb134dd43fdd91057ea4)
 - WYSIWYG field @[d0315f6](https://github.com/samnabi/kirby-wysiwyg)
 - Tabs field @[ad7a7d3c9e](https://github.com/afbora/Kirby-Tabs-Field/tree/ad7a7d3c9e667e33dae292e34c3178eb29983556)
 - field-bidi @[6ce984e85a](https://github.com/samnabi/field-bidi/tree/6ce984e85afa191d60fb3d7a18218571f7501731)
