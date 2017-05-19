@@ -209,7 +209,9 @@
 'order-details' => 'Bestelldetails',
 'personal-details' => 'Persönliche Details',
 'confirm-order' => 'Bestellung bestätigen',
-'mailing-address' => 'Mailing address',
+'mailing-address' => 'Postanschrift',
+'error-address' => 'Bitte geben Sie Ihre Postanschrift an.',
+'error-name-email' => 'Bitte geben Sie Ihren Namen und Ihre E-Mail-Adresse an.',
 
 
 // site/plugins/shopkit/templates/orders.php

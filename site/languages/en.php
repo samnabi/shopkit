@@ -211,6 +211,8 @@
 'personal-details' => 'Personal details',
 'confirm-order' => 'Confirm order',
 'mailing-address' => 'Mailing address',
+'error-address' => 'Please provide your mailing address.',
+'error-name-email' => 'Please provide your name and email address.',
 
 
 // site/plugins/shopkit/templates/orders.php

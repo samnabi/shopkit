@@ -209,7 +209,9 @@
 'order-details' => 'Detalles de la orden',
 'personal-details' => 'Detalles personales',
 'confirm-order' => 'Confirmar orden',
-'mailing-address' => 'Dirección de envío',
+'mailing-address' => 'Dirección postal',
+'error-address' => 'Por favor, indique su dirección postal.',
+'error-name-email' => 'Indique su nombre y dirección de correo electrónico.',
 
 
 // site/plugins/shopkit/templates/orders.php

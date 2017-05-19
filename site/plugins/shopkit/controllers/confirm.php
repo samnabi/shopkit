@@ -43,10 +43,12 @@ return function($site, $pages, $page) {
       } else {
         // No address provided.
         $valid = false;
+        $message = l('error-address');
       }
     } else {
       // No name or email provided.
       $valid = false;
+      $message = l('error-name-email');
     }
 
     if ($valid) {
@@ -85,5 +87,6 @@ return function($site, $pages, $page) {
     'payer_name' => $payer_name,
     'payer_email' => $payer_email,
     'payer_address' => $payer_address,
+    'message' => isset($message) ? $message : false,
   ];
 };

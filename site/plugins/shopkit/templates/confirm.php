@@ -20,6 +20,12 @@
 
 <h2 dir="auto"><?= l('personal-details') ?></h2>
 
+<?php if ($message) { ?>
+    <div dir="auto" class="notification warning">
+        <?= $message ?>
+    </div>
+<?php } ?>
+
 <form class="confirm" method="post">
 
     <input type="hidden" name="txn_id" value="<?= $txn->txn_id() ?>">
