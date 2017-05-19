@@ -85,8 +85,7 @@ $breakpoint-m-l: 75em;
 	position: relative;
 	background-color: hsla(0,0%,100%,0.9);
   overflow: hidden;
-	padding: 0.5em;
-	margin-bottom: 5em;
+	padding: 0.5em 0.5em 5em;
 }
 .wrapper::before {
 	content: '';
@@ -102,7 +101,7 @@ $breakpoint-m-l: 75em;
 
 @media (min-width: $breakpoint-s-m) {
 	.wrapper {
-		padding: 1em;
+		padding: 1em 1em 5em;
 	}
 }
 

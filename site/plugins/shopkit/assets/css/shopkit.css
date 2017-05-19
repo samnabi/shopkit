@@ -181,8 +181,7 @@ body, br, th, td, option {
   position: relative;
   background-color: rgba(255, 255, 255, 0.9);
   overflow: hidden;
-  padding: 0.5em;
-  margin-bottom: 5em; }
+  padding: 0.5em 0.5em 5em; }
 
 .wrapper::before {
   content: '';
@@ -201,7 +200,7 @@ body, br, th, td, option {
 
 @media (min-width: 45em) {
   .wrapper {
-    padding: 1em; } }
+    padding: 1em 1em 5em; } }
 .wrapper-main {
   width: 100%;
   padding: 1em;
