@@ -11,20 +11,19 @@ A single-site license is $25 CAD. Bulk discounts available. Full details and doc
 ### Shop settings
 
 - Variants and options for each product (e.g. sizes and colours)
-- Flexible shipping rules (Flat rate, per item, by weight, or by total price)
+- Flexible shipping rules (flat rate, per item, by weight, or by total price)
 - Related products
 - Inventory control
-- Discount codes and gift certificates (site-wide and product-specific)
-- Product-specific shipping & tax exemptions
+- Discount codes
+- Gift certificates
 - Country-specific shipping & tax rates
-- Built-in SEO for rich snippets
-- Customize theme colours & background
+- Built-in SEO (Schema.org data in RDFa format)
+- Custom theme colours & background
 
 ### Payments & orders
 
-- Process payments with PayPal and Stripe (modular folder structure lets you add other payment gateways)
-- Let certain users pay later
-- Manage pending, paid, and shipped orders
+- Use Square, Stripe, or PayPal ([or add your own payment gateway](https://shopkit.samnabi.com/docs/creating-your-own-payment-gateway))
+- Track pending, paid, and shipped orders
 - Send order notifications to your shipping manager
 - Automatic PDF invoices
 
@@ -32,8 +31,6 @@ A single-site license is $25 CAD. Bulk discounts available. Full details and doc
 
 - No sign-up required
 - Responsive design for a great shopping experience on any device 
-- Browse products in a grid or slideshow
-- Beautiful search layout
 - Automatic language detection (English, French, German, and Spanish included by default)
 
 ## Pricing
@@ -65,9 +62,9 @@ Use these terminal commands to update Shopkit and its dependencies:
     git pull origin master
     git submodule update --init --recursive
 
-## Dependencies for Shopkit v2.0
+## Dependencies
 
-Your server's PHP configuration must have the following extensions (most do):
+An Apache or Nginx server running PHP 5.4+. Your PHP configuration must have the following extensions (most servers do):
 
 - curl
 - json
@@ -90,8 +87,8 @@ Shopkit also depends on these submodules:
 - field-bidi @[6ce984e85a](https://github.com/samnabi/field-bidi/tree/6ce984e85afa191d60fb3d7a18218571f7501731)
 - Stats @[4dff5ef](https://github.com/samnabi/kirby-stats)
 - Dompdf @[aba268bdeb](https://github.com/samnabi/dompdf/tree/aba268bdebc6e50383fd6758778a4d77ca810c85)
-- php-font-lib @[b8af0cacdc](https://github.com/PhenX/php-font-lib/tree/b8af0cacdc3cbf1e41a586fcb78f506f4121a088)
-- php-svg-lib [v0.1](https://github.com/PhenX/php-svg-lib/tree/v0.1)
+    - php-font-lib @[b8af0cacdc](https://github.com/PhenX/php-font-lib/tree/b8af0cacdc3cbf1e41a586fcb78f506f4121a088)
+    - php-svg-lib [v0.1](https://github.com/PhenX/php-svg-lib/tree/v0.1)
 
 ## Issues and feedback
 

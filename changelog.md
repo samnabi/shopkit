@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0.1
+- Bug fixes
+    - Prevent a the login form getting partially hidden on pages with little content
+    - Take discounts into account when showing Order Totals on `/shop/orders` and PDF invoices
+    - Add form validation messages to `shop/confirm`
+
 ## v2.0
 - Payment gateways
     - New gateway: [Square](https://squareup.com/i/01D1F3F5)
