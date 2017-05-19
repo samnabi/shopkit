@@ -126,7 +126,7 @@
                                 <td><strong><?= l('total') ?></strong></td>
                                 <td>
                                     <strong>
-                                        <?= formatPrice($order->subtotal()->value+$order->shipping()->value+$order->tax()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
+                                        <?= formatPrice($order->subtotal()->value+$order->shipping()->value+$order->tax()->value-$order->discount()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
                                     </strong>
                                 </td>
                             </tr>

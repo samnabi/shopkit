@@ -61,9 +61,10 @@ if (strpos($p->products(),'uri:')) {
 
 $html .= '<hr>';
 $html .= '<p>'.l('subtotal').': '.formatPrice($p->subtotal()->value).'</p>';
+$html .= '<p>'.l('discount').': '.formatPrice($p->discount()->value).'</p>';
 $html .= '<p>'.l('shipping').': '.formatPrice($p->shipping()->value).'</p>';
 $html .= '<p>'.l('tax').': '.formatPrice($p->tax()->value).'</p>';
-$html .= '<p><strong>'.l('total').': '.formatPrice($p->subtotal()->value+$p->shipping()->value+$p->tax()->value).'</strong></p>';
+$html .= '<p><strong>'.l('total').': '.formatPrice($p->subtotal()->value+$p->shipping()->value+$p->tax()->value-$p->discount()->value).'</strong></p>';
 $html .= '<p><strong>'.l('gift-certificate').': &ndash; '.formatPrice($p->giftcertificate()->value).'</strong></p>';
 
 // Load the html
