@@ -24,19 +24,19 @@ foreach ($orders as $key => $group) {
     // Amount
     if ($order->subtotal()->isNotEmpty()) {
       $amount_count[$key]++;
-      $amount[$key] += $order->subtotal()->value;
+      $amount[$key] += (float)$order->subtotal()->value;
     } else if ($products = $order->products()->toStructure()) {
       foreach ($products as $product) {
         $amount_count[$key]++;
-        $price = $product->{'sale-amount'}->isNotEmpty() ? $product->{'sale-amount'}->value : $product->amount()->value;
-        $amount[$key] += $price * $product->quantity()->value;
+        $price = $product->{'sale-amount'}->isNotEmpty() ? (float)$product->{'sale-amount'}->value : (float)$product->amount()->value;
+        $amount[$key] += $price * (float)$product->quantity()->value;
       }
     }
 
     // Time
     if ($order->session_start() and $order->session_end()) {
       $time_count[$key]++;
-      $time[$key] += $order->session_end()->value - $order->session_start()->value;
+      $time[$key] += (float)$order->session_end()->value - (float)$order->session_start()->value;
     }
 
 
