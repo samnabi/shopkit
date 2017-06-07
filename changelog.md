@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.2
+- Bug fixes
+    - Cast certain order values as `float` to avoid PHP warnings
+
 ## v2.0.1
 - Bug fixes
     - Prevent a the login form getting partially hidden on pages with little content
