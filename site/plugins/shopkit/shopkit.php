@@ -156,7 +156,7 @@ function add($id, $quantity) {
     s::set('txn', 'shop/orders/'.s::id());
   }
 
-  $quantityToAdd = $quantity ? $quantity : 1;
+  $quantityToAdd = $quantity ? (int) $quantity : 1;
   $item = page(s::get('txn'))->products()->toStructure()->findBy('id', $id);
   $items = page(s::get('txn'))->products()->yaml();
   $idParts = explode('::',$id); // $id is formatted uri::variantslug::optionslug
@@ -177,7 +177,7 @@ function add($id, $quantity) {
     }
     $downloads = [
       'files' => $files,
-      'expires' => $variant->download_days()->isEmpty() ? NULL : $timestamp + ($variant->download_days()->value * 60 * 60 * 24)
+      'expires' => $variant->download_days()->isEmpty() ? NULL : $timestamp + ((int) $variant->download_days()->value * 60 * 60 * 24)
     ];
   }
 
@@ -201,7 +201,7 @@ function add($id, $quantity) {
     // Increase the quantity of an existing item
     foreach ($items as $key => $i) {
       if ($i['id'] == $item->id()) {
-        $items[$key]['quantity'] = updateQty($id, $item->quantity()->value + $quantityToAdd);
+        $items[$key]['quantity'] = updateQty($id, (int) $item->quantity()->value + $quantityToAdd);
         continue;
       }
     }
@@ -310,7 +310,7 @@ function updateQty($id, $newQty) {
  */
 
 function isMaxQty($item) {
-  return updateQty($item->id()->value, $item->quantity()->value + 1) <= $item->quantity()->value;
+  return updateQty($item->id()->value, (int) $item->quantity()->value + 1) <= (int) $item->quantity()->value;
 }
 
 /**
@@ -767,7 +767,7 @@ function cartSubtotal($items) {
   $subtotal = 0;
   foreach ($items as $item) {
     $itemAmount = $item->{'sale-amount'}->isNotEmpty() ? $item->{'sale-amount'}->value : $item->amount()->value;
-    $subtotal += $itemAmount * $item->quantity()->value;
+    $subtotal += $itemAmount * (float) $item->quantity()->value;
   }
   return $subtotal;
 }
@@ -783,7 +783,7 @@ function cartQty($items) {
 function cartWeight($items) {
   $weight = 0;
   foreach ($items as $item) {
-    $weight += $item->weight()->value * $item->quantity()->value;
+    $weight += (int) $item->weight()->value * (int) $item->quantity()->value;
   }
   return $weight;
 }
@@ -803,7 +803,7 @@ function cartTax() {
 
     // Get taxable amount
     $itemAmount = $item->{'sale-amount'}->isNotEmpty() ? $item->{'sale-amount'}->value : $item->amount()->value;
-    $taxableAmount = $itemAmount * $item->quantity()->value;
+    $taxableAmount = $itemAmount * (int) $item->quantity()->value;
 
     // Check for product-specific tax rules
     $productTax = page($item->uri)->tax();
