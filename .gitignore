@@ -33,3 +33,6 @@
 
 # Ignore local config files
 /site/config/config.*.local.php
+
+# Ignore CodeKit settings file
+config.codekit3
