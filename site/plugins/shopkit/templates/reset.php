@@ -14,17 +14,17 @@
 <form dir="auto" method="post">
   
   <div class="forRobots">
-    <label for="subject"><?= l('honeypot-label') ?></label>
+    <label for="subject"><?= _t('honeypot-label') ?></label>
     <input type="text" name="subject">
   </div>
 
   <label>
-    <span><?= l('email-address') ?></span>
+    <span><?= _t('email-address') ?></span>
     <input type="text" name="email">
   </label>
 
   <button class="accent" type="submit" name="reset">
-    <?= l('reset-submit') ?>
+    <?= _t('reset-submit') ?>
   </button>
   
 </form>

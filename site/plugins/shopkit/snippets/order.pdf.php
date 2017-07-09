@@ -37,9 +37,9 @@ if ($email = $contact->email() and $email != '') {
 
 $html .= '<hr>';
 
-$html .= '<p>'.l('invoice').' No. <strong>'.$p->txn_id()->value.'</strong> ('.l($p->status()->value).')</p>';
+$html .= '<p>'._t('invoice').' No. <strong>'.$p->txn_id()->value.'</strong> ('._t($p->status()->value).')</p>';
 $html .= '<p><em>'.date('F j, Y H:i',$p->txn_date()->value).'</em></p>';
-$html .= '<p><strong>'.l('bill-to').'</strong><br>';
+$html .= '<p><strong>'._t('bill-to').'</strong><br>';
 if ($p->payer_name() != '') $html .= $p->payer_name()->value.'<br>';
 $html .= $p->payer_email()->value.'</p>';
 $html .= $p->payer_address()->kirbytext();
@@ -51,7 +51,7 @@ if (strpos($p->products(),'uri:')) {
   foreach ($p->products()->toStructure() as $product) {
       $html .= '<p>'.$product->name().'<br><small>'.$product->variant();
       $html .= $product->option()->isNotEmpty() ? ' / '.$product->option() : '';
-      $html .= ' / '.l('qty').$product->quantity();
+      $html .= ' / '._t('qty').$product->quantity();
       $html .= '</small></p>';
   }
 } else {
@@ -60,12 +60,12 @@ if (strpos($p->products(),'uri:')) {
 }
 
 $html .= '<hr>';
-$html .= '<p>'.l('subtotal').': '.formatPrice($p->subtotal()->value).'</p>';
-$html .= '<p>'.l('discount').': '.formatPrice($p->discount()->value).'</p>';
-$html .= '<p>'.l('shipping').': '.formatPrice($p->shipping()->value).'</p>';
-$html .= '<p>'.l('tax').': '.formatPrice($p->tax()->value).'</p>';
-$html .= '<p><strong>'.l('total').': '.formatPrice($p->subtotal()->value+$p->shipping()->value+$p->tax()->value-$p->discount()->value).'</strong></p>';
-$html .= '<p><strong>'.l('gift-certificate').': &ndash; '.formatPrice($p->giftcertificate()->value).'</strong></p>';
+$html .= '<p>'._t('subtotal').': '.formatPrice($p->subtotal()->value).'</p>';
+$html .= '<p>'._t('discount').': '.formatPrice($p->discount()->value).'</p>';
+$html .= '<p>'._t('shipping').': '.formatPrice($p->shipping()->value).'</p>';
+$html .= '<p>'._t('tax').': '.formatPrice($p->tax()->value).'</p>';
+$html .= '<p><strong>'._t('total').': '.formatPrice($p->subtotal()->value+$p->shipping()->value+$p->tax()->value-$p->discount()->value).'</strong></p>';
+$html .= '<p><strong>'._t('gift-certificate').': &ndash; '.formatPrice($p->giftcertificate()->value).'</strong></p>';
 
 // Load the html
 $dompdf->loadHtml($html);

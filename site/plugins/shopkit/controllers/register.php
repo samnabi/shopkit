@@ -10,9 +10,9 @@ return function ($site, $pages, $page) {
 
         // Check for required fields
         $register_message = [];
-        if (get('email') == '') $register_message[] = l('register-failure-email');
-        if (get('fullname') == '') $register_message[] = l('register-failure-fullname');
-        if (get('country') == '') $register_message[] = l('register-failure-country');
+        if (get('email') == '') $register_message[] = _t('register-failure-email');
+        if (get('fullname') == '') $register_message[] = _t('register-failure-fullname');
+        if (get('country') == '') $register_message[] = _t('register-failure-country');
 
         if (!count($register_message)) {
 
@@ -43,17 +43,17 @@ return function ($site, $pages, $page) {
 
                 // Send password reset email
                 if (resetPassword($user->email(),true)) {
-                    $register_message[] = l('register-success');
+                    $register_message[] = _t('register-success');
                     $success = true;
                 } else {
-                    $register_message[] = l('register-failure-verification');
+                    $register_message[] = _t('register-failure-verification');
                 }
 
         	  } catch(Exception $e) {
-        	    $register_message[] = l('register-failure');
+        	    $register_message[] = _t('register-failure');
         	  }
         	} else {
-        	    $register_message[] = l('register-duplicate');
+        	    $register_message[] = _t('register-duplicate');
         	}
         }
     } else {

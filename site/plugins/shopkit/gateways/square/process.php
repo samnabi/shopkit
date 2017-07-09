@@ -25,11 +25,11 @@ $application_id = $site->square_status() == 'live' ? $site->square_id_live() : $
   <?php snippet('logo', ['site' => $site]) ?>
   <section class="txn-summary">
     <div>
-      <strong><?= l('transaction-id') ?>:</strong>
+      <strong><?= _t('transaction-id') ?>:</strong>
       <?= $txn->txn_id() ?>
     </div>
     <div>
-      <strong><?= l('total') ?>:</strong>
+      <strong><?= _t('total') ?>:</strong>
       <?php $total = $txn->subtotal()->value + $txn->shipping()->value + $txn->tax()->value - $txn->discount()->value - $txn->giftcertificate()->value ?>
       <?= formatPrice($total) ?> <?= $site->currency_code() ?>
     </div>
@@ -149,21 +149,21 @@ $application_id = $site->square_status() == 'live' ? $site->square_id_live() : $
 
     <div id="sq-card">
       <div class="card">
-        <label><span><?= l('card-number') ?></span></label>
+        <label><span><?= _t('card-number') ?></span></label>
         <div id="sq-card-number"></div>
         <div class="exp-cvv">
           <div>
-            <label><span><?= l('expiry-date') ?></span></label>
+            <label><span><?= _t('expiry-date') ?></span></label>
             <div id="sq-expiration-date"></div>
           </div>
           <div>
-            <label><span><?= l('cvv') ?></span></label>
+            <label><span><?= _t('cvv') ?></span></label>
             <div id="sq-cvv"></div>
           </div>
         </div>
       </div>
       <div>
-        <label><span><?= l('postal-code') ?> <?= l('postal-code-verify') ?></span></label>
+        <label><span><?= _t('postal-code') ?> <?= _t('postal-code-verify') ?></span></label>
         <div id="sq-postal-code"></div>
       </div>
     </div>
@@ -174,32 +174,32 @@ $application_id = $site->square_status() == 'live' ? $site->square_id_live() : $
       <input type="hidden" id="card-nonce" name="nonce">
 
       <fieldset>
-        <label><span><?= l('address-line-1') ?></span></label>
+        <label><span><?= _t('address-line-1') ?></span></label>
         <input type="text" id="sq-address-line-1" name="sq-address-line-1" required>
 
-        <label><span><?= l('address-line-2') ?></span></label>
+        <label><span><?= _t('address-line-2') ?></span></label>
         <input type="text" id="sq-address-line-2" name="sq-address-line-2" placeholder="Optional">
 
-        <label><span><?= l('city') ?></span></label>
+        <label><span><?= _t('city') ?></span></label>
         <input type="text" id="sq-locality" name="sq-locality" required>
 
-        <label><span><?= l('state') ?></span></label>
+        <label><span><?= _t('state') ?></span></label>
         <input type="text" id="sq-administrative-district-level-1" name="sq-administrative-district-level-1" required>
 
-        <label><span><?= l('postal-code') ?></span></label>
+        <label><span><?= _t('postal-code') ?></span></label>
         <input type="text" id="sq-postal-code-shipping" name="sq-postal-code-shipping" required>
 
-        <label><span><?= l('country') ?></span></label>
+        <label><span><?= _t('country') ?></span></label>
         <input type="text" disabled value="<?= page('shop/countries/'.$txn->country())->title() ?>">
         <input type="hidden" id="sq-country" name="sq-country" readonly value="<?= a::first(str::split(page('shop/countries/'.$txn->country())->countrycode(), '-')) ?>">
       </fieldset>
 
       <fieldset>
-        <label><span><?= l('first-name') ?></span></label>
+        <label><span><?= _t('first-name') ?></span></label>
         <input type="text" id="sq-first-name" name="sq-first-name" value="<?= $site->user() ? $site->user()->firstname() : '' ?>" required>
-        <label><span><?= l('last-name') ?></span></label>
+        <label><span><?= _t('last-name') ?></span></label>
         <input type="text" id="sq-last-name" name="sq-last-name" required>
-        <label><span><?= l('email') ?></span></label>
+        <label><span><?= _t('email') ?></span></label>
         <input type="email" id="sq-buyer-email-address" name="sq-buyer-email-address" value="<?= $site->user() ? $site->user()->email() : '' ?>" required>
 
         <div class="errors">
@@ -207,7 +207,7 @@ $application_id = $site->square_status() == 'live' ? $site->square_id_live() : $
         </div>
 
         <button class="accent" type="submit" onclick="requestCardNonce(event)">
-          <?= l('confirm-order') ?> <?= formatPrice($total) ?> <?= $site->currency_code() ?>
+          <?= _t('confirm-order') ?> <?= formatPrice($total) ?> <?= $site->currency_code() ?>
         </button>
       </fieldset>
     </form>

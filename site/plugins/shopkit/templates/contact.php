@@ -13,22 +13,22 @@
 
 <dl dir="auto">
     <?php if ($page->hours()->isNotEmpty()) { ?>
-        <dt><?= l('hours-of-operation') ?></dt>
+        <dt><?= _t('hours-of-operation') ?></dt>
         <dd><?= $page->hours()->kirbytext() ?></dd>
     <?php } ?>
 
     <?php if ($page->phone()->isNotEmpty()) { ?>
-        <dt><?= l('phone') ?></dt>
+        <dt><?= _t('phone') ?></dt>
         <dd><?= $page->phone() ?></dd>
     <?php } ?>
     
     <?php if ($page->email()->isNotEmpty()) { ?>
-        <dt><?= l('email') ?></dt>
+        <dt><?= _t('email') ?></dt>
         <dd><?= kirbytext('(email: '.trim($page->email()).')') ?></dd>
     <?php } ?>
 
     <?php if ($page->location()->isNotEmpty()) { ?>
-        <dt><?= l('address') ?></dt>
+        <dt><?= _t('address') ?></dt>
         <dd><?= $page->location()->toStructure()->address()->isNotEmpty() ? $page->location()->toStructure()->address() : $page->location()->kirbytext() ?></dd>
     <?php } ?>
 </dl>

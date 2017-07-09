@@ -7,18 +7,18 @@
 
 <?= $page->text()->kirbytext()->bidi() ?>
 
-<h2 dir="auto"><?= l('order-details') ?></h2>
+<h2 dir="auto"><?= _t('order-details') ?></h2>
 
 <ul dir="auto" class="order-details">
     <?php foreach ($txn->products()->toStructure() as $product) { ?>
         <li>
-            <strong><?= $product->name() ?></strong> / <?= $product->variant() ?> <?= $product->option() != '' ? '/ '.$product->option() : '' ?> / <?= l('qty').' '.$product->quantity() ?><br>
+            <strong><?= $product->name() ?></strong> / <?= $product->variant() ?> <?= $product->option() != '' ? '/ '.$product->option() : '' ?> / <?= _t('qty').' '.$product->quantity() ?><br>
             <?= formatPrice($product->amount()->value) ?>
         </li>
     <?php } ?>
 </ul>
 
-<h2 dir="auto"><?= l('personal-details') ?></h2>
+<h2 dir="auto"><?= _t('personal-details') ?></h2>
 
 <?php if ($message) { ?>
     <div dir="auto" class="notification warning">
@@ -31,22 +31,22 @@
     <input type="hidden" name="txn_id" value="<?= $txn->txn_id() ?>">
 
     <label>
-        <span><?= l('full-name') ?></span>
+        <span><?= _t('full-name') ?></span>
         <input required type="text" name="payer_name" value="<?= $payer_name ?>">
     </label>
     
     <label>
-        <span><?= l('email') ?></span>
+        <span><?= _t('email') ?></span>
         <input required type="email" name="payer_email" value="<?= $payer_email ?>">
     </label>
 
     <label>
-        <span><?= l('mailing-address') ?></span>
+        <span><?= _t('mailing-address') ?></span>
         <textarea name="payer_address"><?= $payer_address ?></textarea>
     </label>
 
 	<button class="accent" type="submit">
-        <?= l('confirm-order') ?>
+        <?= _t('confirm-order') ?>
     </button>
 
 </form>

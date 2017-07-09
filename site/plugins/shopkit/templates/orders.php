@@ -12,12 +12,12 @@
         <thead>
             <tr>
                 <th></th>
-                <th><?= l('products') ?></th>
-                <th><?= l('price') ?></th>
+                <th><?= _t('products') ?></th>
+                <th><?= _t('price') ?></th>
                 <th>
                     <?php if ($orders) { ?>
                         <button aria-expanded="true" aria-controls="filter">
-                          <?= l('status') ?>
+                          <?= _t('status') ?>
                           <span class="expand"><?= f::read('site/plugins/shopkit/assets/svg/chevron-down.svg') ?></span>
                           <span class="collapse"><?= f::read('site/plugins/shopkit/assets/svg/chevron-up.svg') ?></span>
                         </button>
@@ -25,15 +25,15 @@
                             <?php foreach (['abandoned','pending','paid','shipped'] as $status) { ?>
                                 <label>
                                     <input type="checkbox" name="status[]" value="<?= $status ?>" <?php if(get('status') and in_array($status, get('status'))) echo 'checked' ?>>
-                                    <?= l($status) ?>
+                                    <?= _t($status) ?>
                                 </label>
                             <?php } ?>
                             <button>
-                                <?= l('filter') ?>
+                                <?= _t('filter') ?>
                             </button>
                         </form>
                     <?php } else { ?>
-                        <?= l('status') ?>
+                        <?= _t('status') ?>
                     <?php } ?>
                 </th>
             </tr>
@@ -50,12 +50,12 @@
                             <?= strftime('%e %B %Y, %H:%M',$order->txn_date()->value) ?><br>
                             <form action="<?= url($site->language().'/shop/orders/pdf') ?>" method="POST">
                                 <input type="hidden" name="uri" value="<?= $order->uri() ?>">
-                                <button type="submit"><?= l('download-invoice') ?></button>
+                                <button type="submit"><?= _t('download-invoice') ?></button>
                             </form>
                         <?php } ?>
                         
                         <?php if($user and $user->role() == 'admin') { ?>
-                            <small><a href="<?= url('/panel/pages/'.$order->uri().'/delete') ?>"><?= l('delete') ?></a></small>
+                            <small><a href="<?= url('/panel/pages/'.$order->uri().'/delete') ?>"><?= _t('delete') ?></a></small>
                         <?php } ?>
                     </td>
                     <td>
@@ -68,7 +68,7 @@
                                         <small>
                                             <?= $product->variant() ?>
                                             <?= $product->option()->isNotEmpty() ? ' / '.$product->option() : '' ?>
-                                            <?= '/ '.l('qty').$product->quantity() ?>
+                                            <?= '/ '._t('qty').$product->quantity() ?>
                                         </small>
                                         <?php if ($downloads = $product->downloads() and $downloads->isNotEmpty() and $downloads->files()->isNotEmpty() and page($product->uri())) { ?>
                                             <?php if ($downloads->expires()->isEmpty() or $downloads->expires()->value > time()) { ?>
@@ -77,12 +77,12 @@
                                                     <br>
                                                     <small>
                                                         <a href="<?= u($product->uri().'/'.$product->variant().'/download/'.$order->uid().'/'.$hash) ?>" title="<?= $product->name() ?>">
-                                                            <?= l('download-file') ?> [<?= substr($hash,-7) ?>]
+                                                            <?= _t('download-file') ?> [<?= substr($hash,-7) ?>]
                                                         </a>
                                                     </small>
                                                 <?php } ?>
                                             <?php } else { ?>
-                                                <br><small><?= l('download-expired') ?></small>
+                                                <br><small><?= _t('download-expired') ?></small>
                                             <?php } ?>
                                         <?php } ?>
                                     </li>
@@ -96,34 +96,34 @@
                     <td>
                         <table>
                             <tr>
-                                <td><?= l('subtotal') ?></td>
+                                <td><?= _t('subtotal') ?></td>
                                 <td>
                                     <?= formatPrice($order->subtotal()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
                                 </td>
                             </tr>
                             <?php if ($order->discount()->value and $order->discount()->value != '0.00') { ?>
                                 <tr>
-                                    <td><?= l('discount') ?></td>
+                                    <td><?= _t('discount') ?></td>
                                     <td>
                                         <?= '&ndash; '.formatPrice($order->discount()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
                                     </td>
                                 </tr>
                             <?php } ?>
                             <tr>
-                                <td><?= l('shipping') ?></td>
+                                <td><?= _t('shipping') ?></td>
                                 <td>
                                     <!-- Need to cast as (float) to handle null or nonexistent shipping value -->
                                     <?= formatPrice((float)$order->shipping()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td><?= l('tax') ?></td>
+                                <td><?= _t('tax') ?></td>
                                 <td>
                                     <?= formatPrice($order->tax()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td><strong><?= l('total') ?></strong></td>
+                                <td><strong><?= _t('total') ?></strong></td>
                                 <td>
                                     <strong>
                                         <?= formatPrice((float)$order->subtotal()->value+(float)$order->shipping()->value+(float)$order->tax()->value-(float)$order->discount()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
@@ -132,7 +132,7 @@
                             </tr>
                             <?php if ($order->giftcertificate()->isNotEmpty() and $order->giftcertificate()->value > 0) { ?>
                                 <tr>
-                                    <td><?= str_replace(' ', '&nbsp;', l('gift-certificate')) ?></td>
+                                    <td><?= str_replace(' ', '&nbsp;', _t('gift-certificate')) ?></td>
                                     <td>
                                         &ndash;&nbsp;<?= formatPrice($order->giftcertificate()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
                                     </td>
@@ -146,30 +146,30 @@
                                 <form action="" method="POST">
                                     <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
                                     <input type="hidden" name="action" value="mark_abandoned">
-                                    <input <?php ecco($order->status()->value === 'abandoned','class="warning"') ?> type="submit" value="<?= l('abandoned') ?>">
+                                    <input <?php ecco($order->status()->value === 'abandoned','class="warning"') ?> type="submit" value="<?= _t('abandoned') ?>">
                                 </form>
                                 <form action="" method="POST">
                                     <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
                                     <input type="hidden" name="action" value="mark_pending">
-                                    <input <?php ecco($order->status()->value === 'pending','class="warning"') ?> type="submit" value="<?= l('pending') ?>">
+                                    <input <?php ecco($order->status()->value === 'pending','class="warning"') ?> type="submit" value="<?= _t('pending') ?>">
                                 </form>
                                 <form action="" method="POST">
                                     <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
                                     <input type="hidden" name="action" value="mark_paid">
-                                    <input <?php ecco($order->status()->value === 'paid','class="accent"') ?> type="submit" value="<?= l('paid') ?>">
+                                    <input <?php ecco($order->status()->value === 'paid','class="accent"') ?> type="submit" value="<?= _t('paid') ?>">
                                 </form>
                                 <form action="" method="POST">
                                     <input type="hidden" name="update_id" value="<?= $order->uid() ?>">
                                     <input type="hidden" name="action" value="mark_shipped">
-                                    <input <?php ecco($order->status()->value === 'shipped','class="success"') ?> type="submit" value="<?= l('shipped') ?>">
+                                    <input <?php ecco($order->status()->value === 'shipped','class="success"') ?> type="submit" value="<?= _t('shipped') ?>">
                                 </form>
                             </div>
                         <?php } else {
                             switch ($order->status()->value) {
-                                case 'abandoned': echo l('abandoned'); break;
-                                case 'paid': echo l('paid'); break;
-                                case 'shipped': echo l('shipped'); break;
-                                default: echo l('pending'); break;
+                                case 'abandoned': echo _t('abandoned'); break;
+                                case 'paid': echo _t('paid'); break;
+                                case 'shipped': echo _t('shipped'); break;
+                                default: echo _t('pending'); break;
                             }
                         } ?>
                     </td>
@@ -179,7 +179,7 @@
                 <tr>
                     <td colspan="4">
                         <p class="notification warning">
-                            <?= l('no-filtered-orders') ?>
+                            <?= _t('no-filtered-orders') ?>
                         </p>
                     </td>
                 </tr>
@@ -187,7 +187,7 @@
                 <tr>
                     <td colspan="4">
                         <p class="notification">
-                            <?= l('no-orders') ?>
+                            <?= _t('no-orders') ?>
                         </p>
                     </td>
                 </tr>
@@ -196,7 +196,7 @@
             <tr>
                 <td colspan="4">
                     <p class="notification warning">
-                        <?= l('no-auth-orders') ?>
+                        <?= _t('no-auth-orders') ?>
                     </p>
                 </td>
             </tr>

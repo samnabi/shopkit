@@ -1,4 +1,4 @@
-<?php l::set([
+<?php c::set('shopkit.translation.fr', [
 
 // multiple pages 
 

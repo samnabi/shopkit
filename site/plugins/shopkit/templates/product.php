@@ -53,7 +53,7 @@
 						</button>
 
 						<?php if ($site->showStock()->bool() === true and $variant->stock()->isNotEmpty()) { ?>
-							<p class="remaining"><?= $variant->stock() ?> <?= l('remaining') ?></p>
+							<p class="remaining"><?= $variant->stock() ?> <?= _t('remaining') ?></p>
 						<?php } ?>
 					</div>
 			  </form>

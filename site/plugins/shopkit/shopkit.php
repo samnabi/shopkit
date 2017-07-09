@@ -10,22 +10,29 @@ $user = $site->user();
 foreach (new DirectoryIterator(__DIR__.DS.'gateways') as $file) {
   if (!$file->isDot() and $file->isDir()) {
     if ($site->content()->get($file->getFilename().'_status') != 'disabled') {
-      $kirby->set('snippet', $file->getFilename().'.process', __DIR__.'/gateways/'.$file->getFilename().'/process.php');
-      $kirby->set('snippet', $file->getFilename().'.callback', __DIR__.'/gateways/'.$file->getFilename().'/callback.php');
+      $kirby->set('snippet', $file->getFilename().'.process', __DIR__.DS.'gateways'.DS.$file->getFilename().DS.'process.php');
+      $kirby->set('snippet', $file->getFilename().'.callback', __DIR__.DS.'gateways'.DS.$file->getFilename().DS.'callback.php');
     }
   }
 }
 
 // Register extensions
-require('registry/blueprints.php');
-require('registry/controllers.php');
-require('registry/fields.php');
-require('registry/hooks.php');
-require('registry/roles.php');
-require('registry/routes.php');
-require('registry/snippets.php');
-require('registry/templates.php');
-require('registry/widgets.php');
+require('registry'.DS.'blueprints.php');
+require('registry'.DS.'controllers.php');
+require('registry'.DS.'fields.php');
+require('registry'.DS.'hooks.php');
+require('registry'.DS.'roles.php');
+require('registry'.DS.'routes.php');
+require('registry'.DS.'snippets.php');
+require('registry'.DS.'templates.php');
+require('registry'.DS.'widgets.php');
+
+// Load translations
+foreach (new DirectoryIterator(__DIR__.DS.'languages') as $file) {
+  if (!$file->isDot()) {
+    require($file->getPathName());
+  }
+}
 
 // If user just logged in, and has an active transaction file,
 // rename the transaction file with the current session ID.
@@ -531,11 +538,11 @@ function resetPassword($email,$firstTime = false) {
 
   // Build the email text
   if ($firstTime) {
-    $subject = l('activate-account');
-    $body = l('activate-message-first')."\n\n".$resetLink."\n\n".l('activate-message-last');
+    $subject = _t('activate-account');
+    $body = _t('activate-message-first')."\n\n".$resetLink."\n\n"._t('activate-message-last');
   } else {
-    $subject = l('reset-password');
-    $body = l('reset-message-first')."\n\n".$resetLink."\n\n".l('reset-message-last');
+    $subject = _t('reset-password');
+    $body = _t('reset-message-first')."\n\n".$resetLink."\n\n"._t('reset-message-last');
   }
 
   // Send the confirmation email
@@ -911,4 +918,25 @@ function getShippingRates() {
     }
 
     return $output;
+}
+
+
+// Translation function
+function _t($key) {
+
+  // Look for a custom translation set with l::set()
+  $result = l($key);
+
+  // Otherwise, use Shopkit's translation terms
+  if (!$result) {
+
+   // Make sure $site is set
+   if (!isset($site)) $site = site();
+
+   // Find the right language term
+   $terms = c::get('shopkit.translation.'.$site->language()->code());
+   $result = $terms[$key];
+  }
+
+  return $result;
 }

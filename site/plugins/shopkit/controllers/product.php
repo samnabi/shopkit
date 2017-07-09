@@ -21,7 +21,7 @@ return function ($site, $pages, $page) {
 
 		// priceText
 		if (inStock($variant)) {
-			$variant->priceText = l('buy').' ';
+			$variant->priceText = _t('buy').' ';
 			if ($saleprice = salePrice($variant)) {
 				$variant->priceText .= formatPrice($saleprice);
 				$variant->priceText .= '<del>'.formatPrice($variant->price()->value).'</del>';
@@ -29,7 +29,7 @@ return function ($site, $pages, $page) {
 				$variant->priceText .= formatPrice($variant->price()->value);
 			}
 		} else {
-			$variant->priceText = l('out-of-stock').' ';
+			$variant->priceText = _t('out-of-stock').' ';
 			if ($saleprice = salePrice($variant)) {
 				$variant->priceText .= formatPrice($saleprice);
 				$variant->priceText .= '<del>'.formatPrice($variant->price()->value).'</del>';
@@ -44,8 +44,8 @@ return function ($site, $pages, $page) {
 
 	// Finish SEO description
 	$seo_description .= $page->text()->excerpt(80);
-	if ($page->brand()->isNotEmpty()) $seo_description .= ' / '.l('brands').': '.$page->brand();
-	if ($page->tags()->isNotEmpty()) $seo_description .= ' / '.l('tags').': '.$page->tags();
+	if ($page->brand()->isNotEmpty()) $seo_description .= ' / '._t('brands').': '.$page->brand();
+	if ($page->tags()->isNotEmpty()) $seo_description .= ' / '._t('tags').': '.$page->tags();
 
 	// Pass variables to the template
 	return [

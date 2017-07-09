@@ -4,17 +4,17 @@
 
 	<a class="button prev" <?php if($product->hasPrevVisible() and $product->prevVisible()->template() == 'product'){ echo 'href="'.$product->prevVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
 		<?= f::read('site/plugins/shopkit/assets/svg/arrow-left.svg') ?>
-		<span><?= l('prev') ?></span>
+		<span><?= _t('prev') ?></span>
 	</a>
 
   <a class="button grid" href="<?= $product->parent()->url() ?>">
   	<?= f::read('site/plugins/shopkit/assets/svg/grid.svg') ?>
-  	<span><?= l('view-grid') ?></span>
+  	<span><?= _t('view-grid') ?></span>
   </a>
 
 	<a class="button next" <?php if($product->hasNextVisible() and $product->nextVisible()->template() == 'product'){ echo 'href="'.$product->nextVisible()->url().'/slide"'; } else { echo 'disabled'; } ?> >
 		<?= f::read('site/plugins/shopkit/assets/svg/arrow-right.svg') ?>
-		<span><?= l('next') ?></span>
+		<span><?= _t('next') ?></span>
 	</a>
 </nav>
 
@@ -43,7 +43,7 @@
   			}
 
   			$priceFormatted = is_array($pricelist) ? formatPrice(min($pricelist)) : 0;
-  			if (count($variants) > 1) $priceFormatted = l('from').' '.$priceFormatted;
+  			if (count($variants) > 1) $priceFormatted = _t('from').' '.$priceFormatted;
 
   			$saleprice = $salepricelist[min(array_keys($pricelist, min($pricelist)))];
 

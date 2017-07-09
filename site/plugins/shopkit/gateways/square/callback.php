@@ -88,14 +88,14 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
   <?php if (isset($error)) { ?>
 
     <?php $errors = json_decode(substr($error, strpos($error, '{'))) ?>
-    <p><?= l('square-error') ?></p>
+    <p><?= _t('square-error') ?></p>
     <?php foreach ($errors->errors as $error) { ?>
       <p class="notification warning"><?= $error->detail ?></p>
     <?php } ?> 
-    <p><?= l('square-card-no-charge') ?></p>
+    <p><?= _t('square-card-no-charge') ?></p>
     <p>
-      <a class="button accent" href="<?= url('shop/cart/process/square/'.$txn->txn_id()) ?>">
-        <?= l('try-again') ?>
+      <a class="button accent" href="<?= ur_t('shop/cart/process/square/'.$txn->txn_id()) ?>">
+        <?= _t('try-again') ?>
       </a>
     </p>
 

@@ -43,12 +43,12 @@ return function($site, $pages, $page) {
       } else {
         // No address provided.
         $valid = false;
-        $message = l('error-address');
+        $message = _t('error-address');
       }
     } else {
       // No name or email provided.
       $valid = false;
-      $message = l('error-name-email');
+      $message = _t('error-name-email');
     }
 
     if ($valid) {

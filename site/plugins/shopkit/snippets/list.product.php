@@ -30,7 +30,7 @@
 										$priceFormatted = formatPrice($minVariant->price()->value);
 									}
 									if ($product->variants()->toStructure()->count() > 1) {
-										$priceFormatted = l('from').' '.$priceFormatted;
+										$priceFormatted = _t('from').' '.$priceFormatted;
 									}
 									echo $priceFormatted;
 								?>
@@ -62,6 +62,6 @@
 <?php if ($user = $site->user() and $user->can('panel.access.options')) { ?>
 	<a class="button admin" href="<?= url('panel/pages/'.$page->uri().'/add?template=product') ?>">
 		<?= f::read('site/plugins/shopkit/assets/svg/plus.svg') ?>
-		<?= l('new-product') ?>
+		<?= _t('new-product') ?>
 	</a>
 <?php } ?>

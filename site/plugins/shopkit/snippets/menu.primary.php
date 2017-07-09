@@ -8,11 +8,11 @@
   <?php if ($user = $site->user() and $user->can('panel.access.options')) { ?>
     <a class="button admin" href="<?= url('panel/site/add') ?>">
       <?= f::read('site/plugins/shopkit/assets/svg/plus.svg') ?>
-      <?= l('new-page') ?>
+      <?= _t('new-page') ?>
     </a>
   <?php } ?>
   
-  <a class="cart button accent" href="<?= url('shop/cart') ?>" title="<?php l('view-cart') ?>">
+  <a class="cart button accent" href="<?= url('shop/cart') ?>" title="<?php _t('view-cart') ?>">
     <?= f::read('site/plugins/shopkit/assets/svg/cart.svg') ?>
     <span>
       <?php if (page(s::get('txn'))) { ?>

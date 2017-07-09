@@ -26,7 +26,7 @@
       <li>
         <a class="button admin" href="<?= url('panel/pages/'.$parent->uri().'/add?template=category') ?>">
           <?= f::read('site/plugins/shopkit/assets/svg/plus.svg') ?>
-          <?= l('new-category') ?>
+          <?= _t('new-category') ?>
         </a>
       </li>
     <?php } ?>

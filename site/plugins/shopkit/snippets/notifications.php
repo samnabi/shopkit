@@ -10,37 +10,37 @@ $user = $site->user();
 if ($site->users()->count() === 0) {
 
 	// Check if a panel account has been created
-	$notifications[] = l('notification-account');
+	$notifications[] = _t('notification-account');
 
 } else if ($site->currency_symbol() == '' or $site->currency_code() == '') {
 
 	if (!$user) {
 		// Check if user is logged in
-		$notifications[] = l('notification-login');
+		$notifications[] = _t('notification-login');
 	} else {
 		// Check if site options have been set
-		$notifications[] = l('notification-options');
+		$notifications[] = _t('notification-options');
 	}
 
 } else if ($categories->count() === 0) {
 
 	if (!$user) {
 		// Check if user is logged in
-		$notifications[] = l('notification-login');
+		$notifications[] = _t('notification-login');
 	} else {
 		// Check if a category has been created
-		$notifications[] = l('notification-category');
+		$notifications[] = _t('notification-category');
 	}
 
 } else if (!$allProducts->count()) {
 
 	if (!$user) {
 		// Check if user is logged in
-		$notifications[] = l('notification-login');
+		$notifications[] = _t('notification-login');
 	} else {
 		// Check if a product has been created
 		$uri = $categories->first()->uri();
-		$notifications[] = l('notification-product-first').$uri.l('notification-product-last');
+		$notifications[] = _t('notification-product-first').$uri._t('notification-product-last');
 	}
 
 }
@@ -49,7 +49,7 @@ if ($site->users()->count() === 0) {
 
 if (c::get('license-shopkit') == "") {
 	// Check if there is a license key
-	$notifications[] = l('notification-license');
+	$notifications[] = _t('notification-license');
 }
 
 ?>
@@ -69,11 +69,11 @@ if (c::get('license-shopkit') == "") {
 $successes = [];
 
 if (s::get('discountcode')) {
-	$successes[] = l('notification-discount');
+	$successes[] = _t('notification-discount');
 }
 
 if (s::get('giftcode')) {
-	$successes[] = l('notification-giftcertificate');
+	$successes[] = _t('notification-giftcertificate');
 }
 
 ?>

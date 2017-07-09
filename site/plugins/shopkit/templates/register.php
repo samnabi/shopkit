@@ -19,22 +19,22 @@
   <form dir="auto" class="register" method="post">
     
     <div class="forRobots">
-      <label for="subject"><?= l('honeypot-label') ?></label>
+      <label for="subject"><?= _t('honeypot-label') ?></label>
       <input type="text" name="subject">
     </div>
     
     <label>
-      <span><?= l('email-address') ?></span>
+      <span><?= _t('email-address') ?></span>
       <input type="email" name="email" value="<?= get('email') ?>">
     </label>
   
     <label>
-      <span><?= l('full-name') ?></span>
+      <span><?= _t('full-name') ?></span>
       <input type="text" name="fullname" value="<?= get('fullname') ?>">
     </label>
   
     <label>
-      <span><?= l('country') ?> (<?= l('country-help') ?>)</span>
+      <span><?= _t('country') ?> (<?= _t('country-help') ?>)</span>
       <select name="country">
         <?php foreach ($countries as $c) { ?>
           <option value="<?= $c->slug() ?>" <?= $c->slug() == get('country') ? 'selected' : '' ?>><?= $c->title() ?></option>
@@ -43,7 +43,7 @@
     </label>
   
     <button class="accent" type="submit" name="register">
-      <?= l('register') ?>
+      <?= _t('register') ?>
     </button>
 
   </form>

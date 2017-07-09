@@ -58,7 +58,7 @@
 
 							<?php if (inStock($featuredVariant)) { ?>
 								<button class="accent" type="submit">
-									<?= l('buy') ?>
+									<?= _t('buy') ?>
 									<?php
 										if ($featuredSalePrice) {
 											echo formatPrice($featuredSalePrice);
@@ -70,7 +70,7 @@
 								</button>
 							<?php } else { ?>
 								<button disabled>
-									<?= l('out-of-stock') ?>
+									<?= _t('out-of-stock') ?>
 									<?php
 										if ($featuredSalePrice) {
 											echo formatPrice($featuredSalePrice);

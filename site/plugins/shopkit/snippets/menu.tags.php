@@ -1,7 +1,7 @@
 <?php $tags = $allProducts->filterBy('tags', '!=', '')->pluck('tags', ',', true) ?>
 <?php if (count($tags) > 0) { ?>
   <section>
-    <h3 dir="auto"><?= l('tags') ?></h3>
+    <h3 dir="auto"><?= _t('tags') ?></h3>
     <ul dir="auto" class="menu tags">
       <?php natcasesort($tags) ?>
       <?php foreach ($tags as $tag) { ?>

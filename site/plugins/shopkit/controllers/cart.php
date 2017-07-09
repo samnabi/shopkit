@@ -64,7 +64,7 @@ return function($site, $pages, $page) {
       // First option: see if a shipping method was set through a form submission
       if (get('shipping') == 'free-shipping') {
         $shippingMethod = [
-          'title' => l('free-shipping'),
+          'title' => _t('free-shipping'),
           'rate' => 0
         ];
       }

@@ -11,7 +11,7 @@
 
 <?php if (!s::get('txn') or page(s::get('txn'))->products()->toStructure()->count() === 0) { ?>
     <p dir="auto" class="notification warning">
-        <?= l('no-cart-items') ?>
+        <?= _t('no-cart-items') ?>
     </p>
 <?php } else { ?>
 
@@ -20,9 +20,9 @@
         <table dir="auto" class="checkout">
             <thead>
                 <tr>
-                    <th><?= l('product') ?></th>
-                    <th><?= l('quantity') ?></th>
-                    <th><?= l('price') ?></th>
+                    <th><?= _t('product') ?></th>
+                    <th><?= _t('quantity') ?></th>
+                    <th><?= _t('price') ?></th>
                     <th></th>
                 </tr>
             </thead>
@@ -76,14 +76,14 @@
                                     echo formatPrice($item->amount()->value * $item->quantity()->value);
                                 }
                             ?>
-                            <?php e($product->notax()->bool(),'<br><span class="badge">'.l('no-tax').'</span>') ?>
-                            <?php e($product->noshipping()->bool(),'<br><span class="badge">'.l('no-shipping').'</span>') ?>
+                            <?php e($product->notax()->bool(),'<br><span class="badge">'._t('no-tax').'</span>') ?>
+                            <?php e($product->noshipping()->bool(),'<br><span class="badge">'._t('no-shipping').'</span>') ?>
                         </td>
                         <td>
                             <form action="" method="post">
                                 <input type="hidden" name="action" value="delete">
                                 <input type="hidden" name="id" value="<?= $item->id() ?>">
-                                <button type="submit"><?= l('delete') ?></button> 
+                                <button type="submit"><?= _t('delete') ?></button> 
                             </form>
                         </td>
                     </tr>
@@ -92,20 +92,20 @@
 
             <tfoot>
                 <tr>
-                    <td colspan="2"><?= l('subtotal') ?></td>
+                    <td colspan="2"><?= _t('subtotal') ?></td>
                     <td><?= formatPrice(cartSubtotal(getItems())) ?></td>
                     <td></td>
                 </tr>
                 <?php if ($site->discount_codes()->toStructure()->count() > 0) {  ?>
                     <tr>
-                        <td colspan="2"><?= l('discount') ?></td>
+                        <td colspan="2"><?= _t('discount') ?></td>
                         <?php if ($discount) { ?>
                             <td><?= '&ndash; '.formatPrice($discount['amount']) ?></td>
                             <td>
                                 <form method="post" class="discount">
                                     <input type="hidden" name="dc" value="">
                                     <button type="submit">
-                                        <?= l('delete') ?>
+                                        <?= _t('delete') ?>
                                     </button>
                                 </form>
                             </td>
@@ -114,7 +114,7 @@
                                 <form method="post" class="discount">
                                     <input type="text" name="dc">
                                     <button type="submit">
-                                        <?= l('code-apply') ?>
+                                        <?= _t('code-apply') ?>
                                     </button>
                                 </form>
                             </td>
@@ -122,7 +122,7 @@
                     </tr>
                 <?php } ?>
                 <tr>
-                    <td colspan="2"><?= l('shipping') ?></td>
+                    <td colspan="2"><?= _t('shipping') ?></td>
                     <td>
 
                         <!-- Set country -->
@@ -134,7 +134,7 @@
                                     </option>
                                 <?php } ?>
                             </select>
-                            <button type="submit"><?= l('update-country') ?></button>
+                            <button type="submit"><?= _t('update-country') ?></button>
                         </form>
 
                         <!-- Set shipping -->
@@ -149,17 +149,17 @@
                             <?php } else { ?>
                                 <!-- If no shipping rates are set, show free shipping -->
                                 <label>
-                                    <?= l('free-shipping') ?>
+                                    <?= _t('free-shipping') ?>
                                     <input type="radio" name="shipping" value="free-shipping" checked>
                                 </label>
                             <?php } ?>
-                            <button type="submit"><?= l('update-shipping') ?></button>
+                            <button type="submit"><?= _t('update-shipping') ?></button>
                         </form>
                     </td>
                     <td>
                 </tr>
                 <tr>
-                    <td colspan="2"><?= l('tax') ?></td>
+                    <td colspan="2"><?= _t('tax') ?></td>
                     <td>
                         <?= formatPrice(cartTax()) ?>
                     </td>
@@ -167,21 +167,21 @@
                 </tr>
                 <?php if ($site->gift_certificates()->toStructure()->count() > 0) { ?>
                     <tr>
-                        <td colspan="2"><?= l('gift-certificate') ?></td>
+                        <td colspan="2"><?= _t('gift-certificate') ?></td>
                         <?php if ($giftCertificate) { ?>
                             <td>
                                 <strong>
                                     <?= '&ndash; '.formatPrice($giftCertificate['amount']).' '.$site->currency_code() ?>
                                 </strong><br>
                                 <small>
-                                    <?= formatPrice($giftCertificate['remaining']).' '.l('remaining') ?>
+                                    <?= formatPrice($giftCertificate['remaining']).' '._t('remaining') ?>
                                 </small>
                             </td>
                             <td>
                                 <form method="post" class="discount">
                                     <input type="hidden" name="gc" value="">
                                     <button type="submit">
-                                        <?= l('delete') ?>
+                                        <?= _t('delete') ?>
                                     </button>
                                 </form>
                             </td>
@@ -190,7 +190,7 @@
                                 <form method="post" class="discount">
                                     <input type="text" name="gc">
                                     <button type="submit">
-                                        <?= l('code-apply') ?>
+                                        <?= _t('code-apply') ?>
                                     </button>
                                 </form>
                             </td>
@@ -199,7 +199,7 @@
                     </tr>
                 <?php } ?>
                 <tr class="total">
-                    <td colspan="2"><?= l('total') ?></td>
+                    <td colspan="2"><?= _t('total') ?></td>
                     <td>
                         <?= $site->currency_code() ?>
                         <?= formatPrice($total) ?>
@@ -213,7 +213,7 @@
     <!-- Terms and conditions -->
     <?php if ($tc = page('shop/terms-conditions') and $tc->text()->isNotEmpty()) { ?>
         <p dir="auto" class="notification">
-            <?= l('terms-conditions') ?> <a href="<?= $tc->url() ?>" target="_blank"><?= $tc->title() ?></a>.
+            <?= _t('terms-conditions') ?> <a href="<?= $tc->url() ?>" target="_blank"><?= $tc->title() ?></a>.
         </p>
     <?php } ?>
     
@@ -228,13 +228,13 @@
                 <input type="hidden" name="giftCertificatePaid" value="true">
 
                 <div class="forRobots">
-                  <label for="subject"><?= l('honeypot-label') ?></label>
+                  <label for="subject"><?= _t('honeypot-label') ?></label>
                   <input type="text" name="subject">
                 </div>
 
                 <div>
                     <button class="accent" type="submit">
-                        <?= l('confirm-order') ?>
+                        <?= _t('confirm-order') ?>
                     </button>
                 </div>
             </form>
@@ -252,7 +252,7 @@
                     <?php } ?>
 
                     <div class="forRobots">
-                      <label for="subject"><?= l('honeypot-label') ?></label>
+                      <label for="subject"><?= _t('honeypot-label') ?></label>
                       <input type="text" name="subject">
                     </div>
 
@@ -261,13 +261,13 @@
                             <?php if ($site->content()->get($gateway.'_logo')->isEmpty()) { ?>
                                 <?= $site->content()->get($gateway.'_text') ?>
                             <?php } else { ?>
-                                <?php if ($gateway != 'paylater') echo '<span>'.l('pay-now').'</span>'; ?>
+                                <?php if ($gateway != 'paylater') echo '<span>'._t('pay-now').'</span>'; ?>
                                 <img src="<?= $site->file($site->content()->get($gateway.'_logo'))->url()  ?>" alt="<?= $site->content()->get($gateway.'_text') ?>">
                             <?php } ?>
 
                             <?php if ($site->content()->get($gateway.'_status') == 'sandbox') { ?>
                                 <p class="notification warning">
-                                    <?= l('sandbox-message') ?>
+                                    <?= _t('sandbox-message') ?>
                                 </p>
                             <?php } ?>
                         </button>

@@ -5,22 +5,22 @@
 
         <dl dir="auto">
             <?php if ($contact->hours()->isNotEmpty()) { ?>
-                <dt><?= l('hours-of-operation') ?></dt>
+                <dt><?= _t('hours-of-operation') ?></dt>
                 <dd><?= $contact->hours()->kirbytext() ?></dd>
             <?php } ?>
 
             <?php if ($contact->phone()->isNotEmpty()) { ?>
-                <dt><?= l('phone') ?></dt>
+                <dt><?= _t('phone') ?></dt>
                 <dd><?= $contact->phone() ?></dd>
             <?php } ?>
             
             <?php if ($contact->email()->isNotEmpty()) { ?>
-                <dt><?= l('email') ?></dt>
+                <dt><?= _t('email') ?></dt>
                 <dd><?= kirbytext('(email: '.trim($contact->email()).')') ?></dd>
             <?php } ?>
 
             <?php if ($contact->location()->isNotEmpty()) { ?>
-                <dt><?= l('address') ?></dt>
+                <dt><?= _t('address') ?></dt>
                 <dd><?= $contact->location()->toStructure()->address()->isNotEmpty() ? $contact->location()->toStructure()->address() : $contact->location()->kirbytext() ?></dd>
             <?php } ?>
         </dl>
