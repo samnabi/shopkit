@@ -156,7 +156,7 @@
                             <button type="submit"><?= _t('update-shipping') ?></button>
                         </form>
                     </td>
-                    <td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td colspan="2"><?= _t('tax') ?></td>
