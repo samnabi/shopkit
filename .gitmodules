@@ -14,7 +14,7 @@
 	path = site/plugins/field-selector
 	url = https://github.com/storypioneers/kirby-selector.git
 [submodule "site/plugins/shopkit/fields/color"]
-	path = site/plugins/shopkit/fields/color
+	path = site/plugins/field-color
 	url = https://github.com/ian-cox/Kirby-Color-Picker.git
 [submodule "site/plugins/shopkit/fields/tabs"]
 	path = site/plugins/shopkit/fields/tabs
