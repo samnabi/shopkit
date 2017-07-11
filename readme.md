@@ -74,21 +74,21 @@ An Apache or Nginx server running PHP 5.4+. Your PHP configuration must have the
 
 Shopkit also depends on these submodules:
 
-- Kirby Core [2.4.1](https://github.com/getkirby/kirby/tree/2.4.1)
-- Kirby Panel [2.4.1](https://github.com/getkirby/panel/tree/2.4.1)
-- Stripe PHP SDK [v4.7.0](https://github.com/stripe/stripe-php)
-- Square Connect SDK [v2.0.1](https://github.com/square/connect-php-sdk)
-- Multiselect field [2.1.0](https://github.com/distantnative/field-multiselect/tree/2.1.0)
-- Selector field [v1.5.2](https://github.com/storypioneers/kirby-selector/tree/v1.5.2)
-- Color field @[fcda14d1ae](https://github.com/ian-cox/Kirby-Color-Picker/tree/fcda14d1ae655870590775a744543a6e40a06ce2)
-- Snippetfield @[49feb6f](https://github.com/jenstornell/kirby-snippetfield/tree/49feb6f35899e116446afb134dd43fdd91057ea4)
+- Kirby Core [2.5.2](https://github.com/getkirby/kirby)
+- Kirby Panel [2.5.2](https://github.com/getkirby/panel)
+- Stripe PHP SDK [v5.1.1](https://github.com/stripe/stripe-php)
+- Square Connect SDK [2.2.0](https://github.com/square/connect-php-sdk)
+- Multiselect field [2.1.1](https://github.com/distantnative/field-multiselect)
+- Selector field [1.5.2](https://github.com/storypioneers/kirby-selector)
+- Color field @[cbb4b16](https://github.com/ian-cox/Kirby-Color-Picker)
+- Snippetfield @[49feb6f](https://github.com/jenstornell/kirby-snippetfield)
 - WYSIWYG field @[d0315f6](https://github.com/samnabi/kirby-wysiwyg)
-- Tabs field @[ad7a7d3c9e](https://github.com/afbora/Kirby-Tabs-Field/tree/ad7a7d3c9e667e33dae292e34c3178eb29983556)
-- field-bidi @[6ce984e85a](https://github.com/samnabi/field-bidi/tree/6ce984e85afa191d60fb3d7a18218571f7501731)
+- Tabs field @[8f86baa](https://github.com/afbora/Kirby-Tabs-Field)
+- field-bidi @[6ce984e](https://github.com/samnabi/field-bidi)
 - Stats @[4dff5ef](https://github.com/samnabi/kirby-stats)
-- Dompdf @[aba268bdeb](https://github.com/samnabi/dompdf/tree/aba268bdebc6e50383fd6758778a4d77ca810c85)
-    - php-font-lib @[b8af0cacdc](https://github.com/PhenX/php-font-lib/tree/b8af0cacdc3cbf1e41a586fcb78f506f4121a088)
-    - php-svg-lib [v0.1](https://github.com/PhenX/php-svg-lib/tree/v0.1)
+- Dompdf @[aba268b](https://github.com/samnabi/dompdf)
+    - php-font-lib @[b8af0ca](https://github.com/PhenX/php-font-lib)
+    - php-svg-lib [v0.1](https://github.com/PhenX/php-svg-lib)
 
 ## Issues and feedback
 

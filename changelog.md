@@ -1,5 +1,18 @@
 # Changelog
 
+## v2.1
+- Moved translation files to `site/plugins/shopkit/languages`
+- Bug fixes
+    - Stop reverting to default language through the checkout process
+    - Explicit type casting to prvent PHP warnings
+- Updated dependencies
+    - Kirby and Panel (2.5.2)
+    - Stripe SDK (v5.1.1)
+    - Square SDK (v2.2.0)
+    - Multiselect field (2.1.1)
+    - Color field (now packaged as a plugin)
+- Added local config files for development environments (debugging enabled, whoops disabled)
+
 ## v2.0.2
 - Bug fixes
     - Cast certain order values as `float` to avoid PHP warnings
