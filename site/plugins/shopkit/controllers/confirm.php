@@ -3,9 +3,8 @@
 return function($site, $pages, $page) {
 
   // Find transaction
-  // Not using Kirby's get() method to avoid conflict with txn_id POSTed from PayPal
-  $txn = page('shop/orders/'.$_GET['txn_id']);
-  if(!$txn or $_GET['txn_id'] == '') go('shop/cart');
+  $txn = page('shop/orders/'.param('id'));
+  if(!$txn or param('id') == '') go(page('shop/cart')->url());
 
 	// Prepopulate form details
   if (get('payer_name') or get('payer_email') or get('payer_address')) {
@@ -30,6 +29,8 @@ return function($site, $pages, $page) {
 		$payer_address = '';
 	}
 
+  
+
   // Validate form submission
   if (isset($_POST['txn_id'])) {
     $valid = false;
@@ -52,7 +53,7 @@ return function($site, $pages, $page) {
     }
 
     if ($valid) {
-      // Save customer details to the transaction
+      // Save customer details to the transaction file (in the default language)
       try {
         $txn->update([
           'payer-name' => get('payer_name'),
@@ -61,7 +62,8 @@ return function($site, $pages, $page) {
         ], $site->defaultLanguage()->code());
 
         // Notify customer
-        snippet('mail.order.notify.status', ['txn' => $txn]);
+        snippet('mail.order.notify.status', ['txn' => $txn, 'lang' => $site->language()]);
+
       } catch(Exception $e) {
         // Update failed
         snippet('mail.order.update.error', [
@@ -70,14 +72,16 @@ return function($site, $pages, $page) {
           'payer_name' => get('payer_name'),
           'payer_email' => get('payer_email'),
           'payer_address' => get('payer_address'),
+          'lang' => $site->language(),
         ]);
       }
+      
 
       // Empty the cart by setting a new txn id
       s::destroy();
 
       // Redirect to orders page
-      go('shop/orders?txn_id='.$txn->txn_id());
+      go(page('shop/orders')->url().'?txn_id='.$txn->txn_id());
     }
   }
 

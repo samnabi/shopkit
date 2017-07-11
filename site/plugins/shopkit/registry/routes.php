@@ -37,53 +37,6 @@ $kirby->set('route',[
   }
 ]);
 $kirby->set('route',[
-  // Creates transaction page from Cart data
-  'pattern' => 'shop/cart/process',
-  'method' => 'POST',
-  'action' => function() {
-    $site = site();
-
-    // Set detected language
-    $site->visit('shop', (string) $site->detectedLanguage());
-    $site->kirby->localize();
-    
-    snippet('order.process');
-  }
-]);
-$kirby->set('route', [
-  // Forwards transaction data to payment gateway
-  'pattern' => 'shop/cart/process/(:any)/(:any)',
-  'action' => function($gateway, $txn_id) {
-    $site = site();
-
-    // Set detected language
-    $site->visit('shop', (string) $site->detectedLanguage());
-    $site->kirby->localize();
-
-    // Get the transaction file we just created
-    $txn = page('shop/orders/'.$txn_id);
-    if(!$txn) go('shop/cart');
-
-    // Load gateway processing snippet
-    snippet($gateway.'.process', ['txn' => $txn]);
-  }
-]);
-$kirby->set('route',[
-  // Payment gateway listener
-  'pattern' => 'shop/cart/callback/(:any)',
-  'method' => 'GET|POST',
-  'action' => function($gateway) {
-    $site = site();
-
-    // Set detected language
-    $site->visit('shop', (string) $site->detectedLanguage());
-    $site->kirby->localize();
-    
-    snippet($gateway.'.callback');
-    return true;
-  }
-]);
-$kirby->set('route',[
   // PDF invoice download
   'pattern' => '(:all)/shop/orders/pdf',
   'method' => 'POST',

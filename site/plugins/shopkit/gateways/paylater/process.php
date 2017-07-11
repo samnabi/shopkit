@@ -11,7 +11,7 @@ $user = $site->user();
 
   if ($user and $user->email() != '') {
     // Email is already set
-    go('shop/cart/callback/paylater?txn_id='.$txn->txn_id());
+    go(page('shop/cart/callback')->url().'/gateway:paylater/id:'.$txn->txn_id());
   } else {
     // Get email so we can send customer notifications
     ?>
@@ -33,9 +33,7 @@ $user = $site->user();
 
         <img src="<?= $site->logo()->toFile()->url() ?>" alt="">
 
-        <form method="post" action="<?= url('shop/cart/callback/paylater') ?>">
-
-            <input type="hidden" name="txn_id" value="<?= $txn->txn_id() ?>">
+        <form method="post" action="<?= page('shop/cart/callback')->url().'/gateway:paylater/id:'.$txn->txn_id() ?>">
             
             <label for="payer_email"><?= _t('email') ?></label>
             <input autofocus required type="email" name="payer_email" value="">
@@ -43,7 +41,7 @@ $user = $site->user();
             <button type="submit"><?= _t('pay-later') ?></button>
         </form>
 
-        <p><a href="<?= url('shop/cart') ?>" title="Cancel payment">Back to cart</a></p>
+        <p><a href="<?= page('shop/cart')->url() ?>">&larr; <?= _t('view-cart') ?></a></p>
       </div>
     </body>
     </html>

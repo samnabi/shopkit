@@ -19,6 +19,7 @@ $kirby->set('blueprint', 'error',     __DIR__.DS.'..'.DS.'blueprints'.DS.'error.
 $kirby->set('blueprint', 'orders',    __DIR__.DS.'..'.DS.'blueprints'.DS.'orders.yml');
 $kirby->set('blueprint', 'order',    __DIR__.DS.'..'.DS.'blueprints'.DS.'order.yml');
 $kirby->set('blueprint', 'product',   __DIR__.DS.'..'.DS.'blueprints'.DS.'product.yml');
+$kirby->set('blueprint', 'process',   __DIR__.DS.'..'.DS.'blueprints'.DS.'process.yml');
 $kirby->set('blueprint', 'register',  __DIR__.DS.'..'.DS.'blueprints'.DS.'register.yml');
 $kirby->set('blueprint', 'reset',     __DIR__.DS.'..'.DS.'blueprints'.DS.'reset.yml');
 $kirby->set('blueprint', 'search',    __DIR__.DS.'..'.DS.'blueprints'.DS.'search.yml');

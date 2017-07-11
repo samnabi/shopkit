@@ -1,8 +1,7 @@
 <?php
-$site = site();
 
 // Set transaction
-$txn = page('shop/orders/'.get('txn_id'));
+$txn = page('shop/orders/'.param('id'));
 
 // Set email if available
 if (get('payer_email') != '') {
@@ -44,10 +43,10 @@ try {
   ]);
   
   // Kick the user back to the cart
-  go(url('shop/cart'));
+  go(page('shop/cart')->url());
 }
 
 // Go to confirm page
-go('/shop/confirm?txn_id='.$txn->txn_id());
+go(page('shop/confirm')->url().'/id:'.$txn->txn_id());
 
 ?>

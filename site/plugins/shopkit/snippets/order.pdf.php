@@ -2,9 +2,8 @@
 // Set site
 $site = site();
 
-// Set detected language
-$site->visit('home', $lang);
-$site->kirby->localize();
+// Set language
+$site->visit('', $lang);
 
 // Page URI sent via POST
 $p = page(get('uri'));

@@ -1,0 +1,1 @@
+<?php snippet($gateway.'.process', ['txn' => $txn]) ?>

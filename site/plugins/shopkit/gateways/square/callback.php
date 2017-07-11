@@ -5,8 +5,6 @@
  * $_POST    All callback response values
  */
 
-$site = site();
-
 // Load the Square PHP library
 require_once('connect-php-sdk/autoload.php');
 
@@ -94,7 +92,7 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
     <?php } ?> 
     <p><?= _t('square-card-no-charge') ?></p>
     <p>
-      <a class="button accent" href="<?= ur_t('shop/cart/process/square/'.$txn->txn_id()) ?>">
+      <a class="button accent" href="<?= page('shop/cart')->url() ?>">
         <?= _t('try-again') ?>
       </a>
     </p>
@@ -132,7 +130,7 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
         ]);
 
         // Continue to confirmation
-        go('shop/confirm/?txn_id='.$txn->txn_id());
+        go(page('shop/confirm')->url().'/id:'.$txn->txn_id());
 
       } catch(Exception $e) {
         // Updates or notification failed
@@ -145,19 +143,19 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
         ]);
         
         // Kick the user back to the cart
-        go(url('shop/cart'));
+        go(page('shop/cart')->url());
       }
     } else {
       // Integrity check failed - possible tampering
       snippet('mail.order.tamper', ['txn' => $txn]);
       
       // Kick the user back to the cart
-      go(url('shop/cart'));
+      go(page('shop/cart')->url());
     }
   }
 } else {
   // Invalid data, kick the user back to the cart
-  go(url('shop/cart'));
+  go(page('shop/cart')->url());
 }
 ?>
 

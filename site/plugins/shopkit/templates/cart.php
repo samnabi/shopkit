@@ -219,7 +219,7 @@
     
     <div class="gateways">
         <?php if ($giftCertificate and $total == 0) { ?>
-            <form method="post" action="<?= url('shop/cart/process') ?>">
+            <form method="post" action="<?= page('shop/cart/process')->url() ?>">
                 
                 <input type="hidden" name="gateway" value="paylater">
 
@@ -242,7 +242,7 @@
             <!-- Gateway payment buttons -->
             <?php foreach($gateways as $gateway) { ?>
                 <?php if ($gateway == 'paylater' and !canPayLater()) continue ?>
-                <form method="post" action="<?= url('shop/cart/process') ?>">
+                <form method="post" action="<?= page('shop/cart/process')->url() ?>">
                     
                     <input type="hidden" name="gateway" value="<?= $gateway ?>">
 

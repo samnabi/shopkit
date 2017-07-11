@@ -4,7 +4,7 @@
     <h3 dir="auto"><?= _t('brands') ?></h3>
     <ul dir="auto" class="menu brands">
       <?php foreach ($brands as $brand) { ?>
-        <li><a href="<?= url('search/?q='.urlencode($brand)) ?>"><?= $brand ?></a></li>
+        <li><a href="<?= page('search')->url().'?q='.urlencode($brand) ?>"><?= $brand ?></a></li>
       <?php } ?>
     </ul>
   </section>

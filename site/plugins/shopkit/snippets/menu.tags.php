@@ -5,7 +5,7 @@
     <ul dir="auto" class="menu tags">
       <?php natcasesort($tags) ?>
       <?php foreach ($tags as $tag) { ?>
-        <li><a href="<?= url('search/?q='.urlencode($tag)) ?>">#<?= str::lower($tag) ?></a></li>
+        <li><a href="<?= page('search')->url().'?q='.urlencode($tag) ?>">#<?= str::lower($tag) ?></a></li>
       <?php } ?>
     </ul>
   </section>

@@ -4,7 +4,6 @@
  *
  * $_POST    All callback response values
  */
-$site = site();
 
 // Load the Stripe PHP library
 require_once('stripe-php/init.php');
@@ -61,7 +60,7 @@ if (get('stripeToken') != '') {
       ]);
 
       // Continue to confirmation
-      go(url('shop/confirm/?txn_id='.$txn->txn_id().'&payer_email='.$customer->email));
+      go(page('shop/confirm')->url().'/id:'.$txn->txn_id().'?payer_email='.$customer->email);
 
     } catch(Exception $e) {
       // Updates or notification failed
@@ -74,18 +73,17 @@ if (get('stripeToken') != '') {
       ]);
       
       // Kick the user back to the cart
-      go(url('shop/cart'));
+      go(page('shop/cart')->url());
     }
   } else {
     // Integrity check failed - possible tampering
     snippet('mail.order.tamper', ['txn' => $txn]);
     
     // Kick the user back to the cart
-    go(url('shop/cart'));
+    go(page('shop/cart')->url());
   }
 } else {
   // Data didn't come back properly from Stripe
-    
   // Kick the user back to the cart
-  go(url('shop/cart'));
+  go(page('shop/cart')->url());
 }

@@ -26,7 +26,7 @@
     </div>
 <?php } ?>
 
-<form class="confirm" method="post">
+<form class="confirm" method="post" action="<?= page('shop/confirm')->url().'/id:'.$txn->txn_id() ?>">
 
     <input type="hidden" name="txn_id" value="<?= $txn->txn_id() ?>">
 

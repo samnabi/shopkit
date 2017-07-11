@@ -42,7 +42,7 @@ $stripe = [
 		?>
 
 		<!-- Stripe Checkout form. Copied from https://stripe.com/docs/checkout/tutorial -->
-		<form action="<?= url('shop/cart/callback/stripecheckout') ?>" method="POST">
+		<form action="<?= page('shop/cart/callback')->url().'/gateway:stripecheckout/id:'.$txn->txn_id() ?>" method="POST">
 		  <script
 		    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 		    data-key="<?= $stripe['publishable_key'] ?>"
@@ -58,7 +58,7 @@ $stripe = [
 		  <input type="hidden" name="txn" value="<?= $txn->txn_id() ?>">
 		</form>
 
-		<p><a href="<?= url('shop/cart') ?>" title="Cancel payment">Back to cart</a></p>
+		<p><a href="<?= page('shop/cart')->url() ?>">&larr; <?= _t('view-cart') ?></a></p>
 	</div>
 
 	<script>

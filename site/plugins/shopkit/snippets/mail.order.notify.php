@@ -2,8 +2,8 @@
 $site = site();
 
 // Set detected language
-$site->visit('shop', (string) $site->detectedLanguage());
-$site->kirby->localize();
+if (!$lang) $lang = $site->detectedLanguage();
+$site->visit('', $lang->code());
 
 // Build body text
 $body = _t('order-notification-message').' ';
