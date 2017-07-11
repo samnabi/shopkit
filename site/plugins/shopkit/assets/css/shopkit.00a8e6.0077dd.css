@@ -1310,7 +1310,7 @@ a.slideshow {
   margin-top: 0; }
 
 #sq-card .sq-input {
-  outline: 1px auto rgba(0, 0, 0, 0.08);
+  outline: 1px auto rgba(0, 0, 0, 0.15);
   border: 3px solid white;
   box-sizing: content-box;
   width: calc(100% - 8px); }
