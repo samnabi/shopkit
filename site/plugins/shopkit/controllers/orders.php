@@ -5,10 +5,10 @@ return function($site, $pages, $page) {
 
     // Mark order as pending, paid, or shipped
     $action = get('action');
-    if ($action === 'mark_abandoned') page('shop/orders/'.get('update_id'))->update(['status' => 'abandoned']);
-    if ($action === 'mark_pending') page('shop/orders/'.get('update_id'))->update(['status' => 'pending']);
-    if ($action === 'mark_shipped') page('shop/orders/'.get('update_id'))->update(['status' => 'shipped']);
-    if ($action === 'mark_paid')    page('shop/orders/'.get('update_id'))->update(['status' => 'paid']);
+    if ($action === 'mark_abandoned') page('shop/orders/'.get('update_id'))->update(['status' => 'abandoned'], $site->defaultLanguage()->code());
+    if ($action === 'mark_pending') page('shop/orders/'.get('update_id'))->update(['status' => 'pending'], $site->defaultLanguage()->code());
+    if ($action === 'mark_shipped') page('shop/orders/'.get('update_id'))->update(['status' => 'shipped'], $site->defaultLanguage()->code());
+    if ($action === 'mark_paid')    page('shop/orders/'.get('update_id'))->update(['status' => 'paid'], $site->defaultLanguage()->code());
     if ($action) snippet('mail.order.notify.status', ['txn' => page('shop/orders/'.get('update_id'))]);
 
     // Role-based filters

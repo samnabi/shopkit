@@ -88,7 +88,7 @@ return function($site, $pages, $page) {
     page(s::get('txn'))->update([
       'shippingmethod' => $shippingMethod['title'],
       'shipping' => $shippingMethod['rate'],
-    ]);
+    ], $site->defaultLanguage()->code());
     
     // Get discount
     $discount = getDiscount();

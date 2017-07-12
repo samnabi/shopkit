@@ -37,18 +37,18 @@ foreach (new DirectoryIterator(__DIR__.DS.'languages') as $file) {
 // If user just logged in, and has an active transaction file,
 // rename the transaction file with the current session ID.
 if (null !== s::get('oldid') and $txn = page('shop/orders/'.s::get('oldid'))) {
-  $txn->update(['txn-id' => s::id()]);
+  $txn->update(['txn-id' => s::id()], $site->defaultLanguage()->code());
   $txn->move(s::id());
   s::remove('oldid');
   if ($user and $user->country() != '') {
-    $txn->update(['country' => $user->country()]);
+    $txn->update(['country' => $user->country()], $site->defaultLanguage()->code());
   }
 }
 
 // Transaction file exists, save it in session
 if (page('shop/orders/'.s::id())) {
   s::set('txn', 'shop/orders/'.s::id());
-  page(s::get('txn'))->update(['session-end' => time()]);
+  page(s::get('txn'))->update(['session-end' => time()], $site->defaultLanguage()->code());
 }
 
 // Set discount code
@@ -150,6 +150,8 @@ function inStock($variant) {
 
 function add($id, $quantity) {
 
+  $site = site();
+
   // Create the transaction file if we don't have one yet
   if (!page('shop/orders/'.s::id())) {
     $timestamp = time();
@@ -159,7 +161,7 @@ function add($id, $quantity) {
       'status' => 'abandoned',
       'session-start' => $timestamp,
       'session-end' => $timestamp
-    ], site()->defaultLanguage()->code());
+    ], $site->defaultLanguage()->code());
     s::set('txn', 'shop/orders/'.s::id());
   }
 
@@ -213,7 +215,7 @@ function add($id, $quantity) {
       }
     }
   }
-  page(s::get('txn'))->update(['products' => yaml::encode($items)]);
+  page(s::get('txn'))->update(['products' => yaml::encode($items)], $site->defaultLanguage()->code());
 }
 
 
@@ -229,7 +231,7 @@ function remove($id) {
         delete($id);
       } else {
         $items[$key]['quantity']--;
-        page(s::get('txn'))->update(['products' => yaml::encode($items)]);
+        page(s::get('txn'))->update(['products' => yaml::encode($items)], site()->defaultLanguage()->code());
       }
       return;
     }
@@ -249,7 +251,7 @@ function delete($id) {
       unset($items[$key]);
     }
   }
-  page(s::get('txn'))->update(['products' => yaml::encode($items)]);
+  page(s::get('txn'))->update(['products' => yaml::encode($items)], site()->defaultLanguage()->code());
 }
 
 
