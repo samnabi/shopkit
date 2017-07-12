@@ -345,7 +345,7 @@ function updateStock($txn) {
           }
         }
         // Update the entire variants field (only one variant has changed)
-        $product->update(array('variants' => yaml::encode($variants)));
+        $product->update(['variants' => yaml::encode($variants)], $site->defaultLanguage()->code());
       }
     }
   }
