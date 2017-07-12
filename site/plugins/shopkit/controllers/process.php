@@ -31,7 +31,7 @@ return function($site, $pages, $page) {
       'tax' => number_format(cartTax(),2,'.',''),
       'giftcode' => s::get('giftcode'),
       'giftcertificate' => null !== get('giftCertificateAmount') ? number_format(get('giftCertificateAmount'),2,'.','') : '0.00',
-    ]);
+    ], $site->defaultLanguage()->code());
 
     // Add payer info if it's available at this point
     if ($user) {
