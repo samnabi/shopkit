@@ -326,7 +326,7 @@ function isMaxQty($item) {
  * $txn page object
  */
 
-function updateStock($txn) {
+function updateStock($txn) use ($site) {
   foreach($txn->products()->toStructure() as $i => $item){
     $product = page($item->uri());
     $variants = $product->variants()->yaml();
