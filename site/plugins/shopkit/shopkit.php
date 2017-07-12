@@ -155,7 +155,7 @@ function add($id, $quantity) {
   // Create the transaction file if we don't have one yet
   if (!page('shop/orders/'.s::id())) {
     $timestamp = time();
-    page('shop/orders')->children()->create(s::id(), 'order', [
+    page('shop')->create('shop/orders/'.s::id(), 'order', [
       'txn-id' => s::id(),
       'txn-date'  => $timestamp,
       'status' => 'abandoned',
