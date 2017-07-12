@@ -2,7 +2,7 @@
 $site = site();
 
 // Set detected language
-if (!$lang) $lang = $site->detectedLanguage();
+if (!isset($lang)) $lang = $site->detectedLanguage();
 $site->visit('', $lang->code());
 
 // Build body text

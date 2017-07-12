@@ -140,6 +140,7 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
           'payer_name' => esc(get('sq-first-name')).' '.esc(get('sq-last-name')),
           'payer_email' => esc(get('sq-buyer-email-address')),
           'payer_address' => $address,
+          'lang' => $site->language(),
         ]);
         
         // Kick the user back to the cart
@@ -147,7 +148,7 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
       }
     } else {
       // Integrity check failed - possible tampering
-      snippet('mail.order.tamper', ['txn' => $txn]);
+      snippet('mail.order.tamper', ['txn' => $txn, 'lang' => $site->language()]);
       
       // Kick the user back to the cart
       go(page('shop/cart')->url());
