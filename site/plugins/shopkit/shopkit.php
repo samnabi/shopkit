@@ -159,7 +159,7 @@ function add($id, $quantity) {
       'status' => 'abandoned',
       'session-start' => $timestamp,
       'session-end' => $timestamp
-    ], site()->defaultLanguage());
+    ], site()->defaultLanguage()->code());
     s::set('txn', 'shop/orders/'.s::id());
   }
 
