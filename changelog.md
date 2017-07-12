@@ -8,7 +8,7 @@
 - Updated dependencies
     - Kirby and Panel (2.5.2)
     - Stripe SDK (v5.1.1)
-    - Square SDK (v2.2.0)
+    - Square SDK (2.0.2)
     - Multiselect field (2.1.1)
     - Color field (now packaged as a plugin)
 - Added local config files for development environments (debugging enabled, whoops disabled)

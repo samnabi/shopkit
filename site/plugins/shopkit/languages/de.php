@@ -73,7 +73,7 @@
 'square-error' => 'Entschuldigung, wir konnten die Zahlung nicht verarbeiten.',
 'square-card-no-charge' => 'Ihre Karte wurde nicht belastet',
 
-'try again' => 'Versuch es noch einmal',
+'try-again' => 'Versuch es noch einmal',
 
 
 // site/plugins/shopkit/snippets/header.notifications.php
