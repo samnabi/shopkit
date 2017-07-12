@@ -326,7 +326,7 @@ function isMaxQty($item) {
  * $txn page object
  */
 
-function updateStock($txn) use ($site) {
+function updateStock($txn) {
   foreach($txn->products()->toStructure() as $i => $item){
     $product = page($item->uri());
     $variants = $product->variants()->yaml();
@@ -344,8 +344,8 @@ function updateStock($txn) use ($site) {
             $variants[$key]['stock'] = 0;
           }
         }
-        // Update the entire variants field (only one variant has changed)
-        $product->update(['variants' => yaml::encode($variants)], $site->defaultLanguage()->code());
+        // Update the entire variants field (even though only one variant has changed)
+        $product->update(['variants' => yaml::encode($variants)], site()->defaultLanguage()->code());
       }
     }
   }
