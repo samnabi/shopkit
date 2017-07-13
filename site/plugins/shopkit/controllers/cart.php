@@ -39,19 +39,19 @@ return function($site, $pages, $page) {
         // Translate country code to UID if needed
         $country = $c->uid();
       }
-      page(s::get('txn'))->update(['country' => $country]);
+      page(s::get('txn'))->update(['country' => $country], $site->defaultLanguage()->code());
     } else if (page(s::get('txn'))->country()->isNotEmpty()) {
       // Second option: the country has already been set in the session.
       // Do nothing.
     } else if ($user and $user->country() != '') {
       // Third option: get country from user profile
-      page(s::get('txn'))->update(['country' => $user->country()]);
+      page(s::get('txn'))->update(['country' => $user->country()], $site->defaultLanguage()->code());
     } else if ($site->defaultcountry()->isNotEmpty()) {
       // Fourth option: get default country from site options
-      page(s::get('txn'))->update(['country' => $site->defaultcountry()]);
+      page(s::get('txn'))->update(['country' => $site->defaultcountry()], $site->defaultLanguage()->code());
     } else {
       // Last resort: choose the first available country
-      page(s::get('txn'))->update(['country' => $countries->first()->uid()]);
+      page(s::get('txn'))->update(['country' => $countries->first()->uid()], $site->defaultLanguage()->code());
     }
 
     // Get shipping rates
