@@ -43,7 +43,7 @@ if ($notifications->count()) {
         'payer_email' => $payer_email,
         'payer_address' => $payer_address,
         'n' => $n,
-        'lang' => $lang->code(),
+        'lang' => $lang,
       ]);
     }
 
