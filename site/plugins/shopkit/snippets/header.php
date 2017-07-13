@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta name="description" content="<?= isset($seo_description) ? $seo_description : $page->text()->excerpt('300') ?>">
 
-	<title><?= $page->title()->html() ?> &bull; <?= $site->title()->html() ?></title>
+	<title><?= $page->title()->html() ?> &middot; <?= $site->title()->html() ?></title>
 
 	<!-- Styles -->
 	<?= css(getStylesheet($site->coloraccent(),$site->colorlink())) ?>
