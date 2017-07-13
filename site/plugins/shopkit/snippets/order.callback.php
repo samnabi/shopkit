@@ -12,14 +12,11 @@
  * $payer_address string
  */
 
-// Set site variable
-$site = site();
-
 // Update stock
 updateStock($txn);
 
 // Notify staff
-$notifications = $site->notifications()->toStructure();
+$notifications = site()->notifications()->toStructure();
 if ($notifications->count()) {
   foreach ($notifications as $n) {
     // Reset
@@ -46,6 +43,7 @@ if ($notifications->count()) {
         'payer_email' => $payer_email,
         'payer_address' => $payer_address,
         'n' => $n,
+        'lang' => $lang,
       ]);
     }
 

@@ -127,6 +127,7 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
           'payer_name' => esc(get('sq-first-name')).' '.esc(get('sq-last-name')),
           'payer_email' => esc(get('sq-buyer-email-address')),
           'payer_address' => $address,
+          'lang' => $site->language()->code(),
         ]);
 
         // Continue to confirmation

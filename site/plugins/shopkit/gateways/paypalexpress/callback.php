@@ -128,6 +128,7 @@ if($_POST['txn_id'] != '' ) {
         'payer_name' => $txn->payer_name(),
         'payer_email' => $txn->payer_email(),
         'payer_address' => $txn->payer_address(),
+        'lang' => $site->language()->code(),
       ]);
 
       return true;

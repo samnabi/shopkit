@@ -57,6 +57,7 @@ if (get('stripeToken') != '') {
         'payer_name' => '',
         'payer_email' => $customer->email,
         'payer_address' => '',
+        'lang' => $site->language()->code(),
       ]);
 
       // Continue to confirmation

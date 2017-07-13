@@ -31,6 +31,7 @@ try {
     'payer_name' => $txn->payer_name(),
     'payer_email' => get('payer_email') != '' ? get('payer_email') : $txn->payer_email(),
     'payer_address' => $txn->payer_address(),
+    'lang' => $site->language()->code(),
   ]);
 } catch(Exception $e) {
   // Update or notification failed
