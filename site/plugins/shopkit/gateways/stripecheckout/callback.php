@@ -57,7 +57,7 @@ if (get('stripeToken') != '') {
         'payer_name' => '',
         'payer_email' => $customer->email,
         'payer_address' => '',
-        'lang' => $site->language()->code(),
+        'lang' => $site->language(),
       ]);
 
       // Continue to confirmation
@@ -71,6 +71,7 @@ if (get('stripeToken') != '') {
         'payer_name' => '', // None available from Stripe
         'payer_email' => $customer->email,
         'payer_address' => '', // None available from Stripe
+        'lang' => $site->language(),
       ]);
       
       // Kick the user back to the cart

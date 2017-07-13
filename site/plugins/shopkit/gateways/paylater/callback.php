@@ -18,6 +18,7 @@ if (get('payer_email') != '') {
       'payer_name' => $txn->payer_name(),
       'payer_email' => get('payer_email'),
       'payer_address' => $txn->payer_email(),
+      'lang' => $site->language(),
     ]);
     return false;
   }
@@ -31,7 +32,7 @@ try {
     'payer_name' => $txn->payer_name(),
     'payer_email' => get('payer_email') != '' ? get('payer_email') : $txn->payer_email(),
     'payer_address' => $txn->payer_address(),
-    'lang' => $site->language()->code(),
+    'lang' => $site->language(),
   ]);
 } catch(Exception $e) {
   // Update or notification failed
@@ -41,6 +42,7 @@ try {
     'payer_name' => $txn->payer_name(),
     'payer_email' => get('payer_email') != '' ? get('payer_email') : $txn->payer_email(),
     'payer_address' => $txn->payer_address(),
+    'lang' => $site->language(),
   ]);
   
   // Kick the user back to the cart

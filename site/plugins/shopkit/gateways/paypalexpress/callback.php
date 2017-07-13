@@ -128,7 +128,7 @@ if($_POST['txn_id'] != '' ) {
         'payer_name' => $txn->payer_name(),
         'payer_email' => $txn->payer_email(),
         'payer_address' => $txn->payer_address(),
-        'lang' => $site->language()->code(),
+        'lang' => $site->language(),
       ]);
 
       return true;
@@ -140,7 +140,8 @@ if($_POST['txn_id'] != '' ) {
         'payment_status' => $payment_status,
         'payer_name' => $_POST['first_name']." ".$_POST['last_name'],
         'payer_email' => $_POST['payer_email'],
-        'payer_address' => $_POST['address_street']."\n".$_POST['address_city'].", ".$_POST['address_state']." ".$_POST['address_zip']."\n".$_POST['address_country']
+        'payer_address' => $_POST['address_street']."\n".$_POST['address_city'].", ".$_POST['address_state']." ".$_POST['address_zip']."\n".$_POST['address_country'],
+        'lang' => $site->language(),
       ]);
       return false;
     }
