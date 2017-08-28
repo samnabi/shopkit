@@ -103,6 +103,20 @@ fields:
         validate: integer
         label: Number of days to allow downloads
         help: Download link expires after this many days from the transaction date. Leave blank for no time limit.
+  details:
+    label: Product details
+    help: These name-value pairs are displayed as a table on the product page.
+    type: structure
+    style: table
+    fields:
+      name:
+        label: Name
+        type: text
+        width: 1/2
+      value:
+        label: Value
+        type: text
+        width: 1/2
   tags:
     label: Tags
     type: tags

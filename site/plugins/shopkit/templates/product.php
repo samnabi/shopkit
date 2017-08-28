@@ -64,6 +64,19 @@
 
 <?= $page->text()->kirbytext()->bidi() ?>
 
+<?php if ($page->details()->toStructure()->count()) { ?>
+	<table>
+		<?php foreach ($page->details()->toStructure() as $detail) { ?>
+			<tr>
+				<td>
+					<strong><?= $detail->name() ?></strong>
+				</td>
+				<td><?= $detail->value() ?></td>
+			</tr>
+		<?php } ?>
+	</table>
+<?php } ?>
+
 <?php if ($page->tags()->isNotEmpty()) { ?>
 	<ul class="menu tags" dir="auto">
 		<?php foreach (str::split($page->tags()) as $tag) { ?>
