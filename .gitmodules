@@ -37,3 +37,6 @@
 [submodule "site/plugins/dompdf"]
 	path = site/plugins/dompdf
 	url = https://github.com/samnabi/dompdf/
+[submodule "site/plugins/responsive-images"]
+	path = site/plugins/responsive-images
+	url = https://github.com/jancbeck/kirby-responsive-images
