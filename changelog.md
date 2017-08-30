@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.2
+- Update Kirby and Panel to 2.5.5
+- `(image: )` kirbytag generates responsive images
+- New features
+    - Product details table: add unlimited key-value pairs to product page
+    - Add direct download links to customer emails
+- Bug fixes
+    - Fix `non-numeric value` error when calculating cart total
+    - Fix reference to `$site` in page update hook
+
 ## v2.1
 - Moved translation files to `site/plugins/shopkit/languages`
 - Bug fixes
