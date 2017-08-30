@@ -123,7 +123,7 @@ $kirby->set('hook', 'panel.page.update', function ($page) {
     $page->update([
       'variants' => yaml::encode($variants),
       'tax' => yaml::encode($taxes)
-    ], $site->defaultLanguage()->code());
+    ], site()->defaultLanguage()->code());
 
   } catch(Exception $e) {
     return response::error($e->getMessage());
