@@ -16,7 +16,19 @@ $body .= _t('address').': '.$txn->payer_address()->value."\n\n";
 foreach ($txn->products()->toStructure() as $item) {
   $body .= $item->name()->value.' - '.$item->variant()->value;
   $body .= $item->option() == '' ? '' : ' - '.$item->option()->value;
-  $body .= "\n"._t('qty').$item->quantity()->value."\n\n";
+  $body .= "\n"._t('qty').$item->quantity()->value;
+
+  // Include download links
+  if ($downloads = $item->downloads() and $downloads->isNotEmpty() and $downloads->files()->isNotEmpty() and page($item->uri())) {
+    if ($downloads->expires()->isEmpty() or $downloads->expires()->value > time()) {
+      foreach ($downloads->files() as $file) {
+        $hash = page($item->uri())->file(substr($file, strrpos($file,'/')+1))->hash();
+        $body .= "\n"._t('download-file').': '.u($item->uri().'/'.$item->variant().'/download/'.$txn->uid().'/'.$hash);
+      }
+    }
+  }
+
+  $body .= "\n\n";
 }
 
 // Send the email
