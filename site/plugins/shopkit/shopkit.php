@@ -353,6 +353,36 @@ function updateStock($txn) {
   }
 }
 
+/**
+ * After a successful transaction, add license keys
+ *
+ * $txn page object
+ */
+
+function licenseKeys($txn) {
+  $products = $txn->products()->yaml();
+  foreach($products as $i => $item){
+    $variants = page($item['uri'])->variants()->yaml();
+    foreach ($variants as $key => $variant) {
+      // Match the right variant and make sure it wants license keys
+      if (!$variant['license_keys']) continue;
+      if (str::slug($variant['name']) !== $item['variant']) continue;
+
+      // Assign license keys
+      $num = $item['quantity'];
+      $keys = [];
+      while ($num > 0) {
+        $keys[] = bin2hex(openssl_random_pseudo_bytes(8));
+        $num--;
+      }
+      $products[$i]['license-keys'] = $keys;
+    }
+  }
+
+  // Write data back to transaction file
+  $txn->update(['products' => yaml::encode($products)], site()->defaultLanguage()->code());
+}
+
 
 /**
  * Tweak CSS colours based on site options

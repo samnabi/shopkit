@@ -103,6 +103,10 @@ fields:
         validate: integer
         label: Number of days to allow downloads
         help: Download link expires after this many days from the transaction date. Leave blank for no time limit.
+      license-keys:
+        type: checkbox
+        label: License keys
+        text: Create a license key for each purchased item
   details:
     label: Product details
     help: These name-value pairs are displayed as a table on the product page.

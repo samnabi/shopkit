@@ -85,6 +85,15 @@
                                                 <br><small><?= _t('download-expired') ?></small>
                                             <?php } ?>
                                         <?php } ?>
+
+                                        <?php if ($product->{'license-keys'}->value and in_array($order->status(), ['paid', 'shipped'])) { ?>
+                                            <p>
+                                                <small><strong><?= _t('license-keys') ?>:</strong></small>
+                                                <?php foreach ($product->{'license-keys'} as $key => $license_key) { ?>
+                                                    <small><?= $license_key ?><?php if (count($product->{'license-keys'}) - 1 !== $key) echo ' | ' ?></small>
+                                                <?php } ?>
+                                            </p>
+                                        <?php } ?>
                                     </li>
                                 <?php } ?>
                             </ul>

@@ -46,12 +46,26 @@ $html .= $p->payer_address()->kirbytext();
 $html .= '<hr>';
 
 if (strpos($p->products(),'uri:')) {
-  // Show products overview with download links
+  // Show product overview
   foreach ($p->products()->toStructure() as $product) {
       $html .= '<p>'.$product->name().'<br><small>'.$product->variant();
       $html .= $product->option()->isNotEmpty() ? ' / '.$product->option() : '';
       $html .= ' / '._t('qty').$product->quantity();
-      $html .= '</small></p>';
+      $html .= '</small>';
+
+      // Include license keys
+      if ($product->{'license-keys'}->value and in_array($p->status(), ['paid', 'shipped'])) {
+        $html .= "<br><small>"._t('license-keys').': ';
+        foreach ($product->{'license-keys'} as $key => $license_key) {
+          $html .= $license_key;
+          if (count($product->{'license-keys'}) - 1 !== $key) {
+            $html .= ' | ';
+          }
+        }
+        $html .= '</small>';
+      }
+
+      $html .= '</p>';
   }
 } else {
   // Old transaction files from Shopkit 1.0.5 and earlier

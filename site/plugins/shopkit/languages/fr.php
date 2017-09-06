@@ -238,6 +238,8 @@
 
 'filter' => 'Filtrer',
 
+'license-keys' => 'Clés de licence',
+
 
 // site/plugins/shopkit/templates/product.php
 

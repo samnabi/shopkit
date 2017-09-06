@@ -15,6 +15,9 @@
 // Update stock
 updateStock($txn);
 
+// Add License Keys
+licenseKeys($txn);
+
 // Notify staff
 $notifications = site()->notifications()->toStructure();
 if ($notifications->count()) {

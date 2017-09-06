@@ -28,6 +28,17 @@ foreach ($txn->products()->toStructure() as $item) {
     }
   }
 
+  // Include license keys
+  if ($item->{'license-keys'}->value and in_array($txn->status(), ['paid', 'shipped'])) {
+    $body .= "\n"._t('license-keys').': ';
+    foreach ($item->{'license-keys'} as $key => $license_key) {
+      $body .= $license_key;
+      if (count($item->{'license-keys'}) - 1 !== $key) {
+        $body .= ' | ';
+      }
+    }
+  }
+
   $body .= "\n\n";
 }
 
