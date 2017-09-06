@@ -13,7 +13,8 @@ $kirby->set('hook','panel.page.create', function ($page) {
 
 
 // Shrink large images on upload
-$kirby->set('hook',['panel.file.upload','panel.file.replace'], function ($file, $maxDimension = 1000) {
+$kirby->set('hook',['panel.file.upload','panel.file.replace'], function ($file) {
+  $maxDimension = c::get('shopkit.upload.maxDimension', 1000);
   try {
     if ($file->type() == 'image' and ($file->width() > $maxDimension or $file->height() > $maxDimension)) {
       
