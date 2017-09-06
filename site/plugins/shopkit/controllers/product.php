@@ -20,21 +20,22 @@ return function ($site, $pages, $page) {
 		}
 
 		// priceText
+		$saleprice = salePrice($variant);
 		if (inStock($variant)) {
 			$variant->priceText = _t('buy').' ';
-			if ($saleprice = salePrice($variant)) {
-				$variant->priceText .= formatPrice($saleprice);
-				$variant->priceText .= '<del>'.formatPrice($variant->price()->value).'</del>';
-			} else {
+			if ($saleprice === false) {
 				$variant->priceText .= formatPrice($variant->price()->value);
+			} else {
+				$variant->priceText .= formatPrice($saleprice);
+				$variant->priceText .= '<del>'.formatPrice($variant->price()->value).'</del>';				
 			}
 		} else {
 			$variant->priceText = _t('out-of-stock').' ';
-			if ($saleprice = salePrice($variant)) {
+			if ($saleprice === false) {
+				$variant->priceText .= formatPrice($variant->price()->value);
+			} else {
 				$variant->priceText .= formatPrice($saleprice);
 				$variant->priceText .= '<del>'.formatPrice($variant->price()->value).'</del>';
-			} else {
-				$variant->priceText .= formatPrice($variant->price()->value);
 			}
 		}
 

@@ -200,7 +200,7 @@ function add($id, $quantity) {
       'name' => $product->title(),
       'sku' => $variant->sku(),
       'amount' => $variant->price(),
-      'sale-amount' => salePrice($variant) ? salePrice($variant) : '',
+      'sale-amount' => salePrice($variant),
       'quantity' => updateQty($id, $quantityToAdd),
       'weight' => $variant->weight(),
       'noshipping' => $variant->noshipping(),
@@ -475,10 +475,10 @@ function salePrice($variant) {
 
   // Set vars from object
   if (gettype($variant) === 'object') {
-    $salePrice = $variant->sale_price()->value ? $variant->sale_price()->value : false;
-    $saleStart = $variant->sale_start()->value ? $variant->sale_start()->value : false;
-    $saleEnd = $variant->sale_end()->value ? $variant->sale_end()->value : false;
-    $saleCodes = $variant->sale_codes()->value ? explode(',', $variant->sale_codes()->value) : false;
+    $salePrice = $variant->sale_price()->value !== '' ? $variant->sale_price()->value : false;
+    $saleStart = $variant->sale_start()->value !== '' ? $variant->sale_start()->value : false;
+    $saleEnd = $variant->sale_end()->value !== '' ? $variant->sale_end()->value : false;
+    $saleCodes = $variant->sale_codes()->value !== '' ? explode(',', $variant->sale_codes()->value) : false;
   }
 
   // Set vars from array
@@ -491,8 +491,8 @@ function salePrice($variant) {
 
   // Check that a sale price exists and the start and end times are valid
   if ($salePrice === false) return false;
-  if ($saleStart != false and strtotime($saleStart) > time()) return false;
-  if ($saleEnd != false and strtotime($saleEnd) < time()) return false;
+  if ($saleStart !== false and strtotime($saleStart) > time()) return false;
+  if ($saleEnd !== false and strtotime($saleEnd) < time()) return false;
 
   // Check that the discount codes are valid
   if (count($saleCodes) and $saleCodes[0] != '') {
@@ -775,7 +775,7 @@ function getItems() {
 function cartSubtotal($items) {
   $subtotal = 0;
   foreach ($items as $item) {
-    $itemAmount = $item->{'sale-amount'}->isNotEmpty() ? $item->{'sale-amount'}->value : $item->amount()->value;
+    $itemAmount = $item->{'sale-amount'}->value !== false ? $item->{'sale-amount'}->value : $item->amount()->value;
     $subtotal += $itemAmount * (float) $item->quantity()->value;
   }
   return $subtotal;
@@ -811,7 +811,7 @@ function cartTax() {
     $applicableTaxes = [0];
 
     // Get taxable amount
-    $itemAmount = $item->{'sale-amount'}->isNotEmpty() ? $item->{'sale-amount'}->value : $item->amount()->value;
+    $itemAmount = $item->{'sale-amount'}->value !== false ? $item->{'sale-amount'}->value : $item->amount()->value;
     $taxableAmount = $itemAmount * (int) $item->quantity()->value;
 
     // Check for product-specific tax rules

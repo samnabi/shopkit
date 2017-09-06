@@ -23,11 +23,11 @@
 								<?php
 									$minVariant = $product->variants()->toStructure()->sortBy('price','asc')->first();
 									$minSalePrice = salePrice($minVariant);
-									if ($minSalePrice) {
+									if ($minSalePrice === false) {
+										$priceFormatted = formatPrice($minVariant->price()->value);
+									} else {
 										$priceFormatted = formatPrice($minSalePrice);
 										$priceFormatted .= '<del>'.formatPrice($minVariant->price()->value).'</del>';
-									} else {
-										$priceFormatted = formatPrice($minVariant->price()->value);
 									}
 									if ($product->variants()->toStructure()->count() > 1) {
 										$priceFormatted = _t('from').' '.$priceFormatted;

@@ -60,11 +60,11 @@
 								<button class="accent" type="submit">
 									<?= _t('buy') ?>
 									<?php
-										if ($featuredSalePrice) {
+										if ($featuredSalePrice === false) {
+											echo formatPrice($featuredPrice);
+										} else {
 											echo formatPrice($featuredSalePrice);
 											echo '<del>'.formatPrice($featuredPrice).'</del>';
-										} else {
-											echo formatPrice($featuredPrice);
 										}
 									?>
 								</button>
@@ -72,11 +72,11 @@
 								<button disabled>
 									<?= _t('out-of-stock') ?>
 									<?php
-										if ($featuredSalePrice) {
+										if ($featuredSalePrice === false) {
+											echo formatPrice($featuredPrice);
+										} else {
 											echo formatPrice($featuredSalePrice);
 											echo '<del>'.formatPrice($featuredPrice).'</del>';
-										} else {
-											echo formatPrice($featuredPrice);
 										}
 									?>
 								</button>

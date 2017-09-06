@@ -69,11 +69,11 @@
                         <td>
                             <?php
                                 // Price text
-                                if ($item->{'sale-amount'}->isNotEmpty()) {
+                                if ($item->{'sale-amount'}->value === false) {
+                                    echo formatPrice($item->amount()->value * $item->quantity()->value);
+                                } else {
                                     echo '<del class="badge">'.formatPrice($item->amount()->value * $item->quantity()->value).'</del><br>';
                                     echo formatPrice($item->{'sale-amount'}->value * $item->quantity()->value);
-                                } else {
-                                    echo formatPrice($item->amount()->value * $item->quantity()->value);
                                 }
                             ?>
                             <?php e($product->notax()->bool(),'<br><span class="badge">'._t('no-tax').'</span>') ?>
