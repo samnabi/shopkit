@@ -701,7 +701,7 @@ option + option {
 		padding: 0.2em 0.5em;
 	}
 
-	a:not(.button) {
+	a:not(.button):not(.flag) {
 		border-bottom: 2px solid $base;
 		border-top: 2px solid transparent; /* Align better with .cart button */
 		color: inherit;
@@ -719,8 +719,33 @@ option + option {
 		&.active {
 			border-bottom-color: $accent;
 		}
+	}
 
+	.cart-wrap {
+		margin: 0;
+		padding: 0;
+		white-space: nowrap;
+	}
 
+	.cart {
+		line-height: 1;
+	}
+
+	.cart > * {
+		margin-top: 0;
+		display: inline;
+		vertical-align: middle;
+	}
+
+	.flag {
+		padding: 0;
+		margin-left: 0;
+
+		img {
+			width: 1.5em;
+			display: inline-block;
+			vertical-align: middle;
+		}
 	}
 }
 

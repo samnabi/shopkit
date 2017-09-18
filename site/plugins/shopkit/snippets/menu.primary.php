@@ -11,15 +11,28 @@
       <?= _t('new-page') ?>
     </a>
   <?php } ?>
-  
-  <a class="cart button accent" href="<?= url('shop/cart') ?>" title="<?php _t('view-cart') ?>">
-    <?= f::read('site/plugins/shopkit/assets/svg/cart.svg') ?>
-    <span>
-      <?php if (page(s::get('txn'))) { ?>
-        <?= page(s::get('txn'))->products()->toStructure()->count() ?>
-      <?php } else { ?>
-        0
-      <?php } ?>
-    </span>
-  </a>
+
+  <div class="cart-wrap">
+    <a class="cart button accent" href="<?= page('shop/cart')->url() ?>" title="<?php _t('view-cart') ?>">
+      <?= f::read('site/plugins/shopkit/assets/svg/cart.svg') ?>
+      <span>
+        <?php if (page(s::get('txn'))) { ?>
+          <?= page(s::get('txn'))->products()->toStructure()->count() ?>
+        <?php } else { ?>
+          0
+        <?php } ?>
+      </span>
+    </a>
+
+    <!-- Display current country -->
+    <?php
+      $c = page('shop/countries/'.page(s::get('txn'))->country());
+      $code = $c->countrycode();
+    ?>
+    <?php if (f::exists($kirby->roots()->plugins().DS.'shopkit'.DS.'assets'.DS.'img'.DS.'flags'.DS.$code.'.png')) { ?>
+      <a class="flag" href="<?= page('shop/cart')->url() ?>">
+        <img src="<?= $site->url() ?>/assets/plugins/shopkit/img/flags/<?= $code ?>.png" alt="<?= _t('country') ?>: <?= $c->title() ?>" title="<?= _t('country') ?>: <?= $c->title() ?>">
+      </a>
+    <?php } ?>
+  </div>
 </nav>
