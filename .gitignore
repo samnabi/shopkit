@@ -33,3 +33,11 @@
 
 # Ignore CodeKit settings file
 config.codekit3
+
+# Ignore build files
+.sass-cache/
+.sublime-grunt.cache
+Gruntfile.js
+node_modules/
+package.json
+shrinkwrap.yaml
