@@ -35,20 +35,23 @@
 		
 		<p class="price" property="offers" typeof="Offer">
   		<?php
-  			$variants = $product->variants()->yaml();
+  			$variants = $product->variants()->toStructure();
 
   			foreach ($variants as $variant) {
-  				$pricelist[] = $variant['price'];
+  				$pricelist[] = $variant->price()->value;
   				$salepricelist[] = salePrice($variant);
+          $taxlist[] = itemTax($product, $variant);
   			}
 
-  			$priceFormatted = is_array($pricelist) ? formatPrice(min($pricelist)) : 0;
+        $tax = $taxlist[min(array_keys($pricelist, min($pricelist)))];
+
+        $priceFormatted = is_array($pricelist) ? formatPrice(min($pricelist) + $tax) : 0;
   			if (count($variants) > 1) $priceFormatted = _t('from').' '.$priceFormatted;
 
   			$saleprice = $salepricelist[min(array_keys($pricelist, min($pricelist)))];
 
 				if ($saleprice) {
-					echo formatPrice($saleprice);
+          echo formatPrice($saleprice + $tax);
 					echo '<del>'.$priceFormatted.'</del>';
 				} else {
 					echo $priceFormatted;

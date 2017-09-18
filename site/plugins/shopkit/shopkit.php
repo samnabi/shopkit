@@ -124,6 +124,43 @@ function formatPrice($number, $plaintext = false, $showSymbol = true) {
 
 
 /**
+ * Helper function to get the tax for a single variant
+ * This is used to display prices with tax included
+ */
+
+function itemTax($product, $variant) {
+
+  // Initialize site object
+  $site = site();
+
+  // Make sure we want to the tax to be displayed
+  if (!$site->tax_included()->bool()) return 0;
+
+  // Initialize applicable taxes array. Start with 0 so we can use max() later on.
+  $applicableTaxes = [0];
+
+  // Get taxable amount
+  $taxableAmount = salePrice($variant) !== false ? salePrice($variant) : $variant->price()->value;
+
+  // Check for product-specific tax rules
+  if ($product->tax()->exists() and $product->tax()->isNotEmpty()) {
+    $itemTaxCategories = yaml($product->tax());
+  } else {
+    $itemTaxCategories = yaml(site()->tax());
+  }
+
+  // Add applicable tax to the taxes array
+  foreach ($itemTaxCategories as $taxCategory) {
+    if (appliesToCountry($taxCategory)) {
+      $applicableTaxes[] = $taxCategory['rate'] * $taxableAmount;
+    }
+  }
+
+  // Use the highest value of the applicable taxes
+  return max($applicableTaxes);
+}
+
+/**
  * Helper function to check inventory / stock
  * Returns the number of items in stock, or TRUE if there's no stock limit.
  */
@@ -352,6 +389,7 @@ function updateStock($txn) {
     }
   }
 }
+
 
 /**
  * After a successful transaction, add license keys
@@ -746,9 +784,19 @@ function canPayLater() {
 function appliesToCountry(array $data) {
   // Get array from countries string
   $countries = explode(', ',$data['countries']);
-  
+
+  // Find the visitor's country
+  if (page(s::get('txn'))->country()->value) {
+    $c = page(s::get('txn'))->country();
+  } else {
+    $c = site()->defaultcountry();
+  }
+  if (!$c) {
+    $c = $countries->first()->uid();
+  }
+
   // Check if country is in the array
-  if(in_array(page(s::get('txn'))->country(), $countries) or in_array('all-countries', $countries)) {
+  if(in_array($c, $countries) or in_array('all-countries', $countries)) {
     return true;
   } else {
     return false;

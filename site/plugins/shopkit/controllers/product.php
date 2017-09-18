@@ -20,27 +20,18 @@ return function ($site, $pages, $page) {
 		}
 
 		// priceText
+		$variant->priceText = inStock($variant) ? _t('buy').' ' : _t('out-of-stock').' ';
 		$saleprice = salePrice($variant);
-		if (inStock($variant)) {
-			$variant->priceText = _t('buy').' ';
-			if ($saleprice === false) {
-				$variant->priceText .= formatPrice($variant->price()->value);
-			} else {
-				$variant->priceText .= formatPrice($saleprice);
-				$variant->priceText .= '<del>'.formatPrice($variant->price()->value).'</del>';				
-			}
+		$tax = itemTax($page, $variant);
+		if ($saleprice === false) {
+			$variant->priceText .= formatPrice($variant->price()->value + $tax);
 		} else {
-			$variant->priceText = _t('out-of-stock').' ';
-			if ($saleprice === false) {
-				$variant->priceText .= formatPrice($variant->price()->value);
-			} else {
-				$variant->priceText .= formatPrice($saleprice);
-				$variant->priceText .= '<del>'.formatPrice($variant->price()->value).'</del>';
-			}
+			$variant->priceText .= formatPrice($saleprice + $tax);
+			$variant->priceText .= '<del>'.formatPrice($variant->price()->value + $tax).'</del>';
 		}
 
 		// Populate SEO Description
-		$seo_description .= $variant->name().': '.formatPrice($variant->price()->value, true).' / ';
+		$seo_description .= $variant->name().': '.formatPrice($variant->price()->value + $tax, true).' / ';
 	}
 
 	// Finish SEO description

@@ -14,21 +14,20 @@
 					  			// Assign the first price
 					  			if (!$featuredVariant) {
 					  				$featuredVariant = $variant;
-					  				$featuredPrice = $variant->price()->value;
-					  				$featuredSalePrice = salePrice($variant);
 					  				continue;
 					  			}
 
 					  			// For each variant, override the price as necessary 
 					  			if ($featuredProduct->calculation() == 'low' and $variant->price()->value < $featuredPrice){
 					  				$featuredVariant = $variant;
-					  				$featuredPrice = $variant->price()->value;
-					  				$featuredSalePrice = salePrice($variant);
 					  			} else if ($featuredProduct->calculation() == 'high' and $variant->price()->value > $featuredPrice) {
 					  				$featuredVariant = $variant;
-					  				$featuredPrice = $variant->price()->value;
-					  				$featuredSalePrice = salePrice($variant);
 					  			}
+
+					  			// Save variables related to the featured variant
+					  			$featuredPrice = $featuredVariant->price()->value;
+					  			$featuredSalePrice = salePrice($featuredVariant);
+					  			$featuredTax = itemTax($product, $featuredVariant);
 					  		}
 					  	?>
 
@@ -59,28 +58,19 @@
 							<?php if (inStock($featuredVariant)) { ?>
 								<button class="accent" type="submit">
 									<?= _t('buy') ?>
-									<?php
-										if ($featuredSalePrice === false) {
-											echo formatPrice($featuredPrice);
-										} else {
-											echo formatPrice($featuredSalePrice);
-											echo '<del>'.formatPrice($featuredPrice).'</del>';
-										}
-									?>
-								</button>
 							<?php } else { ?>
 								<button disabled>
 									<?= _t('out-of-stock') ?>
-									<?php
-										if ($featuredSalePrice === false) {
-											echo formatPrice($featuredPrice);
-										} else {
-											echo formatPrice($featuredSalePrice);
-											echo '<del>'.formatPrice($featuredPrice).'</del>';
-										}
-									?>
-								</button>
 							<?php } ?>
+							<?php
+								if ($featuredSalePrice === false) {
+									echo formatPrice($featuredPrice + $featuredTax);
+								} else {
+									echo formatPrice($featuredSalePrice + $featuredTax);
+									echo '<del>'.formatPrice($featuredPrice + $featuredTax).'</del>';
+								}
+							?>
+							</button><!-- Closing tag for both regular button and out-of-stock button -->
 			      </form>
 		    	</div>
 			  	</li>

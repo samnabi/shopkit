@@ -146,6 +146,11 @@ fields:
     query:
       page: 'shop/countries'
       fetch: invisibleChildren
+  tax-included:
+    label: Include tax
+    type: checkbox
+    text: Show prices with tax included
+    help: Cart and order summaries will always display tax separately
   tab3:
     label: Payment
     type: tabs

@@ -13,7 +13,19 @@
     <?php foreach ($txn->products()->toStructure() as $product) { ?>
         <li>
             <strong><?= $product->name() ?></strong> / <?= $product->variant() ?> <?= $product->option() != '' ? '/ '.$product->option() : '' ?> / <?= _t('qty').' '.$product->quantity() ?><br>
-            <?= formatPrice($product->amount()->value) ?>
+            <?php if ($site->tax_included()->bool()) { ?>
+                <?php
+                    $p = page($product->uri());
+                    foreach ($p->variants()->toStructure() as $variant) {
+                        if ($product->variant() == str::slug($variant->name())) {
+                            $v = $variant;
+                        }
+                    }
+                ?>
+                <?= formatPrice($product->amount()->value + itemTax($p, $v)) ?>
+            <?php } else { ?>
+                <?= formatPrice($product->amount()->value) ?>
+            <?php } ?>
         </li>
     <?php } ?>
 </ul>
