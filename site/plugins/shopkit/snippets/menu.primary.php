@@ -31,7 +31,7 @@
     ?>
     <?php if (f::exists($kirby->roots()->plugins().DS.'shopkit'.DS.'assets'.DS.'img'.DS.'flags'.DS.$code.'.png')) { ?>
       <a class="flag" href="<?= page('shop/cart')->url() ?>">
-        <img src="<?= $site->url() ?>/assets/plugins/shopkit/img/flags/<?= $code ?>.png" alt="<?= _t('country') ?>: <?= $c->title() ?>" title="<?= _t('country') ?>: <?= $c->title() ?>">
+        <img src="<?= $site->url() ?>/assets/plugins/shopkit/img/flags/<?= $code ?>.png" alt="<?= _t('shipping') ?>: <?= $c->title() ?>" title="<?= _t('shipping') ?>: <?= $c->title() ?>">
       </a>
     <?php } ?>
   </div>
