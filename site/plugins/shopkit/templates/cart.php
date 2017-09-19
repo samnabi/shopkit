@@ -223,15 +223,23 @@
         </p>
     <?php } ?>
     
+    <!-- Gateway payment buttons -->
     <div class="gateways">
-        <?php if ($giftCertificate and $total == 0) { ?>
+        <?php foreach($gateways as $gateway) { ?>
+            <?php if ($gateway === 'paylater' and !canPayLater() and $total > 0) continue ?>
+            <?php if ($gateway !== 'paylater' and $total == 0) continue ?>
             <form method="post" action="<?= page('shop/cart/process')->url() ?>">
                 
-                <input type="hidden" name="gateway" value="paylater">
+                <input type="hidden" name="gateway" value="<?= $gateway ?>">
 
-                <input type="hidden" name="giftCertificateAmount" value="<?= $giftCertificate['amount'] ?>">
-                <input type="hidden" name="giftCertificateRemaining" value="<?= $giftCertificate['remaining'] ?>">
-                <input type="hidden" name="giftCertificatePaid" value="true">
+                <?php if ($giftCertificate) { ?>
+                    <input type="hidden" name="giftCertificateAmount" value="<?= $giftCertificate['amount'] ?>">
+                    <input type="hidden" name="giftCertificateRemaining" value="<?= $giftCertificate['remaining'] ?>">
+                <?php } ?>
+
+                <?php if ($total == 0) { ?>
+                    <input type="hidden" name="txnPaid" value="true">
+                <?php } ?>
 
                 <div class="forRobots">
                   <label for="subject"><?= _t('honeypot-label') ?></label>
@@ -240,46 +248,25 @@
 
                 <div>
                     <button class="accent" type="submit">
-                        <?= _t('confirm-order') ?>
-                    </button>
-                </div>
-            </form>
-        <?php } else { ?>
-            <!-- Gateway payment buttons -->
-            <?php foreach($gateways as $gateway) { ?>
-                <?php if ($gateway == 'paylater' and !canPayLater()) continue ?>
-                <form method="post" action="<?= page('shop/cart/process')->url() ?>">
-                    
-                    <input type="hidden" name="gateway" value="<?= $gateway ?>">
-
-                    <?php if ($giftCertificate) { ?>
-                        <input type="hidden" name="giftCertificateAmount" value="<?= $giftCertificate['amount'] ?>">
-                        <input type="hidden" name="giftCertificateRemaining" value="<?= $giftCertificate['remaining'] ?>">
-                    <?php } ?>
-
-                    <div class="forRobots">
-                      <label for="subject"><?= _t('honeypot-label') ?></label>
-                      <input type="text" name="subject">
-                    </div>
-
-                    <div>
-                        <button class="accent" type="submit">
+                        <?php if ($total == 0) { ?>
+                            <?= _t('confirm-order') ?>
+                        <?php } else { ?>
                             <?php if ($site->content()->get($gateway.'_logo')->isEmpty()) { ?>
                                 <?= $site->content()->get($gateway.'_text') ?>
                             <?php } else { ?>
                                 <?php if ($gateway != 'paylater') echo '<span>'._t('pay-now').'</span>'; ?>
                                 <img src="<?= $site->file($site->content()->get($gateway.'_logo'))->url()  ?>" alt="<?= $site->content()->get($gateway.'_text') ?>">
                             <?php } ?>
+                        <?php } ?>
 
-                            <?php if ($site->content()->get($gateway.'_status') == 'sandbox') { ?>
-                                <p class="notification warning">
-                                    <?= _t('sandbox-message') ?>
-                                </p>
-                            <?php } ?>
-                        </button>
-                    </div>
-                </form>
-            <?php } ?>
+                        <?php if ($site->content()->get($gateway.'_status') == 'sandbox') { ?>
+                            <p class="notification warning">
+                                <?= _t('sandbox-message') ?>
+                            </p>
+                        <?php } ?>
+                    </button>
+                </div>
+            </form>
         <?php } ?>
     </div>
 

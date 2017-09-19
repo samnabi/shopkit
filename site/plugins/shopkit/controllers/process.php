@@ -13,7 +13,7 @@ return function($site, $pages, $page) {
     $timestamp = date('U');
 
     // Set transaction status
-    if (get('giftCertificatePaid') == 'true') {
+    if (get('txnPaid') == 'true') {
       $status = 'paid';
     } else {
       $status = 'pending';
