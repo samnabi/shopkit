@@ -876,8 +876,8 @@ function cartWeight($items) {
 }
 
 function cartTax() {
-  // Initialize tax
-  $tax = 0;
+  // Initialize taxes array
+  $taxes = [];
 
   // Get site-wide tax categories
   $taxCategories = yaml(site()->tax());
@@ -903,16 +903,28 @@ function cartTax() {
     // Add applicable tax to the taxes array
     foreach ($itemTaxCategories as $taxCategory) {
       if (appliesToCountry($taxCategory)) {
-        $applicableTaxes[] = $taxCategory['rate'] * $taxableAmount;
+        $applicableTaxes[(string)$taxCategory['rate']] = $taxCategory['rate'] * $taxableAmount;
       }
     }
 
-    // Add highest applicable tax to the cart tax
-    $tax += max($applicableTaxes);
+    if (max($applicableTaxes) > 0) {
+      $tax_amt = max($applicableTaxes);
+      $tax_rate = array_keys($applicableTaxes,$tax_amt)[0];
+
+      // Add highest applicable tax to the total
+      if (!isset($taxes[$tax_amt])) {
+        $taxes[$tax_rate] = $tax_amt;
+      } else {
+        $taxes[$tax_rate] += $tax_amt;
+      }
+    }
   }
 
+  // Calculate total cart tax
+  $taxes['total'] = array_sum($taxes);
+
   // Return the total Cart tax
-  return $tax;
+  return $taxes;
 }
 
 function getShippingRates() {

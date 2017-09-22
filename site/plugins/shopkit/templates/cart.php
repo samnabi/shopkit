@@ -164,13 +164,14 @@
                     </td>
                     <td></td>
                 </tr>
-                <tr>
-                    <td colspan="2"><?= _t('tax') ?></td>
-                    <td>
-                        <?= formatPrice(cartTax()) ?>
-                    </td>
-                    <td></td>
-                </tr>
+                <?php foreach (cartTax() as $tax_rate => $tax_amt) { ?>
+                    <?php if ($tax_rate === 'total') continue; ?>
+                    <tr>
+                        <td colspan="2"><?= _t('tax') ?> <?= $tax_rate * 100 ?>%</td>
+                        <td><?= formatPrice($tax_amt) ?></td>
+                        <td></td>
+                    </tr>
+                <?php } ?>
                 <?php if ($site->gift_certificates()->toStructure()->count() > 0) { ?>
                     <tr>
                         <td colspan="2"><?= _t('gift-certificate') ?></td>
