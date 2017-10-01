@@ -28,7 +28,7 @@ return function($site, $pages, $page) {
       'subtotal' => number_format(cartSubtotal(getItems()),2,'.',''),
       'discountcode' => s::get('discountcode'),
       'discount' => number_format($discount['amount'],2,'.',''),
-      'tax' => number_format(cartTax(),2,'.',''),
+      'tax' => number_format(cartTax()['total'],2,'.',''),
       'giftcode' => s::get('giftcode'),
       'giftcertificate' => null !== get('giftCertificateAmount') ? number_format(get('giftCertificateAmount'),2,'.','') : '0.00',
     ], $site->defaultLanguage()->code());
