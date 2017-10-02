@@ -14,6 +14,10 @@
 					  			// Assign the first price
 					  			if (!$featuredVariant) {
 					  				$featuredVariant = $variant;
+					  				// Save variables related to the featured variant
+					  				$featuredPrice = $featuredVariant->price()->value;
+					  				$featuredSalePrice = salePrice($featuredVariant);
+					  				$featuredTax = itemTax($product, $featuredVariant);
 					  				continue;
 					  			}
 
