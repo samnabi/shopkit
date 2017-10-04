@@ -125,12 +125,35 @@
                                     <?= formatPrice((float)$order->shipping()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
                                 </td>
                             </tr>
-                            <tr>
-                                <td><?= _t('tax') ?></td>
-                                <td>
-                                    <?= formatPrice($order->tax()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
-                                </td>
-                            </tr>
+                            <?php if ($order->taxes()->value) { ?>
+                                <!-- List each tax rate separately -->
+                                <?php foreach ($order->taxes()->toStructure() as $key => $value) { ?>
+                                    <?php if ($key === 'total') { ?>
+                                        <?php if ($order->taxes()->toStructure()->count() > 1) { continue; } else { ?>
+                                            <tr>
+                                                <td><?= _t('tax') ?></td>
+                                                <td>
+                                                    <?= formatPrice($value->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    <?php } ?>
+                                    <tr>
+                                        <td><?= _t('tax') ?> <?= $key * 100 ?>%</td>
+                                        <td>
+                                            <?= formatPrice($value->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            <?php } else { ?>
+                                <!-- Fallback for old tax structure (single total only) -->
+                                <tr>
+                                    <td><?= _t('tax') ?></td>
+                                    <td>
+                                        <?= formatPrice($order->tax()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                             <tr>
                                 <td><strong><?= _t('total') ?></strong></td>
                                 <td>

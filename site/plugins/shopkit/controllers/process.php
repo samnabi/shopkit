@@ -29,6 +29,7 @@ return function($site, $pages, $page) {
       'discountcode' => s::get('discountcode'),
       'discount' => number_format($discount['amount'],2,'.',''),
       'tax' => number_format(cartTax()['total'],2,'.',''),
+      'taxes' => yaml::encode(cartTax()),
       'giftcode' => s::get('giftcode'),
       'giftcertificate' => null !== get('giftCertificateAmount') ? number_format(get('giftCertificateAmount'),2,'.','') : '0.00',
     ], $site->defaultLanguage()->code());

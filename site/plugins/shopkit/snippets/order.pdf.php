@@ -76,7 +76,24 @@ $html .= '<hr>';
 $html .= '<p>'._t('subtotal').': '.formatPrice($p->subtotal()->value).'</p>';
 $html .= '<p>'._t('discount').': '.formatPrice($p->discount()->value).'</p>';
 $html .= '<p>'._t('shipping').': '.formatPrice($p->shipping()->value).'</p>';
-$html .= '<p>'._t('tax').': '.formatPrice($p->tax()->value).'</p>';
+
+if ($p->taxes()->value) {
+  // List each tax rate separately
+  foreach ($p->taxes()->toStructure() as $key => $value) {
+    if ($key === 'total') {
+      if ($p->taxes()->toStructure()->count() > 1) {
+        continue;
+      } else {
+        $html .= '<p>'._t('tax').': '.formatPrice($value->value).'</p>';
+      }
+    }
+    $html .= '<p>'._t('tax').' '.($key * 100).'%: '.formatPrice($value->value).'</p>';
+  }
+} else {
+  // Fallback for old tax structure (single total only)
+  $html .= '<p>'._t('tax').': '.formatPrice($p->tax()->value).'</p>';
+}
+
 $html .= '<p><strong>'._t('total').': '.formatPrice($p->subtotal()->value+$p->shipping()->value+$p->tax()->value-$p->discount()->value).'</strong></p>';
 $html .= '<p><strong>'._t('gift-certificate').': &ndash; '.formatPrice($p->giftcertificate()->value).'</strong></p>';
 
