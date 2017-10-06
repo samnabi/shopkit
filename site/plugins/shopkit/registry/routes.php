@@ -46,20 +46,31 @@ $kirby->set('route',[
   }
 ]);
 $kirby->set('route',[
-  // Multilang slideshow
-  'pattern' => '(:any)/shop/(:all)/(:any)/slide',
-  'action' => function($lang,$category,$slug) {
-    site()->visit($category, $lang);
-    return array('shop/'.$category, array('slidePath' => 'shop/'.$category.'/'.$slug));
-  }
-]);
-$kirby->set('route',[
-  // Default lang slideshow
-  'pattern' => 'shop/(:all)/(:any)/slide',
-  'action' => function($category,$slug) {
+  // Slideshow
+  'pattern' => '(:all)/slide',
+  'action' => function($path) {
     $site = site();
-    $site->visit($category, $site->defaultLanguage()->code());
-    return array('shop/'.$category, array('slidePath' => 'shop/'.$category.'/'.$slug));
+    $shop_pos = strpos($path, 'shop/');
+
+    if ($shop_pos === false) {
+      // Page that end in /slide, if they are not a product, throw an error
+      return go('error');
+    } else if ($shop_pos === 0) {
+      // Default language
+      $lang = $site->defaultLanguage()->code();
+    } else {
+      // Multilang setup
+      $lang = substr($path, 0, $shop_pos - 1);
+      $path = substr($path, $shop_pos);
+    }
+
+    // Separate category path from rest of path
+    $last_slash_pos = strrpos($path, '/');
+    $category_path = substr($path, 0, $last_slash_pos);
+
+    // Visit the page
+    $site->visit($category_path, $lang);
+    return array($category_path, ['slidePath' => $path]); 
   }
 ]);
 $kirby->set('route',[
