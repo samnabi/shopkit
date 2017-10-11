@@ -87,7 +87,7 @@ if ($p->taxes()->value) {
         $html .= '<p>'._t('tax').': '.formatPrice($value->value).'</p>';
       }
     }
-    $html .= '<p>'._t('tax').' '.($key * 100).'%: '.formatPrice($value->value).'</p>';
+    $html .= '<p>'._t('tax').' '.((float) $key * 100).'%: '.formatPrice($value->value).'</p>';
   }
 } else {
   // Fallback for old tax structure (single total only)
