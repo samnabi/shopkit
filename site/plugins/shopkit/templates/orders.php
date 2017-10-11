@@ -139,7 +139,7 @@
                                         <?php } ?>
                                     <?php } ?>
                                     <tr>
-                                        <td><?= _t('tax') ?> <?= $key * 100 ?>%</td>
+                                        <td><?= _t('tax') ?> <?= (float) $key * 100 ?>%</td>
                                         <td>
                                             <?= formatPrice($value->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
                                         </td>
