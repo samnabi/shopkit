@@ -24,14 +24,14 @@ return function ($site, $pages, $page) {
 		$saleprice = salePrice($variant);
 		$tax = itemTax($page, $variant);
 		if ($saleprice === false) {
-			$variant->priceText .= formatPrice($variant->price()->value + $tax);
+			$variant->priceText .= formatPrice((float) $variant->price()->value + $tax);
 		} else {
 			$variant->priceText .= formatPrice($saleprice + $tax);
-			$variant->priceText .= '<del>'.formatPrice($variant->price()->value + $tax).'</del>';
+			$variant->priceText .= '<del>'.formatPrice((float) $variant->price()->value + $tax).'</del>';
 		}
 
 		// Populate SEO Description
-		$seo_description .= $variant->name().': '.formatPrice($variant->price()->value + $tax, true).' / ';
+		$seo_description .= $variant->name().': '.formatPrice((float) $variant->price()->value + $tax, true).' / ';
 	}
 
 	// Finish SEO description

@@ -25,10 +25,10 @@
 									$minSalePrice = salePrice($minVariant);
 									$minVariantTax = itemTax($product, $minVariant);
 									if ($minSalePrice === false) {
-										$priceFormatted = formatPrice($minVariant->price()->value + $minVariantTax);
+										$priceFormatted = formatPrice((float) $minVariant->price()->value + $minVariantTax);
 									} else {
 										$priceFormatted = formatPrice($minSalePrice + $minVariantTax);
-										$priceFormatted .= '<del>'.formatPrice($minVariant->price()->value + $minVariantTax).'</del>';
+										$priceFormatted .= '<del>'.formatPrice((float) $minVariant->price()->value + $minVariantTax).'</del>';
 									}
 									if ($product->variants()->toStructure()->count() > 1) {
 										$priceFormatted = _t('from').' '.$priceFormatted;
