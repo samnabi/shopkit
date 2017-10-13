@@ -94,7 +94,10 @@ if ($p->taxes()->value) {
   $html .= '<p>'._t('tax').': '.formatPrice($p->tax()->value).'</p>';
 }
 
-$html .= '<p><strong>'._t('total').': '.formatPrice((float) $p->subtotal()->value + (float) $p->shipping()->value + (float) $p->tax()->value - (float) $p->discount()->value).'</strong></p>';
+$total = (float) $p->subtotal()->value + (float) $p->shipping()->value - (float) $p->discount()->value;
+if (!$site->tax_included()->bool()) $total = $total + (float) $p->tax()->value;
+$html .= '<p><strong>'._t('total').': '.formatPrice($total).'</strong></p>';;
+
 $html .= '<p><strong>'._t('gift-certificate').': &ndash; '.formatPrice($p->giftcertificate()->value).'</strong></p>';
 
 // Load the html

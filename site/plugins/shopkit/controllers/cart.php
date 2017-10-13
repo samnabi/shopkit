@@ -94,7 +94,8 @@ return function($site, $pages, $page) {
     $discount = getDiscount();
 
     // Get cart total
-    $total = cartSubtotal(getItems()) + cartTax()['total'] + (float) page(s::get('txn'))->shipping()->value;
+    $total = cartSubtotal(getItems()) + (float) page(s::get('txn'))->shipping()->value;
+    if (!$site->tax_included()->bool()) $total = $total + cartTax()['total'];
     
     // Handle discount codes
     if ($discount) $total = $total - $discount['amount'];

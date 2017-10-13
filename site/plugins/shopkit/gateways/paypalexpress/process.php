@@ -49,7 +49,7 @@ $site = site();
 		<input type="hidden" name="shipping_1" value="<?= $txn->shipping() ?>">
 	
 		<!-- Tax -->
-		<input type="hidden" name="tax_cart" value="<?= $txn->tax() ?>">
+		<input type="hidden" name="tax_cart" value="<?= $site->tax_included()->bool() ? '0' : $txn->tax() ?>">
 
 		<!-- Transaction ID (Callback for the success page to grab the right transaction page) -->
 		<input type="hidden" name="custom" value="<?= $txn->slug() ?>">

@@ -29,7 +29,11 @@ $application_id = $site->square_status() == 'live' ? $site->square_id_live() : $
     </div>
     <div>
       <strong><?= _t('total') ?>:</strong>
-      <?php $total = $txn->subtotal()->value + $txn->shipping()->value + $txn->tax()->value - $txn->discount()->value - $txn->giftcertificate()->value ?>
+      <?php
+        // Set the total chargeable amount
+        $total = $txn->subtotal()->value + $txn->shipping()->value - $txn->discount()->value - $txn->giftcertificate()->value;
+        if (!$site->tax_included()->bool()) $total = $total + $txn->tax()->value;
+      ?>
       <?= formatPrice($total) ?> <?= $site->currency_code() ?>
     </div>
   </section>

@@ -45,13 +45,17 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
   $address->setFirstName(esc(get('sq-first-name')));
   $address->setLastName(esc(get('sq-last-name')));
 
+  // Set the total chargeable amount
+  $txn_amount = $txn->subtotal()->value + $txn->shipping()->value - $txn->discount()->value - $txn->giftcertificate()->value;
+  if (!$site->tax_included()->bool()) $txn_amount = $txn_amount + $txn->tax()->value;
+
   $request_body = [
 
     'card_nonce' => $nonce,
 
     // Monetary amounts are specified in the smallest unit of the applicable currency. (e.g. cents)
     'amount_money' => [
-      'amount' => 100 * ($txn->subtotal()->value + $txn->shipping()->value + $txn->tax()->value - $txn->discount()->value - $txn->giftcertificate()->value),
+      'amount' => 100 * $txn_amount,
       'currency' => $site->currency_code()->value
     ],
 
@@ -98,8 +102,12 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
     </p>
 
   <?php } else {
+    // Set the total chargeable amount
+    $txn_amount = $txn->subtotal()->value + $txn->shipping()->value - $txn->discount()->value - $txn->giftcertificate()->value;
+    if (!$site->tax_included()->bool()) $txn_amount = $txn_amount + $txn->tax()->value;
+
     // We need to multiply the $txn values by 100 because Square gives us the amount in cents
-    if ($charge->getTransaction()->getTenders()[0]->getAmountMoney()->getAmount() == 100 * ($txn->subtotal()->value + $txn->shipping()->value + $txn->tax()->value - $txn->discount()->value - $txn->giftcertificate()->value)) {
+    if ($charge->getTransaction()->getTenders()[0]->getAmountMoney()->getAmount() == 100 * $txn_amount) {
 
       try {
         // Build shipping address

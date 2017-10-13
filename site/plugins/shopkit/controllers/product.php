@@ -22,16 +22,15 @@ return function ($site, $pages, $page) {
 		// priceText
 		$variant->priceText = inStock($variant) ? _t('buy').' ' : _t('out-of-stock').' ';
 		$saleprice = salePrice($variant);
-		$tax = itemTax($page, $variant);
 		if ($saleprice === false) {
-			$variant->priceText .= formatPrice((float) $variant->price()->value + $tax);
+			$variant->priceText .= formatPrice((float) $variant->price()->value);
 		} else {
-			$variant->priceText .= formatPrice($saleprice + $tax);
-			$variant->priceText .= '<del>'.formatPrice((float) $variant->price()->value + $tax).'</del>';
+			$variant->priceText .= formatPrice($saleprice);
+			$variant->priceText .= '<del>'.formatPrice((float) $variant->price()->value).'</del>';
 		}
 
 		// Populate SEO Description
-		$seo_description .= $variant->name().': '.formatPrice((float) $variant->price()->value + $tax, true).' / ';
+		$seo_description .= $variant->name().': '.formatPrice((float) $variant->price()->value, true).' / ';
 	}
 
 	// Finish SEO description

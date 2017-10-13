@@ -158,7 +158,11 @@
                                 <td><strong><?= _t('total') ?></strong></td>
                                 <td>
                                     <strong>
-                                        <?= formatPrice((float) $order->subtotal()->value + (float) $order->shipping()->value + (float) $order->tax()->value - (float) $order->discount()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
+                                        <?php
+                                            $total = (float) $order->subtotal()->value + (float) $order->shipping()->value - (float) $order->discount()->value;
+                                            if (!$site->tax_included()->bool()) $total = $total + (float) $order->tax()->value;
+                                        ?>    
+                                        <?= formatPrice($total, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
                                     </strong>
                                 </td>
                             </tr>

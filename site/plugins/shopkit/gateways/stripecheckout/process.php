@@ -33,12 +33,9 @@ $stripe = [
 
 		<?php
 			// Set the total chargeable amount
-			$amount = number_format(	$txn->subtotal()->value
-															+ $txn->shipping()->value
-															+ $txn->tax()->value
-															- $txn->discount()->value
-															- $txn->giftcertificate()->value,
-																decimalPlaces($site->currency_code()), '', '');
+			$amount = $txn->subtotal()->value + $txn->shipping()->value - $txn->discount()->value - $txn->giftcertificate()->value;
+			if (!$site->tax_included()->bool()) $amount = $amount + $txn->tax()->value;
+			$amount = number_format($amount, decimalPlaces($site->currency_code()), '', '');
 		?>
 
 		<!-- Stripe Checkout form. Copied from https://stripe.com/docs/checkout/tutorial -->

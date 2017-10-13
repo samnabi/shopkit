@@ -17,7 +17,6 @@
 					  				// Save variables related to the featured variant
 					  				$featuredPrice = $featuredVariant->price()->value;
 					  				$featuredSalePrice = salePrice($featuredVariant);
-					  				$featuredTax = itemTax($product, $featuredVariant);
 					  				continue;
 					  			}
 
@@ -31,7 +30,6 @@
 					  			// Save variables related to the featured variant
 					  			$featuredPrice = $featuredVariant->price()->value;
 					  			$featuredSalePrice = salePrice($featuredVariant);
-					  			$featuredTax = itemTax($product, $featuredVariant);
 					  		}
 					  	?>
 
@@ -68,10 +66,10 @@
 							<?php } ?>
 							<?php
 								if ($featuredSalePrice === false) {
-									echo formatPrice($featuredPrice + $featuredTax);
+									echo formatPrice($featuredPrice);
 								} else {
-									echo formatPrice($featuredSalePrice + $featuredTax);
-									echo '<del>'.formatPrice($featuredPrice + $featuredTax).'</del>';
+									echo formatPrice($featuredSalePrice);
+									echo '<del>'.formatPrice($featuredPrice).'</del>';
 								}
 							?>
 							</button><!-- Closing tag for both regular button and out-of-stock button -->

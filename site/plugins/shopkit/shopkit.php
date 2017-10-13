@@ -124,43 +124,6 @@ function formatPrice($number, $plaintext = false, $showSymbol = true) {
 
 
 /**
- * Helper function to get the tax for a single variant
- * This is used to display prices with tax included
- */
-
-function itemTax($product, $variant) {
-
-  // Initialize site object
-  $site = site();
-
-  // Make sure we want to the tax to be displayed
-  if (!$site->tax_included()->bool()) return 0;
-
-  // Initialize applicable taxes array. Start with 0 so we can use max() later on.
-  $applicableTaxes = [0];
-
-  // Get taxable amount
-  $taxableAmount = salePrice($variant) !== false ? salePrice($variant) : $variant->price()->value;
-
-  // Check for product-specific tax rules
-  if ($product->tax()->exists() and $product->tax()->isNotEmpty()) {
-    $itemTaxCategories = yaml($product->tax());
-  } else {
-    $itemTaxCategories = yaml(site()->tax());
-  }
-
-  // Add applicable tax to the taxes array
-  foreach ($itemTaxCategories as $taxCategory) {
-    if (appliesToCountry($taxCategory)) {
-      $applicableTaxes[] = $taxCategory['rate'] * $taxableAmount;
-    }
-  }
-
-  // Use the highest value of the applicable taxes
-  return max($applicableTaxes);
-}
-
-/**
  * Helper function to check inventory / stock
  * Returns the number of items in stock, or TRUE if there's no stock limit.
  */
@@ -903,7 +866,13 @@ function cartTax() {
     // Add applicable tax to the taxes array
     foreach ($itemTaxCategories as $taxCategory) {
       if (appliesToCountry($taxCategory)) {
-        $applicableTaxes[(string)$taxCategory['rate']] = $taxCategory['rate'] * $taxableAmount;
+        if (site()->tax_included()->bool()) {
+          // Prices include tax
+          $applicableTaxes[(string)$taxCategory['rate']] = ($taxCategory['rate'] * $taxableAmount) / (1 + $taxCategory['rate']);
+        } else {
+          // Prices do not include tax
+          $applicableTaxes[(string)$taxCategory['rate']] = $taxCategory['rate'] * $taxableAmount;
+        }
       }
     }
 

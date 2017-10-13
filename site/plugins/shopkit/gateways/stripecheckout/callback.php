@@ -33,9 +33,13 @@ if (get('stripeToken') != '') {
   // Validate the charge against the pending order
   $txn = page('shop/orders/'.get('txn'));
 
-  // We need to multiply the $txn values by 100 because Stripe gives us the amount in cents
-  if ($charge->amount == 100 * ($txn->subtotal()->value + $txn->shipping()->value + $txn->tax()->value - $txn->discount()->value - $txn->giftcertificate()->value)) {
+  // Get the total chargeable amount
+  $amount = $txn->subtotal()->value + $txn->shipping()->value - $txn->discount()->value - $txn->giftcertificate()->value;
+  if (!$site->tax_included()->bool()) $amount = $amount + $txn->tax()->value;
 
+  // We need to multiply the $txn values by 100 because Stripe gives us the amount in cents
+  if ($charge->amount == 100 * $amount) {
+    
     // Charge validated
 
     // Set Shopkit payment status

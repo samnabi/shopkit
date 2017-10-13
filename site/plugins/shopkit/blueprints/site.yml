@@ -149,8 +149,8 @@ fields:
   tax-included:
     label: Include tax
     type: checkbox
-    text: Show prices with tax included
-    help: Cart and order summaries will always display tax separately
+    text: All taxes are included in my prices
+    help: "Taxes will be calculated using this formula: <strong>tax = (tax rate * price) / (1 + tax rate)</strong>"
   tab3:
     label: Payment
     type: tabs

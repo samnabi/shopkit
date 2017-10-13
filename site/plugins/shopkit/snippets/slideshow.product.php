@@ -58,18 +58,15 @@
         foreach ($variants as $variant) {
           $pricelist[] = $variant->price()->value;
           $salepricelist[] = salePrice($variant);
-          $taxlist[] = itemTax($product, $variant);
         }
 
-        $tax = $taxlist[min(array_keys($pricelist, min($pricelist)))];
-
-        $priceFormatted = is_array($pricelist) ? formatPrice(min($pricelist) + $tax) : 0;
+        $priceFormatted = is_array($pricelist) ? formatPrice(min($pricelist)) : 0;
         if (count($variants) > 1) $priceFormatted = _t('from').' '.$priceFormatted;
 
         $saleprice = $salepricelist[min(array_keys($pricelist, min($pricelist)))];
 
         if ($saleprice) {
-          echo formatPrice($saleprice + $tax);
+          echo formatPrice($saleprice);
           echo '<del>'.$priceFormatted.'</del>';
         } else {
           echo $priceFormatted;
