@@ -881,12 +881,34 @@ function cartTax() {
       $tax_rate = array_keys($applicableTaxes,$tax_amt)[0];
 
       // Add highest applicable tax to the total
-      if (!isset($taxes[$tax_amt])) {
-        $taxes[$tax_rate] = $tax_amt;
+      if (!isset($taxes[$tax_rate])) $taxes[$tax_rate] = 0;
+      $taxes[$tax_rate] += $tax_amt;
+    }
+  }
+
+  // Calculate tax for shipping
+  $shippingAmount = (float) page(s::get('txn'))->shipping()->value;
+  $applicableShippingTaxes = [0];
+
+  foreach ($taxCategories as $taxCategory) {
+    if (appliesToCountry($taxCategory)) {
+      if (site()->tax_included()->bool()) {
+        // Prices include tax
+        $applicableShippingTaxes[(string)$taxCategory['rate']] = ($taxCategory['rate'] * $shippingAmount) / (1 + $taxCategory['rate']);
       } else {
-        $taxes[$tax_rate] += $tax_amt;
+        // Prices do not include tax
+        $applicableShippingTaxes[(string)$taxCategory['rate']] = $taxCategory['rate'] * $shippingAmount;
       }
     }
+  }
+
+  if (max($applicableShippingTaxes) > 0) {
+    $tax_amt = max($applicableShippingTaxes);
+    $tax_rate = array_keys($applicableShippingTaxes,$tax_amt)[0];
+
+    // Add highest applicable tax to the total
+    if (!isset($taxes[$tax_rate])) $taxes[$tax_rate] = 0;
+    $taxes[$tax_rate] += $tax_amt;
   }
 
   // Calculate total cart tax
