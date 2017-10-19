@@ -6,6 +6,7 @@
  */
 $site = site();
 $logfile = __DIR__.'/ipn.log';
+$debug = $site->paypalexpress_debug()->bool();
 
 // Read POST data from input stream
 $raw_post_data = file_get_contents('php://input');
@@ -32,10 +33,10 @@ foreach ($myPost as $key => $value) {
 }
 
 // Post IPN data back to PayPal to validate the IPN data is genuine (without this step anyone can fake IPN data)
-if($paypalexpress['sandbox']) {
-  $paypal_url = $paypalexpress['url_sandbox'];
+if ($site->paypalexpress_status() == 'sandbox') {
+  $paypal_url = 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr';
 } else {
-  $paypal_url = $paypalexpress['url_live'];
+  $paypal_url = 'https://ipnpb.paypal.com/cgi-bin/webscr';
 }
 $ch = curl_init($paypal_url);
 if ($ch == FALSE) return FALSE;
@@ -52,30 +53,26 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
-if($paypalexpress['debug']) {
+if($debug) {
   curl_setopt($ch, CURLOPT_HEADER, 1);
   curl_setopt($ch, CURLINFO_HEADER_OUT, 1);
 }
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Connection: Close'));
 
-// CONFIG: Please download 'cacert.pem' from "http://curl.haxx.se/docs/caextract.html" and set the directory path
-// of the certificate as shown below. Ensure the file is readable by the webserver.
-// This is mandatory for some environments.
-
-//$cert = __DIR__ . "./cacert.pem";
-//curl_setopt($ch, CURLOPT_CAINFO, $cert);
+$cert = __DIR__ . "./cacert.pem";
+curl_setopt($ch, CURLOPT_CAINFO, $cert);
 
 $res = curl_exec($ch);
 if (curl_errno($ch) != 0) {
-  if($paypalexpress['debug']) { 
+  if($debug) { 
     error_log(date('[Y-m-d H:i e] '). "Can't connect to PayPal to validate IPN message: " . curl_error($ch) . PHP_EOL, 3, $logfile);
   }
   curl_close($ch);
   exit;
 } else {
     // Log the entire HTTP response if debug is switched on.
-    if($paypalexpress['debug']) {
+    if($debug) {
       error_log(date('[Y-m-d H:i e] '). "HTTP request of validation request:". curl_getinfo($ch, CURLINFO_HEADER_OUT) ." for IPN payload: $req" . PHP_EOL, 3, $logfile);
       error_log(date('[Y-m-d H:i e] '). "HTTP response of validation request: $res" . PHP_EOL, 3, $logfile);
     }
@@ -87,11 +84,11 @@ $tokens = explode("\r\n\r\n", trim($res));
 $res = trim(end($tokens));
 
 if (strcmp ($res, "VERIFIED") == 0) {  
-  if($paypalexpress['debug']) {
+  if($debug) {
     error_log(date('[Y-m-d H:i e] '). "Verified IPN: $req ". PHP_EOL, 3, $logfile);
   }
 } else if (strcmp ($res, "INVALID") == 0) {
-  if($paypalexpress['debug']) {
+  if($debug) {
     error_log(date('[Y-m-d H:i e] '). "Invalid IPN: $req" . PHP_EOL, 3, $logfile);
   }
 }
