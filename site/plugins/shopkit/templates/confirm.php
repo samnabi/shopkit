@@ -12,10 +12,13 @@
 <ul dir="auto" class="order-details">
     <?php foreach ($txn->products()->toStructure() as $product) { ?>
         <li>
-            <strong><?= $product->name() ?></strong> / <?= $product->variant() ?> <?= $product->option() != '' ? '/ '.$product->option() : '' ?> / <?= _t('qty').' '.$product->quantity() ?><br>
-            <?= formatPrice($product->amount()->value * $product->quantity()->value) ?>
+            <strong><?= $product->name() ?></strong> / <?= $product->variant() ?> <?= $product->option() != '' ? '/ '.$product->option() : '' ?> / <?= _t('qty').' '.$product->quantity() ?>
         </li>
     <?php } ?>
+    <li>
+        <?php $total = (float) $txn->subtotal()->value + (float) $txn->shipping()->value - (float) $txn->discount()->value; ?>
+        <strong><?= _t('total') ?>:</strong> <?= $site->currency_code() ?> <?= formatPrice($total) ?>
+    </li>
 </ul>
 
 <h2 dir="auto"><?= _t('personal-details') ?></h2>
