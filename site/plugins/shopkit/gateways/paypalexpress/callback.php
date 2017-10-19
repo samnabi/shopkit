@@ -60,7 +60,7 @@ if($debug) {
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Connection: Close'));
 
-$cert = __DIR__ . "./cacert.pem";
+$cert = __DIR__ . "/cacert.pem";
 curl_setopt($ch, CURLOPT_CAINFO, $cert);
 
 $res = curl_exec($ch);
