@@ -7,7 +7,7 @@
 'login' => 'Einloggen',
 'register' => 'Registrieren',
 
-'honeypot-label' => 'Sie dieses Feld nicht ausfüllen. (Spamschutz)',
+'honeypot-label' => 'Bitte dieses Feld nicht ausfüllen. (Spamschutz)',
 
 'email-address' => 'E-Mail Adresse',
 'first-name' => 'Vorname',
@@ -17,7 +17,7 @@
 'country-help' => 'Um die Versandkosten zu kalkulieren',
 
 'brands' => 'Marken',
-'tags' => 'Tagen',
+'tags' => 'Tags',
 
 'buy' => 'Kaufen',
 'out-of-stock' => 'Ausverkauft',
@@ -38,12 +38,12 @@
 
 // plugins/shopkit/shopkit.php
 
-'activate-account' => 'Aktiviere deinen Konto',
-'activate-message-first' => 'Ihre E-Mail-Adresse wurde verwendet, um ein Konto bei '.str_replace('www.', '', $_SERVER['HTTP_HOST']).' zu erstellen. Folgen Sie bitte den unten stehenden Link Ihr Konto zu aktivieren.',
-'activate-message-last' => 'Wenn Sie dieses Konto nicht erstellt haben, wird keine Aktion Ihrerseits erforderlich. Das Konto wird inaktiv bleiben.',
+'activate-account' => 'Aktivieren Sie Ihr Konto',
+'activate-message-first' => 'Ihre E-Mail-Adresse wurde verwendet, um ein Konto bei '.str_replace('www.', '', $_SERVER['HTTP_HOST']).' zu erstellen. Folgen Sie bitte dem unten stehenden Link, um Ihr Konto zu aktivieren.',
+'activate-message-last' => 'Wenn Sie dieses Konto nicht erstellt haben, ist keine Aktion Ihrerseits erforderlich. Das Konto wird inaktiv bleiben.',
 'reset-password' => 'Setze dein Passwort zurück',
-'reset-message-first' => 'Jemand bat um ein Zurücksetzen des Kennworts für Ihr Konto bei '.str_replace('www.', '', $_SERVER['HTTP_HOST']).'. Folgen Sie bitte den unten stehenden Link zum Zurücksetzen des Passworts.',
-'reset-message-last' => 'Wenn Sie dieses Passwort-Reset angefordert hat, wird keine Aktion Ihrerseits erforderlich.',
+'reset-message-first' => 'Jemand hat das Zurücksetzen des Passwortes für Ihr Konto bei '.str_replace('www.', '', $_SERVER['HTTP_HOST']).' angefordert. Folgen Sie bitte dem unten stehenden Link zum Zurücksetzen des Passworts.',
+'reset-message-last' => 'Wenn Sie dieses Zurücksetzen des Passwortes nicht angefordert haben, ist keine Aktion Ihrerseits erforderlich. Das Passwort wird dann nicht geändert.',
 
 
 // plugins/shopkit/snippets/cart.process.php
@@ -68,28 +68,28 @@
 'state' => 'Bundesland',
 'postal-code' => 'Postleitzahl',
 'postal-code-verify' => '(Um die Kreditkarte zu überprüfen)',
-'optional' => 'Fakultativ',
+'optional' => 'Optional',
 
 'square-error' => 'Entschuldigung, wir konnten die Zahlung nicht verarbeiten.',
 'square-card-no-charge' => 'Ihre Karte wurde nicht belastet',
 
-'try-again' => 'Versuch es noch einmal',
+'try-again' => 'Bitte versuchen Sie es noch einmal',
 
 
 // site/plugins/shopkit/snippets/header.notifications.php
 
 'notification-account' => 'Sie haben noch keine Benutzer angelegt. <a href="'.url('panel/install').'" title="Installationsseite">Benutzer anlegen</a>.',
-'notification-login' => 'Lassen Sie uns beenden Sie Ihren Shop einrichten! <a href="#user">Melden Sie</a> sich an, um fortzufahren.',
+'notification-login' => 'Lassen Sie uns Ihren Shop fertig einrichten! <a href="#user">Melden Sie</a> sich an, um fortzufahren.',
 'notification-options' => 'Sie haben noch keine Shop-Optionen angelegt. <a href="'.url('panel/options').'" title="Shop-Optionen">Währung, Versand, und Umsatzsteuer definieren</a>.',
 'notification-category' => 'Sie haben noch keine Produkt-Kategorien angelegt. <a href="'.url('panel/pages/shop/add').'" title="Kategorie anlegen">Erste Kategorie anlegen</a>.',
-'notification-product-first' => 'Sie haben noch keine Produkt angelegt. <a href="'.url('panel').'/pages/',
-'notification-product-last' => '/add" title="Produkt anlegen">Erstellen Sie Ihr erstes Produkt mit dem Armaturenbrett</a>.',
-'notification-license' => 'Dieser Shop hat keine Shopkit-Lizenz. Geben Sie den Lizenzschlüssen in der <strong>config.php</strong> Datei ein, bevor Sie die Website live schalten.',
+'notification-product-first' => 'Sie haben noch keine Produkte angelegt. <a href="'.url('panel').'/pages/',
+'notification-product-last' => '/add" title="Produkt anlegen">Erstellen Sie Ihr erstes Produkt mit dem Dashboard</a>.',
+'notification-license' => 'Dieser Shop hat keine Shopkit-Lizenz. Geben Sie den Lizenzschlüssel in der <strong>config.php</strong> Datei ein, bevor Sie die Website live schalten.',
 'notification-discount' => 'Ihr Rabatt-Code <strong><code>'.s::get('discountcode').'</code></strong> wird an der Kasse aktiviert werden.',
 'notification-giftcertificate' => 'Ihr Geschenkgutschein <strong><code>'.s::get('giftcode').'</code></strong> wird an der Kasse aktiviert werden.',
-'discount-code-help' => 'Verwenden Sie diesen Rabatt Code jedes Mal, wenn Sie sich anmelden.',
+'discount-code-help' => 'Verwenden Sie diesen Rabatt-Code jedes Mal, wenn Sie sich anmelden.',
 
-'notification-login-failed' => 'Leider können wir konnte Sie nicht anmelden in. Entweder ist das Kennwort oder E-Mail-Adresse nicht richtig ist.',
+'notification-login-failed' => 'Leider können wir Sie nicht anmelden. Entweder haben Sie Ihr Passwort oder Ihre E-Mail-Adresse fehlerhaft eingegeben.',
 
 
 // site/plugins/shopkit/snippets/header.nav.php
@@ -100,9 +100,9 @@
 // site/plugins/shopkit/snippets/header.user.php
 
 'edit-page' =>  'Seite bearbeiten',
-'dashboard' => 'Instrumententafel',
+'dashboard' => 'Dashboard',
 'site-options' =>  'Einstellungen',
-'view-orders' =>  'Bestellungen anzeigen',
+'view-orders' =>  'Bestellungen',
 'my-account' =>  'Mein Benutzerkonto',
 'logout' =>  'Ausloggen',
 
@@ -115,25 +115,25 @@
 
 
 // site/plugins/shopkit/snippets/mail.order.notify.php
-'order-notification-subject' => '['.$site->title().'] New order placed',
-'order-notification-message' => 'Jemand hat einen Auftrag von Ihrem Geschäft bei '.server::get('server_name').'. Zeigen Sie die Transaktionsdetails an:',
+'order-notification-subject' => '['.$site->title().'] Neue Bestellung',
+'order-notification-message' => 'Jemand hat eine Bestellung in Ihrem Online-Shop '.server::get('server_name')." aufgegeben.\n\nTransaktionsdetails anzeigen:",
 
 
 // site/plugins/shopkit/snippets/mail.order.update.error.php
-'order-error-subject' => '['.$site->title().'] Problem mit einer neuen Bestellung',
-'order-error-message-update' => "Die Zahlung wurde empfangen, aber etwas schief ging mit dem letzten Schritt der Transaktion.\n\n",
-'order-error-message-update-admin' => "Entweder wurden die Details des Kunden nicht gespeichert; Das Inventar wurde nicht korrekt aktualisiert; Oder die Mitarbeiterauftragsbenachrichtigung wurde nicht gesendet.\n\nZeigen Sie die Transaktionsdetails an:",
+'order-error-subject' => '['.$site->title().'] Es gab ein Problem mit einer neuen Bestellung',
+'order-error-message-update' => "Die Zahlung wurde empfangen, aber mit dem letzten Schritt der Transaktion ging etwas schief.\n\n",
+'order-error-message-update-admin' => "Entweder wurden die Details des Kunden nicht gespeichert; Das Inventar wurde nicht korrekt aktualisiert; Oder die Bestellbenachrichtigung wurde nicht gesendet.\n\nTransaktionsdetails anzeigen:",
 'order-error-message-update-customer' => 'Bitte kontaktieren Sie '.$site->title().' für weitere Details.',
 
 
 // site/plugins/shopkit/snippets/mail.order.tamper.php
-'order-error-message-tamper' => "Eine Zahlung wurde eingegangen, aber sie stimmt nicht mit der Bestellung überein.\n\nZeigen Sie die Transaktionsdetails an:",
+'order-error-message-tamper' => "Eine Zahlung wurde empfangen, aber sie stimmt nicht mit der Bestellung überein.\n\nTransaktionsdetails anzeigen:",
 
 
 // site/plugins/shopkit/snippets/mail.order.notify.status.php
 
 'order-notify-status-subject' => '['.$site->title().'] Ihre Auftragsdetails',
-'order-notify-status-message' => 'Ihre Bestellung von '.server::get('server_name').' wurde aktualisiert. Zeigen Sie die Transaktionsdetails an:',
+'order-notify-status-message' => 'Ihre Bestellung von '.server::get('server_name')." wurde aktualisiert.\n\nTransaktionsdetails anzeigen:",
 
 
 // site/plugins/shopkit/snippets/sidebar.php
@@ -161,14 +161,14 @@
 
 // site/plugins/shopkit/templates/account.php
 
-'account-success' => 'Ihre Informationen wurden aktualisiert.',
+'account-success' => 'Ihre Eingaben wurden aktualisiert.',
 'account-failure' => 'Entschuldigung, das hat nicht funktioniert. Bitte stellen Sie sicher, dass alle Informationen korrekt eingegeben wurden, insbesondere die E-Mail Adresse.',
 'account-delete-error' => 'Entschuldigung, das Benutzerkonto konnte nicht gelöscht werden.',
-'account-reset' => 'Bitte wählen Sie ein neues Passwort und stellen Sie sicher, dass Ihre Informationen sind up-to-date.',
+'account-reset' => 'Bitte wählen Sie ein neues Passwort und stellen Sie sicher, dass Ihre Informationen aktuell sind und korrekt eingegeben wurden.',
 'password-help' => 'Leerlassen um das Passwort beizubehalten',
 'update' => 'Aktualisieren',
 'delete-account' => 'Benutzerkonto löschen',
-'delete-account-text' => 'Wenn Sie auf diesen Button klicken, gibt es kein Zurück mehr. Ihr Benutzerkonto wird unumkehrbar gelöscht.',
+'delete-account-text' => 'Wenn Sie auf diesen Button klicken, wird Ihr Benutzerkonto vollständig gelöscht. Diese Aktion kann nicht rückgängig gemacht werden!',
 'delete-account-verify' => 'Benutzerkonto löschen. Ich bin mir sicher.',
 'username-no-account' => 'Der Benutzername konnte nicht geändert werden.',
 'discount-code' => 'Rabattcode',
@@ -194,14 +194,14 @@
 
 'discount' => 'Rabatt',
 'gift-certificate' => 'Geschenkgutschein',
-'code-apply' => 'Bewerben Code',
+'code-apply' => 'Anwenden',
 
 'remaining' => 'verbleibend',
 
-'no-tax' => 'Keine Steuer',
+'no-tax' => 'Steuerfrei',
 'no-shipping' => 'Kostenloser Versand',
 
-'terms-conditions' => 'Durch die Zusammenarbeit mit dieser Transaktion fortfahren, stimmen Sie den', // "Allgemeine Geschäftsbedingungen" wird als Link in der Vorlage angehängt.
+'terms-conditions' => 'Ich akzeptiere die', // "Allgemeine Geschäftsbedingungen" wird als Link in der Vorlage angehängt.
 
 
 // site/plugins/shopkit/templates/confirm.php
@@ -229,7 +229,7 @@
 'download-expired' => 'Download abgelaufen',
 'view-on-paypal' => 'Auf PayPal anzeigen',
 
-'abandoned' => 'Aufgegebener',
+'abandoned' => 'Abgebrochen',
 'pending' => 'Ausstehend',
 'paid' => 'Bezahlt',
 'shipped' => 'Verschickt',
@@ -247,18 +247,18 @@
 // site/plugins/shopkit/templates/register.php
 
 'register-success' => 'Vielen Dank, Ihr Benutzerkonto wurde registriert! Sie können sich nun <a href="#user">einloggen</a>.',
-'register-failure' => 'Entschuldigung, das hat nicht funktioniert. Bitte versuche es erneut.',
-'register-failure-email' => 'Please provide an email address.',
-'register-failure-fullname' => 'Please provide your full name.',
-'register-failure-country' => 'Please select your country.',
+'register-failure' => 'Entschuldigung, das hat nicht funktioniert. Bitte versuchen Sie es erneut.',
+'register-failure-email' => 'Bitte geben Sie Ihre E-Mail Adresse an.',
+'register-failure-fullname' => 'Bitte geben Sie Ihren vollen Namen an.',
+'register-failure-country' => 'Bitte wählen Sie Ihr Land aus.',
 'register-failure-verification' => 'Wir konnten Ihre Bestätigungs-E-Mail nicht senden. Bitte kontaktieren Sie den Verkäufer direkt, um Ihr Konto zu aktivieren.',
 'register-duplicate' => 'Entschuldigung, es gibt bereits ein Benutzerkonto mit dieser E-Mail Adresse.',
 
 
 // site/plugins/shopkit/templates/reset.php
 'reset-submit' => 'Passwort zurücksetzen',
-'reset-success' => 'Sie erhalten eine E-Mail mit Anweisungen erhalten Sie Ihr Passwort zurücksetzen.',
-'reset-error' => 'Leider konnten wir nicht das Konto finden.',
+'reset-success' => 'Sie erhalten eine E-Mail mit Anweisungen wie Sie Ihr Passwort zurücksetzen.',
+'reset-error' => 'Leider konnten wir kein Konto mit Ihrer E-Mail Adresse finden.',
 
 
 // site/plugins/shopkit/templates/search.php
