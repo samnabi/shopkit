@@ -70,19 +70,21 @@
                                             <?= $product->option()->isNotEmpty() ? ' / '.$product->option() : '' ?>
                                             <?= '/ '._t('qty').$product->quantity() ?>
                                         </small>
-                                        <?php if ($downloads = $product->downloads() and $downloads->isNotEmpty() and $downloads->files()->isNotEmpty() and page($product->uri())) { ?>
-                                            <?php if ($downloads->expires()->isEmpty() or $downloads->expires()->value > time()) { ?>
-                                                <?php foreach ($downloads->files() as $file) { ?>
-                                                    <?php $hash = page($product->uri())->file(substr($file, strrpos($file,'/')+1))->hash() ?>
-                                                    <br>
-                                                    <small>
-                                                        <a href="<?= u($product->uri().'/'.$product->variant().'/download/'.$order->uid().'/'.$hash) ?>" title="<?= $product->name() ?>">
-                                                            <?= _t('download-file') ?> [<?= substr($hash,-7) ?>]
-                                                        </a>
-                                                    </small>
+                                        <?php if (in_array($order->status(), ['paid', 'shipped'])) { ?>
+                                            <?php if ($downloads = $product->downloads() and $downloads->isNotEmpty() and $downloads->files()->isNotEmpty() and page($product->uri())) { ?>
+                                                <?php if ($downloads->expires()->isEmpty() or $downloads->expires()->value > time()) { ?>
+                                                    <?php foreach ($downloads->files() as $file) { ?>
+                                                        <?php $hash = page($product->uri())->file(substr($file, strrpos($file,'/')+1))->hash() ?>
+                                                        <br>
+                                                        <small>
+                                                            <a href="<?= u($product->uri().'/'.$product->variant().'/download/'.$order->uid().'/'.$hash) ?>" title="<?= $product->name() ?>">
+                                                                <?= _t('download-file') ?> [<?= substr($hash,-7) ?>]
+                                                            </a>
+                                                        </small>
+                                                    <?php } ?>
+                                                <?php } else { ?>
+                                                    <br><small><?= _t('download-expired') ?></small>
                                                 <?php } ?>
-                                            <?php } else { ?>
-                                                <br><small><?= _t('download-expired') ?></small>
                                             <?php } ?>
                                         <?php } ?>
 

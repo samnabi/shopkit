@@ -18,12 +18,14 @@ foreach ($txn->products()->toStructure() as $item) {
   $body .= $item->option() == '' ? '' : ' - '.$item->option()->value;
   $body .= "\n"._t('qty').$item->quantity()->value;
 
-  // Include download links
-  if ($downloads = $item->downloads() and $downloads->isNotEmpty() and $downloads->files()->isNotEmpty() and page($item->uri())) {
-    if ($downloads->expires()->isEmpty() or $downloads->expires()->value > time()) {
-      foreach ($downloads->files() as $file) {
-        $hash = page($item->uri())->file(substr($file, strrpos($file,'/')+1))->hash();
-        $body .= "\n"._t('download-file').': '.u($item->uri().'/'.$item->variant().'/download/'.$txn->uid().'/'.$hash);
+  // Include download links only if the order is paid or shipped
+  if (in_array($txn->status(), ['paid', 'shipped'])) {
+    if ($downloads = $item->downloads() and $downloads->isNotEmpty() and $downloads->files()->isNotEmpty() and page($item->uri())) {
+      if ($downloads->expires()->isEmpty() or $downloads->expires()->value > time()) {
+        foreach ($downloads->files() as $file) {
+          $hash = page($item->uri())->file(substr($file, strrpos($file,'/')+1))->hash();
+          $body .= "\n"._t('download-file').': '.u($item->uri().'/'.$item->variant().'/download/'.$txn->uid().'/'.$hash);
+        }
       }
     }
   }
