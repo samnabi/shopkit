@@ -21,17 +21,18 @@ return function($site, $pages, $page) {
 
     // Add transaction details
     $discount = getDiscount();
+    $decimal_places = decimalPlaces($site->currency_code());
     page(s::get('txn'))->update([
       'txn-date'  => $timestamp,
       'txn-currency' => $site->currency_code(),
       'status'  => $status,
-      'subtotal' => number_format(cartSubtotal(getItems()),2,'.',''),
+      'subtotal' => number_format(cartSubtotal(getItems()),$decimal_places,'.',''),
       'discountcode' => s::get('discountcode'),
-      'discount' => number_format($discount['amount'],2,'.',''),
-      'tax' => number_format(cartTax()['total'],2,'.',''),
+      'discount' => number_format($discount['amount'],$decimal_places,'.',''),
+      'tax' => number_format(cartTax()['total'],$decimal_places,'.',''),
       'taxes' => yaml::encode(cartTax()),
       'giftcode' => s::get('giftcode'),
-      'giftcertificate' => null !== get('giftCertificateAmount') ? number_format(get('giftCertificateAmount'),2,'.','') : '0.00',
+      'giftcertificate' => null !== get('giftCertificateAmount') ? number_format(get('giftCertificateAmount'),$decimal_places,'.','') : '0.00',
     ], $site->defaultLanguage()->code());
 
     // Add payer info if it's available at this point
@@ -49,7 +50,7 @@ return function($site, $pages, $page) {
       $certificates = $site->gift_certificates()->yaml();
       foreach ($certificates as $key => $certificate) {
         if (str::upper($certificate['code']) == s::get('giftcode')) {
-          $certificates[$key]['amount'] = number_format($giftCertificateRemaining,2,'.','');
+          $certificates[$key]['amount'] = number_format($giftCertificateRemaining,$decimal_places,'.','');
         }
       }
       $site->update([
