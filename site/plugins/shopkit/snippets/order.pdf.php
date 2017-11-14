@@ -9,7 +9,7 @@ $site->visit('', $lang);
 $p = page(get('uri'));
 
 // Load dompdf
-require(kirby()->roots()->plugins().'/dompdf/vendor/autoload.php');
+require(kirby()->roots()->plugins().'/dompdf/autoload.inc.php');
 
 // reference the Dompdf namespace
 use Dompdf\Dompdf;
