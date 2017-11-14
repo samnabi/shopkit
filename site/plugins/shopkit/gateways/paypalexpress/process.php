@@ -30,6 +30,7 @@ $site = site();
 		<input type="hidden" name="notify_url" value="<?= page('shop/cart/callback')->url().'/gateway:paypalexpress/id:'.$txn->slug() ?>">
 		<input type="hidden" name="business" value="<?= $site->paypalexpress_email() ?>">
 		<input type="hidden" name="currency_code" value="<?= $site->currency_code() ?>">
+		<input type="hidden" name="charset" value="utf-8"><!-- PayPal uses windows-1252 encoding by default, which doesn't support accented letters. You may also need to change your PayPal account settings to use UTF-8 -->
 
 		<!-- Cart items -->
 		<?php foreach ($txn->products()->toStructure() as $i => $item) { ?>
