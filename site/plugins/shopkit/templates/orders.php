@@ -129,7 +129,7 @@
                                 <!-- List each tax rate separately -->
                                 <?php foreach ($order->taxes()->toStructure() as $key => $value) { ?>
                                     <?php if ($key === 'total') { ?>
-                                        <?php if ($order->taxes()->toStructure()->count() > 1) { continue; } else { ?>
+                                        <?php if ($order->taxes()->toStructure()->count() === 1) { ?>
                                             <tr>
                                                 <td><?= _t('tax') ?></td>
                                                 <td>
@@ -137,13 +137,14 @@
                                                 </td>
                                             </tr>
                                         <?php } ?>
+                                    <?php } else { ?>
+                                        <tr>
+                                            <td><?= _t('tax') ?> <?= (float) $key * 100 ?>%</td>
+                                            <td>
+                                                <?= formatPrice($value->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
+                                            </td>
+                                        </tr>
                                     <?php } ?>
-                                    <tr>
-                                        <td><?= _t('tax') ?> <?= (float) $key * 100 ?>%</td>
-                                        <td>
-                                            <?= formatPrice($value->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
-                                        </td>
-                                    </tr>
                                 <?php } ?>
                             <?php } else { ?>
                                 <!-- Fallback for old tax structure (single total only) -->
