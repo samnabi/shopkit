@@ -203,8 +203,8 @@
 'no-tax' => 'Aucun taxe',
 'no-shipping' => 'Transport gratuit',
 
-'terms-conditions' => 'En continuant avec la transaction, vous acceptez les', // "Conditions" sera ajouté par le template
-
+'terms-conditions' => 'J\'accepte les', // "Conditions" sera ajouté par le template
+'terms-conditions-invalid' => 'SVP acceptez les Conditions.',
 
 // site/plugins/shopkit/templates/confirm.php
 

@@ -216,59 +216,59 @@
         </table>
     </div>
 
-    <!-- Terms and conditions -->
-    <?php if ($tc = page('shop/terms-conditions') and $tc->text()->isNotEmpty()) { ?>
-        <p dir="auto" class="notification">
-            <?= _t('terms-conditions') ?> <a href="<?= $tc->url() ?>" target="_blank"><?= $tc->title() ?></a>.
-        </p>
-    <?php } ?>
-    
-    <!-- Gateway payment buttons -->
-    <div class="gateways">
-        <?php foreach($gateways as $gateway) { ?>
-            <?php if ($gateway === 'paylater' and !canPayLater() and $total > 0) continue ?>
-            <?php if ($gateway !== 'paylater' and $total == 0) continue ?>
-            <form method="post" action="<?= page('shop/cart/process')->url() ?>">
-                
-                <input type="hidden" name="gateway" value="<?= $gateway ?>">
+    <form method="post" action="<?= page('shop/cart/process')->url() ?>">
 
-                <?php if ($giftCertificate) { ?>
-                    <input type="hidden" name="giftCertificateAmount" value="<?= $giftCertificate['amount'] ?>">
-                    <input type="hidden" name="giftCertificateRemaining" value="<?= $giftCertificate['remaining'] ?>">
-                <?php } ?>
+        <div class="forRobots">
+          <label for="subject"><?= _t('honeypot-label') ?></label>
+          <input type="text" name="subject">
+        </div>
 
-                <?php if ($total == 0) { ?>
-                    <input type="hidden" name="txnPaid" value="true">
-                <?php } ?>
-
-                <div class="forRobots">
-                  <label for="subject"><?= _t('honeypot-label') ?></label>
-                  <input type="text" name="subject">
-                </div>
-
-                <div>
-                    <button class="accent" type="submit">
-                        <?php if ($total == 0) { ?>
-                            <?= _t('confirm-order') ?>
-                        <?php } else { ?>
-                            <?php if ($site->content()->get($gateway.'_logo')->isEmpty()) { ?>
-                                <?= $site->content()->get($gateway.'_text') ?>
-                            <?php } else { ?>
-                                <?php if ($gateway != 'paylater') echo '<span>'._t('pay-now').'</span>'; ?>
-                                <img src="<?= $site->file($site->content()->get($gateway.'_logo'))->url()  ?>" alt="<?= $site->content()->get($gateway.'_text') ?>">
-                            <?php } ?>
-                        <?php } ?>
-
-                        <?php if ($site->content()->get($gateway.'_status') == 'sandbox') { ?>
-                            <p class="notification warning">
-                                <?= _t('sandbox-message') ?>
-                            </p>
-                        <?php } ?>
-                    </button>
-                </div>
-            </form>
+        <?php if ($giftCertificate) { ?>
+            <input type="hidden" name="giftCertificateAmount" value="<?= $giftCertificate['amount'] ?>">
+            <input type="hidden" name="giftCertificateRemaining" value="<?= $giftCertificate['remaining'] ?>">
         <?php } ?>
-    </div>
+
+        <?php if ($total == 0) { ?>
+            <input type="hidden" name="txnPaid" value="true">
+        <?php } ?>
+
+        <!-- Terms and conditions -->
+        <?php if ($tc = page('shop/terms-conditions') and $tc->text()->isNotEmpty()) { ?>
+            <label dir="auto" id="tac">
+                <?php if (param('valid') === 'false') { ?>
+                    <p class="notification warning"><?= _t('terms-conditions-invalid') ?></p>
+                <?php } ?>
+                <input type="checkbox" name="tac" value="agree" required>
+                <?= _t('terms-conditions') ?> <a href="<?= $tc->url() ?>" target="_blank"><?= $tc->title() ?></a>.
+            </label>
+        <?php } ?>
+    
+        <!-- Gateway payment buttons -->
+        <div class="gateways">
+            <?php foreach($gateways as $gateway) { ?>
+                <?php if ($gateway === 'paylater' and !canPayLater() and $total > 0) continue ?>
+                <?php if ($gateway !== 'paylater' and $total == 0) continue ?>
+                <button class="accent" type="submit" name="gateway" value="<?= $gateway ?>">
+                    <?php if ($total == 0) { ?>
+                        <?= _t('confirm-order') ?>
+                    <?php } else { ?>
+                        <?php if ($site->content()->get($gateway.'_logo')->isEmpty()) { ?>
+                            <?= $site->content()->get($gateway.'_text') ?>
+                        <?php } else { ?>
+                            <?php if ($gateway != 'paylater') echo '<span>'._t('pay-now').'</span>'; ?>
+                            <img src="<?= $site->file($site->content()->get($gateway.'_logo'))->url()  ?>" alt="<?= $site->content()->get($gateway.'_text') ?>">
+                        <?php } ?>
+                    <?php } ?>
+
+                    <?php if ($site->content()->get($gateway.'_status') == 'sandbox') { ?>
+                        <p class="notification warning">
+                            <?= _t('sandbox-message') ?>
+                        </p>
+                    <?php } ?>
+                </button>
+            <?php } ?>
+        </div>
+    </form>
 
     <?= js('assets/plugins/shopkit/js/ajax-helpers.min.js') ?>
     <?= js('assets/plugins/shopkit/js/cart.min.js') ?>

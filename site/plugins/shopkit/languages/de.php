@@ -202,6 +202,7 @@
 'no-shipping' => 'Kostenloser Versand',
 
 'terms-conditions' => 'Ich akzeptiere die', // "Allgemeine Geschäftsbedingungen" wird als Link in der Vorlage angehängt.
+'terms-conditions-invalid' => 'Bitte akzeptieren Sie die Allgemeinen Geschäftsbedingungen.',
 
 
 // site/plugins/shopkit/templates/confirm.php

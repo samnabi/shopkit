@@ -202,7 +202,8 @@
 'no-tax' => 'No tax',
 'no-shipping' => 'Free shipping',
 
-'terms-conditions' => 'By continuing with this transaction, you agree to the', // "Terms and Conditions" is appended as a link in the template.
+'terms-conditions' => 'I accept the', // "Terms and Conditions" is appended as a link in the template.
+'terms-conditions-invalid' => 'Please accept the Terms and Conditions.',
 
 
 // site/plugins/shopkit/templates/confirm.php

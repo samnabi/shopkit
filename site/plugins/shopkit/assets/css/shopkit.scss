@@ -1501,10 +1501,19 @@ a.slideshow {
 	}
 }
 
+#tac {
+	text-align: right;
+
+	p {
+		display: inline-block;
+		margin-right: 1em;
+	}
+}
+
 .gateways {
 	text-align: right;
 
-	form {
+	button {
 		vertical-align: top;
 		display: inline-block;
 		max-width: 15em;

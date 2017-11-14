@@ -6,7 +6,12 @@ return function($site, $pages, $page) {
     // POST request from the Cart page
 
     // Honeypot trap for robots
-    if(get('subject') != '') go(page('error')->url());
+    if (get('subject') != '') go(page('error')->url());
+
+    // Validate terms and conditions checkbox
+    if ($tc = page('shop/terms-conditions') and $tc->text()->isNotEmpty() and get('tac') !== 'agree') {
+      go(page('shop/cart')->url().'/valid:false/#tac');
+    }
 
     // Set up variables
     $user = $site->user();
