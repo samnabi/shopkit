@@ -74,8 +74,8 @@ An Apache or Nginx server running PHP 5.4+. Your PHP configuration must have the
 
 Shopkit also depends on these submodules:
 
-- Kirby Core [2.5.5](https://github.com/getkirby/kirby)
-- Kirby Panel [2.5.5](https://github.com/getkirby/panel)
+- Kirby Core [2.5.7](https://github.com/getkirby/kirby)
+- Kirby Panel [2.5.7](https://github.com/getkirby/panel)
 - Stripe PHP SDK [v5.1.1](https://github.com/stripe/stripe-php)
 - Square Connect SDK [2.0.2](https://github.com/square/connect-php-sdk)
 - Multiselect field [2.1.1](https://github.com/distantnative/field-multiselect)

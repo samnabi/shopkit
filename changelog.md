@@ -1,5 +1,26 @@
 # Changelog
 
+## v2.3
+- Update Kirby and Panel to 2.5.7
+- Update dompdf dependency
+- Improved German translation (danke @andreasfehn)
+- Config option to override maximum image upload size
+- New features
+    - Tax-inclusive pricing
+    - License keys
+    - Add checkbox with validation to terms and conditions notice on the Cart page
+    - Allow $0 sale price
+    - Skip gateways when cart total is $0
+- Bug fixes
+    - Add HTTPS certificate and update IPN endpoints for PayPal
+    - Set utf-8 encoding when submitting PayPal IPN call
+    - Hide download links unless the transaction is paid or shipped
+    - Remove ability to disable the Pay Later gateway (it was causing problems with gift card / discount code purchases)
+    - Ensure the transaction file records the correct number of decimal places depending on currency in Site Options
+    - Fix duplicate tax summary display issue on Orders page
+    - Fix slideshow issues with products in the shop root
+    - Ensure long hex codes are in compiled CSS file (short hex codes won't be picked up by Shopkit's themeing functions)
+
 ## v2.2
 - Update Kirby and Panel to 2.5.5
 - `(image: )` kirbytag generates responsive images
