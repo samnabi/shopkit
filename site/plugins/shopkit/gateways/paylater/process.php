@@ -11,7 +11,7 @@ $user = $site->user();
 
   if ($user and $user->email() != '') {
     // Email is already set
-    go(page('shop/cart/callback')->url().'/gateway:paylater/id:'.$txn->txn_id());
+    go(page('shop/cart/callback')->url().'/gateway'.url::paramSeparator().'paylater/id'.url::paramSeparator().$txn->txn_id());
   } else {
     // Get email so we can send customer notifications
     ?>
@@ -33,7 +33,7 @@ $user = $site->user();
 
         <img src="<?= $site->logo()->toFile()->url() ?>" alt="">
 
-        <form method="post" action="<?= page('shop/cart/callback')->url().'/gateway:paylater/id:'.$txn->txn_id() ?>">
+        <form method="post" action="<?= page('shop/cart/callback')->url().'/gateway'.url::paramSeparator().'paylater/id'.url::paramSeparator().$txn->txn_id() ?>">
             
             <label for="payer_email"><?= _t('email') ?></label>
             <input autofocus required type="email" name="payer_email" value="">

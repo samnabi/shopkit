@@ -22,7 +22,7 @@ $kirby->set('route',[
     if($user = $site->users()->findBy('email',get('email')) and $user->login(get('password'))) {
       return go($redirect);
     } else {
-      return page($redirect)->isHomePage() ? go('/login:failed#login') : go($redirect.'/login:failed#login');
+      return page($redirect)->isHomePage() ? go('/login'.url::paramSeparator().'failed/#login') : go($redirect.'/login'.url::paramSeparator().'failed/#login');
     }
   }
 ]);

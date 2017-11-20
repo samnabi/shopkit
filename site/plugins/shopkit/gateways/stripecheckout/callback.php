@@ -65,7 +65,7 @@ if (get('stripeToken') != '') {
       ]);
 
       // Continue to confirmation
-      go(page('shop/confirm')->url().'/id:'.$txn->txn_id().'?payer_email='.$customer->email);
+      go(page('shop/confirm')->url().'/id'.url::paramSeparator().$txn->txn_id().'?payer_email='.$customer->email);
 
     } catch(Exception $e) {
       // Updates or notification failed

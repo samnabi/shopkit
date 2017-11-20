@@ -39,7 +39,7 @@ $stripe = [
 		?>
 
 		<!-- Stripe Checkout form. Copied from https://stripe.com/docs/checkout/tutorial -->
-		<form action="<?= page('shop/cart/callback')->url().'/gateway:stripecheckout/id:'.$txn->txn_id() ?>" method="POST">
+		<form action="<?= page('shop/cart/callback')->url().'/gateway'.url::paramSeparator().'stripecheckout/id'.url::paramSeparator().$txn->txn_id() ?>" method="POST">
 		  <script
 		    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 		    data-key="<?= $stripe['publishable_key'] ?>"

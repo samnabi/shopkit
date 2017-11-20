@@ -10,7 +10,7 @@ return function($site, $pages, $page) {
 
     // Validate terms and conditions checkbox
     if ($tc = page('shop/terms-conditions') and $tc->text()->isNotEmpty() and get('tac') !== 'agree') {
-      go(page('shop/cart')->url().'/valid:false/#tac');
+      go(page('shop/cart')->url().'/valid'.url::paramSeparator().'false/#tac');
     }
 
     // Set up variables
@@ -64,7 +64,7 @@ return function($site, $pages, $page) {
     }
 
     // Redirect to self with GET, passing along the gateway and order ID as URL parameters
-    go($page->url().'/gateway:'.get('gateway').'/id:'.page(s::get('txn'))->txn_id());
+    go($page->url().'/gateway'.url::paramSeparator().get('gateway').'/id'.url::paramSeparator().page(s::get('txn'))->txn_id());
 
   } else {
     // GET request. Gateway-specific.

@@ -172,7 +172,7 @@ $application_id = $site->square_status() == 'live' ? $site->square_id_live() : $
     </div>
 
     <!-- After the SqPaymentForm generates a card nonce, *this* form POSTs the generated card nonce to your application's server. You should replace the action attribute of the form with the path of the URL you want to POST the nonce to (for example, "/process-card") -->
-    <form id="nonce-form" novalidate action="<?= page('shop/cart/callback')->url().'/gateway:square/id:'.$txn->txn_id() ?>" method="post">
+    <form id="nonce-form" novalidate action="<?= page('shop/cart/callback')->url().'/gateway'.url::paramSeparator().'square/id'.url::paramSeparator().$txn->txn_id() ?>" method="post">
       <!-- Whenever a nonce is generated, it's assigned as the value of this hidden input field. -->
       <input type="hidden" id="card-nonce" name="nonce">
 

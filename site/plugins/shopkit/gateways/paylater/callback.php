@@ -50,6 +50,6 @@ try {
 }
 
 // Go to confirm page
-go(page('shop/confirm')->url().'/id:'.$txn->txn_id());
+go(page('shop/confirm')->url().'/id'.url::paramSeparator().$txn->txn_id());
 
 ?>

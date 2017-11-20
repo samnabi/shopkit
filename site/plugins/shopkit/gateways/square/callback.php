@@ -139,7 +139,7 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
         ]);
 
         // Continue to confirmation
-        go(page('shop/confirm')->url().'/id:'.$txn->txn_id());
+        go(page('shop/confirm')->url().'/id'.url::paramSeparator().$txn->txn_id());
 
       } catch(Exception $e) {
         // Updates or notification failed
