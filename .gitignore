@@ -41,3 +41,5 @@ Gruntfile.js
 node_modules/
 package.json
 shrinkwrap.yaml
+*.sublime-project
+*.sublime-workspace
