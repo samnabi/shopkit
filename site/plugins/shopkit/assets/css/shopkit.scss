@@ -42,6 +42,7 @@ body, br, th, td, option {
 $base: rgba(0,0,0,0.08);
 $baseDark: rgba(0,0,0,0.15);
 $baseDarker: rgba(0,0,0,0.3);
+$baseDarkest: rgba(0,0,0,0.6);
 
 $lighten: rgba(255,255,255,0.5);
 
@@ -545,6 +546,15 @@ textarea {
 	padding: 0.2em 0.5em; /* Fallback */
 	padding: calc(0.2em + 1px) 0.5em;
 	width: 15em;
+	max-width: 100%;
+
+	&.short {
+		width: 10em;
+	}
+
+	&:focus {
+		border-color: $accent;
+	}
 }
 
 textarea {
@@ -553,6 +563,12 @@ textarea {
 
 input[disabled] {
 	background-color: $base;
+}
+
+input[readonly] {
+	border: none;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 form button,
@@ -567,10 +583,29 @@ label {
 label > span {
 	font-size: $text-s;
 	display: block; 
+
+	&.help {
+		margin-top: 0;
+		color: $baseDarkest;
+	}
+}
+@media (min-width: 40em) {
+	.inline label {
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 1em;
+		margin-right: 1em;
+	}
 }
 
 option + option {
 	margin-top: 0;
+}
+
+fieldset {
+	border: 0;
+	padding: 0;
+	margin-bottom: 3em;
 }
 
 // Honeypot field
@@ -638,7 +673,6 @@ option + option {
 		text-align: left;
 		right: 1em;
 		background-color: white;
-		border: 2px solid $accent;
 		padding: 0 1em;
 		z-index: 2;
 
@@ -663,6 +697,7 @@ option + option {
 
 .animate .login form {
 	position: absolute;
+	border: 2px solid $accent; /* For some reason border height is included in the document flow, causing a jump when the .animate is applied. So we're waiting until the form is removed from document flow to add the border. */
 }
 
 /**
@@ -1502,8 +1537,6 @@ a.slideshow {
 }
 
 #tac {
-	text-align: right;
-
 	p {
 		display: inline-block;
 		margin-right: 1em;
@@ -1511,13 +1544,12 @@ a.slideshow {
 }
 
 .gateways {
-	text-align: right;
 
 	button {
 		vertical-align: top;
 		display: inline-block;
 		max-width: 15em;
-		margin: 0 0 0 1em;
+		margin-right: 1em;
 
 		img {
 			max-height: 2.5em;
@@ -1641,7 +1673,7 @@ a.slideshow {
 	border-bottom: 2px solid $accent;
 	padding-bottom: 1em;
 
-	div + div {
+	&>* + * {
 		margin-top: 0;
 	}
 }
@@ -1698,8 +1730,6 @@ a.slideshow {
 
 #sq-card {
 	margin: 2em 0;
-	padding-bottom: 2em;
-	border-bottom: 2px solid $base;
 
 	.card {
 		background-position: top -2px right 1em;
@@ -1709,7 +1739,6 @@ a.slideshow {
 		max-width: 18em; /* Roughly twice the height, to approximate the ratio of a credit card */
 	}
 }
-
 
 @media (min-width: 30em) {
 	#sq-card {
@@ -1736,31 +1765,4 @@ a.slideshow {
 #sq-card.discover .card {
 	background-image: url('/assets/plugins/shopkit/img/discover.png');
 	background-color: #FEF4EB;
-}
-
-
-
-#nonce-form {
-	fieldset {
-		border: 0;
-		padding: 0;
-	}
-	
-	label:first-child {
-		margin-top: 1em;
-	}
-}
-
-@media (min-width: 40em) {
-	#nonce-form {
-		display: flex;
-
-		label:first-child {
-			margin-top: 0;
-		}
-
-		fieldset + fieldset {
-			margin-left: 2em;
-		}
-	}
 }

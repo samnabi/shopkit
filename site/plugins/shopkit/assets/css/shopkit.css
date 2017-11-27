@@ -192,19 +192,27 @@ button[aria-expanded="false"] + * { -ms-filter: "progid:DXImageTransform.Microso
 /** Forms  */
 input, button, .button, textarea { font-size: 1em; line-height: 1.6; max-width: 100%; }
 
-input[type="text"], input[type="email"], input[type="password"], textarea { background-color: white; border: 1px solid rgba(0, 0, 0, 0.15); padding: 0.2em 0.5em; /* Fallback */ padding: calc(0.2em + 1px) 0.5em; width: 15em; }
+input[type="text"], input[type="email"], input[type="password"], textarea { background-color: white; border: 1px solid rgba(0, 0, 0, 0.15); padding: 0.2em 0.5em; /* Fallback */ padding: calc(0.2em + 1px) 0.5em; width: 15em; max-width: 100%; }
+input[type="text"].short, input[type="email"].short, input[type="password"].short, textarea.short { width: 10em; }
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus { border-color: #00a8e6; }
 
 textarea { min-height: 10em; }
 
 input[disabled] { background-color: rgba(0, 0, 0, 0.08); }
+
+input[readonly] { border: none; padding-left: 0; padding-right: 0; }
 
 form button, form input[type="submit"] { display: block; margin-top: 1.6em; }
 
 label { display: block; }
 
 label > span { font-size: 12.8px; font-size: 0.8rem; display: block; }
+label > span.help { margin-top: 0; color: rgba(0, 0, 0, 0.6); }
 
+@media (min-width: 40em) { .inline label { display: inline-block; vertical-align: top; margin-top: 1em; margin-right: 1em; } }
 option + option { margin-top: 0; }
+
+fieldset { border: 0; padding: 0; margin-bottom: 3em; }
 
 .forRobots { visibility: hidden; z-index: -1; position: absolute; }
 
@@ -221,12 +229,12 @@ option + option { margin-top: 0; }
 .login { text-align: right; }
 .login .notification { text-align: left; }
 .login > button[aria-expanded] { font-size: 12.8px; font-size: 0.8rem; }
-.login form { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; text-align: left; right: 1em; background-color: white; border: 2px solid #00a8e6; padding: 0 1em; z-index: 2; }
+.login form { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; text-align: left; right: 1em; background-color: white; padding: 0 1em; z-index: 2; }
 .login form input { width: 100%; }
 .login ul { padding-left: 0; text-align: center; width: 100%; }
 .login ul li { margin-top: 0; display: inline-block; font-size: 12.8px; font-size: 0.8rem; margin: 0 0.5em; }
 
-.animate .login form { position: absolute; }
+.animate .login form { position: absolute; border: 2px solid #00a8e6; /* For some reason border height is included in the document flow, causing a jump when the .animate is applied. So we're waiting until the form is removed from document flow to add the border. */ }
 
 /** Admin menu  */
 .user { margin-bottom: 1em; border-bottom: 2px solid rgba(0, 0, 0, 0.08); display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; width: 100%; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
@@ -407,11 +415,9 @@ a.slideshow .description .price { color: #00a8e6; margin-top: 1em; margin-bottom
   .checkout tfoot tr td { width: auto; }
   .checkout tfoot tr td:first-child { text-align: right; }
   .checkout tfoot tr td:last-child .discount { text-align: left; } }
-#tac { text-align: right; }
 #tac p { display: inline-block; margin-right: 1em; }
 
-.gateways { text-align: right; }
-.gateways button { vertical-align: top; display: inline-block; max-width: 15em; margin: 0 0 0 1em; }
+.gateways button { vertical-align: top; display: inline-block; max-width: 15em; margin-right: 1em; }
 .gateways button img { max-height: 2.5em; max-width: 100%; display: block; margin: 0 auto; padding: 0 0.5em 0.5em; }
 .gateways button .notification { font-size: 12.8px; font-size: 0.8rem; color: black; margin: 0 -8px -3.2px; margin: 0 -0.5rem -0.2rem; }
 
@@ -440,7 +446,7 @@ a.slideshow .description .price { color: #00a8e6; margin-top: 1em; margin-bottom
 .gateway .logo img { max-width: 5em; }
 
 .txn-summary { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; border-bottom: 2px solid #00a8e6; padding-bottom: 1em; }
-.txn-summary div + div { margin-top: 0; }
+.txn-summary > * + * { margin-top: 0; }
 
 #sq-card label, #sq-card iframe { display: block; }
 #sq-card iframe { margin-top: 0; }
@@ -454,7 +460,7 @@ a.slideshow .description .price { color: #00a8e6; margin-top: 1em; margin-bottom
 #sq-card .exp-cvv { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; }
 #sq-card .exp-cvv div { margin-top: 0; }
 
-#sq-card { margin: 2em 0; padding-bottom: 2em; border-bottom: 2px solid rgba(0, 0, 0, 0.08); }
+#sq-card { margin: 2em 0; }
 #sq-card .card { background-position: top -2px right 1em; background-size: auto 2em; background-repeat: no-repeat; border: 1px solid rgba(0, 0, 0, 0.08); max-width: 18em; /* Roughly twice the height, to approximate the ratio of a credit card */ }
 
 @media (min-width: 30em) { #sq-card { display: -webkit-box; display: -ms-flexbox; display: flex; } }
@@ -467,12 +473,5 @@ a.slideshow .description .price { color: #00a8e6; margin-top: 1em; margin-bottom
 #sq-card.americanExpress .card { background-image: url("/assets/plugins/shopkit/img/amex.png"); background-color: #E6F5FC; }
 
 #sq-card.discover .card { background-image: url("/assets/plugins/shopkit/img/discover.png"); background-color: #FEF4EB; }
-
-#nonce-form fieldset { border: 0; padding: 0; }
-#nonce-form label:first-child { margin-top: 1em; }
-
-@media (min-width: 40em) { #nonce-form { display: -webkit-box; display: -ms-flexbox; display: flex; }
-  #nonce-form label:first-child { margin-top: 0; }
-  #nonce-form fieldset + fieldset { margin-left: 2em; } }
 
 /*# sourceMappingURL=shopkit.css.map */
