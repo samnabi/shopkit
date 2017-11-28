@@ -206,6 +206,9 @@
 'terms-conditions' => 'J\'accepte les', // "Conditions" sera ajouté par le template
 'terms-conditions-invalid' => 'SVP acceptez les Conditions.',
 
+'country-shipping-help' => 'Sélectionnez parmi les options de transport ci-dessus',
+
+
 // site/plugins/shopkit/templates/confirm.php
 
 'order-details' => 'Détails de la commande',

@@ -10,7 +10,6 @@ $kirby->set('blueprint', 'fields/wysiwyg',        __DIR__.DS.'..'.DS.'blueprints
 // Register blueprints
 $kirby->set('blueprint', 'cart',      __DIR__.DS.'..'.DS.'blueprints'.DS.'cart.yml');
 $kirby->set('blueprint', 'category',  __DIR__.DS.'..'.DS.'blueprints'.DS.'category.yml');
-$kirby->set('blueprint', 'confirm',   __DIR__.DS.'..'.DS.'blueprints'.DS.'confirm.yml');
 $kirby->set('blueprint', 'contact',   __DIR__.DS.'..'.DS.'blueprints'.DS.'contact.yml');
 $kirby->set('blueprint', 'countries', __DIR__.DS.'..'.DS.'blueprints'.DS.'countries.yml');
 $kirby->set('blueprint', 'country',   __DIR__.DS.'..'.DS.'blueprints'.DS.'country.yml');

@@ -3,34 +3,13 @@
 // Set transaction
 $txn = page('shop/orders/'.param('id'));
 
-// Set email if available
-if (get('payer_email') != '') {
-  try {
-    // Update transaction record
-    $txn->update([
-      'payer-email' => get('payer_email'),
-    ], $site->defaultLanguage()->code());
-  } catch(Exception $e) {
-    // $txn->update() failed
-    snippet('mail.order.update.error', [
-      'txn' => $txn,
-      'payment_status' => 'pending',
-      'payer_name' => $txn->payer_name(),
-      'payer_email' => get('payer_email'),
-      'payer_address' => $txn->payer_email(),
-      'lang' => $site->language(),
-    ]);
-    return false;
-  }
-}
-
 try {
   // Update stock and notify staff
   snippet('order.callback', [
     'txn' => $txn,
     'status' => 'pending',
     'payer_name' => $txn->payer_name(),
-    'payer_email' => get('payer_email') != '' ? get('payer_email') : $txn->payer_email(),
+    'payer_email' => $txn->payer_email(),
     'payer_address' => $txn->payer_address(),
     'lang' => $site->language(),
   ]);
@@ -40,7 +19,7 @@ try {
     'txn' => $txn,
     'payment_status' => 'pending',
     'payer_name' => $txn->payer_name(),
-    'payer_email' => get('payer_email') != '' ? get('payer_email') : $txn->payer_email(),
+    'payer_email' => $txn->payer_email(),
     'payer_address' => $txn->payer_address(),
     'lang' => $site->language(),
   ]);
@@ -49,7 +28,7 @@ try {
   go(page('shop/cart')->url());
 }
 
-// Go to confirm page
-go(page('shop/confirm')->url().'/id'.url::paramSeparator().$txn->txn_id());
+// Continue to order summary
+go(page('shop/orders')->url().'?txn_id='.$txn->txn_id());
 
 ?>

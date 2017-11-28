@@ -204,6 +204,8 @@
 'terms-conditions' => 'Acepto los', // "Terms and Conditions" is appended as a link in the template.
 'terms-conditions-invalid' => 'Por favor acepte los Términos y Condiciones.',
 
+'country-shipping-help' => 'Seleccione entre las opciones de envío anteriores',
+
 
 // site/plugins/shopkit/templates/confirm.php
 

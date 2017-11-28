@@ -1,9 +1,7 @@
 <?php
-// If session has expired, start over
-if (!s::get('txn')) go(page('shop/cart')->url());
-
 // Set variables
-$txn = page(s::get('txn'));
+$site = site();
+$shipping = $txn->shipping_address()->toStructure();
 
 /**
  * Variables passed from /shop/cart/process/GATEWAY/TXN_ID
@@ -16,204 +14,202 @@ require_once('connect-php-sdk/autoload.php');
 
 // Get Application ID
 $application_id = $site->square_status() == 'live' ? $site->square_id_live() : $site->square_id_sandbox();
-
 ?>
-<?php snippet('header', ['site' => $site, 'page' => page('shop/cart')]) ?>
-<div class="wrapper-main">
-<main class="gateway">
-  <?php snippet('logo', ['site' => $site]) ?>
-  <section class="txn-summary">
-    <div>
-      <strong><?= _t('transaction-id') ?>:</strong>
-      <?= $txn->txn_id() ?>
-    </div>
-    <div>
-      <strong><?= _t('total') ?>:</strong>
-      <?php
-        // Set the total chargeable amount
-        $total = $txn->subtotal()->value + $txn->shipping()->value - $txn->discount()->value - $txn->giftcertificate()->value;
-        if (!$site->tax_included()->bool()) $total = $total + $txn->tax()->value;
-      ?>
-      <?= formatPrice($total) ?> <?= $site->currency_code() ?>
-    </div>
-  </section>
-  	<script type="text/javascript" src="https://js.squareup.com/v2/paymentform"></script>
-  	<script>
-	  	var applicationId = <?= "'".$application_id."'" ?>; // <-- Add your application's ID here
 
-	  	// You can delete this 'if' statement. It's here to notify you that you need to provide your application ID.
-	  	if (applicationId == '') {
-	  	  alert('You need to provide a value for the applicationId variable.');
-	  	}
+<script type="text/javascript" src="https://js.squareup.com/v2/paymentform"></script>
+<script>
+	var applicationId = <?= "'".$application_id."'" ?>; // <-- Add your application's ID here
 
-	  	// Initializes the payment form. See the documentation for descriptions of each of these parameters.
-	  	var paymentForm = new SqPaymentForm({
-	  	  applicationId: applicationId,
-	  	  inputClass: 'sq-input',
-	  	  inputStyles: [
-	  	    {
-	  	      fontSize: '15px'
-	  	    }
-	  	  ],
-	  	  cardNumber: {
-	  	    elementId: 'sq-card-number',
-	  	    placeholder: '•••• •••• •••• ••••'
-	  	  },
-	  	  cvv: {
-	  	    elementId: 'sq-cvv',
-	  	    placeholder: 'CVV'
-	  	  },
-	  	  expirationDate: {
-	  	    elementId: 'sq-expiration-date',
-	  	    placeholder: 'MM/YY'
-	  	  },
-	  	  postalCode: {
-	  	    elementId: 'sq-postal-code'
-	  	  },
-	  	  callbacks: {
+	// You can delete this 'if' statement. It's here to notify you that you need to provide your application ID.
+	if (applicationId == '') {
+	  alert('You need to provide a value for the applicationId variable.');
+	}
 
-	  	    // Called when the SqPaymentForm completes a request to generate a card
-	  	    // nonce, even if the request failed because of an error.
-	  	    cardNonceResponseReceived: function(errors, nonce, cardData) {
-	  	      if (errors) {
-              var errorBox = document.querySelector('.errors');
-              errorBox.innerHTML = '';
+	// Initializes the payment form. See the documentation for descriptions of each of these parameters.
+	var paymentForm = new SqPaymentForm({
+	  applicationId: applicationId,
+	  inputClass: 'sq-input',
+	  inputStyles: [
+	    {
+	      fontSize: '15px'
+	    }
+	  ],
+	  cardNumber: {
+	    elementId: 'sq-card-number',
+	    placeholder: '•••• •••• •••• ••••'
+	  },
+	  cvv: {
+	    elementId: 'sq-cvv',
+	    placeholder: 'CVV'
+	  },
+	  expirationDate: {
+	    elementId: 'sq-expiration-date',
+	    placeholder: 'MM/YY'
+	  },
+	  postalCode: {
+	    elementId: 'sq-postal-code'
+	  },
+	  callbacks: {
 
-	  	        // This logs all errors encountered during nonce generation
-	  	        errors.forEach(function(error) {
-	  	          console.log(error.message);
-                errorBox.innerHTML = errorBox.innerHTML + '<p class="notification warning">'+ error.message +'</p>';
-	  	        });
+	    // Called when the SqPaymentForm completes a request to generate a card
+	    // nonce, even if the request failed because of an error.
+	    cardNonceResponseReceived: function(errors, nonce, cardData) {
+	      if (errors) {
+          var errorBox = document.querySelector('.errors');
+          errorBox.innerHTML = '';
 
-	  	      // No errors occurred. Extract the card nonce.
-	  	      } else {
-	  	        /*
-	  	          These lines assign the generated card nonce to a hidden input
-	  	          field, then submit that field to your server.
-	  	        */
-	  	        document.getElementById('card-nonce').value = nonce;
-	  	        document.getElementById('nonce-form').submit();
+	        // This logs all errors encountered during nonce generation
+	        errors.forEach(function(error) {
+	          console.log(error.message);
+            errorBox.innerHTML = errorBox.innerHTML + '<p class="notification warning">'+ error.message +'</p>';
+	        });
 
-	  	      }
-	  	    },
+	      // No errors occurred. Extract the card nonce.
+	      } else {
+	        /*
+	          These lines assign the generated card nonce to a hidden input
+	          field, then submit that field to your server.
+	        */
+	        document.getElementById('card-nonce').value = nonce;
+	        document.getElementById('nonce-form').submit();
 
-	  	    unsupportedBrowserDetected: function() {
-	  	      // Fill in this callback to alert buyers when their browser is not supported.
-	  	      alert('Your browser is not supported.');
-	  	    },
+	      }
+	    },
 
-	  	    // Fill in these cases to respond to various events that can occur while a
-	  	    // buyer is using the payment form.
-	  	    inputEventReceived: function(inputEvent) {
-	  	      switch (inputEvent.eventType) {
-	  	        case 'focusClassAdded':
-	  	          // Handle as desired
-	  	          break;
-	  	        case 'focusClassRemoved':
-	  	          // Handle as desired
-	  	          break;
-	  	        case 'errorClassAdded':
-	  	          // Handle as desired
-	  	          break;
-	  	        case 'errorClassRemoved':
-	  	          // Handle as desired
-	  	          break;
-	  	        case 'cardBrandChanged':
-	  	          // Handle as desired
-                document.getElementById('sq-card').className = inputEvent.cardBrand;
-	  	          break;
-	  	        case 'postalCodeChanged':
-                // Copy billing postal code to shipping postal code
-                document.getElementById('sq-postal-code-shipping').value = inputEvent.postalCodeValue;
-	  	          break;
-	  	      }
-	  	    },
+	    unsupportedBrowserDetected: function() {
+	      // Fill in this callback to alert buyers when their browser is not supported.
+	      alert('Your browser is not supported.');
+	    },
 
-	  	    paymentFormLoaded: function() {
-	  	      // Fill in this callback to perform actions after the payment form is
-	  	      // done loading (such as setting the postal code field programmatically).
-	  	      // paymentForm.setPostalCode('94103');
-	  	    }
-	  	  }
-	  	});
+	    // Fill in these cases to respond to various events that can occur while a
+	    // buyer is using the payment form.
+	    inputEventReceived: function(inputEvent) {
+	      switch (inputEvent.eventType) {
+	        case 'focusClassAdded':
+	          // Handle as desired
+	          break;
+	        case 'focusClassRemoved':
+	          // Handle as desired
+	          break;
+	        case 'errorClassAdded':
+	          // Handle as desired
+	          break;
+	        case 'errorClassRemoved':
+	          // Handle as desired
+	          break;
+	        case 'cardBrandChanged':
+	          // Handle as desired
+            document.getElementById('sq-card').className = inputEvent.cardBrand;
+	          break;
+	        case 'postalCodeChanged':
+            // Handle as desired
+	          break;
+	      }
+	    },
 
-	  	// This function is called when a buyer clicks the Submit button on the webpage
-	  	// to charge their card.
-	  	function requestCardNonce(event) {
+	    paymentFormLoaded: function() {
+	      // Fill in this callback to perform actions after the payment form is
+	      // done loading (such as setting the postal code field programmatically).
+	      // paymentForm.setPostalCode('94103');
+	    }
+	  }
+	});
 
-	  	  // This prevents the Submit button from submitting its associated form.
-	  	  // Instead, clicking the Submit button should tell the SqPaymentForm to generate
-	  	  // a card nonce, which the next line does.
-	  	  event.preventDefault();
+	// This function is called when a buyer clicks the Submit button on the webpage
+	// to charge their card.
+	function requestCardNonce(event) {
 
-	  	  paymentForm.requestCardNonce();
-	  	}
-  	</script>
+	  // This prevents the Submit button from submitting its associated form.
+	  // Instead, clicking the Submit button should tell the SqPaymentForm to generate
+	  // a card nonce, which the next line does.
+	  event.preventDefault();
 
-    <div id="sq-card">
-      <div class="card">
-        <label><span><?= _t('card-number') ?></span></label>
-        <div id="sq-card-number"></div>
-        <div class="exp-cvv">
-          <div>
-            <label><span><?= _t('expiry-date') ?></span></label>
-            <div id="sq-expiration-date"></div>
-          </div>
-          <div>
-            <label><span><?= _t('cvv') ?></span></label>
-            <div id="sq-cvv"></div>
-          </div>
-        </div>
+	  paymentForm.requestCardNonce();
+	}
+</script>
+
+<div id="sq-card">
+  <div class="card">
+    <label><span><?= _t('card-number') ?></span></label>
+    <div id="sq-card-number"></div>
+    <div class="exp-cvv">
+      <div>
+        <label><span><?= _t('expiry-date') ?></span></label>
+        <div id="sq-expiration-date"></div>
       </div>
       <div>
-        <label><span><?= _t('postal-code') ?> <?= _t('postal-code-verify') ?></span></label>
-        <div id="sq-postal-code"></div>
+        <label><span><?= _t('cvv') ?></span></label>
+        <div id="sq-cvv"></div>
       </div>
     </div>
-
-    <!-- After the SqPaymentForm generates a card nonce, *this* form POSTs the generated card nonce to your application's server. You should replace the action attribute of the form with the path of the URL you want to POST the nonce to (for example, "/process-card") -->
-    <form id="nonce-form" novalidate action="<?= page('shop/cart/callback')->url().'/gateway'.url::paramSeparator().'square/id'.url::paramSeparator().$txn->txn_id() ?>" method="post">
-      <!-- Whenever a nonce is generated, it's assigned as the value of this hidden input field. -->
-      <input type="hidden" id="card-nonce" name="nonce">
-
-      <fieldset>
-        <label><span><?= _t('address-line-1') ?></span></label>
-        <input type="text" id="sq-address-line-1" name="sq-address-line-1" required>
-
-        <label><span><?= _t('address-line-2') ?></span></label>
-        <input type="text" id="sq-address-line-2" name="sq-address-line-2" placeholder="Optional">
-
-        <label><span><?= _t('city') ?></span></label>
-        <input type="text" id="sq-locality" name="sq-locality" required>
-
-        <label><span><?= _t('state') ?></span></label>
-        <input type="text" id="sq-administrative-district-level-1" name="sq-administrative-district-level-1" required>
-
-        <label><span><?= _t('postal-code') ?></span></label>
-        <input type="text" id="sq-postal-code-shipping" name="sq-postal-code-shipping" required>
-
-        <label><span><?= _t('country') ?></span></label>
-        <input type="text" disabled value="<?= page('shop/countries/'.$txn->country())->title() ?>">
-        <input type="hidden" id="sq-country" name="sq-country" readonly value="<?= a::first(str::split(page('shop/countries/'.$txn->country())->countrycode(), '-')) ?>">
-      </fieldset>
-
-      <fieldset>
-        <label><span><?= _t('first-name') ?></span></label>
-        <input type="text" id="sq-first-name" name="sq-first-name" value="<?= $site->user() ? $site->user()->firstname() : '' ?>" required>
-        <label><span><?= _t('last-name') ?></span></label>
-        <input type="text" id="sq-last-name" name="sq-last-name" required>
-        <label><span><?= _t('email') ?></span></label>
-        <input type="email" id="sq-buyer-email-address" name="sq-buyer-email-address" value="<?= $site->user() ? $site->user()->email() : '' ?>" required>
-
-        <div class="errors">
-          <!-- placeholder for error messages from javascript validation -->
-        </div>
-
-        <button class="accent" type="submit" onclick="requestCardNonce(event)">
-          <?= _t('confirm-order') ?> <?= formatPrice($total) ?> <?= $site->currency_code() ?>
-        </button>
-      </fieldset>
-    </form>
-</main>
+  </div>
+  <div>
+    <label><span><?= _t('postal-code') ?> <?= _t('postal-code-verify') ?></span></label>
+    <div id="sq-postal-code"><?= $txn->shipping_address()->toStructure()->postcode() ?></div>
+  </div>
 </div>
-<?php snippet('footer') ?>
+
+<!-- After the SqPaymentForm generates a card nonce, *this* form POSTs the generated card nonce to your application's server. You should replace the action attribute of the form with the path of the URL you want to POST the nonce to (for example, "/process-card") -->
+<form id="nonce-form" novalidate action="<?= page('shop/cart/callback')->url().'/gateway'.url::paramSeparator().'square/id'.url::paramSeparator().$txn->txn_id() ?>" method="post">
+  <!-- Whenever a nonce is generated, it's assigned as the value of this hidden input field. -->
+  <input type="hidden" id="card-nonce" name="nonce">
+
+  <fieldset dir="auto" class="inline">
+    <label>
+      <span><?= _t('address-line-1') ?></span>
+      <input type="text" id="sq-address-line-1" name="sq-address-line-1" value="<?= $shipping->address1() ?>" required>
+    </label>
+
+    <label>
+      <span><?= _t('address-line-2') ?></span>
+      <input type="text" id="sq-address-line-2" name="sq-address-line-2" value="<?= $shipping->address2() ?>" placeholder="Optional">
+    </label>
+
+    <label>
+      <span><?= _t('city') ?></span>
+      <input type="text" id="sq-locality" name="sq-locality" value="<?= $shipping->city() ?>" required>
+    </label>
+
+    <label>
+      <span><?= _t('state') ?></span>
+      <input type="text" id="sq-administrative-district-level-1" name="sq-administrative-district-level-1" value="<?= $shipping->state() ?>" required>
+    </label>
+
+    <label>
+      <span><?= _t('postal-code') ?></span>
+      <input type="text" id="sq-postal-code-shipping" name="sq-postal-code-shipping" value="<?= $shipping->postcode() ?>" required>
+    </label>
+
+    <label>
+      <span><?= _t('country') ?></span>
+      <?php $country = page('shop/countries')->children()->invisible()->filterBy('title', $shipping->country())->first() ?>
+      <input type="text" disabled value="<?= $country->title() ?>">
+      <input type="hidden" id="sq-country" name="sq-country" readonly value="<?= a::first(str::split($country->countrycode(), '-')) ?>">
+    </label>
+  </fieldset>
+
+  <fieldset dir="auto" class="inline">
+    <label>
+      <span><?= _t('first-name') ?></span>
+      <input type="text" id="sq-first-name" name="sq-first-name" value="<?= $txn->payer_firstname() ?>" required>
+    </label>
+    
+    <label>
+      <span><?= _t('last-name') ?></span>
+      <input type="text" id="sq-last-name" name="sq-last-name" value="<?= $txn->payer_lastname() ?>" required>
+    </label>
+
+    <label>
+      <span><?= _t('email') ?></span>
+      <input type="email" id="sq-buyer-email-address" name="sq-buyer-email-address" value="<?= $txn->payer_email() ?>" required>
+    </label>
+
+    <div class="errors">
+      <!-- placeholder for error messages from javascript validation -->
+    </div>
+
+    <button class="accent" type="submit" onclick="requestCardNonce(event)">
+      <?= _t('confirm-order') ?>
+    </button>
+  </fieldset>
+</form>

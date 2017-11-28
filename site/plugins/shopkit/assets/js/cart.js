@@ -23,7 +23,7 @@
     // Attach listeners to <main> because its child elements may be replaced by new DOM
     document.querySelector('main').addEventListener('submit', function(event){
         
-        // Only continue if it's an add/remove action
+        // Handle add/remove actions with ajax
         if (event.target.action.value != 'add' && event.target.action.value != 'remove') return true;
 
         // Stop standard submit action

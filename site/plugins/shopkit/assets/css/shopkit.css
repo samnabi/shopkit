@@ -214,6 +214,8 @@ option + option { margin-top: 0; }
 
 fieldset { border: 0; padding: 0; margin-bottom: 3em; }
 
+[aria-invalid="true"]:not(:focus):not(:valid) { -webkit-box-shadow: 0 0 0 2px #CC1F1A; box-shadow: 0 0 0 2px #CC1F1A; }
+
 .forRobots { visibility: hidden; z-index: -1; position: absolute; }
 
 /** Logo  */

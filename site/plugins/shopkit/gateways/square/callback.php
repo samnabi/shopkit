@@ -138,8 +138,8 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
           'lang' => $site->language(),
         ]);
 
-        // Continue to confirmation
-        go(page('shop/confirm')->url().'/id'.url::paramSeparator().$txn->txn_id());
+        // Continue to order summary
+        go(page('shop/orders')->url().'?txn_id='.$txn->txn_id());
 
       } catch(Exception $e) {
         // Updates or notification failed

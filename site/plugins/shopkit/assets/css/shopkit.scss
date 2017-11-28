@@ -61,6 +61,8 @@ $warningPale: desaturate(lighten($warning, 30), 10);
 $success: #2ecc40;
 $successPale: desaturate(lighten($success, 30), 10);
 
+$danger: #CC1F1A;
+
 $text-s: 0.8rem;
 
 $breakpoint-xs-s: 30em;
@@ -606,6 +608,10 @@ fieldset {
 	border: 0;
 	padding: 0;
 	margin-bottom: 3em;
+}
+
+[aria-invalid="true"]:not(:focus):not(:valid) {
+	box-shadow: 0 0 0 2px $danger;
 }
 
 // Honeypot field

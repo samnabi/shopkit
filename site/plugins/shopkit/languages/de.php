@@ -204,6 +204,8 @@
 'terms-conditions' => 'Ich akzeptiere die', // "Allgemeine Geschäftsbedingungen" wird als Link in der Vorlage angehängt.
 'terms-conditions-invalid' => 'Bitte akzeptieren Sie die Allgemeinen Geschäftsbedingungen.',
 
+'country-shipping-help' => 'Wählen Sie aus den Versandoptionen oben',
+
 
 // site/plugins/shopkit/templates/confirm.php
 

@@ -205,6 +205,8 @@
 'terms-conditions' => 'I accept the', // "Terms and Conditions" is appended as a link in the template.
 'terms-conditions-invalid' => 'Please accept the Terms and Conditions.',
 
+'country-shipping-help' => 'Select from <strong>Shipping</strong> options above',
+
 
 // site/plugins/shopkit/templates/confirm.php
 

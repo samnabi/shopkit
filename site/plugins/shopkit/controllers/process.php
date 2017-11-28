@@ -8,9 +8,60 @@ return function($site, $pages, $page) {
     // Honeypot trap for robots
     if (get('subject') != '') go(page('error')->url());
 
+    // Start the validation
+    $invalidFields = '';
+
+    // Validate personal details
+    $fieldsToValidate = [
+      'firstname' => v::minLength(esc(get('firstname')), 1),
+      'lastname' => v::minLength(esc(get('lastname')), 1),
+      'email' => v::email(esc(get('email')))
+    ];
+    foreach ($fieldsToValidate as $key => $value) {
+      if ($value === false) {
+        $invalidFields .= $key.',';
+      }
+    }
+
+    // Validate mailing address
+    if ($site->mailing_address()->bool()) {
+      $fieldsToValidate = [
+        'address1' => v::minLength(esc(get('address1')), 1),
+        'city' => v::minLength(esc(get('city')), 1),
+        'state' => v::minLength(esc(get('state')), 1),
+        'postcode' => v::minLength(esc(get('postcode'), 1))
+      ];
+      foreach ($fieldsToValidate as $key => $value) {
+        if ($value === false) {
+          $invalidFields .= $key.',';
+        }
+      }
+    }
+
     // Validate terms and conditions checkbox
     if ($tc = page('shop/terms-conditions') and $tc->text()->isNotEmpty() and get('tac') !== 'agree') {
-      go(page('shop/cart')->url().'/valid'.url::paramSeparator().'false/#tac');
+      $invalidFields .= 'tac,';
+    }
+
+    // Write personal details & mailing address to the transaction file
+    page(s::get('txn'))->update([
+      'payer-id' => $user ? $user->username() : '',
+      'payer-firstname' => esc(get('firstname')),
+      'payer-lastname' => esc(get('lastname')),
+      'payer-email' => esc(get('email')),
+      'shipping-address' => yaml::encode([
+        'address1' => esc(get('address1')),
+        'address2' => esc(get('address2')),
+        'city' => esc(get('city')),
+        'state' => esc(get('state')),
+        'country' => esc(get('country')),
+        'postcode' => esc(get('postcode'))
+      ])
+    ], $site->defaultLanguage()->code());
+
+    // Return to cart if there are invalid fields
+    if ($invalidFields != '') {
+      go(page('shop/cart')->url().'/invalid'.url::paramSeparator().substr($invalidFields, 0, -1).'#details');
     }
 
     // Set up variables
@@ -37,18 +88,8 @@ return function($site, $pages, $page) {
       'tax' => number_format(cartTax()['total'],$decimal_places,'.',''),
       'taxes' => yaml::encode(cartTax()),
       'giftcode' => s::get('giftcode'),
-      'giftcertificate' => null !== get('giftCertificateAmount') ? number_format(get('giftCertificateAmount'),$decimal_places,'.','') : '0.00',
+      'giftcertificate' => null !== get('giftCertificateAmount') ? number_format(get('giftCertificateAmount'),$decimal_places,'.','') : '0.00'
     ], $site->defaultLanguage()->code());
-
-    // Add payer info if it's available at this point
-    if ($user) {
-      page(s::get('txn'))->update([
-        'payer-id' => $user->username(),
-        'payer-name' => $user->firstname().' '.$user->lastname(),
-        'payer-email' => $user->email(),
-        'payer-address' => page('shop/countries/'.$user->country())->title()
-      ], $site->defaultLanguage()->code());
-    } 
 
     // Update the site's giftcard balance
     if ($giftCertificateRemaining = get('giftCertificateRemaining')) {

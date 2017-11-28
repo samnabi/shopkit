@@ -9,7 +9,7 @@
 
 <?= $page->text()->kirbytext() ?>
 
-<?php if (!s::get('txn') or page(s::get('txn'))->products()->toStructure()->count() === 0) { ?>
+<?php if (!s::get('txn') or $txn->products()->toStructure()->count() === 0) { ?>
     <p dir="auto" class="notification warning">
         <?= _t('no-cart-items') ?>
     </p>
@@ -28,7 +28,7 @@
             </thead>
 
             <tbody>
-                <?php foreach($items as $i => $item) { ?>
+                <?php foreach(getItems() as $i => $item) { ?>
                     <?php $product = page($item->uri()) ?>
                     <tr>
                         <td>
@@ -134,7 +134,7 @@
                         <form action="" method="POST">
                             <select name="country">
                                 <?php foreach ($countries as $c) { ?>
-                                    <option <?php ecco(page(s::get('txn'))->country() == $c->uid(), 'selected') ?> value="<?= $c->countrycode() ?>">
+                                    <option <?php ecco($txn->shipping_address()->toStructure()->country() == $c->uid(), 'selected') ?> value="<?= $c->uid() ?>">
                                         <?= $c->title() ?>
                                     </option>
                                 <?php } ?>
@@ -148,7 +148,7 @@
                                 <?php foreach ($shipping_rates as $rate) { ?>
                                     <label>
                                         <?= $rate['title'] ?> (<?= formatPrice($rate['rate'], true) ?>)
-                                        <input type="radio" name="shipping" value="<?= str::slug($rate['title']) ?>" <?php e(page(s::get('txn'))->shippingmethod() == $rate['title'],'checked') ?>>
+                                        <input type="radio" name="shipping" value="<?= str::slug($rate['title']) ?>" <?php e($txn->shippingmethod() == $rate['title'],'checked') ?>>
                                     </label>
                                 <?php } ?>
                             <?php } else { ?>
@@ -216,7 +216,7 @@
         </table>
     </div>
 
-    <form method="post" action="<?= page('shop/cart/process')->url() ?>">
+    <form id="details" method="post" action="<?= page('shop/cart/process')->url() ?>">
 
         <div class="forRobots">
           <label for="subject"><?= _t('honeypot-label') ?></label>
@@ -232,13 +232,68 @@
             <input type="hidden" name="txnPaid" value="true">
         <?php } ?>
 
+        <!-- Shipping details -->
+        <h2 dir="auto" id="details"><?= _t('personal-details') ?></h2>
+
+        <fieldset dir="auto" class="inline">
+          <label>
+            <span><?= _t('first-name') ?></span>
+            <input type="text" id="firstname" name="firstname" value="<?= $txn->payer_firstname() ?>" 
+            required <?php e(str::contains(param('invalid'), 'firstname'), 'aria-invalid="true"') ?>>
+          </label>
+
+          <label>
+            <span><?= _t('last-name') ?></span>
+            <input type="text" id="lastname" name="lastname" value="<?= $txn->payer_lastname() ?>" required <?php e(str::contains(param('invalid'), 'lastname'), 'aria-invalid="true"') ?>>
+          </label>
+
+          <label>
+            <span><?= _t('email') ?></span>
+            <input type="email" id="email" name="email" value="<?= $txn->payer_email() ?>" required <?php e(str::contains(param('invalid'), 'email'), 'aria-invalid="true"') ?>>
+          </label>
+        </fieldset>
+
+        <?php if ($site->mailing_address()->bool()) { ?>
+            <h2 dir="auto"><?= _t('mailing-address') ?></h2>
+
+            <fieldset dir="auto" class="inline">
+              <label>
+                <span><?= _t('address-line-1') ?></span>
+                <input type="text" id="address1" name="address1" value="<?= $txn->shipping_address()->toStructure()->address1() ?>" required <?php e(str::contains(param('invalid'), 'address1'), 'aria-invalid="true"') ?>>
+              </label>
+
+              <label>
+                <span><?= _t('address-line-2') ?></span>
+                <input type="text" id="address2" name="address2" value="<?= $txn->shipping_address()->toStructure()->address2() ?>" placeholder="Optional">
+              </label>
+
+              <label>
+                <span><?= _t('city') ?></span>
+                <input type="text" id="city" name="city" value="<?= $txn->shipping_address()->toStructure()->city() ?>" required <?php e(str::contains(param('invalid'), 'city'), 'aria-invalid="true"') ?>>
+              </label>
+
+              <label>
+                <span><?= _t('state') ?></span>
+                <input class="short" type="text" id="state" name="state" value="<?= $txn->shipping_address()->toStructure()->state() ?>" required <?php e(str::contains(param('invalid'), 'state'), 'aria-invalid="true"') ?>>
+              </label>
+
+              <label>
+                <span><?= _t('country') ?></span>
+                <input type="text" id="country" name="country" value="<?= page('shop/countries/'.$txn->shipping_address()->toStructure()->country())->title() ?>" readonly tabindex="-1">
+                <span class="help"><?= _t('country-shipping-help') ?></span>
+              </label>
+
+              <label>
+                <span><?= _t('postal-code') ?></span>
+                <input class="short" type="text" id="postcode" name="postcode" value="<?= $txn->shipping_address()->toStructure()->postcode() ?>" required <?php e(str::contains(param('invalid'), 'postcode'), 'aria-invalid="true"') ?>>
+              </label>
+            </fieldset>
+        <?php } ?>
+
         <!-- Terms and conditions -->
         <?php if ($tc = page('shop/terms-conditions') and $tc->text()->isNotEmpty()) { ?>
             <label dir="auto" id="tac">
-                <?php if (param('valid') === 'false') { ?>
-                    <p class="notification warning"><?= _t('terms-conditions-invalid') ?></p>
-                <?php } ?>
-                <input type="checkbox" name="tac" value="agree" required>
+                <input type="checkbox" name="tac" value="agree" required <?php e(str::contains(param('invalid'), 'tac'), 'aria-invalid="true"') ?>>
                 <?= _t('terms-conditions') ?> <a href="<?= $tc->url() ?>" target="_blank"><?= $tc->title() ?></a>.
             </label>
         <?php } ?>

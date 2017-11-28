@@ -31,27 +31,35 @@ return function($site, $pages, $page) {
       if ($action == 'delete') delete($id);
     }
 
+    // Set txn object
+    $txn = page(s::get('txn'));
+
     // Set country
-    $countries = page('/shop/countries')->children()->invisible();
-    if ($country = get('country')) {
+    $countries = page('shop/countries')->children()->invisible();
+    if ($txn->shipping_address()->isNotEmpty()) {
+      $txn_shipping_address = $txn->shipping_address()->yaml();
+    } else {
+      $txn_shipping_address = [];
+    }
+    if ($country = esc(get('country'))) {
       // First: See if country was sent through a form submission.
-      if ($c = $countries->filterBy('countrycode',$country)->first()) {
-        // Translate country code to UID if needed
-        $country = $c->uid();
-      }
-      page(s::get('txn'))->update(['country' => $country], $site->defaultLanguage()->code());
+      $txn_shipping_address['country'] = $country;
+      $txn->update(['shipping_address' => yaml::encode($txn_shipping_address)], $site->defaultLanguage()->code());
     } else if (page(s::get('txn'))->country()->isNotEmpty()) {
       // Second option: the country has already been set in the session.
       // Do nothing.
     } else if ($user and $user->country() != '') {
       // Third option: get country from user profile
-      page(s::get('txn'))->update(['country' => $user->country()], $site->defaultLanguage()->code());
+      $txn_shipping_address['country'] = $user->country();
+      $txn->update(['shipping_address' => yaml::encode($txn_shipping_address)], $site->defaultLanguage()->code());
     } else if ($site->defaultcountry()->isNotEmpty()) {
       // Fourth option: get default country from site options
-      page(s::get('txn'))->update(['country' => $site->defaultcountry()], $site->defaultLanguage()->code());
+      $txn_shipping_address['country'] = $site->defaultcountry();
+      $txn->update(['shipping_address' => yaml::encode($txn_shipping_address)], $site->defaultLanguage()->code());
     } else {
       // Last resort: choose the first available country
-      page(s::get('txn'))->update(['country' => $countries->first()->uid()], $site->defaultLanguage()->code());
+      $txn_shipping_address['country'] = $countries->first()->uid();
+      $txn->update(['shipping_address' => yaml::encode($txn_shipping_address)], $site->defaultLanguage()->code());
     }
 
     // Get shipping rates
@@ -75,7 +83,7 @@ return function($site, $pages, $page) {
       }
     } else if (page(s::get('txn'))->shippingmethod()->isNotEmpty() and !empty($shippingMethods) and !get('country')) {
       // Second option: the shipping has already been set in the session, and the country hasn't changed
-      $currentMethod = page(s::get('txn'))->shippingmethod();
+      $currentMethod = $txn->shippingmethod();
       foreach ($shippingMethods as $key => $method) {
         if ($currentMethod == $method['title']) {
           $shippingMethod = $method;
@@ -85,7 +93,7 @@ return function($site, $pages, $page) {
       // Last resort: choose the first shipping method
       $shippingMethod = array_shift($shippingMethods);
     }
-    page(s::get('txn'))->update([
+    $txn->update([
       'shippingmethod' => $shippingMethod['title'],
       'shipping' => $shippingMethod['rate'],
     ], $site->defaultLanguage()->code());
@@ -94,7 +102,7 @@ return function($site, $pages, $page) {
     $discount = getDiscount();
 
     // Get cart total
-    $total = cartSubtotal(getItems()) + (float) page(s::get('txn'))->shipping()->value;
+    $total = cartSubtotal(getItems()) + (float) $txn->shipping()->value;
     if (!$site->tax_included()->bool()) $total = $total + cartTax()['total'];
     
     // Handle discount codes
@@ -106,13 +114,14 @@ return function($site, $pages, $page) {
 
 
     return [
-        'items' => getItems(),
+        'user' => $user,
         'countries' => $countries,
         'shipping_rates' => $shipping_rates,
         'discount' => $discount,
         'total' => $total,
         'giftCertificate' => $giftCertificate,
         'gateways' => $gateways,
+        'txn' => $txn
     ];
   }
 };

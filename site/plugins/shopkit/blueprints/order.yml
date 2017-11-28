@@ -50,9 +50,14 @@ fields:
     type: text
     readonly: true
     width: 1/2
+  taxes:
+    label: taxes
+    type: textarea
+    readonly: true
   tax:
     label: tax
     type: text
+    help: total tax
     readonly: true
   discount:
     label: discount

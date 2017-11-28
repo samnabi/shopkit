@@ -64,8 +64,8 @@ if (get('stripeToken') != '') {
         'lang' => $site->language(),
       ]);
 
-      // Continue to confirmation
-      go(page('shop/confirm')->url().'/id'.url::paramSeparator().$txn->txn_id().'?payer_email='.$customer->email);
+      // Continue to order summary
+      go(page('shop/orders')->url().'?txn_id='.$txn->txn_id());
 
     } catch(Exception $e) {
       // Updates or notification failed

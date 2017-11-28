@@ -15,6 +15,9 @@ return function($site, $pages, $page) {
     if (get('txn_id') != '') {
         // If single transaction ID passed, show just that one order
         $orders = $page->children()->sortBy('txn_date','desc')->filterBy('txn_id',get('txn_id'));
+
+        // Empty the cart by setting a new txn id (successful payment gateway callbacks will end up here)
+        s::destroy();
     } else if ($user and $user->role() == 'admin') {
         // If admin, show all orders except abandoned
         $orders = $page->children()->sortBy('txn_date','desc');

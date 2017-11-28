@@ -40,8 +40,16 @@ if (null !== s::get('oldid') and $txn = page('shop/orders/'.s::get('oldid'))) {
   $txn->update(['txn-id' => s::id()], $site->defaultLanguage()->code());
   $txn->move(s::id());
   s::remove('oldid');
-  if ($user and $user->country() != '') {
-    $txn->update(['country' => $user->country()], $site->defaultLanguage()->code());
+
+  // Add user information if it's available
+  if ($user) {    
+    $txn->update([
+      'payer-id' => $user->username(),
+      'payer-firstname' => $user->firstname(),
+      'payer-lastname' => $user->lastname(),
+      'payer-email' => $user->email(),
+      'country' => $user->country()
+    ], $site->defaultLanguage()->code());
   }
 }
 
@@ -162,6 +170,18 @@ function add($id, $quantity) {
       'session-start' => $timestamp,
       'session-end' => $timestamp
     ], $site->defaultLanguage()->code());
+
+    // Add user information if it's available
+    if ($user = $site->user()) {
+      page('shop/orders/'.s::id())->update([
+        'payer-id' => $user->username(),
+        'payer-firstname' => $user->firstname(),
+        'payer-lastname' => $user->lastname(),
+        'payer-email' => $user->email(),
+        'country' => $user->country()
+      ], $site->defaultLanguage()->code());
+    }
+
     s::set('txn', 'shop/orders/'.s::id());
   }
 

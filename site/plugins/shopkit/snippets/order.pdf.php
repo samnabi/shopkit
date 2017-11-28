@@ -36,69 +36,47 @@ if ($email = $contact->email() and $email != '') {
 
 $html .= '<hr>';
 
-$html .= '<p>'._t('invoice').' No. <strong>'.$p->txn_id()->value.'</strong> ('._t($p->status()->value).')</p>';
+$html .= '<p>'._t('transaction-id').' No. <strong>'.$p->txn_id()->value.'</strong> ('._t($p->status()->value).')</p>';
+
 $html .= '<p><em>'.date('F j, Y H:i',$p->txn_date()->value).'</em></p>';
-$html .= '<p><strong>'._t('bill-to').'</strong><br>';
-if ($p->payer_name() != '') $html .= $p->payer_name()->value.'<br>';
-$html .= $p->payer_email()->value.'</p>';
-$html .= $p->payer_address()->kirbytext();
 
 $html .= '<hr>';
 
 if (strpos($p->products(),'uri:')) {
-  // Show product overview
-  foreach ($p->products()->toStructure() as $product) {
-      $html .= '<p>'.$product->name().'<br><small>'.$product->variant();
-      $html .= $product->option()->isNotEmpty() ? ' / '.$product->option() : '';
-      $html .= ' / '._t('qty').$product->quantity();
-      $html .= '</small>';
-
-      // Include license keys
-      if ($product->{'license-keys'}->value and in_array($p->status(), ['paid', 'shipped'])) {
-        $html .= "<br><small>"._t('license-keys').': ';
-        foreach ($product->{'license-keys'} as $key => $license_key) {
-          $html .= $license_key;
-          if (count($product->{'license-keys'}) - 1 !== $key) {
-            $html .= ' | ';
-          }
-        }
-        $html .= '</small>';
-      }
-
-      $html .= '</p>';
-  }
+  $html .= snippet('order.details', ['txn' => $p], true);
 } else {
+  $html .= '<p><strong>'._t('bill-to').'</strong><br>';
+  if ($p->payer_name() != '') $html .= $p->payer_name()->value.'<br>';
+  $html .= $p->payer_email()->value.'</p>';
+  $html .= $p->payer_address()->kirbytext();
   // Old transaction files from Shopkit 1.0.5 and earlier
   $html .= $p->products()->kirbytext()->bidi();
-}
-
-$html .= '<hr>';
-$html .= '<p>'._t('subtotal').': '.formatPrice($p->subtotal()->value).'</p>';
-$html .= '<p>'._t('discount').': '.formatPrice($p->discount()->value).'</p>';
-$html .= '<p>'._t('shipping').': '.formatPrice($p->shipping()->value).'</p>';
-
-if ($p->taxes()->value) {
-  // List each tax rate separately
-  foreach ($p->taxes()->toStructure() as $key => $value) {
-    if ($key === 'total') {
-      if ($p->taxes()->toStructure()->count() > 1) {
-        continue;
-      } else {
-        $html .= '<p>'._t('tax').': '.formatPrice($value->value).'</p>';
+  $html .= '<hr>';
+  $html .= '<p>'._t('subtotal').': '.formatPrice($p->subtotal()->value).'</p>';
+  $html .= '<p>'._t('discount').': '.formatPrice($p->discount()->value).'</p>';
+  $html .= '<p>'._t('shipping').': '.formatPrice($p->shipping()->value).'</p>';
+  if ($p->taxes()->value) {
+    // List each tax rate separately
+    foreach ($p->taxes()->toStructure() as $key => $value) {
+      if ($key === 'total') {
+        if ($p->taxes()->toStructure()->count() > 1) {
+          continue;
+        } else {
+          $html .= '<p>'._t('tax').': '.formatPrice($value->value).'</p>';
+        }
       }
+      $html .= '<p>'._t('tax').' '.((float) $key * 100).'%: '.formatPrice($value->value).'</p>';
     }
-    $html .= '<p>'._t('tax').' '.((float) $key * 100).'%: '.formatPrice($value->value).'</p>';
+  } else {
+    // Fallback for old tax structure (single total only)
+    $html .= '<p>'._t('tax').': '.formatPrice($p->tax()->value).'</p>';
   }
-} else {
-  // Fallback for old tax structure (single total only)
-  $html .= '<p>'._t('tax').': '.formatPrice($p->tax()->value).'</p>';
+
+  $total = (float) $p->subtotal()->value + (float) $p->shipping()->value - (float) $p->discount()->value;
+  if (!$site->tax_included()->bool()) $total = $total + (float) $p->tax()->value;
+  $html .= '<p><strong>'._t('total').': '.formatPrice($total).'</strong></p>';
+  $html .= '<p><strong>'._t('gift-certificate').': &ndash; '.formatPrice($p->giftcertificate()->value).'</strong></p>';
 }
-
-$total = (float) $p->subtotal()->value + (float) $p->shipping()->value - (float) $p->discount()->value;
-if (!$site->tax_included()->bool()) $total = $total + (float) $p->tax()->value;
-$html .= '<p><strong>'._t('total').': '.formatPrice($total).'</strong></p>';;
-
-$html .= '<p><strong>'._t('gift-certificate').': &ndash; '.formatPrice($p->giftcertificate()->value).'</strong></p>';
 
 // Load the html
 $dompdf->loadHtml($html);

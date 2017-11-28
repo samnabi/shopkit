@@ -4,7 +4,6 @@
 $kirby->set('template', 'cart',      __DIR__.DS.'..'.DS.'templates'.DS.'cart.php');
 $kirby->set('template', 'callback',  __DIR__.DS.'..'.DS.'templates'.DS.'callback.php');
 $kirby->set('template', 'category',  __DIR__.DS.'..'.DS.'templates'.DS.'category.php');
-$kirby->set('template', 'confirm',   __DIR__.DS.'..'.DS.'templates'.DS.'confirm.php');
 $kirby->set('template', 'contact',   __DIR__.DS.'..'.DS.'templates'.DS.'contact.php');
 $kirby->set('template', 'countries', __DIR__.DS.'..'.DS.'templates'.DS.'countries.php');
 $kirby->set('template', 'country',   __DIR__.DS.'..'.DS.'templates'.DS.'country.php');
