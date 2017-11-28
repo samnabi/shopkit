@@ -9,7 +9,7 @@ return function($site, $pages, $page) {
     if ($action === 'mark_pending') page('shop/orders/'.get('update_id'))->update(['status' => 'pending'], $site->defaultLanguage()->code());
     if ($action === 'mark_shipped') page('shop/orders/'.get('update_id'))->update(['status' => 'shipped'], $site->defaultLanguage()->code());
     if ($action === 'mark_paid')    page('shop/orders/'.get('update_id'))->update(['status' => 'paid'], $site->defaultLanguage()->code());
-    if ($action) snippet('mail.order.notify.status', ['txn' => page('shop/orders/'.get('update_id'))]);
+    if ($action and $action != 'mark_abandoned') snippet('mail.order.notify.status', ['txn' => page('shop/orders/'.get('update_id'))]);
 
     // Role-based filters
     if (get('txn_id') != '') {
