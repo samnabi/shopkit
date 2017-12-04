@@ -34,29 +34,9 @@ foreach (new DirectoryIterator(__DIR__.DS.'languages') as $file) {
   }
 }
 
-// If user just logged in, and has an active transaction file,
-// rename the transaction file with the current session ID.
-if (null !== s::get('oldid') and $txn = page('shop/orders/'.s::get('oldid'))) {
-  $txn->update(['txn-id' => s::id()], $site->defaultLanguage()->code());
-  $txn->move(s::id());
-  s::remove('oldid');
-
-  // Add user information if it's available
-  if ($user) {    
-    $txn->update([
-      'payer-id' => $user->username(),
-      'payer-firstname' => $user->firstname(),
-      'payer-lastname' => $user->lastname(),
-      'payer-email' => $user->email(),
-      'country' => $user->country()
-    ], $site->defaultLanguage()->code());
-  }
-}
-
 // Transaction file exists, save it in session
-if (page('shop/orders/'.s::id())) {
-  s::set('txn', 'shop/orders/'.s::id());
-  page(s::get('txn'))->update(['session-end' => time()], $site->defaultLanguage()->code());
+if ($txn = page(s::get('txn')) and $txn->intendedTemplate() == 'order') {
+  $txn->update(['session-end' => time()], $site->defaultLanguage()->code());
 }
 
 // Set discount code
@@ -161,10 +141,11 @@ function add($id, $quantity) {
   $site = site();
 
   // Create the transaction file if we don't have one yet
-  if (!page('shop/orders/'.s::id())) {
+  if (!s::get('txn') or page(s::get('txn'))->intendedTemplate() != 'order') {
+    $txn_id = s::id();
     $timestamp = time();
-    page('shop')->create('shop/orders/'.s::id(), 'order', [
-      'txn-id' => s::id(),
+    page('shop')->create('shop/orders/'.$txn_id, 'order', [
+      'txn-id' => $txn_id,
       'txn-date'  => $timestamp,
       'status' => 'abandoned',
       'session-start' => $timestamp,
@@ -173,16 +154,16 @@ function add($id, $quantity) {
 
     // Add user information if it's available
     if ($user = $site->user()) {
-      page('shop/orders/'.s::id())->update([
+      page('shop/orders/'.$txn_id)->update([
         'payer-id' => $user->username(),
         'payer-firstname' => $user->firstname(),
         'payer-lastname' => $user->lastname(),
         'payer-email' => $user->email(),
-        'country' => $user->country()
+        'shipping-address' => yaml::encode(['country' => $user->country()]),
       ], $site->defaultLanguage()->code());
     }
 
-    s::set('txn', 'shop/orders/'.s::id());
+    s::set('txn', 'shop/orders/'.$txn_id);
   }
 
   $quantityToAdd = $quantity ? (int) $quantity : 1;

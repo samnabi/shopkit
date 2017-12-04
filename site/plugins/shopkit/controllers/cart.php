@@ -4,7 +4,7 @@ return function($site, $pages, $page) {
   $site = site();
   $user = $site->user();
 
-  if (!s::get('txn') and get('action') != 'add') {
+  if ((!s::get('txn') or page(s::get('txn'))->intendedTemplate() != 'order') and get('action') != 'add') {
     // Show the empty cart page if no transaction file has been created yet
     return true;
 
@@ -45,7 +45,7 @@ return function($site, $pages, $page) {
       // First: See if country was sent through a form submission.
       $txn_shipping_address['country'] = $country;
       $txn->update(['shipping_address' => yaml::encode($txn_shipping_address)], $site->defaultLanguage()->code());
-    } else if (page(s::get('txn'))->country()->isNotEmpty()) {
+    } else if ($txn->country()->isNotEmpty()) {
       // Second option: the country has already been set in the session.
       // Do nothing.
     } else if ($user and $user->country() != '') {
@@ -81,7 +81,7 @@ return function($site, $pages, $page) {
           $shippingMethod = $method;
         }
       }
-    } else if (page(s::get('txn'))->shippingmethod()->isNotEmpty() and !empty($shippingMethods) and !get('country')) {
+    } else if ($txn->shippingmethod()->isNotEmpty() and !empty($shippingMethods) and !get('country')) {
       // Second option: the shipping has already been set in the session, and the country hasn't changed
       $currentMethod = $txn->shippingmethod();
       foreach ($shippingMethods as $key => $method) {

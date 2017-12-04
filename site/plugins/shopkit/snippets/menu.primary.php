@@ -16,7 +16,7 @@
     <a class="cart button accent" href="<?= page('shop/cart')->url() ?>" title="<?php _t('view-cart') ?>">
       <?= f::read('site/plugins/shopkit/assets/svg/cart.svg') ?>
       <span>
-        <?php if (page(s::get('txn'))) { ?>
+        <?php if (page(s::get('txn'))->intendedTemplate() == 'order') { ?>
           <?= page(s::get('txn'))->products()->toStructure()->count() ?>
         <?php } else { ?>
           0

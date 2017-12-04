@@ -15,11 +15,20 @@ $kirby->set('route',[
     // Set the redirect page
     $redirect = get('redirect') ? get('redirect') : 'shop';
 
-    // Save the old session ID temporarily, so we can keep cart history
-    s::set('oldid', s::id());
+    // Save the old transaction ID temporarily, so we can keep cart history
+    $txn = page(s::get('txn'));
 
     // Try to log in
     if($user = $site->users()->findBy('email',get('email')) and $user->login(get('password'))) {
+
+      // Successful login; rename old transaction file to match new session ID
+      if ($txn and $txn->intendedTemplate() == 'order') {
+        $txn_new_id = s::id();
+        $txn->update(['txn-id' => $txn_new_id], $site->defaultLanguage()->code());
+        $txn->move($txn_new_id);
+        s::set('txn', 'shop/orders/'.$txn_new_id);
+      }
+
       return go($redirect);
     } else {
       return page($redirect)->isHomePage() ? go('/login'.url::paramSeparator().'failed/#login') : go($redirect.'/login'.url::paramSeparator().'failed/#login');

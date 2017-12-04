@@ -43,8 +43,11 @@ return function($site, $pages, $page) {
       $invalidFields .= 'tac,';
     }
 
+    // Set transaction file
+    $txn = page(s::get('txn'));
+
     // Write personal details & mailing address to the transaction file
-    page(s::get('txn'))->update([
+    $txn->update([
       'payer-id' => $user ? $user->username() : '',
       'payer-firstname' => esc(get('firstname')),
       'payer-lastname' => esc(get('lastname')),
@@ -78,7 +81,7 @@ return function($site, $pages, $page) {
     // Add transaction details
     $discount = getDiscount();
     $decimal_places = decimalPlaces($site->currency_code());
-    page(s::get('txn'))->update([
+    $txn->update([
       'txn-date'  => $timestamp,
       'txn-currency' => $site->currency_code(),
       'status'  => $status,
@@ -105,7 +108,7 @@ return function($site, $pages, $page) {
     }
 
     // Redirect to self with GET, passing along the gateway and order ID as URL parameters
-    go($page->url().'/gateway'.url::paramSeparator().get('gateway').'/id'.url::paramSeparator().page(s::get('txn'))->txn_id());
+    go($page->url().'/gateway'.url::paramSeparator().get('gateway').'/id'.url::paramSeparator().$txn->txn_id());
 
   } else {
     // GET request. Gateway-specific.
