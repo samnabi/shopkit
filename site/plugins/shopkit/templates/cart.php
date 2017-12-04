@@ -274,7 +274,7 @@
 
               <label>
                 <span><?= _t('state') ?></span>
-                <input class="short" type="text" id="state" name="state" value="<?= $txn->state() ?>" required <?php e(str::contains(param('invalid'), 'state'), 'aria-invalid="true"') ?>>
+                <input class="short" type="text" id="state" name="state" value="<?= $txn->state() ?>" <?php e(str::contains(param('invalid'), 'state'), 'aria-invalid="true"') ?>>
               </label>
 
               <label>
