@@ -26,8 +26,8 @@
 
     <!-- Display current country -->
     <?php
-      $c = page('shop/countries/'.page(s::get('txn'))->country());
-      $code = $c->countrycode();
+      $c = page('shop/countries')->children()->invisible()->findBy('title', page(s::get('txn'))->country()->value);
+      $code = $c ? $c->countrycode() : false;
     ?>
     <?php if (f::exists($kirby->roots()->plugins().DS.'shopkit'.DS.'assets'.DS.'img'.DS.'flags'.DS.$code.'.png')) { ?>
       <a class="flag" href="<?= page('shop/cart')->url() ?>">

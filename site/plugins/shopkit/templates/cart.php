@@ -134,7 +134,7 @@
                         <form action="" method="POST">
                             <select name="country">
                                 <?php foreach ($countries as $c) { ?>
-                                    <option <?php ecco($txn->country() == $c->uid(), 'selected') ?> value="<?= $c->uid() ?>">
+                                    <option <?php e($txn->country()->value == $c->title()->value, 'selected') ?> value="<?= $c->title() ?>">
                                         <?= $c->title() ?>
                                     </option>
                                 <?php } ?>
@@ -279,7 +279,7 @@
 
               <label>
                 <span><?= _t('country') ?></span>
-                <input type="text" id="country" name="country" value="<?= page('shop/countries/'.$txn->country())->title() ?>" readonly tabindex="-1">
+                <input type="text" id="country" name="country" value="<?= $txn->country() ?>" readonly tabindex="-1">
                 <span class="help"><?= _t('country-shipping-help') ?></span>
               </label>
 

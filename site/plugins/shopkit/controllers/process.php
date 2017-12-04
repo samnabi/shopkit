@@ -28,7 +28,6 @@ return function($site, $pages, $page) {
       $fieldsToValidate = [
         'address1' => v::minLength(esc(get('address1')), 1),
         'city' => v::minLength(esc(get('city')), 1),
-        'state' => v::minLength(esc(get('state')), 1),
         'postcode' => v::minLength(esc(get('postcode'), 1))
       ];
       foreach ($fieldsToValidate as $key => $value) {

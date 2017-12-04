@@ -181,9 +181,8 @@ $application_id = $site->square_status() == 'live' ? $site->square_id_live() : $
 
     <label>
       <span><?= _t('country') ?></span>
-      <?php $country = page('shop/countries')->children()->invisible()->filterBy('title', $txn->country())->first() ?>
-      <input type="text" disabled value="<?= $country->title() ?>">
-      <input type="hidden" id="sq-country" name="sq-country" readonly value="<?= a::first(str::split($country->countrycode(), '-')) ?>">
+      <input type="text" disabled value="<?= $txn->country() ?>">
+      <input type="hidden" id="sq-country" name="sq-country" readonly value="<?= a::first(str::split(page('shop/countries')->children()->invisible()->findBy('title', $txn->country()->value)->countrycode(), '-')) ?>">
     </label>
   </fieldset>
 

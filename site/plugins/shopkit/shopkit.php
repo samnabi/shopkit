@@ -158,8 +158,7 @@ function add($id, $quantity) {
         'payer-id' => $user->username(),
         'payer-firstname' => $user->firstname(),
         'payer-lastname' => $user->lastname(),
-        'payer-email' => $user->email(),
-        'country' => $user->country()
+        'payer-email' => $user->email()
       ], $site->defaultLanguage()->code());
     }
 
@@ -750,8 +749,8 @@ function appliesToCountry(array $data) {
   $countries = explode(', ',$data['countries']);
 
   // Find the visitor's country
-  if (page(s::get('txn'))->country()->value) {
-    $c = page(s::get('txn'))->country();
+  if ($country = page(s::get('txn'))->country()) {
+    $c = page('shop/countries')->children()->invisible()->findBy('title', $country->value)->uid();
   } else {
     $c = site()->defaultcountry();
   }

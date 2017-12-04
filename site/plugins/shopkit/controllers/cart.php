@@ -44,13 +44,13 @@ return function($site, $pages, $page) {
       // Do nothing.
     } else if ($user and $user->country() != '') {
       // Third option: get country from user profile
-      $txn->update(['country' => $user->country()], $site->defaultLanguage()->code());
+      $txn->update(['country' => $countries->find($user->country())->title()], $site->defaultLanguage()->code());
     } else if ($site->defaultcountry()->isNotEmpty()) {
       // Fourth option: get default country from site options
-      $txn->update(['country' => $site->defaultcountry()], $site->defaultLanguage()->code());
+      $txn->update(['country' => $countries->find($site->defaultcountry())->title()], $site->defaultLanguage()->code());
     } else {
       // Last resort: choose the first available country
-      $txn->update(['country' => $countries->first()->uid()], $site->defaultLanguage()->code());
+      $txn->update(['country' => $countries->first()->title()], $site->defaultLanguage()->code());
     }
 
     // Get shipping rates
