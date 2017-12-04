@@ -8,11 +8,11 @@
   <?= $txn->payer_firstname() ?> <?= $txn->payer_lastname() ?> (<?= $txn->payer_email() ?>)
   <?php if ($site->mailing_address()->bool()) { ?>
     <br>
-    <?= $txn->shipping_address()->toStructure()->address1() ?><br>
-    <?= $txn->shipping_address()->toStructure()->address2()->isNotEmpty() ? $txn->shipping_address()->toStructure()->address2().'<br>' : '' ?>
-    <?= $txn->shipping_address()->toStructure()->city() ?>, <?= $txn->shipping_address()->toStructure()->state() ?><br>
-    <?= $txn->shipping_address()->toStructure()->country() ?><br>
-    <?= $txn->shipping_address()->toStructure()->postcode() ?>
+    <?= $txn->address1() ?><br>
+    <?= $txn->address2()->isNotEmpty() ? $txn->address2().'<br>' : '' ?>
+    <?= $txn->city() ?>, <?= $txn->state() ?><br>
+    <?= $txn->country() ?><br>
+    <?= $txn->postcode() ?>
   <?php } ?>
 </p>
 
@@ -62,7 +62,7 @@
                 <td style="text-align: right;">
                   <?= _t('shipping') ?><br>
                   <small>
-                    <?= $txn->shipping_address()->toStructure()->country() ?> &ndash; <?= $txn->shippingmethod() ?>
+                    <?= $txn->country() ?> &ndash; <?= $txn->shippingmethod() ?>
                   </small>
                 </td>
                 <td style="text-align: right;"><?= formatPrice($txn->shipping()->value) ?></td>

@@ -1,7 +1,6 @@
 <?php
 // Set variables
 $site = site();
-$shipping = $txn->shipping_address()->toStructure();
 
 /**
  * Variables passed from /shop/cart/process/GATEWAY/TXN_ID
@@ -145,7 +144,7 @@ $application_id = $site->square_status() == 'live' ? $site->square_id_live() : $
   </div>
   <div>
     <label><span><?= _t('postal-code') ?> <?= _t('postal-code-verify') ?></span></label>
-    <div id="sq-postal-code"><?= $txn->shipping_address()->toStructure()->postcode() ?></div>
+    <div id="sq-postal-code"><?= $txn->postcode() ?></div>
   </div>
 </div>
 
@@ -157,32 +156,32 @@ $application_id = $site->square_status() == 'live' ? $site->square_id_live() : $
   <fieldset dir="auto" class="inline">
     <label>
       <span><?= _t('address-line-1') ?></span>
-      <input type="text" id="sq-address-line-1" name="sq-address-line-1" value="<?= $shipping->address1() ?>" required>
+      <input type="text" id="sq-address-line-1" name="sq-address-line-1" value="<?= $txn->address1() ?>" required>
     </label>
 
     <label>
       <span><?= _t('address-line-2') ?></span>
-      <input type="text" id="sq-address-line-2" name="sq-address-line-2" value="<?= $shipping->address2() ?>" placeholder="Optional">
+      <input type="text" id="sq-address-line-2" name="sq-address-line-2" value="<?= $txn->address2() ?>" placeholder="Optional">
     </label>
 
     <label>
       <span><?= _t('city') ?></span>
-      <input type="text" id="sq-locality" name="sq-locality" value="<?= $shipping->city() ?>" required>
+      <input type="text" id="sq-locality" name="sq-locality" value="<?= $txn->city() ?>" required>
     </label>
 
     <label>
       <span><?= _t('state') ?></span>
-      <input type="text" id="sq-administrative-district-level-1" name="sq-administrative-district-level-1" value="<?= $shipping->state() ?>" required>
+      <input type="text" id="sq-administrative-district-level-1" name="sq-administrative-district-level-1" value="<?= $txn->state() ?>" required>
     </label>
 
     <label>
       <span><?= _t('postal-code') ?></span>
-      <input type="text" id="sq-postal-code-shipping" name="sq-postal-code-shipping" value="<?= $shipping->postcode() ?>" required>
+      <input type="text" id="sq-postal-code-shipping" name="sq-postal-code-shipping" value="<?= $txn->postcode() ?>" required>
     </label>
 
     <label>
       <span><?= _t('country') ?></span>
-      <?php $country = page('shop/countries')->children()->invisible()->filterBy('title', $shipping->country())->first() ?>
+      <?php $country = page('shop/countries')->children()->invisible()->filterBy('title', $txn->country())->first() ?>
       <input type="text" disabled value="<?= $country->title() ?>">
       <input type="hidden" id="sq-country" name="sq-country" readonly value="<?= a::first(str::split($country->countrycode(), '-')) ?>">
     </label>

@@ -76,17 +76,43 @@ fields:
     label: payer_id
     type: text
     readonly: true
-    width: 1/2
-  payer_name:
-    label: payer_name
+  payer_firstname:
+    label: payer_firstname
     type: text
     readonly: true
-    width: 1/2
+  payer_lastname:
+    label: payer_lastname
+    type: text
+    readonly: true
   payer_email:
     label: payer_email
     type: text
     readonly: true
+  address1:
+    label: address1
+    type: text
+    readonly: true
+  address2:
+    label: address2
+    type: text
+    readonly: true
+  city:
+    label: city
+    type: text
+    readonly: true
+  state:
+    label: state
+    type: text
+    readonly: true
+  country:
+    label: country
+    type: text
+    readonly: true
+  postcode:
+    label: postcode
+    type: text
+    readonly: true
   payer_address:
-    label: payer_address
+    label: payer_address (legacy)
     type: textarea
     readonly: true

@@ -36,30 +36,21 @@ return function($site, $pages, $page) {
 
     // Set country
     $countries = page('shop/countries')->children()->invisible();
-    if ($txn->shipping_address()->isNotEmpty()) {
-      $txn_shipping_address = $txn->shipping_address()->yaml();
-    } else {
-      $txn_shipping_address = [];
-    }
     if ($country = esc(get('country'))) {
       // First: See if country was sent through a form submission.
-      $txn_shipping_address['country'] = $country;
-      $txn->update(['shipping_address' => yaml::encode($txn_shipping_address)], $site->defaultLanguage()->code());
+      $txn->update(['country' => $country], $site->defaultLanguage()->code());
     } else if ($txn->country()->isNotEmpty()) {
       // Second option: the country has already been set in the session.
       // Do nothing.
     } else if ($user and $user->country() != '') {
       // Third option: get country from user profile
-      $txn_shipping_address['country'] = $user->country();
-      $txn->update(['shipping_address' => yaml::encode($txn_shipping_address)], $site->defaultLanguage()->code());
+      $txn->update(['country' => $user->country()], $site->defaultLanguage()->code());
     } else if ($site->defaultcountry()->isNotEmpty()) {
       // Fourth option: get default country from site options
-      $txn_shipping_address['country'] = $site->defaultcountry();
-      $txn->update(['shipping_address' => yaml::encode($txn_shipping_address)], $site->defaultLanguage()->code());
+      $txn->update(['country' => $site->defaultcountry()], $site->defaultLanguage()->code());
     } else {
       // Last resort: choose the first available country
-      $txn_shipping_address['country'] = $countries->first()->uid();
-      $txn->update(['shipping_address' => yaml::encode($txn_shipping_address)], $site->defaultLanguage()->code());
+      $txn->update(['country' => $countries->first()->uid()], $site->defaultLanguage()->code());
     }
 
     // Get shipping rates

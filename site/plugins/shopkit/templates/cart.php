@@ -134,7 +134,7 @@
                         <form action="" method="POST">
                             <select name="country">
                                 <?php foreach ($countries as $c) { ?>
-                                    <option <?php ecco($txn->shipping_address()->toStructure()->country() == $c->uid(), 'selected') ?> value="<?= $c->uid() ?>">
+                                    <option <?php ecco($txn->country() == $c->uid(), 'selected') ?> value="<?= $c->uid() ?>">
                                         <?= $c->title() ?>
                                     </option>
                                 <?php } ?>
@@ -259,33 +259,33 @@
             <fieldset dir="auto" class="inline">
               <label>
                 <span><?= _t('address-line-1') ?></span>
-                <input type="text" id="address1" name="address1" value="<?= $txn->shipping_address()->toStructure()->address1() ?>" required <?php e(str::contains(param('invalid'), 'address1'), 'aria-invalid="true"') ?>>
+                <input type="text" id="address1" name="address1" value="<?= $txn->address1() ?>" required <?php e(str::contains(param('invalid'), 'address1'), 'aria-invalid="true"') ?>>
               </label>
 
               <label>
                 <span><?= _t('address-line-2') ?></span>
-                <input type="text" id="address2" name="address2" value="<?= $txn->shipping_address()->toStructure()->address2() ?>" placeholder="Optional">
+                <input type="text" id="address2" name="address2" value="<?= $txn->address2() ?>" placeholder="Optional">
               </label>
 
               <label>
                 <span><?= _t('city') ?></span>
-                <input type="text" id="city" name="city" value="<?= $txn->shipping_address()->toStructure()->city() ?>" required <?php e(str::contains(param('invalid'), 'city'), 'aria-invalid="true"') ?>>
+                <input type="text" id="city" name="city" value="<?= $txn->city() ?>" required <?php e(str::contains(param('invalid'), 'city'), 'aria-invalid="true"') ?>>
               </label>
 
               <label>
                 <span><?= _t('state') ?></span>
-                <input class="short" type="text" id="state" name="state" value="<?= $txn->shipping_address()->toStructure()->state() ?>" required <?php e(str::contains(param('invalid'), 'state'), 'aria-invalid="true"') ?>>
+                <input class="short" type="text" id="state" name="state" value="<?= $txn->state() ?>" required <?php e(str::contains(param('invalid'), 'state'), 'aria-invalid="true"') ?>>
               </label>
 
               <label>
                 <span><?= _t('country') ?></span>
-                <input type="text" id="country" name="country" value="<?= page('shop/countries/'.$txn->shipping_address()->toStructure()->country())->title() ?>" readonly tabindex="-1">
+                <input type="text" id="country" name="country" value="<?= page('shop/countries/'.$txn->country())->title() ?>" readonly tabindex="-1">
                 <span class="help"><?= _t('country-shipping-help') ?></span>
               </label>
 
               <label>
                 <span><?= _t('postal-code') ?></span>
-                <input class="short" type="text" id="postcode" name="postcode" value="<?= $txn->shipping_address()->toStructure()->postcode() ?>" required <?php e(str::contains(param('invalid'), 'postcode'), 'aria-invalid="true"') ?>>
+                <input class="short" type="text" id="postcode" name="postcode" value="<?= $txn->postcode() ?>" required <?php e(str::contains(param('invalid'), 'postcode'), 'aria-invalid="true"') ?>>
               </label>
             </fieldset>
         <?php } ?>

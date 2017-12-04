@@ -52,14 +52,12 @@ return function($site, $pages, $page) {
       'payer-firstname' => esc(get('firstname')),
       'payer-lastname' => esc(get('lastname')),
       'payer-email' => esc(get('email')),
-      'shipping-address' => yaml::encode([
-        'address1' => esc(get('address1')),
-        'address2' => esc(get('address2')),
-        'city' => esc(get('city')),
-        'state' => esc(get('state')),
-        'country' => esc(get('country')),
-        'postcode' => esc(get('postcode'))
-      ])
+      'address1' => esc(get('address1')),
+      'address2' => esc(get('address2')),
+      'city' => esc(get('city')),
+      'state' => esc(get('state')),
+      'country' => esc(get('country')),
+      'postcode' => esc(get('postcode'))
     ], $site->defaultLanguage()->code());
 
     // Return to cart if there are invalid fields

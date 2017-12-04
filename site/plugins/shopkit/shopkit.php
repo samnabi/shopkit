@@ -159,7 +159,7 @@ function add($id, $quantity) {
         'payer-firstname' => $user->firstname(),
         'payer-lastname' => $user->lastname(),
         'payer-email' => $user->email(),
-        'shipping-address' => yaml::encode(['country' => $user->country()]),
+        'country' => $user->country()
       ], $site->defaultLanguage()->code());
     }
 
