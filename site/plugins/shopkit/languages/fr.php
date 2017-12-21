@@ -14,7 +14,7 @@
 'last-name' => 'Surnom',
 'full-name' => 'Nom',
 'country' => 'Pays',
-'country-help' => 'Afin de calculer les frais de transport',
+'country-help' => 'Afin de calculer les frais de livraison',
 
 'brands' => 'Marques',
 'tags' => 'Tags',
@@ -25,7 +25,7 @@
 'price' => 'Prix',
 
 'subtotal' => 'Sous-total',
-'shipping' => 'Frais de transport',
+'shipping' => 'Frais de livraison',
 'tax' => 'Taxes',
 'total' => 'Total',
 
@@ -186,8 +186,9 @@
 'delete' => 'Supprimer',
 
 'update-country' => 'Mettre à jour le pays',
-'update-shipping' => 'Mettre à jour le transport',
-'free-shipping' => 'Transport gratuit',
+'update-shipping' => 'Mettre à jour le livraison',
+'free-shipping' => 'Livraison gratuit',
+'additional-shipping' => 'Livraison supplémentaire',
 
 'sandbox-message' => 'Vous êtes dans la mode "sandbox". Cette transaction ne résultera pas en un achat réel.',
 
@@ -201,12 +202,12 @@
 'remaining' => 'restante',
 
 'no-tax' => 'Aucun taxe',
-'no-shipping' => 'Transport gratuit',
+'no-shipping' => 'Livraison gratuit',
 
 'terms-conditions' => 'J\'accepte les', // "Conditions" sera ajouté par le template
 'terms-conditions-invalid' => 'SVP acceptez les Conditions.',
 
-'country-shipping-help' => 'Sélectionnez parmi les options de transport ci-dessus',
+'country-shipping-help' => 'Sélectionnez parmi les options de livraison ci-dessus',
 
 
 // site/plugins/shopkit/templates/confirm.php

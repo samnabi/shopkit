@@ -54,7 +54,7 @@ if (strpos($p->products(),'uri:')) {
   $html .= '<hr>';
   $html .= '<p>'._t('subtotal').': '.formatPrice($p->subtotal()->value).'</p>';
   $html .= '<p>'._t('discount').': '.formatPrice($p->discount()->value).'</p>';
-  $html .= '<p>'._t('shipping').': '.formatPrice($p->shipping()->value).'</p>';
+  $html .= '<p>'._t('shipping').': '.formatPrice($p->shipping()->value + $p->shipping_additional()->value).'</p>';
   if ($p->taxes()->value) {
     // List each tax rate separately
     foreach ($p->taxes()->toStructure() as $key => $value) {
@@ -72,7 +72,7 @@ if (strpos($p->products(),'uri:')) {
     $html .= '<p>'._t('tax').': '.formatPrice($p->tax()->value).'</p>';
   }
 
-  $total = (float) $p->subtotal()->value + (float) $p->shipping()->value - (float) $p->discount()->value;
+  $total = (float) $p->subtotal()->value + (float) $p->shipping()->value + (float) $p->shipping_additional()->value - (float) $p->discount()->value;
   if (!$site->tax_included()->bool()) $total = $total + (float) $p->tax()->value;
   $html .= '<p><strong>'._t('total').': '.formatPrice($total).'</strong></p>';
   $html .= '<p><strong>'._t('gift-certificate').': &ndash; '.formatPrice($p->giftcertificate()->value).'</strong></p>';

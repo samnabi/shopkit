@@ -85,57 +85,7 @@ fields:
       lb: Pounds (lb)
     help: Unit of measurement for calculating shipping weight
     required: true
-  shipping:
-    label: Shipping methods
-    type: snippetfield
-    snippet: shipping
-    fields:
-      method:
-        label: Method
-        help: Ground shipping, First-class airmail, Pick-up ...
-        required: true
-      countries:
-        label: Countries
-        help: Apply this shipping method to certain countries
-        type: multiselect
-        required: true
-        options: query
-        query:
-          page: 'shop/countries'
-          fetch: children
-      flat:
-        label: Flat rate
-        help: Same rate, no matter how many items
-        type: text
-        validate: num
-        width: 1/2
-      item:
-        label: Per item rate
-        help: Rate based on number of items in the cart
-        type: text
-        validate: num
-        width: 1/2
-      weight:
-        label: Rate by total weight
-        type: tiers
-        width: 1/2
-        tiersKeyLabel: Weight
-        tiersAmountLabel: Shipping rate
-      price:
-        label: Rate by total price
-        type: tiers
-        width: 1/2
-        tiersKeyLabel: Total cart price
-        tiersAmountLabel: Shipping rate
-      calculation:
-        label: Resolve multiple shipping rates
-        help: When more than one calculation option is defined, choose which one applies
-        type: select
-        options:
-          low: Use lowest shipping rate
-          high: Use highest shipping rate
-        default: low
-        required: true
+  shipping: shipping
   tax: tax
   defaultcountry:
     label: Default country

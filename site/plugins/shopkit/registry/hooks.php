@@ -120,10 +120,25 @@ $kirby->set('hook', 'panel.page.update', function ($page) {
       }
     }
 
+    // Numeric shipping rates
+    // (Whitespace and colons allowed for weight/price rates)
+    $shipping_rates = $page->shipping()->yaml();
+    foreach ($shipping_rates as $key => $shipping) {
+      if (!is_numeric($shipping['flat'])) {
+        $shipping_rates[$key]['flat'] = preg_replace('/[^0-9.]/', '', $shipping['flat']);
+      }
+      if (!is_numeric($shipping['item'])) {
+        $shipping_rates[$key]['item'] = preg_replace('/[^0-9.]/', '', $shipping['item']);
+      }
+      $shipping_rates[$key]['weight'] = preg_replace('/[^0-9.:\v ]/', '', $shipping['weight']);
+      $shipping_rates[$key]['price'] = preg_replace('/[^0-9.:\v ]/', '', $shipping['price']);
+    }
+
     // Save changes
     $page->update([
       'variants' => yaml::encode($variants),
-      'tax' => yaml::encode($taxes)
+      'tax' => yaml::encode($taxes),
+      'shipping' => yaml::encode($shipping_rates),
     ], site()->defaultLanguage()->code());
 
   } catch(Exception $e) {

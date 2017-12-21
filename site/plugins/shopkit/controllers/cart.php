@@ -74,9 +74,8 @@ return function($site, $pages, $page) {
       }
     } else if ($txn->shippingmethod()->isNotEmpty() and !empty($shippingMethods) and !get('country')) {
       // Second option: the shipping has already been set in the session, and the country hasn't changed
-      $currentMethod = $txn->shippingmethod();
       foreach ($shippingMethods as $key => $method) {
-        if ($currentMethod == $method['title']) {
+        if ($txn->shippingmethod() == $method['title']) {
           $shippingMethod = $method;
         }
       }
@@ -88,12 +87,49 @@ return function($site, $pages, $page) {
       'shippingmethod' => $shippingMethod['title'],
       'shipping' => $shippingMethod['rate'],
     ], $site->defaultLanguage()->code());
+
+
+    // Set product shipping methods
+    $productShippingRates = getProductShippingRates();
+    if (count($productShippingRates)) {
+      $shippingmethods_additional = [];
+      $shippingmethods_additional_amount = 0;
+
+      foreach ($productShippingRates as $uri => $rates) {
+        if ($value = get('additionalshipping-'.str::slug(page($uri)->title()))) {
+          // First option: see if an additional shipping method was set through a form submission
+          foreach ($rates as $rate) {
+            if (str::slug($rate['title']) == $value) {
+              $shippingmethods_additional[$uri] = $rate['title'];
+              $shippingmethods_additional_amount += $rate['rate'];
+            }
+          }
+        } else if ($txn->shippingmethod()->isNotEmpty() and !get('country')) {
+          // Second option: the additional shipping method has already been set, and the country hasn't changed
+          foreach ($rates as $rate) {
+            if (in_array($rate['title'], yaml($txn->shippingmethods_additional()))) {
+              $shippingmethods_additional[$uri] = $rate['title'];
+              $shippingmethods_additional_amount += $rate['rate'];
+            }
+          }
+        } else {
+          // Last resort: choose the first shipping method
+          $shippingmethods_additional[$uri] = $rates[0]['title'];
+          $shippingmethods_additional_amount += $rates[0]['rate'];
+        }
+      }
+
+      $txn->update([
+        'shippingmethods-additional' => yaml::encode($shippingmethods_additional),
+        'shipping-additional' => $shippingmethods_additional_amount,
+      ], $site->defaultLanguage()->code());
+    }
     
     // Get discount
     $discount = getDiscount();
 
     // Get cart total
-    $total = cartSubtotal(getItems()) + (float) $txn->shipping()->value;
+    $total = cartSubtotal(getItems()) + (float) $txn->shipping()->value + (float) $txn->shipping_additional()->value;
     if (!$site->tax_included()->bool()) $total = $total + cartTax()['total'];
     
     // Handle discount codes
@@ -108,6 +144,7 @@ return function($site, $pages, $page) {
         'user' => $user,
         'countries' => $countries,
         'shipping_rates' => $shipping_rates,
+        'productShippingRates' => $productShippingRates,
         'discount' => $discount,
         'total' => $total,
         'giftCertificate' => $giftCertificate,

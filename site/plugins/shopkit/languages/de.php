@@ -186,6 +186,7 @@
 'update-country' => 'Land ändern',
 'update-shipping' => 'Aktualisierung Versand',
 'free-shipping' => 'Kostenloser Versand',
+'additional-shipping' => 'Zusätzlicher Versand',
 
 'sandbox-message' => 'Sie befinden sich im Sandbox-Modus. Dieser Einkauf wird nicht berechnet.',
 

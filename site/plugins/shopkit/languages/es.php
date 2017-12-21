@@ -185,6 +185,7 @@
 'update-country' => 'Actualizar país',
 'update-shipping' => 'Actualizar Envío',
 'free-shipping' => 'Envío gratuito',
+'additional-shipping' => 'Envío adicional',
 
 'sandbox-message' => 'Actualmente estás en modo de prueba. Esta transacción no será una compra real.',
 

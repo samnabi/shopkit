@@ -42,8 +42,10 @@ return function($site, $pages, $page) {
       $invalidFields .= 'tac,';
     }
 
-    // Set transaction file
+    // Set up variables
     $txn = page(s::get('txn'));
+    $user = $site->user();
+    $timestamp = date('U');
 
     // Write personal details & mailing address to the transaction file
     $txn->update([
@@ -63,10 +65,6 @@ return function($site, $pages, $page) {
     if ($invalidFields != '') {
       go(page('shop/cart')->url().'/invalid'.url::paramSeparator().substr($invalidFields, 0, -1).'#details');
     }
-
-    // Set up variables
-    $user = $site->user();
-    $timestamp = date('U');
 
     // Set transaction status
     if (get('txnPaid') == 'true') {

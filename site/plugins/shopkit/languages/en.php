@@ -187,6 +187,7 @@
 'update-country' => 'Update country',
 'update-shipping' => 'Update shipping',
 'free-shipping' => 'Free Shipping',
+'additional-shipping' => 'Additional shipping',
 
 'sandbox-message' => 'You\'re running in sandbox mode. This transaction won\'t result in a real purchase.',
 

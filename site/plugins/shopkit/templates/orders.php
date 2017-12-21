@@ -124,7 +124,7 @@
                                 <td><?= _t('shipping') ?></td>
                                 <td>
                                     <!-- Need to cast as (float) to handle null or nonexistent shipping value -->
-                                    <?= formatPrice((float)$order->shipping()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
+                                    <?= formatPrice((float)$order->shipping()->value + (float)$order->shipping_additional()->value, false, false) ?>&nbsp;<?= $order->txn_currency() ?>
                                 </td>
                             </tr>
                             <?php if ($order->taxes()->value) { ?>
@@ -162,7 +162,7 @@
                                 <td>
                                     <strong>
                                         <?php
-                                            $total = (float) $order->subtotal()->value + (float) $order->shipping()->value - (float) $order->discount()->value;
+                                            $total = (float) $order->subtotal()->value + (float) $order->shipping()->value + (float) $order->shipping_additional()->value - (float) $order->discount()->value;
                                             if (!$site->tax_included()->bool()) $total = $total + (float) $order->tax()->value;
                                         ?>    
                                         <?= formatPrice($total, false, false) ?>&nbsp;<?= $order->txn_currency() ?>

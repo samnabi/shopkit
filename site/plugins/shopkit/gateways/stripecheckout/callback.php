@@ -34,7 +34,7 @@ if (get('stripeToken') != '') {
   $txn = page('shop/orders/'.get('txn'));
 
   // Get the total chargeable amount
-  $amount = $txn->subtotal()->value + $txn->shipping()->value - $txn->discount()->value - $txn->giftcertificate()->value;
+  $amount = $txn->subtotal()->value + $txn->shipping()->value + $txn->shipping_additional()->value - $txn->discount()->value - $txn->giftcertificate()->value;
   if (!$site->tax_included()->bool()) $amount = $amount + $txn->tax()->value;
 
   // We need to multiply the $txn values by 100 because Stripe gives us the amount in cents

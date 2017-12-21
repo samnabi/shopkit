@@ -1495,6 +1495,20 @@ a.slideshow {
 		vertical-align: middle;
 		margin: 0.25em 0 1em 0.5em;
 	}
+
+	.shipping {
+		fieldset {
+			margin: 0;
+
+			& + fieldset {
+				margin-top: 1em;
+			}
+		}
+		legend {
+			width: 100%;
+			text-align: right;
+		}
+	}
 }
 
 @media (min-width: $breakpoint-xs-s) {

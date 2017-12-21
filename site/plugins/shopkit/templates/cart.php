@@ -163,6 +163,35 @@
                     </td>
                     <td></td>
                 </tr>
+                <?php if (count($productShippingRates)) { ?>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>
+                            <form class="shipping" action="" method="POST">
+                                <?php foreach ($productShippingRates as $uri => $rates) { ?>
+                                    <?php if (count($rates) > 0) { ?>
+                                        <fieldset>
+                                            <legend>
+                                                <strong><small><?= page($uri)->title() ?></small></strong> &ndash;
+                                                <span class="badge"><?= _t('additional-shipping') ?></span>
+                                            </legend>
+
+                                            <?php foreach ($rates as $rate) { ?>
+                                                <label>
+                                                    <?= $rate['title'] ?> (<?= formatPrice($rate['rate'], true) ?>)
+                                                    <input type="radio" name="additionalshipping-<?= str::slug(page($uri)->title()) ?>" value="<?= str::slug($rate['title']) ?>" <?php e(in_array($rate['title'], yaml($txn->shippingmethods_additional())),'checked') ?>>
+                                                </label>
+                                            <?php } ?>
+                                        </fieldset>
+                                    <?php } ?>
+                                <?php } ?>
+
+                                <button type="submit"><?= _t('update-shipping') ?></button>
+                            </form>
+                        </td>
+                        <td></td>
+                    </tr>
+                <?php } ?>
                 <?php foreach (cartTax() as $tax_rate => $tax_amt) { ?>
                     <?php if ($tax_rate === 'total') continue; ?>
                     <tr>

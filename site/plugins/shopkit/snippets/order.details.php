@@ -62,10 +62,16 @@
                 <td style="text-align: right;">
                   <?= _t('shipping') ?><br>
                   <small>
-                    <?= $txn->country() ?> &ndash; <?= $txn->shippingmethod() ?>
+                    <?= $txn->country() ?><br>
+                    <?= $txn->shippingmethod() ?>
+                    <?php if ($txn->shippingmethods_additional()->isNotEmpty()) { ?>
+                        <?php foreach (yaml($txn->shippingmethods_additional()) as $uri => $title) { ?>
+                            <br><?= page($uri)->title() ?> &ndash; <?= $title ?>
+                        <?php } ?>
+                    <?php } ?>
                   </small>
                 </td>
-                <td style="text-align: right;"><?= formatPrice($txn->shipping()->value) ?></td>
+                <td style="text-align: right; vertical-align: top;"><?= formatPrice($txn->shipping()->value + $txn->shipping_additional()->value) ?></td>
             </tr>
 
             <?php foreach ($txn->taxes()->yaml() as $tax_rate => $tax_amt) { ?>
@@ -98,7 +104,7 @@
                 <td style="text-align: right;"><?= _t('total') ?></td>
                 <td style="text-align: right;">
                     <?php 
-                      $total = $txn->subtotal()->value + $txn->shipping()->value - $txn->discount()->value - $txn->giftcertificate()->value;
+                      $total = $txn->subtotal()->value + $txn->shipping()->value + $txn->shipping_additional()->value - $txn->discount()->value - $txn->giftcertificate()->value;
                       if (!$site->tax_included()->bool()) $total = $total + $txn->tax()->value;
                     ?>
                     <?= $site->currency_code() ?>

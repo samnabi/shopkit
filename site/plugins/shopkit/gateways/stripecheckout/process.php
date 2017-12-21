@@ -10,7 +10,7 @@ $stripe = [
 \Stripe\Stripe::setApiKey($stripe['secret_key']);
 
 // Set the total chargeable amount
-$amount = $txn->subtotal()->value + $txn->shipping()->value - $txn->discount()->value - $txn->giftcertificate()->value;
+$amount = $txn->subtotal()->value + $txn->shipping()->value + $txn->shipping_additional()->value - $txn->discount()->value - $txn->giftcertificate()->value;
 if (!$site->tax_included()->bool()) $amount = $amount + $txn->tax()->value;
 $amount = number_format($amount, decimalPlaces($site->currency_code()), '', '');
 ?>

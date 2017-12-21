@@ -407,6 +407,9 @@ a.slideshow .description .price { color: #00a8e6; margin-top: 1em; margin-bottom
 .checkout .quantity button svg { fill: rgba(0, 0, 0, 0.3); }
 .checkout .quantity button[disabled] svg { fill: rgba(0, 0, 0, 0.08); }
 .checkout select[name="country"] + button, .checkout select[name="shipping"] + button { font-size: 12.8px; font-size: 0.8rem; display: inline-block; vertical-align: middle; margin: 0.25em 0 1em 0.5em; }
+.checkout .shipping fieldset { margin: 0; }
+.checkout .shipping fieldset + fieldset { margin-top: 1em; }
+.checkout .shipping legend { width: 100%; text-align: right; }
 
 @media (min-width: 30em) { .checkout thead tr, .checkout tbody tr, .checkout tfoot tr { display: table-row; }
   .checkout td, .checkout tbody tr td:first-child { width: auto; display: table-cell; }

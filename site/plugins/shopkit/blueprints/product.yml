@@ -129,10 +129,10 @@ fields:
     label: Shipping & tax
     type: tabs
     icon: calculator
-  noshipping:
-    label: Free shipping
-    type: checkbox
-    text: Don't charge shipping on this product
+  shipping:
+    extends: shipping
+    label: Custom shipping rates
+    help: Override the shop-wide shipping rates for this product
   tax:
     extends: tax
     label: Custom tax rates

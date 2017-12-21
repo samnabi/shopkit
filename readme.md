@@ -82,7 +82,7 @@ Shopkit also depends on these submodules:
 - Selector field [1.5.2](https://github.com/storypioneers/kirby-selector)
 - Color field @[cbb4b16](https://github.com/ian-cox/Kirby-Color-Picker)
 - Snippetfield @[49feb6f](https://github.com/jenstornell/kirby-snippetfield)
-- WYSIWYG field @[d0315f6](https://github.com/samnabi/kirby-wysiwyg)
+- WYSIWYG field @[d0e15f6](https://github.com/samnabi/kirby-wysiwyg)
 - Tabs field @[8f86baa](https://github.com/afbora/Kirby-Tabs-Field)
 - field-bidi @[6ce984e](https://github.com/samnabi/field-bidi)
 - Stats @[4dff5ef](https://github.com/samnabi/kirby-stats)
