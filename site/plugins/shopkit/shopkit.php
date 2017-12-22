@@ -926,7 +926,18 @@ function getShippingRates() {
     // Exclude items that have set their own shipping rates
     // Shipping overrides are dealt with separately in the getProductShippingRates() function
     $filteredItems = getItems()->filter(function($item){
-      return page($item->uri())->shipping()->isEmpty();
+      $productShipping = page($item->uri())->shipping();
+      if ($productShipping->isNotEmpty()) {
+        foreach (yaml($productShipping) as $method) {
+          if (appliesToCountry($method)) {
+            // This item has its own shipping rates
+            return false;
+            exit;
+          }
+        }
+      }
+      // This item uses global shipping rates
+      return true;
     });
 
     $qty = cartQty($filteredItems);
@@ -1012,6 +1023,12 @@ function getProductShippingRates() {
   foreach (getItems() as $item) {
     $shipping = page($item->uri())->shipping();
     if ($shipping->isNotEmpty()) {
+
+      // Make sure there's at least one applicable shipping rate
+      $applicableRates = 0;
+      foreach (yaml($shipping) as $method) { if (appliesToCountry($method)) $applicableRates++; }
+      if ($applicableRates === 0) continue;
+
       $qty = $item->quantity()->value;
       $weight = (int) $item->weight()->value * (int) $item->quantity()->value;
       $itemAmount = $item->{'sale-amount'}->value !== false ? $item->{'sale-amount'}->value : $item->amount()->value;
