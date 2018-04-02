@@ -76,6 +76,10 @@ return function($site, $pages, $page) {
     // Add transaction details
     $discount = getDiscount();
     $decimal_places = decimalPlaces($site->currency_code());
+    $cartTax = cartTax();
+    foreach ($cartTax as $key => $value) {
+      $cartTax[$key] = number_format($value,$decimal_places,'.','');
+    }
     $txn->update([
       'txn-date'  => $timestamp,
       'txn-currency' => $site->currency_code(),
@@ -83,8 +87,8 @@ return function($site, $pages, $page) {
       'subtotal' => number_format(cartSubtotal(getItems()),$decimal_places,'.',''),
       'discountcode' => s::get('discountcode'),
       'discount' => number_format($discount['amount'],$decimal_places,'.',''),
-      'tax' => number_format(cartTax()['total'],$decimal_places,'.',''),
-      'taxes' => yaml::encode(cartTax()),
+      'tax' => $cartTax['total'],
+      'taxes' => yaml::encode($cartTax),
       'giftcode' => s::get('giftcode'),
       'giftcertificate' => null !== get('giftCertificateAmount') ? number_format(get('giftCertificateAmount'),$decimal_places,'.','') : '0.00'
     ], $site->defaultLanguage()->code());

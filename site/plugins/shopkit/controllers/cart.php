@@ -83,9 +83,10 @@ return function($site, $pages, $page) {
       // Last resort: choose the first shipping method
       $shippingMethod = array_shift($shippingMethods);
     }
+
     $txn->update([
       'shippingmethod' => $shippingMethod['title'],
-      'shipping' => $shippingMethod['rate'],
+      'shipping' => number_format($shippingMethod['rate'],decimalPlaces($site->currency_code()),'.',''),
     ], $site->defaultLanguage()->code());
 
 
