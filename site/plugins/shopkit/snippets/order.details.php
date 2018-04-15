@@ -39,10 +39,10 @@
                     <td style="text-align: right;">
                       <?php
                         if ($item->{'sale-amount'}->value === false) {
-                            echo formatPrice(($item->amount()->value) * $item->quantity()->value);
+                            echo formatPrice((float)($item->amount()->value) * (float) $item->quantity()->value);
                         } else {
-                            echo '<del class="badge">'.formatPrice($item->amount()->value * $item->quantity()->value).'</del><br>';
-                            echo formatPrice($item->{'sale-amount'}->value * $item->quantity()->value);
+                            echo '<del class="badge">'.formatPrice((float)$item->amount()->value * (float) $item->quantity()->value).'</del><br>';
+                            echo formatPrice((float)$item->{'sale-amount'}->value * (float) $item->quantity()->value);
                         }
                       ?>
                     </td>
@@ -71,7 +71,7 @@
                     <?php } ?>
                   </small>
                 </td>
-                <td style="text-align: right; vertical-align: top;"><?= formatPrice($txn->shipping()->value + $txn->shipping_additional()->value) ?></td>
+                <td style="text-align: right; vertical-align: top;"><?= formatPrice($txn->shipping()->value + (float) $txn->shipping_additional()->value) ?></td>
             </tr>
 
             <?php foreach ($txn->taxes()->yaml() as $tax_rate => $tax_amt) { ?>
@@ -104,8 +104,8 @@
                 <td style="text-align: right;"><?= _t('total') ?></td>
                 <td style="text-align: right;">
                     <?php 
-                      $total = $txn->subtotal()->value + $txn->shipping()->value + $txn->shipping_additional()->value - $txn->discount()->value - $txn->giftcertificate()->value;
-                      if (!$site->tax_included()->bool()) $total = $total + $txn->tax()->value;
+                      $total = (float) $txn->subtotal()->value + (float) $txn->shipping()->value + (float) $txn->shipping_additional()->value - (float) $txn->discount()->value - (float) $txn->giftcertificate()->value;
+                      if (!$site->tax_included()->bool()) $total = $total + (float) $txn->tax()->value;
                     ?>
                     <?= $site->currency_code() ?>
                     <?= formatPrice($total) ?>
