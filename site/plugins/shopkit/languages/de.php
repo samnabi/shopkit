@@ -250,7 +250,7 @@
 
 // site/plugins/shopkit/templates/register.php
 
-'register-success' => 'Vielen Dank, Ihr Benutzerkonto wurde registriert! Sie können sich nun <a href="#user">einloggen</a>.',
+'register-success' => 'Vielen Dank, Ihr Benutzerkonto wurde registriert! Sie erhalten eine E-Mail mit Anweisungen zur Aktivierung Ihres Kontos.',
 'register-failure' => 'Entschuldigung, das hat nicht funktioniert. Bitte versuchen Sie es erneut.',
 'register-failure-email' => 'Bitte geben Sie Ihre E-Mail Adresse an.',
 'register-failure-fullname' => 'Bitte geben Sie Ihren vollen Namen an.',
