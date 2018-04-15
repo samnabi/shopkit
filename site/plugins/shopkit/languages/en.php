@@ -51,6 +51,11 @@
 'qty' => 'Qty: ',
 
 
+// plugins/shopkit/templates/process.php
+
+'back-to-cart' => 'Back to cart',
+
+
 // plugins/shopkit/gateways/paypalexpress/process.php
 
 'redirecting' => 'Redirecting...',

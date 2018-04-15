@@ -51,6 +51,11 @@
 'qty' => 'Anz.: ',
 
 
+// plugins/shopkit/templates/process.php
+
+'back-to-cart' => 'Zurück zum Warenkorb',
+
+
 // plugins/shopkit/gateways/1-paypalexpress/process.php
 
 'redirecting' =>  'Weiterleiten...',

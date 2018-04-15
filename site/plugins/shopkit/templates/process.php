@@ -2,7 +2,7 @@
   <div class="wrapper-main">
     <main class="gateway">
 
-      <a href="<?= page('shop/cart')->url() ?>">&larr; Back to cart</a>
+      <a href="<?= page('shop/cart')->url() ?>">&larr; <?= _t('back-to-cart') ?></a>
 
       <?php snippet('logo', ['site' => $site]) ?>
 

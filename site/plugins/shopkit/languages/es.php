@@ -50,6 +50,11 @@
 'qty' => 'Cant: ',
 
 
+// plugins/shopkit/templates/process.php
+
+'back-to-cart' => 'Volver a la cesta',
+
+
 // plugins/shopkit/gateways/1-paypalexpress/process.php
 
 'redirecting' => 'Redirigiendo...',
