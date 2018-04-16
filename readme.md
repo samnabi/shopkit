@@ -22,7 +22,7 @@ A single-site license is $25 CAD. Bulk discounts available. Full details and doc
 
 ### Payments & orders
 
-- Use Square, Stripe, or PayPal ([or add your own payment gateway](https://shopkit.samnabi.com/docs/creating-your-own-payment-gateway))
+- Use Square, Stripe Checkout, or PayPal Express ([or add your own payment gateway](https://shopkit.samnabi.com/docs/creating-your-own-payment-gateway))
 - Track pending, paid, and shipped orders
 - Send order notifications to your shipping manager
 - Automatic PDF invoices
@@ -74,8 +74,8 @@ An Apache or Nginx server running PHP 5.4+. Your PHP configuration must have the
 
 Shopkit also depends on these submodules:
 
-- Kirby Core [2.5.7](https://github.com/getkirby/kirby)
-- Kirby Panel [2.5.7](https://github.com/getkirby/panel)
+- Kirby Core [2.5.10](https://github.com/getkirby/kirby)
+- Kirby Panel [2.5.10](https://github.com/getkirby/panel)
 - Stripe PHP SDK [v5.1.1](https://github.com/stripe/stripe-php)
 - Square Connect SDK [2.0.2](https://github.com/square/connect-php-sdk)
 - Multiselect field [2.1.1](https://github.com/distantnative/field-multiselect)
@@ -86,7 +86,7 @@ Shopkit also depends on these submodules:
 - Tabs field @[8f86baa](https://github.com/afbora/Kirby-Tabs-Field)
 - field-bidi @[6ce984e](https://github.com/samnabi/field-bidi)
 - Stats @[4dff5ef](https://github.com/samnabi/kirby-stats)
-- Dompdf @[aba268b](https://github.com/samnabi/dompdf)
+- Dompdf [v0.6.1-446-g501ff6d](https://github.com/samnabi/dompdf)
     - php-font-lib @[b8af0ca](https://github.com/PhenX/php-font-lib)
     - php-svg-lib [v0.1](https://github.com/PhenX/php-svg-lib)
 
@@ -96,6 +96,6 @@ Please report issues and request new features on the [issues page](https://githu
 
 ## Copyright
 
-Shopkit © 2015-2017 Sam Nabi <http://samnabi.com>
+Shopkit © 2015-2018 Sam Nabi <http://samnabi.com>
 
-Kirby © 2009-2017 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>
+Kirby © 2009-2018 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>

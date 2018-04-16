@@ -1,5 +1,24 @@
 # Changelog
 
+## v2.4
+- Update Kirby and Panel to 2.5.10
+- Update dompdf to v0.6.1-446-g501ff6d
+- New transaction summary snippet (`order.details.php`)
+- Decouple session ID from transaction ID
+- Improved French and German translations (thanks to Julien Bidoret, Moritz Pfeiffer, and Andreas Fehn)
+- Prevent translation of core fields
+- New features
+    - Per-product shipping rules
+    - Add contact info and address to the `Cart` page, remove separate `Confirm` page and simplify gateway snippets
+    - Payer address is now split into multiple fields (address, city, country, etc...)
+- Bug fixes
+    - Use `url::paramSeparator()` instead of hard-coding a colon
+    - Prevent jittery loading appearance of navbar
+    - Fix several instances of `a non-numeric value encountered` error 
+    - Fix permissions error that prevented `token/` urls from working properly
+    - Fix rounding errors in Stripe validation code
+
+
 ## v2.3
 - Update Kirby and Panel to 2.5.7
 - Update dompdf dependency
