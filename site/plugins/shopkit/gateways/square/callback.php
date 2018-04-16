@@ -46,8 +46,8 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
   $address->setLastName(esc(get('sq-last-name')));
 
   // Set the total chargeable amount
-  $txn_amount = $txn->subtotal()->value + $txn->shipping()->value + $txn->shipping_additional()->value - $txn->discount()->value - $txn->giftcertificate()->value;
-  if (!$site->tax_included()->bool()) $txn_amount = $txn_amount + $txn->tax()->value;
+  $txn_amount = (float) $txn->subtotal()->value + (float) $txn->shipping()->value + (float) $txn->shipping_additional()->value - (float) $txn->discount()->value - (float) $txn->giftcertificate()->value;
+  if (!$site->tax_included()->bool()) $txn_amount = $txn_amount + (float) $txn->tax()->value;
 
   $request_body = [
 
@@ -103,8 +103,8 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
 
   <?php } else {
     // Set the total chargeable amount
-    $txn_amount = $txn->subtotal()->value + $txn->shipping()->value + $txn->shipping_additional()->value - $txn->discount()->value - $txn->giftcertificate()->value;
-    if (!$site->tax_included()->bool()) $txn_amount = $txn_amount + $txn->tax()->value;
+    $txn_amount = (float) $txn->subtotal()->value + (float) $txn->shipping()->value + (float) $txn->shipping_additional()->value - (float) $txn->discount()->value - (float) $txn->giftcertificate()->value;
+    if (!$site->tax_included()->bool()) $txn_amount = $txn_amount + (float) $txn->tax()->value;
 
     // We need to multiply the $txn values by 100 because Square gives us the amount in cents
     if ($charge->getTransaction()->getTenders()[0]->getAmountMoney()->getAmount() == 100 * $txn_amount) {

@@ -22,7 +22,7 @@
 	<?php } ?>
 
 	<!-- Cart discount -->
-	<input type="hidden" name="discount_amount_cart" value="<?= $txn->discount()->value + $txn->giftcertificate()->value ?>">
+	<input type="hidden" name="discount_amount_cart" value="<?= (float) $txn->discount()->value + (float) $txn->giftcertificate()->value ?>">
 
 	<!-- Shipping -->
 	<input type="hidden" name="shipping_1" value="<?= $txn->shipping() ?>">
