@@ -110,14 +110,6 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
     if ($charge->getTransaction()->getTenders()[0]->getAmountMoney()->getAmount() == 100 * $txn_amount) {
 
       try {
-        // Build shipping address
-        $address  = get('sq-address-line-1') ? "\n".esc(get('sq-address-line-1')) : '';
-        $address .= get('sq-address-line-2') ? "\n".esc(get('sq-address-line-2')) : '';
-        $address .= get('sq-locality') ? "\n".esc(get('sq-locality')) : '';
-        $address .= get('sq-administrative-district-level-1') ? "\n".esc(get('sq-administrative-district-level-1')) : '';
-        $address .= get('sq-postal-code-shipping') ? "\n".esc(get('sq-postal-code-shipping')) : '';
-        $address .= get('sq-country') ? "\n".esc(get('sq-country')) : '';
-
         // Update transaction record
         $txn->update([
           'square-txn-id' => $charge->getTransaction()->getId(),
@@ -125,7 +117,12 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
           'status'  => $site->square_status() == 'live' ? 'paid' : 'pending',
           'payer-name' => esc(get('sq-first-name')).' '.esc(get('sq-last-name')),
           'payer-email' => esc(get('sq-buyer-email-address')),
-          'payer-address' => $address,
+          'address1' => esc(get('sq-address-line-1')),
+          'address2' => esc(get('sq-address-line-2')),
+          'city' => esc(get('sq-locality')),
+          'state' => esc(get('sq-administrative-district-level-1')),
+          'country' => esc(get('sq-country')),
+          'postcode' => esc(get('sq-postal-code-shipping'))
         ], $site->defaultLanguage()->code());
 
         // Update stock and notify staff
@@ -134,7 +131,6 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
           'status' => $txn->status()->value,
           'payer_name' => esc(get('sq-first-name')).' '.esc(get('sq-last-name')),
           'payer_email' => esc(get('sq-buyer-email-address')),
-          'payer_address' => $address,
           'lang' => $site->language(),
         ]);
 
@@ -148,7 +144,6 @@ if ($nonce != '' and isset($location_id) and $txn = page(s::get('txn'))) {
           'payment_status' => $txn->status()->value,
           'payer_name' => esc(get('sq-first-name')).' '.esc(get('sq-last-name')),
           'payer_email' => esc(get('sq-buyer-email-address')),
-          'payer_address' => $address,
           'lang' => $site->language(),
         ]);
         

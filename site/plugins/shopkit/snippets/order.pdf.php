@@ -48,7 +48,20 @@ if (strpos($p->products(),'uri:')) {
   $html .= '<p><strong>'._t('bill-to').'</strong><br>';
   if ($p->payer_name() != '') $html .= $p->payer_name()->value.'<br>';
   $html .= $p->payer_email()->value.'</p>';
-  $html .= $p->payer_address()->kirbytext();
+  
+  if ($p->payer_address()->isNotEmpty()) {
+    $html .= $p->payer_address()->kirbytext();  
+  } else {
+    $html .= '<p>';
+      $html .= r($p->address1(), $p->address1()->value.'<br>');
+      $html .= r($p->address2(), $p->address2()->value.'<br>');
+      $html .= r($p->city(), $p->city()->value.', ');
+      $html .= r($p->state(), $p->state()->value.'<br>');
+      $html .= r($p->country(), $p->country()->value.'<br>');
+      $html .= r($p->postcode(), $p->postcode()->value);
+    $html .= '</p>';
+  }
+
   // Old transaction files from Shopkit 1.0.5 and earlier
   $html .= $p->products()->kirbytext()->bidi();
   $html .= '<hr>';

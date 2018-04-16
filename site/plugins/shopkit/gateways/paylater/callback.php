@@ -10,7 +10,6 @@ try {
     'status' => 'pending',
     'payer_name' => $txn->payer_name(),
     'payer_email' => $txn->payer_email(),
-    'payer_address' => $txn->payer_address(),
     'lang' => $site->language(),
   ]);
 } catch(Exception $e) {
@@ -20,7 +19,6 @@ try {
     'payment_status' => 'pending',
     'payer_name' => $txn->payer_name(),
     'payer_email' => $txn->payer_email(),
-    'payer_address' => $txn->payer_address(),
     'lang' => $site->language(),
   ]);
   

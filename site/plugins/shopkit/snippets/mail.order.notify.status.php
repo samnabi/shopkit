@@ -12,7 +12,17 @@ $body .= _t('transaction-id').': '.$txn->txn_id()->value."\n\n";
 $body .= _t('status').': '._t($txn->status()->value)."\n";
 $body .= _t('full-name').': '.$txn->payer_name()->value."\n";
 $body .= _t('email-address').': '.$txn->payer_email()->value."\n";
-$body .= _t('address').': '.$txn->payer_address()->value."\n\n";
+$body .= _t('address').': '."\n";
+if ($txn->payer_address()->isNotEmpty()) {
+  $body .= $txn->payer_address()->value;  
+} else {
+  $body .= r($txn->address1(), $txn->address1()->value."\n");
+  $body .= r($txn->address2(), $txn->address2()->value."\n");
+  $body .= r($txn->city(), $txn->city()->value.', ');
+  $body .= r($txn->state(), $txn->state()->value."\n");
+  $body .= r($txn->country(), $txn->country()->value."\n");
+  $body .= r($txn->postcode(), $txn->postcode()->value);
+}
 foreach ($txn->products()->toStructure() as $item) {
   $body .= $item->name()->value.' - '.$item->variant()->value;
   $body .= $item->option() == '' ? '' : ' - '.$item->option()->value;

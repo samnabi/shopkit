@@ -94,7 +94,7 @@ if (strcmp ($res, "VERIFIED") == 0) {
 }
 
 
-if($_POST['txn_id'] != '' ) {
+if($_POST['txn_id'] != '') {
 
   // Validate the PayPal transaction against the pending order
   $txn = page('shop/orders/'.$_POST['custom']);
@@ -114,7 +114,11 @@ if($_POST['txn_id'] != '' ) {
         'payer-id' => $_POST['payer_id'],
         'payer-name' => $_POST['first_name']." ".$_POST['last_name'],
         'payer-email' => $_POST['payer_email'],
-        'payer-address' => $_POST['address_street']."\n".$_POST['address_city'].", ".$_POST['address_state']." ".$_POST['address_zip']."\n".$_POST['address_country']
+        'address1' => $_POST['address_street'],
+        'city' => $_POST['address_city'],
+        'state' => $_POST['address_state'],
+        'country' => $_POST['address_country'],
+        'postcode' => $_POST['address_zip']
       ], $site->defaultLanguage()->code());
       
       // Update stock and notify staff
@@ -123,7 +127,6 @@ if($_POST['txn_id'] != '' ) {
         'status' => $payment_status,
         'payer_name' => $txn->payer_name(),
         'payer_email' => $txn->payer_email(),
-        'payer_address' => $txn->payer_address(),
         'lang' => $site->language(),
       ]);
 
@@ -136,7 +139,6 @@ if($_POST['txn_id'] != '' ) {
         'payment_status' => $payment_status,
         'payer_name' => $_POST['first_name']." ".$_POST['last_name'],
         'payer_email' => $_POST['payer_email'],
-        'payer_address' => $_POST['address_street']."\n".$_POST['address_city'].", ".$_POST['address_state']." ".$_POST['address_zip']."\n".$_POST['address_country'],
         'lang' => $site->language(),
       ]);
       return false;

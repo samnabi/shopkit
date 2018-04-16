@@ -9,7 +9,6 @@
  * $status        string
  * $payer_name    string
  * $payer_email   string
- * $payer_address string
  */
 
 // Update stock
@@ -44,7 +43,6 @@ if ($notifications->count()) {
         'payment_status' => $status,
         'payer_name' => $payer_name,
         'payer_email' => $payer_email,
-        'payer_address' => $payer_address,
         'n' => $n,
         'lang' => $lang,
       ]);

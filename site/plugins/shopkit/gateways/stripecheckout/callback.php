@@ -58,9 +58,7 @@ if (get('stripeToken') != '') {
       snippet('order.callback', [
         'txn' => $txn,
         'status' => $payment_status,
-        'payer_name' => '',
         'payer_email' => $customer->email,
-        'payer_address' => '',
         'lang' => $site->language(),
       ]);
 
@@ -72,9 +70,7 @@ if (get('stripeToken') != '') {
       snippet('mail.order.update.error', [
         'txn' => $txn,
         'payment_status' => $payment_status,
-        'payer_name' => '', // None available from Stripe
         'payer_email' => $customer->email,
-        'payer_address' => '', // None available from Stripe
         'lang' => $site->language(),
       ]);
       
