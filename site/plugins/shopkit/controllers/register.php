@@ -38,7 +38,8 @@ return function ($site, $pages, $page) {
         	      'password'  => $password,
         	      'firstName' => trim(get('fullname')),
         	      'language'  => $site->defaultLanguage()->code(),
-        	      'country'   => get('country')
+        	      'country'   => get('country'),
+                  'role'      => 'customer'
         	    ));
 
                 // Send password reset email

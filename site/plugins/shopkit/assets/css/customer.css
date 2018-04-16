@@ -33,3 +33,18 @@
 	background: black;
 	color: white;
 }
+
+/* Change text of "Log Out" to "Back to site" */
+a[href*='/panel/logout'] {
+	color: white;
+}
+a[href*='/panel/logout']:before {
+	content: 'Back to site';
+	color: black;
+}
+a[href*='/panel/logout'] .fa-power-off {
+	color: black;
+}
+a[href*='/panel/logout'] .fa-power-off:before {
+	content:""; /* Change the logout icon to a left arrow */
+}

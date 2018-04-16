@@ -29,6 +29,9 @@ $kirby->set('route',[
         s::set('txn', 'shop/orders/'.$txn_new_id);
       }
 
+      // Make sure the user has a non-nobody role assigned
+      if ($user->role() == 'nobody') $user->update(['role' => 'customer']);
+
       return go($redirect);
     } else {
       return page($redirect)->isHomePage() ? go('/login'.url::paramSeparator().'failed/#login') : go($redirect.'/login'.url::paramSeparator().'failed/#login');
@@ -94,14 +97,14 @@ $kirby->set('route',[
     // Find user by token
     if ($user = $site->users()->findBy('token',$token)) {
 
-      // Destroy the token and update the password temporarily
-      $user->update([
-        'token' => '',
-        'password' => $token,
-      ]);
+      // Make sure the user has a non-nobody role assigned
+      if ($user->role() == 'nobody') $user->update(['role' => 'customer']);
+
+      // Destroy the token
+      $user->update(['token' => null]);
 
       // Log in
-      if ($user->login($token)) {
+      if ($user->loginPasswordless()) {
         return go('/panel/users/'.$user->username().'/edit');
       } else {
         return go('/');
