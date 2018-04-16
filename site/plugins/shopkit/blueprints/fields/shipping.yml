@@ -48,3 +48,4 @@ fields:
       high: Use highest shipping rate
     default: low
     required: true
+translate: false

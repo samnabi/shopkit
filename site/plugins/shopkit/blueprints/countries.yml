@@ -10,3 +10,4 @@ options:
   preview: false
 fields:
   title: title
+  translate: false

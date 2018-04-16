@@ -107,6 +107,7 @@ fields:
         type: checkbox
         label: License keys
         text: Create a license key for each purchased item
+    translate: false
   details:
     label: Product details
     help: These name-value pairs are displayed as a table on the product page.

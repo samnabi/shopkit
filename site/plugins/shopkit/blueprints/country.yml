@@ -10,7 +10,9 @@ fields:
   title: title
     label: Country name
     width: 1/2
+    translate: false
   countrycode:
     label: ISO Country Code
     type: text
     width: 1/2
+    translate: false

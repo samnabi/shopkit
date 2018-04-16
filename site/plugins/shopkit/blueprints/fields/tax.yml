@@ -15,3 +15,4 @@ fields:
     query:
       page: 'shop/countries'
       fetch: children
+translate: false

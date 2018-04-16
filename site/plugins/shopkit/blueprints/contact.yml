@@ -14,12 +14,14 @@ fields:
   phone:
     label: Phone number
     type: text
+    translate: false
   email:
     label: Email address
     type: email
     validate: email
+    translate: false
   location:
     label: Address
     type: textarea
-    buttons:
-      -
+    buttons: false
+    translate: false

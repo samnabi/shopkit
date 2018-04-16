@@ -4,3 +4,4 @@ type:  selector
 mode:  multiple
 types:
   - image
+translate: false

@@ -12,3 +12,4 @@ fields:
       value: "{{uri}}"
       text: "{{title}}"
     required: true
+translate: false
