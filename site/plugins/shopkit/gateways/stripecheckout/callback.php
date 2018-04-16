@@ -38,7 +38,7 @@ if (get('stripeToken') != '') {
   if (!$site->tax_included()->bool()) $amount = $amount + $txn->tax()->value;
 
   // We need to multiply the $txn values by 100 because Stripe gives us the amount in cents
-  if ($charge->amount == 100 * $amount) {
+  if ((string) $charge->amount == (string) ($amount * 100)) {
     
     // Charge validated
 
