@@ -29,7 +29,7 @@
 <?php
 
 // Check to see if we have a cache of the latest version
-$cachefile = __DIR__.DS.'cache.txt';
+$cachefile = kirby()->roots()->cache().DS.'latest-shopkit-version.txt';
 if (file_exists($cachefile)) {
   $cache = explode(',', file_get_contents($cachefile));
   $timestamp = $cache[0];
@@ -49,6 +49,7 @@ if ($cache_expired) {
   if ($releases) {
    $latest_id = $releases->entry[0]->id;
    $latest_tag = substr($latest_id, strrpos($latest_id, '/')+1);
+   if (!is_dir(kirby()->roots()->cache())) mkdir(kirby()->roots()->cache());
    file_put_contents($cachefile, time().','.$latest_tag); 
   } else {
     $latest_tag = false;

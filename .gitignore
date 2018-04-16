@@ -15,6 +15,9 @@
 /thumbs/*
 !/thumbs/.gitkeep
 
+# Ignore cache files
+/site/cache/*
+
 # Ignore non-default content files
 /content/1-shop/*
 !/content/1-shop/cart
