@@ -133,11 +133,7 @@ $kirby->set('route',[
           if ($file = page($product->uri)->files()->findBy('hash', $hash)) {
 
             // Download the file
-            $filename = $file->url();
-            header("Content-Description: File Transfer"); 
-            header("Content-Type: application/octet-stream"); 
-            header("Content-Disposition: attachment; filename=".basename($filename)); 
-            return readfile($filename);
+            $file->download();
           }
         }
       }
