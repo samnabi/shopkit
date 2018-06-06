@@ -749,7 +749,8 @@ function appliesToCountry(array $data) {
   $countries = explode(', ',$data['countries']);
 
   // Find the visitor's country
-  if ($country = page(s::get('txn'))->country()) {
+  $country = page(s::get('txn'))->country();
+  if ($country->value) {
     $c = page('shop/countries')->children()->invisible()->findBy('title', $country->value)->uid();
   } else {
     $c = site()->defaultcountry();
