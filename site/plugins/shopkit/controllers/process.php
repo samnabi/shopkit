@@ -47,19 +47,25 @@ return function($site, $pages, $page) {
     $user = $site->user();
     $timestamp = date('U');
 
-    // Write personal details & mailing address to the transaction file
+    // Write personal details to the transaction file
     $txn->update([
       'payer-id' => $user ? $user->username() : '',
       'payer-firstname' => esc(get('firstname')),
       'payer-lastname' => esc(get('lastname')),
-      'payer-email' => esc(get('email')),
-      'address1' => esc(get('address1')),
-      'address2' => esc(get('address2')),
-      'city' => esc(get('city')),
-      'state' => esc(get('state')),
-      'country' => esc(get('country')),
-      'postcode' => esc(get('postcode'))
+      'payer-email' => esc(get('email'))
     ], $site->defaultLanguage()->code());
+
+    // Write mailing address to the transaction file
+    if ($site->mailing_address()->bool()) {
+      $txn->update([
+        'address1' => esc(get('address1')),
+        'address2' => esc(get('address2')),
+        'city' => esc(get('city')),
+        'state' => esc(get('state')),
+        'country' => esc(get('country')),
+        'postcode' => esc(get('postcode'))
+      ], $site->defaultLanguage()->code());
+    }
 
     // Return to cart if there are invalid fields
     if ($invalidFields != '') {
