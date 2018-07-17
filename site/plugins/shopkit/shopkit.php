@@ -186,7 +186,7 @@ function add($id, $quantity) {
     }
     $downloads = [
       'files' => $files,
-      'expires' => $variant->download_days()->isEmpty() ? NULL : $timestamp + ((int) $variant->download_days()->value * 60 * 60 * 24)
+      'expires' => $variant->download_days()->isEmpty() ? NULL : time() + ((int) $variant->download_days()->value * 60 * 60 * 24)
     ];
   }
 
