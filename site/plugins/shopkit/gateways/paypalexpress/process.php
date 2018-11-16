@@ -25,7 +25,7 @@
 	<input type="hidden" name="discount_amount_cart" value="<?= (float) $txn->discount()->value + (float) $txn->giftcertificate()->value ?>">
 
 	<!-- Shipping -->
-	<input type="hidden" name="shipping_1" value="<?= $txn->shipping() ?>">
+	<input type="hidden" name="shipping_1" value="<?= (float) $txn->shipping()->value + (float) $txn->shipping_additional()->value ?>">
 
 	<!-- Tax -->
 	<input type="hidden" name="tax_cart" value="<?= $site->tax_included()->bool() ? '0' : $txn->tax() ?>">
