@@ -92,39 +92,37 @@ return function($site, $pages, $page) {
 
     // Set product shipping methods
     $productShippingRates = getProductShippingRates();
-    if (count($productShippingRates)) {
-      $shippingmethods_additional = [];
-      $shippingmethods_additional_amount = 0;
-
-      foreach ($productShippingRates as $uri => $rates) {
-        if ($value = get('additionalshipping-'.str::slug(page($uri)->title()))) {
-          // First option: see if an additional shipping method was set through a form submission
-          foreach ($rates as $rate) {
-            if (str::slug($rate['title']) == $value) {
-              $shippingmethods_additional[$uri] = $rate['title'];
-              $shippingmethods_additional_amount += $rate['rate'];
-            }
+    $shippingmethods_additional = [];
+    $shippingmethods_additional_amount = 0;
+    
+    foreach ($productShippingRates as $uri => $rates) {
+      if ($value = get('additionalshipping-'.str::slug(page($uri)->title()))) {
+        // First option: see if an additional shipping method was set through a form submission
+        foreach ($rates as $rate) {
+          if (str::slug($rate['title']) == $value) {
+            $shippingmethods_additional[$uri] = $rate['title'];
+            $shippingmethods_additional_amount += $rate['rate'];
           }
-        } else if ($txn->shippingmethod()->isNotEmpty() and !get('country')) {
-          // Second option: the additional shipping method has already been set, and the country hasn't changed
-          foreach ($rates as $rate) {
-            if (in_array($rate['title'], yaml($txn->shippingmethods_additional()))) {
-              $shippingmethods_additional[$uri] = $rate['title'];
-              $shippingmethods_additional_amount += $rate['rate'];
-            }
-          }
-        } else {
-          // Last resort: choose the first shipping method
-          $shippingmethods_additional[$uri] = $rates[0]['title'];
-          $shippingmethods_additional_amount += $rates[0]['rate'];
         }
+      } else if ($txn->shippingmethods_additional()->isNotEmpty() and !get('country')) {
+        // Second option: the additional shipping method has already been set, and the country hasn't changed
+        foreach ($rates as $rate) {
+          if (in_array($rate['title'], yaml($txn->shippingmethods_additional()))) {
+            $shippingmethods_additional[$uri] = $rate['title'];
+            $shippingmethods_additional_amount += $rate['rate'];
+          }
+        }
+      } else {
+        // Last resort: choose the first shipping method
+        $shippingmethods_additional[$uri] = $rates[0]['title'];
+        $shippingmethods_additional_amount += $rates[0]['rate'];
       }
-
-      $txn->update([
-        'shippingmethods-additional' => yaml::encode($shippingmethods_additional),
-        'shipping-additional' => $shippingmethods_additional_amount,
-      ], $site->defaultLanguage()->code());
     }
+
+    $txn->update([
+      'shippingmethods-additional' => yaml::encode($shippingmethods_additional),
+      'shipping-additional' => $shippingmethods_additional_amount,
+    ], $site->defaultLanguage()->code());
     
     // Get discount
     $discount = getDiscount();

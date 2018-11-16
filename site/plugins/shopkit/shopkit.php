@@ -244,14 +244,14 @@ function remove($id) {
  */
 
 function delete($id) {
-  // Using file cart
-  $items = page(s::get('txn'))->products()->yaml();
+  $txn = page(s::get('txn'));
+  $items = $txn->products()->yaml();
   foreach ($items as $key => $i) {
     if ($i['id'] == $id) {
       unset($items[$key]);
     }
   }
-  page(s::get('txn'))->update(['products' => yaml::encode($items)], site()->defaultLanguage()->code());
+  $txn->update(['products' => yaml::encode($items)], site()->defaultLanguage()->code());
 }
 
 
