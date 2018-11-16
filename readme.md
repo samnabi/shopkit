@@ -64,7 +64,7 @@ Use these terminal commands to update Shopkit and its dependencies:
 
 ## Dependencies
 
-An Apache or Nginx server running PHP 5.4+. Your PHP configuration must have the following extensions (most servers do):
+An Apache or Nginx server running PHP 5.6+. Your PHP configuration must have the following extensions (most servers do):
 
 - curl
 - json
@@ -72,10 +72,12 @@ An Apache or Nginx server running PHP 5.4+. Your PHP configuration must have the
 - dom
 - gd
 
+You must also be able to send mail through PHP's `mail()` function.
+
 Shopkit also depends on these submodules:
 
-- Kirby Core [2.5.10](https://github.com/getkirby/kirby)
-- Kirby Panel [2.5.10](https://github.com/getkirby/panel)
+- Kirby Core [2.5.12](https://github.com/getkirby/kirby)
+- Kirby Panel [2.5.12](https://github.com/getkirby/panel)
 - Stripe PHP SDK [v5.1.1](https://github.com/stripe/stripe-php)
 - Square Connect SDK [2.0.2](https://github.com/square/connect-php-sdk)
 - Multiselect field [2.1.1](https://github.com/distantnative/field-multiselect)

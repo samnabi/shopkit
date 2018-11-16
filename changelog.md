@@ -1,5 +1,16 @@
 # Changelog
 
+## v2.5
+- Update Kirby and Panel to 2.5.12 (PHP 5.6+ now required)
+- Improve shadow & overlay display in IE (for category tiles)
+- Bug fixes
+    - Fix errors in shipping calculations for products with custom shipping rules
+    - Remember user's selection for custom shipping options in the cart
+    - Fix undefined `$timestamp` error when a downloadable product is not the first to be added to the cart
+    - Fix hidden submit button on payment form when mailing address is hidden
+    - Use Kirby `download()` function instead of manually setting headers for downloadable products
+    - Fix false positive in `appliesToCountry()`
+
 ## v2.4
 - Update Kirby and Panel to 2.5.10
 - Update dompdf to v0.6.1-446-g501ff6d
