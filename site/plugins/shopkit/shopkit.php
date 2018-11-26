@@ -35,8 +35,8 @@ foreach (new DirectoryIterator(__DIR__.DS.'languages') as $file) {
 }
 
 // Transaction file exists, save it in session
-if ($txn = page(s::get('txn')) and $txn->intendedTemplate() == 'order') {
-  $txn->update(['session-end' => time()], $site->defaultLanguage()->code());
+if (s::get('txn') and site()->find(s::get('txn'))) {
+  page(s::get('txn'))->update(['session-end' => time()], $site->defaultLanguage()->code());
 }
 
 // Set discount code
@@ -141,18 +141,16 @@ function add($id, $quantity) {
   $site = site();
 
   // Create the transaction file if we don't have one yet
-  if (!s::get('txn') or page(s::get('txn'))->intendedTemplate() != 'order') {
+  if (!s::get('txn') or !site()->find(s::get('txn'))) {
     $txn_id = s::id();
     $timestamp = time();
-    if (site()->find('shop/orders/'.$txn_id) == false) {
-      page('shop')->create('shop/orders/'.$txn_id, 'order', [
-        'txn-id' => $txn_id,
-        'txn-date'  => $timestamp,
-        'status' => 'abandoned',
-        'session-start' => $timestamp,
-        'session-end' => $timestamp
-      ], $site->defaultLanguage()->code());
-    }
+    page('shop')->create('shop/orders/'.$txn_id, 'order', [
+      'txn-id' => $txn_id,
+      'txn-date'  => $timestamp,
+      'status' => 'abandoned',
+      'session-start' => $timestamp,
+      'session-end' => $timestamp
+    ], $site->defaultLanguage()->code());
 
     // Add user information if it's available
     if ($user = $site->user()) {

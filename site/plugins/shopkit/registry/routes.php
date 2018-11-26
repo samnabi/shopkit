@@ -22,7 +22,7 @@ $kirby->set('route',[
     if($user = $site->users()->findBy('email',get('email')) and $user->login(get('password'))) {
 
       // Successful login; rename old transaction file to match new session ID
-      if ($txn and $txn->intendedTemplate() == 'order') {
+      if ($txn and site()->find(s::get('txn'))) {
         $txn_new_id = s::id();
         $txn->update(['txn-id' => $txn_new_id], $site->defaultLanguage()->code());
         $txn->move($txn_new_id);

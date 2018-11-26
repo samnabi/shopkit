@@ -4,7 +4,7 @@ return function($site, $pages, $page) {
   $site = site();
   $user = $site->user();
 
-  if ((!s::get('txn') or page(s::get('txn'))->intendedTemplate() != 'order') and get('action') != 'add') {
+  if ((!s::get('txn') or !site()->find(s::get('txn'))) and get('action') != 'add') {
     // Show the empty cart page if no transaction file has been created yet
     return true;
 
