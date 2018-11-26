@@ -144,13 +144,15 @@ function add($id, $quantity) {
   if (!s::get('txn') or page(s::get('txn'))->intendedTemplate() != 'order') {
     $txn_id = s::id();
     $timestamp = time();
-    page('shop')->create('shop/orders/'.$txn_id, 'order', [
-      'txn-id' => $txn_id,
-      'txn-date'  => $timestamp,
-      'status' => 'abandoned',
-      'session-start' => $timestamp,
-      'session-end' => $timestamp
-    ], $site->defaultLanguage()->code());
+    if (site()->find('shop/orders/'.$txn_id) == false) {
+      page('shop')->create('shop/orders/'.$txn_id, 'order', [
+        'txn-id' => $txn_id,
+        'txn-date'  => $timestamp,
+        'status' => 'abandoned',
+        'session-start' => $timestamp,
+        'session-end' => $timestamp
+      ], $site->defaultLanguage()->code());
+    }
 
     // Add user information if it's available
     if ($user = $site->user()) {
