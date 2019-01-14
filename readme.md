@@ -1,8 +1,12 @@
-# Shopkit for Kirby
+# Shopkit for Kirby2
 
-Shopkit is a comprehensive commerce solution for the excellent [Kirby CMS](http://getkirby.com).
+Shopkit is a comprehensive commerce solution for version 2 of the excellent [Kirby CMS](http://getkirby.com). **It is not yet compatible with Kirby v3.**
 
-A single-site license is $25 CAD. Bulk discounts available. Full details and documentation: <http://shopkit.samnabi.com>
+This is a self-contained Kirby installation, containing many templates, snippets, blueprints, fields, and plugins to help you hit the ground running with an online shop. It is more of a theme than a plugin, i.e. you cannot add this repository into your site's existing plugins folder.
+
+As of v2.6, no Shopkit license is required to use it on a production server. You must still buy a [Kirby license](http://getkirby.com/license) from Bastian.
+
+Documentation: <http://shopkit.samnabi.com>
 
 ![Shopkit sets you up with detailed product blueprints and beautiful, flexible templates](site/plugins/shopkit/preview.png)
 
@@ -35,9 +39,9 @@ A single-site license is $25 CAD. Bulk discounts available. Full details and doc
 
 ## Pricing
 
-You can try Shopkit for free on your test server, forever. Once you're satisfied, [buy a Shopkit license for $25 CAD](http://shopkit.samnabi.com) to use it on a public site.
+Since Shopkit runs on the Kirby CMS, you'll have to buy a [Kirby license](http://getkirby.com/license) from Bastian.
 
-Since Shopkit runs on the Kirby CMS, you'll also have to buy a [Kirby license](http://getkirby.com/license) from Bastian.
+As of v2.6, there is no Shopkit license required to use it on a public server.
 
 Shopkit also depends on some plugins whose authors you should support:
 
@@ -98,6 +102,6 @@ Please report issues and request new features on the [issues page](https://githu
 
 ## Copyright
 
-Shopkit © 2015-2018 Sam Nabi <http://samnabi.com>
+Shopkit © 2015-2019 Sam Nabi <http://samnabi.com>
 
-Kirby © 2009-2018 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>
+Kirby © 2009-2019 Bastian Allgeier (Bastian Allgeier GmbH) <http://getkirby.com>
