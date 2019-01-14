@@ -11,7 +11,9 @@ You should have received your Kirby key via email after purchasing Kirby on http
 
 It is not permitted to run a public website without valid license keys. Please read the End User License Agreement for more information: http://getkirby.com/license
 
-You can retrieve your Shopkit license key from http://shopkit.samnabi.com. Log in or create an account with the email address you used to buy the license. Then click on "View Orders"
+You can retrieve your Shopkit license key from http://shopkit.samnabi.com. Log in or create an account with the email address you used to buy the license. Then click on "View Orders". 
+
+As of Shopkit 2.6, a shopkit license key is no longer required.
 
 */
 
