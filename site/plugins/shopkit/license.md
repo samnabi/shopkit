@@ -2,11 +2,11 @@
 
 This End User License Agreement (the "Agreement") is a binding legal agreement between you and Sam Nabi (the "Author"). By installing or using Shopkit (the "Software"), you agree to be bound by the terms of this Agreement. If you do not agree to the Agreement, do not download, install, or use the Software. Installation or use of the Software signifies that you have read, understood, and agreed to be bound by the Agreement.
 
-Revised on: 28 June, 2015
+Revised on: 13 January, 2019
 
 ## Usage
 
-This Agreement grants a non-exclusive, non-transferable license to install and use a single instance of the Software on a specific Website. Additional Software licenses must be purchased in order to install and use the Software on additional Websites. The Author reserves the right to determine whether use of the Software qualifies under this Agreement. The Author owns all rights, title and interest to the Software (including all intellectual property rights) and reserves all rights to the Software that are not expressly granted in this Agreement.
+This Agreement grants a non-exclusive, non-transferable license to install and use the Software. The Author reserves the right to determine whether use of the Software qualifies under this Agreement. The Author owns all rights, title and interest to the Software (including all intellectual property rights) and reserves all rights to the Software that are not expressly granted in this Agreement.
 
 ## Backups
 
@@ -14,11 +14,7 @@ You may make copies of the Software in any machine readable form solely for back
 
 ## Technical Support
 
-Technical support is provided as described on <http://getkirby.com>. No representations or guarantees are made regarding the response time in which support questions are answered.
-
-## Refund Policy
-
-We offer a 14-day, money back refund policy.
+Technical support is provided as described on <http://shopkit.samnabi.com>. No representations or guarantees are made regarding the response time in which support questions are answered.
 
 ## Restrictions
 
@@ -26,10 +22,9 @@ You understand and agree that you shall only use the Software in a manner that c
 
 ### You may not:
 
-Distribute derivative works based on the Software;
+Sell derivative works based on the Software;
 Reproduce the Software except as described in this Agreement;
-Sell, assign, license, disclose, distribute, or otherwise transfer or make available the Software or its Source Code, in whole or in part, in any form to any third parties;
-Use the Software to provide services to others;
+Sell the Software or its Source Code, in whole or in part, in any form to any third parties;
 Remove or alter any proprietary notices on the Software.
 
 ## No Warranty
