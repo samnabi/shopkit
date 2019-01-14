@@ -45,13 +45,6 @@ if ($site->users()->count() === 0) {
 
 }
 
-// Warnings
-
-if (c::get('license-shopkit') == "") {
-	// Check if there is a license key
-	$notifications[] = _t('notification-license');
-}
-
 ?>
 
 <?php if(count($notifications) > 0) { ?>
