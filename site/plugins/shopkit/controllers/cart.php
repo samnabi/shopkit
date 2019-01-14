@@ -121,7 +121,7 @@ return function($site, $pages, $page) {
 
     $txn->update([
       'shippingmethods-additional' => yaml::encode($shippingmethods_additional),
-      'shipping-additional' => $shippingmethods_additional_amount,
+      'shipping-additional' => number_format($shippingmethods_additional_amount, decimalPlaces($site->currency_code()),'.',''),
     ], $site->defaultLanguage()->code());
     
     // Get discount
