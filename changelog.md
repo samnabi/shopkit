@@ -3,6 +3,8 @@
 ## v2.6
 - Remove license requirement for Shopkit on a public server
 - Update Shopkit's license to allow non-commercial modification and distribution
+- Bug fixes
+    - Fix error with rounding on shipping rates
 
 ## v2.5
 - Update Kirby and Panel to 2.5.12 (PHP 5.6+ now required)
