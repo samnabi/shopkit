@@ -4,7 +4,9 @@ Shopkit is a comprehensive commerce solution for version 2 of the excellent [Kir
 
 This is a self-contained Kirby installation with many templates, snippets, blueprints, fields, and plugins to help you hit the ground running with an online shop. It is more of a theme than a plugin, i.e. you cannot add this repository into your site's existing plugins folder.
 
-As of v2.6, a Shopkit license is not required to use it on a production server. You must still buy a [Kirby license](http://getkirby.com/license) from Bastian.
+As of v2.6, a Shopkit license is not required to use it on a production server. You must still [buy a Kirby license](https://a.paddle.com/v2/click/1129/36615?link=1170) (clicking this affiliate link helps me out!).
+
+
 
 *If you purchased a license for previous versions of Shopkit, your license information is still accessible by logging in to <http://shopkit.samnabi.com>.*
 
