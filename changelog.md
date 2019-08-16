@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.7
+- Update Stripe Checkout gateway to use Strong Customer Authentication (required for EU purchases starting September 2019)
+- Update Stripe PHP SDK to version 6.43.0
+
 ## v2.6
 - Remove license requirement for Shopkit on a public server
 - Update Shopkit's license to allow non-commercial modification and distribution
