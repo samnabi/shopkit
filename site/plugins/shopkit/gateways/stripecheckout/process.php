@@ -15,19 +15,29 @@ if (!$site->tax_included()->bool()) $amount = $amount + (float) $txn->tax()->val
 $amount = number_format($amount, decimalPlaces($site->currency_code()), '', '');
 ?>
 
-<!-- Stripe Checkout form. Copied from https://stripe.com/docs/checkout/tutorial -->
-<form action="<?= page('shop/cart/callback')->url().'/gateway'.url::paramSeparator().'stripecheckout/id'.url::paramSeparator().$txn->txn_id() ?>" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="<?= $stripe['publishable_key'] ?>"
-    data-amount="<?= $amount ?>"
-    data-name="<?= $site->title() ?>"
-    data-description="<?= $txn->txn_id() ?>"
-    data-image="<?= $site->logo()->toFile()->crop(100)->url() ?>"
-    data-locale="auto"
-    data-currency="<?= $site->currency_code() ?>"
-    data-zip-code="true">
-  </script>
-  <input type="hidden" name="amount" value="<?= $amount ?>">
-  <input type="hidden" name="txn" value="<?= $txn->txn_id() ?>">
-</form>
+<!-- Stripe Checkout form with Strong Customer Authentication -->
+<?php
+  $session = \Stripe\Checkout\Session::create([
+    'payment_method_types' => ['card'],
+    'line_items' => [[
+      'name' => $site->title(),
+      'description' => $txn->txn_id(),
+      'amount' => $amount,
+      'currency' => $site->currency_code(),
+      'quantity' => 1,
+    ]],
+    'success_url' => page('shop/cart/callback')->url().'/gateway'.url::paramSeparator().'stripecheckout/id'.url::paramSeparator().$txn->txn_id(),
+    'cancel_url' => page('shop/cart')->url(),
+  ]);
+?>
+<script src="https://js.stripe.com/v3"></script>
+<script>
+  var stripe = Stripe('<?= $stripe['publishable_key'] ?>');
+  stripe.redirectToCheckout({
+    sessionId: '<?= $session->id ?>'
+  }).then(function (result) {
+    // If `redirectToCheckout` fails due to a browser or network
+    // error, display the localized error message to your customer
+    // using `result.error.message`.
+  });
+</script>
