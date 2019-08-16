@@ -84,8 +84,8 @@ You must also be able to send mail through PHP's `mail()` function.
 
 Shopkit also depends on these submodules:
 
-- Kirby Core [2.5.12](https://github.com/getkirby/kirby)
-- Kirby Panel [2.5.12](https://github.com/getkirby/panel)
+- Kirby Core [2.5.12](https://github.com/getkirby-v2/kirby)
+- Kirby Panel [2.5.12](https://github.com/getkirby-v2/panel)
 - Stripe PHP SDK [v6.43.0](https://github.com/stripe/stripe-php)
 - Square Connect SDK [2.0.2](https://github.com/square/connect-php-sdk)
 - Multiselect field [2.1.1](https://github.com/distantnative/field-multiselect)
