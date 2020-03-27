@@ -72,7 +72,7 @@ Use these terminal commands to update Shopkit and its dependencies:
 
 ## Dependencies
 
-An Apache or Nginx server running PHP 5.6+. Your PHP configuration must have the following extensions (most servers do):
+An Apache or Nginx server running PHP 5.6+ and <=7.1. Your PHP configuration must have the following extensions (most servers do):
 
 - curl
 - json
