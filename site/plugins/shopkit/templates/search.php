@@ -8,7 +8,7 @@
 <h1 dir="auto"><?= $page->title()->html() ?></h1>
 
 <p dir="auto" class="notification">
-	Results for <strong><?= urldecode(get('q')) ?></strong>
+	Results for <strong><?= $query ?></strong>
 </p>
 
 <?= $page->text()->kirbytext()->bidi() ?>
