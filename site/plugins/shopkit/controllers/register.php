@@ -16,12 +16,15 @@ return function ($site, $pages, $page) {
 
         if (!count($register_message)) {
 
+            // Sanitize email
+            $email = trim(htmlspecialchars(get('email'), ENT_QUOTES, 'UTF-8'));
+
             // Username is the email address with punctuation removed.
             // End users won't use this, we just need a unique ID for the account.
-            $username = str::slug(get('email'),'');
+            $username = str::slug($email,'');
 
         	// Check for duplicate accounts
-        	$duplicateEmail = $site->users()->findBy('email',trim(get('email')));
+        	$duplicateEmail = $site->users()->findBy('email',$email);
         	$duplicateUsername = $site->users()->findBy('username',$username);
 
         	if (count($duplicateEmail) === 0 and count($duplicateUsername) === 0) {
@@ -31,14 +34,18 @@ return function ($site, $pages, $page) {
                 // User will create their own password after opt-in email verification.
                 $password = bin2hex(openssl_random_pseudo_bytes(16));
 
+                // Sanitize name and country
+                $fullname = trim(htmlspecialchars(get('fullname'), ENT_QUOTES, 'UTF-8'));
+                $country = htmlspecialchars(get('country'), ENT_QUOTES, 'UTF-8');
+
                 // Create account
         	    $user = $site->users()->create(array(
         	      'username'  => $username,
-        	      'email'     => trim(get('email')),
+        	      'email'     => $email,
         	      'password'  => $password,
-        	      'firstName' => trim(get('fullname')),
+        	      'firstName' => $fullname,
         	      'language'  => $site->defaultLanguage()->code(),
-        	      'country'   => get('country'),
+        	      'country'   => $country,
                   'role'      => 'customer'
         	    ));
 

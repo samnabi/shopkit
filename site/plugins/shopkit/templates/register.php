@@ -25,12 +25,12 @@
     
     <label>
       <span><?= _t('email-address') ?></span>
-      <input type="email" name="email" value="<?= get('email') ?>">
+      <input type="email" name="email" value="<?= htmlspecialchars(get('email'), ENT_QUOTES, 'UTF-8') ?>">
     </label>
   
     <label>
       <span><?= _t('full-name') ?></span>
-      <input type="text" name="fullname" value="<?= get('fullname') ?>">
+      <input type="text" name="fullname" value="<?= htmlspecialchars(get('fullname'), ENT_QUOTES, 'UTF-8') ?>">
     </label>
   
     <label>
