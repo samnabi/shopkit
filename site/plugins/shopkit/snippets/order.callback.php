@@ -31,7 +31,7 @@ if ($notifications->count()) {
     } else {
       foreach ($uids as $uid) {
         foreach ($txn->products()->toStructure() as $item) {
-          if (strpos($item->uri(), trim($uid))) $send = true;
+          if (strpos($item->uri(), trim($uid)) !== false) $send = true;
         }
       }
     }
